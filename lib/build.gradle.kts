@@ -7,8 +7,7 @@
 
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
-    kotlin("jvm") version "1.8.0"
-    kotlin("plugin.serialization") version "1.8.0"
+    kotlin("jvm") version "1.9.23"
 
     `java-base`
 
@@ -27,9 +26,11 @@ dependencies {
     testImplementation(libs.junit.jupiter.engine)
     testImplementation("org.testng:testng:7.1.0")
 
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    val ktor_version = "2.3.11"
+    implementation("io.ktor:ktor-client-websockets:$ktor_version")
+    implementation("io.ktor:ktor-client-java:$ktor_version")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     // This dependency is exported to consumers, that is to say found on their compile classpath.
     api(libs.commons.math3)

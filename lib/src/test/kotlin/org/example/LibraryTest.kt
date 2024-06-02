@@ -3,15 +3,21 @@
  */
 package org.example
 
-import io.github.flyingpig525.base.item.VarItem
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
+import io.github.flyingpig525.base.Template
+import io.github.flyingpig525.base.item.type.NumItem
+import io.github.flyingpig525.base.item.type.VarItem
 import kotlin.test.Test
 
 class LibraryTest {
     @Test fun someLibraryMethodReturnsTrue() {
-        val varItem = VarItem("%default", VarItem.Scope.LOCAL)
-        val string = Json.encodeToString(varItem)
-        println(string)
+        val temp = Template {
+            setVar {
+                +VarItem("%default", VarItem.Scope.LOCAL)
+                +NumItem(12)
+            }
+        }
+        println(temp.getTemplateString())
+        println(temp.getJsonData())
+        Template.codeClientPlaceTemplate(temp)
     }
 }

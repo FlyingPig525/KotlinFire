@@ -1,27 +1,8 @@
 package io.github.flyingpig525.base
 
 import io.github.flyingpig525.base.item.Item
-import io.github.flyingpig525.base.item.ItemArgument
-import io.github.flyingpig525.base.item.ItemId
-import io.github.flyingpig525.base.item.VarItem
-import io.github.flyingpig525.base.item.serializer.ItemType
-import kotlinx.serialization.Contextual
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 
-@Serializable
-class Block <T : ItemType> private constructor(
-    @SerialName("block") val codeBlock: String,
-    var items: MutableList<ItemArgument<@Contextual T>>,
-    val action: String
-) {
-
-    constructor(
-        codeBlock: String,
-        items: List<ItemArgument<@Contextual T>>,
-        action: String
-    ) : this(codeBlock, items.toMutableList(), action)
-
+class Block<T>(val codeBlock: String, var items: MutableList<T>, val action: String) : JsonData where T : Item, T : JsonData{
     init {
         var i = 0
         items = items.map { item ->
@@ -33,13 +14,29 @@ class Block <T : ItemType> private constructor(
         }.toMutableList()
     }
 
-    fun item(dfItem: VarItem) {
-        ItemArgument(ItemId.VAR, dfItem)
+    override fun getJsonData(): String {
+        var string = """
+            {
+                "id": "block",
+                "block": "$codeBlock",
+                "args": {
+                    "items": [
+          
+        """.trimIndent()
+        var i = 1
+        for (item in items) {
+            string += Item.getItemJsonArgument(item)
+            if (items.size > i) string += ','
+            i++
+        }
+
+        string += """
+                    ]
+                },
+                "action": "="
+            }
+        """
+        return string
     }
 
-    fun item(item: ItemArgument<T>) {
-        items += item.apply {
-            slot = this@Block.items.size
-        }
-    }
 }
