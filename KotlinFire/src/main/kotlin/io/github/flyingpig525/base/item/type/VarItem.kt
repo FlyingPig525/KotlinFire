@@ -1,5 +1,6 @@
 package io.github.flyingpig525.base.item.type
 
+import com.google.errorprone.annotations.Var
 import io.github.flyingpig525.base.JsonData
 import io.github.flyingpig525.base.item.Item
 
@@ -12,7 +13,7 @@ import io.github.flyingpig525.base.item.Item
         }
     }
  */
-class VarItem(val name: String, val scope: Scope) : Item(ID.VAR), JsonData {
+class VarItem(val name: String, val scope: Scope = Scope.GAME) : Item(ID.VAR), JsonData {
     enum class Scope(private val value: String) {
         GAME("unsaved"),
         LOCAL("local"),
@@ -28,4 +29,8 @@ class VarItem(val name: String, val scope: Scope) : Item(ID.VAR), JsonData {
         "scope": "$scope"
         }
     """.trimIndent()
+
+    companion object {
+        fun String.toVarItem(scope: Scope = Scope.GAME): VarItem = VarItem(this, scope)
+    }
 }

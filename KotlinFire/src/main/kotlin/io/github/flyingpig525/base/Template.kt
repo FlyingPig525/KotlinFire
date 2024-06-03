@@ -1,5 +1,9 @@
 package io.github.flyingpig525.base
 
+import io.github.flyingpig525.base.block.Block
+import io.github.flyingpig525.base.block.FunctionBlock
+import io.github.flyingpig525.base.block.ProcessBlock
+import io.github.flyingpig525.base.block.category.SetVariableCategory
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.encoding.TemplateEncoder
@@ -10,27 +14,19 @@ import io.ktor.http.*
 import io.ktor.websocket.*
 import kotlinx.coroutines.runBlocking
 
+typealias Items<T> = ItemCollection<T>.() -> Unit
 
-class Template<T>(a: Template<T>.() -> Unit) : JsonData where T : Item, T : JsonData {
+class Template<T>(type: Type = Type.FUNCTION, name: String = "PutNameHere", a: Template<T>.() -> Unit) : JsonData where T : Item, T : JsonData {
     val blocks: MutableList<Block<T>> = mutableListOf()
-
-    constructor(type: Type, a: Template<T>.() -> Unit) : this(a) {
-        if (type == Type.FUNCTION) {
-
-        }
-    }
+    val SetVariable = SetVariableCategory(this)
 
     init {
+        blocks += when(type) {
+            Type.FUNCTION -> FunctionBlock(name)
+            Type.PROCESS -> ProcessBlock(name)
+            Type.EVENT -> TODO()
+        }
         apply(a)
-    }
-
-
-    fun setVar(items: ItemCollection<T>.() -> Unit) {
-        blocks += Block("set_var", ItemCollection(items).items, "=")
-    }
-
-    fun function(hidden: Boolean,) {
-
     }
 
     override fun getJsonData(): String {
@@ -102,3 +98,4 @@ class Template<T>(a: Template<T>.() -> Unit) : JsonData where T : Item, T : Json
     }
 
 }
+

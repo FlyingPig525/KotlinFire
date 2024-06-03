@@ -20,17 +20,19 @@ class LocItem(val x: Float, val y: Float, val z: Float, val pitch: Float = 0f, v
 		}
 	""".trimIndent()
 
-	fun List<Number>.toLocItem(): LocItem? {
-		if (this.size == 3) {
-			return LocItem(this[0].toFloat(), this[1].toFloat(), this[2].toFloat())
-		} else if (this.size == 5) {
-			return LocItem(this[0].toFloat(),
-				this[1].toFloat(),
-				this[2].toFloat(),
-				this[3].toFloat(),
-				this[4].toFloat()
-			)
+	companion object {
+		fun List<Number>.toLocItem(): LocItem? {
+			if (this.size == 3) {
+				return LocItem(this[0].toFloat(), this[1].toFloat(), this[2].toFloat())
+			} else if (this.size == 5) {
+				return LocItem(this[0].toFloat(),
+					this[1].toFloat(),
+					this[2].toFloat(),
+					this[3].toFloat(),
+					this[4].toFloat()
+				)
+			}
+			return null
 		}
-		return null
 	}
 }

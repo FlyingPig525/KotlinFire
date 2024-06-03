@@ -12,6 +12,7 @@ class NumItem(private val value: Float) : Item(ID.NUMBER), JsonData {
 			"name": $value
 		}
 	""".trimIndent()
-
-	fun Number.toNumItem(): NumItem = NumItem(this.toFloat())
+	companion object {
+		fun Number.toNumItem(): NumItem = NumItem(this.toFloat())
+	}
 }

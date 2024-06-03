@@ -11,4 +11,4 @@ plugins {
 }
 
 rootProject.name = "KotlinFire"
-include("lib")
+include("KotlinFire")

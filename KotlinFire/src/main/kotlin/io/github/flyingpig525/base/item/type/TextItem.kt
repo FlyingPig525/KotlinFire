@@ -12,5 +12,7 @@ class TextItem(val text: String) : Item(ID.RICHTEXT), JsonData {
 		}
 	""".trimIndent()
 
-	fun String.toTextItem(): TextItem = TextItem(this)
+	companion object {
+		fun String.toTextItem(): TextItem = TextItem(this)
+	}
 }

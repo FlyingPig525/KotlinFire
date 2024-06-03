@@ -1,8 +1,10 @@
-package io.github.flyingpig525.base
+package io.github.flyingpig525.base.block
 
+import io.github.flyingpig525.base.JsonData
 import io.github.flyingpig525.base.item.Item
 
-class Block<T>(val codeBlock: String, var items: MutableList<T>, val action: String) : JsonData where T : Item, T : JsonData{
+open class Block<T>(val codeBlock: String, var items: MutableList<T>, val action: String) :
+    JsonData where T : Item, T : JsonData {
     init {
         var i = 0
         items = items.map { item ->
@@ -33,7 +35,7 @@ class Block<T>(val codeBlock: String, var items: MutableList<T>, val action: Str
         string += """
                     ]
                 },
-                "action": "="
+                "action": "$action"
             }
         """
         return string
