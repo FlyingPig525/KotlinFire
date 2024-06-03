@@ -4,6 +4,7 @@
 package org.example
 
 import io.github.flyingpig525.base.Template
+import io.github.flyingpig525.base.item.type.MinecraftItem.Companion.toMinecraftItem
 import io.github.flyingpig525.base.item.type.NumItem.Companion.toNumItem
 import io.github.flyingpig525.base.item.type.StringItem.Companion.toStringItem
 import io.github.flyingpig525.base.item.type.TextItem.Companion.toTextItem
@@ -32,7 +33,7 @@ class LibraryTest {
                 }
             }
             PlayerAction.giveItems {
-                +"Clicker".toStringItem()
+                +"""{Count:1b,id:"minecraft:redstone",tag:{display:{Name:'{"italic":false,"extra":[{"color":"green","text":"clicker"}],"text":""}'}}}""".toMinecraftItem()
             }
         }
         val onRightClick = Template(name = "onRightClick") {
