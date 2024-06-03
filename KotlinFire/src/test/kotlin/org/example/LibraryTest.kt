@@ -6,6 +6,7 @@ package org.example
 import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.item.type.NumItem
 import io.github.flyingpig525.base.item.type.NumItem.Companion.toNumItem
+import io.github.flyingpig525.base.item.type.StringItem.Companion.toStringItem
 import io.github.flyingpig525.base.item.type.VarItem
 import io.github.flyingpig525.base.item.type.VarItem.Companion.toVarItem
 import kotlin.test.Test
@@ -13,6 +14,7 @@ import kotlin.test.Test
 class LibraryTest {
     @Test fun someLibraryMethodReturnsTrue() {
         val temp = Template(Template.Type.PROCESS) {
+            val list = "list".toVarItem(VarItem.Scope.LOCAL)
             SetVariable.chain {
                 increment {
                     +"hello".toVarItem()
@@ -23,15 +25,15 @@ class LibraryTest {
                     +(36.toNumItem())
                 }
                 createList {
-                    +"list".toVarItem(VarItem.Scope.LOCAL)
-                }
-                repeat(12) { i ->
-                    appendList {
-                        +"list".toVarItem(VarItem.Scope.LOCAL)
-                        +i.toNumItem()
-                    }
+                    +list
+                    +"Hello KotlinFire world!".toStringItem()
+                    +"Welcome to KotlinFire".toStringItem()
                 }
             }
+            PlayerAction.sendMessage {
+                +list
+            }
+
         }
         println(temp.getTemplateString())
         println(temp.getJsonData())

@@ -3,7 +3,7 @@ package io.github.flyingpig525.base
 import io.github.flyingpig525.base.block.Block
 import io.github.flyingpig525.base.block.FunctionBlock
 import io.github.flyingpig525.base.block.ProcessBlock
-import io.github.flyingpig525.base.block.category.SetVariableCategory
+import io.github.flyingpig525.base.block.category.*
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.encoding.TemplateEncoder
@@ -19,6 +19,10 @@ typealias Items<T> = ItemCollection<T>.() -> Unit
 class Template<T>(type: Type = Type.FUNCTION, name: String = "PutNameHere", a: Template<T>.() -> Unit) : JsonData where T : Item, T : JsonData {
     val blocks: MutableList<Block<T>> = mutableListOf()
     val SetVariable = SetVariableCategory(this)
+    val EntityAction = EntityActionCategory(this)
+    val GameAction = GameActionCategory(this)
+    val PlayerAction = PlayerActionCategory(this)
+    val Select = SelectCategory(this)
 
     init {
         blocks += when(type) {

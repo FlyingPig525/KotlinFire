@@ -1484,15 +1484,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [NumItem]
 	 *
-	 * -> Red (§c0§7-§c255§7)
+	 * -> Red (0-255)
 	 *
 	 * [NumItem]
 	 *
-	 * -> Green (§c0§7-§c255§7)
+	 * -> Green (0-255)
 	 *
 	 * [NumItem]
 	 *
-	 * -> Blue (§c0§7-§c255§7)
+	 * -> Blue (0-255)
 	 *
 	 * []
 	 *
@@ -1540,15 +1540,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [NumItem]
 	 *
-	 * -> Hue (Color circle, §c0§7-§c360§7)
+	 * -> Hue (Color circle, 0-360)
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Saturation (§c0§7-§c100§7)
+	 * -> Saturation (0-100)
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Lightness (§c0§7-§c100§7)
+	 * -> Lightness (0-100)
 	 *
 	 * []
 	 *
@@ -2904,15 +2904,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [NumItem]
 	 *
-	 * -> Hue (Color circle, §c0§7-§c360§7)
+	 * -> Hue (Color circle, 0-360)
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Saturation (§c0§7-§c100§7)
+	 * -> Saturation (0-100)
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Brightness (§c0§7-§c100§7)
+	 * -> Brightness (0-100)
 	 *
 	 * []
 	 *
@@ -3870,7 +3870,7 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	fun getSoundPitch(items: Items<T>) = block(items, "GetSoundPitch")
 	/**
 	 * Converts legacy color codes written in
-	 * §b"&"§7 or hex format to
+	 * "&" or hex format to
 	 * functional color codes, or vice versa.
 	 *
 	 * ARGUMENTS:
