@@ -26,12 +26,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Any(s)
+	 * (*)Any Value(s)
 	 *
-	 * -> String to set to
-	 *
+	 * String to set to
 	 *
 	 * (*) = Optional
 	 */
@@ -43,18 +42,16 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[ParticleItem]
 	 *
-	 * -> Effect to
-	 *
-	 * -> change
+	 * Effect to
+	 * change
 	 *
 	 * [TextItem]
 	 *
-	 * -> Type
-	 *
+	 * Type
 	 *
 	 * (*) = Optional
 	 */
@@ -67,12 +64,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Item
+	 * (*)Any Item
 	 *
-	 * -> Item to change
-	 *
+	 * Item to change
 	 *
 	 * (*) = Optional
 	 */
@@ -85,8 +81,7 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [TextItem](s)
 	 *
-	 * -> Name to match
-	 *
+	 * Name to match
 	 *
 	 * (*) = Optional
 	 */
@@ -99,24 +94,23 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[LocItem]
 	 *
-	 * -> Location to change
+	 * Location to change
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> X Change
+	 * X Change
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Y Change
+	 * Y Change
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Z Change
-	 *
+	 * Z Change
 	 *
 	 * (*) = Optional
 	 */
@@ -129,14 +123,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [ParticleItem]
 	 *
-	 * -> Effect to get
-	 *
-	 * -> material of
-	 *
+	 * Effect to get
+	 * material of
 	 *
 	 * (*) = Optional
 	 */
@@ -149,20 +141,19 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[ParticleItem]
 	 *
-	 * -> Effect to change
+	 * Effect to change
 	 *
 	 * [NumItem]
 	 *
-	 * -> Horizontal spread
+	 * Horizontal spread
 	 *
 	 * [NumItem]
 	 *
-	 * -> Vertical spread
-	 *
+	 * Vertical spread
 	 *
 	 * (*) = Optional
 	 */
@@ -175,12 +166,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Number input
-	 *
+	 * Number input
 	 *
 	 * (*) = Optional
 	 */
@@ -193,12 +183,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> List to append to
+	 * List to append to
 	 *
-	 * Any(s)
+	 * Any Value(s)
 	 *
-	 * -> Value(s) to append
-	 *
+	 * Value(s) to append
 	 *
 	 * (*) = Optional
 	 */
@@ -212,16 +201,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * -> Dividend
+	 * Dividend
 	 *
 	 * [NumItem]
 	 *
-	 * -> Divisor
-	 *
+	 * Divisor
 	 *
 	 * (*) = Optional
 	 */
@@ -234,28 +222,23 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[LocItem]
 	 *
-	 * -> Location to shift
+	 * Location to shift
 	 *
 	 * [VecItem]
 	 *
-	 * -> Shift vector
-	 *
-	 * []
+	 * Shift vector
 	 *
 	 * [NumItem]
 	 *
-	 * -> Shift distance
+	 * Shift distance
 	 *
-	 * []
+	 * [NONE]
 	 *
-	 * []
-	 *
-	 * -> Adds full vector
-	 *
+	 * Adds full vector
 	 *
 	 * (*) = Optional
 	 */
@@ -268,12 +251,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
+	 *
+	 * Any Item
 	 *
 	 * Item
-	 *
-	 * -> Item
-	 *
 	 *
 	 * (*) = Optional
 	 */
@@ -286,8 +268,7 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Dictionary to clear
-	 *
+	 * Dictionary to clear
 	 *
 	 * (*) = Optional
 	 */
@@ -300,12 +281,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [NumItem](s)
 	 *
-	 * -> Numbers to add
-	 *
+	 * Numbers to add
 	 *
 	 * (*) = Optional
 	 */
@@ -318,16 +298,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[LocItem]
 	 *
-	 * -> Location to shift
+	 * Location to shift
 	 *
 	 * [NumItem]
 	 *
-	 * -> Rotation amount
-	 *
+	 * Rotation amount
 	 *
 	 * (*) = Optional
 	 */
@@ -340,12 +319,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [NumItem](s)
 	 *
-	 * -> Numbers to subtract
-	 *
+	 * Numbers to subtract
 	 *
 	 * (*) = Optional
 	 */
@@ -357,12 +335,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
+	 *
+	 * Any Item
 	 *
 	 * Item
-	 *
-	 * -> Item
-	 *
 	 *
 	 * (*) = Optional
 	 */
@@ -375,16 +352,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[VecItem]
 	 *
-	 * -> Vector to multiply
+	 * Vector to multiply
 	 *
 	 * [NumItem]
 	 *
-	 * -> Multiplier
-	 *
+	 * Multiplier
 	 *
 	 * (*) = Optional
 	 */
@@ -397,12 +373,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [NumItem](s)
 	 *
-	 * -> Numbers to divide
-	 *
+	 * Numbers to divide
 	 *
 	 * (*) = Optional
 	 */
@@ -416,16 +391,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * -> Operand 1
+	 * Operand 1
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Operand 2
-	 *
+	 * Operand 2
 	 *
 	 * (*) = Optional
 	 */
@@ -438,12 +412,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * -> Lectern location
-	 *
+	 * Lectern location
 	 *
 	 * (*) = Optional
 	 */
@@ -457,16 +430,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[LocItem]
 	 *
-	 * -> Location to shift
+	 * Location to shift
 	 *
 	 * [NumItem]
 	 *
-	 * -> Shift distance
-	 *
+	 * Shift distance
 	 *
 	 * (*) = Optional
 	 */
@@ -480,16 +452,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * -> Start location
+	 * Start location
 	 *
 	 * [LocItem]
 	 *
-	 * -> End location
-	 *
+	 * End location
 	 *
 	 * (*) = Optional
 	 */
@@ -503,14 +474,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [VecItem]
 	 *
-	 * -> Vector to get
-	 *
-	 * -> component of
-	 *
+	 * Vector to get
+	 * component of
 	 *
 	 * (*) = Optional
 	 */
@@ -522,12 +491,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * Any
+	 * Any Value
 	 *
-	 * -> Value
-	 *
+	 * Value
 	 *
 	 * (*) = Optional
 	 */
@@ -542,16 +510,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Item
+	 * (*)Any Item
 	 *
-	 * -> Item
+	 * Item
 	 *
 	 * [NumItem]
 	 *
-	 * -> Modifier Amount
-	 *
+	 * Modifier Amount
 	 *
 	 * (*) = Optional
 	 */
@@ -564,12 +531,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [LocItem](s)
 	 *
-	 * -> Locations to center
-	 *
+	 * Locations to center
 	 *
 	 * (*) = Optional
 	 */
@@ -582,12 +548,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[LocItem]
 	 *
-	 * -> Location to align
-	 *
+	 * Location to align
 	 *
 	 * (*) = Optional
 	 */
@@ -599,12 +564,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [SoundItem]
 	 *
-	 * -> Sound to get volume of
-	 *
+	 * Sound to get volume of
 	 *
 	 * (*) = Optional
 	 */
@@ -618,16 +582,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * -> Minimum number
+	 * Minimum number
 	 *
 	 * [NumItem]
 	 *
-	 * -> Maximum number
-	 *
+	 * Maximum number
 	 *
 	 * (*) = Optional
 	 */
@@ -640,12 +603,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * -> Container location
-	 *
+	 * Container location
 	 *
 	 * (*) = Optional
 	 */
@@ -658,16 +620,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * -> Ray origin
+	 * Ray origin
 	 *
 	 * [NumItem]
 	 *
-	 * -> Ray distance
-	 *
+	 * Ray distance
 	 *
 	 * (*) = Optional
 	 */
@@ -680,20 +641,19 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[VecItem]
 	 *
-	 * -> Vector to rotate
+	 * Vector to rotate
 	 *
 	 * [VecItem]
 	 *
-	 * -> Axis vector
+	 * Axis vector
 	 *
 	 * [NumItem]
 	 *
-	 * -> Angle
-	 *
+	 * Angle
 	 *
 	 * (*) = Optional
 	 */
@@ -706,14 +666,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [ParticleItem]
 	 *
-	 * -> Effect to get
-	 *
-	 * -> motion of
-	 *
+	 * Effect to get
+	 * motion of
 	 *
 	 * (*) = Optional
 	 */
@@ -726,22 +684,20 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[ParticleItem]
 	 *
-	 * -> Effect to
-	 *
-	 * -> change
+	 * Effect to
+	 * change
 	 *
 	 * (*)[VecItem]
 	 *
-	 * -> Particle motion
+	 * Particle motion
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Motion variation (%)
-	 *
+	 * Motion variation (%)
 	 *
 	 * (*) = Optional
 	 */
@@ -754,12 +710,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [NumItem](s)
 	 *
-	 * -> Numbers to average
-	 *
+	 * Numbers to average
 	 *
 	 * (*) = Optional
 	 */
@@ -768,11 +723,6 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 * Checks if a number is between
 	 * two bounds and if not, wraps
 	 * it around the farthest bound.
-	 *
-	 * ARGUMENTS:
-	 *
-	 *
-	 * (*) = Optional
 	 */
 	fun wrapNumber(items: Items<T>) = block(items, "WrapNumber")
 	fun setY(items: Items<T>) = block(items, "SetY")
@@ -784,16 +734,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Item
+	 * (*)Any Item
 	 *
-	 * -> Item to change
+	 * Item to change
 	 *
 	 * [TextItem]
 	 *
-	 * -> Image URL
-	 *
+	 * Image URL
 	 *
 	 * (*) = Optional
 	 */
@@ -807,16 +756,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * -> Block location
+	 * Block location
 	 *
 	 * [TextItem]
 	 *
-	 * -> Tag name
-	 *
+	 * Tag name
 	 *
 	 * (*) = Optional
 	 */
@@ -830,12 +778,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)[]
+	 * (*)[DICT]
 	 *
-	 * -> Dictionary to sort
-	 *
+	 * Dictionary to sort
 	 *
 	 * (*) = Optional
 	 */
@@ -848,12 +795,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * -> Lectern location
-	 *
+	 * Lectern location
 	 *
 	 * (*) = Optional
 	 */
@@ -865,12 +811,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [SoundItem]
 	 *
-	 * -> Sound to get key of
-	 *
+	 * Sound to get key of
 	 *
 	 * (*) = Optional
 	 */
@@ -883,16 +828,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [VecItem]
 	 *
-	 * -> Vector 1
+	 * Vector 1
 	 *
 	 * [VecItem]
 	 *
-	 * -> Vector 2
-	 *
+	 * Vector 2
 	 *
 	 * (*) = Optional
 	 */
@@ -905,12 +849,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [NumItem](s)
 	 *
-	 * -> Numbers to multiply
-	 *
+	 * Numbers to multiply
 	 *
 	 * (*) = Optional
 	 */
@@ -922,14 +865,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[ParticleItem]
 	 *
-	 * -> Effect to get
-	 *
-	 * -> roll of
-	 *
+	 * Effect to get
+	 * roll of
 	 *
 	 * (*) = Optional
 	 */
@@ -943,16 +884,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [VecItem]
 	 *
-	 * -> Vector 1
+	 * Vector 1
 	 *
 	 * [VecItem]
 	 *
-	 * -> Vector 2
-	 *
+	 * Vector 2
 	 *
 	 * (*) = Optional
 	 */
@@ -966,12 +906,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Item
+	 * (*)Any Item
 	 *
-	 * -> Item to change
-	 *
+	 * Item to change
 	 *
 	 * (*) = Optional
 	 */
@@ -984,16 +923,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * []
+	 * [LIST]
 	 *
-	 * -> List to get value of
+	 * List to get value of
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Index
-	 *
+	 * Index
 	 *
 	 * (*) = Optional
 	 */
@@ -1006,14 +944,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [NumItem](s)
 	 *
-	 * -> Number set
-	 *
-	 * -> to compare
-	 *
+	 * Number set
+	 * to compare
 	 *
 	 * (*) = Optional
 	 */
@@ -1025,14 +961,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * []
+	 * [POTION]
 	 *
-	 * -> Potion to get
-	 *
-	 * -> type of
-	 *
+	 * Potion to get
+	 * type of
 	 *
 	 * (*) = Optional
 	 */
@@ -1046,12 +980,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * []
+	 * [LIST]
 	 *
-	 * -> List to measure
-	 *
+	 * List to measure
 	 *
 	 * (*) = Optional
 	 */
@@ -1064,12 +997,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * -> Number input
-	 *
+	 * Number input
 	 *
 	 * (*) = Optional
 	 */
@@ -1082,12 +1014,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [VecItem]
 	 *
-	 * -> Direction
-	 *
+	 * Direction
 	 *
 	 * (*) = Optional
 	 */
@@ -1100,16 +1031,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [TextItem]
 	 *
-	 * -> String to repeat
+	 * String to repeat
 	 *
 	 * [NumItem]
 	 *
-	 * -> Times to repeat
-	 *
+	 * Times to repeat
 	 *
 	 * (*) = Optional
 	 */
@@ -1122,20 +1052,19 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * []
+	 * [LIST]
 	 *
-	 * -> Strings to join
-	 *
-	 * (*)[TextItem]
-	 *
-	 * -> Joining string
+	 * Strings to join
 	 *
 	 * (*)[TextItem]
 	 *
-	 * -> Final joining string
+	 * Joining string
 	 *
+	 * (*)[TextItem]
+	 *
+	 * Final joining string
 	 *
 	 * (*) = Optional
 	 */
@@ -1148,12 +1077,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)[]
+	 * (*)[LIST]
 	 *
-	 * -> List to reverse
-	 *
+	 * List to reverse
 	 *
 	 * (*) = Optional
 	 */
@@ -1166,12 +1094,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)[]
+	 * (*)[LIST]
 	 *
-	 * -> List to de-duplicate
-	 *
+	 * List to de-duplicate
 	 *
 	 * (*) = Optional
 	 */
@@ -1184,16 +1111,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)[]
+	 * (*)[LIST]
 	 *
-	 * -> Key list
+	 * Key list
 	 *
-	 * (*)[]
+	 * (*)[LIST]
 	 *
-	 * -> Value list
-	 *
+	 * Value list
 	 *
 	 * (*) = Optional
 	 */
@@ -1207,16 +1133,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[LocItem]
 	 *
-	 * -> Location to change
+	 * Location to change
 	 *
 	 * [LocItem]
 	 *
-	 * -> Target location
-	 *
+	 * Target location
 	 *
 	 * (*) = Optional
 	 */
@@ -1230,16 +1155,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[VecItem]
 	 *
-	 * -> Vector to change
+	 * Vector to change
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Length
-	 *
+	 * Length
 	 *
 	 * (*) = Optional
 	 */
@@ -1251,16 +1175,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)[]
+	 * (*)[POTION]
 	 *
-	 * -> Potion to change
+	 * Potion to change
 	 *
 	 * [NumItem]
 	 *
-	 * -> Duration (ticks)
-	 *
+	 * Duration (ticks)
 	 *
 	 * (*) = Optional
 	 */
@@ -1272,18 +1195,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * Item
+	 * Any Item
 	 *
-	 * -> Block to check
-	 *
-	 * []
+	 * Block to check
 	 *
 	 * [LocItem]
 	 *
-	 * -> Location to check
-	 *
+	 * Location to check
 	 *
 	 * (*) = Optional
 	 */
@@ -1295,16 +1215,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [TextItem]
 	 *
-	 * -> String to split
+	 * String to split
 	 *
 	 * (*)[TextItem]
 	 *
-	 * -> Splitter string
-	 *
+	 * Splitter string
 	 *
 	 * (*) = Optional
 	 */
@@ -1318,16 +1237,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * -> μ (Mean midpoint)
+	 * μ (Mean midpoint)
 	 *
 	 * [NumItem]
 	 *
-	 * -> σ (Standard deviation)
-	 *
+	 * σ (Standard deviation)
 	 *
 	 * (*) = Optional
 	 */
@@ -1339,16 +1257,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)[]
+	 * (*)[POTION]
 	 *
-	 * -> Potion to change
+	 * Potion to change
 	 *
 	 * [TextItem]
 	 *
-	 * -> Type
-	 *
+	 * Type
 	 *
 	 * (*) = Optional
 	 */
@@ -1361,12 +1278,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[VecItem]
 	 *
-	 * -> Vector to align
-	 *
+	 * Vector to align
 	 *
 	 * (*) = Optional
 	 */
@@ -1378,16 +1294,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Item
+	 * (*)Any Item
 	 *
-	 * -> Item
+	 * Item
 	 *
 	 * [NumItem]
 	 *
-	 * -> Item durability
-	 *
+	 * Item durability
 	 *
 	 * (*) = Optional
 	 */
@@ -1400,12 +1315,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Item
+	 * (*)Any Item
 	 *
-	 * -> Item
-	 *
+	 * Item
 	 *
 	 * (*) = Optional
 	 */
@@ -1418,16 +1332,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Dictionary to add to
+	 * Dictionary to add to
 	 *
 	 * [TextItem]
 	 *
-	 * -> Key
+	 * Key
 	 *
-	 * Any
+	 * Any Value
 	 *
-	 * -> Value
-	 *
+	 * Value
 	 *
 	 * (*) = Optional
 	 */
@@ -1440,32 +1353,31 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[LocItem]
 	 *
-	 * -> Location to change
+	 * Location to change
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> New X
+	 * New X
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> New Y
+	 * New Y
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> New Z
+	 * New Z
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> New Pitch
+	 * New Pitch
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> New Yaw
-	 *
+	 * New Yaw
 	 *
 	 * (*) = Optional
 	 */
@@ -1478,28 +1390,23 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
-	 *
-	 * []
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * -> Red (0-255)
+	 * Red (§c0§7-§c255§7)
 	 *
 	 * [NumItem]
 	 *
-	 * -> Green (0-255)
+	 * Green (§c0§7-§c255§7)
 	 *
 	 * [NumItem]
 	 *
-	 * -> Blue (0-255)
+	 * Blue (§c0§7-§c255§7)
 	 *
-	 * []
+	 * [LIST]
 	 *
-	 * []
-	 *
-	 * -> R, G, B values
-	 *
+	 * R, G, B values
 	 *
 	 * (*) = Optional
 	 */
@@ -1512,16 +1419,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Item
+	 * (*)Any Item
 	 *
-	 * -> Item to change
+	 * Item to change
 	 *
-	 * [](s)
+	 * [BLOCK](s)
 	 *
-	 * -> Breakable blocks
-	 *
+	 * Breakable blocks
 	 *
 	 * (*) = Optional
 	 */
@@ -1534,28 +1440,23 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
-	 *
-	 * []
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * -> Hue (Color circle, 0-360)
+	 * Hue (Color circle, §c0§7-§c360§7)
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Saturation (0-100)
+	 * Saturation (§c0§7-§c100§7)
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Lightness (0-100)
+	 * Lightness (§c0§7-§c100§7)
 	 *
-	 * []
+	 * [LIST]
 	 *
-	 * []
-	 *
-	 * -> H, S, L values
-	 *
+	 * H, S, L values
 	 *
 	 * (*) = Optional
 	 */
@@ -1569,12 +1470,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> List to change
+	 * List to change
 	 *
 	 * [NumItem](s)
 	 *
-	 * -> Index to remove
-	 *
+	 * Index to remove
 	 *
 	 * (*) = Optional
 	 */
@@ -1582,23 +1482,22 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	/**
 	 * Finds the logarithm of a number.
 	 * A logarithm is the power the
-	 * base must be raised to get
+	 * base must be raised to to get
 	 * the given input.
 	 *
 	 * ARGUMENTS:
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Number input
+	 * Number input
 	 *
 	 * [NumItem]
 	 *
-	 * -> Base
-	 *
+	 * Base
 	 *
 	 * (*) = Optional
 	 */
@@ -1611,28 +1510,23 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Item
+	 * (*)Any Item
 	 *
-	 * -> Item to change
+	 * Item to change
 	 *
 	 * [TextItem]
 	 *
-	 * -> Tag name
-	 *
-	 * []
+	 * Tag name
 	 *
 	 * [NumItem]
 	 *
-	 * -> Tag value
-	 *
-	 * []
+	 * Tag value
 	 *
 	 * [TextItem]
 	 *
-	 * -> Tag value
-	 *
+	 * Tag value
 	 *
 	 * (*) = Optional
 	 */
@@ -1645,20 +1539,19 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[TextItem]
 	 *
-	 * -> String to trim
+	 * String to trim
 	 *
 	 * [NumItem]
 	 *
-	 * -> Start character position
+	 * Start character position
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> End character position
-	 *
+	 * End character position
 	 *
 	 * (*) = Optional
 	 */
@@ -1671,12 +1564,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [TextItem]
 	 *
-	 * -> String to parse
-	 *
+	 * String to parse
 	 *
 	 * (*) = Optional
 	 */
@@ -1688,14 +1580,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * Item
+	 * Any Item
 	 *
-	 * -> Item to get stack
-	 *
-	 * -> size of
-	 *
+	 * Item to get stack
+	 * size of
 	 *
 	 * (*) = Optional
 	 */
@@ -1707,16 +1597,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)[]
+	 * (*)[POTION]
 	 *
-	 * -> Potion to change
+	 * Potion to change
 	 *
 	 * [NumItem]
 	 *
-	 * -> Amplifier
-	 *
+	 * Amplifier
 	 *
 	 * (*) = Optional
 	 */
@@ -1729,12 +1618,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
+	 *
+	 * Any Item
 	 *
 	 * Item
-	 *
-	 * -> Item
-	 *
 	 *
 	 * (*) = Optional
 	 */
@@ -1747,16 +1635,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[VecItem]
 	 *
-	 * -> Vector to rotate
+	 * Vector to rotate
 	 *
 	 * [NumItem]
 	 *
-	 * -> Angle
-	 *
+	 * Angle
 	 *
 	 * (*) = Optional
 	 */
@@ -1770,12 +1657,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
+	 *
+	 * Any Item
 	 *
 	 * Item
-	 *
-	 * -> Item
-	 *
 	 *
 	 * (*) = Optional
 	 */
@@ -1788,16 +1674,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[LocItem]
 	 *
-	 * -> Location to shift
+	 * Location to shift
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Shift distance
-	 *
+	 * Shift distance
 	 *
 	 * (*) = Optional
 	 */
@@ -1811,20 +1696,19 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Number to wrap
+	 * Number to wrap
 	 *
 	 * [NumItem]
 	 *
-	 * -> Lower bound (inclusive)
+	 * Lower bound (inclusive)
 	 *
 	 * [NumItem]
 	 *
-	 * -> Upper bound (exclusive)
-	 *
+	 * Upper bound (exclusive)
 	 *
 	 * (*) = Optional
 	 */
@@ -1837,22 +1721,20 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable
-	 *
-	 * -> to set
-	 *
-	 * [TextItem]
-	 *
-	 * -> String to change
+	 * Variable
+	 * to set
 	 *
 	 * [TextItem]
 	 *
-	 * -> String part to replace
+	 * String to change
 	 *
 	 * [TextItem]
 	 *
-	 * -> Replacement
+	 * String part to replace
 	 *
+	 * [TextItem]
+	 *
+	 * Replacement
 	 *
 	 * (*) = Optional
 	 */
@@ -1864,16 +1746,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Item
+	 * (*)Any Item
 	 *
-	 * -> Item to change
+	 * Item to change
 	 *
 	 * [LocItem]
 	 *
-	 * -> Lodestone location
-	 *
+	 * Lodestone location
 	 *
 	 * (*) = Optional
 	 */
@@ -1887,12 +1768,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)[]
+	 * (*)[LIST]
 	 *
-	 * -> List to flatten
-	 *
+	 * List to flatten
 	 *
 	 * (*) = Optional
 	 */
@@ -1904,18 +1784,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * Item
+	 * Any Item
 	 *
-	 * -> Block to check
-	 *
-	 * []
+	 * Block to check
 	 *
 	 * [LocItem]
 	 *
-	 * -> Location to check
-	 *
+	 * Location to check
 	 *
 	 * (*) = Optional
 	 */
@@ -1927,14 +1804,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * []
+	 * [POTION]
 	 *
-	 * -> Potion to get
-	 *
-	 * -> amplifier of
-	 *
+	 * Potion to get
+	 * amplifier of
 	 *
 	 * (*) = Optional
 	 */
@@ -1947,14 +1822,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [ParticleItem]
 	 *
-	 * -> Effect to get
-	 *
-	 * -> amount of
-	 *
+	 * Effect to get
+	 * amount of
 	 *
 	 * (*) = Optional
 	 */
@@ -1967,14 +1840,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * []
+	 * [DICT]
 	 *
-	 * -> Dictionary to
-	 *
-	 * -> measure
-	 *
+	 * Dictionary to
+	 * measure
 	 *
 	 * (*) = Optional
 	 */
@@ -1986,16 +1857,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Item
+	 * (*)Any Item
 	 *
-	 * -> Item to change
+	 * Item to change
 	 *
 	 * [NumItem]
 	 *
-	 * -> Stack size
-	 *
+	 * Stack size
 	 *
 	 * (*) = Optional
 	 */
@@ -2008,30 +1878,28 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [VecItem](s)
 	 *
-	 * -> Vectors to subtract
-	 *
+	 * Vectors to subtract
 	 *
 	 * (*) = Optional
 	 */
 	fun subtractVectors(items: Items<T>) = block(items, "SubtractVectors")
 	/**
 	 * Sets a string's capitalization
-	 * (e.g. to uppercase).
+	 * (eg. to uppercase).
 	 *
 	 * ARGUMENTS:
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[TextItem]
 	 *
-	 * -> String to change
-	 *
+	 * String to change
 	 *
 	 * (*) = Optional
 	 */
@@ -2044,22 +1912,20 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[ParticleItem]
 	 *
-	 * -> Effect to
-	 *
-	 * -> change
+	 * Effect to
+	 * change
 	 *
 	 * [TextItem]
 	 *
-	 * -> Color hexadecimal
+	 * Color hexadecimal
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Color variation (%)
-	 *
+	 * Color variation (%)
 	 *
 	 * (*) = Optional
 	 */
@@ -2072,12 +1938,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * -> Light location
-	 *
+	 * Light location
 	 *
 	 * (*) = Optional
 	 */
@@ -2090,14 +1955,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * []
+	 * [DICT]
 	 *
-	 * -> Dictionary to
-	 *
-	 * -> pull from
-	 *
+	 * Dictionary to
+	 * pull from
 	 *
 	 * (*) = Optional
 	 */
@@ -2109,22 +1972,19 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
-	 *
-	 * []
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * -> X component
+	 * X component
 	 *
 	 * [NumItem]
 	 *
-	 * -> Y component
+	 * Y component
 	 *
 	 * [NumItem]
 	 *
-	 * -> Z component
-	 *
+	 * Z component
 	 *
 	 * (*) = Optional
 	 */
@@ -2137,16 +1997,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * -> Location 1
+	 * Location 1
 	 *
 	 * [LocItem]
 	 *
-	 * -> Location 2
-	 *
+	 * Location 2
 	 *
 	 * (*) = Optional
 	 */
@@ -2159,16 +2018,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Number input
+	 * Number input
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Root index
-	 *
+	 * Root index
 	 *
 	 * (*) = Optional
 	 */
@@ -2181,18 +2039,16 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[ParticleItem]
 	 *
-	 * -> Effect to
-	 *
-	 * -> change
+	 * Effect to
+	 * change
 	 *
 	 * [NumItem]
 	 *
-	 * -> Particle amount
-	 *
+	 * Particle amount
 	 *
 	 * (*) = Optional
 	 */
@@ -2204,20 +2060,19 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Item
+	 * (*)Any Item
 	 *
-	 * -> Item to change
+	 * Item to change
 	 *
 	 * [TextItem]
 	 *
-	 * -> Enchantment name
+	 * Enchantment name
 	 *
 	 * [NumItem]
 	 *
-	 * -> Enchantment level
-	 *
+	 * Enchantment level
 	 *
 	 * (*) = Optional
 	 */
@@ -2229,12 +2084,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * Item
+	 * Any Item
 	 *
-	 * -> Item to get material of
-	 *
+	 * Item to get material of
 	 *
 	 * (*) = Optional
 	 */
@@ -2247,14 +2101,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * -> Location to get
-	 *
-	 * -> direction of
-	 *
+	 * Location to get
+	 * direction of
 	 *
 	 * (*) = Optional
 	 */
@@ -2267,16 +2119,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * Item
+	 * Any Item
 	 *
-	 * -> Item to get lore from
+	 * Item to get lore from
 	 *
 	 * [NumItem]
 	 *
-	 * -> Lore line to get
-	 *
+	 * Lore line to get
 	 *
 	 * (*) = Optional
 	 */
@@ -2288,14 +2139,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [ParticleItem]
 	 *
-	 * -> Effect to get
-	 *
-	 * -> type of
-	 *
+	 * Effect to get
+	 * type of
 	 *
 	 * (*) = Optional
 	 */
@@ -2308,18 +2157,16 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable
-	 *
-	 * -> to set
+	 * Variable
+	 * to set
 	 *
 	 * (*)[TextItem]
 	 *
-	 * -> String to change
+	 * String to change
 	 *
 	 * [TextItem](s)
 	 *
-	 * -> String to remove
-	 *
+	 * String to remove
 	 *
 	 * (*) = Optional
 	 */
@@ -2332,12 +2179,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * -> Block location
-	 *
+	 * Block location
 	 *
 	 * (*) = Optional
 	 */
@@ -2350,14 +2196,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [NumItem](s)
 	 *
-	 * -> Number set
-	 *
-	 * -> to compare
-	 *
+	 * Number set
+	 * to compare
 	 *
 	 * (*) = Optional
 	 */
@@ -2370,14 +2214,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * []
+	 * [DICT]
 	 *
-	 * -> Dictionary to
-	 *
-	 * -> pull from
-	 *
+	 * Dictionary to
+	 * pull from
 	 *
 	 * (*) = Optional
 	 */
@@ -2390,20 +2232,19 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
-	 * -> Text to trim
+	 * Text to trim
 	 *
 	 * [NumItem]
 	 *
-	 * -> Start character position
+	 * Start character position
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> End character position
-	 *
+	 * End character position
 	 *
 	 * (*) = Optional
 	 */
@@ -2416,18 +2257,16 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[ParticleItem]
 	 *
-	 * -> Effect to
+	 * Effect to
+	 * change
 	 *
-	 * -> change
+	 * Any Item
 	 *
-	 * Item
-	 *
-	 * -> Particle material
-	 *
+	 * Particle material
 	 *
 	 * (*) = Optional
 	 */
@@ -2440,14 +2279,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * -> Location to get
-	 *
-	 * -> coordinate of
-	 *
+	 * Location to get
+	 * coordinate of
 	 *
 	 * (*) = Optional
 	 */
@@ -2459,16 +2296,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Item
+	 * (*)Any Item
 	 *
-	 * -> Item to change
+	 * Item to change
 	 *
 	 * [TextItem]
 	 *
-	 * -> Tag name
-	 *
+	 * Tag name
 	 *
 	 * (*) = Optional
 	 */
@@ -2481,22 +2317,20 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[ParticleItem]
 	 *
-	 * -> Effect to
-	 *
-	 * -> change
+	 * Effect to
+	 * change
 	 *
 	 * [NumItem]
 	 *
-	 * -> Particle size
+	 * Particle size
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Size variation (%)
-	 *
+	 * Size variation (%)
 	 *
 	 * (*) = Optional
 	 */
@@ -2508,14 +2342,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * []
+	 * [POTION]
 	 *
-	 * -> Potion to get
-	 *
-	 * -> duration of
-	 *
+	 * Potion to get
+	 * duration of
 	 *
 	 * (*) = Optional
 	 */
@@ -2528,16 +2360,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * -> Location 1
+	 * Location 1
 	 *
 	 * [LocItem]
 	 *
-	 * -> Location 2
-	 *
+	 * Location 2
 	 *
 	 * (*) = Optional
 	 */
@@ -2549,16 +2380,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[SoundItem]
 	 *
-	 * -> Sound to change
+	 * Sound to change
 	 *
 	 * [TextItem]
 	 *
-	 * -> Sound name (e.g. "rabbit eat")
-	 *
+	 * Sound name (e.g. "rabbit eat")
 	 *
 	 * (*) = Optional
 	 */
@@ -2570,14 +2400,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * Item
+	 * Any Item
 	 *
-	 * -> Compass to get lodestone
-	 *
-	 * -> location of
-	 *
+	 * Compass to get lodestone
+	 * location of
 	 *
 	 * (*) = Optional
 	 */
@@ -2592,14 +2420,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [ParticleItem]
 	 *
-	 * -> Effect to get
-	 *
-	 * -> spread of
-	 *
+	 * Effect to get
+	 * spread of
 	 *
 	 * (*) = Optional
 	 */
@@ -2613,16 +2439,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[VecItem]
 	 *
-	 * -> Vector to reflect
+	 * Vector to reflect
 	 *
 	 * [VecItem]
 	 *
-	 * -> Surface vector
-	 *
+	 * Surface vector
 	 *
 	 * (*) = Optional
 	 */
@@ -2635,12 +2460,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * Item
+	 * Any Item
 	 *
-	 * -> Head to get owner of
-	 *
+	 * Head to get owner of
 	 *
 	 * (*) = Optional
 	 */
@@ -2654,16 +2478,13 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Dictionary to
+	 * Dictionary to
+	 * add to
 	 *
-	 * -> add to
+	 * [DICT]
 	 *
-	 * []
-	 *
-	 * -> Dictionary
-	 *
-	 * -> to append
-	 *
+	 * Dictionary
+	 * to append
 	 *
 	 * (*) = Optional
 	 */
@@ -2675,14 +2496,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * Item
+	 * Any Item
 	 *
-	 * -> Item to get maximum stack
-	 *
-	 * -> size of
-	 *
+	 * Item to get maximum stack
+	 * size of
 	 *
 	 * (*) = Optional
 	 */
@@ -2695,12 +2514,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [TextItem]
 	 *
-	 * -> Color hexadecimal
-	 *
+	 * Color hexadecimal
 	 *
 	 * (*) = Optional
 	 */
@@ -2713,16 +2531,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> List to change
+	 * List to change
 	 *
 	 * [NumItem]
 	 *
-	 * -> Index
+	 * Index
 	 *
-	 * Any
+	 * Any Value
 	 *
-	 * -> Value to set
-	 *
+	 * Value to set
 	 *
 	 * (*) = Optional
 	 */
@@ -2734,28 +2551,23 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Item
+	 * (*)Any Item
 	 *
-	 * -> Book
+	 * Book
 	 *
-	 * []
+	 * [COMPONENT](s)
 	 *
-	 * [](s)
+	 * Pages
 	 *
-	 * -> Pages
+	 * [COMPONENT]
 	 *
-	 * []
-	 *
-	 * []
-	 *
-	 * -> Page text
+	 * Page text
 	 *
 	 * [NumItem]
 	 *
-	 * -> Page number
-	 *
+	 * Page number
 	 *
 	 * (*) = Optional
 	 */
@@ -2768,14 +2580,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * Any(s)
+	 * Any Value(s)
 	 *
-	 * -> Value set
-	 *
-	 * -> to choose from
-	 *
+	 * Value set
+	 * to choose from
 	 *
 	 * (*) = Optional
 	 */
@@ -2787,16 +2597,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Item
+	 * (*)Any Item
 	 *
-	 * -> Item to change
+	 * Item to change
 	 *
 	 * [TextItem]
 	 *
-	 * -> Material
-	 *
+	 * Material
 	 *
 	 * (*) = Optional
 	 */
@@ -2808,12 +2617,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [SoundItem]
 	 *
-	 * -> Sound to get type of
-	 *
+	 * Sound to get type of
 	 *
 	 * (*) = Optional
 	 */
@@ -2826,16 +2634,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * []
+	 * [LIST]
 	 *
-	 * -> List to get value of
+	 * List to get value of
 	 *
 	 * [NumItem]
 	 *
-	 * -> Index
-	 *
+	 * Index
 	 *
 	 * (*) = Optional
 	 */
@@ -2848,12 +2655,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * -> Number input
-	 *
+	 * Number input
 	 *
 	 * (*) = Optional
 	 */
@@ -2867,24 +2673,23 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * -> Noise location
+	 * Noise location
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Cell frequency
+	 * Cell frequency
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Cell scatter
+	 * Cell scatter
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Generation seed
-	 *
+	 * Generation seed
 	 *
 	 * (*) = Optional
 	 */
@@ -2898,28 +2703,23 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
-	 *
-	 * []
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * -> Hue (Color circle, 0-360)
+	 * Hue (Color circle, §c0§7-§c360§7)
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Saturation (0-100)
+	 * Saturation (§c0§7-§c100§7)
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Brightness (0-100)
+	 * Brightness (§c0§7-§c100§7)
 	 *
-	 * []
+	 * [LIST]
 	 *
-	 * []
-	 *
-	 * -> H, S, B values
-	 *
+	 * H, S, B values
 	 *
 	 * (*) = Optional
 	 */
@@ -2932,16 +2732,13 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable
-	 *
-	 * -> to increment
+	 * Variable
+	 * to increment
 	 *
 	 * (*)[NumItem](s)
 	 *
-	 * -> Number(s) to
-	 *
-	 * -> increment by
-	 *
+	 * Number(s) to
+	 * increment by
 	 *
 	 * (*) = Optional
 	 */
@@ -2953,12 +2750,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [SoundItem]
 	 *
-	 * -> Sound to get variant of
-	 *
+	 * Sound to get variant of
 	 *
 	 * (*) = Optional
 	 */
@@ -2970,14 +2766,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable
+	 * Variable
+	 * to set
 	 *
-	 * -> to set
+	 * Any Item
 	 *
-	 * Item
-	 *
-	 * -> Item to get color of
-	 *
+	 * Item to get color of
 	 *
 	 * (*) = Optional
 	 */
@@ -2990,12 +2784,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
-	 * -> Text to change
-	 *
+	 * Text to change
 	 *
 	 * (*) = Optional
 	 */
@@ -3010,16 +2803,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> List to change
+	 * List to change
 	 *
 	 * [NumItem]
 	 *
-	 * -> Index
+	 * Index
 	 *
-	 * Any
+	 * Any Value
 	 *
-	 * -> Value to insert
-	 *
+	 * Value to insert
 	 *
 	 * (*) = Optional
 	 */
@@ -3031,16 +2823,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[SoundItem]
 	 *
-	 * -> Sound to change
+	 * Sound to change
 	 *
 	 * [NumItem]
 	 *
-	 * -> Volume
-	 *
+	 * Volume
 	 *
 	 * (*) = Optional
 	 */
@@ -3053,16 +2844,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[LocItem]
 	 *
-	 * -> Location to change
+	 * Location to change
 	 *
 	 * [NumItem]
 	 *
-	 * -> Coordinate
-	 *
+	 * Coordinate
 	 *
 	 * (*) = Optional
 	 */
@@ -3075,12 +2865,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [VecItem](s)
 	 *
-	 * -> Vectors to add
-	 *
+	 * Vectors to add
 	 *
 	 * (*) = Optional
 	 */
@@ -3096,18 +2885,16 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Item
+	 * (*)Any Item
 	 *
-	 * -> Player head
+	 * Player head
 	 *
 	 * [TextItem]
 	 *
-	 * -> Owner name, UUID or
-	 *
-	 * -> texture value
-	 *
+	 * Owner name, UUID or
+	 * texture value
 	 *
 	 * (*) = Optional
 	 */
@@ -3120,32 +2907,31 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * -> Noise location
+	 * Noise location
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Frequency (Scale)
+	 * Frequency (Scale)
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Octaves (Perlin layers)
+	 * Octaves (Perlin layers)
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Octave frequency gain
+	 * Octave frequency gain
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Octave amplitude gain
+	 * Octave amplitude gain
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Generation seed
-	 *
+	 * Generation seed
 	 *
 	 * (*) = Optional
 	 */
@@ -3159,24 +2945,23 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * -> Noise location
+	 * Noise location
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Cell frequency
+	 * Cell frequency
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Cell scatter
+	 * Cell scatter
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Generation seed
-	 *
+	 * Generation seed
 	 *
 	 * (*) = Optional
 	 */
@@ -3188,16 +2973,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Item
+	 * (*)Any Item
 	 *
-	 * -> Item to change
+	 * Item to change
 	 *
 	 * [TextItem]
 	 *
-	 * -> Color hexadecimal
-	 *
+	 * Color hexadecimal
 	 *
 	 * (*) = Optional
 	 */
@@ -3210,14 +2994,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [ParticleItem]
 	 *
-	 * -> Effect to get
-	 *
-	 * -> color of
-	 *
+	 * Effect to get
+	 * color of
 	 *
 	 * (*) = Optional
 	 */
@@ -3229,24 +3011,19 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[SoundItem]
 	 *
-	 * -> Sound to change
-	 *
-	 * []
+	 * Sound to change
 	 *
 	 * [NumItem]
 	 *
-	 * -> Pitch
-	 *
-	 * []
+	 * Pitch
 	 *
 	 * [TextItem]
 	 *
-	 * -> Note
-	 *
+	 * Note
 	 *
 	 * (*) = Optional
 	 */
@@ -3259,12 +3036,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
+	 *
+	 * Any Item
 	 *
 	 * Item
-	 *
-	 * -> Item
-	 *
 	 *
 	 * (*) = Optional
 	 */
@@ -3276,12 +3052,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)[]
+	 * (*)[LIST]
 	 *
-	 * -> List to sort
-	 *
+	 * List to sort
 	 *
 	 * (*) = Optional
 	 */
@@ -3293,16 +3068,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[SoundItem]
 	 *
-	 * -> Sound to change
+	 * Sound to change
 	 *
 	 * (*)[TextItem]
 	 *
-	 * -> Sound key
-	 *
+	 * Sound key
 	 *
 	 * (*) = Optional
 	 */
@@ -3315,16 +3089,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Dictionary to change
+	 * Dictionary to change
 	 *
 	 * [TextItem]
 	 *
-	 * -> Key to remove
+	 * Key to remove
 	 *
-	 * (*)Any(s)
+	 * (*)Any Value(s)
 	 *
-	 * -> Expected value(s)
-	 *
+	 * Expected value(s)
 	 *
 	 * (*) = Optional
 	 */
@@ -3338,16 +3111,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * -> Time to format
+	 * Time to format
 	 *
 	 * (*)[TextItem]
 	 *
-	 * -> Custom Format
-	 *
+	 * Custom Format
 	 *
 	 * (*) = Optional
 	 */
@@ -3360,12 +3132,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Item
+	 * (*)Any Item
 	 *
-	 * -> Item
-	 *
+	 * Item
 	 *
 	 * (*) = Optional
 	 */
@@ -3378,12 +3149,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [TextItem]
 	 *
-	 * -> String to measure
-	 *
+	 * String to measure
 	 *
 	 * (*) = Optional
 	 */
@@ -3396,12 +3166,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * Item
+	 * Any Item
 	 *
-	 * -> Item to get effects from
-	 *
+	 * Item to get effects from
 	 *
 	 * (*) = Optional
 	 */
@@ -3414,12 +3183,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Any(s)
+	 * (*)Any Value(s)
 	 *
-	 * -> Text to set to
-	 *
+	 * Text to set to
 	 *
 	 * (*) = Optional
 	 */
@@ -3432,12 +3200,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * []
+	 * [COMPONENT]
 	 *
-	 * -> Text to read
-	 *
+	 * Text to read
 	 *
 	 * (*) = Optional
 	 */
@@ -3451,16 +3218,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Item
+	 * (*)Any Item
 	 *
-	 * -> Item to change
+	 * Item to change
 	 *
-	 * [](s)
+	 * [POTION](s)
 	 *
-	 * -> Item effects
-	 *
+	 * Item effects
 	 *
 	 * (*) = Optional
 	 */
@@ -3473,16 +3239,13 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable
-	 *
-	 * -> to decrement
+	 * Variable
+	 * to decrement
 	 *
 	 * (*)[NumItem](s)
 	 *
-	 * -> Number(s) to
-	 *
-	 * -> decrement by
-	 *
+	 * Number(s) to
+	 * decrement by
 	 *
 	 * (*) = Optional
 	 */
@@ -3495,16 +3258,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * Item
+	 * Any Item
 	 *
-	 * -> Item to get tag of
+	 * Item to get tag of
 	 *
 	 * [TextItem]
 	 *
-	 * -> Tag name
-	 *
+	 * Tag name
 	 *
 	 * (*) = Optional
 	 */
@@ -3517,12 +3279,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Any(s)
+	 * (*)Any Value(s)
 	 *
-	 * -> Value list
-	 *
+	 * Value list
 	 *
 	 * (*) = Optional
 	 */
@@ -3535,12 +3296,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> List to append to
+	 * List to append to
 	 *
-	 * [](s)
+	 * [LIST](s)
 	 *
-	 * -> List(s) to append
-	 *
+	 * List(s) to append
 	 *
 	 * (*) = Optional
 	 */
@@ -3553,12 +3313,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * -> Container location
-	 *
+	 * Container location
 	 *
 	 * (*) = Optional
 	 */
@@ -3571,20 +3330,19 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[LocItem]
 	 *
-	 * -> Location to shift
+	 * Location to shift
 	 *
 	 * [LocItem]
 	 *
-	 * -> Target location
+	 * Target location
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Shift distance
-	 *
+	 * Shift distance
 	 *
 	 * (*) = Optional
 	 */
@@ -3597,20 +3355,19 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)[]
+	 * (*)[LIST]
 	 *
-	 * -> List to trim
+	 * List to trim
 	 *
 	 * [NumItem]
 	 *
-	 * -> Start index
+	 * Start index
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> End index
-	 *
+	 * End index
 	 *
 	 * (*) = Optional
 	 */
@@ -3622,12 +3379,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Item
+	 * (*)Any Item
 	 *
-	 * -> Item to change
-	 *
+	 * Item to change
 	 *
 	 * (*) = Optional
 	 */
@@ -3640,12 +3396,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * -> Number input
-	 *
+	 * Number input
 	 *
 	 * (*) = Optional
 	 */
@@ -3658,16 +3413,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[VecItem]
 	 *
-	 * -> Vector to change
+	 * Vector to change
 	 *
 	 * [NumItem]
 	 *
-	 * -> Component
-	 *
+	 * Component
 	 *
 	 * (*) = Optional
 	 */
@@ -3679,12 +3433,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[TextItem]
 	 *
-	 * -> String to convert
-	 *
+	 * String to convert
 	 *
 	 * (*) = Optional
 	 */
@@ -3697,16 +3450,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Number input
+	 * Number input
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Exponent
-	 *
+	 * Exponent
 	 *
 	 * (*) = Optional
 	 */
@@ -3721,16 +3473,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * []
+	 * [LIST]
 	 *
-	 * -> List to search in
+	 * List to search in
 	 *
-	 * Any
+	 * Any Value
 	 *
-	 * -> Value to search
-	 *
+	 * Value to search
 	 *
 	 * (*) = Optional
 	 */
@@ -3742,16 +3493,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Item
+	 * (*)Any Item
 	 *
-	 * -> Item to change
+	 * Item to change
 	 *
 	 * [TextItem]
 	 *
-	 * -> Enchantment name
-	 *
+	 * Enchantment name
 	 *
 	 * (*) = Optional
 	 */
@@ -3764,18 +3514,16 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[ParticleItem]
 	 *
-	 * -> Effect to
-	 *
-	 * -> change
+	 * Effect to
+	 * change
 	 *
 	 * [NumItem]
 	 *
-	 * -> Particle roll
-	 *
+	 * Particle roll
 	 *
 	 * (*) = Optional
 	 */
@@ -3787,16 +3535,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[SoundItem]
 	 *
-	 * -> Sound to change
+	 * Sound to change
 	 *
 	 * (*)[TextItem]
 	 *
-	 * -> Variant ID (e.g. "break1")
-	 *
+	 * Variant ID (e.g. "break1")
 	 *
 	 * (*) = Optional
 	 */
@@ -3810,12 +3557,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)[]
+	 * (*)[LIST]
 	 *
-	 * -> List to randomize
-	 *
+	 * List to randomize
 	 *
 	 * (*) = Optional
 	 */
@@ -3829,20 +3575,19 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Number to clamp
+	 * Number to clamp
 	 *
 	 * [NumItem]
 	 *
-	 * -> Minimum
+	 * Minimum
 	 *
 	 * [NumItem]
 	 *
-	 * -> Maximum
-	 *
+	 * Maximum
 	 *
 	 * (*) = Optional
 	 */
@@ -3856,33 +3601,30 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [SoundItem]
 	 *
-	 * -> Sound to get pitch or
-	 *
-	 * -> note of
-	 *
+	 * Sound to get pitch or
+	 * note of
 	 *
 	 * (*) = Optional
 	 */
 	fun getSoundPitch(items: Items<T>) = block(items, "GetSoundPitch")
 	/**
 	 * Converts legacy color codes written in
-	 * "&" or hex format to
+	 * §b"&"§7 or hex format to
 	 * functional color codes, or vice versa.
 	 *
 	 * ARGUMENTS:
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[TextItem]
 	 *
-	 * -> String to translate
-	 *
+	 * String to translate
 	 *
 	 * (*) = Optional
 	 */
@@ -3895,12 +3637,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * -> Block location
-	 *
+	 * Block location
 	 *
 	 * (*) = Optional
 	 */
@@ -3913,12 +3654,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * Item
+	 * Any Item
 	 *
-	 * -> Item to get tags from
-	 *
+	 * Item to get tags from
 	 *
 	 * (*) = Optional
 	 */
@@ -3931,14 +3671,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> List to change
+	 * List to change
 	 *
-	 * Any(s)
+	 * Any Value(s)
 	 *
-	 * -> Value(s) to
-	 *
-	 * -> remove
-	 *
+	 * Value(s) to
+	 * remove
 	 *
 	 * (*) = Optional
 	 */
@@ -3951,24 +3689,23 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[LocItem]
 	 *
-	 * -> Location to shift
+	 * Location to shift
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Forwards change
+	 * Forwards change
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Upwards change
+	 * Upwards change
 	 *
 	 * (*)[NumItem]
 	 *
-	 * -> Sideways change (-L / +R)
-	 *
+	 * Sideways change (-L / +R)
 	 *
 	 * (*) = Optional
 	 */
@@ -3981,16 +3718,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Item
+	 * (*)Any Item
 	 *
-	 * -> Item to change
+	 * Item to change
 	 *
-	 * [](s)
+	 * [BLOCK](s)
 	 *
-	 * -> Placeable blocks
-	 *
+	 * Placeable blocks
 	 *
 	 * (*) = Optional
 	 */
@@ -4003,12 +3739,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * -> Block location
-	 *
+	 * Block location
 	 *
 	 * (*) = Optional
 	 */
@@ -4022,18 +3757,16 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * []
+	 * [DICT]
 	 *
-	 * -> Dictionary to
-	 *
-	 * -> pull from
+	 * Dictionary to
+	 * pull from
 	 *
 	 * [TextItem]
 	 *
-	 * -> Key
-	 *
+	 * Key
 	 *
 	 * (*) = Optional
 	 */
@@ -4046,12 +3779,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * -> Container location
-	 *
+	 * Container location
 	 *
 	 * (*) = Optional
 	 */
@@ -4064,12 +3796,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * -> Block location
-	 *
+	 * Block location
 	 *
 	 * (*) = Optional
 	 */
@@ -4081,14 +3812,12 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * [VecItem]
 	 *
-	 * -> Vector to get
-	 *
-	 * -> length of
-	 *
+	 * Vector to get
+	 * length of
 	 *
 	 * (*) = Optional
 	 */
@@ -4102,12 +3831,11 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * []
+	 * [COMPONENT]
 	 *
-	 * -> Text to measure
-	 *
+	 * Text to measure
 	 *
 	 * (*) = Optional
 	 */
@@ -4120,16 +3848,15 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
-	 * (*)Item
+	 * (*)Any Item
 	 *
-	 * -> Item to change
+	 * Item to change
 	 *
 	 * [NumItem]
 	 *
-	 * -> Model value
-	 *
+	 * Model value
 	 *
 	 * (*) = Optional
 	 */
@@ -4143,18 +3870,17 @@ class SetVariableCategory<T> internal constructor(private val template: Template
 	 *
 	 * [VarItem]
 	 *
-	 * -> Variable to set
+	 * Variable to set
 	 *
 	 * (*)[ParticleItem]
 	 *
-	 * -> Effect to get
-	 *
-	 * -> size of
-	 *
+	 * Effect to get
+	 * size of
 	 *
 	 * (*) = Optional
 	 */
 	fun getParticleSize(items: Items<T>) = block(items, "GetParticleSize")
+
 
 
 

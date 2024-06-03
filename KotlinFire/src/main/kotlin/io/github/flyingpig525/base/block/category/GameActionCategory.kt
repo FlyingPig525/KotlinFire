@@ -111,27 +111,18 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * Block location
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [BLOCK]
 	 *
 	 * Block material
 	 *
-	 * (*)[](s)
+	 * (*)[BLOCK_TAG](s)
 	 *
 	 * Block data
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [NONE]
 	 *
 	 * Converts the block at
-	 * the location to a falling block
-	 *
-	 * []
-	 *
+	 * the location to a falling block§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -168,7 +159,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * Line number
 	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * New text
 	 *
@@ -244,7 +235,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * ARGUMENTS:
 	 *
-	 * (*)[]
+	 * (*)[PROJECTILE]
 	 *
 	 * Projectile to launch
 	 *
@@ -265,7 +256,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * (*)[NumItem]
 	 *
-	 * Explosion power (0-4)
+	 * Explosion power (§c0§7-§c4§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -275,7 +266,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [SPAWN_EGG]
 	 *
 	 * Mob type
 	 *
@@ -287,11 +278,11 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * Health
 	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * Custom name
 	 *
-	 * (*)[](s)
+	 * (*)[POTION](s)
 	 *
 	 * Effect(s)
 	 *
@@ -340,7 +331,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * Lifespan (ticks)
 	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * Custom name
 	 *
@@ -359,11 +350,11 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * Spawn location
 	 *
-	 * (*)[](s)
+	 * (*)[POTION](s)
 	 *
 	 * Effect to apply
 	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * Custom name
 	 *
@@ -391,7 +382,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * Location
 	 *
-	 * [](s)
+	 * [BLOCK_TAG](s)
 	 *
 	 * Block data
 	 *
@@ -403,7 +394,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [PROJECTILE]
 	 *
 	 * Projectile to launch
 	 *
@@ -411,7 +402,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * Launch point
 	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * Custom name
 	 *
@@ -475,7 +466,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	fun setEventDamage(items: Items<T>) = block(items, "SetEventDamage")
 	/**
 	 * Sets the growth stage of the block
-	 * (e.g. carrots) at a location.
+	 * (eg. carrots) at a location.
 	 *
 	 * ARGUMENTS:
 	 *
@@ -501,7 +492,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * Container location
 	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Name
 	 *
@@ -521,7 +512,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * Spawn location
 	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * Custom name
 	 *
@@ -551,15 +542,9 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * Head location
 	 *
-	 * []
-	 *
-	 *
 	 * Any Item
 	 *
 	 * Head
-	 *
-	 * []
-	 *
 	 *
 	 * [TextItem]
 	 *
@@ -606,7 +591,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [BLOCK]
 	 *
 	 * Block to set
 	 *
@@ -618,7 +603,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * Corner 2
 	 *
-	 * (*)[]
+	 * (*)[BLOCK_TAG]
 	 *
 	 * Block data
 	 * (comma separated)
@@ -754,13 +739,13 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * (*)[NumItem]
 	 *
-	 * TNT power (0-4)
+	 * TNT power (§c0§7-§c4§7)
 	 *
 	 * (*)[NumItem]
 	 *
 	 * Fuse duration
 	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * Custom name
 	 *
@@ -777,7 +762,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * Spawn location
 	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * Custom name
 	 *
@@ -803,7 +788,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * Experience amount
 	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * Custom name
 	 *
@@ -832,11 +817,11 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * Spawn location
 	 *
-	 * []
+	 * [BLOCK]
 	 *
 	 * Displayed block
 	 *
-	 * (*)[](s)
+	 * (*)[BLOCK_TAG](s)
 	 *
 	 * Block data
 	 *
@@ -891,7 +876,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * Spawn location
 	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * Custom name
 	 *
@@ -909,7 +894,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * Spawn location
 	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * Custom name
 	 *
@@ -960,7 +945,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * Spawn location
 	 *
-	 * [](s)
+	 * [COMPONENT](s)
 	 *
 	 * Displayed text
 	 *
@@ -991,19 +976,13 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * Container location
 	 *
-	 * []
-	 *
-	 *
 	 * (*)[TextItem]
 	 *
 	 * Lock key
 	 *
-	 * []
+	 * [NONE]
 	 *
-	 *
-	 * []
-	 *
-	 * Unlocks the container
+	 * Unlocks the container§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -1013,7 +992,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [VEHICLE]
 	 *
 	 * Vehicle type
 	 *
@@ -1021,7 +1000,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * Spawn location
 	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * Custom name
 	 *
@@ -1077,5 +1056,6 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 */
 	fun clearItems(items: Items<T>) = block(items, "ClearItems")
 	fun particleLine(items: Items<T>) = block(items, "ParticleLine")
+
 
 }

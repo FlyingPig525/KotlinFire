@@ -42,23 +42,15 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 * When enabled, a player won't be
 	 * able to see their coordinates,
 	 * block info, or other info.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setReducedDebug(items: Items<T>) = block(items, "SetReducedDebug")
 	/**
 	 * Closes a player's inventory.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Emperor
 	fun closeInv(items: Items<T>) = block(items, "CloseInv")
 	/**
-	 * Gives a player all the
+	 * Gives a player all of the
 	 * items in the chest.
 	 *
 	 * ARGUMENTS:
@@ -79,10 +71,6 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 * Sets if a player is
 	 * allowed to interact with
 	 * their hand-crafting menu.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setHandCrafting(items: Items<T>) = block(items, "SetHandCrafting")
 	@Mythic
@@ -177,17 +165,11 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * Damage to inflict
 	 *
-	 * []
-	 *
-	 *
 	 * (*)[TextItem]
 	 *
 	 * UUID of damager entity
 	 *
-	 * []
-	 *
-	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * Name of damager entity
 	 *
@@ -252,12 +234,9 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * Amount to heal
 	 *
-	 * []
+	 * [NONE]
 	 *
-	 *
-	 * []
-	 *
-	 * Heals to full health
+	 * Heals to full health§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -272,12 +251,9 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * The new spawn location
 	 *
-	 * []
+	 * [NONE]
 	 *
-	 *
-	 * []
-	 *
-	 * Plot spawn
+	 * Plot spawn§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -285,10 +261,6 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	/**
 	 * Sets whether a player's inventory
 	 * is kept after death.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setInventoryKept(items: Items<T>) = block(items, "SetInventoryKept")
 	/**
@@ -307,18 +279,10 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	/**
 	 * Forces a player to start
 	 * or stop flying.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun forceFlight(items: Items<T>) = block(items, "ForceFlight")
 	/**
 	 * Loads a player's inventory.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun loadInv(items: Items<T>) = block(items, "LoadInv")
@@ -328,16 +292,13 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * New chat style
 	 *
-	 * []
+	 * [NONE]
 	 *
-	 *
-	 * []
-	 *
-	 * Resets chat style
+	 * Resets chat style§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -346,10 +307,6 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	/**
 	 * Kicks a player from
 	 * the plot.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun kick(items: Items<T>) = block(items, "Kick")
@@ -364,19 +321,13 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * Target UUID
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Target name
 	 *
-	 * []
+	 * [NONE]
 	 *
-	 *
-	 * []
-	 *
-	 * Stops spectating
+	 * Stops spectating§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -399,10 +350,6 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	/**
 	 * Sets a player's game
 	 * mode to Survival.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun survivalMode(items: Items<T>) = block(items, "SurvivalMode")
 	/**
@@ -427,16 +374,13 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Game Status
 	 *
-	 * []
+	 * [NONE]
 	 *
-	 *
-	 * []
-	 *
-	 * Clear status
+	 * Clear status§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -498,12 +442,8 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	@Emperor
 	fun removeInvRow(items: Items<T>) = block(items, "RemoveInvRow")
 	/**
-	 * Displays the wake-up (fade in)
+	 * Displays the wake up (fade in)
 	 * animation to a player.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun wakeUpAnimation(items: Items<T>) = block(items, "WakeUpAnimation")
@@ -513,7 +453,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * (*)[](s)
+	 * (*)[BLOCK](s)
 	 *
 	 * Blocks to disallow
 	 *
@@ -526,7 +466,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Objective name
 	 *
@@ -536,10 +476,6 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	fun particleEffect(items: Items<T>) = block(items, "ParticleEffect")
 	/**
 	 * Empties a player's inventory.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun clearInv(items: Items<T>) = block(items, "ClearInv")
 	/**
@@ -551,7 +487,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 * [NumItem]
 	 *
 	 * Ticks
-	 * (0-140)
+	 * (§c0§7-§c140§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -559,10 +495,6 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	/**
 	 * Sets whether a player
 	 * is gliding with elytra.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setGliding(items: Items<T>) = block(items, "SetGliding")
 	/**
@@ -598,10 +530,6 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	/**
 	 * Sets whether a player
 	 * is flying.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setFlying(items: Items<T>) = block(items, "SetFlying")
 	/**
@@ -626,7 +554,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Advancement name
 	 *
@@ -677,9 +605,9 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	fun launchToward(items: Items<T>) = block(items, "LaunchToward")
 	/**
 	 * Sets a player's armor items.
-	 * Place the armor in slots 1-4
-	 * of the chest, with 1 being the
-	 * helmet and 4 being the boots.
+	 * Place the armor in slots §c1§7-§c4§7
+	 * of the chest, with §c1§7 being the
+	 * helmet and §c4§7 being the boots.
 	 *
 	 * ARGUMENTS:
 	 *
@@ -745,10 +673,6 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	/**
 	 * Removes all scores from
 	 * the scoreboard.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun clearScoreboard(items: Items<T>) = block(items, "ClearScoreboard")
 	/**
@@ -757,7 +681,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * [](s)
+	 * [COMPONENT](s)
 	 *
 	 * Message to send
 	 *
@@ -770,16 +694,13 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * [](s)
+	 * [COMPONENT](s)
 	 *
 	 * Chat tag
 	 *
-	 * []
+	 * [NONE]
 	 *
-	 *
-	 * []
-	 *
-	 * Resets chat tag
+	 * Resets chat tag§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -813,7 +734,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * Sign location
 	 *
-	 * (*)[](s)
+	 * (*)[COMPONENT](s)
 	 *
 	 * Text line(s)
 	 *
@@ -830,7 +751,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 * [NumItem]
 	 *
 	 * Movement speed
-	 * percentage (0% to 1000%)
+	 * percentage (§c0§7% to §c1000§7%)
 	 *
 	 * (*) = Optional
 	 */
@@ -857,7 +778,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [PROJECTILE]
 	 *
 	 * Projectile to
 	 * launch
@@ -866,7 +787,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * Launch point
 	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * Projectile name
 	 *
@@ -962,11 +883,11 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [SPAWN_EGG]
 	 *
 	 * Mob to disguise as
 	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * Display name
 	 *
@@ -980,7 +901,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * (*)[](s)
+	 * (*)[BLOCK](s)
 	 *
 	 * Blocks to allow
 	 *
@@ -1046,10 +967,6 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	/**
 	 * Sets whether a player drops
 	 * their items when dead.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setDropsEnabled(items: Items<T>) = block(items, "SetDropsEnabled")
 	/**
@@ -1071,7 +988,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * [](s)
+	 * [POTION](s)
 	 *
 	 * Effect(s)
 	 * to remove
@@ -1108,10 +1025,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * Entity UUID
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Entity name
 	 *
@@ -1122,10 +1036,6 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	/**
 	 * Sets whether the scoreboard
 	 * sidebar is visible to a player.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setSidebar(items: Items<T>) = block(items, "SetSidebar")
 	fun allowDrops(items: Items<T>) = block(items, "AllowDrops")
@@ -1222,7 +1132,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * [](s)
+	 * [COMPONENT](s)
 	 *
 	 * Messages to send
 	 *
@@ -1240,7 +1150,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * Prefix/suffix text
 	 *
@@ -1287,10 +1197,6 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	fun setRainLevel(items: Items<T>) = block(items, "SetRainLevel")
 	/**
 	 * Removes a player's disguise.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Overlord
 	fun undisguise(items: Items<T>) = block(items, "Undisguise")
@@ -1335,10 +1241,6 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	/**
 	 * Sets if a player is instantly
 	 * respawned upon dying.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun instantRespawn(items: Items<T>) = block(items, "InstantRespawn")
@@ -1348,7 +1250,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Score name
 	 *
@@ -1362,10 +1264,6 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	/**
 	 * Sets the color a player's
 	 * name tag appears in.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setNameColor(items: Items<T>) = block(items, "SetNameColor")
@@ -1390,7 +1288,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * (*)[NumItem]
 	 *
-	 * Ticks per second (0-20)
+	 * Ticks per second (§c0§7-§c20§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -1406,17 +1304,11 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * Sound to play
 	 *
-	 * []
-	 *
-	 *
 	 * [TextItem](s)
 	 *
 	 * Target UUID
 	 *
-	 * []
-	 *
-	 *
-	 * [](s)
+	 * [COMPONENT](s)
 	 *
 	 * Target name
 	 *
@@ -1476,10 +1368,6 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 * is able to enter and exit
 	 * flight mode by double
 	 * tapping jump.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setAllowFlight(items: Items<T>) = block(items, "SetAllowFlight")
 	/**
@@ -1504,14 +1392,11 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 * [NumItem]
 	 *
 	 * Fog distance in chunks
-	 * (2-7)
+	 * (§c2§7-§c7§7)
 	 *
-	 * []
+	 * [NONE]
 	 *
-	 *
-	 * []
-	 *
-	 * Removes fog
+	 * Removes fog§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -1520,29 +1405,17 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	/**
 	 * Sets a player's game
 	 * mode to Adventure.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun adventureMode(items: Items<T>) = block(items, "AdventureMode")
 	/**
 	 * Sets a player's game
 	 * mode to Spectator.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Mythic
 	fun spectatorMode(items: Items<T>) = block(items, "SpectatorMode")
 	/**
 	 * Removes all active potion
 	 * effects from a player.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun clearPotions(items: Items<T>) = block(items, "ClearPotions")
 	/**
@@ -1552,7 +1425,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * (*)[](s)
+	 * (*)[COMPONENT](s)
 	 *
 	 * Header/footer text
 	 *
@@ -1570,21 +1443,15 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Score name
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Content or style
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [NONE]
 	 *
 	 *
 	 * (*) = Optional
@@ -1599,12 +1466,9 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * Player head
 	 *
-	 * []
+	 * [NONE]
 	 *
-	 *
-	 * []
-	 *
-	 * Clear Skin
+	 * Clear Skin§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -1614,20 +1478,12 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 * Toggles whether a player
 	 * collides with blocks in
 	 * spectator mode.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Mythic
 	fun spectatorCollision(items: Items<T>) = block(items, "SpectatorCollision")
 	/**
 	 * Sets whether a player's
 	 * name tag is visible.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setNameVisible(items: Items<T>) = block(items, "SetNameVisible")
@@ -1666,7 +1522,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Score name
 	 *
@@ -1702,7 +1558,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [BLOCK]
 	 *
 	 * Block to display
 	 *
@@ -1715,7 +1571,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * End of region
 	 *
-	 * (*)[](s)
+	 * (*)[BLOCK_TAG](s)
 	 *
 	 * Block data
 	 *
@@ -1733,19 +1589,13 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * Target UUID
 	 *
-	 * []
-	 *
-	 *
-	 * [](s)
+	 * [COMPONENT](s)
 	 *
 	 * Target name
 	 *
-	 * []
+	 * [NONE]
 	 *
-	 *
-	 * []
-	 *
-	 * Dismounts player
+	 * Dismounts player§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -1754,10 +1604,6 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	fun weatherRain(items: Items<T>) = block(items, "WeatherRain")
 	/**
 	 * Removes a player's world border.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Emperor
 	fun rmWorldBorder(items: Items<T>) = block(items, "RmWorldBorder")
@@ -1791,20 +1637,12 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 * Sets whether a player can
 	 * hurt or be hurt by other
 	 * players.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setAllowPVP(items: Items<T>) = block(items, "SetAllowPVP")
 	fun disableFlight(items: Items<T>) = block(items, "DisableFlight")
 	/**
 	 * Sets whether a player
 	 * should appear on fire.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setVisualFire(items: Items<T>) = block(items, "SetVisualFire")
@@ -1813,10 +1651,6 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 * see their own disguise. It
 	 * is recommended that it is
 	 * almost always hidden.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Overlord
 	fun setDisguiseVisible(items: Items<T>) = block(items, "SetDisguiseVisible")
@@ -1864,7 +1698,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * (*)[](s)
+	 * (*)[COMPONENT](s)
 	 *
 	 * Message to send
 	 *
@@ -1966,20 +1800,12 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	/**
 	 * Sets the type of weather
 	 * visible to a player.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setPlayerWeather(items: Items<T>) = block(items, "SetPlayerWeather")
 	fun sendHover(items: Items<T>) = block(items, "SendHover")
 	/**
 	 * Displays a parrot on the targets'
 	 * shoulders.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setShoulder(items: Items<T>) = block(items, "SetShoulder")
@@ -2007,24 +1833,15 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * Entity UUID
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Entity name
-	 *
-	 * []
-	 *
 	 *
 	 * [TextItem]
 	 *
 	 * Collector UUID
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Collector name
 	 *
@@ -2064,12 +1881,9 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * Daylight ticks
 	 *
-	 * []
+	 * [NONE]
 	 *
-	 *
-	 * []
-	 *
-	 * Resets player time
+	 * Resets player time§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -2093,7 +1907,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * [](s)
+	 * [POTION](s)
 	 *
 	 * Effect(s)
 	 * to give
@@ -2130,10 +1944,6 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 * Saves a player's inventory.
 	 * It can be loaded later with
 	 * 'Load Saved Inventory'.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun saveInv(items: Items<T>) = block(items, "SaveInv")
@@ -2169,11 +1979,11 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [BLOCK]
 	 *
 	 * Block to disguise as
 	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * Display name
 	 *
@@ -2215,10 +2025,6 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 * Sets whether a player is
 	 * able to collide with other
 	 * entities.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setCollidable(items: Items<T>) = block(items, "SetCollidable")
 	/**
@@ -2251,19 +2057,11 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	/**
 	 * Sets a player's game
 	 * mode to Creative.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun creativeMode(items: Items<T>) = block(items, "CreativeMode")
 	/**
 	 * Makes a player perform
 	 * an attack animation.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun attackAnimation(items: Items<T>) = block(items, "AttackAnimation")
@@ -2277,19 +2075,13 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * Display location
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Text to display
 	 *
-	 * []
+	 * [NONE]
 	 *
-	 *
-	 * []
-	 *
-	 * Removes hologram
+	 * Removes hologram§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -2318,7 +2110,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 * [NumItem]
 	 *
 	 * Food level
-	 * (1-20)
+	 * (§c1§7-§c20§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -2329,7 +2121,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Player name to disguise as
 	 *
@@ -2350,7 +2142,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 * [NumItem]
 	 *
 	 * Saturation level
-	 * (1-20)
+	 * (§c1§7-§c20§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -2362,11 +2154,11 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Title text
 	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * Subtitle text
 	 *
@@ -2392,14 +2184,11 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Content or style
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [NONE]
 	 *
 	 *
 	 * (*) = Optional
@@ -2444,5 +2233,6 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 * (*) = Optional
 	 */
 	fun particleLine(items: Items<T>) = block(items, "ParticleLine")
+
 
 }

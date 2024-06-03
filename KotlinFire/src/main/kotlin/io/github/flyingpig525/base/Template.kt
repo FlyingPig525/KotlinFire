@@ -1,8 +1,6 @@
 package io.github.flyingpig525.base
 
-import io.github.flyingpig525.base.block.Block
-import io.github.flyingpig525.base.block.FunctionBlock
-import io.github.flyingpig525.base.block.ProcessBlock
+import io.github.flyingpig525.base.block.*
 import io.github.flyingpig525.base.block.category.*
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
@@ -13,6 +11,8 @@ import io.ktor.client.plugins.websocket.*
 import io.ktor.http.*
 import io.ktor.websocket.*
 import kotlinx.coroutines.runBlocking
+import org.jetbrains.annotations.ApiStatus.Internal
+import javax.xml.transform.Templates
 
 typealias Items<T> = ItemCollection<T>.() -> Unit
 
@@ -23,12 +23,28 @@ class Template<T>(type: Type = Type.FUNCTION, name: String = "PutNameHere", a: T
     val GameAction = GameActionCategory(this)
     val PlayerAction = PlayerActionCategory(this)
     val Select = SelectCategory(this)
+    val Repeat = RepeatCategory(this)
+    val IfVar = IfVarCategory(this)
+    val IfPlayer = IfPlayerCategory(this)
+    val IfEntity = IfEntityCategory(this)
+    val IfGame = IfGameCategory(this)
+
+    fun Else(wrappedCode: Template<T>.() -> Unit) {
+        blocks += ElseBlock()
+        blocks += BracketBlock(type = "norm")
+        blocks += Template(Template.Type.NONE, a = wrappedCode).blocks
+        blocks += BracketBlock(false, "norm")
+    }
 
     init {
-        blocks += when(type) {
-            Type.FUNCTION -> FunctionBlock(name)
-            Type.PROCESS -> ProcessBlock(name)
-            Type.EVENT -> TODO()
+        if (type != Type.NONE) {
+            blocks += when(type) {
+                Type.FUNCTION -> FunctionBlock(name)
+                Type.PROCESS -> ProcessBlock(name)
+                Type.EVENT -> TODO()
+                // This will never get called, so it doesn't have to be implemented
+                Type.NONE -> TODO()
+            }
         }
         apply(a)
     }
@@ -61,7 +77,6 @@ class Template<T>(type: Type = Type.FUNCTION, name: String = "PutNameHere", a: T
                 developmentMode = true
             }
             runBlocking {
-                    println("AIODhjAWIOPDHAWIPDH")
                 client.webSocket(method = HttpMethod.Post, host = "localhost", port = 31371, path = "/codeutilities/item") {
                     send("""
                         {
@@ -72,14 +87,11 @@ class Template<T>(type: Type = Type.FUNCTION, name: String = "PutNameHere", a: T
                     """.trimIndent()
                         .replace("\n", "") + "\n"
                     )
-
-//                    send("{id:\"minecraft:stone\",Count:1b}")
                 }
             }
         }
         private val codeClientHttp = HttpClient(Java) {
             install(WebSockets)
-            developmentMode = true
         }
         fun <T> codeClientPlaceTemplate(template: Template<T>) where T : Item, T : JsonData {
             runBlocking {
@@ -89,7 +101,25 @@ class Template<T>(type: Type = Type.FUNCTION, name: String = "PutNameHere", a: T
                         send("place ${template.getTemplateString()}")
                         send("place go")
                     }
-                    close()
+                    incoming.receive()
+                    close(CloseReason(CloseReason.Codes.NORMAL,"Function done."))
+                }
+            }
+        }
+
+        fun <T> codeClientPlaceMultipleTemplates(templates: List<Template<T>>) where T : Item, T : JsonData {
+            runBlocking {
+                codeClientHttp.webSocket(method = HttpMethod.Get, host = "localhost", port = 31375) {
+                    val inc = incoming.receive()
+                    if ("auth" in String(inc.data)) {
+                        send("place")
+                        for (temp in templates) {
+                            send("place ${temp.getTemplateString()}")
+                        }
+                        send("place go")
+                    }
+                    incoming.receive()
+                    close(CloseReason(CloseReason.Codes.NORMAL,"Function done."))
                 }
             }
         }
@@ -98,6 +128,8 @@ class Template<T>(type: Type = Type.FUNCTION, name: String = "PutNameHere", a: T
     enum class Type {
         FUNCTION,
         PROCESS,
+        @Internal
+        NONE,
         EVENT;
     }
 

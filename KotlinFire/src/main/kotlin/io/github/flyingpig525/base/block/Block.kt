@@ -8,12 +8,14 @@ open class Block<T>(val codeBlock: String, var items: MutableList<T>, val action
     init {
         var i = 0
         items = items.map { item ->
+            val copy = i
             val newItem = item.apply {
-                slot = i
+                slot = copy
             }
             i++
-            return@map newItem
+            newItem
         }.toMutableList()
+
     }
 
     override fun getJsonData(): String {
@@ -27,7 +29,7 @@ open class Block<T>(val codeBlock: String, var items: MutableList<T>, val action
         """.trimIndent()
         var i = 1
         for (item in items) {
-            string += Item.getItemJsonArgument(item)
+            string += Item.getItemJsonArgument(item, i - 1)
             if (items.size > i) string += ','
             i++
         }

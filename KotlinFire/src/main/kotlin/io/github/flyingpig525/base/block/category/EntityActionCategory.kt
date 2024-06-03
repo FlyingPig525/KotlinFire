@@ -33,15 +33,15 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * [NumItem]
 	 *
-	 * Pitch (0-360)
+	 * Pitch (§c0§7-§c360§7)
 	 *
 	 * [NumItem]
 	 *
-	 * Yaw (0-360)
+	 * Yaw (§c0§7-§c360§7)
 	 *
 	 * [NumItem]
 	 *
-	 * Roll (0-360)
+	 * Roll (§c0§7-§c360§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -49,10 +49,6 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	fun dispRotationEuler(items: Items<T>) = block(items, "DispRotationEuler")
 	/**
 	 * Sets a parrot's color.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setParrotColor(items: Items<T>) = block(items, "SetParrotColor")
@@ -74,9 +70,6 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * Z translation
 	 *
-	 * []
-	 *
-	 *
 	 * [VecItem]
 	 *
 	 * Translation vector
@@ -87,10 +80,6 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	fun dispTranslation(items: Items<T>) = block(items, "DispTranslation")
 	/**
 	 * Deletes an entity.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun remove(items: Items<T>) = block(items, "Remove")
 	/**
@@ -120,10 +109,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * Opacity in percentage
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [NONE]
 	 *
 	 * Uses the default
 	 * background color
@@ -167,10 +153,6 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	fun hideName(items: Items<T>) = block(items, "HideName")
 	/**
 	 * Sets a frog's color type.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setFrogType(items: Items<T>) = block(items, "SetFrogType")
@@ -187,7 +169,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * [NumItem]
 	 *
-	 * Angle (0-360)
+	 * Angle (§c0§7-§c360§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -202,17 +184,11 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * Damage to inflict
 	 *
-	 * []
-	 *
-	 *
 	 * (*)[TextItem]
 	 *
 	 * UUID of damager entity
 	 *
-	 * []
-	 *
-	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * Name of damager entity
 	 *
@@ -222,37 +198,21 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	/**
 	 * Sets whether a sheep
 	 * has its wool.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setSheepSheared(items: Items<T>) = block(items, "SetSheepSheared")
 	/**
 	 * Sets whether an entity
 	 * is sitting.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setMobSitting(items: Items<T>) = block(items, "SetMobSitting")
 	/**
 	 * Sets an axolotl's color.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setAxolotlColor(items: Items<T>) = block(items, "SetAxolotlColor")
 	/**
 	 * Makes a mob perform
 	 * an animation.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun sendAnimation(items: Items<T>) = block(items, "SendAnimation")
@@ -266,19 +226,13 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 * [NumItem]
 	 *
 	 * Anger level
-	 * (0-150)
-	 *
-	 * []
-	 *
+	 * (§c0§7-§c150§7)
 	 *
 	 * [TextItem]
 	 *
 	 * Entity name
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Entity UUID
 	 *
@@ -287,10 +241,6 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	fun setWardenAnger(items: Items<T>) = block(items, "SetWardenAnger")
 	/**
 	 * Sets a horse's color and pattern.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setHorsePattern(items: Items<T>) = block(items, "SetHorsePattern")
@@ -303,10 +253,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * Amount to heal
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [NONE]
 	 *
 	 * Heals to full health
 	 *
@@ -317,19 +264,11 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 * Sets whether an entity is
 	 * sentient and/or affected
 	 * by physics.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setAI(items: Items<T>) = block(items, "SetAI")
 	/**
 	 * Sets whether an entity
 	 * is riptiding.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Mythic
 	fun setRiptiding(items: Items<T>) = block(items, "SetRiptiding")
@@ -343,17 +282,11 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * Shooter UUID
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Shooter name
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [NONE]
 	 *
 	 * Removes shooter
 	 *
@@ -363,10 +296,6 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	/**
 	 * Sets whether a fox appears
 	 * to be leaping.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setFoxLeaping(items: Items<T>) = block(items, "SetFoxLeaping")
@@ -375,18 +304,10 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 * Sets the gene of a panda.
 	 * This affects their behavior
 	 * and appearance.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setPandaGene(items: Items<T>) = block(items, "SetPandaGene")
 	/**
 	 * Sets a mob's dye color.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setDyeColor(items: Items<T>) = block(items, "SetDyeColor")
@@ -464,10 +385,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * Target UUID
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Target name
 	 *
@@ -482,16 +400,13 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * [NumItem]
 	 *
-	 * Block light level (0-15)
+	 * Block light level (§c0§7-§c15§7)
 	 *
 	 * [NumItem]
 	 *
-	 * Skylight level (0-15)
+	 * Sky light level (§c0§7-§c15§7)
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [NONE]
 	 *
 	 * Uses the light level
 	 * at entity's location
@@ -502,10 +417,6 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	fun displayBrightness(items: Items<T>) = block(items, "DisplayBrightness")
 	/**
 	 * Sets a villager's profession.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setProfession(items: Items<T>) = block(items, "SetProfession")
 	@Overlord
@@ -513,39 +424,23 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	/**
 	 * Sets whether a mob has its
 	 * arms raised.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setArmsRaised(items: Items<T>) = block(items, "SetArmsRaised")
 	/**
 	 * Removes all active potion
 	 * effects from an entity.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun clearPotions(items: Items<T>) = block(items, "ClearPotions")
 	/**
 	 * Sets whether an armor stand has
-	 * arms and a baseplate.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
+	 * arms and a base plate.
 	 */
 	@Mythic
 	fun armorStandParts(items: Items<T>) = block(items, "ArmorStandParts")
 	/**
 	 * Sets whether an entity is
 	 * invulnerable to damage.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setInvulnerable(items: Items<T>) = block(items, "SetInvulnerable")
 	fun projColl(items: Items<T>) = block(items, "ProjColl")
@@ -575,17 +470,11 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * Target UUID
 	 *
-	 * []
-	 *
-	 *
-	 * [](s)
+	 * [COMPONENT](s)
 	 *
 	 * Target name
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [NONE]
 	 *
 	 * Stop targeting
 	 *
@@ -598,10 +487,6 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 * Sets whether the text in
 	 * a text display has
 	 * shadow or not.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Mythic
 	fun tDisplayShadow(items: Items<T>) = block(items, "TDisplayShadow")
@@ -614,7 +499,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * [NumItem]
 	 *
-	 * Power (0-25)
+	 * Power (§c0§7-§c25§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -622,10 +507,6 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	/**
 	 * Sets whether an armor stand
 	 * is a marker.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setMarker(items: Items<T>) = block(items, "SetMarker")
@@ -646,10 +527,6 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 * Sets whether an entity's
 	 * custom name is always
 	 * displayed above them.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setNameVisible(items: Items<T>) = block(items, "SetNameVisible")
 	/**
@@ -682,20 +559,12 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	/**
 	 * Sets whether a horse is
 	 * standing on its hind legs.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setRearing(items: Items<T>) = block(items, "SetRearing")
 	/**
 	 * Sets whether a creeper
 	 * has the charged effect.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun creeperCharged(items: Items<T>) = block(items, "CreeperCharged")
 	/**
@@ -732,10 +601,6 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	/**
 	 * Sets whether an entity
 	 * is affected by gravity.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setGravity(items: Items<T>) = block(items, "SetGravity")
 	/**
@@ -743,14 +608,11 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Custom name
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [NONE]
 	 *
 	 * Removes custom name
 	 *
@@ -759,10 +621,6 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	fun setName(items: Items<T>) = block(items, "SetName")
 	/**
 	 * Causes a mob to jump.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun jump(items: Items<T>) = block(items, "Jump")
 	/**
@@ -799,11 +657,11 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [BLOCK]
 	 *
 	 * Displayed block
 	 *
-	 * (*)[](s)
+	 * (*)[BLOCK_TAG](s)
 	 *
 	 * Block data
 	 *
@@ -820,7 +678,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 * [NumItem]
 	 *
 	 * Ticks
-	 * (0-140)
+	 * (§c0§7-§c140§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -831,20 +689,12 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 * Sets whether a text display
 	 * is visible through walls
 	 * or not.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Mythic
 	fun tDisplaySeeThru(items: Items<T>) = block(items, "TDisplaySeeThru")
 	/**
 	 * Sets whether an entity
 	 * is gliding.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setGliding(items: Items<T>) = block(items, "SetGliding")
 	/**
@@ -887,29 +737,17 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 * Sets whether an interaction
 	 * entity has response when
 	 * interacting with it.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun interactResponse(items: Items<T>) = block(items, "InteractResponse")
 	/**
 	 * Forces a mob to use held items
 	 * such as bow or spyglass.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun useItem(items: Items<T>) = block(items, "UseItem")
 	/**
 	 * Sets a tropical fish's
 	 * color and pattern.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setFishPattern(items: Items<T>) = block(items, "SetFishPattern")
@@ -923,17 +761,11 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * Target UUID
 	 *
-	 * []
-	 *
-	 *
-	 * [](s)
+	 * [COMPONENT](s)
 	 *
 	 * Target name
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [NONE]
 	 *
 	 * Dismounts entity
 	 *
@@ -947,7 +779,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [LIST]
 	 *
 	 * 16 numbers describing
 	 * a row-major matrix
@@ -981,10 +813,6 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	/**
 	 * Forces a sniffer to perform
 	 * a specific action.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun snifferState(items: Items<T>) = block(items, "SnifferState")
 	fun setHandItem(items: Items<T>) = block(items, "SetHandItem")
@@ -994,7 +822,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [BLOCK]
 	 *
 	 * Block to hold
 	 *
@@ -1034,9 +862,9 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	fun launchToward(items: Items<T>) = block(items, "LaunchToward")
 	/**
 	 * Sets a mob's armor items.
-	 * Place the armor in slots 1-4
-	 * of the chest, with 1 being the
-	 * helmet and 4 being the boots.
+	 * Place the armor in slots §c1§7-§c4§7
+	 * of the chest, with §c1§7 being the
+	 * helmet and §c4§7 being the boots.
 	 *
 	 * ARGUMENTS:
 	 *
@@ -1057,10 +885,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * Color hexadecimal
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [NONE]
 	 *
 	 * Resets glow color
 	 *
@@ -1071,10 +896,6 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	/**
 	 * Sets whether an entity
 	 * should appear on fire.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setVisualFire(items: Items<T>) = block(items, "SetVisualFire")
@@ -1115,20 +936,12 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	fun interactionSize(items: Items<T>) = block(items, "InteractionSize")
 	/**
 	 * Sets a cat's skin type.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setCatType(items: Items<T>) = block(items, "SetCatType")
 	/**
 	 * Sets whether a mob wears
 	 * a saddle.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setSaddle(items: Items<T>) = block(items, "SetSaddle")
 	/**
@@ -1141,10 +954,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * Target UUID
 	 *
-	 * []
-	 *
-	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * Target name
 	 *
@@ -1168,9 +978,6 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 * [NumItem]
 	 *
 	 * Z scale
-	 *
-	 * []
-	 *
 	 *
 	 * [VecItem]
 	 *
@@ -1197,10 +1004,6 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	/**
 	 * Sets the text alignment
 	 * of a text display.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Mythic
 	fun tDisplayAlign(items: Items<T>) = block(items, "TDisplayAlign")
@@ -1209,7 +1012,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [PROJECTILE]
 	 *
 	 * Projectile to launch
 	 *
@@ -1217,7 +1020,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * Launch point
 	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * Projectile name
 	 *
@@ -1235,18 +1038,10 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	/**
 	 * Sets the behavior phase
 	 * of an Ender Dragon.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setDragonPhase(items: Items<T>) = block(items, "SetDragonPhase")
 	/**
 	 * Sets a llama's fur color.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setLlamaColor(items: Items<T>) = block(items, "SetLlamaColor")
@@ -1254,10 +1049,6 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 * Sets the biome type of a
 	 * villager. This affects their
 	 * appearance only.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setVillagerBiome(items: Items<T>) = block(items, "SetVillagerBiome")
@@ -1280,39 +1071,23 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	/**
 	 * Sets whether an entity
 	 * is a baby (permanently).
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setBaby(items: Items<T>) = block(items, "SetBaby")
 	/**
 	 * Sets a mooshroom's skin
 	 * type.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun mooshroomType(items: Items<T>) = block(items, "MooshroomType")
 	/**
 	 * Sets whether an entity
 	 * is invisible.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setInvisible(items: Items<T>) = block(items, "SetInvisible")
 	/**
 	 * Sets how a display entity
 	 * is rotated with a
 	 * player's view.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Mythic
 	fun displayBillboard(items: Items<T>) = block(items, "DisplayBillboard")
@@ -1320,19 +1095,11 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	/**
 	 * Causes a sheep to
 	 * eat grass.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun sheepEat(items: Items<T>) = block(items, "SheepEat")
 	/**
 	 * Sets whether a cat appears
 	 * to be lying down.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setCatResting(items: Items<T>) = block(items, "SetCatResting")
@@ -1342,7 +1109,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * ARGUMENTS:
 	 *
-	 * [](s)
+	 * [POTION](s)
 	 *
 	 * Effect(s)
 	 * to give
@@ -1353,10 +1120,6 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	/**
 	 * Sets which goat horns
 	 * are shown or hidden.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setGoatHorns(items: Items<T>) = block(items, "SetGoatHorns")
 	/**
@@ -1369,17 +1132,11 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * Owner UUID
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Owner name
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [NONE]
 	 *
 	 * Untames mob
 	 *
@@ -1390,28 +1147,16 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 * Sets whether this entity has
 	 * a glowing outline that can
 	 * be seen through blocks.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setGlowing(items: Items<T>) = block(items, "SetGlowing")
 	/**
 	 * Sets whether a goat
 	 * screams or not.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setGoatScreaming(items: Items<T>) = block(items, "SetGoatScreaming")
 	/**
 	 * Sets the model type
 	 * of an item display.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Mythic
 	fun iDisplayModelType(items: Items<T>) = block(items, "IDisplayModelType")
@@ -1433,11 +1178,11 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [SPAWN_EGG]
 	 *
 	 * Mob to disguise as
 	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * Display name
 	 *
@@ -1450,11 +1195,11 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [BLOCK]
 	 *
 	 * Block to disguise as
 	 *
-	 * (*)[]
+	 * (*)[COMPONENT]
 	 *
 	 * Display name
 	 *
@@ -1469,7 +1214,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [BLOCK]
 	 *
 	 * Block to show
 	 *
@@ -1484,20 +1229,12 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	/**
 	 * Causes a fox to start
 	 * or stop sleeping.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun foxSleeping(items: Items<T>) = block(items, "FoxSleeping")
 	/**
 	 * Sets whether a mob is able
 	 * to collide with other entities.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setCollidable(items: Items<T>) = block(items, "SetCollidable")
 	/**
@@ -1510,20 +1247,17 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * Direction
 	 *
-	 * []
+	 * (*)[NumItem]
 	 *
+	 * X Rotation (§c0§7-§c360§7)
 	 *
 	 * (*)[NumItem]
 	 *
-	 * X Rotation (0-360)
+	 * Y Rotation (§c0§7-§c360§7)
 	 *
 	 * (*)[NumItem]
 	 *
-	 * Y Rotation (0-360)
-	 *
-	 * (*)[NumItem]
-	 *
-	 * Z Rotation (0-360)
+	 * Z Rotation (§c0§7-§c360§7)
 	 *
 	 * (*) = Optional
 	 */
@@ -1571,10 +1305,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * Walk speed
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [NONE]
 	 *
 	 * Stop moving
 	 *
@@ -1627,30 +1358,18 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	/**
 	 * Makes a mob perform
 	 * an attack animation.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun attackAnimation(items: Items<T>) = block(items, "AttackAnimation")
 	/**
 	 * Sets whether an entity will
 	 * produce sound effects.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setSilenced(items: Items<T>) = block(items, "SetSilenced")
 	/**
 	 * Sets if a bee has nectar
 	 * on its body.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setBeeNectar(items: Items<T>) = block(items, "SetBeeNectar")
@@ -1664,15 +1383,9 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * Lead holder UUID
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Lead holder name
-	 *
-	 * []
-	 *
 	 *
 	 * [LocItem]
 	 *
@@ -1684,10 +1397,6 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	/**
 	 * Sets whether a snow golem
 	 * is wearing a pumpkin.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun snowmanPumpkin(items: Items<T>) = block(items, "SnowmanPumpkin")
@@ -1701,15 +1410,9 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * Tag name
 	 *
-	 * []
-	 *
-	 *
 	 * [NumItem]
 	 *
 	 * Tag value
-	 *
-	 * []
-	 *
 	 *
 	 * [TextItem]
 	 *
@@ -1724,7 +1427,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * ARGUMENTS:
 	 *
-	 * [](s)
+	 * [POTION](s)
 	 *
 	 * Effect(s)
 	 * to remove
@@ -1737,38 +1440,22 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	/**
 	 * Causes a sheep to
 	 * be sheared.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun shearSheep(items: Items<T>) = block(items, "ShearSheep")
 	/**
 	 * Sets the possible interactions, such
 	 * as adding or removing items, of an
 	 * armor stand's slot(s).
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Mythic
 	fun armorStandSlots(items: Items<T>) = block(items, "ArmorStandSlots")
 	/**
 	 * Sets whether an allay is
 	 * dancing or not.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setAllayDancing(items: Items<T>) = block(items, "SetAllayDancing")
 	/**
 	 * Sets a rabbit's skin type.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setRabbitType(items: Items<T>) = block(items, "SetRabbitType")
@@ -1808,7 +1495,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * ARGUMENTS:
 	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Player name to disguise as
 	 *
@@ -1823,10 +1510,6 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	/**
 	 * Sets whether a mob is
 	 * angry at players.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setAngry(items: Items<T>) = block(items, "SetAngry")
 	/**
@@ -1845,58 +1528,34 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	/**
 	 * Causes an entity
 	 * to explode.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun explode(items: Items<T>) = block(items, "Explode")
 	/**
 	 * Makes a warden emerge
 	 * or dig into the ground.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setDigging(items: Items<T>) = block(items, "SetDigging")
 	@Overlord
 	fun moveTo(items: Items<T>) = block(items, "MoveTo")
 	/**
 	 * Removes an entity's disguise.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Overlord
 	fun undisguise(items: Items<T>) = block(items, "Undisguise")
 	/**
 	 * Sets whether a mob drops
 	 * their items when dead.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setDeathDrops(items: Items<T>) = block(items, "SetDeathDrops")
 	/**
 	 * Sets whether an item
 	 * or a falling block will
 	 * never despawn.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setPersistent(items: Items<T>) = block(items, "SetPersistent")
 	/**
 	 * Sets whether a vex is
 	 * charging or not.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setVexCharging(items: Items<T>) = block(items, "SetVexCharging")
@@ -1917,19 +1576,11 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 * Ignites a creeper, causing
 	 * it to explode after a fuse
 	 * period.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun igniteCreeper(items: Items<T>) = block(items, "IgniteCreeper")
 	/**
 	 * Causes a mob to start
 	 * or stop celebrating.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setCelebrating(items: Items<T>) = block(items, "SetCelebrating")
@@ -1953,7 +1604,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * ARGUMENTS:
 	 *
-	 * [](s)
+	 * [COMPONENT](s)
 	 *
 	 * Displayed text
 	 *
@@ -1976,10 +1627,6 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	/**
 	 * Sets the color an entity's
 	 * name tag appears in.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setNameColor(items: Items<T>) = block(items, "SetNameColor")
@@ -1989,10 +1636,6 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 * Sets whether a mob carries
 	 * a chest, which allows its
 	 * inventory to be accessed.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun setCarryingChest(items: Items<T>) = block(items, "SetCarryingChest")
 	/**
@@ -2005,10 +1648,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * Target UUID
 	 *
-	 * []
-	 *
-	 *
-	 * []
+	 * [COMPONENT]
 	 *
 	 * Target name
 	 *
@@ -2017,12 +1657,10 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	fun ram(items: Items<T>) = block(items, "Ram")
 	/**
 	 * Sets a fox's fur type.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	@Noble
 	fun setFoxType(items: Items<T>) = block(items, "SetFoxType")
+
+
 
 }

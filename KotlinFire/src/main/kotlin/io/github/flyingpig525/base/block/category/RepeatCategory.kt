@@ -6,6 +6,7 @@ import io.github.flyingpig525.base.Items
 import io.github.flyingpig525.base.JsonData
 import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.block.Block
+import io.github.flyingpig525.base.block.BracketBlock
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
@@ -13,8 +14,11 @@ import io.github.flyingpig525.base.item.type.*
 class RepeatCategory <T> internal constructor(private val template: Template<T>) where T : Item, T : JsonData {
 	private val blocks = template.blocks
 
-	private fun block(items: Items<T>, action: String) {
+	private fun block(items: Items<T>, action: String, wrappedCode: Template<T>.() -> Unit) {
 		blocks += Block("repeat", ItemCollection(items).items, action)
+		blocks += BracketBlock(type = "repeat")
+		blocks += Template(Template.Type.NONE, a = wrappedCode).blocks
+		blocks += BracketBlock(false, "repeat")
 	}
 
 	fun chain(a: RepeatCategory<T>.() -> Unit) {
@@ -38,7 +42,7 @@ class RepeatCategory <T> internal constructor(private val template: Template<T>)
 	 *
 	 * (*) = Optional
 	 */
-	fun adjacent(items: Items<T>) = block(items, "Adjacent")
+	fun adjacent(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "Adjacent", wrappedCode)
 	/**
 	 * Repeats code once for
 	 * each interpolated point in
@@ -61,7 +65,7 @@ class RepeatCategory <T> internal constructor(private val template: Template<T>)
 	 *
 	 * (*) = Optional
 	 */
-	fun path(items: Items<T>) = block(items, "Path")
+	fun path(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "Path", wrappedCode)
 	/**
 	 * Repeats code multiple times.
 	 *
@@ -78,7 +82,7 @@ class RepeatCategory <T> internal constructor(private val template: Template<T>)
 	 *
 	 * (*) = Optional
 	 */
-	fun multiple(items: Items<T>) = block(items, "Multiple")
+	fun multiple(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "Multiple", wrappedCode)
 	/**
 	 * Repeats code once for each
 	 * block in a region.
@@ -100,7 +104,7 @@ class RepeatCategory <T> internal constructor(private val template: Template<T>)
 	 *
 	 * (*) = Optional
 	 */
-	fun grid(items: Items<T>) = block(items, "Grid")
+	fun grid(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "Grid", wrappedCode)
 	/**
 	 * Repeats code as long as a
 	 * condition is true.
@@ -109,8 +113,8 @@ class RepeatCategory <T> internal constructor(private val template: Template<T>)
 	 *
 	 * (*) = Optional
 	 */
-	fun whileLoop(items: Items<T>) = block(items, "While")
-	fun range(items: Items<T>) = block(items, "Range")
+	fun whileLoop(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "While", wrappedCode)
+	fun range(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "Range", wrappedCode)
 	/**
 	 * Repeats code once for each
 	 * index of a list.
@@ -122,13 +126,13 @@ class RepeatCategory <T> internal constructor(private val template: Template<T>)
 	 * Gets the current
 	 * value each iteration
 	 *
-	 * []
+	 * [VarItem]
 	 *
 	 * List to repeat through
 	 *
 	 * (*) = Optional
 	 */
-	fun forEach(items: Items<T>) = block(items, "ForEach")
+	fun forEach(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "ForEach", wrappedCode)
 	/**
 	 * Repeats code once for every
 	 * evenly distributed sphere point.
@@ -154,15 +158,11 @@ class RepeatCategory <T> internal constructor(private val template: Template<T>)
 	 *
 	 * (*) = Optional
 	 */
-	fun sphere(items: Items<T>) = block(items, "Sphere")
+	fun sphere(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "Sphere", wrappedCode)
 	/**
 	 * Repeats code indefinitely.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
-	fun forever(items: Items<T>) = block(items, "Forever")
+	fun forever(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "Forever", wrappedCode)
 	/**
 	 * Repeats code once per entry in
 	 * a dictionary
@@ -186,6 +186,6 @@ class RepeatCategory <T> internal constructor(private val template: Template<T>)
 	 *
 	 * (*) = Optional
 	 */
-	fun forEachEntry(items: Items<T>) = block(items, "ForEachEntry")
+	fun forEachEntry(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "ForEachEntry", wrappedCode)
 
 }

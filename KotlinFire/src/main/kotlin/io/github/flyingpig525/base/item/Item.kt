@@ -19,14 +19,18 @@ open class Item(val id: ID) {
 		override fun toString(): String = id
 	}
 
+	override fun toString(): String {
+		return "ITEM(id: $id, slot: $slot)"
+	}
+
 	companion object {
-		fun <T> getItemJsonArgument(item: T): String where T : Item, T : JsonData = """
+		fun <T> getItemJsonArgument(item: T, slot: Int? = null): String where T : Item, T : JsonData = """
 			{
 				"item": {
 					"id": "${item.id}",
 					"data": ${item.getJsonData()}
 				},
-				"slot": ${item.slot}
+				"slot": ${slot ?: item.slot}
 			}
 		""".trimIndent()
 	}

@@ -8,7 +8,7 @@ class TextItem(val text: String) : Item(ID.RICHTEXT), JsonData {
 
 	override fun getJsonData(): String = """
 		{
-			"name": $text
+			"name": "$text"
 		}
 	""".trimIndent()
 

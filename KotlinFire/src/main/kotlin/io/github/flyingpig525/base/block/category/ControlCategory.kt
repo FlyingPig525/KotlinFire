@@ -20,24 +20,15 @@ class ControlCategory <T> internal constructor(private val template: Template<T>
 	fun chain(a: ControlCategory<T>.() -> Unit) {
 		apply(a)
 	}
-
 	/**
 	 * Stops a Repeat sequence and
 	 * continues to the next code block.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun stopRepeat(items: Items<T>) = block(items, "StopRepeat")
 	/**
 	 * Skips the rest of a Function
 	 * sequence and returns to the
 	 * block it was called from.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun returnFrom(items: Items<T>) = block(items, "Return")
 	fun returnNTimes(items: Items<T>) = block(items, "ReturnNTimes")
@@ -45,20 +36,12 @@ class ControlCategory <T> internal constructor(private val template: Template<T>
 	 * Skips the rest of this repeat
 	 * statement's code and continues
 	 * to the next repetition.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun skip(items: Items<T>) = block(items, "Skip")
 	/**
 	 * Stops the current event
 	 * thread. Any code after this
 	 * block will not be executed.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun end(items: Items<T>) = block(items, "End")
 	/**
@@ -75,5 +58,6 @@ class ControlCategory <T> internal constructor(private val template: Template<T>
 	 * (*) = Optional
 	 */
 	fun wait(items: Items<T>) = block(items, "Wait")
+
 
 }

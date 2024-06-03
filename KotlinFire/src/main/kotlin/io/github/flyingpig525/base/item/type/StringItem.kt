@@ -9,7 +9,7 @@ class StringItem(val text: String) : Item(ID.STRING), JsonData {
 
 	override fun getJsonData(): String = """
 		{
-			"name": $text
+			"name": "$text"
 		}
 	""".trimIndent()
 

@@ -40,10 +40,6 @@ class SelectCategory <T> internal constructor(private val template: Template<T>)
 	 * Creates a selection using
 	 * the most recently spawned
 	 * entity.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun lastEntity(items: Items<T>) = block(items, "LastEntity")
 	fun shooter(items: Items<T>) = block(items, "Shooter")
@@ -59,10 +55,7 @@ class SelectCategory <T> internal constructor(private val template: Template<T>)
 	 *
 	 * UUID to check for
 	 *
-	 * []
-	 *
-	 *
-	 * [](s)
+	 * [COMPONENT](s)
 	 *
 	 * Name to check for
 	 *
@@ -101,10 +94,6 @@ class SelectCategory <T> internal constructor(private val template: Template<T>)
 	/**
 	 * Creates a selection of
 	 * all entities in the game.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun allEntities(items: Items<T>) = block(items, "AllEntities")
 	fun damager(items: Items<T>) = block(items, "Damager")
@@ -137,7 +126,7 @@ class SelectCategory <T> internal constructor(private val template: Template<T>)
 	 * (*)[VarItem]
 	 *
 	 * Gets the end or
-	 * final hit location
+	 * final hit §alocation
 	 *
 	 * [LocItem]
 	 *
@@ -162,20 +151,12 @@ class SelectCategory <T> internal constructor(private val template: Template<T>)
 	 * Deactivates the selection.
 	 * Code that follows will run
 	 * normally with event targets.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun reset(items: Items<T>) = block(items, "Reset")
 	/**
 	 * Creates a selection using
 	 * a target involved in this
 	 * Event.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun eventTarget(items: Items<T>) = block(items, "EventTarget")
 	fun killer(items: Items<T>) = block(items, "Killer")
@@ -184,27 +165,17 @@ class SelectCategory <T> internal constructor(private val template: Template<T>)
 	 * Creates a selection of
 	 * all entities in the game
 	 * that meet a condition.
-	 *
-	 * ARGUMENTS:
 	 */
 	fun entitiesCond(items: Items<T>) = block(items, "EntitiesCond")
 	/**
 	 * Creates a selection of
 	 * all players in the game.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun allPlayers(items: Items<T>) = block(items, "AllPlayers")
 	/**
 	 * Creates a new selection by
 	 * inverting the selection that
 	 * is currently active.
-	 *
-	 * ARGUMENTS:
-	 *
-	 * (*) = Optional
 	 */
 	fun invert(items: Items<T>) = block(items, "Invert")
 	fun randomEntity(items: Items<T>) = block(items, "RandomEntity")
@@ -212,8 +183,6 @@ class SelectCategory <T> internal constructor(private val template: Template<T>)
 	 * Filters the selection to the
 	 * objects that meet a certain
 	 * condition.
-	 *
-	 * ARGUMENTS:
 	 */
 	fun filterCondition(items: Items<T>) = block(items, "FilterCondition")
 	fun mobsCond(items: Items<T>) = block(items, "MobsCond")
@@ -242,10 +211,9 @@ class SelectCategory <T> internal constructor(private val template: Template<T>)
 	 * Creates a selection of
 	 * all players in the game
 	 * that meet a condition.
-	 *
-	 * ARGUMENTS:
 	 */
 	fun playersCond(items: Items<T>) = block(items, "PlayersCond")
 	fun mobName(items: Items<T>) = block(items, "MobName")
+
 
 }
