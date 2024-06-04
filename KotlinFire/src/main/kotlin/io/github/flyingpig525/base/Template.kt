@@ -1,5 +1,7 @@
 package io.github.flyingpig525.base
 
+import ENTITYEVENT
+import PLAYEREVENT
 import io.github.flyingpig525.base.block.*
 import io.github.flyingpig525.base.block.category.*
 import io.github.flyingpig525.base.item.Item
@@ -36,12 +38,21 @@ class Template<T>(type: Type = Type.FUNCTION, name: String = "PutNameHere", a: T
         blocks += BracketBlock(false, "norm")
     }
 
+    private lateinit var event: EventBlock<T>
+
+    constructor(event: PLAYEREVENT, a: Template<T>.() -> Unit) : this(Type.EVENT, "", a) {
+        this.event = EventBlock(event.type, event.event)
+    }
+    constructor(event: ENTITYEVENT, a: Template<T>.() -> Unit) : this(Type.EVENT, "", a) {
+        this.event = EventBlock(event.type, event.event)
+    }
+
     init {
         if (type != Type.NONE) {
             blocks += when(type) {
                 Type.FUNCTION -> FunctionBlock(name)
                 Type.PROCESS -> ProcessBlock(name)
-                Type.EVENT -> TODO()
+                Type.EVENT -> event
                 // This will never get called, so it doesn't have to be implemented
                 Type.NONE -> TODO()
             }

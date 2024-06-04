@@ -6,9 +6,7 @@ package org.example
 import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.item.type.MinecraftItem.Companion.toMinecraftItem
 import io.github.flyingpig525.base.item.type.NumItem.Companion.toNumItem
-import io.github.flyingpig525.base.item.type.StringItem.Companion.toStringItem
 import io.github.flyingpig525.base.item.type.TextItem.Companion.toTextItem
-import io.github.flyingpig525.base.item.type.VarItem
 import io.github.flyingpig525.base.item.type.VarItem.Companion.toVarItem
 import kotlin.test.Test
 import io.github.flyingpig525.base.item.type.VarItem.Scope.*
@@ -16,11 +14,13 @@ import io.github.flyingpig525.base.item.type.VarItem.Scope.*
 class LibraryTest {
     @Test fun someLibraryMethodReturnsTrue() {
         val playerMoney = "%uuid money".toVarItem(SAVE)
-        val onJoin = Template(name = "onJoin") {
-            IfVar.varExists({
-                +"%uuid".toVarItem(SAVE)
-            }, not = true) {}
-            Else {
+        val onJoin = Template(PLAYEREVENT.Join) {
+            IfVar.varExists(
+                {
+                    +"%uuid".toVarItem(SAVE)
+                },
+                true
+            ) {
                 SetVariable.chain {
                     set {
                         +"%uuid".toVarItem(SAVE)
