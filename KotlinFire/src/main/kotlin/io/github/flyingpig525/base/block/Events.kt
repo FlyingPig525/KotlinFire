@@ -1,3 +1,5 @@
+package io.github.flyingpig525.base.block
+
 import io.github.flyingpig525.base.block.EventBlock
 
 enum class PLAYEREVENT(val type: EventBlock.Type, val event: String) {

@@ -1,7 +1,5 @@
 package io.github.flyingpig525.base
 
-import ENTITYEVENT
-import PLAYEREVENT
 import io.github.flyingpig525.base.block.*
 import io.github.flyingpig525.base.block.category.*
 import io.github.flyingpig525.base.item.Item
@@ -18,7 +16,7 @@ import javax.xml.transform.Templates
 
 typealias Items<T> = ItemCollection<T>.() -> Unit
 
-class Template<T>(type: Type = Type.FUNCTION, name: String = "PutNameHere", a: Template<T>.() -> Unit) : JsonData where T : Item, T : JsonData {
+open class Template<T>(type: Type = Type.FUNCTION, val name: String = "PutNameHere", a: Template<T>.() -> Unit) : JsonData where T : Item, T : JsonData {
     val blocks: MutableList<Block<T>> = mutableListOf()
     val SetVariable = SetVariableCategory(this)
     val EntityAction = EntityActionCategory(this)
@@ -31,6 +29,10 @@ class Template<T>(type: Type = Type.FUNCTION, name: String = "PutNameHere", a: T
     val IfEntity = IfEntityCategory(this)
     val IfGame = IfGameCategory(this)
 
+    fun callFunction(function: Template<T>) = callFunction(function.name)
+    fun callFunction(name: String) {
+        blocks += CallFunctionBlock(name)
+    }
     fun Else(wrappedCode: Template<T>.() -> Unit) {
         blocks += ElseBlock()
         blocks += BracketBlock(type = "norm")
@@ -38,7 +40,7 @@ class Template<T>(type: Type = Type.FUNCTION, name: String = "PutNameHere", a: T
         blocks += BracketBlock(false, "norm")
     }
 
-    private lateinit var event: EventBlock<T>
+    private var event: EventBlock<T> = EventBlock(PLAYEREVENT.Join.type, PLAYEREVENT.Join.event)
 
     constructor(event: PLAYEREVENT, a: Template<T>.() -> Unit) : this(Type.EVENT, "", a) {
         this.event = EventBlock(event.type, event.event)
@@ -52,7 +54,8 @@ class Template<T>(type: Type = Type.FUNCTION, name: String = "PutNameHere", a: T
             blocks += when(type) {
                 Type.FUNCTION -> FunctionBlock(name)
                 Type.PROCESS -> ProcessBlock(name)
-                Type.EVENT -> event
+                // This will get changed by `EventTemplate`
+                Type.EVENT -> Block("", mutableListOf(), "")
                 // This will never get called, so it doesn't have to be implemented
                 Type.NONE -> TODO()
             }
@@ -135,12 +138,14 @@ class Template<T>(type: Type = Type.FUNCTION, name: String = "PutNameHere", a: T
             }
         }
     }
+    fun <T> codeClientPlaceMultipleTemplates(vararg templates: Template<T>) where T : Item, T : JsonData = Companion.codeClientPlaceMultipleTemplates(templates.toList())
 
     enum class Type {
         FUNCTION,
         PROCESS,
         @Internal
         NONE,
+        @Internal
         EVENT;
     }
 
