@@ -13,8 +13,8 @@ import io.github.flyingpig525.base.item.ItemCollection
 class IfVarCategory <T> internal constructor(private val template: Template<T>) where T : Item, T : JsonData {
 	private val blocks = template.blocks
 
-	private fun block(items: Items<T>, action: String, wrappedCode: Template<T>.() -> Unit) {
-		blocks += Block("if_var", ItemCollection(items).items, action)
+	private fun block(items: Items<T>, action: String, wrappedCode: Template<T>.() -> Unit, not: Boolean = false) {
+		blocks += Block("if_var", ItemCollection(items).items, action, if (not) "attribute: \"NOT\"" else "")
 		blocks += BracketBlock(type = "norm")
 		blocks += Template(Template.Type.NONE, a = wrappedCode).blocks
 		blocks += BracketBlock(false, "norm")
@@ -41,7 +41,7 @@ class IfVarCategory <T> internal constructor(private val template: Template<T>) 
 	 *
 	 * (*) = Optional
 	 */
-	fun greaterThanOrEqual(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "<=", wrappedCode)
+	fun greaterThanOrEqual(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "<=", wrappedCode, not)
 	/**
 	 * Checks if an item has a
 	 * given enchantment, or,
@@ -64,7 +64,7 @@ class IfVarCategory <T> internal constructor(private val template: Template<T>) 
 	 *
 	 * (*) = Optional
 	 */
-	fun itemHasEnchant(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "ItemHasEnchant", wrappedCode)
+	fun itemHasEnchant(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "ItemHasEnchant", wrappedCode, not)
 	/**
 	 * Checks if a dictionary's value
 	 * for the given key is equal to
@@ -87,7 +87,7 @@ class IfVarCategory <T> internal constructor(private val template: Template<T>) 
 	 *
 	 * (*) = Optional
 	 */
-	fun dictValueEquals(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "DictValueEquals", wrappedCode)
+	fun dictValueEquals(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "DictValueEquals", wrappedCode, not)
 	/**
 	 * Checks if an item has a
 	 * given custom tag, and (if
@@ -114,7 +114,7 @@ class IfVarCategory <T> internal constructor(private val template: Template<T>) 
 	 *
 	 * (*) = Optional
 	 */
-	fun itemHasTag(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "ItemHasTag", wrappedCode)
+	fun itemHasTag(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "ItemHasTag", wrappedCode, not)
 	/**
 	 * Checks if a string value matches
 	 * other values.
@@ -131,7 +131,7 @@ class IfVarCategory <T> internal constructor(private val template: Template<T>) 
 	 *
 	 * (*) = Optional
 	 */
-	fun stringMatches(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "StringMatches", wrappedCode)
+	fun stringMatches(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "StringMatches", wrappedCode, not)
 	/**
 	 * Checks if the first part of
 	 * a string value matches a
@@ -149,7 +149,7 @@ class IfVarCategory <T> internal constructor(private val template: Template<T>) 
 	 *
 	 * (*) = Optional
 	 */
-	fun startsWith(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "StartsWith", wrappedCode)
+	fun startsWith(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "StartsWith", wrappedCode, not)
 	/**
 	 * Checks if a list's value at an
 	 * index is equal to a value.
@@ -171,7 +171,7 @@ class IfVarCategory <T> internal constructor(private val template: Template<T>) 
 	 *
 	 * (*) = Optional
 	 */
-	fun listValueEq(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "ListValueEq", wrappedCode)
+	fun listValueEq(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "ListValueEq", wrappedCode, not)
 	/**
 	 * Checks if a value is of a
 	 * certain type.
@@ -184,9 +184,9 @@ class IfVarCategory <T> internal constructor(private val template: Template<T>) 
 	 *
 	 * (*) = Optional
 	 */
-	fun varIsType(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "VarIsType", wrappedCode)
-	fun textMatches(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "TextMatches", wrappedCode)
-	fun isNear(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsNear", wrappedCode)
+	fun varIsType(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "VarIsType", wrappedCode, not)
+	fun textMatches(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "TextMatches", wrappedCode, not)
+	fun isNear(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsNear", wrappedCode, not)
 	/**
 	 * Checks if a variable exists.
 	 *
@@ -198,7 +198,7 @@ class IfVarCategory <T> internal constructor(private val template: Template<T>) 
 	 *
 	 * (*) = Optional
 	 */
-	fun varExists(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "VarExists", wrappedCode)
+	fun varExists(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "VarExists", wrappedCode, not)
 	/**
 	 * Works the same as Value =
 	 * but has a few extra options
@@ -216,7 +216,7 @@ class IfVarCategory <T> internal constructor(private val template: Template<T>) 
 	 *
 	 * (*) = Optional
 	 */
-	fun itemEquals(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "ItemEquals", wrappedCode)
+	fun itemEquals(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "ItemEquals", wrappedCode, not)
 	/**
 	 * Checks if any of a list's contents
 	 * match the given value.
@@ -233,8 +233,8 @@ class IfVarCategory <T> internal constructor(private val template: Template<T>) 
 	 *
 	 * (*) = Optional
 	 */
-	fun listContains(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "ListContains", wrappedCode)
-	fun inRange(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "InRange", wrappedCode)
+	fun listContains(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "ListContains", wrappedCode, not)
+	fun inRange(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "InRange", wrappedCode, not)
 	/**
 	 * Checks if a location is
 	 * near another location.
@@ -256,7 +256,7 @@ class IfVarCategory <T> internal constructor(private val template: Template<T>) 
 	 *
 	 * (*) = Optional
 	 */
-	fun locIsNear(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "LocIsNear", wrappedCode)
+	fun locIsNear(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "LocIsNear", wrappedCode, not)
 	/**
 	 * Checks if a string value
 	 * contains another string.
@@ -273,7 +273,7 @@ class IfVarCategory <T> internal constructor(private val template: Template<T>) 
 	 *
 	 * (*) = Optional
 	 */
-	fun contains(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "Contains", wrappedCode)
+	fun contains(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "Contains", wrappedCode, not)
 	/**
 	 * Checks if a value does not
 	 * equal another value.
@@ -290,7 +290,7 @@ class IfVarCategory <T> internal constructor(private val template: Template<T>) 
 	 *
 	 * (*) = Optional
 	 */
-	fun notEqualTo(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "!=", wrappedCode)
+	fun notEqualTo(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "!=", wrappedCode, not)
 	/**
 	 * Checks if a number value is
 	 * less than another number.
@@ -307,7 +307,7 @@ class IfVarCategory <T> internal constructor(private val template: Template<T>) 
 	 *
 	 * (*) = Optional
 	 */
-	fun lessThan(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "<", wrappedCode)
+	fun lessThan(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "<", wrappedCode, not)
 	/**
 	 * Checks if a value is equal
 	 * to one of the given values.
@@ -324,7 +324,7 @@ class IfVarCategory <T> internal constructor(private val template: Template<T>) 
 	 *
 	 * (*) = Optional
 	 */
-	fun equalTo(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "=", wrappedCode)
+	fun equalTo(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "=", wrappedCode, not)
 	/**
 	 * Checks if a number value is
 	 * greater than another number.
@@ -341,7 +341,7 @@ class IfVarCategory <T> internal constructor(private val template: Template<T>) 
 	 *
 	 * (*) = Optional
 	 */
-	fun greaterThan(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, ">", wrappedCode)
+	fun greaterThan(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, ">", wrappedCode, not)
 	/**
 	 * Checks if the last part of
 	 * a string value matches a
@@ -359,7 +359,7 @@ class IfVarCategory <T> internal constructor(private val template: Template<T>) 
 	 *
 	 * (*) = Optional
 	 */
-	fun endsWith(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "EndsWith", wrappedCode)
+	fun endsWith(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "EndsWith", wrappedCode, not)
 	/**
 	 * Checks if a number value
 	 * is greater than or equal to
@@ -377,7 +377,7 @@ class IfVarCategory <T> internal constructor(private val template: Template<T>) 
 	 *
 	 * (*) = Optional
 	 */
-	fun lessThanOrEqual(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, ">=", wrappedCode)
+	fun lessThanOrEqual(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, ">=", wrappedCode, not)
 	/**
 	 * Checks if a dictionary has
 	 * the given key.
@@ -394,6 +394,6 @@ class IfVarCategory <T> internal constructor(private val template: Template<T>) 
 	 *
 	 * (*) = Optional
 	 */
-	fun dictHasKey(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "DictHasKey", wrappedCode)
+	fun dictHasKey(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "DictHasKey", wrappedCode, not)
 
 }

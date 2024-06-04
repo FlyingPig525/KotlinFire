@@ -3,7 +3,7 @@ package io.github.flyingpig525.base.block
 import io.github.flyingpig525.base.JsonData
 import io.github.flyingpig525.base.item.Item
 
-open class Block<T>(val codeBlock: String, var items: MutableList<T>, val action: String) :
+open class Block<T>(val codeBlock: String, var items: MutableList<T>, val action: String, val extra: String = "") :
     JsonData where T : Item, T : JsonData {
     init {
         var i = 0
@@ -37,7 +37,7 @@ open class Block<T>(val codeBlock: String, var items: MutableList<T>, val action
         string += """
                     ]
                 },
-                "action": "$action"
+                "action": "$action" ${if (extra != "") ", $extra" else ""}
             }
         """
         return string

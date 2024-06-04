@@ -122,7 +122,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 * [NONE]
 	 *
 	 * Converts the block at
-	 * the location to a falling block§7)
+	 * the location to a falling block)
 	 *
 	 * (*) = Optional
 	 */
@@ -256,7 +256,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * (*)[NumItem]
 	 *
-	 * Explosion power (§c0§7-§c4§7)
+	 * Explosion power (0-4)
 	 *
 	 * (*) = Optional
 	 */
@@ -739,7 +739,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * (*)[NumItem]
 	 *
-	 * TNT power (§c0§7-§c4§7)
+	 * TNT power (0-4)
 	 *
 	 * (*)[NumItem]
 	 *
@@ -982,7 +982,7 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 *
 	 * [NONE]
 	 *
-	 * Unlocks the container§7)
+	 * Unlocks the container)
 	 *
 	 * (*) = Optional
 	 */

@@ -19,7 +19,7 @@ class LibraryTest {
         val onJoin = Template(name = "onJoin") {
             IfVar.varExists({
                 +"%uuid".toVarItem(SAVE)
-            }) {}
+            }, not = true) {}
             Else {
                 SetVariable.chain {
                     set {
@@ -41,9 +41,10 @@ class LibraryTest {
                 +playerMoney
             }
             PlayerAction.sendMessage {
-                +"Hello KotlinFire world!".toTextItem()
+                +"""<gradient:#7f52ff:#e3455d>Hello KotlinFire world!""".toTextItem()
             }
         }
+        println(onRightClick.getTemplateString())
         Template.codeClientPlaceMultipleTemplates(listOf(onJoin, onRightClick))
     }
 }

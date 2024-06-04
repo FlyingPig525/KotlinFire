@@ -13,8 +13,8 @@ import io.github.flyingpig525.base.item.ItemCollection
 class IfGameCategory  <T> internal constructor(private val template: Template<T>) where T : Item, T : JsonData {
 	private val blocks = template.blocks
 
-	private fun block(items: Items<T>, action: String, wrappedCode: Template<T>.() -> Unit) {
-		blocks += Block("if_game", ItemCollection(items).items, action)
+	private fun block(items: Items<T>, action: String, wrappedCode: Template<T>.() -> Unit, not: Boolean = false) {
+		blocks += Block("if_game", ItemCollection(items).items, action, if (not) "attribute: \"NOT\"" else "")
 		blocks += BracketBlock(type = "norm")
 		blocks += Template(Template.Type.NONE, a = wrappedCode).blocks
 		blocks += BracketBlock(false, "norm")
@@ -24,7 +24,7 @@ class IfGameCategory  <T> internal constructor(private val template: Template<T>
 		apply(a)
 	}
 
-	fun signHasTxt(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "SignHasTxt", wrappedCode)
+	fun signHasTxt(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "SignHasTxt", wrappedCode, not)
 	/**
 	 * Checks if the container at a
 	 * location has room for one or
@@ -46,7 +46,7 @@ class IfGameCategory  <T> internal constructor(private val template: Template<T>
 	 *
 	 * (*) = Optional
 	 */
-	fun hasRoomForItem(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "HasRoomForItem", wrappedCode)
+	fun hasRoomForItem(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "HasRoomForItem", wrappedCode, not)
 	/**
 	 * Checks if the block in a block
 	 * related event is the given block.
@@ -59,7 +59,7 @@ class IfGameCategory  <T> internal constructor(private val template: Template<T>
 	 *
 	 * (*) = Optional
 	 */
-	fun eventBlockEquals(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "EventBlockEquals", wrappedCode)
+	fun eventBlockEquals(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "EventBlockEquals", wrappedCode, not)
 	/**
 	 * Checks if the command entered
 	 * in the Command Event is equal
@@ -74,7 +74,7 @@ class IfGameCategory  <T> internal constructor(private val template: Template<T>
 	 * (*) = Optional
 	 */
 	@Emperor
-	fun commandEquals(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "CommandEquals", wrappedCode)
+	fun commandEquals(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "CommandEquals", wrappedCode, not)
 	/**
 	 * Checks if the item in a item
 	 * related event is the given item.
@@ -87,12 +87,12 @@ class IfGameCategory  <T> internal constructor(private val template: Template<T>
 	 *
 	 * (*) = Optional
 	 */
-	fun eventItemEquals(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "EventItemEquals", wrappedCode)
+	fun eventItemEquals(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "EventItemEquals", wrappedCode, not)
 	/**
 	 * Checks if an event attack
 	 * is critical.
 	 */
-	fun attackIsCrit(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "AttackIsCrit", wrappedCode)
+	fun attackIsCrit(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "AttackIsCrit", wrappedCode, not)
 	/**
 	 * Checks if the container at a
 	 * location has the given item.
@@ -109,7 +109,7 @@ class IfGameCategory  <T> internal constructor(private val template: Template<T>
 	 *
 	 * (*) = Optional
 	 */
-	fun containerHas(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "ContainerHas", wrappedCode)
+	fun containerHas(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "ContainerHas", wrappedCode, not)
 	/**
 	 * Checks if the block at a location
 	 * is the given block.
@@ -130,7 +130,7 @@ class IfGameCategory  <T> internal constructor(private val template: Template<T>
 	 *
 	 * (*) = Optional
 	 */
-	fun blockEquals(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "BlockEquals", wrappedCode)
+	fun blockEquals(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "BlockEquals", wrappedCode, not)
 	/**
 	 * Checks if the block at a location
 	 * is powered by redstone.
@@ -143,7 +143,7 @@ class IfGameCategory  <T> internal constructor(private val template: Template<T>
 	 *
 	 * (*) = Optional
 	 */
-	fun blockPowered(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "BlockPowered", wrappedCode)
+	fun blockPowered(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "BlockPowered", wrappedCode, not)
 	/**
 	 * Checks if there is currently
 	 * a player in the game with the
@@ -157,7 +157,7 @@ class IfGameCategory  <T> internal constructor(private val template: Template<T>
 	 *
 	 * (*) = Optional
 	 */
-	fun hasPlayer(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "HasPlayer", wrappedCode)
+	fun hasPlayer(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "HasPlayer", wrappedCode, not)
 	/**
 	 * Checks if the container at a
 	 * location has all of the given
@@ -175,7 +175,7 @@ class IfGameCategory  <T> internal constructor(private val template: Template<T>
 	 *
 	 * (*) = Optional
 	 */
-	fun containerHasAll(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "ContainerHasAll", wrappedCode)
+	fun containerHasAll(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "ContainerHasAll", wrappedCode, not)
 	/**
 	 * Checks if a part of the command
 	 * entered in the Command Event
@@ -194,12 +194,12 @@ class IfGameCategory  <T> internal constructor(private val template: Template<T>
 	 * (*) = Optional
 	 */
 	@Emperor
-	fun cmdArgEquals(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "CmdArgEquals", wrappedCode)
+	fun cmdArgEquals(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "CmdArgEquals", wrappedCode, not)
 	/**
 	 * Checks if the current
 	 * event is cancelled.
 	 */
-	fun eventCancelled(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "EventCancelled", wrappedCode)
+	fun eventCancelled(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "EventCancelled", wrappedCode, not)
 
 
 }

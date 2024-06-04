@@ -126,7 +126,7 @@ class SelectCategory <T> internal constructor(private val template: Template<T>)
 	 * (*)[VarItem]
 	 *
 	 * Gets the end or
-	 * final hit §alocation
+	 * final hit location
 	 *
 	 * [LocItem]
 	 *

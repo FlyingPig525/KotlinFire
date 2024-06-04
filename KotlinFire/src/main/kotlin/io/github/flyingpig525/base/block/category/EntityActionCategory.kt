@@ -33,15 +33,15 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * [NumItem]
 	 *
-	 * Pitch (§c0§7-§c360§7)
+	 * Pitch (0-360)
 	 *
 	 * [NumItem]
 	 *
-	 * Yaw (§c0§7-§c360§7)
+	 * Yaw (0-360)
 	 *
 	 * [NumItem]
 	 *
-	 * Roll (§c0§7-§c360§7)
+	 * Roll (0-360)
 	 *
 	 * (*) = Optional
 	 */
@@ -169,7 +169,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * [NumItem]
 	 *
-	 * Angle (§c0§7-§c360§7)
+	 * Angle (0-360)
 	 *
 	 * (*) = Optional
 	 */
@@ -226,7 +226,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 * [NumItem]
 	 *
 	 * Anger level
-	 * (§c0§7-§c150§7)
+	 * (0-150)
 	 *
 	 * [TextItem]
 	 *
@@ -400,11 +400,11 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * [NumItem]
 	 *
-	 * Block light level (§c0§7-§c15§7)
+	 * Block light level (0-15)
 	 *
 	 * [NumItem]
 	 *
-	 * Sky light level (§c0§7-§c15§7)
+	 * Sky light level (0-15)
 	 *
 	 * [NONE]
 	 *
@@ -499,7 +499,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * [NumItem]
 	 *
-	 * Power (§c0§7-§c25§7)
+	 * Power (0-25)
 	 *
 	 * (*) = Optional
 	 */
@@ -678,7 +678,7 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 * [NumItem]
 	 *
 	 * Ticks
-	 * (§c0§7-§c140§7)
+	 * (0-140)
 	 *
 	 * (*) = Optional
 	 */
@@ -862,9 +862,9 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	fun launchToward(items: Items<T>) = block(items, "LaunchToward")
 	/**
 	 * Sets a mob's armor items.
-	 * Place the armor in slots §c1§7-§c4§7
-	 * of the chest, with §c1§7 being the
-	 * helmet and §c4§7 being the boots.
+	 * Place the armor in slots 1-4
+	 * of the chest, with 1 being the
+	 * helmet and 4 being the boots.
 	 *
 	 * ARGUMENTS:
 	 *
@@ -1249,15 +1249,15 @@ class EntityActionCategory<T> internal constructor(private val template: Templat
 	 *
 	 * (*)[NumItem]
 	 *
-	 * X Rotation (§c0§7-§c360§7)
+	 * X Rotation (0-360)
 	 *
 	 * (*)[NumItem]
 	 *
-	 * Y Rotation (§c0§7-§c360§7)
+	 * Y Rotation (0-360)
 	 *
 	 * (*)[NumItem]
 	 *
-	 * Z Rotation (§c0§7-§c360§7)
+	 * Z Rotation (0-360)
 	 *
 	 * (*) = Optional
 	 */

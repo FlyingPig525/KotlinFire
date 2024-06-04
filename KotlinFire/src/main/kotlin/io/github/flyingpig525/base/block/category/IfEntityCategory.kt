@@ -13,8 +13,8 @@ import io.github.flyingpig525.base.item.ItemCollection
 class IfEntityCategory <T> internal constructor(private val template: Template<T>) where T : Item, T : JsonData {
 	private val blocks = template.blocks
 
-	private fun block(items: Items<T>, action: String, wrappedCode: Template<T>.() -> Unit) {
-		blocks += Block("if_game", ItemCollection(items).items, action)
+	private fun block(items: Items<T>, action: String, wrappedCode: Template<T>.() -> Unit, not: Boolean = false) {
+		blocks += Block("if_game", ItemCollection(items).items, action, if (not) "attribute: \"NOT\"" else "")
 		blocks += BracketBlock(type = "norm")
 		blocks += Template(Template.Type.NONE, a = wrappedCode).blocks
 		blocks += BracketBlock(false, "norm")
@@ -28,12 +28,12 @@ class IfEntityCategory <T> internal constructor(private val template: Template<T
 	 * Checks if an entity
 	 * is a boat or minecart.
 	 */
-	fun isVehicle(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsVehicle", wrappedCode)
+	fun isVehicle(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsVehicle", wrappedCode, not)
 	/**
 	 * Checks if an entity is
 	 * supported by a block.
 	 */
-	fun isGrounded(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsGrounded", wrappedCode)
+	fun isGrounded(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsGrounded", wrappedCode, not)
 	/**
 	 * Checks if an entity is the
 	 * given type.
@@ -47,17 +47,17 @@ class IfEntityCategory <T> internal constructor(private val template: Template<T
 	 *
 	 * (*) = Optional
 	 */
-	fun isType(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsType", wrappedCode)
+	fun isType(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsType", wrappedCode, not)
 	/**
 	 * Checks if an entity
 	 * is a projectile.
 	 */
-	fun isProj(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsProj", wrappedCode)
+	fun isProj(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsProj", wrappedCode, not)
 	/**
 	 * Checks if an entity
 	 * is a mob.
 	 */
-	fun isMob(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsMob", wrappedCode)
+	fun isMob(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsMob", wrappedCode, not)
 	/**
 	 * Checks if an entity has a
 	 * given custom tag, and (if
@@ -80,22 +80,22 @@ class IfEntityCategory <T> internal constructor(private val template: Template<T
 	 *
 	 * (*) = Optional
 	 */
-	fun hasCustomTag(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "HasCustomTag", wrappedCode)
+	fun hasCustomTag(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "HasCustomTag", wrappedCode, not)
 	/**
 	 * Checks if a sheep is
 	 * sheared.
 	 */
-	fun isSheared(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsSheared", wrappedCode)
+	fun isSheared(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsSheared", wrappedCode, not)
 	/**
 	 * Checks if an entity
 	 * is an item.
 	 */
-	fun isItem(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsItem", wrappedCode)
+	fun isItem(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsItem", wrappedCode, not)
 	/**
 	 * Checks if an entity still
 	 * exists in the world.
 	 */
-	fun exists(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "Exists", wrappedCode)
+	fun exists(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "Exists", wrappedCode, not)
 	/**
 	 * Checks if an entity is within a
 	 * range of a location.
@@ -112,7 +112,7 @@ class IfEntityCategory <T> internal constructor(private val template: Template<T
 	 *
 	 * (*) = Optional
 	 */
-	fun isNear(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsNear", wrappedCode)
+	fun isNear(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsNear", wrappedCode, not)
 	/**
 	 * Checks if an entity has a
 	 * potion effect of a certain
@@ -127,9 +127,9 @@ class IfEntityCategory <T> internal constructor(private val template: Template<T
 	 *
 	 * (*) = Optional
 	 */
-	fun hasPotion(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "HasPotion", wrappedCode)
-	fun isRiding(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsRiding", wrappedCode)
-	fun standingOn(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "StandingOn", wrappedCode)
+	fun hasPotion(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "HasPotion", wrappedCode, not)
+	fun isRiding(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsRiding", wrappedCode, not)
+	fun standingOn(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "StandingOn", wrappedCode, not)
 	/**
 	 * Checks if an entity's name or
 	 * custom name is equal to the
@@ -147,6 +147,6 @@ class IfEntityCategory <T> internal constructor(private val template: Template<T
 	 *
 	 * (*) = Optional
 	 */
-	fun nameEquals(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "NameEquals", wrappedCode)
+	fun nameEquals(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "NameEquals", wrappedCode, not)
 
 }

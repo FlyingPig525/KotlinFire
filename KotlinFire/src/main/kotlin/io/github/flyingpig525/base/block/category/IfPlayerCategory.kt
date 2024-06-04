@@ -13,8 +13,8 @@ import io.github.flyingpig525.base.item.ItemCollection
 class IfPlayerCategory <T> internal constructor(private val template: Template<T>) where T : Item, T : JsonData {
 	private val blocks = template.blocks
 
-	private fun block(items: Items<T>, action: String, wrappedCode: Template<T>.() -> Unit) {
-		blocks += Block("if_player", ItemCollection(items).items, action)
+	private fun block(items: Items<T>, action: String, wrappedCode: Template<T>.() -> Unit, not: Boolean = false) {
+		blocks += Block("if_player", ItemCollection(items).items, action, if (not) "attribute: \"NOT\"" else "")
 		blocks += BracketBlock(type = "norm")
 		blocks += Template(Template.Type.NONE, a = wrappedCode).blocks
 		blocks += BracketBlock(false, "norm")
@@ -45,7 +45,7 @@ class IfPlayerCategory <T> internal constructor(private val template: Template<T
 	 *
 	 * (*) = Optional
 	 */
-	fun isLookingAt(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsLookingAt", wrappedCode)
+	fun isLookingAt(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsLookingAt", wrappedCode, not)
 	/**
 	 * Checks if a player (or a location)
 	 * is within their world border.
@@ -59,12 +59,12 @@ class IfPlayerCategory <T> internal constructor(private val template: Template<T
 	 * (*) = Optional
 	 */
 	@Emperor
-	fun inWorldBorder(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "InWorldBorder", wrappedCode)
+	fun inWorldBorder(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "InWorldBorder", wrappedCode, not)
 	/**
 	 * Checks if a player is in
 	 * a specific game mode.
 	 */
-	fun isInGameMode(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsInGameMode", wrappedCode)
+	fun isInGameMode(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsInGameMode", wrappedCode, not)
 	/**
 	 * Checks if a player's inventory
 	 * has room for one or more
@@ -82,15 +82,15 @@ class IfPlayerCategory <T> internal constructor(private val template: Template<T
 	 *
 	 * (*) = Optional
 	 */
-	fun hasRoomForItem(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "HasRoomForItem", wrappedCode)
-	fun isHoldingOff(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsHoldingOff", wrappedCode)
+	fun hasRoomForItem(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "HasRoomForItem", wrappedCode, not)
+	fun isHoldingOff(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsHoldingOff", wrappedCode, not)
 	/**
 	 * Checks if a player is
 	 * using a plot resource
 	 * pack.
 	 */
 	@Overlord
-	fun usingPack(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "UsingPack", wrappedCode)
+	fun usingPack(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "UsingPack", wrappedCode, not)
 	/**
 	 * Checks if a player does not have a
 	 * cooldown applied to an item type.
@@ -103,7 +103,7 @@ class IfPlayerCategory <T> internal constructor(private val template: Template<T
 	 *
 	 * (*) = Optional
 	 */
-	fun noItemCooldown(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "NoItemCooldown", wrappedCode)
+	fun noItemCooldown(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "NoItemCooldown", wrappedCode, not)
 	/**
 	 * Checks if a player is currently
 	 * using an item (eg. bow).
@@ -116,13 +116,13 @@ class IfPlayerCategory <T> internal constructor(private val template: Template<T
 	 *
 	 * (*) = Optional
 	 */
-	fun isUsingItem(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsUsingItem", wrappedCode)
-	fun hasAllItems(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "HasAllItems", wrappedCode)
+	fun isUsingItem(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsUsingItem", wrappedCode, not)
+	fun hasAllItems(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "HasAllItems", wrappedCode, not)
 	/**
 	 * Checks if a player
 	 * is in water or lava.
 	 */
-	fun isSwimming(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsSwimming", wrappedCode)
+	fun isSwimming(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsSwimming", wrappedCode, not)
 	/**
 	 * Checks if a player has an item
 	 * in their inventory.
@@ -135,9 +135,9 @@ class IfPlayerCategory <T> internal constructor(private val template: Template<T
 	 *
 	 * (*) = Optional
 	 */
-	fun hasItem(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "HasItem", wrappedCode)
+	fun hasItem(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "HasItem", wrappedCode, not)
 	@Emperor
-	fun blockEquals(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "BlockEquals", wrappedCode)
+	fun blockEquals(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "BlockEquals", wrappedCode, not)
 	/**
 	 * Checks if a player is wearing
 	 * an item.
@@ -150,7 +150,7 @@ class IfPlayerCategory <T> internal constructor(private val template: Template<T
 	 *
 	 * (*) = Optional
 	 */
-	fun isWearing(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsWearing", wrappedCode)
+	fun isWearing(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsWearing", wrappedCode, not)
 	/**
 	 * Checks if a player is within a
 	 * range of a location.
@@ -167,15 +167,15 @@ class IfPlayerCategory <T> internal constructor(private val template: Template<T
 	 *
 	 * (*) = Optional
 	 */
-	fun isNear(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsNear", wrappedCode)
-	fun isRiding(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsRiding", wrappedCode)
-	fun standingOn(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "StandingOn", wrappedCode)
-	fun cmdEquals(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "CmdEquals", wrappedCode)
+	fun isNear(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsNear", wrappedCode, not)
+	fun isRiding(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsRiding", wrappedCode, not)
+	fun standingOn(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "StandingOn", wrappedCode, not)
+	fun cmdEquals(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "CmdEquals", wrappedCode, not)
 	/**
 	 * Checks if a player is
 	 * supported by a block.
 	 */
-	fun isGrounded(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsGrounded", wrappedCode)
+	fun isGrounded(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsGrounded", wrappedCode, not)
 	/**
 	 * Checks if the item that is being moved
 	 * with a player's cursor is the given item.
@@ -188,7 +188,7 @@ class IfPlayerCategory <T> internal constructor(private val template: Template<T
 	 *
 	 * (*) = Optional
 	 */
-	fun cursorItem(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "CursorItem", wrappedCode)
+	fun cursorItem(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "CursorItem", wrappedCode, not)
 	/**
 	 * Checks if a player's currently
 	 * selected hotbar slot equals the
@@ -202,9 +202,9 @@ class IfPlayerCategory <T> internal constructor(private val template: Template<T
 	 *
 	 * (*) = Optional
 	 */
-	fun slotEquals(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "SlotEquals", wrappedCode)
-	fun itemEquals(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "ItemEquals", wrappedCode)
-	fun isHoldingMain(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsHoldingMain", wrappedCode)
+	fun slotEquals(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "SlotEquals", wrappedCode, not)
+	fun itemEquals(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "ItemEquals", wrappedCode, not)
+	fun isHoldingMain(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsHoldingMain", wrappedCode, not)
 	/**
 	 * Checks if a player is holding
 	 * an item in their hand.
@@ -217,7 +217,7 @@ class IfPlayerCategory <T> internal constructor(private val template: Template<T
 	 *
 	 * (*) = Optional
 	 */
-	fun isHolding(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsHolding", wrappedCode)
+	fun isHolding(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsHolding", wrappedCode, not)
 	/**
 	 * Checks if a player's currently
 	 * open inventory menu contains
@@ -235,31 +235,31 @@ class IfPlayerCategory <T> internal constructor(private val template: Template<T
 	 *
 	 * (*) = Optional
 	 */
-	fun menuSlotEquals(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "MenuSlotEquals", wrappedCode)
+	fun menuSlotEquals(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "MenuSlotEquals", wrappedCode, not)
 	/**
 	 * Checks if a player is
 	 * blocking with a shield.
 	 */
-	fun isBlocking(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsBlocking", wrappedCode)
+	fun isBlocking(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsBlocking", wrappedCode, not)
 	/**
 	 * Checks if a player has a certain
 	 * level of access on this plot, such
 	 * as builder or owner.
 	 */
-	fun hasPermission(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "HasPermission", wrappedCode)
+	fun hasPermission(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "HasPermission", wrappedCode, not)
 	/**
 	 * Checks if a player's main hand
 	 * is their left or right hand.
 	 */
-	fun mainHandEquals(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "MainHandEquals", wrappedCode)
+	fun mainHandEquals(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "MainHandEquals", wrappedCode, not)
 	/**
 	 * Checks if a player is sneaking.
 	 */
-	fun isSneaking(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsSneaking", wrappedCode)
+	fun isSneaking(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsSneaking", wrappedCode, not)
 	/**
 	 * Checks if a player is flying.
 	 */
-	fun isFlying(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsFlying", wrappedCode)
+	fun isFlying(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsFlying", wrappedCode, not)
 	/**
 	 * Checks if a player has a
 	 * potion effect of the given
@@ -274,7 +274,7 @@ class IfPlayerCategory <T> internal constructor(private val template: Template<T
 	 *
 	 * (*) = Optional
 	 */
-	fun hasPotion(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "HasPotion", wrappedCode)
+	fun hasPotion(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "HasPotion", wrappedCode, not)
 	/**
 	 * Checks if a player's username is
 	 * equal to one of the given
@@ -288,12 +288,12 @@ class IfPlayerCategory <T> internal constructor(private val template: Template<T
 	 *
 	 * (*) = Optional
 	 */
-	fun nameEquals(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "NameEquals", wrappedCode)
+	fun nameEquals(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "NameEquals", wrappedCode, not)
 	/**
 	 * Checks if a player has a
 	 * certain inventory type open.
 	 */
-	fun invOpen(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "InvOpen", wrappedCode)
+	fun invOpen(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "InvOpen", wrappedCode, not)
 	/**
 	 * Checks if a player has an item
 	 * in the given inventory slot.
@@ -310,17 +310,17 @@ class IfPlayerCategory <T> internal constructor(private val template: Template<T
 	 *
 	 * (*) = Optional
 	 */
-	fun hasSlotItem(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "HasSlotItem", wrappedCode)
+	fun hasSlotItem(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "HasSlotItem", wrappedCode, not)
 	/**
 	 * Checks if a player is sprinting
 	 * or using the sprint key to swim.
 	 */
-	fun isSprinting(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsSprinting", wrappedCode)
+	fun isSprinting(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsSprinting", wrappedCode, not)
 	/**
 	 * Checks if a player is
 	 * gliding with elytra.
 	 */
-	fun isGliding(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "IsGliding", wrappedCode)
-	fun cmdArgEquals(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "CmdArgEquals", wrappedCode)
+	fun isGliding(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsGliding", wrappedCode, not)
+	fun cmdArgEquals(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "CmdArgEquals", wrappedCode, not)
 
 }

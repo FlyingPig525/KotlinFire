@@ -236,7 +236,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * [NONE]
 	 *
-	 * Heals to full health§7)
+	 * Heals to full health)
 	 *
 	 * (*) = Optional
 	 */
@@ -253,7 +253,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * [NONE]
 	 *
-	 * Plot spawn§7)
+	 * Plot spawn)
 	 *
 	 * (*) = Optional
 	 */
@@ -298,7 +298,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * [NONE]
 	 *
-	 * Resets chat style§7)
+	 * Resets chat style)
 	 *
 	 * (*) = Optional
 	 */
@@ -327,7 +327,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * [NONE]
 	 *
-	 * Stops spectating§7)
+	 * Stops spectating)
 	 *
 	 * (*) = Optional
 	 */
@@ -380,7 +380,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * [NONE]
 	 *
-	 * Clear status§7)
+	 * Clear status)
 	 *
 	 * (*) = Optional
 	 */
@@ -487,7 +487,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 * [NumItem]
 	 *
 	 * Ticks
-	 * (§c0§7-§c140§7)
+	 * (0-140)
 	 *
 	 * (*) = Optional
 	 */
@@ -605,9 +605,9 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	fun launchToward(items: Items<T>) = block(items, "LaunchToward")
 	/**
 	 * Sets a player's armor items.
-	 * Place the armor in slots §c1§7-§c4§7
-	 * of the chest, with §c1§7 being the
-	 * helmet and §c4§7 being the boots.
+	 * Place the armor in slots 1-4
+	 * of the chest, with 1 being the
+	 * helmet and 4 being the boots.
 	 *
 	 * ARGUMENTS:
 	 *
@@ -700,7 +700,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * [NONE]
 	 *
-	 * Resets chat tag§7)
+	 * Resets chat tag)
 	 *
 	 * (*) = Optional
 	 */
@@ -751,7 +751,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 * [NumItem]
 	 *
 	 * Movement speed
-	 * percentage (§c0§7% to §c1000§7%)
+	 * percentage (0% to 1000%)
 	 *
 	 * (*) = Optional
 	 */
@@ -1288,7 +1288,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * (*)[NumItem]
 	 *
-	 * Ticks per second (§c0§7-§c20§7)
+	 * Ticks per second (0-20)
 	 *
 	 * (*) = Optional
 	 */
@@ -1392,11 +1392,11 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 * [NumItem]
 	 *
 	 * Fog distance in chunks
-	 * (§c2§7-§c7§7)
+	 * (2-7)
 	 *
 	 * [NONE]
 	 *
-	 * Removes fog§7)
+	 * Removes fog)
 	 *
 	 * (*) = Optional
 	 */
@@ -1468,7 +1468,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * [NONE]
 	 *
-	 * Clear Skin§7)
+	 * Clear Skin)
 	 *
 	 * (*) = Optional
 	 */
@@ -1595,7 +1595,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * [NONE]
 	 *
-	 * Dismounts player§7)
+	 * Dismounts player)
 	 *
 	 * (*) = Optional
 	 */
@@ -1883,7 +1883,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * [NONE]
 	 *
-	 * Resets player time§7)
+	 * Resets player time)
 	 *
 	 * (*) = Optional
 	 */
@@ -2081,7 +2081,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 *
 	 * [NONE]
 	 *
-	 * Removes hologram§7)
+	 * Removes hologram)
 	 *
 	 * (*) = Optional
 	 */
@@ -2110,7 +2110,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 * [NumItem]
 	 *
 	 * Food level
-	 * (§c1§7-§c20§7)
+	 * (1-20)
 	 *
 	 * (*) = Optional
 	 */
@@ -2142,7 +2142,7 @@ class PlayerActionCategory <T> internal constructor(private val template: Templa
 	 * [NumItem]
 	 *
 	 * Saturation level
-	 * (§c1§7-§c20§7)
+	 * (1-20)
 	 *
 	 * (*) = Optional
 	 */
