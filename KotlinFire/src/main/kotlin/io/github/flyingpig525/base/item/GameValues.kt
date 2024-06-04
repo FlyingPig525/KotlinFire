@@ -1348,30 +1348,3 @@ object PlotValues {
 	val PlotSize = GameValue("Plot Size")
 
 }
-object AmbientParticles {
-
-}
-object AmbientEntityParticles {
-
-}
-object EntityBehaviorParticles {
-
-}
-object EntityAttackParticles {
-
-}
-object EntityParticles {
-
-}
-object AmbientBlockParticles {
-
-}
-object BlockBehaviorParticles {
-
-}
-object LiquidParticles {
-
-}
-object BlockParticles {
-
-}

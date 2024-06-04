@@ -5,7 +5,7 @@ import io.github.flyingpig525.base.item.Item
 
 class ProcessBlock<T>(name: String = "PutNameHere") : Block<T>("process", mutableListOf(), name) where T : Item, T : JsonData {
 	override fun getJsonData(): String {
-		val string = """
+		return """
             {
                 "id": "block",
                 "block": "$codeBlock",
@@ -16,6 +16,5 @@ class ProcessBlock<T>(name: String = "PutNameHere") : Block<T>("process", mutabl
                 "data": "$action"
             }
         """
-		return string
 	}
 }

@@ -2,12 +2,11 @@
 package io.github.flyingpig525.base.block
 
 import io.github.flyingpig525.base.JsonData
-import io.github.flyingpig525.base.item.EmptyItem
 import io.github.flyingpig525.base.item.Item
 
 class EventBlock<T>(val type: Type, event: String) : Block<T>("process", mutableListOf(), event) where T : Item, T : JsonData {
 	override fun getJsonData(): String {
-		val string = """
+		return """
             {
                 "id": "block",
                 "block": "$type",
@@ -17,7 +16,6 @@ class EventBlock<T>(val type: Type, event: String) : Block<T>("process", mutable
                 "action": "$action"
             }
         """
-		return string
 	}
 
 	enum class Type(val type: String) {

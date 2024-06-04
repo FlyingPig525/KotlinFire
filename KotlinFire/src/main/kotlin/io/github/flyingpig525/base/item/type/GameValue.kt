@@ -1,3 +1,4 @@
+@file:Suppress("UNUSED")
 package io.github.flyingpig525.base.item.type
 
 import io.github.flyingpig525.base.item.Item

@@ -10,7 +10,6 @@ object TemplateEncoder {
 	@OptIn(ExperimentalEncodingApi::class)
 	fun <T> encode(template: Template<T>): String where T : Item, T : JsonData {
 		val gzipped = Gzip.encode(template.getJsonData())
-		val base64 = Base64.encode(gzipped)
-		return base64
+		return Base64.encode(gzipped)
 	}
 }

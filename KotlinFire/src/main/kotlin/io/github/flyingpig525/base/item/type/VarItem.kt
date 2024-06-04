@@ -1,6 +1,5 @@
 package io.github.flyingpig525.base.item.type
 
-import com.google.errorprone.annotations.Var
 import io.github.flyingpig525.base.JsonData
 import io.github.flyingpig525.base.item.Item
 

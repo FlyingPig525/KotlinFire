@@ -12,10 +12,10 @@ import io.ktor.http.*
 import io.ktor.websocket.*
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.annotations.ApiStatus.Internal
-import javax.xml.transform.Templates
 
 typealias Items<T> = ItemCollection<T>.() -> Unit
 
+@Suppress("LeakingThis")
 open class Template<T>(type: Type = Type.FUNCTION, val name: String = "PutNameHere", a: Template<T>.() -> Unit) : JsonData where T : Item, T : JsonData {
     val blocks: MutableList<Block<T>> = mutableListOf()
     val SetVariable = SetVariableCategory(this)
