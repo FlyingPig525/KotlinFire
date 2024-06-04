@@ -3,8 +3,8 @@ KotlinFire is a Kotlin library used to manipulate code templates from the Minecr
 This library features a clean syntax, making use of Kotlin's lambda functions, extension functions, and operator overloading.
 
 ## Usage
-Currently, the only way to use KotlinFire is to clone this repository and make changes to the testing entrypoint, but will soon be
-available on gradle and maven.
+**Currently, the only way to use KotlinFire is to clone this repository and make changes to the testing entrypoint, but will soon be
+available on gradle and maven.**
 
 To begin constructing a template, assign a variable the `Template` class. The `Template` class contains a lambda function 
 argument with the type `Template.() -> Unit` meaning you can access `Template` members inside the function. The `Template`
