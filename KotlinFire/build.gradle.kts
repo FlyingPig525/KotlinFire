@@ -15,12 +15,18 @@ plugins {
 }
 
 publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/flyingpig525/kotlinfire")
+            credentials {
+                username = "FlyingPig525"
+                password = System.getenv("TOKEN")
+            }
+        }
+    }
     publications {
-        create<MavenPublication>("maven") {
-            groupId = "io.github.flyingpig525"
-            artifactId = "KotlinFire"
-            version = "0.6"
-
+        register<MavenPublication>("gpr") {
             from(components["java"])
         }
     }
