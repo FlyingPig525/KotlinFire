@@ -2,19 +2,21 @@
 
 package io.github.flyingpig525.base.block.category
 
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.block.Block
 import io.github.flyingpig525.base.block.BracketBlock
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
 
-class RepeatCategory<T> internal constructor(private val template: io.github.flyingpig525.base.Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
+class RepeatCategory<T> internal constructor(private val template: Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
     private val blocks = template.blocks
 
     private fun block(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         action: String,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) {
         blocks += Block("repeat", ItemCollection(items).items, action)
         blocks += BracketBlock(type = "repeat")
@@ -47,8 +49,8 @@ class RepeatCategory<T> internal constructor(private val template: io.github.fly
      * (*) = Optional
      */
     fun adjacent(
-        items: io.github.flyingpig525.base.Items<T>,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        items: Items<T>,
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "Adjacent", wrappedCode)
 
     /**
@@ -74,8 +76,8 @@ class RepeatCategory<T> internal constructor(private val template: io.github.fly
      * (*) = Optional
      */
     fun path(
-        items: io.github.flyingpig525.base.Items<T>,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        items: Items<T>,
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "Path", wrappedCode)
 
     /**
@@ -95,8 +97,8 @@ class RepeatCategory<T> internal constructor(private val template: io.github.fly
      * (*) = Optional
      */
     fun multiple(
-        items: io.github.flyingpig525.base.Items<T>,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        items: Items<T>,
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "Multiple", wrappedCode)
 
     /**
@@ -121,8 +123,8 @@ class RepeatCategory<T> internal constructor(private val template: io.github.fly
      * (*) = Optional
      */
     fun grid(
-        items: io.github.flyingpig525.base.Items<T>,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        items: Items<T>,
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "Grid", wrappedCode)
 
     /**
@@ -134,13 +136,13 @@ class RepeatCategory<T> internal constructor(private val template: io.github.fly
      * (*) = Optional
      */
     fun whileLoop(
-        items: io.github.flyingpig525.base.Items<T>,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        items: Items<T>,
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "While", wrappedCode)
 
     fun range(
-        items: io.github.flyingpig525.base.Items<T>,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        items: Items<T>,
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "Range", wrappedCode)
 
     /**
@@ -161,8 +163,8 @@ class RepeatCategory<T> internal constructor(private val template: io.github.fly
      * (*) = Optional
      */
     fun forEach(
-        items: io.github.flyingpig525.base.Items<T>,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        items: Items<T>,
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "ForEach", wrappedCode)
 
     /**
@@ -191,16 +193,16 @@ class RepeatCategory<T> internal constructor(private val template: io.github.fly
      * (*) = Optional
      */
     fun sphere(
-        items: io.github.flyingpig525.base.Items<T>,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        items: Items<T>,
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "Sphere", wrappedCode)
 
     /**
      * Repeats code indefinitely.
      */
     fun forever(
-        items: io.github.flyingpig525.base.Items<T>,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        items: Items<T>,
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "Forever", wrappedCode)
 
     /**
@@ -227,8 +229,8 @@ class RepeatCategory<T> internal constructor(private val template: io.github.fly
      * (*) = Optional
      */
     fun forEachEntry(
-        items: io.github.flyingpig525.base.Items<T>,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        items: Items<T>,
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "ForEachEntry", wrappedCode)
 
 }

@@ -3,19 +3,21 @@
 package io.github.flyingpig525.base.block.category
 
 import io.github.flyingpig525.annotation.*
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.block.Block
 import io.github.flyingpig525.base.block.BracketBlock
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
 
-class IfEntityCategory<T> internal constructor(private val template: io.github.flyingpig525.base.Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
+class IfEntityCategory<T> internal constructor(private val template: Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
     private val blocks = template.blocks
 
     private fun block(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         action: String,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit,
+        wrappedCode: Template<T>.() -> Unit,
         not: Boolean = false
     ) {
         blocks += Block("if_game", ItemCollection(items).items, action, if (not) "attribute: \"NOT\"" else "")
@@ -36,9 +38,9 @@ class IfEntityCategory<T> internal constructor(private val template: io.github.f
      * is a boat or minecart.
      */
     fun isVehicle(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsVehicle", wrappedCode, not)
 
     /**
@@ -46,9 +48,9 @@ class IfEntityCategory<T> internal constructor(private val template: io.github.f
      * supported by a block.
      */
     fun isGrounded(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsGrounded", wrappedCode, not)
 
     /**
@@ -65,9 +67,9 @@ class IfEntityCategory<T> internal constructor(private val template: io.github.f
      * (*) = Optional
      */
     fun isType(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsType", wrappedCode, not)
 
     /**
@@ -75,9 +77,9 @@ class IfEntityCategory<T> internal constructor(private val template: io.github.f
      * is a projectile.
      */
     fun isProj(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsProj", wrappedCode, not)
 
     /**
@@ -85,9 +87,9 @@ class IfEntityCategory<T> internal constructor(private val template: io.github.f
      * is a mob.
      */
     fun isMob(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsMob", wrappedCode, not)
 
     /**
@@ -113,9 +115,9 @@ class IfEntityCategory<T> internal constructor(private val template: io.github.f
      * (*) = Optional
      */
     fun hasCustomTag(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "HasCustomTag", wrappedCode, not)
 
     /**
@@ -123,9 +125,9 @@ class IfEntityCategory<T> internal constructor(private val template: io.github.f
      * sheared.
      */
     fun isSheared(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsSheared", wrappedCode, not)
 
     /**
@@ -133,9 +135,9 @@ class IfEntityCategory<T> internal constructor(private val template: io.github.f
      * is an item.
      */
     fun isItem(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsItem", wrappedCode, not)
 
     /**
@@ -143,9 +145,9 @@ class IfEntityCategory<T> internal constructor(private val template: io.github.f
      * exists in the world.
      */
     fun exists(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "Exists", wrappedCode, not)
 
     /**
@@ -165,9 +167,9 @@ class IfEntityCategory<T> internal constructor(private val template: io.github.f
      * (*) = Optional
      */
     fun isNear(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsNear", wrappedCode, not)
 
     /**
@@ -185,21 +187,21 @@ class IfEntityCategory<T> internal constructor(private val template: io.github.f
      * (*) = Optional
      */
     fun hasPotion(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "HasPotion", wrappedCode, not)
 
     fun isRiding(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsRiding", wrappedCode, not)
 
     fun standingOn(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "StandingOn", wrappedCode, not)
 
     /**
@@ -220,9 +222,9 @@ class IfEntityCategory<T> internal constructor(private val template: io.github.f
      * (*) = Optional
      */
     fun nameEquals(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "NameEquals", wrappedCode, not)
 
 }

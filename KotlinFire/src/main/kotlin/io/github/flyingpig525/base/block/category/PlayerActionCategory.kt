@@ -2,15 +2,17 @@
 
 package io.github.flyingpig525.base.block.category
 
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.block.Block
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
 
-class PlayerActionCategory<T> internal constructor(private val template: io.github.flyingpig525.base.Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
+class PlayerActionCategory<T> internal constructor(private val template: Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
     private val blocks = template.blocks
 
-    private fun block(items: io.github.flyingpig525.base.Items<T>, action: String) {
+    private fun block(items: Items<T>, action: String) {
         blocks += Block("player_action", ItemCollection(items).items, action)
     }
 
@@ -30,20 +32,20 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setHotbar(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetHotbar")
+    fun setHotbar(items: Items<T>) = block(items, "SetHotbar")
 
     /**
      * When enabled, a player won't be
      * able to see their coordinates,
      * block info, or other info.
      */
-    fun setReducedDebug(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetReducedDebug")
+    fun setReducedDebug(items: Items<T>) = block(items, "SetReducedDebug")
 
     /**
      * Closes a player's inventory.
      */
     @io.github.flyingpig525.annotation.Emperor
-    fun closeInv(items: io.github.flyingpig525.base.Items<T>) = block(items, "CloseInv")
+    fun closeInv(items: Items<T>) = block(items, "CloseInv")
 
     /**
      * Gives a player all of the
@@ -61,18 +63,18 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun giveItems(items: io.github.flyingpig525.base.Items<T>) = block(items, "GiveItems")
-    fun noKeepInv(items: io.github.flyingpig525.base.Items<T>) = block(items, "NoKeepInv")
+    fun giveItems(items: Items<T>) = block(items, "GiveItems")
+    fun noKeepInv(items: Items<T>) = block(items, "NoKeepInv")
 
     /**
      * Sets if a player is
      * allowed to interact with
      * their hand-crafting menu.
      */
-    fun setHandCrafting(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetHandCrafting")
+    fun setHandCrafting(items: Items<T>) = block(items, "SetHandCrafting")
 
     @io.github.flyingpig525.annotation.Mythic
-    fun bossBar(items: io.github.flyingpig525.base.Items<T>) = block(items, "BossBar")
+    fun bossBar(items: Items<T>) = block(items, "BossBar")
 
     /**
      * Displays a sphere of particles
@@ -95,7 +97,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun particleSphere(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParticleSphere")
+    fun particleSphere(items: Items<T>) = block(items, "ParticleSphere")
 
     /**
      * Sets a player's movement
@@ -109,7 +111,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setVelocity(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetVelocity")
+    fun setVelocity(items: Items<T>) = block(items, "SetVelocity")
 
     /**
      * Displays a particle effect
@@ -127,7 +129,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun particle(items: io.github.flyingpig525.base.Items<T>) = block(items, "Particle")
+    fun particle(items: Items<T>) = block(items, "Particle")
 
     /**
      * Adds a row to the bottom of
@@ -143,8 +145,8 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Emperor
-    fun addInvRow(items: io.github.flyingpig525.base.Items<T>) = block(items, "AddInvRow")
-    fun noNatRegen(items: io.github.flyingpig525.base.Items<T>) = block(items, "NoNatRegen")
+    fun addInvRow(items: Items<T>) = block(items, "AddInvRow")
+    fun noNatRegen(items: Items<T>) = block(items, "NoNatRegen")
 
     /**
      * Displays a lightning strike
@@ -158,7 +160,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun displayLightning(items: io.github.flyingpig525.base.Items<T>) = block(items, "DisplayLightning")
+    fun displayLightning(items: Items<T>) = block(items, "DisplayLightning")
 
     /**
      * Damages a player.
@@ -179,10 +181,10 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun damage(items: io.github.flyingpig525.base.Items<T>) = block(items, "Damage")
+    fun damage(items: Items<T>) = block(items, "Damage")
 
     @io.github.flyingpig525.annotation.Noble
-    fun sendAnimation(items: io.github.flyingpig525.base.Items<T>) = block(items, "SendAnimation")
+    fun sendAnimation(items: Items<T>) = block(items, "SendAnimation")
 
     /**
      * Sets the XP progress bar
@@ -196,7 +198,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setXPProg(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetXPProg")
+    fun setXPProg(items: Items<T>) = block(items, "SetXPProg")
 
     /**
      * Sets items in a player's
@@ -210,7 +212,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setInventory(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetInventory")
+    fun setInventory(items: Items<T>) = block(items, "SetInventory")
 
     /**
      * Teleports a player to multiple
@@ -232,7 +234,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun tpSequence(items: io.github.flyingpig525.base.Items<T>) = block(items, "TpSequence")
+    fun tpSequence(items: Items<T>) = block(items, "TpSequence")
 
     /**
      * Restores a player's health.
@@ -249,7 +251,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun heal(items: io.github.flyingpig525.base.Items<T>) = block(items, "Heal")
+    fun heal(items: Items<T>) = block(items, "Heal")
 
     /**
      * Sets the location a player will
@@ -267,13 +269,13 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setSpawnPoint(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetSpawnPoint")
+    fun setSpawnPoint(items: Items<T>) = block(items, "SetSpawnPoint")
 
     /**
      * Sets whether a player's inventory
      * is kept after death.
      */
-    fun setInventoryKept(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetInventoryKept")
+    fun setInventoryKept(items: Items<T>) = block(items, "SetInventoryKept")
 
     /**
      * Launches a player up or down.
@@ -286,20 +288,20 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun launchUp(items: io.github.flyingpig525.base.Items<T>) = block(items, "LaunchUp")
-    fun getTargetEntity(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetTargetEntity")
+    fun launchUp(items: Items<T>) = block(items, "LaunchUp")
+    fun getTargetEntity(items: Items<T>) = block(items, "GetTargetEntity")
 
     /**
      * Forces a player to start
      * or stop flying.
      */
-    fun forceFlight(items: io.github.flyingpig525.base.Items<T>) = block(items, "ForceFlight")
+    fun forceFlight(items: Items<T>) = block(items, "ForceFlight")
 
     /**
      * Loads a player's inventory.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun loadInv(items: io.github.flyingpig525.base.Items<T>) = block(items, "LoadInv")
+    fun loadInv(items: Items<T>) = block(items, "LoadInv")
 
     /**
      * Sets a player's chat color or
@@ -318,15 +320,15 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Overlord
-    fun chatStyle(items: io.github.flyingpig525.base.Items<T>) = block(items, "ChatStyle")
+    fun chatStyle(items: Items<T>) = block(items, "ChatStyle")
 
     /**
      * Kicks a player from
      * the plot.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun kick(items: io.github.flyingpig525.base.Items<T>) = block(items, "Kick")
-    fun projColl(items: io.github.flyingpig525.base.Items<T>) = block(items, "ProjColl")
+    fun kick(items: Items<T>) = block(items, "Kick")
+    fun projColl(items: Items<T>) = block(items, "ProjColl")
 
     /**
      * Makes a player spectate
@@ -349,7 +351,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun spectateTarget(items: io.github.flyingpig525.base.Items<T>) = block(items, "SpectateTarget")
+    fun spectateTarget(items: Items<T>) = block(items, "SpectateTarget")
 
     /**
      * Makes a player perform
@@ -364,13 +366,13 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun hurtAnimation(items: io.github.flyingpig525.base.Items<T>) = block(items, "HurtAnimation")
+    fun hurtAnimation(items: Items<T>) = block(items, "HurtAnimation")
 
     /**
      * Sets a player's game
      * mode to Survival.
      */
-    fun survivalMode(items: io.github.flyingpig525.base.Items<T>) = block(items, "SurvivalMode")
+    fun survivalMode(items: Items<T>) = block(items, "SurvivalMode")
 
     /**
      * Displays a bell ring animation
@@ -385,7 +387,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun displayBellRing(items: io.github.flyingpig525.base.Items<T>) = block(items, "DisplayBellRing")
+    fun displayBellRing(items: Items<T>) = block(items, "DisplayBellRing")
 
     /**
      * Sets the player's game status,
@@ -406,7 +408,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Emperor
-    fun setStatus(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetStatus")
+    fun setStatus(items: Items<T>) = block(items, "SetStatus")
 
     /**
      * Sets the item on a
@@ -420,7 +422,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setCursorItem(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetCursorItem")
+    fun setCursorItem(items: Items<T>) = block(items, "SetCursorItem")
 
     /**
      * Sets a player's absorption
@@ -434,7 +436,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setAbsorption(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetAbsorption")
+    fun setAbsorption(items: Items<T>) = block(items, "SetAbsorption")
 
     /**
      * Sets the remaining time a
@@ -448,8 +450,8 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setFireTicks(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetFireTicks")
-    fun setGamemode(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetGamemode")
+    fun setFireTicks(items: Items<T>) = block(items, "SetFireTicks")
+    fun setGamemode(items: Items<T>) = block(items, "SetGamemode")
 
     /**
      * Removes the given number of
@@ -465,14 +467,14 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Emperor
-    fun removeInvRow(items: io.github.flyingpig525.base.Items<T>) = block(items, "RemoveInvRow")
+    fun removeInvRow(items: Items<T>) = block(items, "RemoveInvRow")
 
     /**
      * Displays the wake up (fade in)
      * animation to a player.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun wakeUpAnimation(items: io.github.flyingpig525.base.Items<T>) = block(items, "WakeUpAnimation")
+    fun wakeUpAnimation(items: Items<T>) = block(items, "WakeUpAnimation")
 
     /**
      * Prevents a player from placing
@@ -486,7 +488,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun disableBlocks(items: io.github.flyingpig525.base.Items<T>) = block(items, "DisableBlocks")
+    fun disableBlocks(items: Items<T>) = block(items, "DisableBlocks")
 
     /**
      * Sets the objective name of the
@@ -500,13 +502,13 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setScoreObj(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetScoreObj")
-    fun particleEffect(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParticleEffect")
+    fun setScoreObj(items: Items<T>) = block(items, "SetScoreObj")
+    fun particleEffect(items: Items<T>) = block(items, "ParticleEffect")
 
     /**
      * Empties a player's inventory.
      */
-    fun clearInv(items: io.github.flyingpig525.base.Items<T>) = block(items, "ClearInv")
+    fun clearInv(items: Items<T>) = block(items, "ClearInv")
 
     /**
      * Sets how long a player
@@ -521,13 +523,13 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setFreezeTicks(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetFreezeTicks")
+    fun setFreezeTicks(items: Items<T>) = block(items, "SetFreezeTicks")
 
     /**
      * Sets whether a player
      * is gliding with elytra.
      */
-    fun setGliding(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetGliding")
+    fun setGliding(items: Items<T>) = block(items, "SetGliding")
 
     /**
      * Changes a player's pitch and
@@ -545,7 +547,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setRotation(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetRotation")
+    fun setRotation(items: Items<T>) = block(items, "SetRotation")
 
     /**
      * Removes all of an item from
@@ -559,13 +561,13 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun clearItems(items: io.github.flyingpig525.base.Items<T>) = block(items, "ClearItems")
+    fun clearItems(items: Items<T>) = block(items, "ClearItems")
 
     /**
      * Sets whether a player
      * is flying.
      */
-    fun setFlying(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetFlying")
+    fun setFlying(items: Items<T>) = block(items, "SetFlying")
 
     /**
      * Displays a container block
@@ -581,8 +583,8 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun displayBlockOpen(items: io.github.flyingpig525.base.Items<T>) = block(items, "DisplayBlockOpen")
-    fun setHandItem(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetHandItem")
+    fun displayBlockOpen(items: Items<T>) = block(items, "DisplayBlockOpen")
+    fun setHandItem(items: Items<T>) = block(items, "SetHandItem")
 
     /**
      * Displays a custom advancement
@@ -601,8 +603,8 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun sendAdvancement(items: io.github.flyingpig525.base.Items<T>) = block(items, "SendAdvancement")
-    fun clearChat(items: io.github.flyingpig525.base.Items<T>) = block(items, "ClearChat")
+    fun sendAdvancement(items: Items<T>) = block(items, "SendAdvancement")
+    fun clearChat(items: Items<T>) = block(items, "ClearChat")
 
     /**
      * Sets the item in a slot
@@ -622,7 +624,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Emperor
-    fun setMenuItem(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetMenuItem")
+    fun setMenuItem(items: Items<T>) = block(items, "SetMenuItem")
 
     /**
      * Launches a player toward or away
@@ -640,7 +642,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun launchToward(items: io.github.flyingpig525.base.Items<T>) = block(items, "LaunchToward")
+    fun launchToward(items: Items<T>) = block(items, "LaunchToward")
 
     /**
      * Sets a player's armor items.
@@ -656,7 +658,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setArmor(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetArmor")
+    fun setArmor(items: Items<T>) = block(items, "SetArmor")
 
     /**
      * Displays a vertical beam on
@@ -670,7 +672,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun displayGateway(items: io.github.flyingpig525.base.Items<T>) = block(items, "DisplayGateway")
+    fun displayGateway(items: Items<T>) = block(items, "DisplayGateway")
 
     /**
      * Adds saturation to a player.
@@ -683,7 +685,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun giveSaturation(items: io.github.flyingpig525.base.Items<T>) = block(items, "GiveSaturation")
+    fun giveSaturation(items: Items<T>) = block(items, "GiveSaturation")
 
     /**
      * Adds experience points or
@@ -697,7 +699,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun giveExp(items: io.github.flyingpig525.base.Items<T>) = block(items, "GiveExp")
+    fun giveExp(items: Items<T>) = block(items, "GiveExp")
 
     /**
      * Rotates a player to look
@@ -712,13 +714,13 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun faceLocation(items: io.github.flyingpig525.base.Items<T>) = block(items, "FaceLocation")
+    fun faceLocation(items: Items<T>) = block(items, "FaceLocation")
 
     /**
      * Removes all scores from
      * the scoreboard.
      */
-    fun clearScoreboard(items: io.github.flyingpig525.base.Items<T>) = block(items, "ClearScoreboard")
+    fun clearScoreboard(items: Items<T>) = block(items, "ClearScoreboard")
 
     /**
      * Displays text directly above
@@ -733,7 +735,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun actionBar(items: io.github.flyingpig525.base.Items<T>) = block(items, "ActionBar")
+    fun actionBar(items: Items<T>) = block(items, "ActionBar")
 
     /**
      * Sets a player's chat tag.
@@ -751,7 +753,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun setChatTag(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetChatTag")
+    fun setChatTag(items: Items<T>) = block(items, "SetChatTag")
 
     /**
      * Changes a player's world border
@@ -770,7 +772,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Emperor
-    fun shiftWorldBorder(items: io.github.flyingpig525.base.Items<T>) = block(items, "ShiftWorldBorder")
+    fun shiftWorldBorder(items: Items<T>) = block(items, "ShiftWorldBorder")
 
     /**
      * Displays text on a sign
@@ -789,7 +791,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun displaySignText(items: io.github.flyingpig525.base.Items<T>) = block(items, "DisplaySignText")
+    fun displaySignText(items: Items<T>) = block(items, "DisplaySignText")
 
     /**
      * Sets a player's walking
@@ -805,7 +807,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setSpeed(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetSpeed")
+    fun setSpeed(items: Items<T>) = block(items, "SetSpeed")
 
     /**
      * Adds 3 more rows to a player's
@@ -821,7 +823,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Emperor
-    fun expandInv(items: io.github.flyingpig525.base.Items<T>) = block(items, "ExpandInv")
+    fun expandInv(items: Items<T>) = block(items, "ExpandInv")
 
     /**
      * Launches a projectile from
@@ -852,11 +854,11 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun launchProj(items: io.github.flyingpig525.base.Items<T>) = block(items, "LaunchProj")
-    fun noProjColl(items: io.github.flyingpig525.base.Items<T>) = block(items, "NoProjColl")
+    fun launchProj(items: Items<T>) = block(items, "LaunchProj")
+    fun noProjColl(items: Items<T>) = block(items, "NoProjColl")
 
     @io.github.flyingpig525.annotation.Overlord
-    fun showDisguise(items: io.github.flyingpig525.base.Items<T>) = block(items, "ShowDisguise")
+    fun showDisguise(items: Items<T>) = block(items, "ShowDisguise")
 
     /**
      * Displays an animated particle
@@ -887,7 +889,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun particleCuboidA(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParticleCuboidA")
+    fun particleCuboidA(items: Items<T>) = block(items, "ParticleCuboidA")
 
     /**
      * Plays a sound for a player.
@@ -904,7 +906,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun playSound(items: io.github.flyingpig525.base.Items<T>) = block(items, "PlaySound")
+    fun playSound(items: Items<T>) = block(items, "PlaySound")
 
     /**
      * Sets the location compasses
@@ -918,7 +920,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setCompass(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetCompass")
+    fun setCompass(items: Items<T>) = block(items, "SetCompass")
 
     /**
      * Teleports a player to a random
@@ -933,7 +935,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun rngTeleport(items: io.github.flyingpig525.base.Items<T>) = block(items, "RngTeleport")
+    fun rngTeleport(items: Items<T>) = block(items, "RngTeleport")
 
     /**
      * Disguises a player as a mob.
@@ -951,7 +953,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Overlord
-    fun mobDisguise(items: io.github.flyingpig525.base.Items<T>) = block(items, "MobDisguise")
+    fun mobDisguise(items: Items<T>) = block(items, "MobDisguise")
 
     /**
      * Allows a player to place
@@ -965,7 +967,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun enableBlocks(items: io.github.flyingpig525.base.Items<T>) = block(items, "EnableBlocks")
+    fun enableBlocks(items: Items<T>) = block(items, "EnableBlocks")
 
     /**
      * Opens a container's inventory.
@@ -980,7 +982,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Emperor
-    fun openBlockInv(items: io.github.flyingpig525.base.Items<T>) = block(items, "OpenBlockInv")
+    fun openBlockInv(items: Items<T>) = block(items, "OpenBlockInv")
 
     /**
      * Displays an animated circle
@@ -1007,8 +1009,8 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun particleCircleA(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParticleCircleA")
-    fun removeBossBar(items: io.github.flyingpig525.base.Items<T>) = block(items, "RemoveBossBar")
+    fun particleCircleA(items: Items<T>) = block(items, "ParticleCircleA")
+    fun removeBossBar(items: Items<T>) = block(items, "RemoveBossBar")
 
     /**
      * Sets the item in one of the
@@ -1023,14 +1025,14 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setEquipment(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetEquipment")
-    fun giveRngItem(items: io.github.flyingpig525.base.Items<T>) = block(items, "GiveRngItem")
+    fun setEquipment(items: Items<T>) = block(items, "SetEquipment")
+    fun giveRngItem(items: Items<T>) = block(items, "GiveRngItem")
 
     /**
      * Sets whether a player drops
      * their items when dead.
      */
-    fun setDropsEnabled(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetDropsEnabled")
+    fun setDropsEnabled(items: Items<T>) = block(items, "SetDropsEnabled")
 
     /**
      * Sends a player to another plot.
@@ -1044,7 +1046,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Emperor
-    fun sendToPlot(items: io.github.flyingpig525.base.Items<T>) = block(items, "SendToPlot")
+    fun sendToPlot(items: Items<T>) = block(items, "SendToPlot")
 
     /**
      * Removes one or more potion
@@ -1059,7 +1061,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun removePotion(items: io.github.flyingpig525.base.Items<T>) = block(items, "RemovePotion")
+    fun removePotion(items: Items<T>) = block(items, "RemovePotion")
 
     /**
      * Displays a block fracture
@@ -1079,7 +1081,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun displayFracture(items: io.github.flyingpig525.base.Items<T>) = block(items, "DisplayFracture")
+    fun displayFracture(items: Items<T>) = block(items, "DisplayFracture")
 
     /**
      * Sets if an entity is hidden
@@ -1098,14 +1100,14 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun setEntityHidden(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetEntityHidden")
+    fun setEntityHidden(items: Items<T>) = block(items, "SetEntityHidden")
 
     /**
      * Sets whether the scoreboard
      * sidebar is visible to a player.
      */
-    fun setSidebar(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetSidebar")
-    fun allowDrops(items: io.github.flyingpig525.base.Items<T>) = block(items, "AllowDrops")
+    fun setSidebar(items: Items<T>) = block(items, "SetSidebar")
+    fun allowDrops(items: Items<T>) = block(items, "AllowDrops")
 
     /**
      * Displays a Sculk Sensor
@@ -1127,7 +1129,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun vibration(items: io.github.flyingpig525.base.Items<T>) = block(items, "Vibration")
+    fun vibration(items: Items<T>) = block(items, "Vibration")
 
     /**
      * Sets a player's selected
@@ -1141,7 +1143,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setSlot(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetSlot")
+    fun setSlot(items: Items<T>) = block(items, "SetSlot")
 
     /**
      * Displays a ray of particles
@@ -1167,7 +1169,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun particleRay(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParticleRay")
+    fun particleRay(items: Items<T>) = block(items, "ParticleRay")
 
     /**
      * Displays a particle cuboid as a
@@ -1195,7 +1197,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun particleCuboid(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParticleCuboid")
+    fun particleCuboid(items: Items<T>) = block(items, "ParticleCuboid")
 
     /**
      * Sends a series of messages
@@ -1215,7 +1217,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun sendMessageSeq(items: io.github.flyingpig525.base.Items<T>) = block(items, "SendMessageSeq")
+    fun sendMessageSeq(items: Items<T>) = block(items, "SendMessageSeq")
 
     /**
      * Sets the prefix or suffix
@@ -1230,7 +1232,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setNamePrefix(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetNamePrefix")
+    fun setNamePrefix(items: Items<T>) = block(items, "SetNamePrefix")
 
     /**
      * Displays the real block at a
@@ -1251,7 +1253,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun clearDispBlock(items: io.github.flyingpig525.base.Items<T>) = block(items, "ClearDispBlock")
+    fun clearDispBlock(items: Items<T>) = block(items, "ClearDispBlock")
 
     /**
      * Sets the heaviness of rain and
@@ -1269,13 +1271,13 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setRainLevel(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetRainLevel")
+    fun setRainLevel(items: Items<T>) = block(items, "SetRainLevel")
 
     /**
      * Removes a player's disguise.
      */
     @io.github.flyingpig525.annotation.Overlord
-    fun undisguise(items: io.github.flyingpig525.base.Items<T>) = block(items, "Undisguise")
+    fun undisguise(items: Items<T>) = block(items, "Undisguise")
 
     /**
      * Displays an animated spiral of
@@ -1314,14 +1316,14 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun particleSpiralA(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParticleSpiralA")
+    fun particleSpiralA(items: Items<T>) = block(items, "ParticleSpiralA")
 
     /**
      * Sets if a player is instantly
      * respawned upon dying.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun instantRespawn(items: io.github.flyingpig525.base.Items<T>) = block(items, "InstantRespawn")
+    fun instantRespawn(items: Items<T>) = block(items, "InstantRespawn")
 
     /**
      * Sets a score on the
@@ -1339,14 +1341,14 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setScore(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetScore")
+    fun setScore(items: Items<T>) = block(items, "SetScore")
 
     /**
      * Sets the color a player's
      * name tag appears in.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setNameColor(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetNameColor")
+    fun setNameColor(items: Items<T>) = block(items, "SetNameColor")
 
     /**
      * Sets a player's attack speed.
@@ -1360,8 +1362,8 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun setAtkSpeed(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetAtkSpeed")
-    fun disablePvp(items: io.github.flyingpig525.base.Items<T>) = block(items, "DisablePvp")
+    fun setAtkSpeed(items: Items<T>) = block(items, "SetAtkSpeed")
+    fun disablePvp(items: Items<T>) = block(items, "DisablePvp")
 
     /**
      * Changes the tick rate of a player.
@@ -1375,7 +1377,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setTickRate(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetTickRate")
+    fun setTickRate(items: Items<T>) = block(items, "SetTickRate")
 
     /**
      * Plays a sound that follows a
@@ -1397,8 +1399,8 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun playEntitySound(items: io.github.flyingpig525.base.Items<T>) = block(items, "PlayEntitySound")
-    fun replaceProj(items: io.github.flyingpig525.base.Items<T>) = block(items, "ReplaceProj")
+    fun playEntitySound(items: Items<T>) = block(items, "PlayEntitySound")
+    fun replaceProj(items: Items<T>) = block(items, "ReplaceProj")
 
     /**
      * Sets a player's experience
@@ -1412,7 +1414,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setExp(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetExp")
+    fun setExp(items: Items<T>) = block(items, "SetExp")
 
     /**
      * Displays a spiral of particles
@@ -1447,7 +1449,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun particleSpiral(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParticleSpiral")
+    fun particleSpiral(items: Items<T>) = block(items, "ParticleSpiral")
 
     /**
      * Sets whether a player
@@ -1455,7 +1457,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * flight mode by double
      * tapping jump.
      */
-    fun setAllowFlight(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetAllowFlight")
+    fun setAllowFlight(items: Items<T>) = block(items, "SetAllowFlight")
 
     /**
      * Sets a player's maximum
@@ -1469,7 +1471,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setMaxHealth(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetMaxHealth")
+    fun setMaxHealth(items: Items<T>) = block(items, "SetMaxHealth")
 
     /**
      * Sets how far the fog is
@@ -1489,26 +1491,26 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setFogDistance(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetFogDistance")
+    fun setFogDistance(items: Items<T>) = block(items, "SetFogDistance")
 
     /**
      * Sets a player's game
      * mode to Adventure.
      */
-    fun adventureMode(items: io.github.flyingpig525.base.Items<T>) = block(items, "AdventureMode")
+    fun adventureMode(items: Items<T>) = block(items, "AdventureMode")
 
     /**
      * Sets a player's game
      * mode to Spectator.
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun spectatorMode(items: io.github.flyingpig525.base.Items<T>) = block(items, "SpectatorMode")
+    fun spectatorMode(items: Items<T>) = block(items, "SpectatorMode")
 
     /**
      * Removes all active potion
      * effects from a player.
      */
-    fun clearPotions(items: io.github.flyingpig525.base.Items<T>) = block(items, "ClearPotions")
+    fun clearPotions(items: Items<T>) = block(items, "ClearPotions")
 
     /**
      * Sets the text to be displayed
@@ -1524,11 +1526,11 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setTabListInfo(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetTabListInfo")
-    fun enablePvp(items: io.github.flyingpig525.base.Items<T>) = block(items, "EnablePvp")
+    fun setTabListInfo(items: Items<T>) = block(items, "SetTabListInfo")
+    fun enablePvp(items: Items<T>) = block(items, "EnablePvp")
 
     @io.github.flyingpig525.annotation.Overlord
-    fun hideDisguise(items: io.github.flyingpig525.base.Items<T>) = block(items, "HideDisguise")
+    fun hideDisguise(items: Items<T>) = block(items, "HideDisguise")
 
     /**
      * Sets the number format of a
@@ -1550,7 +1552,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun scoreLineFormat(items: io.github.flyingpig525.base.Items<T>) = block(items, "ScoreLineFormat")
+    fun scoreLineFormat(items: Items<T>) = block(items, "ScoreLineFormat")
 
     /**
      * Sets the player's skin.
@@ -1568,7 +1570,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Overlord
-    fun setSkin(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetSkin")
+    fun setSkin(items: Items<T>) = block(items, "SetSkin")
 
     /**
      * Toggles whether a player
@@ -1576,14 +1578,14 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * spectator mode.
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun spectatorCollision(items: io.github.flyingpig525.base.Items<T>) = block(items, "SpectatorCollision")
+    fun spectatorCollision(items: Items<T>) = block(items, "SpectatorCollision")
 
     /**
      * Sets whether a player's
      * name tag is visible.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setNameVisible(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetNameVisible")
+    fun setNameVisible(items: Items<T>) = block(items, "SetNameVisible")
 
     /**
      * Sets the currently
@@ -1598,8 +1600,8 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setInvulTicks(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetInvulTicks")
-    fun enableFlight(items: io.github.flyingpig525.base.Items<T>) = block(items, "EnableFlight")
+    fun setInvulTicks(items: Items<T>) = block(items, "SetInvulTicks")
+    fun enableFlight(items: Items<T>) = block(items, "EnableFlight")
 
     /**
      * Sets the amount of bee stings
@@ -1614,7 +1616,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setStingsStuck(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetStingsStuck")
+    fun setStingsStuck(items: Items<T>) = block(items, "SetStingsStuck")
 
     /**
      * Removes a score from
@@ -1628,8 +1630,8 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun removeScore(items: io.github.flyingpig525.base.Items<T>) = block(items, "RemoveScore")
-    fun disallowDrops(items: io.github.flyingpig525.base.Items<T>) = block(items, "DisallowDrops")
+    fun removeScore(items: Items<T>) = block(items, "RemoveScore")
+    fun disallowDrops(items: Items<T>) = block(items, "DisallowDrops")
 
     /**
      * Displays a circle of particles
@@ -1652,7 +1654,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun particleCircle(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParticleCircle")
+    fun particleCircle(items: Items<T>) = block(items, "ParticleCircle")
 
     /**
      * Displays a block at a location to
@@ -1680,7 +1682,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun displayBlock(items: io.github.flyingpig525.base.Items<T>) = block(items, "DisplayBlock")
+    fun displayBlock(items: Items<T>) = block(items, "DisplayBlock")
 
     /**
      * Mounts a player on top of
@@ -1703,14 +1705,14 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun rideEntity(items: io.github.flyingpig525.base.Items<T>) = block(items, "RideEntity")
-    fun weatherRain(items: io.github.flyingpig525.base.Items<T>) = block(items, "WeatherRain")
+    fun rideEntity(items: Items<T>) = block(items, "RideEntity")
+    fun weatherRain(items: Items<T>) = block(items, "WeatherRain")
 
     /**
      * Removes a player's world border.
      */
     @io.github.flyingpig525.annotation.Emperor
-    fun rmWorldBorder(items: io.github.flyingpig525.base.Items<T>) = block(items, "RmWorldBorder")
+    fun rmWorldBorder(items: Items<T>) = block(items, "RmWorldBorder")
 
     /**
      * Send a resource pack to the player.
@@ -1724,7 +1726,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Overlord
-    fun resourcePack(items: io.github.flyingpig525.base.Items<T>) = block(items, "ResourcePack")
+    fun resourcePack(items: Items<T>) = block(items, "ResourcePack")
 
     /**
      * Teleports a player to
@@ -1738,22 +1740,22 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun teleport(items: io.github.flyingpig525.base.Items<T>) = block(items, "Teleport")
+    fun teleport(items: Items<T>) = block(items, "Teleport")
 
     /**
      * Sets whether a player can
      * hurt or be hurt by other
      * players.
      */
-    fun setAllowPVP(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetAllowPVP")
-    fun disableFlight(items: io.github.flyingpig525.base.Items<T>) = block(items, "DisableFlight")
+    fun setAllowPVP(items: Items<T>) = block(items, "SetAllowPVP")
+    fun disableFlight(items: Items<T>) = block(items, "DisableFlight")
 
     /**
      * Sets whether a player
      * should appear on fire.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setVisualFire(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetVisualFire")
+    fun setVisualFire(items: Items<T>) = block(items, "SetVisualFire")
 
     /**
      * Sets a player's ability to
@@ -1762,7 +1764,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * almost always hidden.
      */
     @io.github.flyingpig525.annotation.Overlord
-    fun setDisguiseVisible(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetDisguiseVisible")
+    fun setDisguiseVisible(items: Items<T>) = block(items, "SetDisguiseVisible")
 
     /**
      * Sets the amount of arrows
@@ -1777,9 +1779,9 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setArrowsStuck(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetArrowsStuck")
-    fun setItems(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetItems")
-    fun keepInv(items: io.github.flyingpig525.base.Items<T>) = block(items, "KeepInv")
+    fun setArrowsStuck(items: Items<T>) = block(items, "SetArrowsStuck")
+    fun setItems(items: Items<T>) = block(items, "SetItems")
+    fun keepInv(items: Items<T>) = block(items, "KeepInv")
 
     /**
      * Replaces items in a player's
@@ -1802,7 +1804,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun replaceItems(items: io.github.flyingpig525.base.Items<T>) = block(items, "ReplaceItems")
+    fun replaceItems(items: Items<T>) = block(items, "ReplaceItems")
 
     /**
      * Sends a chat message to a
@@ -1816,7 +1818,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun sendMessage(items: io.github.flyingpig525.base.Items<T>) = block(items, "SendMessage")
+    fun sendMessage(items: Items<T>) = block(items, "SendMessage")
 
     /**
      * Sets the item in a slot
@@ -1834,7 +1836,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setSlotItem(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetSlotItem")
+    fun setSlotItem(items: Items<T>) = block(items, "SetSlotItem")
 
     /**
      * Plays a sequence of sounds
@@ -1858,7 +1860,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun playSoundSeq(items: io.github.flyingpig525.base.Items<T>) = block(items, "PlaySoundSeq")
+    fun playSoundSeq(items: Items<T>) = block(items, "PlaySoundSeq")
 
     /**
      * Displays an animated line of
@@ -1890,13 +1892,13 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun particleLineA(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParticleLineA")
+    fun particleLineA(items: Items<T>) = block(items, "ParticleLineA")
 
     @io.github.flyingpig525.annotation.Mythic
-    fun respawn(items: io.github.flyingpig525.base.Items<T>) = block(items, "Respawn")
+    fun respawn(items: Items<T>) = block(items, "Respawn")
 
     @io.github.flyingpig525.annotation.Emperor
-    fun setInvName(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetInvName")
+    fun setInvName(items: Items<T>) = block(items, "SetInvName")
 
     /**
      * Applies a cooldown visual effect
@@ -1914,21 +1916,21 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setItemCooldown(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetItemCooldown")
+    fun setItemCooldown(items: Items<T>) = block(items, "SetItemCooldown")
 
     /**
      * Sets the type of weather
      * visible to a player.
      */
-    fun setPlayerWeather(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetPlayerWeather")
-    fun sendHover(items: io.github.flyingpig525.base.Items<T>) = block(items, "SendHover")
+    fun setPlayerWeather(items: Items<T>) = block(items, "SetPlayerWeather")
+    fun sendHover(items: Items<T>) = block(items, "SendHover")
 
     /**
      * Displays a parrot on the targets'
      * shoulders.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setShoulder(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetShoulder")
+    fun setShoulder(items: Items<T>) = block(items, "SetShoulder")
 
     /**
      * Sets a player's remaining
@@ -1942,7 +1944,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setAirTicks(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetAirTicks")
+    fun setAirTicks(items: Items<T>) = block(items, "SetAirTicks")
 
     /**
      * Displays a pickup animation
@@ -1970,7 +1972,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun displayPickup(items: io.github.flyingpig525.base.Items<T>) = block(items, "DisplayPickup")
+    fun displayPickup(items: Items<T>) = block(items, "DisplayPickup")
 
     /**
      * Creates a world border only
@@ -1993,7 +1995,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Emperor
-    fun setWorldBorder(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetWorldBorder")
+    fun setWorldBorder(items: Items<T>) = block(items, "SetWorldBorder")
 
     /**
      * Sets the time of day visible
@@ -2011,7 +2013,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setPlayerTime(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetPlayerTime")
+    fun setPlayerTime(items: Items<T>) = block(items, "SetPlayerTime")
 
     /**
      * Adds food to a player.
@@ -2024,8 +2026,8 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun giveFood(items: io.github.flyingpig525.base.Items<T>) = block(items, "GiveFood")
-    fun natRegen(items: io.github.flyingpig525.base.Items<T>) = block(items, "NatRegen")
+    fun giveFood(items: Items<T>) = block(items, "GiveFood")
+    fun natRegen(items: Items<T>) = block(items, "NatRegen")
 
     /**
      * Gives one or more potion
@@ -2040,7 +2042,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun givePotion(items: io.github.flyingpig525.base.Items<T>) = block(items, "GivePotion")
+    fun givePotion(items: Items<T>) = block(items, "GivePotion")
 
     /**
      * Removes items from a player.
@@ -2053,7 +2055,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun removeItems(items: io.github.flyingpig525.base.Items<T>) = block(items, "RemoveItems")
+    fun removeItems(items: Items<T>) = block(items, "RemoveItems")
 
     /**
      * Boosts a player's elytra
@@ -2067,7 +2069,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun boostElytra(items: io.github.flyingpig525.base.Items<T>) = block(items, "BoostElytra")
+    fun boostElytra(items: Items<T>) = block(items, "BoostElytra")
 
     /**
      * Saves a player's inventory.
@@ -2075,7 +2077,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * 'Load Saved Inventory'.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun saveInv(items: io.github.flyingpig525.base.Items<T>) = block(items, "SaveInv")
+    fun saveInv(items: Items<T>) = block(items, "SaveInv")
 
     /**
      * Opens a written book
@@ -2090,7 +2092,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Emperor
-    fun openBook(items: io.github.flyingpig525.base.Items<T>) = block(items, "OpenBook")
+    fun openBook(items: Items<T>) = block(items, "OpenBook")
 
     /**
      * Sets a player's current
@@ -2104,7 +2106,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setHealth(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetHealth")
+    fun setHealth(items: Items<T>) = block(items, "SetHealth")
 
     /**
      * Disguises a player as a block.
@@ -2122,7 +2124,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Overlord
-    fun blockDisguise(items: io.github.flyingpig525.base.Items<T>) = block(items, "BlockDisguise")
+    fun blockDisguise(items: Items<T>) = block(items, "BlockDisguise")
 
     /**
      * Undoes the interactions with
@@ -2137,8 +2139,8 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Overlord
-    fun rollbackBlocks(items: io.github.flyingpig525.base.Items<T>) = block(items, "RollbackBlocks")
-    fun noDeathDrops(items: io.github.flyingpig525.base.Items<T>) = block(items, "NoDeathDrops")
+    fun rollbackBlocks(items: Items<T>) = block(items, "RollbackBlocks")
+    fun noDeathDrops(items: Items<T>) = block(items, "NoDeathDrops")
 
     /**
      * Sets a player's walk
@@ -2154,14 +2156,14 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun walkSpeed(items: io.github.flyingpig525.base.Items<T>) = block(items, "WalkSpeed")
+    fun walkSpeed(items: Items<T>) = block(items, "WalkSpeed")
 
     /**
      * Sets whether a player is
      * able to collide with other
      * entities.
      */
-    fun setCollidable(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetCollidable")
+    fun setCollidable(items: Items<T>) = block(items, "SetCollidable")
 
     /**
      * Launches a player forward
@@ -2175,7 +2177,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun launchFwd(items: io.github.flyingpig525.base.Items<T>) = block(items, "LaunchFwd")
+    fun launchFwd(items: Items<T>) = block(items, "LaunchFwd")
 
     /**
      * Sets a player's fall distance,
@@ -2190,20 +2192,20 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setFallDistance(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetFallDistance")
+    fun setFallDistance(items: Items<T>) = block(items, "SetFallDistance")
 
     /**
      * Sets a player's game
      * mode to Creative.
      */
-    fun creativeMode(items: io.github.flyingpig525.base.Items<T>) = block(items, "CreativeMode")
+    fun creativeMode(items: Items<T>) = block(items, "CreativeMode")
 
     /**
      * Makes a player perform
      * an attack animation.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun attackAnimation(items: io.github.flyingpig525.base.Items<T>) = block(items, "AttackAnimation")
+    fun attackAnimation(items: Items<T>) = block(items, "AttackAnimation")
 
     /**
      * Displays a floating name tag
@@ -2226,8 +2228,8 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Emperor
-    fun displayHologram(items: io.github.flyingpig525.base.Items<T>) = block(items, "DisplayHologram")
-    fun deathDrops(items: io.github.flyingpig525.base.Items<T>) = block(items, "DeathDrops")
+    fun displayHologram(items: Items<T>) = block(items, "DisplayHologram")
+    fun deathDrops(items: Items<T>) = block(items, "DeathDrops")
 
     /**
      * Opens a custom inventory
@@ -2242,7 +2244,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Emperor
-    fun showInv(items: io.github.flyingpig525.base.Items<T>) = block(items, "ShowInv")
+    fun showInv(items: Items<T>) = block(items, "ShowInv")
 
     /**
      * Sets a player's food hunger level.
@@ -2256,7 +2258,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setFoodLevel(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetFoodLevel")
+    fun setFoodLevel(items: Items<T>) = block(items, "SetFoodLevel")
 
     /**
      * Disguises a player as another
@@ -2275,7 +2277,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Overlord
-    fun playerDisguise(items: io.github.flyingpig525.base.Items<T>) = block(items, "PlayerDisguise")
+    fun playerDisguise(items: Items<T>) = block(items, "PlayerDisguise")
 
     /**
      * Sets a player's saturation
@@ -2290,8 +2292,8 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setSaturation(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetSaturation")
-    fun weatherClear(items: io.github.flyingpig525.base.Items<T>) = block(items, "WeatherClear")
+    fun setSaturation(items: Items<T>) = block(items, "SetSaturation")
+    fun weatherClear(items: Items<T>) = block(items, "WeatherClear")
 
     /**
      * Displays text in the center
@@ -2322,7 +2324,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Emperor
-    fun sendTitle(items: io.github.flyingpig525.base.Items<T>) = block(items, "SendTitle")
+    fun sendTitle(items: Items<T>) = block(items, "SendTitle")
 
     /**
      * Sets the default number format
@@ -2339,7 +2341,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun scoreDefFormat(items: io.github.flyingpig525.base.Items<T>) = block(items, "ScoreDefFormat")
+    fun scoreDefFormat(items: Items<T>) = block(items, "ScoreDefFormat")
 
     /**
      * Stops all or specific sounds
@@ -2353,7 +2355,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun stopSound(items: io.github.flyingpig525.base.Items<T>) = block(items, "StopSound")
+    fun stopSound(items: Items<T>) = block(items, "StopSound")
 
     /**
      * Displays a line of particles
@@ -2380,7 +2382,7 @@ class PlayerActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun particleLine(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParticleLine")
+    fun particleLine(items: Items<T>) = block(items, "ParticleLine")
 
 
 }

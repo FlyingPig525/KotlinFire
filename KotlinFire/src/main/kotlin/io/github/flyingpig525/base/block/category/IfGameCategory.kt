@@ -3,19 +3,21 @@
 package io.github.flyingpig525.base.block.category
 
 import io.github.flyingpig525.annotation.*
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.block.Block
 import io.github.flyingpig525.base.block.BracketBlock
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
 
-class IfGameCategory<T> internal constructor(private val template: io.github.flyingpig525.base.Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
+class IfGameCategory<T> internal constructor(private val template: Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
     private val blocks = template.blocks
 
     private fun block(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         action: String,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit,
+        wrappedCode: Template<T>.() -> Unit,
         not: Boolean = false
     ) {
         blocks += Block("if_game", ItemCollection(items).items, action, if (not) "attribute: \"NOT\"" else "")
@@ -32,9 +34,9 @@ class IfGameCategory<T> internal constructor(private val template: io.github.fly
     }
 
     fun signHasTxt(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "SignHasTxt", wrappedCode, not)
 
     /**
@@ -59,9 +61,9 @@ class IfGameCategory<T> internal constructor(private val template: io.github.fly
      * (*) = Optional
      */
     fun hasRoomForItem(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "HasRoomForItem", wrappedCode, not)
 
     /**
@@ -77,9 +79,9 @@ class IfGameCategory<T> internal constructor(private val template: io.github.fly
      * (*) = Optional
      */
     fun eventBlockEquals(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "EventBlockEquals", wrappedCode, not)
 
     /**
@@ -97,9 +99,9 @@ class IfGameCategory<T> internal constructor(private val template: io.github.fly
      */
     @Emperor
     fun commandEquals(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "CommandEquals", wrappedCode, not)
 
     /**
@@ -115,9 +117,9 @@ class IfGameCategory<T> internal constructor(private val template: io.github.fly
      * (*) = Optional
      */
     fun eventItemEquals(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "EventItemEquals", wrappedCode, not)
 
     /**
@@ -125,9 +127,9 @@ class IfGameCategory<T> internal constructor(private val template: io.github.fly
      * is critical.
      */
     fun attackIsCrit(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "AttackIsCrit", wrappedCode, not)
 
     /**
@@ -147,9 +149,9 @@ class IfGameCategory<T> internal constructor(private val template: io.github.fly
      * (*) = Optional
      */
     fun containerHas(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "ContainerHas", wrappedCode, not)
 
     /**
@@ -173,9 +175,9 @@ class IfGameCategory<T> internal constructor(private val template: io.github.fly
      * (*) = Optional
      */
     fun blockEquals(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "BlockEquals", wrappedCode, not)
 
     /**
@@ -191,9 +193,9 @@ class IfGameCategory<T> internal constructor(private val template: io.github.fly
      * (*) = Optional
      */
     fun blockPowered(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "BlockPowered", wrappedCode, not)
 
     /**
@@ -210,9 +212,9 @@ class IfGameCategory<T> internal constructor(private val template: io.github.fly
      * (*) = Optional
      */
     fun hasPlayer(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "HasPlayer", wrappedCode, not)
 
     /**
@@ -233,9 +235,9 @@ class IfGameCategory<T> internal constructor(private val template: io.github.fly
      * (*) = Optional
      */
     fun containerHasAll(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "ContainerHasAll", wrappedCode, not)
 
     /**
@@ -257,9 +259,9 @@ class IfGameCategory<T> internal constructor(private val template: io.github.fly
      */
     @Emperor
     fun cmdArgEquals(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "CmdArgEquals", wrappedCode, not)
 
     /**
@@ -267,9 +269,9 @@ class IfGameCategory<T> internal constructor(private val template: io.github.fly
      * event is cancelled.
      */
     fun eventCancelled(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "EventCancelled", wrappedCode, not)
 
 

@@ -2,10 +2,11 @@
 
 package io.github.flyingpig525.base.block
 
+import io.github.flyingpig525.base.JsonData
 import io.github.flyingpig525.base.item.Item
 
 class EventBlock<T>(val type: Type, event: String) :
-    Block<T>("process", mutableListOf(), event) where T : Item, T : io.github.flyingpig525.base.JsonData {
+    Block<T>("process", mutableListOf(), event) where T : Item, T : JsonData {
     override fun getJsonData(): String {
         return """
             {

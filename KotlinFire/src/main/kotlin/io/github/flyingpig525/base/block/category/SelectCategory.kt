@@ -2,15 +2,17 @@
 
 package io.github.flyingpig525.base.block.category
 
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.block.Block
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
 
-class SelectCategory<T> internal constructor(private val template: io.github.flyingpig525.base.Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
+class SelectCategory<T> internal constructor(private val template: Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
     private val blocks = template.blocks
 
-    private fun block(items: io.github.flyingpig525.base.Items<T>, action: String) {
+    private fun block(items: Items<T>, action: String) {
         blocks += Block("select_obj", ItemCollection(items).items, action)
     }
 
@@ -18,7 +20,7 @@ class SelectCategory<T> internal constructor(private val template: io.github.fly
         apply(a)
     }
 
-    fun lastMob(items: io.github.flyingpig525.base.Items<T>) = block(items, "LastMob")
+    fun lastMob(items: Items<T>) = block(items, "LastMob")
 
     /**
      * Creates a selection using
@@ -33,16 +35,16 @@ class SelectCategory<T> internal constructor(private val template: io.github.fly
      *
      * (*) = Optional
      */
-    fun randomPlayer(items: io.github.flyingpig525.base.Items<T>) = block(items, "RandomPlayer")
+    fun randomPlayer(items: Items<T>) = block(items, "RandomPlayer")
 
     /**
      * Creates a selection using
      * the most recently spawned
      * entity.
      */
-    fun lastEntity(items: io.github.flyingpig525.base.Items<T>) = block(items, "LastEntity")
-    fun shooter(items: io.github.flyingpig525.base.Items<T>) = block(items, "Shooter")
-    fun allMobs(items: io.github.flyingpig525.base.Items<T>) = block(items, "AllMobs")
+    fun lastEntity(items: Items<T>) = block(items, "LastEntity")
+    fun shooter(items: Items<T>) = block(items, "Shooter")
+    fun allMobs(items: Items<T>) = block(items, "AllMobs")
 
     /**
      * Creates a selection using all
@@ -61,7 +63,7 @@ class SelectCategory<T> internal constructor(private val template: io.github.fly
      *
      * (*) = Optional
      */
-    fun entityName(items: io.github.flyingpig525.base.Items<T>) = block(items, "EntityName")
+    fun entityName(items: Items<T>) = block(items, "EntityName")
 
     /**
      * Filters the selection by
@@ -76,8 +78,8 @@ class SelectCategory<T> internal constructor(private val template: io.github.fly
      *
      * (*) = Optional
      */
-    fun filterRandom(items: io.github.flyingpig525.base.Items<T>) = block(items, "FilterRandom")
-    fun defaultEntity(items: io.github.flyingpig525.base.Items<T>) = block(items, "DefaultEntity")
+    fun filterRandom(items: Items<T>) = block(items, "FilterRandom")
+    fun defaultEntity(items: Items<T>) = block(items, "DefaultEntity")
 
     /**
      * Creates a selection using all
@@ -92,14 +94,14 @@ class SelectCategory<T> internal constructor(private val template: io.github.fly
      *
      * (*) = Optional
      */
-    fun playerName(items: io.github.flyingpig525.base.Items<T>) = block(items, "PlayerName")
+    fun playerName(items: Items<T>) = block(items, "PlayerName")
 
     /**
      * Creates a selection of
      * all entities in the game.
      */
-    fun allEntities(items: io.github.flyingpig525.base.Items<T>) = block(items, "AllEntities")
-    fun damager(items: io.github.flyingpig525.base.Items<T>) = block(items, "Damager")
+    fun allEntities(items: Items<T>) = block(items, "AllEntities")
+    fun damager(items: Items<T>) = block(items, "Damager")
 
     /**
      * Filters the selection to the
@@ -119,7 +121,7 @@ class SelectCategory<T> internal constructor(private val template: io.github.fly
      *
      * (*) = Optional
      */
-    fun filterDistance(items: io.github.flyingpig525.base.Items<T>) = block(items, "FilterDistance")
+    fun filterDistance(items: Items<T>) = block(items, "FilterDistance")
 
     /**
      * Filters the selected objects
@@ -151,52 +153,52 @@ class SelectCategory<T> internal constructor(private val template: io.github.fly
      *
      * (*) = Optional
      */
-    fun filterRay(items: io.github.flyingpig525.base.Items<T>) = block(items, "FilterRay")
+    fun filterRay(items: Items<T>) = block(items, "FilterRay")
 
     /**
      * Deactivates the selection.
      * Code that follows will run
      * normally with event targets.
      */
-    fun reset(items: io.github.flyingpig525.base.Items<T>) = block(items, "Reset")
+    fun reset(items: Items<T>) = block(items, "Reset")
 
     /**
      * Creates a selection using
      * a target involved in this
      * Event.
      */
-    fun eventTarget(items: io.github.flyingpig525.base.Items<T>) = block(items, "EventTarget")
-    fun killer(items: io.github.flyingpig525.base.Items<T>) = block(items, "Killer")
-    fun victim(items: io.github.flyingpig525.base.Items<T>) = block(items, "Victim")
+    fun eventTarget(items: Items<T>) = block(items, "EventTarget")
+    fun killer(items: Items<T>) = block(items, "Killer")
+    fun victim(items: Items<T>) = block(items, "Victim")
 
     /**
      * Creates a selection of
      * all entities in the game
      * that meet a condition.
      */
-    fun entitiesCond(items: io.github.flyingpig525.base.Items<T>) = block(items, "EntitiesCond")
+    fun entitiesCond(items: Items<T>) = block(items, "EntitiesCond")
 
     /**
      * Creates a selection of
      * all players in the game.
      */
-    fun allPlayers(items: io.github.flyingpig525.base.Items<T>) = block(items, "AllPlayers")
+    fun allPlayers(items: Items<T>) = block(items, "AllPlayers")
 
     /**
      * Creates a new selection by
      * inverting the selection that
      * is currently active.
      */
-    fun invert(items: io.github.flyingpig525.base.Items<T>) = block(items, "Invert")
-    fun randomEntity(items: io.github.flyingpig525.base.Items<T>) = block(items, "RandomEntity")
+    fun invert(items: Items<T>) = block(items, "Invert")
+    fun randomEntity(items: Items<T>) = block(items, "RandomEntity")
 
     /**
      * Filters the selection to the
      * objects that meet a certain
      * condition.
      */
-    fun filterCondition(items: io.github.flyingpig525.base.Items<T>) = block(items, "FilterCondition")
-    fun mobsCond(items: io.github.flyingpig525.base.Items<T>) = block(items, "MobsCond")
+    fun filterCondition(items: Items<T>) = block(items, "FilterCondition")
+    fun mobsCond(items: Items<T>) = block(items, "MobsCond")
 
     /**
      * Filters the selection by
@@ -216,17 +218,17 @@ class SelectCategory<T> internal constructor(private val template: io.github.fly
      *
      * (*) = Optional
      */
-    fun filterSort(items: io.github.flyingpig525.base.Items<T>) = block(items, "FilterSort")
-    fun projectile(items: io.github.flyingpig525.base.Items<T>) = block(items, "Projectile")
-    fun defaultPlayer(items: io.github.flyingpig525.base.Items<T>) = block(items, "DefaultPlayer")
+    fun filterSort(items: Items<T>) = block(items, "FilterSort")
+    fun projectile(items: Items<T>) = block(items, "Projectile")
+    fun defaultPlayer(items: Items<T>) = block(items, "DefaultPlayer")
 
     /**
      * Creates a selection of
      * all players in the game
      * that meet a condition.
      */
-    fun playersCond(items: io.github.flyingpig525.base.Items<T>) = block(items, "PlayersCond")
-    fun mobName(items: io.github.flyingpig525.base.Items<T>) = block(items, "MobName")
+    fun playersCond(items: Items<T>) = block(items, "PlayersCond")
+    fun mobName(items: Items<T>) = block(items, "MobName")
 
 
 }

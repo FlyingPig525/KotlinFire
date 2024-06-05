@@ -3,19 +3,21 @@
 package io.github.flyingpig525.base.block.category
 
 import io.github.flyingpig525.annotation.*
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.block.Block
 import io.github.flyingpig525.base.block.BracketBlock
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
 
-class IfVarCategory<T> internal constructor(private val template: io.github.flyingpig525.base.Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
+class IfVarCategory<T> internal constructor(private val template: Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
     private val blocks = template.blocks
 
     private fun block(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         action: String,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit,
+        wrappedCode: Template<T>.() -> Unit,
         not: Boolean = false
     ) {
         blocks += Block("if_var", ItemCollection(items).items, action, if (not) "attribute: \"NOT\"" else "")
@@ -49,9 +51,9 @@ class IfVarCategory<T> internal constructor(private val template: io.github.flyi
      * (*) = Optional
      */
     fun greaterThanOrEqual(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "<=", wrappedCode, not)
 
     /**
@@ -77,9 +79,9 @@ class IfVarCategory<T> internal constructor(private val template: io.github.flyi
      * (*) = Optional
      */
     fun itemHasEnchant(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "ItemHasEnchant", wrappedCode, not)
 
     /**
@@ -105,9 +107,9 @@ class IfVarCategory<T> internal constructor(private val template: io.github.flyi
      * (*) = Optional
      */
     fun dictValueEquals(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "DictValueEquals", wrappedCode, not)
 
     /**
@@ -137,9 +139,9 @@ class IfVarCategory<T> internal constructor(private val template: io.github.flyi
      * (*) = Optional
      */
     fun itemHasTag(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "ItemHasTag", wrappedCode, not)
 
     /**
@@ -159,9 +161,9 @@ class IfVarCategory<T> internal constructor(private val template: io.github.flyi
      * (*) = Optional
      */
     fun stringMatches(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "StringMatches", wrappedCode, not)
 
     /**
@@ -182,9 +184,9 @@ class IfVarCategory<T> internal constructor(private val template: io.github.flyi
      * (*) = Optional
      */
     fun startsWith(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "StartsWith", wrappedCode, not)
 
     /**
@@ -209,9 +211,9 @@ class IfVarCategory<T> internal constructor(private val template: io.github.flyi
      * (*) = Optional
      */
     fun listValueEq(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "ListValueEq", wrappedCode, not)
 
     /**
@@ -227,21 +229,21 @@ class IfVarCategory<T> internal constructor(private val template: io.github.flyi
      * (*) = Optional
      */
     fun varIsType(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "VarIsType", wrappedCode, not)
 
     fun textMatches(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "TextMatches", wrappedCode, not)
 
     fun isNear(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsNear", wrappedCode, not)
 
     /**
@@ -256,9 +258,9 @@ class IfVarCategory<T> internal constructor(private val template: io.github.flyi
      * (*) = Optional
      */
     fun varExists(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "VarExists", wrappedCode, not)
 
     /**
@@ -279,9 +281,9 @@ class IfVarCategory<T> internal constructor(private val template: io.github.flyi
      * (*) = Optional
      */
     fun itemEquals(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "ItemEquals", wrappedCode, not)
 
     /**
@@ -301,15 +303,15 @@ class IfVarCategory<T> internal constructor(private val template: io.github.flyi
      * (*) = Optional
      */
     fun listContains(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "ListContains", wrappedCode, not)
 
     fun inRange(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "InRange", wrappedCode, not)
 
     /**
@@ -334,9 +336,9 @@ class IfVarCategory<T> internal constructor(private val template: io.github.flyi
      * (*) = Optional
      */
     fun locIsNear(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "LocIsNear", wrappedCode, not)
 
     /**
@@ -356,9 +358,9 @@ class IfVarCategory<T> internal constructor(private val template: io.github.flyi
      * (*) = Optional
      */
     fun contains(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "Contains", wrappedCode, not)
 
     /**
@@ -378,9 +380,9 @@ class IfVarCategory<T> internal constructor(private val template: io.github.flyi
      * (*) = Optional
      */
     fun notEqualTo(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "!=", wrappedCode, not)
 
     /**
@@ -400,9 +402,9 @@ class IfVarCategory<T> internal constructor(private val template: io.github.flyi
      * (*) = Optional
      */
     fun lessThan(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "<", wrappedCode, not)
 
     /**
@@ -422,9 +424,9 @@ class IfVarCategory<T> internal constructor(private val template: io.github.flyi
      * (*) = Optional
      */
     fun equalTo(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "=", wrappedCode, not)
 
     /**
@@ -444,9 +446,9 @@ class IfVarCategory<T> internal constructor(private val template: io.github.flyi
      * (*) = Optional
      */
     fun greaterThan(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, ">", wrappedCode, not)
 
     /**
@@ -467,9 +469,9 @@ class IfVarCategory<T> internal constructor(private val template: io.github.flyi
      * (*) = Optional
      */
     fun endsWith(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "EndsWith", wrappedCode, not)
 
     /**
@@ -490,9 +492,9 @@ class IfVarCategory<T> internal constructor(private val template: io.github.flyi
      * (*) = Optional
      */
     fun lessThanOrEqual(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, ">=", wrappedCode, not)
 
     /**
@@ -512,9 +514,9 @@ class IfVarCategory<T> internal constructor(private val template: io.github.flyi
      * (*) = Optional
      */
     fun dictHasKey(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "DictHasKey", wrappedCode, not)
 
 }

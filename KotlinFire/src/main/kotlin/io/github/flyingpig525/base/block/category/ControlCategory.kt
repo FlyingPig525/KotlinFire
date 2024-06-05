@@ -2,16 +2,18 @@
 
 package io.github.flyingpig525.base.block.category
 
+import io.github.flyingpig525.base.Items
 import io.github.flyingpig525.base.JsonData
+import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.block.Block
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 
 
-class ControlCategory<T> internal constructor(private val template: io.github.flyingpig525.base.Template<T>) where T : Item, T : JsonData {
+class ControlCategory<T> internal constructor(private val template: Template<T>) where T : Item, T : JsonData {
     private val blocks = template.blocks
 
-    private fun block(items: io.github.flyingpig525.base.Items<T>, action: String) {
+    private fun block(items: Items<T>, action: String) {
         blocks += Block("control", ItemCollection(items).items, action)
     }
 
@@ -60,7 +62,7 @@ class ControlCategory<T> internal constructor(private val template: io.github.fl
      *
      * (*) = Optional
      */
-    fun wait(items: io.github.flyingpig525.base.Items<T>) = block(items, "Wait")
+    fun wait(items: Items<T>) = block(items, "Wait")
 
 
 }

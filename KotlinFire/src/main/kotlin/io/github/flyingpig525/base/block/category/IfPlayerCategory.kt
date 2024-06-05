@@ -3,19 +3,21 @@
 package io.github.flyingpig525.base.block.category
 
 import io.github.flyingpig525.annotation.*
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.block.Block
 import io.github.flyingpig525.base.block.BracketBlock
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
 
-class IfPlayerCategory<T> internal constructor(private val template: io.github.flyingpig525.base.Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
+class IfPlayerCategory<T> internal constructor(private val template: Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
     private val blocks = template.blocks
 
     private fun block(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         action: String,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit,
+        wrappedCode: Template<T>.() -> Unit,
         not: Boolean = false
     ) {
         blocks += Block("if_player", ItemCollection(items).items, action, if (not) "attribute: \"NOT\"" else "")
@@ -53,9 +55,9 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * (*) = Optional
      */
     fun isLookingAt(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsLookingAt", wrappedCode, not)
 
     /**
@@ -72,9 +74,9 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      */
     @Emperor
     fun inWorldBorder(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "InWorldBorder", wrappedCode, not)
 
     /**
@@ -82,9 +84,9 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * a specific game mode.
      */
     fun isInGameMode(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsInGameMode", wrappedCode, not)
 
     /**
@@ -105,15 +107,15 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * (*) = Optional
      */
     fun hasRoomForItem(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "HasRoomForItem", wrappedCode, not)
 
     fun isHoldingOff(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsHoldingOff", wrappedCode, not)
 
     /**
@@ -123,9 +125,9 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      */
     @Overlord
     fun usingPack(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "UsingPack", wrappedCode, not)
 
     /**
@@ -141,9 +143,9 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * (*) = Optional
      */
     fun noItemCooldown(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "NoItemCooldown", wrappedCode, not)
 
     /**
@@ -159,15 +161,15 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * (*) = Optional
      */
     fun isUsingItem(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsUsingItem", wrappedCode, not)
 
     fun hasAllItems(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "HasAllItems", wrappedCode, not)
 
     /**
@@ -175,9 +177,9 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * is in water or lava.
      */
     fun isSwimming(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsSwimming", wrappedCode, not)
 
     /**
@@ -193,16 +195,16 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * (*) = Optional
      */
     fun hasItem(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "HasItem", wrappedCode, not)
 
     @Emperor
     fun blockEquals(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "BlockEquals", wrappedCode, not)
 
     /**
@@ -218,9 +220,9 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * (*) = Optional
      */
     fun isWearing(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsWearing", wrappedCode, not)
 
     /**
@@ -240,27 +242,27 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * (*) = Optional
      */
     fun isNear(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsNear", wrappedCode, not)
 
     fun isRiding(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsRiding", wrappedCode, not)
 
     fun standingOn(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "StandingOn", wrappedCode, not)
 
     fun cmdEquals(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "CmdEquals", wrappedCode, not)
 
     /**
@@ -268,9 +270,9 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * supported by a block.
      */
     fun isGrounded(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsGrounded", wrappedCode, not)
 
     /**
@@ -286,9 +288,9 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * (*) = Optional
      */
     fun cursorItem(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "CursorItem", wrappedCode, not)
 
     /**
@@ -305,21 +307,21 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * (*) = Optional
      */
     fun slotEquals(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "SlotEquals", wrappedCode, not)
 
     fun itemEquals(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "ItemEquals", wrappedCode, not)
 
     fun isHoldingMain(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsHoldingMain", wrappedCode, not)
 
     /**
@@ -335,9 +337,9 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * (*) = Optional
      */
     fun isHolding(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsHolding", wrappedCode, not)
 
     /**
@@ -358,9 +360,9 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * (*) = Optional
      */
     fun menuSlotEquals(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "MenuSlotEquals", wrappedCode, not)
 
     /**
@@ -368,9 +370,9 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * blocking with a shield.
      */
     fun isBlocking(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsBlocking", wrappedCode, not)
 
     /**
@@ -379,9 +381,9 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * as builder or owner.
      */
     fun hasPermission(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "HasPermission", wrappedCode, not)
 
     /**
@@ -389,27 +391,27 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * is their left or right hand.
      */
     fun mainHandEquals(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "MainHandEquals", wrappedCode, not)
 
     /**
      * Checks if a player is sneaking.
      */
     fun isSneaking(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsSneaking", wrappedCode, not)
 
     /**
      * Checks if a player is flying.
      */
     fun isFlying(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsFlying", wrappedCode, not)
 
     /**
@@ -427,9 +429,9 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * (*) = Optional
      */
     fun hasPotion(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "HasPotion", wrappedCode, not)
 
     /**
@@ -446,9 +448,9 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * (*) = Optional
      */
     fun nameEquals(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "NameEquals", wrappedCode, not)
 
     /**
@@ -456,9 +458,9 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * certain inventory type open.
      */
     fun invOpen(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "InvOpen", wrappedCode, not)
 
     /**
@@ -478,9 +480,9 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * (*) = Optional
      */
     fun hasSlotItem(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "HasSlotItem", wrappedCode, not)
 
     /**
@@ -488,9 +490,9 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * or using the sprint key to swim.
      */
     fun isSprinting(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsSprinting", wrappedCode, not)
 
     /**
@@ -498,15 +500,15 @@ class IfPlayerCategory<T> internal constructor(private val template: io.github.f
      * gliding with elytra.
      */
     fun isGliding(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "IsGliding", wrappedCode, not)
 
     fun cmdArgEquals(
-        items: io.github.flyingpig525.base.Items<T>,
+        items: Items<T>,
         not: Boolean = false,
-        wrappedCode: io.github.flyingpig525.base.Template<T>.() -> Unit
+        wrappedCode: Template<T>.() -> Unit
     ) = block(items, "CmdArgEquals", wrappedCode, not)
 
 }

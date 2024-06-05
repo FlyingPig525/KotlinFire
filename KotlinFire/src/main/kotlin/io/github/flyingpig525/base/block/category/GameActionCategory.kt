@@ -2,15 +2,17 @@
 
 package io.github.flyingpig525.base.block.category
 
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.block.Block
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
 
-class GameActionCategory<T> internal constructor(private val template: io.github.flyingpig525.base.Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
+class GameActionCategory<T> internal constructor(private val template: Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
     private val blocks = template.blocks
 
-    private fun block(items: io.github.flyingpig525.base.Items<T>, action: String) {
+    private fun block(items: Items<T>, action: String) {
         blocks += Block("game_action", ItemCollection(items).items, action)
     }
 
@@ -18,7 +20,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
         apply(a)
     }
 
-    fun startLoop(items: io.github.flyingpig525.base.Items<T>) = block(items, "StartLoop")
+    fun startLoop(items: Items<T>) = block(items, "StartLoop")
 
     /**
      * Sets the amount of ticks it
@@ -37,7 +39,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun setFurnaceSpeed(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetFurnaceSpeed")
+    fun setFurnaceSpeed(items: Items<T>) = block(items, "SetFurnaceSpeed")
 
     /**
      * Enables blocks dropping
@@ -47,7 +49,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun blockDropsOn(items: io.github.flyingpig525.base.Items<T>) = block(items, "BlockDropsOn")
+    fun blockDropsOn(items: Items<T>) = block(items, "BlockDropsOn")
 
     /**
      * Fills the container at a location
@@ -65,7 +67,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun fillContainer(items: io.github.flyingpig525.base.Items<T>) = block(items, "FillContainer")
+    fun fillContainer(items: Items<T>) = block(items, "FillContainer")
 
     /**
      * Breaks the block at a location
@@ -79,10 +81,10 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun breakBlock(items: io.github.flyingpig525.base.Items<T>) = block(items, "BreakBlock")
+    fun breakBlock(items: Items<T>) = block(items, "BreakBlock")
 
     @io.github.flyingpig525.annotation.Noble
-    fun particleSphere(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParticleSphere")
+    fun particleSphere(items: Items<T>) = block(items, "ParticleSphere")
 
     /**
      * Applies bone meal to a block.
@@ -100,7 +102,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun boneMeal(items: io.github.flyingpig525.base.Items<T>) = block(items, "BoneMeal")
+    fun boneMeal(items: Items<T>) = block(items, "BoneMeal")
 
     /**
      * Spawns a falling block at a
@@ -127,7 +129,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun fallingBlock(items: io.github.flyingpig525.base.Items<T>) = block(items, "FallingBlock")
+    fun fallingBlock(items: Items<T>) = block(items, "FallingBlock")
 
     /**
      * Sends a message to a Discord
@@ -146,7 +148,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Overlord
-    fun discordWebhook(items: io.github.flyingpig525.base.Items<T>) = block(items, "DiscordWebhook")
+    fun discordWebhook(items: Items<T>) = block(items, "DiscordWebhook")
 
     /**
      * Changes a line of text
@@ -168,7 +170,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun changeSign(items: io.github.flyingpig525.base.Items<T>) = block(items, "ChangeSign")
+    fun changeSign(items: Items<T>) = block(items, "ChangeSign")
 
     /**
      * Causes a block to get "random
@@ -187,7 +189,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun tickBlock(items: io.github.flyingpig525.base.Items<T>) = block(items, "TickBlock")
+    fun tickBlock(items: Items<T>) = block(items, "TickBlock")
 
     /**
      * Sends a web request to a URL.
@@ -205,9 +207,9 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Overlord
-    fun webRequest(items: io.github.flyingpig525.base.Items<T>) = block(items, "WebRequest")
-    fun clearScBoard(items: io.github.flyingpig525.base.Items<T>) = block(items, "ClearScBoard")
-    fun hideSidebar(items: io.github.flyingpig525.base.Items<T>) = block(items, "HideSidebar")
+    fun webRequest(items: Items<T>) = block(items, "WebRequest")
+    fun clearScBoard(items: Items<T>) = block(items, "ClearScBoard")
+    fun hideSidebar(items: Items<T>) = block(items, "HideSidebar")
 
     /**
      * Replaces items in the container
@@ -234,7 +236,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun replaceItems(items: io.github.flyingpig525.base.Items<T>) = block(items, "ReplaceItems")
+    fun replaceItems(items: Items<T>) = block(items, "ReplaceItems")
 
     /**
      * Replaces the projectile fired in
@@ -248,10 +250,10 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun setEventProj(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetEventProj")
+    fun setEventProj(items: Items<T>) = block(items, "SetEventProj")
 
     @io.github.flyingpig525.annotation.Mythic
-    fun spawnItemDisplay(items: io.github.flyingpig525.base.Items<T>) = block(items, "SpawnItemDisplay")
+    fun spawnItemDisplay(items: Items<T>) = block(items, "SpawnItemDisplay")
 
     /**
      * Creates an explosion at a location.
@@ -269,7 +271,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun explosion(items: io.github.flyingpig525.base.Items<T>) = block(items, "Explosion")
+    fun explosion(items: Items<T>) = block(items, "Explosion")
 
     /**
      * Spawns a mob at a location.
@@ -302,7 +304,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun spawnMob(items: io.github.flyingpig525.base.Items<T>) = block(items, "SpawnMob")
+    fun spawnMob(items: Items<T>) = block(items, "SpawnMob")
 
     /**
      * Sets the item buried in a
@@ -320,10 +322,10 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun setBrushableItem(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetBrushableItem")
+    fun setBrushableItem(items: Items<T>) = block(items, "SetBrushableItem")
 
     @io.github.flyingpig525.annotation.Mythic
-    fun particleLineA(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParticleLineA")
+    fun particleLineA(items: Items<T>) = block(items, "ParticleLineA")
 
     /**
      * Spawns an eye of ender at a
@@ -350,8 +352,8 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun spawnEnderEye(items: io.github.flyingpig525.base.Items<T>) = block(items, "SpawnEnderEye")
-    fun showSidebar(items: io.github.flyingpig525.base.Items<T>) = block(items, "ShowSidebar")
+    fun spawnEnderEye(items: Items<T>) = block(items, "SpawnEnderEye")
+    fun showSidebar(items: Items<T>) = block(items, "ShowSidebar")
 
     /**
      * Spawns a lingering potion cloud
@@ -383,10 +385,10 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun spawnPotionCloud(items: io.github.flyingpig525.base.Items<T>) = block(items, "SpawnPotionCloud")
+    fun spawnPotionCloud(items: Items<T>) = block(items, "SpawnPotionCloud")
 
     @io.github.flyingpig525.annotation.Noble
-    fun particleSpiral(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParticleSpiral")
+    fun particleSpiral(items: Items<T>) = block(items, "ParticleSpiral")
 
     /**
      * Sets a data tag value of
@@ -404,7 +406,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun setBlockData(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetBlockData")
+    fun setBlockData(items: Items<T>) = block(items, "SetBlockData")
 
     /**
      * Sets the block at
@@ -426,7 +428,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun setBlock(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetBlock")
+    fun setBlock(items: Items<T>) = block(items, "SetBlock")
 
     /**
      * Launches a projectile.
@@ -455,7 +457,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun launchProj(items: io.github.flyingpig525.base.Items<T>) = block(items, "LaunchProj")
+    fun launchProj(items: Items<T>) = block(items, "LaunchProj")
 
     /**
      * Launches a firework
@@ -473,7 +475,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun firework(items: io.github.flyingpig525.base.Items<T>) = block(items, "Firework")
+    fun firework(items: Items<T>) = block(items, "Firework")
 
     /**
      * Spawns an item display entity.
@@ -491,7 +493,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun spawnItemDisp(items: io.github.flyingpig525.base.Items<T>) = block(items, "SpawnItemDisp")
+    fun spawnItemDisp(items: Items<T>) = block(items, "SpawnItemDisp")
 
     /**
      * Sets the damage dealt in
@@ -505,7 +507,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun setEventDamage(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetEventDamage")
+    fun setEventDamage(items: Items<T>) = block(items, "SetEventDamage")
 
     /**
      * Sets the growth stage of the block
@@ -523,8 +525,8 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun setBlockGrowth(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetBlockGrowth")
-    fun wait(items: io.github.flyingpig525.base.Items<T>) = block(items, "Wait")
+    fun setBlockGrowth(items: Items<T>) = block(items, "SetBlockGrowth")
+    fun wait(items: Items<T>) = block(items, "Wait")
 
     /**
      * Sets the name of the container
@@ -542,7 +544,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun setContainerName(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetContainerName")
+    fun setContainerName(items: Items<T>) = block(items, "SetContainerName")
 
     /**
      * Spawns an item at a location.
@@ -563,7 +565,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun spawnItem(items: io.github.flyingpig525.base.Items<T>) = block(items, "SpawnItem")
+    fun spawnItem(items: Items<T>) = block(items, "SpawnItem")
 
     /**
      * Changes the text color
@@ -577,7 +579,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun signColor(items: io.github.flyingpig525.base.Items<T>) = block(items, "SignColor")
+    fun signColor(items: Items<T>) = block(items, "SignColor")
 
     /**
      * Sets the block at a location
@@ -599,10 +601,10 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun setHead(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetHead")
+    fun setHead(items: Items<T>) = block(items, "SetHead")
 
     @io.github.flyingpig525.annotation.Mythic
-    fun removeHologram(items: io.github.flyingpig525.base.Items<T>) = block(items, "RemoveHologram")
+    fun removeHologram(items: Items<T>) = block(items, "RemoveHologram")
 
     /**
      * Removes items from the container
@@ -620,7 +622,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun removeItems(items: io.github.flyingpig525.base.Items<T>) = block(items, "RemoveItems")
+    fun removeItems(items: Items<T>) = block(items, "RemoveItems")
 
     /**
      * Spawns a shulker bullet at a location.
@@ -633,9 +635,9 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun shulkerBullet(items: io.github.flyingpig525.base.Items<T>) = block(items, "ShulkerBullet")
-    fun spawnRngItem(items: io.github.flyingpig525.base.Items<T>) = block(items, "SpawnRngItem")
-    fun fireworkEffect(items: io.github.flyingpig525.base.Items<T>) = block(items, "FireworkEffect")
+    fun shulkerBullet(items: Items<T>) = block(items, "ShulkerBullet")
+    fun spawnRngItem(items: Items<T>) = block(items, "SpawnRngItem")
+    fun fireworkEffect(items: Items<T>) = block(items, "FireworkEffect")
 
     /**
      * Fills a region with a type of block.
@@ -661,7 +663,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun setRegion(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetRegion")
+    fun setRegion(items: Items<T>) = block(items, "SetRegion")
 
     /**
      * Sets the contents of the container
@@ -679,7 +681,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun setContainer(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetContainer")
+    fun setContainer(items: Items<T>) = block(items, "SetContainer")
 
     /**
      * Spawns an invisible hitbox
@@ -701,7 +703,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun spawnInteraction(items: io.github.flyingpig525.base.Items<T>) = block(items, "SpawnInteraction")
+    fun spawnInteraction(items: Items<T>) = block(items, "SpawnInteraction")
 
     /**
      * Sets the item in a slot of the
@@ -723,10 +725,10 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun setItemInSlot(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetItemInSlot")
+    fun setItemInSlot(items: Items<T>) = block(items, "SetItemInSlot")
 
     @io.github.flyingpig525.annotation.Mythic
-    fun particleCircleA(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParticleCircleA")
+    fun particleCircleA(items: Items<T>) = block(items, "ParticleCircleA")
 
     /**
      * Copies a region of blocks to another
@@ -753,7 +755,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Overlord
-    fun cloneRegion(items: io.github.flyingpig525.base.Items<T>) = block(items, "CloneRegion")
+    fun cloneRegion(items: Items<T>) = block(items, "CloneRegion")
 
     /**
      * Uncancels the initial event that
@@ -763,7 +765,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun uncancelEvent(items: io.github.flyingpig525.base.Items<T>) = block(items, "UncancelEvent")
+    fun uncancelEvent(items: Items<T>) = block(items, "UncancelEvent")
 
     /**
      * Sets the book and the
@@ -785,7 +787,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun setLecternBook(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetLecternBook")
+    fun setLecternBook(items: Items<T>) = block(items, "SetLecternBook")
 
     /**
      * Spawns primed TNT at a location.
@@ -810,7 +812,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun spawnTNT(items: io.github.flyingpig525.base.Items<T>) = block(items, "SpawnTNT")
+    fun spawnTNT(items: Items<T>) = block(items, "SpawnTNT")
 
     /**
      * Spawns an armor stand at a
@@ -833,7 +835,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun spawnArmorStand(items: io.github.flyingpig525.base.Items<T>) = block(items, "SpawnArmorStand")
+    fun spawnArmorStand(items: Items<T>) = block(items, "SpawnArmorStand")
 
     /**
      * Spawns an experience orb at
@@ -855,7 +857,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun spawnExpOrb(items: io.github.flyingpig525.base.Items<T>) = block(items, "SpawnExpOrb")
+    fun spawnExpOrb(items: Items<T>) = block(items, "SpawnExpOrb")
 
     /**
      * Sets the amount of health
@@ -869,7 +871,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun setEventHeal(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetEventHeal")
+    fun setEventHeal(items: Items<T>) = block(items, "SetEventHeal")
 
     /**
      * Spawns a block display entity.
@@ -891,8 +893,8 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun spawnBlockDisp(items: io.github.flyingpig525.base.Items<T>) = block(items, "SpawnBlockDisp")
-    fun particleRay(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParticleRay")
+    fun spawnBlockDisp(items: Items<T>) = block(items, "SpawnBlockDisp")
+    fun particleRay(items: Items<T>) = block(items, "ParticleRay")
 
     /**
      * Generates a tree at a location.
@@ -906,8 +908,8 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun generateTree(items: io.github.flyingpig525.base.Items<T>) = block(items, "GenerateTree")
-    fun stopLoop(items: io.github.flyingpig525.base.Items<T>) = block(items, "StopLoop")
+    fun generateTree(items: Items<T>) = block(items, "GenerateTree")
+    fun stopLoop(items: Items<T>) = block(items, "StopLoop")
 
     /**
      * Empties a container at a location.
@@ -920,8 +922,8 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun clearContainer(items: io.github.flyingpig525.base.Items<T>) = block(items, "ClearContainer")
-    fun setScObj(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetScObj")
+    fun clearContainer(items: Items<T>) = block(items, "ClearContainer")
+    fun setScObj(items: Items<T>) = block(items, "SetScObj")
 
     /**
      * Cancels the initial event that
@@ -931,7 +933,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun cancelEvent(items: io.github.flyingpig525.base.Items<T>) = block(items, "CancelEvent")
+    fun cancelEvent(items: Items<T>) = block(items, "CancelEvent")
 
     /**
      * Spawns an end crystal at a
@@ -949,8 +951,8 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun spawnCrystal(items: io.github.flyingpig525.base.Items<T>) = block(items, "SpawnCrystal")
-    fun particleEffect(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParticleEffect")
+    fun spawnCrystal(items: Items<T>) = block(items, "SpawnCrystal")
+    fun particleEffect(items: Items<T>) = block(items, "ParticleEffect")
 
     /**
      * Spawns evoker fangs at a
@@ -968,7 +970,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun spawnFangs(items: io.github.flyingpig525.base.Items<T>) = block(items, "SpawnFangs")
+    fun spawnFangs(items: Items<T>) = block(items, "SpawnFangs")
 
     /**
      * Sets the sound to play for
@@ -983,7 +985,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun setEventSound(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetEventSound")
+    fun setEventSound(items: Items<T>) = block(items, "SetEventSound")
 
     /**
      * Sets the item being cooked in
@@ -1005,7 +1007,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun setCampfireItem(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetCampfireItem")
+    fun setCampfireItem(items: Items<T>) = block(items, "SetCampfireItem")
 
     /**
      * Spawns a text display entity.
@@ -1023,7 +1025,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun spawnTextDisplay(items: io.github.flyingpig525.base.Items<T>) = block(items, "SpawnTextDisplay")
+    fun spawnTextDisplay(items: Items<T>) = block(items, "SpawnTextDisplay")
 
     /**
      * Sets the amount of experience
@@ -1037,7 +1039,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun setEventXP(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetEventXP")
+    fun setEventXP(items: Items<T>) = block(items, "SetEventXP")
 
     /**
      * Sets the lock key of the container
@@ -1059,7 +1061,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun lockContainer(items: io.github.flyingpig525.base.Items<T>) = block(items, "LockContainer")
+    fun lockContainer(items: Items<T>) = block(items, "LockContainer")
 
     /**
      * Spawns a vehicle at a location.
@@ -1080,7 +1082,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun spawnVehicle(items: io.github.flyingpig525.base.Items<T>) = block(items, "SpawnVehicle")
+    fun spawnVehicle(items: Items<T>) = block(items, "SpawnVehicle")
 
     /**
      * Strikes lightning at a location.
@@ -1093,21 +1095,21 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun lightning(items: io.github.flyingpig525.base.Items<T>) = block(items, "Lightning")
+    fun lightning(items: Items<T>) = block(items, "Lightning")
 
     @io.github.flyingpig525.annotation.Mythic
-    fun particleSpiralA(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParticleSpiralA")
-    fun removeScore(items: io.github.flyingpig525.base.Items<T>) = block(items, "RemoveScore")
+    fun particleSpiralA(items: Items<T>) = block(items, "ParticleSpiralA")
+    fun removeScore(items: Items<T>) = block(items, "RemoveScore")
 
     @io.github.flyingpig525.annotation.Mythic
-    fun createHologram(items: io.github.flyingpig525.base.Items<T>) = block(items, "CreateHologram")
-    fun setScore(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetScore")
+    fun createHologram(items: Items<T>) = block(items, "CreateHologram")
+    fun setScore(items: Items<T>) = block(items, "SetScore")
 
     @io.github.flyingpig525.annotation.Noble
-    fun particleCluster(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParticleCluster")
+    fun particleCluster(items: Items<T>) = block(items, "ParticleCluster")
 
     @io.github.flyingpig525.annotation.Noble
-    fun particleCircle(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParticleCircle")
+    fun particleCircle(items: Items<T>) = block(items, "ParticleCircle")
 
     /**
      * Disables blocks dropping
@@ -1117,7 +1119,7 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun blockDropsOff(items: io.github.flyingpig525.base.Items<T>) = block(items, "BlockDropsOff")
+    fun blockDropsOff(items: Items<T>) = block(items, "BlockDropsOff")
 
     /**
      * Removes all of an item from
@@ -1135,8 +1137,8 @@ class GameActionCategory<T> internal constructor(private val template: io.github
      *
      * (*) = Optional
      */
-    fun clearItems(items: io.github.flyingpig525.base.Items<T>) = block(items, "ClearItems")
-    fun particleLine(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParticleLine")
+    fun clearItems(items: Items<T>) = block(items, "ClearItems")
+    fun particleLine(items: Items<T>) = block(items, "ParticleLine")
 
 
 }

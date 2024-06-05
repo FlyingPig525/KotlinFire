@@ -2,13 +2,15 @@
 
 package io.github.flyingpig525.base.block.category
 
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.block.Block
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
 
 
-class SetVariableCategory<T> internal constructor(private val template: io.github.flyingpig525.base.Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
+class SetVariableCategory<T> internal constructor(private val template: Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
     private val blocks = template.blocks
 
     fun chain(a: SetVariableCategory<T>.() -> Unit) {
@@ -31,7 +33,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun string(items: io.github.flyingpig525.base.Items<T>) = block(items, "String")
+    fun string(items: Items<T>) = block(items, "String")
 
     /**
      * Sets a particle effect's type.
@@ -53,8 +55,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setParticleType(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetParticleType")
-    fun setItemEnchants(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetItemEnchants")
+    fun setParticleType(items: Items<T>) = block(items, "SetParticleType")
+    fun setItemEnchants(items: Items<T>) = block(items, "SetItemEnchants")
 
     /**
      * Removes all item custom tags.
@@ -71,7 +73,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun clearItemTag(items: io.github.flyingpig525.base.Items<T>) = block(items, "ClearItemTag")
+    fun clearItemTag(items: Items<T>) = block(items, "ClearItemTag")
 
     /**
      * Clears all variables with names
@@ -85,7 +87,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun purgeVars(items: io.github.flyingpig525.base.Items<T>) = block(items, "PurgeVars")
+    fun purgeVars(items: Items<T>) = block(items, "PurgeVars")
 
     /**
      * Shifts a location's coordinates
@@ -115,7 +117,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun shiftAllAxes(items: io.github.flyingpig525.base.Items<T>) = block(items, "ShiftAllAxes")
+    fun shiftAllAxes(items: Items<T>) = block(items, "ShiftAllAxes")
 
     /**
      * Gets a particle effect's particle
@@ -134,7 +136,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getParticleMat(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetParticleMat")
+    fun getParticleMat(items: Items<T>) = block(items, "GetParticleMat")
 
     /**
      * Sets a particle effect's horizontal
@@ -160,7 +162,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setParticleSprd(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetParticleSprd")
+    fun setParticleSprd(items: Items<T>) = block(items, "SetParticleSprd")
 
     /**
      * Makes a number positive
@@ -178,7 +180,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun absoluteValue(items: io.github.flyingpig525.base.Items<T>) = block(items, "AbsoluteValue")
+    fun absoluteValue(items: Items<T>) = block(items, "AbsoluteValue")
 
     /**
      * Adds a value to the end of a list
@@ -196,7 +198,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun appendValue(items: io.github.flyingpig525.base.Items<T>) = block(items, "AppendValue")
+    fun appendValue(items: Items<T>) = block(items, "AppendValue")
 
     /**
      * Sets a variable to the remainder
@@ -219,7 +221,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun remainder(items: io.github.flyingpig525.base.Items<T>) = block(items, "%")
+    fun remainder(items: Items<T>) = block(items, "%")
 
     /**
      * Shifts a location along a
@@ -249,7 +251,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun shiftOnVector(items: io.github.flyingpig525.base.Items<T>) = block(items, "ShiftOnVector")
+    fun shiftOnVector(items: Items<T>) = block(items, "ShiftOnVector")
 
     /**
      * Get an attribute's
@@ -267,7 +269,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getItemAttribute(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetItemAttribute")
+    fun getItemAttribute(items: Items<T>) = block(items, "GetItemAttribute")
 
     /**
      * Removes all entries from
@@ -281,7 +283,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun clearDict(items: io.github.flyingpig525.base.Items<T>) = block(items, "ClearDict")
+    fun clearDict(items: Items<T>) = block(items, "ClearDict")
 
     /**
      * Sets a variable to the sum of
@@ -299,7 +301,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun add(items: io.github.flyingpig525.base.Items<T>) = block(items, "+")
+    fun add(items: Items<T>) = block(items, "+")
 
     /**
      * Rotates a location by shifting its pitch
@@ -321,7 +323,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun shiftRotation(items: io.github.flyingpig525.base.Items<T>) = block(items, "ShiftRotation")
+    fun shiftRotation(items: Items<T>) = block(items, "ShiftRotation")
 
     /**
      * Sets a variable to the difference
@@ -339,7 +341,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun subtract(items: io.github.flyingpig525.base.Items<T>) = block(items, "-")
+    fun subtract(items: Items<T>) = block(items, "-")
 
     /**
      * Gets an item's rarity.
@@ -356,7 +358,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getItemRarity(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetItemRarity")
+    fun getItemRarity(items: Items<T>) = block(items, "GetItemRarity")
 
     /**
      * Multiplies a vector's length
@@ -378,7 +380,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun multiplyVector(items: io.github.flyingpig525.base.Items<T>) = block(items, "MultiplyVector")
+    fun multiplyVector(items: Items<T>) = block(items, "MultiplyVector")
 
     /**
      * Sets a variable to the quotient
@@ -396,8 +398,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun divide(items: io.github.flyingpig525.base.Items<T>) = block(items, "/")
-    fun getSignText(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetSignText")
+    fun divide(items: Items<T>) = block(items, "/")
+    fun getSignText(items: Items<T>) = block(items, "GetSignText")
 
     /**
      * Sets a variable to the result
@@ -419,7 +421,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun bitwise(items: io.github.flyingpig525.base.Items<T>) = block(items, "Bitwise")
+    fun bitwise(items: Items<T>) = block(items, "Bitwise")
 
     /**
      * Gets the displayed page
@@ -437,8 +439,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getLecternPage(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetLecternPage")
-    fun parseX(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParseX")
+    fun getLecternPage(items: Items<T>) = block(items, "GetLecternPage")
+    fun parseX(items: Items<T>) = block(items, "ParseX")
 
     /**
      * Shifts the X, Y, or Z coordinate
@@ -460,8 +462,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun shiftOnAxis(items: io.github.flyingpig525.base.Items<T>) = block(items, "ShiftOnAxis")
-    fun parseY(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParseY")
+    fun shiftOnAxis(items: Items<T>) = block(items, "ShiftOnAxis")
+    fun parseY(items: Items<T>) = block(items, "ParseY")
 
     /**
      * Sets a variable to the vector
@@ -483,8 +485,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun vectorBetween(items: io.github.flyingpig525.base.Items<T>) = block(items, "VectorBetween")
-    fun parseZ(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParseZ")
+    fun vectorBetween(items: Items<T>) = block(items, "VectorBetween")
+    fun parseZ(items: Items<T>) = block(items, "ParseZ")
 
     /**
      * Gets a vector's X, Y, or Z
@@ -503,7 +505,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getVectorComp(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetVectorComp")
+    fun getVectorComp(items: Items<T>) = block(items, "GetVectorComp")
 
     /**
      * Sets a variable to a value.
@@ -520,8 +522,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun set(items: io.github.flyingpig525.base.Items<T>) = block(items, "=")
-    fun rmText(items: io.github.flyingpig525.base.Items<T>) = block(items, "RmText")
+    fun set(items: Items<T>) = block(items, "=")
+    fun rmText(items: Items<T>) = block(items, "RmText")
 
     /**
      * Adds an attribute modifier to the
@@ -544,7 +546,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun addItemAttribute(items: io.github.flyingpig525.base.Items<T>) = block(items, "AddItemAttribute")
+    fun addItemAttribute(items: Items<T>) = block(items, "AddItemAttribute")
 
     /**
      * Finds an average position (center)
@@ -562,7 +564,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getCenterLoc(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetCenterLoc")
+    fun getCenterLoc(items: Items<T>) = block(items, "GetCenterLoc")
 
     /**
      * Aligns a location to the center
@@ -580,7 +582,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun alignLoc(items: io.github.flyingpig525.base.Items<T>) = block(items, "AlignLoc")
+    fun alignLoc(items: Items<T>) = block(items, "AlignLoc")
 
     /**
      * Gets a sound's volume.
@@ -597,7 +599,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getSoundVolume(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetSoundVolume")
+    fun getSoundVolume(items: Items<T>) = block(items, "GetSoundVolume")
 
     /**
      * Sets a variable to a random
@@ -620,7 +622,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun randomNumber(items: io.github.flyingpig525.base.Items<T>) = block(items, "RandomNumber")
+    fun randomNumber(items: Items<T>) = block(items, "RandomNumber")
 
     /**
      * Gets a container's name at
@@ -638,7 +640,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun containerName(items: io.github.flyingpig525.base.Items<T>) = block(items, "ContainerName")
+    fun containerName(items: Items<T>) = block(items, "ContainerName")
 
     /**
      * Raycasts from a location
@@ -660,7 +662,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun raycast(items: io.github.flyingpig525.base.Items<T>) = block(items, "Raycast")
+    fun raycast(items: Items<T>) = block(items, "Raycast")
 
     /**
      * Rotates a vector around
@@ -686,7 +688,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun rotateAroundVec(items: io.github.flyingpig525.base.Items<T>) = block(items, "RotateAroundVec")
+    fun rotateAroundVec(items: Items<T>) = block(items, "RotateAroundVec")
 
     /**
      * Gets a particle effect's particle
@@ -705,7 +707,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getParticleMotion(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetParticleMotion")
+    fun getParticleMotion(items: Items<T>) = block(items, "GetParticleMotion")
 
     /**
      * Sets a particle effect's particle
@@ -732,7 +734,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setParticleMotion(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetParticleMotion")
+    fun setParticleMotion(items: Items<T>) = block(items, "SetParticleMotion")
 
     /**
      * Sets a variable to the average
@@ -750,15 +752,15 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun average(items: io.github.flyingpig525.base.Items<T>) = block(items, "Average")
+    fun average(items: Items<T>) = block(items, "Average")
 
     /**
      * Checks if a number is between
      * two bounds and if not, wraps
      * it around the farthest bound.
      */
-    fun wrapNumber(items: io.github.flyingpig525.base.Items<T>) = block(items, "WrapNumber")
-    fun setY(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetY")
+    fun wrapNumber(items: Items<T>) = block(items, "WrapNumber")
+    fun setY(items: Items<T>) = block(items, "SetY")
 
     /**
      * Sets a map item's texture to the
@@ -781,7 +783,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Emperor
-    fun setMapTexture(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetMapTexture")
+    fun setMapTexture(items: Items<T>) = block(items, "SetMapTexture")
 
     /**
      * Gets a block state tag
@@ -803,8 +805,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getBlockData(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetBlockData")
-    fun setX(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetX")
+    fun getBlockData(items: Items<T>) = block(items, "GetBlockData")
+    fun setX(items: Items<T>) = block(items, "SetX")
 
     /**
      * Sorts a dictionary
@@ -822,7 +824,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun sortDict(items: io.github.flyingpig525.base.Items<T>) = block(items, "SortDict")
+    fun sortDict(items: Items<T>) = block(items, "SortDict")
 
     /**
      * Gets the book on the
@@ -840,7 +842,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getLecternBook(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetLecternBook")
+    fun getLecternBook(items: Items<T>) = block(items, "GetLecternBook")
 
     /**
      * Gets the key of a custom sound.
@@ -857,7 +859,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getCustomSound(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetCustomSound")
+    fun getCustomSound(items: Items<T>) = block(items, "GetCustomSound")
 
     /**
      * Sets a variable to the cross
@@ -879,7 +881,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun crossProduct(items: io.github.flyingpig525.base.Items<T>) = block(items, "CrossProduct")
+    fun crossProduct(items: Items<T>) = block(items, "CrossProduct")
 
     /**
      * Sets a variable to the product
@@ -897,7 +899,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun x(items: io.github.flyingpig525.base.Items<T>) = block(items, "x")
+    fun x(items: Items<T>) = block(items, "x")
 
     /**
      * Gets a particle effect's roll.
@@ -915,8 +917,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getParticleRoll(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetParticleRoll")
-    fun parseYaw(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParseYaw")
+    fun getParticleRoll(items: Items<T>) = block(items, "GetParticleRoll")
+    fun parseYaw(items: Items<T>) = block(items, "ParseYaw")
 
     /**
      * Sets a variable to the dot
@@ -938,8 +940,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun dotProduct(items: io.github.flyingpig525.base.Items<T>) = block(items, "DotProduct")
-    fun setZ(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetZ")
+    fun dotProduct(items: Items<T>) = block(items, "DotProduct")
+    fun setZ(items: Items<T>) = block(items, "SetZ")
 
     /**
      * Sets the trim of an
@@ -957,7 +959,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setArmorTrim(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetArmorTrim")
+    fun setArmorTrim(items: Items<T>) = block(items, "SetArmorTrim")
 
     /**
      * Gets a list variable's value at
@@ -979,7 +981,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun popListValue(items: io.github.flyingpig525.base.Items<T>) = block(items, "PopListValue")
+    fun popListValue(items: Items<T>) = block(items, "PopListValue")
 
     /**
      * Sets a variable to the lowest
@@ -998,7 +1000,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun minNumber(items: io.github.flyingpig525.base.Items<T>) = block(items, "MinNumber")
+    fun minNumber(items: Items<T>) = block(items, "MinNumber")
 
     /**
      * Gets a potion effect's type.
@@ -1016,8 +1018,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getPotionType(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetPotionType")
-    fun setItemName(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetItemName")
+    fun getPotionType(items: Items<T>) = block(items, "GetPotionType")
+    fun setItemName(items: Items<T>) = block(items, "SetItemName")
 
     /**
      * Gets the number of values
@@ -1035,7 +1037,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun listLength(items: io.github.flyingpig525.base.Items<T>) = block(items, "ListLength")
+    fun listLength(items: Items<T>) = block(items, "ListLength")
 
     /**
      * Sets a variable to the trigonometric
@@ -1053,7 +1055,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun sine(items: io.github.flyingpig525.base.Items<T>) = block(items, "Sine")
+    fun sine(items: Items<T>) = block(items, "Sine")
 
     /**
      * Sets a variable to the name
@@ -1071,7 +1073,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun directionName(items: io.github.flyingpig525.base.Items<T>) = block(items, "DirectionName")
+    fun directionName(items: Items<T>) = block(items, "DirectionName")
 
     /**
      * Repeats a string the given number
@@ -1093,8 +1095,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun repeatString(items: io.github.flyingpig525.base.Items<T>) = block(items, "RepeatString")
-    fun getItemLore(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetItemLore")
+    fun repeatString(items: Items<T>) = block(items, "RepeatString")
+    fun getItemLore(items: Items<T>) = block(items, "GetItemLore")
 
     /**
      * Combines a list of strings.
@@ -1119,7 +1121,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun joinString(items: io.github.flyingpig525.base.Items<T>) = block(items, "JoinString")
+    fun joinString(items: Items<T>) = block(items, "JoinString")
 
     /**
      * Reverses the order of a
@@ -1137,7 +1139,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun reverseList(items: io.github.flyingpig525.base.Items<T>) = block(items, "ReverseList")
+    fun reverseList(items: Items<T>) = block(items, "ReverseList")
 
     /**
      * Removes list elements that appear
@@ -1155,7 +1157,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun dedupList(items: io.github.flyingpig525.base.Items<T>) = block(items, "DedupList")
+    fun dedupList(items: Items<T>) = block(items, "DedupList")
 
     /**
      * Creates a dictionary with the
@@ -1177,8 +1179,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun createDict(items: io.github.flyingpig525.base.Items<T>) = block(items, "CreateDict")
-    fun roundNumber(items: io.github.flyingpig525.base.Items<T>) = block(items, "RoundNumber")
+    fun createDict(items: Items<T>) = block(items, "CreateDict")
+    fun roundNumber(items: Items<T>) = block(items, "RoundNumber")
 
     /**
      * Sets a location's rotation to
@@ -1200,8 +1202,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun faceLocation(items: io.github.flyingpig525.base.Items<T>) = block(items, "FaceLocation")
-    fun getItemLoreLine(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetItemLoreLine")
+    fun faceLocation(items: Items<T>) = block(items, "FaceLocation")
+    fun getItemLoreLine(items: Items<T>) = block(items, "GetItemLoreLine")
 
     /**
      * Sets a vector's length. This
@@ -1223,7 +1225,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setVectorLength(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetVectorLength")
+    fun setVectorLength(items: Items<T>) = block(items, "SetVectorLength")
 
     /**
      * Sets a potion effect's duration.
@@ -1244,7 +1246,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setPotionDur(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetPotionDur")
+    fun setPotionDur(items: Items<T>) = block(items, "SetPotionDur")
 
     /**
      * Gets a block's blast resistance.
@@ -1265,7 +1267,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun blockResistance(items: io.github.flyingpig525.base.Items<T>) = block(items, "BlockResistance")
+    fun blockResistance(items: Items<T>) = block(items, "BlockResistance")
 
     /**
      * Splits a string into a list of strings.
@@ -1286,7 +1288,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun splitString(items: io.github.flyingpig525.base.Items<T>) = block(items, "SplitString")
+    fun splitString(items: Items<T>) = block(items, "SplitString")
 
     /**
      * Sets a variable to a normally distributed
@@ -1309,7 +1311,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun normalRandom(items: io.github.flyingpig525.base.Items<T>) = block(items, "NormalRandom")
+    fun normalRandom(items: Items<T>) = block(items, "NormalRandom")
 
     /**
      * Sets a potion effect's type.
@@ -1330,7 +1332,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setPotionType(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetPotionType")
+    fun setPotionType(items: Items<T>) = block(items, "SetPotionType")
 
     /**
      * Aligns a vector to the
@@ -1348,7 +1350,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun alignVector(items: io.github.flyingpig525.base.Items<T>) = block(items, "AlignVector")
+    fun alignVector(items: Items<T>) = block(items, "AlignVector")
 
     /**
      * Sets the given item's durability.
@@ -1369,7 +1371,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setItemDura(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetItemDura")
+    fun setItemDura(items: Items<T>) = block(items, "SetItemDura")
 
     /**
      * Sets whether an item is
@@ -1387,8 +1389,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setBreakability(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetBreakability")
-    fun raycastEntity(items: io.github.flyingpig525.base.Items<T>) = block(items, "RaycastEntity")
+    fun setBreakability(items: Items<T>) = block(items, "SetBreakability")
+    fun raycastEntity(items: Items<T>) = block(items, "RaycastEntity")
 
     /**
      * Sets the given key to the value.
@@ -1409,7 +1411,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setDictValue(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetDictValue")
+    fun setDictValue(items: Items<T>) = block(items, "SetDictValue")
 
     /**
      * Sets a location's coordinates or
@@ -1447,7 +1449,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setAllCoords(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetAllCoords")
+    fun setAllCoords(items: Items<T>) = block(items, "SetAllCoords")
 
     /**
      * Creates a color hex based on red,
@@ -1477,7 +1479,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun rGBColor(items: io.github.flyingpig525.base.Items<T>) = block(items, "RGBColor")
+    fun rGBColor(items: Items<T>) = block(items, "RGBColor")
 
     /**
      * Sets which blocks an item
@@ -1499,7 +1501,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setCanDestroy(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetCanDestroy")
+    fun setCanDestroy(items: Items<T>) = block(items, "SetCanDestroy")
 
     /**
      * Creates a color based on hue,
@@ -1529,7 +1531,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun hSLColor(items: io.github.flyingpig525.base.Items<T>) = block(items, "HSLColor")
+    fun hSLColor(items: Items<T>) = block(items, "HSLColor")
 
     /**
      * Removes a list variable's value
@@ -1548,7 +1550,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun removeListIndex(items: io.github.flyingpig525.base.Items<T>) = block(items, "RemoveListIndex")
+    fun removeListIndex(items: Items<T>) = block(items, "RemoveListIndex")
 
     /**
      * Finds the logarithm of a number.
@@ -1572,7 +1574,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun logarithm(items: io.github.flyingpig525.base.Items<T>) = block(items, "Logarithm")
+    fun logarithm(items: Items<T>) = block(items, "Logarithm")
 
     /**
      * Sets the value of or creates
@@ -1602,7 +1604,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setItemTag(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetItemTag")
+    fun setItemTag(items: Items<T>) = block(items, "SetItemTag")
 
     /**
      * Trims a string, starting and ending
@@ -1628,7 +1630,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun trimString(items: io.github.flyingpig525.base.Items<T>) = block(items, "TrimString")
+    fun trimString(items: Items<T>) = block(items, "TrimString")
 
     /**
      * Parses a MiniMessage expression from
@@ -1646,7 +1648,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun parseMiniMessageExpr(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParseMiniMessageExpr")
+    fun parseMiniMessageExpr(items: Items<T>) = block(items, "ParseMiniMessageExpr")
 
     /**
      * Gets an item's stack size.
@@ -1664,7 +1666,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getItemAmount(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetItemAmount")
+    fun getItemAmount(items: Items<T>) = block(items, "GetItemAmount")
 
     /**
      * Sets a potion effect's amplifier.
@@ -1685,7 +1687,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setPotionAmp(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetPotionAmp")
+    fun setPotionAmp(items: Items<T>) = block(items, "SetPotionAmp")
 
     /**
      * Gets which blocks an item
@@ -1703,7 +1705,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getCanDestroy(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetCanDestroy")
+    fun getCanDestroy(items: Items<T>) = block(items, "GetCanDestroy")
 
     /**
      * Rotates a vector around an
@@ -1725,8 +1727,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun rotateAroundAxis(items: io.github.flyingpig525.base.Items<T>) = block(items, "RotateAroundAxis")
-    fun getItemName(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetItemName")
+    fun rotateAroundAxis(items: Items<T>) = block(items, "RotateAroundAxis")
+    fun getItemName(items: Items<T>) = block(items, "GetItemName")
 
     /**
      * Gets the given item's current or
@@ -1744,7 +1746,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getItemDura(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetItemDura")
+    fun getItemDura(items: Items<T>) = block(items, "GetItemDura")
 
     /**
      * Shifts a location forward, upward,
@@ -1766,7 +1768,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun shiftInDirection(items: io.github.flyingpig525.base.Items<T>) = block(items, "ShiftInDirection")
+    fun shiftInDirection(items: Items<T>) = block(items, "ShiftInDirection")
 
     /**
      * Checks if a number is inside
@@ -1793,7 +1795,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun wrapNum(items: io.github.flyingpig525.base.Items<T>) = block(items, "WrapNum")
+    fun wrapNum(items: Items<T>) = block(items, "WrapNum")
 
     /**
      * Searches for part of a string
@@ -1820,7 +1822,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun replaceString(items: io.github.flyingpig525.base.Items<T>) = block(items, "ReplaceString")
+    fun replaceString(items: Items<T>) = block(items, "ReplaceString")
 
     /**
      * Sets a compass's lodestone location.
@@ -1841,7 +1843,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setLodestoneLoc(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetLodestoneLoc")
+    fun setLodestoneLoc(items: Items<T>) = block(items, "SetLodestoneLoc")
 
     /**
      * Sets a variable to a list with
@@ -1860,7 +1862,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun flattenList(items: io.github.flyingpig525.base.Items<T>) = block(items, "FlattenList")
+    fun flattenList(items: Items<T>) = block(items, "FlattenList")
 
     /**
      * Gets a block's hardness value.
@@ -1881,7 +1883,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun blockHardness(items: io.github.flyingpig525.base.Items<T>) = block(items, "BlockHardness")
+    fun blockHardness(items: Items<T>) = block(items, "BlockHardness")
 
     /**
      * Gets a potion effect's amplifier.
@@ -1899,7 +1901,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getPotionAmp(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetPotionAmp")
+    fun getPotionAmp(items: Items<T>) = block(items, "GetPotionAmp")
 
     /**
      * Gets a particle effect's particle
@@ -1918,7 +1920,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getParticleAmount(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetParticleAmount")
+    fun getParticleAmount(items: Items<T>) = block(items, "GetParticleAmount")
 
     /**
      * Gets the number of entries
@@ -1937,7 +1939,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getDictSize(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetDictSize")
+    fun getDictSize(items: Items<T>) = block(items, "GetDictSize")
 
     /**
      * Sets an item's stack size.
@@ -1958,7 +1960,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setItemAmount(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetItemAmount")
+    fun setItemAmount(items: Items<T>) = block(items, "SetItemAmount")
 
     /**
      * Sets a variable to the difference
@@ -1976,7 +1978,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun subtractVectors(items: io.github.flyingpig525.base.Items<T>) = block(items, "SubtractVectors")
+    fun subtractVectors(items: Items<T>) = block(items, "SubtractVectors")
 
     /**
      * Sets a string's capitalization
@@ -1994,7 +1996,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setCase(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetCase")
+    fun setCase(items: Items<T>) = block(items, "SetCase")
 
     /**
      * Sets a particle effect's particle
@@ -2021,7 +2023,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setParticleColor(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetParticleColor")
+    fun setParticleColor(items: Items<T>) = block(items, "SetParticleColor")
 
     /**
      * Gets the light level at
@@ -2039,7 +2041,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getLight(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetLight")
+    fun getLight(items: Items<T>) = block(items, "GetLight")
 
     /**
      * Gets the list of values
@@ -2058,7 +2060,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getDictValues(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetDictValues")
+    fun getDictValues(items: Items<T>) = block(items, "GetDictValues")
 
     /**
      * Sets a variable to a vector.
@@ -2083,7 +2085,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun vector(items: io.github.flyingpig525.base.Items<T>) = block(items, "Vector")
+    fun vector(items: Items<T>) = block(items, "Vector")
 
     /**
      * Sets a variable to the distance
@@ -2105,8 +2107,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun distance(items: io.github.flyingpig525.base.Items<T>) = block(items, "Distance")
-    fun setItemLore(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetItemLore")
+    fun distance(items: Items<T>) = block(items, "Distance")
+    fun setItemLore(items: Items<T>) = block(items, "SetItemLore")
 
     /**
      * Takes the root of a number.
@@ -2127,7 +2129,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun root(items: io.github.flyingpig525.base.Items<T>) = block(items, "Root")
+    fun root(items: Items<T>) = block(items, "Root")
 
     /**
      * Sets a particle effect's particle
@@ -2150,7 +2152,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setParticleAmount(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetParticleAmount")
+    fun setParticleAmount(items: Items<T>) = block(items, "SetParticleAmount")
 
     /**
      * Adds an enchantment to an item.
@@ -2175,7 +2177,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun addItemEnchant(items: io.github.flyingpig525.base.Items<T>) = block(items, "AddItemEnchant")
+    fun addItemEnchant(items: Items<T>) = block(items, "AddItemEnchant")
 
     /**
      * Gets an item's material.
@@ -2192,7 +2194,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getItemType(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetItemType")
+    fun getItemType(items: Items<T>) = block(items, "GetItemType")
 
     /**
      * Gets a location's rotation
@@ -2211,7 +2213,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getDirection(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetDirection")
+    fun getDirection(items: Items<T>) = block(items, "GetDirection")
 
     /**
      * Gets a single line from
@@ -2233,7 +2235,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getLoreLine(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetLoreLine")
+    fun getLoreLine(items: Items<T>) = block(items, "GetLoreLine")
 
     /**
      * Gets a particle effect's type.
@@ -2251,7 +2253,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getParticleType(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetParticleType")
+    fun getParticleType(items: Items<T>) = block(items, "GetParticleType")
 
     /**
      * Searches for part of a string and
@@ -2274,7 +2276,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun removeString(items: io.github.flyingpig525.base.Items<T>) = block(items, "RemoveString")
+    fun removeString(items: Items<T>) = block(items, "RemoveString")
 
     /**
      * Gets the block state tags
@@ -2292,7 +2294,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getAllBlockData(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetAllBlockData")
+    fun getAllBlockData(items: Items<T>) = block(items, "GetAllBlockData")
 
     /**
      * Sets a variable to the highest
@@ -2311,7 +2313,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun maxNumber(items: io.github.flyingpig525.base.Items<T>) = block(items, "MaxNumber")
+    fun maxNumber(items: Items<T>) = block(items, "MaxNumber")
 
     /**
      * Gets the list of keys
@@ -2330,7 +2332,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getDictKeys(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetDictKeys")
+    fun getDictKeys(items: Items<T>) = block(items, "GetDictKeys")
 
     /**
      * Trims the content of styled text,
@@ -2356,7 +2358,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun trimStyledText(items: io.github.flyingpig525.base.Items<T>) = block(items, "TrimStyledText")
+    fun trimStyledText(items: Items<T>) = block(items, "TrimStyledText")
 
     /**
      * Sets a particle effect's particle
@@ -2379,7 +2381,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setParticleMat(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetParticleMat")
+    fun setParticleMat(items: Items<T>) = block(items, "SetParticleMat")
 
     /**
      * Gets a location's X, Y, Z, pitch,
@@ -2398,7 +2400,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getCoord(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetCoord")
+    fun getCoord(items: Items<T>) = block(items, "GetCoord")
 
     /**
      * Removes a custom item tag.
@@ -2419,7 +2421,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun removeItemTag(items: io.github.flyingpig525.base.Items<T>) = block(items, "RemoveItemTag")
+    fun removeItemTag(items: Items<T>) = block(items, "RemoveItemTag")
 
     /**
      * Sets a particle effect's particle
@@ -2446,7 +2448,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setParticleSize(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetParticleSize")
+    fun setParticleSize(items: Items<T>) = block(items, "SetParticleSize")
 
     /**
      * Gets a potion effect's duration.
@@ -2464,7 +2466,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getPotionDur(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetPotionDur")
+    fun getPotionDur(items: Items<T>) = block(items, "GetPotionDur")
 
     /**
      * Sets the variable to a random
@@ -2486,7 +2488,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun randomLoc(items: io.github.flyingpig525.base.Items<T>) = block(items, "RandomLoc")
+    fun randomLoc(items: Items<T>) = block(items, "RandomLoc")
 
     /**
      * Sets a sound's type.
@@ -2507,7 +2509,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setSoundType(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetSoundType")
+    fun setSoundType(items: Items<T>) = block(items, "SetSoundType")
 
     /**
      * Gets a compass's lodestone location.
@@ -2525,9 +2527,9 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getLodestoneLoc(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetLodestoneLoc")
-    fun shiftDirection(items: io.github.flyingpig525.base.Items<T>) = block(items, "ShiftDirection")
-    fun getContainerName(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetContainerName")
+    fun getLodestoneLoc(items: Items<T>) = block(items, "GetLodestoneLoc")
+    fun shiftDirection(items: Items<T>) = block(items, "ShiftDirection")
+    fun getContainerName(items: Items<T>) = block(items, "GetContainerName")
 
     /**
      * Gets a particle effect's horizontal
@@ -2546,7 +2548,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getParticleSprd(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetParticleSprd")
+    fun getParticleSprd(items: Items<T>) = block(items, "GetParticleSprd")
 
     /**
      * Reflects a vector off a
@@ -2569,7 +2571,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun reflectVector(items: io.github.flyingpig525.base.Items<T>) = block(items, "ReflectVector")
+    fun reflectVector(items: Items<T>) = block(items, "ReflectVector")
 
     /**
      * Gets a player head's owner
@@ -2587,8 +2589,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getHeadOwner(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetHeadOwner")
-    fun getItemEnchants(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetItemEnchants")
+    fun getHeadOwner(items: Items<T>) = block(items, "GetHeadOwner")
+    fun getItemEnchants(items: Items<T>) = block(items, "GetItemEnchants")
 
     /**
      * Adds all entries from one
@@ -2608,7 +2610,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun appendDict(items: io.github.flyingpig525.base.Items<T>) = block(items, "AppendDict")
+    fun appendDict(items: Items<T>) = block(items, "AppendDict")
 
     /**
      * Gets an item's maximum stack size.
@@ -2626,7 +2628,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getMaxItemAmount(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetMaxItemAmount")
+    fun getMaxItemAmount(items: Items<T>) = block(items, "GetMaxItemAmount")
 
     /**
      * Gets a color's RGB/HSB/HSL
@@ -2644,7 +2646,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getColorChannels(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetColorChannels")
+    fun getColorChannels(items: Items<T>) = block(items, "GetColorChannels")
 
     /**
      * Sets a list variable's value at
@@ -2666,7 +2668,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setListValue(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetListValue")
+    fun setListValue(items: Items<T>) = block(items, "SetListValue")
 
     /**
      * Sets a book's text.
@@ -2695,7 +2697,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setBookText(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetBookText")
+    fun setBookText(items: Items<T>) = block(items, "SetBookText")
 
     /**
      * Sets a variable to a random
@@ -2714,7 +2716,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun randomValue(items: io.github.flyingpig525.base.Items<T>) = block(items, "RandomValue")
+    fun randomValue(items: Items<T>) = block(items, "RandomValue")
 
     /**
      * Sets an item's material.
@@ -2735,7 +2737,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setItemType(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetItemType")
+    fun setItemType(items: Items<T>) = block(items, "SetItemType")
 
     /**
      * Gets the given sound's type.
@@ -2752,7 +2754,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getSoundType(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetSoundType")
+    fun getSoundType(items: Items<T>) = block(items, "GetSoundType")
 
     /**
      * Gets a list variable's value at
@@ -2774,7 +2776,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getListValue(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetListValue")
+    fun getListValue(items: Items<T>) = block(items, "GetListValue")
 
     /**
      * Sets a variable to the trigonometric
@@ -2792,7 +2794,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun tangent(items: io.github.flyingpig525.base.Items<T>) = block(items, "Tangent")
+    fun tangent(items: Items<T>) = block(items, "Tangent")
 
     /**
      * Gets a Voronoi noise value: A cellular
@@ -2823,8 +2825,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun voronoiNoise(items: io.github.flyingpig525.base.Items<T>) = block(items, "VoronoiNoise")
-    fun setDirection(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetDirection")
+    fun voronoiNoise(items: Items<T>) = block(items, "VoronoiNoise")
+    fun setDirection(items: Items<T>) = block(items, "SetDirection")
 
     /**
      * Creates a color based on hue,
@@ -2854,7 +2856,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun hSBColor(items: io.github.flyingpig525.base.Items<T>) = block(items, "HSBColor")
+    fun hSBColor(items: Items<T>) = block(items, "HSBColor")
 
     /**
      * Increments a number variable
@@ -2874,7 +2876,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun increment(items: io.github.flyingpig525.base.Items<T>) = block(items, "+=")
+    fun increment(items: Items<T>) = block(items, "+=")
 
     /**
      * Gets the variant of a sound.
@@ -2891,7 +2893,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getSoundVariant(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetSoundVariant")
+    fun getSoundVariant(items: Items<T>) = block(items, "GetSoundVariant")
 
     /**
      * Gets a colorable item's color.
@@ -2909,7 +2911,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getItemColor(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetItemColor")
+    fun getItemColor(items: Items<T>) = block(items, "GetItemColor")
 
     /**
      * Clears all formatting from the
@@ -2927,7 +2929,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun clearFormatting(items: io.github.flyingpig525.base.Items<T>) = block(items, "ClearFormatting")
+    fun clearFormatting(items: Items<T>) = block(items, "ClearFormatting")
 
     /**
      * Inserts a value into a list
@@ -2951,7 +2953,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun insertListValue(items: io.github.flyingpig525.base.Items<T>) = block(items, "InsertListValue")
+    fun insertListValue(items: Items<T>) = block(items, "InsertListValue")
 
     /**
      * Sets a sound's volume.
@@ -2972,7 +2974,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setSoundVolume(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetSoundVolume")
+    fun setSoundVolume(items: Items<T>) = block(items, "SetSoundVolume")
 
     /**
      * Sets a location's X, Y, Z, pitch,
@@ -2994,7 +2996,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setCoord(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetCoord")
+    fun setCoord(items: Items<T>) = block(items, "SetCoord")
 
     /**
      * Sets a variable to the sum
@@ -3012,9 +3014,9 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun addVectors(items: io.github.flyingpig525.base.Items<T>) = block(items, "AddVectors")
-    fun setPitch(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetPitch")
-    fun raycastBlock(items: io.github.flyingpig525.base.Items<T>) = block(items, "RaycastBlock")
+    fun addVectors(items: Items<T>) = block(items, "AddVectors")
+    fun setPitch(items: Items<T>) = block(items, "SetPitch")
+    fun raycastBlock(items: Items<T>) = block(items, "RaycastBlock")
 
     /**
      * Sets a player head's texture
@@ -3038,7 +3040,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setHeadTexture(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetHeadTexture")
+    fun setHeadTexture(items: Items<T>) = block(items, "SetHeadTexture")
 
     /**
      * Gets a Perlin noise value: A type
@@ -3076,7 +3078,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun perlinNoise(items: io.github.flyingpig525.base.Items<T>) = block(items, "PerlinNoise")
+    fun perlinNoise(items: Items<T>) = block(items, "PerlinNoise")
 
     /**
      * Gets a Worley noise value: A cellular
@@ -3107,7 +3109,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun worleyNoise(items: io.github.flyingpig525.base.Items<T>) = block(items, "WorleyNoise")
+    fun worleyNoise(items: Items<T>) = block(items, "WorleyNoise")
 
     /**
      * Sets a colorable item's color.
@@ -3128,7 +3130,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setItemColor(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetItemColor")
+    fun setItemColor(items: Items<T>) = block(items, "SetItemColor")
 
     /**
      * Gets a particle effect's particle
@@ -3147,7 +3149,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getParticleColor(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetParticleColor")
+    fun getParticleColor(items: Items<T>) = block(items, "GetParticleColor")
 
     /**
      * Sets a sound's pitch or note
@@ -3172,7 +3174,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setSoundPitch(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetSoundPitch")
+    fun setSoundPitch(items: Items<T>) = block(items, "SetSoundPitch")
 
     /**
      * Gets which blocks an item
@@ -3190,7 +3192,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getCanPlaceOn(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetCanPlaceOn")
+    fun getCanPlaceOn(items: Items<T>) = block(items, "GetCanPlaceOn")
 
     /**
      * Sorts a list variable's values.
@@ -3207,7 +3209,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun sortList(items: io.github.flyingpig525.base.Items<T>) = block(items, "SortList")
+    fun sortList(items: Items<T>) = block(items, "SortList")
 
     /**
      * Sets the key of a custom sound.
@@ -3228,7 +3230,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setCustomSound(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetCustomSound")
+    fun setCustomSound(items: Items<T>) = block(items, "SetCustomSound")
 
     /**
      * Removes the dictionary entry
@@ -3250,7 +3252,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun removeDictEntry(items: io.github.flyingpig525.base.Items<T>) = block(items, "RemoveDictEntry")
+    fun removeDictEntry(items: Items<T>) = block(items, "RemoveDictEntry")
 
     /**
      * Converts a numerical timestamp to
@@ -3273,7 +3275,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun formatTime(items: io.github.flyingpig525.base.Items<T>) = block(items, "FormatTime")
+    fun formatTime(items: Items<T>) = block(items, "FormatTime")
 
     /**
      * Sets which components of an item
@@ -3291,7 +3293,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setItemFlags(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetItemFlags")
+    fun setItemFlags(items: Items<T>) = block(items, "SetItemFlags")
 
     /**
      * Gets the number of characters
@@ -3309,7 +3311,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun stringLength(items: io.github.flyingpig525.base.Items<T>) = block(items, "StringLength")
+    fun stringLength(items: Items<T>) = block(items, "StringLength")
 
     /**
      * Gets the potion effects applied by
@@ -3327,7 +3329,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getItemEffects(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetItemEffects")
+    fun getItemEffects(items: Items<T>) = block(items, "GetItemEffects")
 
     /**
      * Sets a variable to a styled text, or combines
@@ -3345,7 +3347,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun styledText(items: io.github.flyingpig525.base.Items<T>) = block(items, "StyledText")
+    fun styledText(items: Items<T>) = block(items, "StyledText")
 
     /**
      * Gets the MiniMessage expression for
@@ -3363,8 +3365,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getMiniMessageExpr(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetMiniMessageExpr")
-    fun setYaw(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetYaw")
+    fun getMiniMessageExpr(items: Items<T>) = block(items, "GetMiniMessageExpr")
+    fun setYaw(items: Items<T>) = block(items, "SetYaw")
 
     /**
      * Sets the potion effects applied by
@@ -3386,7 +3388,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setItemEffects(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetItemEffects")
+    fun setItemEffects(items: Items<T>) = block(items, "SetItemEffects")
 
     /**
      * Decrements a number variable
@@ -3406,7 +3408,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun decrement(items: io.github.flyingpig525.base.Items<T>) = block(items, "-=")
+    fun decrement(items: Items<T>) = block(items, "-=")
 
     /**
      * Gets the value of a custom
@@ -3428,7 +3430,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getItemTag(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetItemTag")
+    fun getItemTag(items: Items<T>) = block(items, "GetItemTag")
 
     /**
      * Creates a list from the given
@@ -3446,7 +3448,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun createList(items: io.github.flyingpig525.base.Items<T>) = block(items, "CreateList")
+    fun createList(items: Items<T>) = block(items, "CreateList")
 
     /**
      * Adds a list to the end of
@@ -3464,7 +3466,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun appendList(items: io.github.flyingpig525.base.Items<T>) = block(items, "AppendList")
+    fun appendList(items: Items<T>) = block(items, "AppendList")
 
     /**
      * Gets a container's contents
@@ -3482,7 +3484,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getContainerItems(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetContainerItems")
+    fun getContainerItems(items: Items<T>) = block(items, "GetContainerItems")
 
     /**
      * Shifts a location toward another
@@ -3508,7 +3510,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun shiftToward(items: io.github.flyingpig525.base.Items<T>) = block(items, "ShiftToward")
+    fun shiftToward(items: Items<T>) = block(items, "ShiftToward")
 
     /**
      * Trims a list, starting and ending
@@ -3534,7 +3536,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun trimList(items: io.github.flyingpig525.base.Items<T>) = block(items, "TrimList")
+    fun trimList(items: Items<T>) = block(items, "TrimList")
 
     /**
      * Removes enchantments from an item.
@@ -3551,7 +3553,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun clearEnchants(items: io.github.flyingpig525.base.Items<T>) = block(items, "ClearEnchants")
+    fun clearEnchants(items: Items<T>) = block(items, "ClearEnchants")
 
     /**
      * Sets a variable to the trigonometric
@@ -3569,7 +3571,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun cosine(items: io.github.flyingpig525.base.Items<T>) = block(items, "Cosine")
+    fun cosine(items: Items<T>) = block(items, "Cosine")
 
     /**
      * Sets a vector's X, Y, or Z
@@ -3591,7 +3593,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setVectorComp(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetVectorComp")
+    fun setVectorComp(items: Items<T>) = block(items, "SetVectorComp")
 
     /**
      * Converts a string to a number.
@@ -3608,7 +3610,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun parseNumber(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParseNumber")
+    fun parseNumber(items: Items<T>) = block(items, "ParseNumber")
 
     /**
      * Raises a number to the power
@@ -3630,8 +3632,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun exponent(items: io.github.flyingpig525.base.Items<T>) = block(items, "Exponent")
-    fun shiftAllDirs(items: io.github.flyingpig525.base.Items<T>) = block(items, "ShiftAllDirs")
+    fun exponent(items: Items<T>) = block(items, "Exponent")
+    fun shiftAllDirs(items: Items<T>) = block(items, "ShiftAllDirs")
 
     /**
      * Searches for a value in a list
@@ -3654,7 +3656,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getValueIndex(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetValueIndex")
+    fun getValueIndex(items: Items<T>) = block(items, "GetValueIndex")
 
     /**
      * Removes an enchantment from an item.
@@ -3675,8 +3677,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun remItemEnchant(items: io.github.flyingpig525.base.Items<T>) = block(items, "RemItemEnchant")
-    fun getBookText(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetBookText")
+    fun remItemEnchant(items: Items<T>) = block(items, "RemItemEnchant")
+    fun getBookText(items: Items<T>) = block(items, "GetBookText")
 
     /**
      * Sets a particle effect's roll.
@@ -3698,7 +3700,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setParticleRoll(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetParticleRoll")
+    fun setParticleRoll(items: Items<T>) = block(items, "SetParticleRoll")
 
     /**
      * Sets the variant of a sound.
@@ -3719,8 +3721,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setSoundVariant(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetSoundVariant")
-    fun shiftLocation(items: io.github.flyingpig525.base.Items<T>) = block(items, "ShiftLocation")
+    fun setSoundVariant(items: Items<T>) = block(items, "SetSoundVariant")
+    fun shiftLocation(items: Items<T>) = block(items, "ShiftLocation")
 
     /**
      * Randomizes the order of a
@@ -3738,7 +3740,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun randomizeList(items: io.github.flyingpig525.base.Items<T>) = block(items, "RandomizeList")
+    fun randomizeList(items: Items<T>) = block(items, "RandomizeList")
 
     /**
      * Checks if a number is between
@@ -3765,8 +3767,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun clampNumber(items: io.github.flyingpig525.base.Items<T>) = block(items, "ClampNumber")
-    fun round(items: io.github.flyingpig525.base.Items<T>) = block(items, "Round")
+    fun clampNumber(items: Items<T>) = block(items, "ClampNumber")
+    fun round(items: Items<T>) = block(items, "Round")
 
     /**
      * Gets a sound's pitch or
@@ -3785,7 +3787,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getSoundPitch(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetSoundPitch")
+    fun getSoundPitch(items: Items<T>) = block(items, "GetSoundPitch")
 
     /**
      * Converts legacy color codes written in
@@ -3804,7 +3806,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun translateColors(items: io.github.flyingpig525.base.Items<T>) = block(items, "TranslateColors")
+    fun translateColors(items: Items<T>) = block(items, "TranslateColors")
 
     /**
      * Gets a block's current
@@ -3822,7 +3824,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getBlockGrowth(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetBlockGrowth")
+    fun getBlockGrowth(items: Items<T>) = block(items, "GetBlockGrowth")
 
     /**
      * Gets all tags registered
@@ -3840,7 +3842,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getAllItemTags(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetAllItemTags")
+    fun getAllItemTags(items: Items<T>) = block(items, "GetAllItemTags")
 
     /**
      * Removes all matching values
@@ -3859,7 +3861,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun removeListValue(items: io.github.flyingpig525.base.Items<T>) = block(items, "RemoveListValue")
+    fun removeListValue(items: Items<T>) = block(items, "RemoveListValue")
 
     /**
      * Shifts a location in multiple directions
@@ -3889,7 +3891,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun shiftAllDirections(items: io.github.flyingpig525.base.Items<T>) = block(items, "ShiftAllDirections")
+    fun shiftAllDirections(items: Items<T>) = block(items, "ShiftAllDirections")
 
     /**
      * Sets which blocks an item
@@ -3911,7 +3913,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setCanPlaceOn(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetCanPlaceOn")
+    fun setCanPlaceOn(items: Items<T>) = block(items, "SetCanPlaceOn")
 
     /**
      * Gets a block's material
@@ -3929,8 +3931,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getBlockType(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetBlockType")
-    fun parsePitch(items: io.github.flyingpig525.base.Items<T>) = block(items, "ParsePitch")
+    fun getBlockType(items: Items<T>) = block(items, "GetBlockType")
+    fun parsePitch(items: Items<T>) = block(items, "ParsePitch")
 
     /**
      * Get a dictionary variable's
@@ -3953,7 +3955,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getDictValue(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetDictValue")
+    fun getDictValue(items: Items<T>) = block(items, "GetDictValue")
 
     /**
      * Gets a container's lock key at a
@@ -3971,7 +3973,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun containerLock(items: io.github.flyingpig525.base.Items<T>) = block(items, "ContainerLock")
+    fun containerLock(items: Items<T>) = block(items, "ContainerLock")
 
     /**
      * Gets a block's redstone
@@ -3989,7 +3991,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getBlockPower(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetBlockPower")
+    fun getBlockPower(items: Items<T>) = block(items, "GetBlockPower")
 
     /**
      * Gets a vector's length.
@@ -4007,7 +4009,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getVectorLength(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetVectorLength")
+    fun getVectorLength(items: Items<T>) = block(items, "GetVectorLength")
 
     /**
      * Gets the number of characters
@@ -4026,7 +4028,7 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun contentLength(items: io.github.flyingpig525.base.Items<T>) = block(items, "ContentLength")
+    fun contentLength(items: Items<T>) = block(items, "ContentLength")
 
     /**
      * Sets the model value
@@ -4048,8 +4050,8 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun setModelData(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetModelData")
-    fun setCoords(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetCoords")
+    fun setModelData(items: Items<T>) = block(items, "SetModelData")
+    fun setCoords(items: Items<T>) = block(items, "SetCoords")
 
     /**
      * Gets a particle effect's particle
@@ -4068,10 +4070,10 @@ class SetVariableCategory<T> internal constructor(private val template: io.githu
      *
      * (*) = Optional
      */
-    fun getParticleSize(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetParticleSize")
+    fun getParticleSize(items: Items<T>) = block(items, "GetParticleSize")
 
 
-    private fun block(items: io.github.flyingpig525.base.Items<T>, action: String) {
+    private fun block(items: Items<T>, action: String) {
         blocks += Block("set_var", ItemCollection(items).items, action)
     }
 }

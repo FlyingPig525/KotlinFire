@@ -2,15 +2,17 @@
 
 package io.github.flyingpig525.base.block.category
 
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.block.Block
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
 
-class EntityActionCategory<T> internal constructor(private val template: io.github.flyingpig525.base.Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
+class EntityActionCategory<T> internal constructor(private val template: Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
     private val blocks = template.blocks
 
-    private fun block(items: io.github.flyingpig525.base.Items<T>, action: String) {
+    private fun block(items: Items<T>, action: String) {
         blocks += Block("entity_action", ItemCollection(items).items, action)
     }
 
@@ -40,13 +42,13 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun dispRotationEuler(items: io.github.flyingpig525.base.Items<T>) = block(items, "DispRotationEuler")
+    fun dispRotationEuler(items: Items<T>) = block(items, "DispRotationEuler")
 
     /**
      * Sets a parrot's color.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setParrotColor(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetParrotColor")
+    fun setParrotColor(items: Items<T>) = block(items, "SetParrotColor")
 
     /**
      * Sets the translation values
@@ -73,12 +75,12 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun dispTranslation(items: io.github.flyingpig525.base.Items<T>) = block(items, "DispTranslation")
+    fun dispTranslation(items: Items<T>) = block(items, "DispTranslation")
 
     /**
      * Deletes an entity.
      */
-    fun remove(items: io.github.flyingpig525.base.Items<T>) = block(items, "Remove")
+    fun remove(items: Items<T>) = block(items, "Remove")
 
     /**
      * Sets an entity's movement
@@ -92,7 +94,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setVelocity(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetVelocity")
+    fun setVelocity(items: Items<T>) = block(items, "SetVelocity")
 
     /**
      * Sets the background color
@@ -116,7 +118,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun tDispBackground(items: io.github.flyingpig525.base.Items<T>) = block(items, "TDispBackground")
+    fun tDispBackground(items: Items<T>) = block(items, "TDispBackground")
 
     /**
      * Sets the culling width
@@ -136,7 +138,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun displayCullingSize(items: io.github.flyingpig525.base.Items<T>) = block(items, "DisplayCullingSize")
+    fun displayCullingSize(items: Items<T>) = block(items, "DisplayCullingSize")
 
     /**
      * Sets the number of ticks a
@@ -150,14 +152,14 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setGlowSquidDark(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetGlowSquidDark")
-    fun hideName(items: io.github.flyingpig525.base.Items<T>) = block(items, "HideName")
+    fun setGlowSquidDark(items: Items<T>) = block(items, "SetGlowSquidDark")
+    fun hideName(items: Items<T>) = block(items, "HideName")
 
     /**
      * Sets a frog's color type.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setFrogType(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetFrogType")
+    fun setFrogType(items: Items<T>) = block(items, "SetFrogType")
 
     /**
      * Sets the left or right rotation of
@@ -177,7 +179,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun dispRotAxisAngle(items: io.github.flyingpig525.base.Items<T>) = block(items, "DispRotAxisAngle")
+    fun dispRotAxisAngle(items: Items<T>) = block(items, "DispRotAxisAngle")
 
     /**
      * Damages a mob.
@@ -198,33 +200,33 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun damage(items: io.github.flyingpig525.base.Items<T>) = block(items, "Damage")
+    fun damage(items: Items<T>) = block(items, "Damage")
 
     /**
      * Sets whether a sheep
      * has its wool.
      */
-    fun setSheepSheared(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetSheepSheared")
+    fun setSheepSheared(items: Items<T>) = block(items, "SetSheepSheared")
 
     /**
      * Sets whether an entity
      * is sitting.
      */
-    fun setMobSitting(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetMobSitting")
+    fun setMobSitting(items: Items<T>) = block(items, "SetMobSitting")
 
     /**
      * Sets an axolotl's color.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setAxolotlColor(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetAxolotlColor")
+    fun setAxolotlColor(items: Items<T>) = block(items, "SetAxolotlColor")
 
     /**
      * Makes a mob perform
      * an animation.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun sendAnimation(items: io.github.flyingpig525.base.Items<T>) = block(items, "SendAnimation")
-    fun disableGlowing(items: io.github.flyingpig525.base.Items<T>) = block(items, "DisableGlowing")
+    fun sendAnimation(items: Items<T>) = block(items, "SendAnimation")
+    fun disableGlowing(items: Items<T>) = block(items, "DisableGlowing")
 
     /**
      * Sets the anger level
@@ -247,13 +249,13 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setWardenAnger(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetWardenAnger")
+    fun setWardenAnger(items: Items<T>) = block(items, "SetWardenAnger")
 
     /**
      * Sets a horse's color and pattern.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setHorsePattern(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetHorsePattern")
+    fun setHorsePattern(items: Items<T>) = block(items, "SetHorsePattern")
 
     /**
      * Restores a mob's health.
@@ -270,21 +272,21 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun heal(items: io.github.flyingpig525.base.Items<T>) = block(items, "Heal")
+    fun heal(items: Items<T>) = block(items, "Heal")
 
     /**
      * Sets whether an entity is
      * sentient and/or affected
      * by physics.
      */
-    fun setAI(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetAI")
+    fun setAI(items: Items<T>) = block(items, "SetAI")
 
     /**
      * Sets whether an entity
      * is riptiding.
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun setRiptiding(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetRiptiding")
+    fun setRiptiding(items: Items<T>) = block(items, "SetRiptiding")
 
     /**
      * Sets the projectile source of
@@ -306,28 +308,28 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setProjSource(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetProjSource")
+    fun setProjSource(items: Items<T>) = block(items, "SetProjSource")
 
     /**
      * Sets whether a fox appears
      * to be leaping.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setFoxLeaping(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetFoxLeaping")
-    fun setItemOwner(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetItemOwner")
+    fun setFoxLeaping(items: Items<T>) = block(items, "SetFoxLeaping")
+    fun setItemOwner(items: Items<T>) = block(items, "SetItemOwner")
 
     /**
      * Sets the gene of a panda.
      * This affects their behavior
      * and appearance.
      */
-    fun setPandaGene(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetPandaGene")
+    fun setPandaGene(items: Items<T>) = block(items, "SetPandaGene")
 
     /**
      * Sets a mob's dye color.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setDyeColor(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetDyeColor")
+    fun setDyeColor(items: Items<T>) = block(items, "SetDyeColor")
 
     /**
      * Launches an entity up or down.
@@ -340,7 +342,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun launchUp(items: io.github.flyingpig525.base.Items<T>) = block(items, "LaunchUp")
+    fun launchUp(items: Items<T>) = block(items, "LaunchUp")
 
     /**
      * Sets an entity's maximum
@@ -354,7 +356,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setMaxHealth(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetMaxHealth")
+    fun setMaxHealth(items: Items<T>) = block(items, "SetMaxHealth")
 
     /**
      * Sets an animal's age.
@@ -367,7 +369,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setAge(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetAge")
+    fun setAge(items: Items<T>) = block(items, "SetAge")
 
     /**
      * Sets the time until a fish
@@ -382,7 +384,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setFishingTime(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetFishingTime")
+    fun setFishingTime(items: Items<T>) = block(items, "SetFishingTime")
 
     /**
      * Sets the location an end
@@ -396,7 +398,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun endCrystalBeam(items: io.github.flyingpig525.base.Items<T>) = block(items, "EndCrystalBeam")
+    fun endCrystalBeam(items: Items<T>) = block(items, "EndCrystalBeam")
 
     /**
      * Makes a frog try to eat the
@@ -414,7 +416,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun frogEat(items: io.github.flyingpig525.base.Items<T>) = block(items, "FrogEat")
+    fun frogEat(items: Items<T>) = block(items, "FrogEat")
 
     /**
      * Sets the brightness
@@ -438,45 +440,45 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun displayBrightness(items: io.github.flyingpig525.base.Items<T>) = block(items, "DisplayBrightness")
+    fun displayBrightness(items: Items<T>) = block(items, "DisplayBrightness")
 
     /**
      * Sets a villager's profession.
      */
-    fun setProfession(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetProfession")
+    fun setProfession(items: Items<T>) = block(items, "SetProfession")
 
     @io.github.flyingpig525.annotation.Overlord
-    fun noGravity(items: io.github.flyingpig525.base.Items<T>) = block(items, "NoGravity")
+    fun noGravity(items: Items<T>) = block(items, "NoGravity")
 
     /**
      * Sets whether a mob has its
      * arms raised.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setArmsRaised(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetArmsRaised")
+    fun setArmsRaised(items: Items<T>) = block(items, "SetArmsRaised")
 
     /**
      * Removes all active potion
      * effects from an entity.
      */
-    fun clearPotions(items: io.github.flyingpig525.base.Items<T>) = block(items, "ClearPotions")
+    fun clearPotions(items: Items<T>) = block(items, "ClearPotions")
 
     /**
      * Sets whether an armor stand has
      * arms and a base plate.
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun armorStandParts(items: io.github.flyingpig525.base.Items<T>) = block(items, "ArmorStandParts")
+    fun armorStandParts(items: Items<T>) = block(items, "ArmorStandParts")
 
     /**
      * Sets whether an entity is
      * invulnerable to damage.
      */
-    fun setInvulnerable(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetInvulnerable")
-    fun projColl(items: io.github.flyingpig525.base.Items<T>) = block(items, "ProjColl")
+    fun setInvulnerable(items: Items<T>) = block(items, "SetInvulnerable")
+    fun projColl(items: Items<T>) = block(items, "ProjColl")
 
     @io.github.flyingpig525.annotation.Mythic
-    fun armorStandTags(items: io.github.flyingpig525.base.Items<T>) = block(items, "ArmorStandTags")
+    fun armorStandTags(items: Items<T>) = block(items, "ArmorStandTags")
 
     /**
      * Sets the number of ticks a
@@ -491,7 +493,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setPickupDelay(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetPickupDelay")
+    fun setPickupDelay(items: Items<T>) = block(items, "SetPickupDelay")
 
     /**
      * Instructs a mob's AI to target
@@ -514,8 +516,8 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Overlord
-    fun setTarget(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetTarget")
-    fun dropItems(items: io.github.flyingpig525.base.Items<T>) = block(items, "DropItems")
+    fun setTarget(items: Items<T>) = block(items, "SetTarget")
+    fun dropItems(items: Items<T>) = block(items, "DropItems")
 
     /**
      * Sets whether the text in
@@ -523,7 +525,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * shadow or not.
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun tDisplayShadow(items: io.github.flyingpig525.base.Items<T>) = block(items, "TDisplayShadow")
+    fun tDisplayShadow(items: Items<T>) = block(items, "TDisplayShadow")
 
     /**
      * Sets a creeper's explosion power.
@@ -538,14 +540,14 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setCreeperPower(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetCreeperPower")
+    fun setCreeperPower(items: Items<T>) = block(items, "SetCreeperPower")
 
     /**
      * Sets whether an armor stand
      * is a marker.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setMarker(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetMarker")
+    fun setMarker(items: Items<T>) = block(items, "SetMarker")
 
     /**
      * Removes a custom tag
@@ -559,14 +561,14 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun removeCustomTag(items: io.github.flyingpig525.base.Items<T>) = block(items, "RemoveCustomTag")
+    fun removeCustomTag(items: Items<T>) = block(items, "RemoveCustomTag")
 
     /**
      * Sets whether an entity's
      * custom name is always
      * displayed above them.
      */
-    fun setNameVisible(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetNameVisible")
+    fun setNameVisible(items: Items<T>) = block(items, "SetNameVisible")
 
     /**
      * Sets the currently
@@ -581,7 +583,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setInvulTicks(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetInvulTicks")
+    fun setInvulTicks(items: Items<T>) = block(items, "SetInvulTicks")
 
     /**
      * Sets an entity's absorption
@@ -595,20 +597,20 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setAbsorption(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetAbsorption")
+    fun setAbsorption(items: Items<T>) = block(items, "SetAbsorption")
 
     /**
      * Sets whether a horse is
      * standing on its hind legs.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setRearing(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetRearing")
+    fun setRearing(items: Items<T>) = block(items, "SetRearing")
 
     /**
      * Sets whether a creeper
      * has the charged effect.
      */
-    fun creeperCharged(items: io.github.flyingpig525.base.Items<T>) = block(items, "CreeperCharged")
+    fun creeperCharged(items: Items<T>) = block(items, "CreeperCharged")
 
     /**
      * Sets the remaining time an entity is on
@@ -622,7 +624,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setFireTicks(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetFireTicks")
+    fun setFireTicks(items: Items<T>) = block(items, "SetFireTicks")
 
     /**
      * Sets an area of effect cloud's
@@ -641,13 +643,13 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setCloudRadius(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetCloudRadius")
+    fun setCloudRadius(items: Items<T>) = block(items, "SetCloudRadius")
 
     /**
      * Sets whether an entity
      * is affected by gravity.
      */
-    fun setGravity(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetGravity")
+    fun setGravity(items: Items<T>) = block(items, "SetGravity")
 
     /**
      * Sets an entity's custom name.
@@ -664,12 +666,12 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setName(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetName")
+    fun setName(items: Items<T>) = block(items, "SetName")
 
     /**
      * Causes a mob to jump.
      */
-    fun jump(items: io.github.flyingpig525.base.Items<T>) = block(items, "Jump")
+    fun jump(items: Items<T>) = block(items, "Jump")
 
     /**
      * Sets how long a display entity takes
@@ -685,7 +687,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun dispTPDuration(items: io.github.flyingpig525.base.Items<T>) = block(items, "DispTPDuration")
+    fun dispTPDuration(items: Items<T>) = block(items, "DispTPDuration")
 
     /**
      * Sets the remaining ticks of
@@ -699,7 +701,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setWitherInvul(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetWitherInvul")
+    fun setWitherInvul(items: Items<T>) = block(items, "SetWitherInvul")
 
     /**
      * Sets the displayed block
@@ -718,7 +720,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun bDisplayBlock(items: io.github.flyingpig525.base.Items<T>) = block(items, "BDisplayBlock")
+    fun bDisplayBlock(items: Items<T>) = block(items, "BDisplayBlock")
 
     /**
      * Sets an entity's current
@@ -733,10 +735,10 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setFreezeTicks(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetFreezeTicks")
+    fun setFreezeTicks(items: Items<T>) = block(items, "SetFreezeTicks")
 
     @io.github.flyingpig525.annotation.Noble
-    fun silence(items: io.github.flyingpig525.base.Items<T>) = block(items, "Silence")
+    fun silence(items: Items<T>) = block(items, "Silence")
 
     /**
      * Sets whether a text display
@@ -744,13 +746,13 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * or not.
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun tDisplaySeeThru(items: io.github.flyingpig525.base.Items<T>) = block(items, "TDisplaySeeThru")
+    fun tDisplaySeeThru(items: Items<T>) = block(items, "TDisplaySeeThru")
 
     /**
      * Sets whether an entity
      * is gliding.
      */
-    fun setGliding(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetGliding")
+    fun setGliding(items: Items<T>) = block(items, "SetGliding")
 
     /**
      * Changes an entity's pitch and
@@ -768,7 +770,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setRotation(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetRotation")
+    fun setRotation(items: Items<T>) = block(items, "SetRotation")
 
     /**
      * Sets the shadow properties
@@ -788,28 +790,28 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun displayShadow(items: io.github.flyingpig525.base.Items<T>) = block(items, "DisplayShadow")
+    fun displayShadow(items: Items<T>) = block(items, "DisplayShadow")
 
     /**
      * Sets whether an interaction
      * entity has response when
      * interacting with it.
      */
-    fun interactResponse(items: io.github.flyingpig525.base.Items<T>) = block(items, "InteractResponse")
+    fun interactResponse(items: Items<T>) = block(items, "InteractResponse")
 
     /**
      * Forces a mob to use held items
      * such as bow or spyglass.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun useItem(items: io.github.flyingpig525.base.Items<T>) = block(items, "UseItem")
+    fun useItem(items: Items<T>) = block(items, "UseItem")
 
     /**
      * Sets a tropical fish's
      * color and pattern.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setFishPattern(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetFishPattern")
+    fun setFishPattern(items: Items<T>) = block(items, "SetFishPattern")
 
     /**
      * Mounts an entity on top of
@@ -832,7 +834,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun rideEntity(items: io.github.flyingpig525.base.Items<T>) = block(items, "RideEntity")
+    fun rideEntity(items: Items<T>) = block(items, "RideEntity")
 
     /**
      * Sets the affine transformation
@@ -848,8 +850,8 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun displayMatrix(items: io.github.flyingpig525.base.Items<T>) = block(items, "DisplayMatrix")
-    fun noDrops(items: io.github.flyingpig525.base.Items<T>) = block(items, "NoDrops")
+    fun displayMatrix(items: Items<T>) = block(items, "DisplayMatrix")
+    fun noDrops(items: Items<T>) = block(items, "NoDrops")
 
     /**
      * Sets the interpolation
@@ -871,15 +873,15 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun dispInterpolation(items: io.github.flyingpig525.base.Items<T>) = block(items, "DispInterpolation")
+    fun dispInterpolation(items: Items<T>) = block(items, "DispInterpolation")
 
     /**
      * Forces a sniffer to perform
      * a specific action.
      */
-    fun snifferState(items: io.github.flyingpig525.base.Items<T>) = block(items, "SnifferState")
-    fun setHandItem(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetHandItem")
-    fun enableGlowing(items: io.github.flyingpig525.base.Items<T>) = block(items, "EnableGlowing")
+    fun snifferState(items: Items<T>) = block(items, "SnifferState")
+    fun setHandItem(items: Items<T>) = block(items, "SetHandItem")
+    fun enableGlowing(items: Items<T>) = block(items, "EnableGlowing")
 
     /**
      * Set an enderman's held block.
@@ -893,7 +895,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setEndermanBlock(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetEndermanBlock")
+    fun setEndermanBlock(items: Items<T>) = block(items, "SetEndermanBlock")
 
     /**
      * Teleports an entity to a
@@ -907,7 +909,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun teleport(items: io.github.flyingpig525.base.Items<T>) = block(items, "Teleport")
+    fun teleport(items: Items<T>) = block(items, "Teleport")
 
     /**
      * Launches an entity toward or away
@@ -925,7 +927,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun launchToward(items: io.github.flyingpig525.base.Items<T>) = block(items, "LaunchToward")
+    fun launchToward(items: Items<T>) = block(items, "LaunchToward")
 
     /**
      * Sets a mob's armor items.
@@ -941,7 +943,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setArmor(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetArmor")
+    fun setArmor(items: Items<T>) = block(items, "SetArmor")
 
     /**
      * Sets the glowing color
@@ -960,15 +962,15 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun displayGlowColor(items: io.github.flyingpig525.base.Items<T>) = block(items, "DisplayGlowColor")
+    fun displayGlowColor(items: Items<T>) = block(items, "DisplayGlowColor")
 
     /**
      * Sets whether an entity
      * should appear on fire.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setVisualFire(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetVisualFire")
-    fun setAgeOrSize(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetAge/Size")
+    fun setVisualFire(items: Items<T>) = block(items, "SetVisualFire")
+    fun setAgeOrSize(items: Items<T>) = block(items, "SetAge/Size")
 
     /**
      * Gets the value of a custom
@@ -986,7 +988,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun getCustomTag(items: io.github.flyingpig525.base.Items<T>) = block(items, "GetCustomTag")
+    fun getCustomTag(items: Items<T>) = block(items, "GetCustomTag")
 
     /**
      * Sets the hitbox size of
@@ -1004,19 +1006,19 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun interactionSize(items: io.github.flyingpig525.base.Items<T>) = block(items, "InteractionSize")
+    fun interactionSize(items: Items<T>) = block(items, "InteractionSize")
 
     /**
      * Sets a cat's skin type.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setCatType(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetCatType")
+    fun setCatType(items: Items<T>) = block(items, "SetCatType")
 
     /**
      * Sets whether a mob wears
      * a saddle.
      */
-    fun setSaddle(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetSaddle")
+    fun setSaddle(items: Items<T>) = block(items, "SetSaddle")
 
     /**
      * Causes a shulker bullet to start
@@ -1034,7 +1036,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setBulletTarget(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetBulletTarget")
+    fun setBulletTarget(items: Items<T>) = block(items, "SetBulletTarget")
 
     /**
      * Sets the scale of
@@ -1061,7 +1063,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun displayScale(items: io.github.flyingpig525.base.Items<T>) = block(items, "DisplayScale")
+    fun displayScale(items: Items<T>) = block(items, "DisplayScale")
 
     /**
      * Sets the maximum line width
@@ -1076,14 +1078,14 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun tDisplayLineWidth(items: io.github.flyingpig525.base.Items<T>) = block(items, "TDisplayLineWidth")
+    fun tDisplayLineWidth(items: Items<T>) = block(items, "TDisplayLineWidth")
 
     /**
      * Sets the text alignment
      * of a text display.
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun tDisplayAlign(items: io.github.flyingpig525.base.Items<T>) = block(items, "TDisplayAlign")
+    fun tDisplayAlign(items: Items<T>) = block(items, "TDisplayAlign")
 
     /**
      * Launches a projectile from a mob.
@@ -1112,19 +1114,19 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun launchProj(items: io.github.flyingpig525.base.Items<T>) = block(items, "LaunchProj")
+    fun launchProj(items: Items<T>) = block(items, "LaunchProj")
 
     /**
      * Sets the behavior phase
      * of an Ender Dragon.
      */
-    fun setDragonPhase(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetDragonPhase")
+    fun setDragonPhase(items: Items<T>) = block(items, "SetDragonPhase")
 
     /**
      * Sets a llama's fur color.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setLlamaColor(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetLlamaColor")
+    fun setLlamaColor(items: Items<T>) = block(items, "SetLlamaColor")
 
     /**
      * Sets the biome type of a
@@ -1132,7 +1134,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * appearance only.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setVillagerBiome(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetVillagerBiome")
+    fun setVillagerBiome(items: Items<T>) = block(items, "SetVillagerBiome")
 
     /**
      * Sets the starting amount
@@ -1147,29 +1149,29 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setCreeperFuse(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetCreeperFuse")
+    fun setCreeperFuse(items: Items<T>) = block(items, "SetCreeperFuse")
 
     @io.github.flyingpig525.annotation.Noble
-    fun enableAI(items: io.github.flyingpig525.base.Items<T>) = block(items, "EnableAI")
+    fun enableAI(items: Items<T>) = block(items, "EnableAI")
 
     /**
      * Sets whether an entity
      * is a baby (permanently).
      */
-    fun setBaby(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetBaby")
+    fun setBaby(items: Items<T>) = block(items, "SetBaby")
 
     /**
      * Sets a mooshroom's skin
      * type.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun mooshroomType(items: io.github.flyingpig525.base.Items<T>) = block(items, "MooshroomType")
+    fun mooshroomType(items: Items<T>) = block(items, "MooshroomType")
 
     /**
      * Sets whether an entity
      * is invisible.
      */
-    fun setInvisible(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetInvisible")
+    fun setInvisible(items: Items<T>) = block(items, "SetInvisible")
 
     /**
      * Sets how a display entity
@@ -1177,21 +1179,21 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * player's view.
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun displayBillboard(items: io.github.flyingpig525.base.Items<T>) = block(items, "DisplayBillboard")
-    fun noProjColl(items: io.github.flyingpig525.base.Items<T>) = block(items, "NoProjColl")
+    fun displayBillboard(items: Items<T>) = block(items, "DisplayBillboard")
+    fun noProjColl(items: Items<T>) = block(items, "NoProjColl")
 
     /**
      * Causes a sheep to
      * eat grass.
      */
-    fun sheepEat(items: io.github.flyingpig525.base.Items<T>) = block(items, "SheepEat")
+    fun sheepEat(items: Items<T>) = block(items, "SheepEat")
 
     /**
      * Sets whether a cat appears
      * to be lying down.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setCatResting(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetCatResting")
+    fun setCatResting(items: Items<T>) = block(items, "SetCatResting")
 
     /**
      * Gives one or more potion
@@ -1206,13 +1208,13 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun givePotion(items: io.github.flyingpig525.base.Items<T>) = block(items, "GivePotion")
+    fun givePotion(items: Items<T>) = block(items, "GivePotion")
 
     /**
      * Sets which goat horns
      * are shown or hidden.
      */
-    fun setGoatHorns(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetGoatHorns")
+    fun setGoatHorns(items: Items<T>) = block(items, "SetGoatHorns")
 
     /**
      * Tames and sets the owner
@@ -1234,27 +1236,27 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun tame(items: io.github.flyingpig525.base.Items<T>) = block(items, "Tame")
+    fun tame(items: Items<T>) = block(items, "Tame")
 
     /**
      * Sets whether this entity has
      * a glowing outline that can
      * be seen through blocks.
      */
-    fun setGlowing(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetGlowing")
+    fun setGlowing(items: Items<T>) = block(items, "SetGlowing")
 
     /**
      * Sets whether a goat
      * screams or not.
      */
-    fun setGoatScreaming(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetGoatScreaming")
+    fun setGoatScreaming(items: Items<T>) = block(items, "SetGoatScreaming")
 
     /**
      * Sets the model type
      * of an item display.
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun iDisplayModelType(items: io.github.flyingpig525.base.Items<T>) = block(items, "IDisplayModelType")
+    fun iDisplayModelType(items: Items<T>) = block(items, "IDisplayModelType")
 
     /**
      * Sets an entity's current
@@ -1268,7 +1270,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setHealth(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetHealth")
+    fun setHealth(items: Items<T>) = block(items, "SetHealth")
 
     /**
      * Disguises an entity as a mob.
@@ -1286,7 +1288,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Overlord
-    fun mobDisguise(items: io.github.flyingpig525.base.Items<T>) = block(items, "MobDisguise")
+    fun mobDisguise(items: Items<T>) = block(items, "MobDisguise")
 
     /**
      * Disguises an entity as a block.
@@ -1304,7 +1306,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Overlord
-    fun blockDisguise(items: io.github.flyingpig525.base.Items<T>) = block(items, "BlockDisguise")
+    fun blockDisguise(items: Items<T>) = block(items, "BlockDisguise")
 
     /**
      * Sets the block shown inside
@@ -1324,20 +1326,20 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setMinecartBlock(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetMinecartBlock")
+    fun setMinecartBlock(items: Items<T>) = block(items, "SetMinecartBlock")
 
     /**
      * Causes a fox to start
      * or stop sleeping.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun foxSleeping(items: io.github.flyingpig525.base.Items<T>) = block(items, "FoxSleeping")
+    fun foxSleeping(items: Items<T>) = block(items, "FoxSleeping")
 
     /**
      * Sets whether a mob is able
      * to collide with other entities.
      */
-    fun setCollidable(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetCollidable")
+    fun setCollidable(items: Items<T>) = block(items, "SetCollidable")
 
     /**
      * Sets the rotation of an armor
@@ -1364,7 +1366,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun armorStandPose(items: io.github.flyingpig525.base.Items<T>) = block(items, "ArmorStandPose")
+    fun armorStandPose(items: Items<T>) = block(items, "ArmorStandPose")
 
     /**
      * Launches an entity forward
@@ -1378,7 +1380,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun launchFwd(items: io.github.flyingpig525.base.Items<T>) = block(items, "LaunchFwd")
+    fun launchFwd(items: Items<T>) = block(items, "LaunchFwd")
 
     /**
      * Sets an entity's fall distance,
@@ -1393,7 +1395,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setFallDistance(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetFallDistance")
+    fun setFallDistance(items: Items<T>) = block(items, "SetFallDistance")
 
     /**
      * Instructs a mob's AI to always
@@ -1417,7 +1419,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Overlord
-    fun moveToLoc(items: io.github.flyingpig525.base.Items<T>) = block(items, "MoveToLoc")
+    fun moveToLoc(items: Items<T>) = block(items, "MoveToLoc")
 
     /**
      * Sets the text opacity
@@ -1432,7 +1434,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun tDisplayOpacity(items: io.github.flyingpig525.base.Items<T>) = block(items, "TDisplayOpacity")
+    fun tDisplayOpacity(items: Items<T>) = block(items, "TDisplayOpacity")
 
     /**
      * Sets the displayed item
@@ -1447,7 +1449,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun iDisplayItem(items: io.github.flyingpig525.base.Items<T>) = block(items, "IDisplayItem")
+    fun iDisplayItem(items: Items<T>) = block(items, "IDisplayItem")
 
     /**
      * Sets the item in one of the
@@ -1462,28 +1464,28 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setEquipment(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetEquipment")
+    fun setEquipment(items: Items<T>) = block(items, "SetEquipment")
 
     /**
      * Makes a mob perform
      * an attack animation.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun attackAnimation(items: io.github.flyingpig525.base.Items<T>) = block(items, "AttackAnimation")
+    fun attackAnimation(items: Items<T>) = block(items, "AttackAnimation")
 
     /**
      * Sets whether an entity will
      * produce sound effects.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setSilenced(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetSilenced")
+    fun setSilenced(items: Items<T>) = block(items, "SetSilenced")
 
     /**
      * Sets if a bee has nectar
      * on its body.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setBeeNectar(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetBeeNectar")
+    fun setBeeNectar(items: Items<T>) = block(items, "SetBeeNectar")
 
     /**
      * Attaches a lead to the target,
@@ -1505,14 +1507,14 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun attachLead(items: io.github.flyingpig525.base.Items<T>) = block(items, "AttachLead")
+    fun attachLead(items: Items<T>) = block(items, "AttachLead")
 
     /**
      * Sets whether a snow golem
      * is wearing a pumpkin.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun snowmanPumpkin(items: io.github.flyingpig525.base.Items<T>) = block(items, "SnowmanPumpkin")
+    fun snowmanPumpkin(items: Items<T>) = block(items, "SnowmanPumpkin")
 
     /**
      * Sets the value of or creates
@@ -1534,7 +1536,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setCustomTag(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetCustomTag")
+    fun setCustomTag(items: Items<T>) = block(items, "SetCustomTag")
 
     /**
      * Removes one or more potion
@@ -1549,16 +1551,16 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun removePotion(items: io.github.flyingpig525.base.Items<T>) = block(items, "RemovePotion")
+    fun removePotion(items: Items<T>) = block(items, "RemovePotion")
 
     @io.github.flyingpig525.annotation.Overlord
-    fun gravity(items: io.github.flyingpig525.base.Items<T>) = block(items, "Gravity")
+    fun gravity(items: Items<T>) = block(items, "Gravity")
 
     /**
      * Causes a sheep to
      * be sheared.
      */
-    fun shearSheep(items: io.github.flyingpig525.base.Items<T>) = block(items, "ShearSheep")
+    fun shearSheep(items: Items<T>) = block(items, "ShearSheep")
 
     /**
      * Sets the possible interactions, such
@@ -1566,19 +1568,19 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * armor stand's slot(s).
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun armorStandSlots(items: io.github.flyingpig525.base.Items<T>) = block(items, "ArmorStandSlots")
+    fun armorStandSlots(items: Items<T>) = block(items, "ArmorStandSlots")
 
     /**
      * Sets whether an allay is
      * dancing or not.
      */
-    fun setAllayDancing(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetAllayDancing")
+    fun setAllayDancing(items: Items<T>) = block(items, "SetAllayDancing")
 
     /**
      * Sets a rabbit's skin type.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setRabbitType(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetRabbitType")
+    fun setRabbitType(items: Items<T>) = block(items, "SetRabbitType")
 
     /**
      * Sets the view range of a
@@ -1593,7 +1595,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun displayViewRange(items: io.github.flyingpig525.base.Items<T>) = block(items, "DisplayViewRange")
+    fun displayViewRange(items: Items<T>) = block(items, "DisplayViewRange")
 
     /**
      * Sets the size of an entity.
@@ -1608,11 +1610,11 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setSize(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetSize")
+    fun setSize(items: Items<T>) = block(items, "SetSize")
 
     @io.github.flyingpig525.annotation.Noble
-    fun noAI(items: io.github.flyingpig525.base.Items<T>) = block(items, "NoAI")
-    fun showName(items: io.github.flyingpig525.base.Items<T>) = block(items, "ShowName")
+    fun noAI(items: Items<T>) = block(items, "NoAI")
+    fun showName(items: Items<T>) = block(items, "ShowName")
 
     /**
      * Disguises an entity as a player.
@@ -1630,13 +1632,13 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Overlord
-    fun playerDisguise(items: io.github.flyingpig525.base.Items<T>) = block(items, "PlayerDisguise")
+    fun playerDisguise(items: Items<T>) = block(items, "PlayerDisguise")
 
     /**
      * Sets whether a mob is
      * angry at players.
      */
-    fun setAngry(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetAngry")
+    fun setAngry(items: Items<T>) = block(items, "SetAngry")
 
     /**
      * Sets the item of
@@ -1650,48 +1652,48 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setItem(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetItem")
+    fun setItem(items: Items<T>) = block(items, "SetItem")
 
     /**
      * Causes an entity
      * to explode.
      */
-    fun explode(items: io.github.flyingpig525.base.Items<T>) = block(items, "Explode")
+    fun explode(items: Items<T>) = block(items, "Explode")
 
     /**
      * Makes a warden emerge
      * or dig into the ground.
      */
-    fun setDigging(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetDigging")
+    fun setDigging(items: Items<T>) = block(items, "SetDigging")
 
     @io.github.flyingpig525.annotation.Overlord
-    fun moveTo(items: io.github.flyingpig525.base.Items<T>) = block(items, "MoveTo")
+    fun moveTo(items: Items<T>) = block(items, "MoveTo")
 
     /**
      * Removes an entity's disguise.
      */
     @io.github.flyingpig525.annotation.Overlord
-    fun undisguise(items: io.github.flyingpig525.base.Items<T>) = block(items, "Undisguise")
+    fun undisguise(items: Items<T>) = block(items, "Undisguise")
 
     /**
      * Sets whether a mob drops
      * their items when dead.
      */
-    fun setDeathDrops(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetDeathDrops")
+    fun setDeathDrops(items: Items<T>) = block(items, "SetDeathDrops")
 
     /**
      * Sets whether an item
      * or a falling block will
      * never despawn.
      */
-    fun setPersistent(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetPersistent")
+    fun setPersistent(items: Items<T>) = block(items, "SetPersistent")
 
     /**
      * Sets whether a vex is
      * charging or not.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setVexCharging(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetVexCharging")
+    fun setVexCharging(items: Items<T>) = block(items, "SetVexCharging")
 
     /**
      * Sets a villager's experience
@@ -1705,21 +1707,21 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setVillagerExp(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetVillagerExp")
+    fun setVillagerExp(items: Items<T>) = block(items, "SetVillagerExp")
 
     /**
      * Ignites a creeper, causing
      * it to explode after a fuse
      * period.
      */
-    fun igniteCreeper(items: io.github.flyingpig525.base.Items<T>) = block(items, "IgniteCreeper")
+    fun igniteCreeper(items: Items<T>) = block(items, "IgniteCreeper")
 
     /**
      * Causes a mob to start
      * or stop celebrating.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setCelebrating(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetCelebrating")
+    fun setCelebrating(items: Items<T>) = block(items, "SetCelebrating")
 
     /**
      * Sets the item a projectile
@@ -1734,7 +1736,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Noble
-    fun projectileItem(items: io.github.flyingpig525.base.Items<T>) = block(items, "ProjectileItem")
+    fun projectileItem(items: Items<T>) = block(items, "ProjectileItem")
 
     /**
      * Sets the displayed text
@@ -1749,7 +1751,7 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      * (*) = Optional
      */
     @io.github.flyingpig525.annotation.Mythic
-    fun tDisplayText(items: io.github.flyingpig525.base.Items<T>) = block(items, "TDisplayText")
+    fun tDisplayText(items: Items<T>) = block(items, "TDisplayText")
 
     /**
      * Sets a horse's jump strength.
@@ -1762,24 +1764,24 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun setHorseJump(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetHorseJump")
+    fun setHorseJump(items: Items<T>) = block(items, "SetHorseJump")
 
     /**
      * Sets the color an entity's
      * name tag appears in.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setNameColor(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetNameColor")
+    fun setNameColor(items: Items<T>) = block(items, "SetNameColor")
 
     @io.github.flyingpig525.annotation.Noble
-    fun unsilence(items: io.github.flyingpig525.base.Items<T>) = block(items, "Unsilence")
+    fun unsilence(items: Items<T>) = block(items, "Unsilence")
 
     /**
      * Sets whether a mob carries
      * a chest, which allows its
      * inventory to be accessed.
      */
-    fun setCarryingChest(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetCarryingChest")
+    fun setCarryingChest(items: Items<T>) = block(items, "SetCarryingChest")
 
     /**
      * Makes a goat ram the
@@ -1797,13 +1799,13 @@ class EntityActionCategory<T> internal constructor(private val template: io.gith
      *
      * (*) = Optional
      */
-    fun ram(items: io.github.flyingpig525.base.Items<T>) = block(items, "Ram")
+    fun ram(items: Items<T>) = block(items, "Ram")
 
     /**
      * Sets a fox's fur type.
      */
     @io.github.flyingpig525.annotation.Noble
-    fun setFoxType(items: io.github.flyingpig525.base.Items<T>) = block(items, "SetFoxType")
+    fun setFoxType(items: Items<T>) = block(items, "SetFoxType")
 
 
 }

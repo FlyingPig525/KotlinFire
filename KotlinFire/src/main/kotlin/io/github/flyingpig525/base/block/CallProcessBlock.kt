@@ -1,5 +1,6 @@
 package io.github.flyingpig525.base.block
 
+import io.github.flyingpig525.base.JsonData
 import io.github.flyingpig525.base.item.Item
 
 class CallProcessBlock<T>(processName: String) : Block<T>(
@@ -7,4 +8,4 @@ class CallProcessBlock<T>(processName: String) : Block<T>(
     mutableListOf(),
     "",
     "data: \"$processName\""
-) where T : Item, T : io.github.flyingpig525.base.JsonData
+) where T : Item, T : JsonData
