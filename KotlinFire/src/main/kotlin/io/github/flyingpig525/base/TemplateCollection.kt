@@ -26,4 +26,8 @@ class TemplateCollection<T>(a: TemplateCollection<T>.() -> Unit) where T : Item,
     fun codeClientPlaceTemplates() {
         Template.codeClientPlaceMultipleTemplates(templates.toList())
     }
+
+    init {
+        apply(a)
+    }
 }

@@ -21,6 +21,7 @@ class LocItem(val x: Float, val y: Float, val z: Float, val pitch: Float = 0f, v
 	""".trimIndent()
 
 	companion object {
+		val groundYLevel = 50
 		fun List<Number>.toLocItem(): LocItem? {
 			if (this.size == 3) {
 				return LocItem(this[0].toFloat(), this[1].toFloat(), this[2].toFloat())

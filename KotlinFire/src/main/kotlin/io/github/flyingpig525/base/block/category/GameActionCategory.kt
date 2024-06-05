@@ -390,6 +390,27 @@ class GameActionCategory <T> internal constructor(private val template: Template
 	 */
 	fun setBlockData(items: Items<T>) = block(items, "SetBlockData")
 	/**
+	 * Sets the block at
+	 * a location
+	 *
+	 * ARGUMENTS:
+	 *
+	 * [Block]
+	 *
+	 * Block to set
+	 *
+	 * [LocItem](s)
+	 *
+	 * Block location(s)
+	 *
+	 * (*)[BLOCK_TAG](s)
+	 *
+	 * Block data
+	 *
+	 * (*) = Optional
+	 */
+	fun setBlock(items: Items<T>) = block(items, "SetBlock")
+	/**
 	 * Launches a projectile.
 	 *
 	 * ARGUMENTS:

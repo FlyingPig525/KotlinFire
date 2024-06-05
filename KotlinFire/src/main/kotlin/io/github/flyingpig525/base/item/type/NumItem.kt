@@ -9,7 +9,7 @@ class NumItem(private val value: Float) : Item(ID.NUMBER), JsonData {
 
 	override fun getJsonData(): String = """
 		{
-			"name": $value
+			"name": "$value"
 		}
 	""".trimIndent()
 	companion object {

@@ -29,6 +29,10 @@ class VarItem(val name: String, val scope: Scope = Scope.GAME) : Item(ID.VAR), J
         }
     """.trimIndent()
 
+    override fun toString(): String {
+        return "%var($name)"
+    }
+
     companion object {
         fun String.toVarItem(scope: Scope = Scope.GAME): VarItem = VarItem(this, scope)
     }

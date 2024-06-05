@@ -28,6 +28,7 @@ open class Template<T>(type: Type = Type.FUNCTION, val name: String = "PutNameHe
     val IfPlayer = IfPlayerCategory(this)
     val IfEntity = IfEntityCategory(this)
     val IfGame = IfGameCategory(this)
+    val Control = ControlCategory(this)
 
     fun callFunction(function: Template<T>) = callFunction(function.name)
     fun callFunction(name: String) {
@@ -126,7 +127,7 @@ open class Template<T>(type: Type = Type.FUNCTION, val name: String = "PutNameHe
                 codeClientHttp.webSocket(method = HttpMethod.Get, host = "localhost", port = 31375) {
                     val inc = incoming.receive()
                     if ("auth" in String(inc.data)) {
-                        send("place")
+                        send("place swap")
                         for (temp in templates) {
                             send("place ${temp.getTemplateString()}")
                         }

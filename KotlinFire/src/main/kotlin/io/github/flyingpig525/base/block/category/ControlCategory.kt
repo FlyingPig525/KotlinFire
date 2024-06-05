@@ -24,26 +24,26 @@ class ControlCategory <T> internal constructor( private val template: Template<T
 	 * Stops a Repeat sequence and
 	 * continues to the next code block.
 	 */
-	fun stopRepeat(items: Items<T>) = block(items, "StopRepeat")
+	fun stopRepeat() = block({}, "StopRepeat")
 	/**
 	 * Skips the rest of a Function
 	 * sequence and returns to the
 	 * block it was called from.
 	 */
-	fun returnFrom(items: Items<T>) = block(items, "Return")
-	fun returnNTimes(items: Items<T>) = block(items, "ReturnNTimes")
+	fun returnFrom() = block({}, "Return")
+	fun returnNTimes() = block({}, "ReturnNTimes")
 	/**
 	 * Skips the rest of this repeat
 	 * statement's code and continues
 	 * to the next repetition.
 	 */
-	fun skip(items: Items<T>) = block(items, "Skip")
+	fun skip() = block({}, "Skip")
 	/**
 	 * Stops the current event
 	 * thread. Any code after this
 	 * block will not be executed.
 	 */
-	fun end(items: Items<T>) = block(items, "End")
+	fun end() = block({}, "End")
 	/**
 	 * Pauses the current code
 	 * sequence for a duration of
