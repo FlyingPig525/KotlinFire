@@ -1,18 +1,18 @@
 package io.github.flyingpig525.base.item.type
 
 import io.github.flyingpig525.base.item.Item
-import io.github.flyingpig525.base.JsonData
 
-class NumItem(private val value: Float) : Item(ID.NUMBER), JsonData {
+class NumItem(private val value: Float) : Item(ID.NUMBER), io.github.flyingpig525.base.JsonData {
 
-	constructor(value: Int) : this(value.toFloat())
+    constructor(value: Int) : this(value.toFloat())
 
-	override fun getJsonData(): String = """
+    override fun getJsonData(): String = """
 		{
 			"name": "$value"
 		}
 	""".trimIndent()
-	companion object {
-		fun Number.toNumItem(): NumItem = NumItem(this.toFloat())
-	}
+
+    companion object {
+        fun Number.toNumItem(): NumItem = NumItem(this.toFloat())
+    }
 }

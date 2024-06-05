@@ -10,8 +10,22 @@ plugins {
     kotlin("jvm") version "1.9.23"
 
     `java-base`
+    `maven-publish`
 
 }
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "io.github.flyingpig525"
+            artifactId = "KotlinFire"
+            version = "0.6"
+
+            from(components["java"])
+        }
+    }
+}
+
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -44,7 +58,11 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
     }
+
+    withSourcesJar()
+    withJavadocJar()
 }
+
 
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.

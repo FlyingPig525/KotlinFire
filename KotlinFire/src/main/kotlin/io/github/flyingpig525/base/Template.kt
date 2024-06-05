@@ -16,7 +16,12 @@ import org.jetbrains.annotations.ApiStatus.Internal
 typealias Items<T> = ItemCollection<T>.() -> Unit
 
 @Suppress("LeakingThis")
-open class Template<T>(type: Type = Type.FUNCTION, val name: String = "PutNameHere", a: Template<T>.() -> Unit) : JsonData where T : Item, T : JsonData {
+open class Template<T>(
+    type: Type = Type.FUNCTION,
+    val name: String = "PutNameHere",
+    a: Template<T>.() -> Unit
+) :
+    JsonData where T : Item, T : JsonData {
     val blocks: MutableList<Block<T>> = mutableListOf()
     val SetVariable = SetVariableCategory(this)
     val EntityAction = EntityActionCategory(this)
@@ -34,25 +39,20 @@ open class Template<T>(type: Type = Type.FUNCTION, val name: String = "PutNameHe
     fun callFunction(name: String) {
         blocks += CallFunctionBlock(name)
     }
+
     fun Else(wrappedCode: Template<T>.() -> Unit) {
         blocks += ElseBlock()
         blocks += BracketBlock(type = "norm")
-        blocks += Template(Template.Type.NONE, a = wrappedCode).blocks
+        blocks += Template(
+            Type.NONE,
+            a = wrappedCode
+        ).blocks
         blocks += BracketBlock(false, "norm")
-    }
-
-    private var event: EventBlock<T> = EventBlock(PLAYEREVENT.Join.type, PLAYEREVENT.Join.event)
-
-    constructor(event: PLAYEREVENT, a: Template<T>.() -> Unit) : this(Type.EVENT, "", a) {
-        this.event = EventBlock(event.type, event.event)
-    }
-    constructor(event: ENTITYEVENT, a: Template<T>.() -> Unit) : this(Type.EVENT, "", a) {
-        this.event = EventBlock(event.type, event.event)
     }
 
     init {
         if (type != Type.NONE) {
-            blocks += when(type) {
+            blocks += when (type) {
                 Type.FUNCTION -> FunctionBlock(name)
                 Type.PROCESS -> ProcessBlock(name)
                 // This will get changed by `EventTemplate`
@@ -92,39 +92,55 @@ open class Template<T>(type: Type = Type.FUNCTION, val name: String = "PutNameHe
                 developmentMode = true
             }
             runBlocking {
-                client.webSocket(method = HttpMethod.Post, host = "localhost", port = 31371, path = "/codeutilities/item") {
-                    send("""
+                client.webSocket(
+                    method = HttpMethod.Post,
+                    host = "localhost",
+                    port = 31371,
+                    path = "/codeutilities/item"
+                ) {
+                    send(
+                        """
                         {
                         "type": "template",
                         "source": "KotlinFire",
                         "data": "${template.getJsonData().replace("\"", "\\\"")}"
                         }
                     """.trimIndent()
-                        .replace("\n", "") + "\n"
+                            .replace("\n", "") + "\n"
                     )
                 }
             }
         }
+
         private val codeClientHttp = HttpClient(Java) {
             install(WebSockets)
         }
+
         fun <T> codeClientPlaceTemplate(template: Template<T>) where T : Item, T : JsonData {
             runBlocking {
-                codeClientHttp.webSocket(method = HttpMethod.Get, host = "localhost", port = 31375) {
+                codeClientHttp.webSocket(
+                    method = HttpMethod.Get,
+                    host = "localhost",
+                    port = 31375
+                ) {
                     val inc = incoming.receive()
                     if ("auth" in String(inc.data)) {
                         send("place ${template.getTemplateString()}")
                         send("place go")
                     }
                     incoming.receive()
-                    close(CloseReason(CloseReason.Codes.NORMAL,"Function done."))
+                    close(CloseReason(CloseReason.Codes.NORMAL, "Function done."))
                 }
             }
         }
 
         fun <T> codeClientPlaceMultipleTemplates(templates: List<Template<T>>) where T : Item, T : JsonData {
             runBlocking {
-                codeClientHttp.webSocket(method = HttpMethod.Get, host = "localhost", port = 31375) {
+                codeClientHttp.webSocket(
+                    method = HttpMethod.Get,
+                    host = "localhost",
+                    port = 31375
+                ) {
                     val inc = incoming.receive()
                     if ("auth" in String(inc.data)) {
                         send("place swap")
@@ -134,18 +150,22 @@ open class Template<T>(type: Type = Type.FUNCTION, val name: String = "PutNameHe
                         send("place go")
                     }
                     incoming.receive()
-                    close(CloseReason(CloseReason.Codes.NORMAL,"Function done."))
+                    close(CloseReason(CloseReason.Codes.NORMAL, "Function done."))
                 }
             }
         }
     }
-    fun <T> codeClientPlaceMultipleTemplates(vararg templates: Template<T>) where T : Item, T : JsonData = Companion.codeClientPlaceMultipleTemplates(templates.toList())
+
+    fun <T> codeClientPlaceMultipleTemplates(vararg templates: Template<T>) where T : Item, T : JsonData =
+        codeClientPlaceMultipleTemplates(templates.toList())
 
     enum class Type {
         FUNCTION,
         PROCESS,
+
         @Internal
         NONE,
+
         @Internal
         EVENT;
     }
