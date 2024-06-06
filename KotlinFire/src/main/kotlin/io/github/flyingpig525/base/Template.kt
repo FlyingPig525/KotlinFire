@@ -130,39 +130,49 @@ open class Template<T>(
             install(WebSockets)
         }
 
-        fun <T> codeClientPlaceTemplate(template: Template<T>) where T : Item, T : JsonData {
-            runBlocking {
-                codeClientHttp.webSocket(
-                    method = HttpMethod.Get,
-                    host = "localhost",
-                    port = 31375
-                ) {
-                    val inc = incoming.receive()
-                    if ("auth" in String(inc.data)) {
-                        send("place ${template.getTemplateString()}")
-                        send("place go")
-                    }
-                    incoming.receive()
-                    close(CloseReason(CloseReason.Codes.NORMAL, "Function done."))
-                }
-            }
-        }
+        fun <T> codeClientPlaceTemplate(template: Template<T>) where T : Item, T : JsonData = codeClientPlaceMultipleTemplates(listOf(template))
 
-        fun <T> codeClientPlaceMultipleTemplates(templates: List<Template<T>>) where T : Item, T : JsonData {
+        fun <T> codeClientPlaceMultipleTemplates(templates: List<Template<T>>, ignoreSizeWarning: Boolean = false) where T : Item, T : JsonData {
             runBlocking {
                 codeClientHttp.webSocket(
                     method = HttpMethod.Get,
                     host = "localhost",
                     port = 31375
                 ) {
-                    val inc = incoming.receive()
-                    if ("auth" in String(inc.data)) {
-                        send("place swap")
-                        for (temp in templates) {
-                            send("place ${temp.getTemplateString()}")
-                        }
-                        send("place go")
+                    if ("auth" !in String(incoming.receive().data)) {
+                        close()
+                        return@webSocket
                     }
+
+                    send("size")
+                    val size = String(incoming.receive().data)
+
+                    val sizeNum = when(size) {
+                        "BASIC" -> 50
+                        "LARGE" -> 100
+                        "MASSIVE" -> 300
+                        else -> 0
+                    }
+                    if (sizeNum == 0) {
+                        close()
+                        return@webSocket
+                    }
+                    for (temp in templates) {
+                        if (temp.blocks.size*2 > sizeNum && !ignoreSizeWarning) {
+                            println("TEMPLATE PLACE ERROR\n"
+                                    + "Template ${temp.name} may not fit in codespace, cancelling\n"
+                                    + "Disable this by passing `true` for the `ignoreSizeWarning` parameter"
+                            )
+                            close(CloseReason(CloseReason.Codes.INTERNAL_ERROR, "Template may not fit in codespace"))
+                            return@webSocket
+                        }
+                    }
+
+                    send("place swap")
+                    for (temp in templates) {
+                        send("place ${temp.getTemplateString()}")
+                    }
+                    send("place go")
                     incoming.receive()
                     close(CloseReason(CloseReason.Codes.NORMAL, "Function done."))
                 }
