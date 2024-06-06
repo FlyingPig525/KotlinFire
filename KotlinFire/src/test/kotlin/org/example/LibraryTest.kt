@@ -3,22 +3,20 @@
  */
 package org.example
 
-import io.github.flyingpig525.base.EventTemplate
+import io.github.flyingpig525.base.Template.Type.*
 import io.github.flyingpig525.base.TemplateCollection
 import io.github.flyingpig525.base.block.PLAYEREVENT
 import io.github.flyingpig525.base.item.type.LocItem
 import io.github.flyingpig525.base.item.type.MinecraftItem
-import io.github.flyingpig525.base.item.type.MinecraftItem.Companion.toMinecraftItem
 import io.github.flyingpig525.base.item.type.NumItem.Companion.toNumItem
 import io.github.flyingpig525.base.item.type.TextItem.Companion.toTextItem
-import io.github.flyingpig525.base.item.type.VarItem
 import io.github.flyingpig525.base.item.type.VarItem.Scope.*
 import io.github.flyingpig525.base.item.type.VarItem.Companion.toVarItem
 import kotlin.test.Test
 class LibraryTest {
-    @Test fun caveGen() {
+    @Test fun caveGenExample() {
         TemplateCollection {
-            println(EventTemplate(PLAYEREVENT.Join) {
+            EventTemplate(PLAYEREVENT.Join) {
                 PlayerAction.teleport {
                     +LocItem(0, 100, 0)
                 }
@@ -51,14 +49,23 @@ class LibraryTest {
                     }
 
                 }
-            }.getTemplateString())
-            codeClientPlaceTemplates()
+            }
+            // Uncomment this when trying out this example
+            // codeClientPlaceTemplates()
         }
     }
 
-    @Test fun helloWorldExample() {
+    @Test fun clickerExample() {
         TemplateCollection {
             val playerMoney = "%uuid money".toVarItem(SAVE)
+
+            val actionBarLoop = Template(PROCESS, "actionBarLoop") {
+                Repeat.forever {
+                    PlayerAction.actionBar {
+                        +"<green>Money: $playerMoney".toTextItem()
+                    }
+                }
+            }
 
             EventTemplate(PLAYEREVENT.Join) {
                 IfVar.varExists(
@@ -86,6 +93,8 @@ class LibraryTest {
                 PlayerAction.giveItems {
                     +"item".toVarItem(LINE)
                 }
+
+                invokeTemplate(actionBarLoop)
             }
 
             EventTemplate(PLAYEREVENT.RightClick) {
@@ -93,11 +102,23 @@ class LibraryTest {
                     +playerMoney
                 }
                 PlayerAction.sendMessage {
-                    +"<gradient:#7f52ff:#e3455d>Hello KotlinFire world!".toTextItem()
                     +"<gradient:#7f52ff:#e3455d>$playerMoney".toTextItem()
                 }
             }
-            codeClientPlaceTemplates()
+            // Uncomment this when trying out this example
+            // codeClientPlaceTemplates()
+        }
+    }
+
+    @Test fun helloWorldExample() {
+        TemplateCollection {
+            EventTemplate(PLAYEREVENT.Join) {
+                PlayerAction.sendMessage {
+                    +"<gradient:#7f52ff:#e3455d>Hello KotlinFire World!".toTextItem()
+                }
+            }
+            // Uncomment this when trying out this example
+            // codeClientPlaceTemplates()
         }
     }
 }

@@ -1,9 +1,10 @@
 package io.github.flyingpig525.base.item.type
 
+import io.github.flyingpig525.base.JsonData
 import io.github.flyingpig525.base.item.Item
 
 class LocItem(val x: Float, val y: Float, val z: Float, val pitch: Float = 0f, val yaw: Float = 0f) : Item(ID.LOCATION),
-    io.github.flyingpig525.base.JsonData {
+    JsonData {
 
     constructor(x: Int, y: Int, z: Int, pitch: Int = 0, yaw: Int = 0) : this(
         x.toFloat(),

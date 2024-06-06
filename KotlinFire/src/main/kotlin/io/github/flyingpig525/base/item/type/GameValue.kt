@@ -2,10 +2,11 @@
 
 package io.github.flyingpig525.base.item.type
 
+import io.github.flyingpig525.base.JsonData
 import io.github.flyingpig525.base.item.Item
 
 class GameValue(private val type: String, private var target: Target = Target.Default) : Item(ID.GAMEVALUE),
-    io.github.flyingpig525.base.JsonData {
+    JsonData {
     override fun getJsonData(): String {
         return """
 			{

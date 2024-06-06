@@ -20,8 +20,8 @@ class RepeatCategory<T> internal constructor(private val template: Template<T>) 
     ) {
         blocks += Block("repeat", ItemCollection(items).items, action)
         blocks += BracketBlock(type = "repeat")
-        blocks += io.github.flyingpig525.base.Template(
-            io.github.flyingpig525.base.Template.Type.NONE,
+        blocks += Template(
+            Template.Type.NONE,
             a = wrappedCode
         ).blocks
         blocks += BracketBlock(false, "repeat")
@@ -201,9 +201,8 @@ class RepeatCategory<T> internal constructor(private val template: Template<T>) 
      * Repeats code indefinitely.
      */
     fun forever(
-        items: Items<T>,
         wrappedCode: Template<T>.() -> Unit
-    ) = block(items, "Forever", wrappedCode)
+    ) = block({}, "Forever", wrappedCode)
 
     /**
      * Repeats code once per entry in

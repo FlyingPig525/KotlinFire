@@ -1,5 +1,6 @@
 package io.github.flyingpig525.base.item.type
 
+import io.github.flyingpig525.base.JsonData
 import io.github.flyingpig525.base.item.Item
 
 /*
@@ -12,7 +13,7 @@ import io.github.flyingpig525.base.item.Item
     }
  */
 class VarItem(val name: String, val scope: Scope = Scope.GAME) : Item(ID.VAR),
-    io.github.flyingpig525.base.JsonData {
+    JsonData {
     enum class Scope(private val value: String) {
         GAME("unsaved"),
         LOCAL("local"),

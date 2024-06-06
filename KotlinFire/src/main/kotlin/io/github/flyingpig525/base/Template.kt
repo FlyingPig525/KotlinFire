@@ -35,9 +35,23 @@ open class Template<T>(
     val IfGame = IfGameCategory(this)
     val Control = ControlCategory(this)
 
-    fun callFunction(function: Template<T>) = callFunction(function.name)
     fun callFunction(name: String) {
         blocks += CallFunctionBlock(name)
+    }
+    fun callProcess(name: String) {
+        blocks += CallProcessBlock(name)
+    }
+
+    fun invokeTemplate(template: Template<T>) {
+        if (template.blocks[0] is FunctionBlock) {
+            callFunction(template.name)
+            return
+        }
+        if (template.blocks[0] is ProcessBlock) {
+            callProcess(template.name)
+            return
+        }
+        throw Error("Cannot invoke Event template!")
     }
 
     fun Else(wrappedCode: Template<T>.() -> Unit) {

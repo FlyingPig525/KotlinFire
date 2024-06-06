@@ -1,6 +1,8 @@
 package io.github.flyingpig525.base.item
 
-class ItemCollection<T>(func: ItemCollection<T>.() -> Unit) where T : Item, T : io.github.flyingpig525.base.JsonData {
+import io.github.flyingpig525.base.JsonData
+
+class ItemCollection<T>(func: ItemCollection<T>.() -> Unit) where T : Item, T : JsonData {
     val items: MutableList<T> = mutableListOf()
 
     init {
@@ -9,7 +11,7 @@ class ItemCollection<T>(func: ItemCollection<T>.() -> Unit) where T : Item, T : 
 
     operator fun T.unaryPlus() = also { addItem(it) }
 
-    private fun addItem(item: T) {
+    fun addItem(item: T) {
         items += item.apply {
             slot = items.size
         }

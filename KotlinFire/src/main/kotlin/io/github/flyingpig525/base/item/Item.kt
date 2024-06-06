@@ -1,5 +1,7 @@
 package io.github.flyingpig525.base.item
 
+import io.github.flyingpig525.base.JsonData
+
 open class Item(val id: ID) {
     var slot = 0
 
@@ -25,7 +27,7 @@ open class Item(val id: ID) {
         fun <T> getItemJsonArgument(
             item: T,
             slot: Int? = null
-        ): String where T : Item, T : io.github.flyingpig525.base.JsonData = """
+        ): String where T : Item, T : JsonData = """
 			{
 				"item": {
 					"id": "${item.id}",
