@@ -79,6 +79,8 @@ open class Template<T>(
     }
 
     override fun getJsonData(): String {
+        var tags = ""
+
         var string = """
             {
             "blocks": [

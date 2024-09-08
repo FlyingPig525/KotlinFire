@@ -8,6 +8,7 @@
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     kotlin("jvm") version "1.9.23"
+    kotlin("plugin.serialization") version "1.9.23"
 
     `java-base`
     `maven-publish`
@@ -49,14 +50,9 @@ dependencies {
     val ktor_version = "2.3.11"
     implementation("io.ktor:ktor-client-websockets:$ktor_version")
     implementation("io.ktor:ktor-client-java:$ktor_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.2")
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
-    // This dependency is exported to consumers, that is to say found on their compile classpath.
-    api(libs.commons.math3)
-
-    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
-    implementation(libs.guava)
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
