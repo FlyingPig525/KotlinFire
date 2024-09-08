@@ -1,7 +1,8 @@
 # KotlinFire
 KotlinFire is a Kotlin library used to manipulate code templates from the Minecraft server [DiamondFire](https://mcdiamondfire.com).
 This library features a clean syntax, making use of Kotlin's lambda functions, extension functions, and operator overloading.
-dont use this it actually sucks
+
+**Now with automatic tag insertion!**
 
 ## Usage
 **Currently, the only way to use KotlinFire is to clone this repository and make changes to the testing entrypoint, but will soon be
