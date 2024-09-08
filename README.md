@@ -5,7 +5,7 @@ This library features a clean syntax, making use of Kotlin's lambda functions, e
 **Now with automatic tag insertion!**
 
 ## Usage
-**Currently, the only way to use KotlinFire is to clone this repository and make changes to the testing entrypoint, but will soon be
+**Currently, the only way to use KotlinFire is to clone this repository and make changes to the testing entrypoint or use the jar file from the latest [release](https://github.com/FlyingPig525/KotlinFire/releases/latest) as a dependency, but will soon be
 available on gradle and maven.**
 
 To begin constructing a template, assign a variable the `Template` class. The `Template` class contains a lambda function 
