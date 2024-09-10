@@ -9,11 +9,11 @@ class VecItem(x: Number, y: Number, z: Number) : Item(ID.VECTOR), JsonData {
     val z = z.toFloat()
 
     override fun getJsonData(): String {
-        return """
+        return """{
             "x": $x,
             "y": $y,
             "z": $z
-        """.trimIndent()
+        }""".trimIndent()
     }
 
     companion object {

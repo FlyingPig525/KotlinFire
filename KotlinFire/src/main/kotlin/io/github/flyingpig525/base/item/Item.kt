@@ -13,6 +13,7 @@ open class Item(val id: ID) {
         LOCATION("loc"),
         VECTOR("vec"),
         GAMEVALUE("g_val"),
+        SOUND("snd"),
         ITEM("item");
 
 
