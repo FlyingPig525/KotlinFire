@@ -36,5 +36,9 @@ class VarItem(val name: String, val scope: Scope = Scope.GAME) : Item(ID.VAR),
 
     companion object {
         fun String.toVarItem(scope: Scope = Scope.GAME): VarItem = VarItem(this, scope)
+        val String.gameVar get() = toVarItem()
+        val String.saveVar get() = toVarItem(Scope.SAVE)
+        val String.localVar get() = toVarItem(Scope.LOCAL)
+        val String.lineVar get() = toVarItem(Scope.LINE)
     }
 }

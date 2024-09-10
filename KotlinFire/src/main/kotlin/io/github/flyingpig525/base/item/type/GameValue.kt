@@ -16,8 +16,8 @@ class GameValue(private val type: String, private var target: Target = Target.De
 		""".trimIndent()
     }
 
-    fun target(newTarget: Target) {
-        this.target = newTarget
+    fun target(target: Target) {
+        this.target = target
     }
 
     enum class Target {

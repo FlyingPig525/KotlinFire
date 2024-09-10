@@ -15,5 +15,6 @@ class NumItem(private val value: Float) : Item(ID.NUMBER), JsonData {
 
     companion object {
         fun Number.toNumItem(): NumItem = NumItem(this.toFloat())
+        val Number.numItem get() = toNumItem()
     }
 }

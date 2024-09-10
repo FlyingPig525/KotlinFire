@@ -43,5 +43,7 @@ class LocItem(val x: Float, val y: Float, val z: Float, val pitch: Float = 0f, v
             }
             return null
         }
+        val List<Number>.locItem: LocItem?
+            get() = this.toLocItem()
     }
 }

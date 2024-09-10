@@ -19,7 +19,7 @@ object StatisticalValues {
      * to the target's maximum
      * health (20.0 by default)
      */
-    val CurrentHealth = GameValue("Current Health")
+    val CurrentHealth get() = GameValue("Current Health")
 
     /**
      * DESCRIPTION:
@@ -34,7 +34,7 @@ object StatisticalValues {
      * Maximum
      * health, 1.0 or above
      */
-    val MaximumHealth = GameValue("Maximum Health")
+    val MaximumHealth get() = GameValue("Maximum Health")
 
     /**
      * DESCRIPTION:
@@ -50,7 +50,7 @@ object StatisticalValues {
      * Absorption
      * health
      */
-    val AbsorptionHealth = GameValue("Absorption Health")
+    val AbsorptionHealth get() = GameValue("Absorption Health")
 
     /**
      * DESCRIPTION:
@@ -65,7 +65,7 @@ object StatisticalValues {
      * 0 (starving)
      * to 20 (full bar)
      */
-    val FoodLevel = GameValue("Food Level")
+    val FoodLevel get() = GameValue("Food Level")
 
     /**
      * DESCRIPTION:
@@ -81,7 +81,7 @@ object StatisticalValues {
      * 0.0 (minimum), up to
      * the player's food level
      */
-    val FoodSaturation = GameValue("Food Saturation")
+    val FoodSaturation get() = GameValue("Food Saturation")
 
     /**
      * DESCRIPTION:
@@ -97,7 +97,7 @@ object StatisticalValues {
      * 0.0 (minimum) to
      * 4.0 (reset point)
      */
-    val FoodExhaustion = GameValue("Food Exhaustion")
+    val FoodExhaustion get() = GameValue("Food Exhaustion")
 
     /**
      * DESCRIPTION:
@@ -113,7 +113,7 @@ object StatisticalValues {
      * 0.0 or higher
      * (more damage)
      */
-    val AttackDamage = GameValue("Attack Damage")
+    val AttackDamage get() = GameValue("Attack Damage")
 
     /**
      * DESCRIPTION:
@@ -129,7 +129,7 @@ object StatisticalValues {
      * 0.0 or higher
      * (faster)
      */
-    val AttackSpeed = GameValue("Attack Speed")
+    val AttackSpeed get() = GameValue("Attack Speed")
 
     /**
      * DESCRIPTION:
@@ -145,7 +145,7 @@ object StatisticalValues {
      * 0.0 (fully uncharged)
      * to 100.0 (fully charged)
      */
-    val AttackCooldown = GameValue("Attack Cooldown")
+    val AttackCooldown get() = GameValue("Attack Cooldown")
 
     /**
      * DESCRIPTION:
@@ -162,7 +162,7 @@ object StatisticalValues {
      * 0.0 (instant)
      * or above
      */
-    val AttackCooldownTicks = GameValue("Attack Cooldown Ticks")
+    val AttackCooldownTicks get() = GameValue("Attack Cooldown Ticks")
 
     /**
      * DESCRIPTION:
@@ -178,7 +178,7 @@ object StatisticalValues {
      * 0.0 (no armor)
      * to 20.0 (full bar)
      */
-    val ArmorPoints = GameValue("Armor Points")
+    val ArmorPoints get() = GameValue("Armor Points")
 
     /**
      * DESCRIPTION:
@@ -192,9 +192,9 @@ object StatisticalValues {
      * [NumItem]
      *
      * 0.0 or above (full
-     * set of diamond armor = 8.0)
+     * set of diamond armor get() = 8.0)
      */
-    val ArmorToughness = GameValue("Armor Toughness")
+    val ArmorToughness get() = GameValue("Armor Toughness")
 
     /**
      * DESCRIPTION:
@@ -209,7 +209,7 @@ object StatisticalValues {
      * 0 (can be hurt)
      * or above (invulnerable)
      */
-    val InvulnerabilityTicks = GameValue("Invulnerability Ticks")
+    val InvulnerabilityTicks get() = GameValue("Invulnerability Ticks")
 
     /**
      * DESCRIPTION:
@@ -224,7 +224,7 @@ object StatisticalValues {
      * 0 (no levels)
      * or above
      */
-    val ExperienceLevel = GameValue("Experience Level")
+    val ExperienceLevel get() = GameValue("Experience Level")
 
     /**
      * DESCRIPTION:
@@ -240,7 +240,7 @@ object StatisticalValues {
      * 0.0% (no progress)
      * to 100.0% (next level)
      */
-    val ExperienceProgress = GameValue("Experience Progress")
+    val ExperienceProgress get() = GameValue("Experience Progress")
 
     /**
      * DESCRIPTION:
@@ -255,7 +255,7 @@ object StatisticalValues {
      * 0 (not on fire)
      * or above (burning)
      */
-    val FireTicks = GameValue("Fire Ticks")
+    val FireTicks get() = GameValue("Fire Ticks")
 
     /**
      * DESCRIPTION:
@@ -270,7 +270,7 @@ object StatisticalValues {
      * 0 (not frozen)
      * or above (freezing)
      */
-    val FreezeTicks = GameValue("Freeze Ticks")
+    val FreezeTicks get() = GameValue("Freeze Ticks")
 
     /**
      * DESCRIPTION:
@@ -285,7 +285,7 @@ object StatisticalValues {
      * 0 (drowning)
      * to 300 (maximum air)
      */
-    val RemainingAir = GameValue("Remaining Air")
+    val RemainingAir get() = GameValue("Remaining Air")
 
     /**
      * DESCRIPTION:
@@ -300,7 +300,7 @@ object StatisticalValues {
      * 0.0 (not falling)
      * or higher (falling down)
      */
-    val FallDistance = GameValue("Fall Distance")
+    val FallDistance get() = GameValue("Fall Distance")
 
     /**
      * DESCRIPTION:
@@ -315,7 +315,7 @@ object StatisticalValues {
      * 1 (leftmost slot)
      * to 9 (rightmost slot)
      */
-    val HeldSlot = GameValue("Held Slot")
+    val HeldSlot get() = GameValue("Held Slot")
 
     /**
      * DESCRIPTION:
@@ -335,7 +335,7 @@ object StatisticalValues {
      * ,,╻╻┃ 600 to 999
      * ,,╻╻┃ over 1000
      */
-    val Ping = GameValue("Ping")
+    val Ping get() = GameValue("Ping")
 
     /**
      * DESCRIPTION:
@@ -351,7 +351,7 @@ object StatisticalValues {
      * -1.0 (right)
      * to 1.0 (left)
      */
-    val SteerSidewaysMovement = GameValue("Steer Sideways Movement")
+    val SteerSidewaysMovement get() = GameValue("Steer Sideways Movement")
 
     /**
      * DESCRIPTION:
@@ -367,7 +367,7 @@ object StatisticalValues {
      * -1.0 (backward)
      * to 1.0 (forward)
      */
-    val SteerForwardMovement = GameValue("Steer Forward Movement")
+    val SteerForwardMovement get() = GameValue("Steer Forward Movement")
 
     /**
      * DESCRIPTION:
@@ -383,7 +383,7 @@ object StatisticalValues {
      * 0 (not using an item),
      * or 0.0% (start) to 100.0%
      */
-    val ItemUsageProgress = GameValue("Item Usage Progress")
+    val ItemUsageProgress get() = GameValue("Item Usage Progress")
 
     /**
      * DESCRIPTION:
@@ -397,7 +397,7 @@ object StatisticalValues {
      *
      * Width in blocks
      */
-    val EntityWidth = GameValue("Entity Width")
+    val EntityWidth get() = GameValue("Entity Width")
 
     /**
      * DESCRIPTION:
@@ -411,7 +411,7 @@ object StatisticalValues {
      *
      * Height in blocks
      */
-    val EntityHeight = GameValue("Entity Height")
+    val EntityHeight get() = GameValue("Entity Height")
 
 }
 
@@ -428,7 +428,7 @@ object LocationalValues {
      * Location and
      * rotation, at feet height
      */
-    val Location = GameValue("Location")
+    val Location get() = GameValue("Location")
 
     /**
      * DESCRIPTION:
@@ -442,7 +442,7 @@ object LocationalValues {
      *
      * Block center
      */
-    val TargetBlockLocation = GameValue("Target Block Location")
+    val TargetBlockLocation get() = GameValue("Target Block Location")
 
     /**
      * DESCRIPTION:
@@ -457,7 +457,7 @@ object LocationalValues {
      *
      * Block side
      */
-    val TargetBlockSide = GameValue("Target Block Side")
+    val TargetBlockSide get() = GameValue("Target Block Side")
 
     /**
      * DESCRIPTION:
@@ -472,7 +472,7 @@ object LocationalValues {
      * Eye location
      * and rotation
      */
-    val EyeLocation = GameValue("Eye Location")
+    val EyeLocation get() = GameValue("Eye Location")
 
     /**
      * DESCRIPTION:
@@ -486,7 +486,7 @@ object LocationalValues {
      *
      * Coordinate
      */
-    val XCoordinate = GameValue("X-Coordinate")
+    val XCoordinate get() = GameValue("X-Coordinate")
 
     /**
      * DESCRIPTION:
@@ -500,7 +500,7 @@ object LocationalValues {
      *
      * Coordinate
      */
-    val YCoordinate = GameValue("Y-Coordinate")
+    val YCoordinate get() = GameValue("Y-Coordinate")
 
     /**
      * DESCRIPTION:
@@ -514,7 +514,7 @@ object LocationalValues {
      *
      * Coordinate
      */
-    val ZCoordinate = GameValue("Z-Coordinate")
+    val ZCoordinate get() = GameValue("Z-Coordinate")
 
     /**
      * DESCRIPTION:
@@ -529,7 +529,7 @@ object LocationalValues {
      * Location and
      * rotation, at midpoint
      */
-    val MidpointLocation = GameValue("Midpoint Location")
+    val MidpointLocation get() = GameValue("Midpoint Location")
 
     /**
      * DESCRIPTION:
@@ -544,7 +544,7 @@ object LocationalValues {
      *
      * -90.0 to 90.0
      */
-    val Pitch = GameValue("Pitch")
+    val Pitch get() = GameValue("Pitch")
 
     /**
      * DESCRIPTION:
@@ -559,7 +559,7 @@ object LocationalValues {
      *
      * -180.0 to 180.0
      */
-    val Yaw = GameValue("Yaw")
+    val Yaw get() = GameValue("Yaw")
 
     /**
      * DESCRIPTION:
@@ -574,7 +574,7 @@ object LocationalValues {
      *
      * -180.0 to 180.0
      */
-    val BodyYaw = GameValue("Body Yaw")
+    val BodyYaw get() = GameValue("Body Yaw")
 
     /**
      * DESCRIPTION:
@@ -588,7 +588,7 @@ object LocationalValues {
      *
      * Block center
      */
-    val StandingBlockLocation = GameValue("Standing Block Location")
+    val StandingBlockLocation get() = GameValue("Standing Block Location")
 
     /**
      * DESCRIPTION:
@@ -603,7 +603,7 @@ object LocationalValues {
      * Location this
      * entity was created at
      */
-    val SpawnLocation = GameValue("Spawn Location")
+    val SpawnLocation get() = GameValue("Spawn Location")
 
     /**
      * DESCRIPTION:
@@ -618,7 +618,7 @@ object LocationalValues {
      *
      * Movement velocity
      */
-    val Velocity = GameValue("Velocity")
+    val Velocity get() = GameValue("Velocity")
 
     /**
      * DESCRIPTION:
@@ -634,7 +634,7 @@ object LocationalValues {
      * Direction vector
      * (length of 1.0)
      */
-    val Direction = GameValue("Direction")
+    val Direction get() = GameValue("Direction")
 
 }
 
@@ -652,7 +652,7 @@ object ItemValues {
      * Item in the
      * selected hotbar slot
      */
-    val MainHandItem = GameValue("Main Hand Item")
+    val MainHandItem get() = GameValue("Main Hand Item")
 
     /**
      * DESCRIPTION:
@@ -667,7 +667,7 @@ object ItemValues {
      * Item in the
      * offhand slot
      */
-    val OffHandItem = GameValue("Off Hand Item")
+    val OffHandItem get() = GameValue("Off Hand Item")
 
     /**
      * DESCRIPTION:
@@ -684,7 +684,7 @@ object ItemValues {
      * slot (air if empty, 4 in
      * total)
      */
-    val ArmorItems = GameValue("Armor Items")
+    val ArmorItems get() = GameValue("Armor Items")
 
     /**
      * DESCRIPTION:
@@ -701,7 +701,7 @@ object ItemValues {
      * slot (air if empty, 9 in
      * total)
      */
-    val HotbarItems = GameValue("Hotbar Items")
+    val HotbarItems get() = GameValue("Hotbar Items")
 
     /**
      * DESCRIPTION:
@@ -718,7 +718,7 @@ object ItemValues {
      * slot (air if empty, 36 in
      * total)
      */
-    val InventoryItems = GameValue("Inventory Items")
+    val InventoryItems get() = GameValue("Inventory Items")
 
     /**
      * DESCRIPTION:
@@ -733,7 +733,7 @@ object ItemValues {
      *
      * Cursor item
      */
-    val CursorItem = GameValue("Cursor Item")
+    val CursorItem get() = GameValue("Cursor Item")
 
     /**
      * DESCRIPTION:
@@ -749,7 +749,7 @@ object ItemValues {
      * entry for each menu
      * slot (air if empty)
      */
-    val InventoryMenuItems = GameValue("Inventory Menu Items")
+    val InventoryMenuItems get() = GameValue("Inventory Menu Items")
 
     /**
      * DESCRIPTION:
@@ -764,7 +764,7 @@ object ItemValues {
      * Item in the
      * saddle/decor slot
      */
-    val SaddleItem = GameValue("Saddle Item")
+    val SaddleItem get() = GameValue("Saddle Item")
 
     /**
      * DESCRIPTION:
@@ -778,7 +778,7 @@ object ItemValues {
      *
      * The entity item
      */
-    val EntityItem = GameValue("Entity Item")
+    val EntityItem get() = GameValue("Entity Item")
 
 }
 
@@ -794,7 +794,7 @@ object InformationalValues {
      *
      * Target name
      */
-    val Name = GameValue("Name ")
+    val Name get() = GameValue("Name ")
 
     /**
      * DESCRIPTION:
@@ -808,7 +808,7 @@ object InformationalValues {
      *
      * Target UUID
      */
-    val UUID = GameValue("UUID")
+    val UUID get() = GameValue("UUID")
 
     /**
      * DESCRIPTION:
@@ -822,7 +822,7 @@ object InformationalValues {
      * Entity type, e.g.
      * "tipped_arrow" or "cow"
      */
-    val EntityType = GameValue("Entity Type")
+    val EntityType get() = GameValue("Entity Type")
 
     /**
      * DESCRIPTION:
@@ -837,7 +837,7 @@ object InformationalValues {
      * "survival", "creative", "adventure",
      * "spectator",
      */
-    val GameMode = GameValue("Game Mode")
+    val GameMode get() = GameValue("Game Mode")
 
     /**
      * DESCRIPTION:
@@ -854,7 +854,7 @@ object InformationalValues {
      * or the player's regular
      * inventory is open
      */
-    val OpenInventoryTitle = GameValue("Open Inventory Title ")
+    val OpenInventoryTitle get() = GameValue("Open Inventory Title ")
 
     /**
      * DESCRIPTION:
@@ -871,7 +871,7 @@ object InformationalValues {
      * for each active
      * effect on the target
      */
-    val PotionEffects = GameValue("Potion Effects")
+    val PotionEffects get() = GameValue("Potion Effects")
 
     /**
      * DESCRIPTION:
@@ -887,7 +887,7 @@ object InformationalValues {
      * entity, or "none" if the
      * target is not riding one
      */
-    val Vehicle = GameValue("Vehicle")
+    val Vehicle get() = GameValue("Vehicle")
 
     /**
      * DESCRIPTION:
@@ -905,7 +905,7 @@ object InformationalValues {
      * (Empty List if the target
      * has no passengers)
      */
-    val Passengers = GameValue("Passengers ")
+    val Passengers get() = GameValue("Passengers ")
 
     /**
      * DESCRIPTION:
@@ -921,7 +921,7 @@ object InformationalValues {
      * or "none" if the target
      * is not on a lead
      */
-    val LeadHolder = GameValue("Lead Holder")
+    val LeadHolder get() = GameValue("Lead Holder")
 
     /**
      * DESCRIPTION:
@@ -939,7 +939,7 @@ object InformationalValues {
      * (Empty List if the target
      * holds no leads)
      */
-    val AttachedLeads = GameValue("Attached Leads")
+    val AttachedLeads get() = GameValue("Attached Leads")
 
     /**
      * DESCRIPTION:
@@ -955,7 +955,7 @@ object InformationalValues {
      * entity, or "none" if the
      * target is not chasing one
      */
-    val TargetedEntityUUID = GameValue("Targeted Entity UUID")
+    val TargetedEntityUUID get() = GameValue("Targeted Entity UUID")
 
 }
 
@@ -972,7 +972,7 @@ object EventValues {
      *
      * Block center
      */
-    val EventBlockLocation = GameValue("Event Block Location")
+    val EventBlockLocation get() = GameValue("Event Block Location")
 
     /**
      * DESCRIPTION:
@@ -987,7 +987,7 @@ object EventValues {
      *
      * Block side
      */
-    val EventBlockSide = GameValue("Event Block Side")
+    val EventBlockSide get() = GameValue("Event Block Side")
 
     /**
      * DESCRIPTION:
@@ -1001,7 +1001,7 @@ object EventValues {
      *
      * 0.0 or above
      */
-    val EventDamage = GameValue("Event Damage")
+    val EventDamage get() = GameValue("Event Damage")
 
     /**
      * DESCRIPTION:
@@ -1026,7 +1026,7 @@ object EventValues {
      * "starvation", "suffocation", "thorns", "void",
      * "wither", "world_border", "freeze"
      */
-    val DamageEventCause = GameValue("Damage Event Cause")
+    val DamageEventCause get() = GameValue("Damage Event Cause")
 
     /**
      * DESCRIPTION:
@@ -1040,7 +1040,7 @@ object EventValues {
      *
      * Death message
      */
-    val EventDeathMessage = GameValue("Event Death Message")
+    val EventDeathMessage get() = GameValue("Event Death Message")
 
     /**
      * DESCRIPTION:
@@ -1054,7 +1054,7 @@ object EventValues {
      *
      * Health regained
      */
-    val EventHealAmount = GameValue("Event Heal Amount")
+    val EventHealAmount get() = GameValue("Event Heal Amount")
 
     /**
      * DESCRIPTION:
@@ -1072,7 +1072,7 @@ object EventValues {
      * "magic_regen" (regen effect),
      * "custom" (code)
      */
-    val HealEventCause = GameValue("Heal Event Cause")
+    val HealEventCause get() = GameValue("Heal Event Cause")
 
     /**
      * DESCRIPTION:
@@ -1088,7 +1088,7 @@ object EventValues {
      * Contains one Location
      * entry for each block
      */
-    val EventExplosionAffectedBlocks = GameValue("Event Explosion Affected Blocks")
+    val EventExplosionAffectedBlocks get() = GameValue("Event Explosion Affected Blocks")
 
     /**
      * DESCRIPTION:
@@ -1103,7 +1103,7 @@ object EventValues {
      *
      * 0.0% to 100.0%
      */
-    val EventPower = GameValue("Event Power")
+    val EventPower get() = GameValue("Event Power")
 
     /**
      * DESCRIPTION:
@@ -1118,7 +1118,7 @@ object EventValues {
      * Command, with the
      * first "@" excluded
      */
-    val EventCommand = GameValue("Event Command")
+    val EventCommand get() = GameValue("Event Command")
 
     /**
      * DESCRIPTION:
@@ -1134,7 +1134,7 @@ object EventValues {
      * entry for each word in the
      * command (split by " ")
      */
-    val EventCommandArguments = GameValue("Event Command Arguments")
+    val EventCommandArguments get() = GameValue("Event Command Arguments")
 
     /**
      * DESCRIPTION:
@@ -1149,7 +1149,7 @@ object EventValues {
      * Main item in
      * event
      */
-    val EventItem = GameValue("Event Item")
+    val EventItem get() = GameValue("Event Item")
 
     /**
      * DESCRIPTION:
@@ -1164,7 +1164,7 @@ object EventValues {
      * 1 (leftmost slot)
      * to 9 (rightmost slot)
      */
-    val EventHotbarSlot = GameValue("Event Hotbar Slot")
+    val EventHotbarSlot get() = GameValue("Event Hotbar Slot")
 
     /**
      * DESCRIPTION:
@@ -1180,7 +1180,7 @@ object EventValues {
      * From 1 (first slot)
      * up to the inventory's size
      */
-    val EventClickedSlotIndex = GameValue("Event Clicked Slot Index")
+    val EventClickedSlotIndex get() = GameValue("Event Clicked Slot Index")
 
     /**
      * DESCRIPTION:
@@ -1195,7 +1195,7 @@ object EventValues {
      * Item in slot
      * (before the click event)
      */
-    val EventClickedSlotItem = GameValue("Event Clicked Slot Item")
+    val EventClickedSlotItem get() = GameValue("Event Clicked Slot Item")
 
     /**
      * DESCRIPTION:
@@ -1210,7 +1210,7 @@ object EventValues {
      * Item in slot
      * (after the click event)
      */
-    val EventClickedSlotNewItem = GameValue("Event Clicked Slot New Item")
+    val EventClickedSlotNewItem get() = GameValue("Event Clicked Slot New Item")
 
     /**
      * DESCRIPTION:
@@ -1229,7 +1229,7 @@ object EventValues {
      * "cant_use", "disconnect",
      * "death", "unknown"
      */
-    val CloseInventoryEventCause = GameValue("Close Inventory Event Cause")
+    val CloseInventoryEventCause get() = GameValue("Close Inventory Event Cause")
 
     /**
      * DESCRIPTION:
@@ -1249,7 +1249,7 @@ object EventValues {
      * "swap_offhand" (F),
      * "swap_hotbar" (1 ... 9)
      */
-    val InventoryEventClickType = GameValue("Inventory Event Click Type")
+    val InventoryEventClickType get() = GameValue("Inventory Event Click Type")
 
     /**
      * DESCRIPTION:
@@ -1266,7 +1266,7 @@ object EventValues {
      * "cancel", "cancel_block",
      * "miss", "pull_entity"
      */
-    val FishEventCause = GameValue("Fish Event Cause")
+    val FishEventCause get() = GameValue("Fish Event Cause")
 
     /**
      * DESCRIPTION:
@@ -1283,7 +1283,7 @@ object EventValues {
      * "code", "ender_pearl",
      * "chorus_fruit", "unknown",
      */
-    val TeleportEventCause = GameValue("Teleport Event Cause")
+    val TeleportEventCause get() = GameValue("Teleport Event Cause")
 
     /**
      * DESCRIPTION:
@@ -1297,7 +1297,7 @@ object EventValues {
      *
      * Location
      */
-    val TeleportLocation = GameValue("Teleport Location")
+    val TeleportLocation get() = GameValue("Teleport Location")
 
 }
 
@@ -1314,7 +1314,7 @@ object PlotValues {
      *
      * Player count
      */
-    val PlayerCount = GameValue("Player Count")
+    val PlayerCount get() = GameValue("Player Count")
 
     /**
      * DESCRIPTION:
@@ -1330,7 +1330,7 @@ object PlotValues {
      * Usage as a percentage.
      * Can go above 100%.
      */
-    val CPUUsage = GameValue("CPU Usage")
+    val CPUUsage get() = GameValue("CPU Usage")
 
     /**
      * DESCRIPTION:
@@ -1347,7 +1347,7 @@ object PlotValues {
      * lag) or below (decreases
      * with more lag)
      */
-    val ServerTPS = GameValue("Server TPS")
+    val ServerTPS get() = GameValue("Server TPS")
 
     /**
      * DESCRIPTION:
@@ -1363,7 +1363,7 @@ object PlotValues {
      *
      * Current time
      */
-    val Timestamp = GameValue("Timestamp")
+    val Timestamp get() = GameValue("Timestamp")
 
     /**
      * DESCRIPTION:
@@ -1378,7 +1378,7 @@ object PlotValues {
      * 0 (no targets)
      * or above
      */
-    val SelectionSize = GameValue("Selection Size")
+    val SelectionSize get() = GameValue("Selection Size")
 
     /**
      * DESCRIPTION:
@@ -1394,7 +1394,7 @@ object PlotValues {
      * entry (name) for each
      * target
      */
-    val SelectionTargetNames = GameValue("Selection Target Names")
+    val SelectionTargetNames get() = GameValue("Selection Target Names")
 
     /**
      * DESCRIPTION:
@@ -1410,7 +1410,7 @@ object PlotValues {
      * entry (UUID) for each
      * target
      */
-    val SelectionTargetUUIDs = GameValue("Selection Target UUIDs")
+    val SelectionTargetUUIDs get() = GameValue("Selection Target UUIDs")
 
     /**
      * DESCRIPTION:
@@ -1423,7 +1423,7 @@ object PlotValues {
      *
      * Plot ID
      */
-    val PlotID = GameValue("Plot ID")
+    val PlotID get() = GameValue("Plot ID")
 
     /**
      * DESCRIPTION:
@@ -1436,6 +1436,6 @@ object PlotValues {
      *
      * Plot size in blocks
      */
-    val PlotSize = GameValue("Plot Size")
+    val PlotSize get() = GameValue("Plot Size")
 
 }

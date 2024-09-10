@@ -17,6 +17,7 @@ class MinecraftItem(val nbt: String) : Item(ID.ITEM), JsonData {
 
     companion object {
         fun String.toMinecraftItem() = MinecraftItem(this.replace("\"", "\\\""))
+        val String.mcItem get() = toMinecraftItem()
         fun mcItemOf(type: String, count: Short = 1) = """{Count:${count}b,DF_NBT:3700,id:"$type"}""".toMinecraftItem()
     }
 }

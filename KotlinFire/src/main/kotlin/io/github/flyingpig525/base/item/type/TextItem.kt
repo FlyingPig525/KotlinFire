@@ -14,5 +14,6 @@ class TextItem(val text: String) : Item(ID.RICHTEXT), JsonData {
 
     companion object {
         fun String.toTextItem(): TextItem = TextItem(this)
+        val String.textItem get() = toTextItem()
     }
 }

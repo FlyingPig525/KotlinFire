@@ -15,5 +15,6 @@ class StringItem(val text: String) : Item(ID.STRING), JsonData {
 
     companion object {
         fun String.toStringItem(): StringItem = StringItem(this)
+        val String.stringItem get() = toStringItem()
     }
 }
