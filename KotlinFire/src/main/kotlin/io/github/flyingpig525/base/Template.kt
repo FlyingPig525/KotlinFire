@@ -141,6 +141,8 @@ open class Template<T>(
                     host = "localhost",
                     port = 31375
                 ) {
+                    send("scopes read_plot write_code")
+                    
                     if ("auth" !in String(incoming.receive().data)) {
                         close()
                         return@webSocket
@@ -153,12 +155,15 @@ open class Template<T>(
                         "BASIC" -> 50
                         "LARGE" -> 100
                         "MASSIVE" -> 300
+                        "MEGA" -> 300
                         else -> 0
                     }
+                    
                     if (sizeNum == 0) {
                         close()
                         return@webSocket
                     }
+                    
                     for (temp in templates) {
                         if (temp.blocks.size*2 > sizeNum && !ignoreSizeWarning) {
                             println("TEMPLATE PLACE ERROR\n"
@@ -171,11 +176,14 @@ open class Template<T>(
                     }
 
                     send("place swap")
+                    
                     for (temp in templates) {
                         send("place ${temp.getTemplateString()}")
                     }
+                    
                     send("place go")
                     incoming.receive()
+                    
                     close(CloseReason(CloseReason.Codes.NORMAL, "Function done."))
                 }
             }
