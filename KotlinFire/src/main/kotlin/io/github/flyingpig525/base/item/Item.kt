@@ -1,6 +1,10 @@
 package io.github.flyingpig525.base.item
 
 import io.github.flyingpig525.base.JsonData
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.put
+import kotlinx.serialization.json.putJsonObject
 
 open class Item(val id: ID) {
     var slot = 0
@@ -28,14 +32,21 @@ open class Item(val id: ID) {
         fun <T> getItemJsonArgument(
             item: T,
             slot: Int? = null
-        ): String where T : Item, T : JsonData = """
-			{
-				"item": {
-					"id": "${item.id}",
-					"data": ${item.getJsonData()}
-				},
-				"slot": ${slot ?: item.slot}
-			}
-		""".trimIndent()
+        ): JsonObject where T : Item, T : JsonData = buildJsonObject {
+            putJsonObject("item") {
+                put("id", item.id.toString())
+                put("data", item.getJsonData())
+            }
+            put("slot", slot ?: item.slot)
+        }
+//            """
+//			{
+//				"item": {
+//					"id": "${item.id}",
+//					"data": ${item.getJsonData()}
+//				},
+//				"slot": ${slot ?: item.slot}
+//			}
+//		""".trimIndent()
     }
 }

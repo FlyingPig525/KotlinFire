@@ -15,7 +15,7 @@ object GlobalActionDump {
     private var actionDumpBlocks: JsonArray? = null
 
     // no idea why my github website is claycoin.me
-    const val ACTIONDUMP_URL = "http://claycoin.me/actiondump.json"
+    const val ACTIONDUMP_URL = "https://flyingpig525.github.io/actiondump.json"
 
     init {
         runBlocking {
@@ -55,30 +55,51 @@ object GlobalActionDump {
     //
     //        return tags;
     //    }
-    fun <T> getTags(block: Block<T>): String where T : Item, T : JsonData {
-        var ret = ""
-        val tags = actionDumpBlocks?.find {
-            it.jsonObject["name"]?.jsonPrimitive?.content == block.action
-        }?.jsonObject?.get("tags")?.jsonArray
-        if (tags != null) {
-            for ((i, el) in tags.withIndex()) {
-                ret += """
-                    {
-                    "item": {
-                        "id": "bl_tag",
-                        "data": {
-                            "tag": "${el.jsonObject["name"]?.jsonPrimitive?.content}",
-                            "option": "${el.jsonObject["defaultOption"]?.jsonPrimitive?.content}",
-                            "action": "${block.action}",
-                            "block": "${block.codeBlock}"
+    fun <T> getTags(block: Block<T>): List<JsonObject> where T : Item, T : JsonData {
+        return buildList {
+            val tags = actionDumpBlocks?.find {
+                it.jsonObject["name"]?.jsonPrimitive?.content == block.action
+            }?.jsonObject?.get("tags")?.jsonArray
+            if (tags != null) {
+                for ((i, el) in tags.withIndex()) {
+                    this += buildJsonObject {
+                        putJsonObject("item") {
+                            put("id", "bl_tag")
+                            putJsonObject("data") {
+                                put("tag", el.jsonObject["name"]?.jsonPrimitive?.content)
+                                put("option", el.jsonObject["defaultOption"]?.jsonPrimitive?.content)
+                                put("action", block.action)
+                                put("block", block.codeBlock)
+                            }
                         }
-                    },
-                    "slot": ${26 - i}
-                    }${if (i != tags.size-1) "," else ""}
-                """.trimIndent()
+                        put("slot", 26 - i)
+                    }
+                }
             }
         }
-        return ret
+//        var ret = ""
+//        val tags = actionDumpBlocks?.find {
+//            it.jsonObject["name"]?.jsonPrimitive?.content == block.action
+//        }?.jsonObject?.get("tags")?.jsonArray
+//        if (tags != null) {
+//            for ((i, el) in tags.withIndex()) {
+//                ret += """
+//                    {
+//                    "item": {
+//                        "id": "bl_tag",
+//                        "data": {
+//                            "tag": "${el.jsonObject["name"]?.jsonPrimitive?.content}",
+//                            "option": "${el.jsonObject["defaultOption"]?.jsonPrimitive?.content}",
+//                            "action": "${block.action}",
+//                            "block": "${block.codeBlock}"
+//                        }
+//                    },
+//                    "slot": ${26 - i}
+//                    }${if (i != tags.size-1) "," else ""}
+//                """.trimIndent()
+//            }
+//        }
+//        return ret
     }
     fun tagAmount(tags: String) = tags.count { it == ',' }
 

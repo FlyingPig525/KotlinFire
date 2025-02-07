@@ -10,6 +10,7 @@ import io.github.flyingpig525.base.block.BracketBlock
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
+import kotlinx.serialization.json.put
 
 class IfEntityCategory<T> internal constructor(private val template: Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
     private val blocks = template.blocks
@@ -20,7 +21,10 @@ class IfEntityCategory<T> internal constructor(private val template: Template<T>
         wrappedCode: Template<T>.() -> Unit,
         not: Boolean = false
     ) {
-        blocks += Block("if_game", ItemCollection(items).items, action, if (not) "attribute: \"NOT\"" else "")
+        blocks += Block("if_game", ItemCollection(items).items, action) {
+            if (not) put("attribute", "NOT")
+//            if (not) "attribute: \"NOT\"" else ""
+        }
         blocks += BracketBlock(type = "norm")
         blocks += io.github.flyingpig525.base.Template(
             io.github.flyingpig525.base.Template.Type.NONE,

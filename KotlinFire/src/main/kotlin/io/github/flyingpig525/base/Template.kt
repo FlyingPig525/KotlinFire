@@ -11,6 +11,11 @@ import io.ktor.client.plugins.websocket.*
 import io.ktor.http.*
 import io.ktor.websocket.*
 import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.putJsonArray
 import org.jetbrains.annotations.ApiStatus.Internal
 
 typealias Items<T> = ItemCollection<T>.() -> Unit
@@ -78,30 +83,36 @@ open class Template<T>(
         apply(a)
     }
 
-    override fun getJsonData(): String {
-        var tags = ""
-
-        var string = """
-            {
-            "blocks": [
-        """.trimIndent()
-        var i = 1
-        for (block in blocks) {
-            string += block.getJsonData()
-            if (blocks.size > i) string += ','
-            i++
-        }
-        string += """
-            ]
+    override fun getJsonData(): JsonObject {
+        return buildJsonObject {
+            putJsonArray("blocks") {
+                for (block in blocks) {
+                    add(block.getJsonData())
+                }
             }
-        """.trimIndent()
-        return string
+        }
+
+//        var string = """
+//            {
+//            "blocks": [
+//        """.trimIndent()
+//        var i = 1
+//        for (block in blocks) {
+//            string += block.getJsonData()
+//            if (blocks.size > i) string += ','
+//            i++
+//        }
+//        string += """
+//            ]
+//            }
+//        """.trimIndent()
+//        return string
     }
 
     fun getTemplateString(): String = TemplateEncoder.encode(this)
 
     companion object {
-        @Deprecated("Recode ItemAPI doesn't work")
+        @Deprecated("Recode is no longer being worked on")
         fun <T> recodeSendTemplate(template: Template<T>) where T : Item, T : JsonData {
             val client = HttpClient(Java) {
                 install(WebSockets)
@@ -119,7 +130,7 @@ open class Template<T>(
                         {
                         "type": "template",
                         "source": "KotlinFire",
-                        "data": "${template.getJsonData().replace("\"", "\\\"")}"
+                        "data": "${Json.encodeToString(template.getJsonData()).replace("\"", "\\\"")}"
                         }
                     """.trimIndent()
                             .replace("\n", "") + "\n"

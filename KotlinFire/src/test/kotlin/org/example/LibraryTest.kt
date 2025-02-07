@@ -23,7 +23,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
-import kotlin.test.Test
+import org.testng.annotations.Test
 class LibraryTest {
 
 //    @Test fun caveGenExample() {
@@ -123,15 +123,16 @@ class LibraryTest {
 //        }
 //    }
 //
-//    @Test fun helloWorldExample() {
-//        TemplateCollection {
-//            EventTemplate(PLAYEREVENT.Join) {
-//                PlayerAction.sendMessage {
-//                    +"<gradient:#7f52ff:#e3455d>Hello KotlinFire World!".toTextItem()
-//                }
-//            }
-//            // Uncomment this when trying out this example
-//            // codeClientPlaceTemplates()
-//        }
-//    }
+    @org.junit.jupiter.api.Test
+    fun helloWorldExample() {
+        TemplateCollection {
+            println(EventTemplate(PLAYEREVENT.Join) {
+                PlayerAction.sendMessage {
+                    +"<gradient:#7f52ff:#e3455d>Hello KotlinFire World!".toTextItem()
+                }
+            }.getTemplateString())
+            // Uncomment this when trying out this example
+            // codeClientPlaceTemplates()
+        }
+    }
 }

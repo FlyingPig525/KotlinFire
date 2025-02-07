@@ -2,6 +2,8 @@ package io.github.flyingpig525.base.item.type
 
 import io.github.flyingpig525.base.JsonData
 import io.github.flyingpig525.base.item.Item
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.put
 
 /*
     "item": {
@@ -23,12 +25,16 @@ class VarItem(val name: String, val scope: Scope = Scope.GAME) : Item(ID.VAR),
         override fun toString(): String = value
     }
 
-    override fun getJsonData(): String = """
-        {
-        "name": "$name",
-        "scope": "$scope"
-        }
-    """.trimIndent()
+    override fun getJsonData() = buildJsonObject {
+        put("name", name)
+        put("scope", scope.toString())
+    }
+//        """
+//        {
+//        "name": "$name",
+//        "scope": "$scope"
+//        }
+//    """.trimIndent()
 
     override fun toString(): String {
         return "%var($name)"

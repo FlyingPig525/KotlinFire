@@ -2,17 +2,23 @@ package io.github.flyingpig525.base.item.type
 
 import io.github.flyingpig525.base.JsonData
 import io.github.flyingpig525.base.item.Item
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.put
 
 /**
  * @param [nbt] NEVER making an item creator thing, so you have to get the nbt data yourself
  */
 class MinecraftItem(val nbt: String) : Item(ID.ITEM), JsonData {
-    override fun getJsonData(): String {
-        return """
-			{
-				"item": "$nbt"
-			}
-		""".trimIndent()
+    override fun getJsonData(): JsonObject {
+        return buildJsonObject {
+            put("item", nbt)
+        }
+//        return """
+//			{
+//				"item": "$nbt"
+//			}
+//		""".trimIndent()
     }
 
     companion object {
