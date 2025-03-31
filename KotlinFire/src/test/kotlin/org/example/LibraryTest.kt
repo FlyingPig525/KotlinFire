@@ -3,27 +3,19 @@
  */
 package org.example
 
-import io.github.flyingpig525.base.GlobalActionDump.ACTIONDUMP_URL
 import io.github.flyingpig525.base.Template.Type.*
 import io.github.flyingpig525.base.TemplateCollection
 import io.github.flyingpig525.base.block.PLAYEREVENT
-import io.github.flyingpig525.base.item.type.LocItem
 import io.github.flyingpig525.base.item.type.MinecraftItem
-import io.github.flyingpig525.base.item.type.NumItem.Companion.toNumItem
+import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
+import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
 import io.github.flyingpig525.base.item.type.TextItem.Companion.toTextItem
+import io.github.flyingpig525.base.item.type.VarItem.Companion.lineVar
+import io.github.flyingpig525.base.item.type.VarItem.Companion.saveVar
 import io.github.flyingpig525.base.item.type.VarItem.Scope.*
 import io.github.flyingpig525.base.item.type.VarItem.Companion.toVarItem
-import io.ktor.client.*
-import io.ktor.client.call.*
-import io.ktor.client.engine.java.*
-import io.ktor.client.request.*
-import io.ktor.http.*
-import kotlinx.coroutines.runBlocking
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.jsonArray
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
 import org.testng.annotations.Test
+
 class LibraryTest {
 
 //    @Test fun caveGenExample() {
@@ -68,71 +60,73 @@ class LibraryTest {
 //        }
 //    }
 
-//    @Test fun clickerExample() {
-//        TemplateCollection {
-//            val playerMoney = "%uuid money".toVarItem(SAVE)
-//
-//            val actionBarLoop = Template(PROCESS, "actionBarLoop") {
-//                Repeat.forever {
-//                    PlayerAction.actionBar {
-//                        +"<green>Money: $playerMoney".toTextItem()
-//                    }
-//                }
-//            }
-//
-//            EventTemplate(PLAYEREVENT.Join) {
-//                IfVar.varExists(
-//                    {
-//                        +"%uuid".toVarItem(SAVE)
-//                    },
-//                    true
-//                ) {
-//                    SetVariable.chain {
-//                        set {
-//                            +"%uuid".toVarItem(SAVE)
-//                            +(1.toNumItem())
-//                        }
-//                        set {
-//                            +playerMoney
-//                            +(0.toNumItem())
-//                        }
-//                    }
-//                }
-//                SetVariable.setItemName {
-//                    +"item".toVarItem(LINE)
-//                    +MinecraftItem.mcItemOf("minecraft:redstone")
-//                    +"<gradient:#7f52ff:#e3455d>Clicker".toTextItem()
-//                }
-//                PlayerAction.giveItems {
-//                    +"item".toVarItem(LINE)
-//                }
-//
-//                invokeTemplate(actionBarLoop)
-//            }
-//
-//            EventTemplate(PLAYEREVENT.RightClick) {
-//                SetVariable.increment {
-//                    +playerMoney
-//                }
-//                PlayerAction.sendMessage {
-//                    +"<gradient:#7f52ff:#e3455d>$playerMoney".toTextItem()
-//                }
-//            }
-//            // Uncomment this when trying out this example
-//            // codeClientPlaceTemplates()
-//        }
-//    }
-//
-    @org.junit.jupiter.api.Test
-    fun helloWorldExample() {
+        @Test fun clickerExample() {
         TemplateCollection {
-            println(EventTemplate(PLAYEREVENT.Join) {
-                PlayerAction.sendMessage {
-                    +"<gradient:#7f52ff:#e3455d>Hello KotlinFire World!".toTextItem()
+            val playerMoney = "%uuid money".toVarItem(SAVE)
+
+            val actionBarLoop = Template(PROCESS, "actionBarLoop") {
+                Repeat.forever {
+                    PlayerAction.actionBar {
+                        +"<green>Money: $playerMoney".toTextItem()
+                    }
+                    Control.wait {
+                        +(1).numItem
+                    }
                 }
-            }.getTemplateString())
+            }
+
+            EventTemplate(PLAYEREVENT.Join) {
+                IfVar.varExists(
+                    {
+                        +"%uuid".saveVar
+                    },
+                    true
+                ) {
+                    SetVariable.chain {
+                        set {
+                            +"%uuid".saveVar
+                            +(1.numItem)
+                        }
+                        set {
+                            +playerMoney
+                            +(0.numItem)
+                        }
+                    }
+                }
+                SetVariable.setItemName {
+                    +"item".lineVar
+                    +MinecraftItem.mcItemOf("minecraft:redstone")
+                    +"<gradient:#7f52ff:#e3455d>Clicker".toTextItem()
+                }
+                PlayerAction.giveItems {
+                    +"item".lineVar
+                }
+
+                invokeTemplate(actionBarLoop)
+            }
+
+            EventTemplate(PLAYEREVENT.RightClick) {
+                SetVariable.increment {
+                    +playerMoney
+                }
+                PlayerAction.sendMessage {
+                    +"<gradient:#7f52ff:#e3455d>$playerMoney".textItem
+                }
+            }
             // Uncomment this when trying out this example
             // codeClientPlaceTemplates()
         }
     }
+//    @Test
+//    fun helloWorldExample() {
+//        TemplateCollection {
+//            println(Json { prettyPrint = true }.encodeToString(EventTemplate(PLAYEREVENT.Join) {
+//                PlayerAction.sendMessage {
+//                    +"<gradient:#7f52ff:#e3455d>Hello KotlinFire World!".textItem
+//                }
+//            }.getJsonData()))
+//      //       Uncomment this when trying out this example
+//      //       codeClientPlaceTemplates()
+//        }
+//    }
 }

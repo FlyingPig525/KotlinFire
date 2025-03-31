@@ -42,7 +42,6 @@ class LocItem(val x: Float, val y: Float, val z: Float, val pitch: Float = 0f, v
 //	""".trimIndent()
 
     companion object {
-        const val groundYLevel = 50
         fun List<Number>.toLocItem(): LocItem? {
             if (this.size == 3) {
                 return LocItem(this[0].toFloat(), this[1].toFloat(), this[2].toFloat())
@@ -61,3 +60,17 @@ class LocItem(val x: Float, val y: Float, val z: Float, val pitch: Float = 0f, v
             get() = this.toLocItem()
     }
 }
+
+fun locOf(
+    x: Number,
+    y: Number,
+    z: Number,
+    pitch: Number = 0f,
+    yaw: Number = 0f
+): LocItem = LocItem(
+    x.toFloat(),
+    y.toFloat(),
+    z.toFloat(),
+    pitch.toFloat(),
+    yaw.toFloat()
+)

@@ -14,21 +14,24 @@ import kotlinx.serialization.json.*
 object GlobalActionDump {
     private var actionDumpBlocks: JsonArray? = null
 
-    // no idea why my github website is claycoin.me
-    const val ACTIONDUMP_URL = "https://flyingpig525.github.io/actiondump.json"
+    const val ACTIONDUMP_URL = "https://raw.githubusercontent.com/FlyingPig525/KotlinFire/refs/heads/master/dbc.json"
 
     init {
         runBlocking {
-            val get = HttpClient(Java) {
-                engine {
-                    protocolVersion = java.net.http.HttpClient.Version.HTTP_2
-                }
-            }.get(ACTIONDUMP_URL) {
-                headers {
-                    append(HttpHeaders.Accept, "text/json")
-                }
-            }.body<String>()
-            actionDumpBlocks = Json.parseToJsonElement(get).jsonObject["actions"]?.jsonArray
+            try {
+                val get = HttpClient(Java) {
+                    engine {
+                        protocolVersion = java.net.http.HttpClient.Version.HTTP_2
+                    }
+                }.get(ACTIONDUMP_URL) {
+                    headers {
+                        append(HttpHeaders.Accept, "text/json")
+                    }
+                }.body<String>()
+                actionDumpBlocks = Json.parseToJsonElement(get).jsonObject["actions"]?.jsonArray
+            } catch (e: Exception) {
+
+            }
         }
     }
 

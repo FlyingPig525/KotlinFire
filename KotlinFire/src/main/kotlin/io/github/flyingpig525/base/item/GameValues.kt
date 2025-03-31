@@ -2,7 +2,8 @@
 
 package io.github.flyingpig525.base.item
 
-import io.github.flyingpig525.base.item.type.GameValue
+import io.github.flyingpig525.base.item.type.*
+
 
 object StatisticalValues {
     /**
