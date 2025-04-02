@@ -116,7 +116,6 @@ open class Template<T>(
         fun <T> recodeSendTemplate(template: Template<T>) where T : Item, T : JsonData {
             val client = HttpClient(Java) {
                 install(WebSockets)
-                developmentMode = true
             }
             runBlocking {
                 client.webSocket(
