@@ -95,6 +95,37 @@ val template = EventTemplate(PLAYEREVENT.Join) {
 ```
 *Example code creating a player join event template*
 
+#### New, 1.2.0!
+Templates can now have parameters, permitting the use of the `ParameterItem`.
+
+`ParameterItem` can be better constructed using its builder functions.
+
+```kotlin
+// Template with a required, non-plural parameter
+Template("required", ParameterItem.num("param name").parameter()) {
+    val numberParam = ParameterItem.num("param name").variable()
+    // alternative:
+    // val numberParam = "param name".lineVar
+    PlayerAction.sendMessage {
+        +numberParam
+    }
+}
+// Template with an optional parameter
+Template("optional", ParameterItem.num("name").default((43).numItem).parameter()) {
+    val numberParam = ParameterItem.num("name").variable()
+    // alternative:
+    // val numberParam = "name".lineVar
+    PlayerAction.sendMessage {
+        +numberParam
+    }
+    
+    // Invoking a template with parameters is the same as adding a codeblock
+    callFunction("required") {
+        +(41).numItem
+    }
+}
+```
+
 ### Utilities
 Multiple utility functions exist, allowing the retrieval of encoded template strings and a function to interact with the
 [CodeClient API](https://github.com/DFOnline/CodeClient/wiki/api). This function can be used to send individual or
@@ -150,6 +181,10 @@ TemplateCollection {
     codeClientPlaceTemplates()
 }
 ```
+
+
+### More Examples
+More fleshed-out examples can be found in the LibraryTest.kt file in [`KotlinFire/src/test/kotlin/org/example/LibraryTest.kt`](https://github.com/FlyingPig525/KotlinFire/blob/master/KotlinFire/src/test/kotlin/org/example/LibraryTest.kt)
 
 ### Contributors
 - FlyingPig525

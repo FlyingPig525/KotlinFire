@@ -10,7 +10,7 @@ import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
 
-class RepeatCategory<T> internal constructor(private val template: Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
+class RepeatCategory<T : Item> internal constructor(private val template: Template<T>) {
     private val blocks = template.blocks
 
     private fun block(

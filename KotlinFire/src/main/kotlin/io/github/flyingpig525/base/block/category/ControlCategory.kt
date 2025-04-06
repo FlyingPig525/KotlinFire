@@ -10,7 +10,7 @@ import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 
 
-class ControlCategory<T> internal constructor(private val template: Template<T>) where T : Item, T : JsonData {
+class ControlCategory<T : Item> internal constructor(private val template: Template<T>) {
     private val blocks = template.blocks
 
     private fun block(items: Items<T>, action: String) {

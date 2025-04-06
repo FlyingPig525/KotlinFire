@@ -3,8 +3,9 @@ package io.github.flyingpig525.base
 import io.github.flyingpig525.base.block.ENTITYEVENT
 import io.github.flyingpig525.base.block.PLAYEREVENT
 import io.github.flyingpig525.base.item.Item
+import io.github.flyingpig525.base.item.type.ParameterItem
 
-class TemplateCollection<T>(a: TemplateCollection<T>.() -> Unit) where T : Item, T : JsonData {
+class TemplateCollection<T : Item>(a: TemplateCollection<T>.() -> Unit) {
     private val templates: MutableList<Template<T>> = mutableListOf()
     fun EventTemplate(
         event: PLAYEREVENT,
@@ -27,9 +28,10 @@ class TemplateCollection<T>(a: TemplateCollection<T>.() -> Unit) where T : Item,
     fun Template(
         type: Template.Type = Template.Type.FUNCTION,
         name: String = "PutNameHere",
+        vararg args: ParameterItem,
         applier: Template<T>.() -> Unit
     ): Template<T> {
-        val temp = Template(type, name, applier)
+        val temp = Template<T>(type = type, name = name, args = args, a = applier)
         templates += temp
         return temp
     }

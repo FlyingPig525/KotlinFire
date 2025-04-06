@@ -6,8 +6,7 @@ import io.github.flyingpig525.base.item.Item
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.*
 
-open class Block<T>(val codeBlock: String, var items: MutableList<T>, val action: String, private val extra: JsonObjectBuilder.() -> Unit = {}) :
-    JsonData where T : Item, T : JsonData {
+open class Block<T : Item>(val codeBlock: String, var items: MutableList<T>, val action: String, private val extra: JsonObjectBuilder.() -> Unit = {}) : JsonData {
     init {
         var i = 0
         items = items.map { item ->

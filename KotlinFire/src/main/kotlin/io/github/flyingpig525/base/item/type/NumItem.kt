@@ -5,7 +5,7 @@ import io.github.flyingpig525.base.item.Item
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 
-class NumItem(private val value: Double) : Item(ID.NUMBER), JsonData {
+class NumItem(private val value: Double) : Item(ID.NUMBER) {
 
     constructor(value: Int) : this(value.toDouble())
 

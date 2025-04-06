@@ -12,7 +12,7 @@ import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
 import kotlinx.serialization.json.put
 
-class IfPlayerCategory<T> internal constructor(private val template: Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
+class IfPlayerCategory<T : Item> internal constructor(private val template: Template<T>) {
     private val blocks = template.blocks
 
     private fun block(

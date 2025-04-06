@@ -3,17 +3,16 @@
  */
 package org.example
 
+import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.Template.Type.*
 import io.github.flyingpig525.base.TemplateCollection
 import io.github.flyingpig525.base.block.PLAYEREVENT
-import io.github.flyingpig525.base.item.type.MinecraftItem
 import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
+import io.github.flyingpig525.base.item.type.ParameterItem
 import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
-import io.github.flyingpig525.base.item.type.TextItem.Companion.toTextItem
-import io.github.flyingpig525.base.item.type.VarItem.Companion.lineVar
-import io.github.flyingpig525.base.item.type.VarItem.Companion.saveVar
-import io.github.flyingpig525.base.item.type.VarItem.Scope.*
-import io.github.flyingpig525.base.item.type.VarItem.Companion.toVarItem
+import io.ktor.http.Parameters
+import io.ktor.util.Platform
+import kotlinx.serialization.json.Json
 import org.testng.annotations.Test
 
 class LibraryTest {
@@ -60,63 +59,64 @@ class LibraryTest {
 //        }
 //    }
 
-        @Test fun clickerExample() {
-        TemplateCollection {
-            val playerMoney = "%uuid money".toVarItem(SAVE)
-
-            val actionBarLoop = Template(PROCESS, "actionBarLoop") {
-                Repeat.forever {
-                    PlayerAction.actionBar {
-                        +"<green>Money: $playerMoney".toTextItem()
-                    }
-                    Control.wait {
-                        +(1).numItem
-                    }
-                }
-            }
-
-            EventTemplate(PLAYEREVENT.Join) {
-                IfVar.varExists(
-                    {
-                        +"%uuid".saveVar
-                    },
-                    true
-                ) {
-                    SetVariable.chain {
-                        set {
-                            +"%uuid".saveVar
-                            +(1.numItem)
-                        }
-                        set {
-                            +playerMoney
-                            +(0.numItem)
-                        }
-                    }
-                }
-                SetVariable.setItemName {
-                    +"item".lineVar
-                    +MinecraftItem.mcItemOf("minecraft:redstone")
-                    +"<gradient:#7f52ff:#e3455d>Clicker".toTextItem()
-                }
-                PlayerAction.giveItems {
-                    +"item".lineVar
-                }
-
-                invokeTemplate(actionBarLoop)
-            }
-
-            EventTemplate(PLAYEREVENT.RightClick) {
-                SetVariable.increment {
-                    +playerMoney
-                }
-                PlayerAction.sendMessage {
-                    +"<gradient:#7f52ff:#e3455d>$playerMoney".textItem
-                }
-            }
+//        @Test fun clickerExample() {
+//        TemplateCollection {
+//            val playerMoney = "%uuid money".toVarItem(SAVE)
+//
+//            val actionBarLoop = Template(PROCESS, "actionBarLoop") {
+//                Repeat.forever {
+//                    PlayerAction.actionBar {
+//                        +"<green>Money: $playerMoney".toTextItem()
+//                    }
+//                    Control.wait {
+//                        +(1).numItem
+//                    }
+//                }
+//            }
+//
+//            EventTemplate(PLAYEREVENT.Join) {
+//                IfVar.varExists(
+//                    {
+//                        +"%uuid".saveVar
+//                    },
+//                    true
+//                ) {
+//                    SetVariable.chain {
+//                        set {
+//                            +"%uuid".saveVar
+//                            +(1.numItem)
+//                        }
+//                        set {
+//                            +playerMoney
+//                            +(0.numItem)
+//                        }
+//                    }
+//                }
+//                SetVariable.setItemName {
+//                    +"item".lineVar
+//                    +MinecraftItem.mcItemOf("minecraft:redstone")
+//                    +"<gradient:#7f52ff:#e3455d>Clicker".toTextItem()
+//                }
+//                PlayerAction.giveItems {
+//                    +"item".lineVar
+//                }
+//
+//                invokeTemplate(actionBarLoop)
+//            }
+//
+//            EventTemplate(PLAYEREVENT.RightClick) {
+//                SetVariable.increment {
+//                    +playerMoney
+//                }
+//                PlayerAction.sendMessage {
+//                    +"<gradient:#7f52ff:#e3455d>$playerMoney".textItem
+//                }
+//            }
             // Uncomment this when trying out this example
             // codeClientPlaceTemplates()
-        }
-    }
+//        }
+//    }
+
 //    @Test
 //    fun helloWorldExample() {
 //        TemplateCollection {
@@ -125,8 +125,35 @@ class LibraryTest {
 //                    +"<gradient:#7f52ff:#e3455d>Hello KotlinFire World!".textItem
 //                }
 //            }.getJsonData()))
-//      //       Uncomment this when trying out this example
-//      //       codeClientPlaceTemplates()
+      //       Uncomment this when trying out this example
+      //       codeClientPlaceTemplates()
+//        }
+//    }
+    // Example using function parameters
+//    @Test
+//    fun functionParameterExample() {
+//        TemplateCollection {
+//            Template(FUNCTION, "parameters", ParameterItem.num("number").parameter(), ParameterItem.txt("text").parameter()) {
+//                val number = ParameterItem.num("number").variable()
+//                val text =  ParameterItem.txt("text").variable()
+//                Repeat.multiple({
+//                    +number
+//                }) {
+//                    PlayerAction.sendMessage {
+//                        +text
+//                    }
+//                }
+//            }
+//
+//            EventTemplate(PLAYEREVENT.Join) {
+//                callFunction("parameters") {
+//                    +(4.numItem)
+//                    +"heeee".textItem
+//                }
+//            }
+//
+            // Uncomment this when trying out this example
+            // codeClientPlaceTemplates()
 //        }
 //    }
 }

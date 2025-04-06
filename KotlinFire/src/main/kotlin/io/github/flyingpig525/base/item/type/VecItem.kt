@@ -6,7 +6,7 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 
-class VecItem(x: Number, y: Number, z: Number) : Item(ID.VECTOR), JsonData {
+class VecItem(x: Number, y: Number, z: Number) : Item(ID.VECTOR) {
     val x = x.toFloat()
     val y = y.toFloat()
     val z = z.toFloat()

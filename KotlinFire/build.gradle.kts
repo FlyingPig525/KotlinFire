@@ -18,7 +18,7 @@ plugins {
     id("org.jetbrains.dokka") version "2.0.0"
 }
 
-version = "1.1.1"
+version = "1.2.0"
 group = "io.github.flyingpig525"
 
 //publishing {
@@ -123,6 +123,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    implementation(kotlin("stdlib-jdk8"))
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

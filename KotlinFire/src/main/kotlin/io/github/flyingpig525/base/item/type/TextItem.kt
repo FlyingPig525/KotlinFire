@@ -5,7 +5,7 @@ import io.github.flyingpig525.base.item.Item
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 
-class TextItem(val text: String) : Item(ID.RICHTEXT), JsonData {
+class TextItem(val text: String) : Item(ID.RICHTEXT) {
     constructor(text: Char) : this(text.toString())
 
     override fun getJsonData() = buildJsonObject {

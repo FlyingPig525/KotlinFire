@@ -14,8 +14,7 @@ import kotlinx.serialization.json.put
         }
     }
  */
-class VarItem(val name: String, val scope: Scope = Scope.GAME) : Item(ID.VAR),
-    JsonData {
+class VarItem(val name: String, val scope: Scope = Scope.GAME) : Item(ID.VAR) {
     enum class Scope(private val value: String) {
         GAME("unsaved"),
         LOCAL("local"),

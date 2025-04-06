@@ -6,8 +6,8 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 
-class BracketBlock<T>(val open: Boolean = true, val type: String) : JsonData,
-    Block<T>("bracket", mutableListOf(), "") where T : Item, T : JsonData {
+class BracketBlock<T : Item>(val open: Boolean = true, val type: String) : JsonData,
+    Block<T>("bracket", mutableListOf(), "") {
     override fun getJsonData(): JsonObject {
         return buildJsonObject {
             put("id", "bracket")

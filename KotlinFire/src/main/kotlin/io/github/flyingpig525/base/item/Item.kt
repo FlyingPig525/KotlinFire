@@ -6,10 +6,10 @@ import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import kotlinx.serialization.json.putJsonObject
 
-open class Item(val id: ID) {
+abstract class Item(val id: ID) : JsonData {
     var slot = 0
 
-    enum class ID(private val id: String) {
+    enum class ID(val id: String) {
         VAR("var"),
         STRING("txt"),
         RICHTEXT("comp"),
@@ -18,6 +18,7 @@ open class Item(val id: ID) {
         VECTOR("vec"),
         GAMEVALUE("g_val"),
         SOUND("snd"),
+        PARAMETER("pn_el"),
         ITEM("item");
 
 

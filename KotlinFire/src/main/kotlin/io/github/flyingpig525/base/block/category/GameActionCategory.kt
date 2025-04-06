@@ -9,7 +9,7 @@ import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
 
-class GameActionCategory<T> internal constructor(private val template: Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
+class GameActionCategory<T : Item> internal constructor(private val template: Template<T>) {
     private val blocks = template.blocks
 
     private fun block(items: Items<T>, action: String) {

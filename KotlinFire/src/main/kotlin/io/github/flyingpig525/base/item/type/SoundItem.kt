@@ -6,7 +6,7 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 
-class SoundItem(val sound: String, val pitch: Float = 1f, val vol: Float = 2f) : Item(ID.SOUND), JsonData {
+class SoundItem(val sound: String, val pitch: Float = 1f, val vol: Float = 2f) : Item(ID.SOUND) {
     override fun getJsonData(): JsonObject {
         return buildJsonObject {
             put("pitch", pitch)

@@ -4,6 +4,7 @@ import io.github.flyingpig525.base.block.*
 import io.github.flyingpig525.base.block.category.*
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
+import io.github.flyingpig525.base.item.type.ParameterItem
 import io.github.flyingpig525.encoding.TemplateEncoder
 import io.ktor.client.*
 import io.ktor.client.engine.java.*
@@ -21,12 +22,12 @@ import org.jetbrains.annotations.ApiStatus.Internal
 typealias Items<T> = ItemCollection<T>.() -> Unit
 
 @Suppress("LeakingThis")
-open class Template<T>(
+open class Template<T : Item>(
     type: Type = Type.FUNCTION,
     val name: String = "PutNameHere",
+    vararg args: ParameterItem,
     a: Template<T>.() -> Unit
-) :
-    JsonData where T : Item, T : JsonData {
+) : JsonData {
     val blocks: MutableList<Block<T>> = mutableListOf()
     val SetVariable = SetVariableCategory(this)
     val EntityAction = EntityActionCategory(this)
@@ -40,20 +41,20 @@ open class Template<T>(
     val IfGame = IfGameCategory(this)
     val Control = ControlCategory(this)
 
-    fun callFunction(name: String) {
-        blocks += CallFunctionBlock(name)
+    fun callFunction(name: String, items: Items<T> = {}) {
+        blocks += CallFunctionBlock(name, items)
     }
-    fun callProcess(name: String) {
-        blocks += CallProcessBlock(name)
+    fun callProcess(name: String, items: Items<T> = {}) {
+        blocks += CallProcessBlock(name, items)
     }
 
-    fun invokeTemplate(template: Template<T>) {
+    fun invokeTemplate(template: Template<T>, items: Items<T> = {}) {
         if (template.blocks[0] is FunctionBlock) {
-            callFunction(template.name)
+            callFunction(template.name, items)
             return
         }
         if (template.blocks[0] is ProcessBlock) {
-            callProcess(template.name)
+            callProcess(template.name, items)
             return
         }
         throw Error("Cannot invoke Event template!")
@@ -72,8 +73,8 @@ open class Template<T>(
     init {
         if (type != Type.NONE) {
             blocks += when (type) {
-                Type.FUNCTION -> FunctionBlock(name)
-                Type.PROCESS -> ProcessBlock(name)
+                Type.FUNCTION -> FunctionBlock(name, args.toMutableList()) as Block<T>
+                Type.PROCESS -> ProcessBlock(name, args.toMutableList()) as Block<T>
                 // This will get changed by `EventTemplate`
                 Type.EVENT -> Block("", mutableListOf(), "")
                 // This will never get called, so it doesn't have to be implemented

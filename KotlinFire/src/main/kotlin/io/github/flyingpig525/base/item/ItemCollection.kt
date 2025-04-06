@@ -2,7 +2,7 @@ package io.github.flyingpig525.base.item
 
 import io.github.flyingpig525.base.JsonData
 
-class ItemCollection<T>(func: ItemCollection<T>.() -> Unit) where T : Item, T : JsonData {
+class ItemCollection<T : Item>(func: ItemCollection<T>.() -> Unit) {
     val items: MutableList<T> = mutableListOf()
 
     init {

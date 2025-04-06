@@ -10,7 +10,7 @@ import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
 
 
-class SetVariableCategory<T> internal constructor(private val template: Template<T>) where T : Item, T : io.github.flyingpig525.base.JsonData {
+class SetVariableCategory<T : Item> internal constructor(private val template: Template<T>) {
     private val blocks = template.blocks
 
     fun chain(a: SetVariableCategory<T>.() -> Unit) {
