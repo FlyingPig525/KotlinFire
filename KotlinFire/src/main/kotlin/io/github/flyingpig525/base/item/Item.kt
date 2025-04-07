@@ -19,6 +19,8 @@ abstract class Item(val id: ID) : JsonData {
         GAMEVALUE("g_val"),
         SOUND("snd"),
         PARAMETER("pn_el"),
+        POTION("pot"),
+        PARTICLE("part"),
         ITEM("item");
 
 

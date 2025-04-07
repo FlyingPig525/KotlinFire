@@ -47,8 +47,6 @@ class ParameterItem(val paramId: ID, val name: String, val plural: Boolean, val 
                 put("data", optionalItem.getJsonData())
             }
         }
-    }.apply {
-        println(Json.encodeToString(this))
     }
 
     companion object {
