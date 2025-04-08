@@ -1,6 +1,8 @@
 package io.flyingpig525.base.block.subaction
 
-enum class IfVarSubAction(codeblock: String) : SubAction(codeblock) {
+import io.github.flyingpig525.base.block.subaction.SubAction
+
+enum class IfVarSubAction(override val codeblock: String) : SubAction {
 	LessThanOrEqual("<="),
 	ItemHasEnchant("ItemHasEnchant"),
 	ItemIsBlock("ItemIsBlock"),
@@ -13,7 +15,6 @@ enum class IfVarSubAction(codeblock: String) : SubAction(codeblock) {
 	VarIsType("VarIsType"),
 	TextMatches("TextMatches"),
 	IsNear("IsNear"),
-	InRange("InRange"),
 	VarExists("VarExists"),
 	LegacyNotEqual("Legacy !="),
 	BlockIsSolid("BlockIsSolid"),

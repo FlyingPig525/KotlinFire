@@ -1,6 +1,8 @@
 package io.flyingpig525.base.block.subaction
 
-enum class IfPlayerSubAction(codeblock: String) : SubAction(codeblock) {
+import io.github.flyingpig525.base.block.subaction.SubAction
+
+enum class IfPlayerSubAction(override val codeblock: String) : SubAction {
 	IsLookingAt("IsLookingAt"),
 	InWorldBorder("InWorldBorder"),
 	IsInGameMode("IsInGameMode"),
@@ -15,8 +17,6 @@ enum class IfPlayerSubAction(codeblock: String) : SubAction(codeblock) {
 	BlockEquals("BlockEquals"),
 	IsWearing("IsWearing"),
 	IsNear("IsNear"),
-	IsRiding("IsRiding"),
-	StandingOn("StandingOn"),
 	CmdEquals("CmdEquals"),
 	StandingOn("StandingOn"),
 	IsGrounded("IsGrounded"),

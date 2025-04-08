@@ -38,7 +38,9 @@ fun blockActions(actions: List<JsonObject>) {
     var subActionFile = """
         package io.flyingpig525.base.block.subaction
         
-        enum class ${className}SubAction(codeblock: String) : SubAction(codeblock) {
+        import io.github.flyingpig525.base.block.subaction.SubAction
+        
+        enum class ${className}SubAction(override val codeblock: String) : SubAction {
         
         """.trimIndent()
     var file: String = """

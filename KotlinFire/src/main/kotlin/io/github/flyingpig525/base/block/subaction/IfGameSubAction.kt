@@ -1,12 +1,13 @@
 package io.flyingpig525.base.block.subaction
 
-enum class IfGameSubAction(codeblock: String) : SubAction(codeblock) {
+import io.github.flyingpig525.base.block.subaction.SubAction
+
+enum class IfGameSubAction(override val codeblock: String) : SubAction {
 	SignHasTxt("SignHasTxt"),
 	HasRoomForItem("HasRoomForItem"),
 	EventBlockEquals("EventBlockEquals"),
 	CommandEquals("CommandEquals"),
 	EventItemEquals("EventItemEquals"),
-	SignHasTxt("SignHasTxt"),
 	AttackIsCrit("AttackIsCrit"),
 	ContainerHas("ContainerHas"),
 	BlockEquals("BlockEquals"),
