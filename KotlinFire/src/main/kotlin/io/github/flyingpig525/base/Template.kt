@@ -1,7 +1,7 @@
 package io.github.flyingpig525.base
 
-import io.github.flyingpig525.base.block.*
 import io.github.flyingpig525.base.block.category.*
+import io.github.flyingpig525.base.block.*
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.ParameterItem
@@ -12,7 +12,6 @@ import io.ktor.client.plugins.websocket.*
 import io.ktor.http.*
 import io.ktor.websocket.*
 import kotlinx.coroutines.runBlocking
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
@@ -33,7 +32,7 @@ open class Template<T : Item>(
     val EntityAction = EntityActionCategory(this)
     val GameAction = GameActionCategory(this)
     val PlayerAction = PlayerActionCategory(this)
-    val Select = SelectCategory(this)
+    val Select = SelectObjectCategory(this)
     val Repeat = RepeatCategory(this)
     val IfVar = IfVarCategory(this)
     val IfPlayer = IfPlayerCategory(this)

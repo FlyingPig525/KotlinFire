@@ -12,3 +12,4 @@ plugins {
 
 rootProject.name = "KotlinFire"
 include("KotlinFire")
+include("Generator")

@@ -29,7 +29,7 @@ this is just because of how I made everything, and it's very dumb, I know.***
 
 ```kotlin
 val template = Template { 
-    SetVar.set {
+    SetVar.equalTo {
         // Items go here
     }
 }
@@ -42,7 +42,7 @@ types (e.g. `String.toTextItem()`)
 
 ```kotlin
 val template = Template { 
-    SetVar.set {
+    SetVar.equalTo {
         +"Variable name".toVarItem()
         +"Variable value".toTextItem()
     }
@@ -55,7 +55,7 @@ Items can also be assigned to variables for ease of use.
 ```kotlin
 val template = Template {
     val variable = "Very long and annoying to write name".toVarItem()
-    SetVar.set {
+    SetVar.equalTo {
         +variable
         +(12.toNumItem())
     }
@@ -72,7 +72,7 @@ You can also provide a name and type, function or process, to the `Template` con
 ```kotlin
 val template = Template(name = "Name", type = Template.Type.PROCESS) {
     val variable = "Very long and annoying to write name".toVarItem()
-    SetVar.set {
+    SetVar.equalTo {
         +variable
         +(12.toNumItem())
     }
@@ -87,7 +87,7 @@ and `ENTITYEVENT` enums.
 ```kotlin
 val template = EventTemplate(PLAYEREVENT.Join) {
     val variable = "Very long and annoying to write name".toVarItem()
-    SetVar.set {
+    SetVar.equalTo {
         +variable
         +(12.toNumItem())
     }
@@ -126,6 +126,27 @@ Template("optional", ParameterItem.num("name").default((43).numItem).parameter()
 }
 ```
 
+### New, 1.3.0!
+Code blocks requiring sub actions can now be used, as a result of recreating the file generation for code blocks
+
+```kotlin
+EventTemplate(PLAYEREVENT.Join) {
+    SetVar.equalTo {
+        +"%default ticks on ground".gameVar
+    }
+    // IsGrounded requires no parameters
+    Repeat.whileLoop({}, IfPlayerSubAction.IsGrounded) {
+        SetVar.increment {
+            +"%default ticks on ground".gameVar
+        }
+        Control.wait {
+            // redundant number
+            +(1.numItem)
+        }
+    }
+}
+```
+
 ### Utilities
 Multiple utility functions exist, allowing the retrieval of encoded template strings and a function to interact with the
 [CodeClient API](https://github.com/DFOnline/CodeClient/wiki/api). This function can be used to send individual or
@@ -134,7 +155,7 @@ multiple templates to the CodeClient API.
 ```kotlin
 val template = Template(name = "Name", type = Template.Type.PROCESS) {
     val variable = "Very long and annoying to write name".toVarItem()
-    SetVar.set {
+    SetVar.equalTo {
         +variable
         +(12.toNumItem())
     }
@@ -146,7 +167,7 @@ Template.codeClientPlaceTemplate(template)
 ```kotlin
 val template = Template(name = "Name", type = Template.Type.PROCESS) {
     val variable = "Very long and annoying to write name".toVarItem()
-    SetVar.set {
+    SetVar.equalTo {
         +variable
         +(12.toNumItem())
     }
@@ -167,7 +188,7 @@ A wrapper class, `TemplateCollection`, is also provided to make sending a large 
 TemplateCollection {
     val template = Template(name = "Name", type = Template.Type.PROCESS) {
         val variable = "Very long and annoying to write name".toVarItem()
-        SetVar.set {
+        SetVar.equalTo {
             +variable
             +(12.toNumItem())
         }
