@@ -18,6 +18,8 @@ dependencies {
 }
 ```
 
+KotlinFire requires java >=17 and kotlin >=2.1.10 be used.
+
 ## Usage
 
 To begin constructing a template, assign a variable the `Template` class. The `Template` class contains a lambda function 
