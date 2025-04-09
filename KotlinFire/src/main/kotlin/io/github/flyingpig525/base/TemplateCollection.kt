@@ -1,14 +1,14 @@
 package io.github.flyingpig525.base
 
-import io.github.flyingpig525.base.block.ENTITYEVENT
-import io.github.flyingpig525.base.block.PLAYEREVENT
+import io.github.flyingpig525.base.block.EntityEvent
+import io.github.flyingpig525.base.block.PlayerEvent
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.type.ParameterItem
 
 class TemplateCollection<T : Item>(a: TemplateCollection<T>.() -> Unit) {
     private val templates: MutableList<Template<T>> = mutableListOf()
     fun EventTemplate(
-        event: PLAYEREVENT,
+        event: PlayerEvent,
         applier: Template<T>.() -> Unit
     ): EventTemplate<T> {
         val temp = EventTemplate<T>(event, applier)
@@ -17,7 +17,7 @@ class TemplateCollection<T : Item>(a: TemplateCollection<T>.() -> Unit) {
     }
 
     fun EventTemplate(
-        event: ENTITYEVENT,
+        event: EntityEvent,
         applier: Template<T>.() -> Unit
     ): EventTemplate<T> {
         val temp = EventTemplate<T>(event, applier)
