@@ -1,10 +1,10 @@
-package io.flyingpig525.base.block.subaction
+package io.github.flyingpig525.base.block.subaction
 
 import io.github.flyingpig525.base.block.subaction.SubAction
 
 enum class IfEntitySubAction(override val codeblock: String) : SubAction {
 	IsVehicle("IsVehicle"),
-	IsGrounded("IsGrounded"),
+	IsGrounded("EIsGrounded"),
 	IsType("IsType"),
 	IsProj("IsProj"),
 	IsMob("IsMob"),
@@ -13,8 +13,8 @@ enum class IfEntitySubAction(override val codeblock: String) : SubAction {
 	IsItem("IsItem"),
 	IsRiding("IsRiding"),
 	Exists("Exists"),
-	IsNear("IsNear"),
+	IsNear("EIsNear"),
 	HasPotion("HasPotion"),
-	NameEquals("NameEquals"),
-	StandingOn("StandingOn"),
+	StandingOn("EStandingOn"),
+	NameEquals("ENameEquals"),
 }

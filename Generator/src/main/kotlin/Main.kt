@@ -36,7 +36,7 @@ fun blockActions(actions: List<JsonObject>) {
     val className = codeblockToFile(actions[0]["codeblockName"]!!.jsonPrimitive.content)
     val encloses = enclosesCode(className)
     var subActionFile = """
-        package io.flyingpig525.base.block.subaction
+        package io.github.flyingpig525.base.block.subaction
         
         import io.github.flyingpig525.base.block.subaction.SubAction
         
@@ -156,10 +156,18 @@ fun blockActions(actions: List<JsonObject>) {
         e.printStackTrace()
     }
     if (isSubActionCategory(className)) {
+        val found = mutableListOf<String>()
         for (action in actions) {
             val name = action["name"]!!.jsonPrimitive.content.trim()
+            if (name in found) continue
+            found += name
+            val aliases = action["aliases"]!!.jsonArray.map { it.jsonPrimitive.content }
             val entryName = removeClutter(name.replace(" ", "")).replaceFirstChar { it.uppercase() }
-            subActionFile += "\t${entryName}(\"$name\"),\n"
+            if (aliases.isNotEmpty()) {
+                subActionFile += "\t${entryName}(\"${aliases[0]}\"),\n"
+            } else {
+                subActionFile += "\t$entryName(\"$name\"),\n"
+            }
         }
         subActionFile += "}"
         writeToDirFile("gen/subaction", "${className}SubAction.kt", subActionFile)

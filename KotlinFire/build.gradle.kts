@@ -18,7 +18,7 @@ plugins {
     id("org.jetbrains.dokka") version "2.0.0"
 }
 
-version = "1.3.1"
+version = "1.3.2"
 group = "io.github.flyingpig525"
 
 //publishing {

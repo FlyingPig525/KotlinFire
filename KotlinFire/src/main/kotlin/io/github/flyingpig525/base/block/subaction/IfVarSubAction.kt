@@ -1,4 +1,4 @@
-package io.flyingpig525.base.block.subaction
+package io.github.flyingpig525.base.block.subaction
 
 import io.github.flyingpig525.base.block.subaction.SubAction
 
@@ -8,25 +8,25 @@ enum class IfVarSubAction(override val codeblock: String) : SubAction {
 	ItemIsBlock("ItemIsBlock"),
 	DictValueEquals("DictValueEquals"),
 	ItemHasTag("ItemHasTag"),
-	StringMatches("StringMatches"),
+	StringMatches(" TextMatches "),
 	ListIsEmpty("ListIsEmpty"),
 	StartsWith("StartsWith"),
 	ListValueEq("ListValueEq"),
 	VarIsType("VarIsType"),
-	TextMatches("TextMatches"),
-	IsNear("IsNear"),
+	TextMatches("EqIgnoreCase"),
+	IsNear("VIsNear"),
+	InRange("InRange"),
 	VarExists("VarExists"),
 	LegacyNotEqual("Legacy !="),
 	BlockIsSolid("BlockIsSolid"),
-	ItemEquals("ItemEquals"),
+	ItemEquals("VItemEquals"),
 	ListContains("ListContains"),
 	LegacyEquals("Legacy ="),
-	InRange("InRange"),
 	LocIsNear("LocIsNear"),
 	Contains("Contains"),
 	NotEqual("!="),
 	LessThan("<"),
-	EqualTo("="),
+	EqualTo(" = "),
 	GreaterThan(">"),
 	EndsWith("EndsWith"),
 	GreaterThanOrEqual(">="),

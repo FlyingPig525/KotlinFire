@@ -1,4 +1,4 @@
-package io.flyingpig525.base.block.subaction
+package io.github.flyingpig525.base.block.subaction
 
 import io.github.flyingpig525.base.block.subaction.SubAction
 
@@ -10,7 +10,7 @@ enum class IfGameSubAction(override val codeblock: String) : SubAction {
 	EventItemEquals("EventItemEquals"),
 	AttackIsCrit("AttackIsCrit"),
 	ContainerHas("ContainerHas"),
-	BlockEquals("BlockEquals"),
+	BlockEquals("GBlockEquals"),
 	InBlock("InBlock"),
 	BlockPowered("BlockPowered"),
 	HasPlayer("HasPlayer"),

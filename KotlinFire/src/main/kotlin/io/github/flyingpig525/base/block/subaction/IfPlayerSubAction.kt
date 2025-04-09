@@ -1,4 +1,4 @@
-package io.flyingpig525.base.block.subaction
+package io.github.flyingpig525.base.block.subaction
 
 import io.github.flyingpig525.base.block.subaction.SubAction
 
@@ -6,7 +6,7 @@ enum class IfPlayerSubAction(override val codeblock: String) : SubAction {
 	IsLookingAt("IsLookingAt"),
 	InWorldBorder("InWorldBorder"),
 	IsInGameMode("IsInGameMode"),
-	HasRoomForItem("HasRoomForItem"),
+	HasRoomForItem("PHasRoomForItem"),
 	IsHoldingOff("IsHoldingOff"),
 	UsingPack("UsingPack"),
 	NoItemCooldown("NoItemCooldown"),
@@ -15,10 +15,11 @@ enum class IfPlayerSubAction(override val codeblock: String) : SubAction {
 	IsSwimming("IsSwimming"),
 	HasItem("HasItem"),
 	BlockEquals("BlockEquals"),
-	IsWearing("IsWearing"),
-	IsNear("IsNear"),
+	IsWearing("PIsWearing"),
+	IsNear("PIsNear"),
+	IsRiding("IsRiding"),
+	StandingOn("PStandingOn"),
 	CmdEquals("CmdEquals"),
-	StandingOn("StandingOn"),
 	IsGrounded("IsGrounded"),
 	CursorItem("CursorItem"),
 	SlotEquals("SlotEquals"),
@@ -28,12 +29,11 @@ enum class IfPlayerSubAction(override val codeblock: String) : SubAction {
 	MenuSlotEquals("MenuSlotEquals"),
 	IsBlocking("IsBlocking"),
 	HasPermission("HasPermission"),
-	IsRiding("IsRiding"),
 	MainHandEquals("MainHandEquals"),
 	IsSneaking("IsSneaking"),
 	IsFlying("IsFlying"),
-	HasPotion("HasPotion"),
-	NameEquals("NameEquals"),
+	HasPotion("HasEffect"),
+	NameEquals("PNameEquals"),
 	InvOpen("InvOpen"),
 	HasSlotItem("HasSlotItem"),
 	IsSprinting("IsSprinting"),
