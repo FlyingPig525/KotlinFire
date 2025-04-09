@@ -6,7 +6,7 @@ package org.example
 import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.Template.Type.*
 import io.github.flyingpig525.base.TemplateCollection
-import io.github.flyingpig525.base.block.PLAYEREVENT
+import io.github.flyingpig525.base.block.PlayerEvent
 import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
 import io.github.flyingpig525.base.item.type.ParameterItem
 import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
@@ -19,7 +19,7 @@ class LibraryTest {
 
 //    @Test fun caveGenExample() {
 //        TemplateCollection {
-//            println(EventTemplate(PLAYEREVENT.Join) {
+//            println(EventTemplate(PlayerEvent.Join) {
 //                PlayerAction.teleport {
 //                    +LocItem(0, 100, 0)
 //                }
@@ -74,7 +74,7 @@ class LibraryTest {
 //                }
 //            }
 //
-//            EventTemplate(PLAYEREVENT.Join) {
+//            EventTemplate(PlayerEvent.Join) {
 //                IfVar.varExists(
 //                    {
 //                        +"%uuid".saveVar
@@ -104,7 +104,7 @@ class LibraryTest {
 //                invokeTemplate(actionBarLoop)
 //            }
 //
-//            EventTemplate(PLAYEREVENT.RightClick) {
+//            EventTemplate(PlayerEvent.RightClick) {
 //                SetVariable.increment {
 //                    +playerMoney
 //                }
@@ -120,7 +120,7 @@ class LibraryTest {
 //    @Test
 //    fun helloWorldExample() {
 //        TemplateCollection {
-//            println(Json { prettyPrint = true }.encodeToString(EventTemplate(PLAYEREVENT.Join) {
+//            println(Json { prettyPrint = true }.encodeToString(EventTemplate(PlayerEvent.Join) {
 //                PlayerAction.sendMessage {
 //                    +"<gradient:#7f52ff:#e3455d>Hello KotlinFire World!".textItem
 //                }
@@ -145,7 +145,7 @@ class LibraryTest {
 //                }
 //            }
 //
-//            EventTemplate(PLAYEREVENT.Join) {
+//            EventTemplate(PlayerEvent.Join) {
 //                callFunction("parameters") {
 //                    +(4.numItem)
 //                    +"heeee".textItem

@@ -7,7 +7,6 @@ import io.github.flyingpig525.base.block.*
 import io.github.flyingpig525.base.block.subaction.*
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
-import io.github.flyingpig525.base.block.subaction.*
 
 class IfEntityCategory<T : Item> internal constructor(private val template: Template<T>) {
     private val blocks = template.blocks
@@ -31,30 +30,29 @@ class IfEntityCategory<T : Item> internal constructor(private val template: Temp
         blocks += BracketBlock(false, "norm")
     }
 	/**
-	 * Checks if an entity
-	 * is a boat or minecart.
+	 * *Checks if an entity*
+	 * *is a boat or minecart.*
 	 */
 	fun isVehicle(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsVehicle", wrappedCode, not)
 
 
 	/**
-	 * Checks if an entity is
-	 * supported by a block.
+	 * *Checks if an entity is*
+	 * *supported by a block.*
 	 */
 	fun isGrounded(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsGrounded", wrappedCode, not)
 
 
 	/**
-	 * Checks if an entity is the
-	 * given type.
+	 * *Checks if an entity is the*
+	 * *given type.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [MinecraftItem]
 	 *
-	 *  Spawn egg,
-	 *
-	 *  projectile, or vehicle
+	 * *Spawn egg,*
+	 * *projectile, or vehicle*
 	 *
 	 * (*) = optional
 	 */
@@ -62,38 +60,38 @@ class IfEntityCategory<T : Item> internal constructor(private val template: Temp
 
 
 	/**
-	 * Checks if an entity
-	 * is a projectile.
+	 * *Checks if an entity*
+	 * *is a projectile.*
 	 */
 	fun isProj(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsProj", wrappedCode, not)
 
 
 	/**
-	 * Checks if an entity
-	 * is a mob.
+	 * *Checks if an entity*
+	 * *is a mob.*
 	 */
 	fun isMob(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsMob", wrappedCode, not)
 
 
 	/**
-	 * Checks if an entity has a
-	 * given custom tag, and (if
-	 * provided) whether the tag
-	 * matches the given value.
+	 * *Checks if an entity has a*
+	 * *given custom tag, and (if*
+	 * *provided) whether the tag*
+	 * *matches the given value.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [StringItem]
 	 *
-	 *  Tag name
+	 * *Tag name*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) Tag value
+	 * (*) *Tag value*
 	 *
 	 * [StringItem]
 	 *
-	 * (*) Tag value
+	 * (*) *Tag value*
 	 *
 	 * (*) = optional
 	 */
@@ -101,38 +99,37 @@ class IfEntityCategory<T : Item> internal constructor(private val template: Temp
 
 
 	/**
-	 * Checks if a sheep is
-	 * sheared.
+	 * *Checks if a sheep is*
+	 * *sheared.*
 	 */
 	fun isSheared(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsSheared", wrappedCode, not)
 
 
 	/**
-	 * Checks if an entity
-	 * is an item.
+	 * *Checks if an entity*
+	 * *is an item.*
 	 */
 	fun isItem(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsItem", wrappedCode, not)
 
 
 	/**
-	 * Checks if an entity is riding
-	 * another entity.
+	 * *Checks if an entity is riding*
+	 * *another entity.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) Spawn egg,
-	 *
-	 * (*) projectile, or vehicle
+	 * (*) *Spawn egg,*
+	 * (*) *projectile, or vehicle*
 	 *
 	 * [StringItem]
 	 *
-	 * (*) Entity UUID
+	 * (*) *Entity UUID*
 	 *
 	 * [TextItem]
 	 *
-	 * (*) Entity name
+	 * (*) *Entity name*
 	 *
 	 * (*) = optional
 	 */
@@ -140,25 +137,25 @@ class IfEntityCategory<T : Item> internal constructor(private val template: Temp
 
 
 	/**
-	 * Checks if an entity still
-	 * exists in the world.
+	 * *Checks if an entity still*
+	 * *exists in the world.*
 	 */
 	fun exists(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "Exists", wrappedCode, not)
 
 
 	/**
-	 * Checks if an entity is within a
-	 * range of a location.
+	 * *Checks if an entity is within a*
+	 * *range of a location.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [LocItem]
 	 *
-	 *  Center location
+	 * *Center location*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) Range
+	 * (*) *Range*
 	 *
 	 * (*) = optional
 	 */
@@ -166,17 +163,16 @@ class IfEntityCategory<T : Item> internal constructor(private val template: Temp
 
 
 	/**
-	 * Checks if an entity has a
-	 * potion effect of a certain
-	 * type active.
+	 * *Checks if an entity has a*
+	 * *potion effect of a certain*
+	 * *type active.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [PotionItem]
 	 *
-	 *  Effect(s)
-	 *
-	 *  to check for
+	 * *Effect(s)*
+	 * *to check for*
 	 *
 	 * (*) = optional
 	 */
@@ -189,19 +185,19 @@ class IfEntityCategory<T : Item> internal constructor(private val template: Temp
 
 
 	/**
-	 * Checks if an entity's name or
-	 * custom name is equal to the
-	 * given text.
+	 * *Checks if an entity's name or*
+	 * *custom name is equal to the*
+	 * *given text.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [StringItem]
 	 *
-	 *  UUID to check for
+	 * *UUID to check for*
 	 *
 	 * [TextItem]
 	 *
-	 *  Name to check for
+	 * *Name to check for*
 	 *
 	 * (*) = optional
 	 */

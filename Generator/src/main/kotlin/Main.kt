@@ -1,3 +1,5 @@
+package io.github.flyingpig525
+
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.*
 import java.io.File
@@ -6,7 +8,6 @@ import java.nio.file.Path
 import kotlin.io.path.*
 
 // This is not efficient in the slightest :skull:
-// TODO: Add event enum generation
 fun main() {
     val actionDumpFile = File("dbc.json")
     if (!actionDumpFile.exists()) {
@@ -16,31 +17,41 @@ fun main() {
     val actions = actionDump["actions"]!!.jsonArray
     val blocks = actionDump["codeblocks"]!!.jsonArray
     val actionMap = mutableMapOf<String, MutableList<JsonObject>>()
+    println("creating block keys")
     blocks.forEach {
         actionMap[it.jsonObject["name"]!!.jsonPrimitive.content] = mutableListOf()
     }
+    println("creating block actions")
     actions.forEach {
         actionMap[it.jsonObject["codeblockName"]!!.jsonPrimitive.content]!! += it.jsonObject
     }
-    println(actionMap.keys)
+    println("processing block actions")
     actionMap.forEach { (k, v) ->
         if (k.endsWith("PROCESS") || k.endsWith("FUNCTION") || k.endsWith("EVENT")) return@forEach
         if (v.isEmpty()) return@forEach
         blockActions(v.toList())
     }
-    actionMap.filterKeys { it in listOf("SELECT OBJECT", "WHILE") }
+    println("processing events")
+    actionMap.filterKeys { it.endsWith("EVENT") }.forEach { (k, v) ->
+        processEvents(CodeBlock.of(k), v)
+    }
+
+    // TODO: Add sound processing
+    // TODO: Add game value processing
+    // TODO: Add potion processing
 }
 
-fun blockActions(actions: List<JsonObject>) {
+fun blockActions(actions: List<JsonObject>) = try {
     val alreadyDone = mutableListOf<String>()
-    val className = codeblockToFile(actions[0]["codeblockName"]!!.jsonPrimitive.content)
-    val encloses = enclosesCode(className)
+    val codeblock = CodeBlock.of(actions[0]["codeblockName"]!!.jsonPrimitive.content)
+    val className = codeblock.name
+    val encloses = enclosesCode(codeblock)
     var subActionFile = """
         package io.github.flyingpig525.base.block.subaction
         
         import io.github.flyingpig525.base.block.subaction.SubAction
         
-        enum class ${className}SubAction(override val codeblock: String) : SubAction {
+        enum class ${codeblock.name}SubAction(override val codeblock: String) : SubAction {
         
         """.trimIndent()
     var file: String = """
@@ -58,16 +69,16 @@ fun blockActions(actions: List<JsonObject>) {
     """.trimIndent()
     if (!encloses) {
         file += """
-        class ${className}Category<T : Item> internal constructor(private val template: Template<T>) {
+        class ${codeblock.name}Category<T : Item> internal constructor(private val template: Template<T>) {
             private val blocks = template.blocks
 
             private fun block(items: Items<T>, action: String, extra: JsonObjectBuilder.() -> Unit = {}) {
-                blocks += Block("${codeblockToSmallName(actions[0]["codeblockName"]!!.jsonPrimitive.content)}", ItemCollection(items).items, action, extra)
+                blocks += Block("${codeblock.shortName}", ItemCollection(items).items, action, extra)
             }
         """.trimIndent()
     } else {
         file += """
-            class ${className}Category<T : Item> internal constructor(private val template: Template<T>) {
+            class ${codeblock.name}Category<T : Item> internal constructor(private val template: Template<T>) {
                 private val blocks = template.blocks
 
                 private fun block(
@@ -77,16 +88,16 @@ fun blockActions(actions: List<JsonObject>) {
                     not: Boolean = false,
                     extra: JsonObjectBuilder.() -> Unit = {}
                 ) {
-                    blocks += Block("${codeblockToSmallName(actions[0]["codeblockName"]!!.jsonPrimitive.content)}", ItemCollection(items).items, action) {
+                    blocks += Block("${codeblock.shortName}", ItemCollection(items).items, action) {
                         if (not) put("attribute", "NOT")
                         extra()
                     }
-                    blocks += BracketBlock(type = "${if (className == "Repeat") "repeat" else "norm"}")
+                    blocks += BracketBlock(type = "${if (codeblock.name == "Repeat") "repeat" else "norm"}")
                     blocks += io.github.flyingpig525.base.Template(
                         io.github.flyingpig525.base.Template.Type.NONE,
                         a = wrappedCode
                     ).blocks
-                    blocks += BracketBlock(false, "${if (className == "Repeat") "repeat" else "norm"}")
+                    blocks += BracketBlock(false, "${if (codeblock.name == "Repeat") "repeat" else "norm"}")
                 }
         """.trimIndent()
     }
@@ -99,13 +110,13 @@ fun blockActions(actions: List<JsonObject>) {
         val description: List<String> = icon["description"]!!.jsonArray.map { it.jsonPrimitive.content }
         var comment = "\t/**\n"
         description.forEach {
-            comment += "\t * ${removeClutter(it)}\n"
+            comment += "\t * *${removeClutter(it)}*\n"
         }
         val subAction = hasSubAction(action)
         if (subAction) {
             comment += "\t *\n"
-            comment += "\t * Accepts sub actions:\n"
-            val subActions = action["subActionBlocks"]!!.jsonArray.map { smallNameToCodeblock(it.jsonPrimitive.content) }
+            comment += "\t * ##### Accepts sub actions:\n"
+            val subActions = action["subActionBlocks"]!!.jsonArray.map { CodeBlock.of(it.jsonPrimitive.content) }
             subActions.forEach {
                 comment += "\t * [${it}SubAction],\n"
             }
@@ -117,7 +128,7 @@ fun blockActions(actions: List<JsonObject>) {
         if (arguments?.isNotEmpty() == true) {
             comment +=
                 "\t *\n" +
-                "\t * ARGUMENTS:\n" +
+                "\t * #### Args:\n" +
                 "\t *\n"
             arguments.forEach { arg ->
                 val unprocessed = arg["type"]!!.jsonPrimitive.content
@@ -131,14 +142,15 @@ fun blockActions(actions: List<JsonObject>) {
                 }
                 comment += "\n\t *\n"
                 description?.forEach {
-                    comment += "\t * ${if (optional) "(*)" else ""} ${removeClutter(it, )}\n\t *\n"
+                    comment += "\t * ${if (optional) "(*) " else ""}*${removeClutter(it)}*\n"
                 }
+                comment += "\t *\n"
             }
             comment += "\t * (*) = optional\n"
         }
         comment += "\t */\n"
         file += "\n$comment"
-        val negatable = negatable(className, funcName)
+        val negatable = negatable(codeblock.name, funcName)
         file +=
             "\tfun $funcName(items: Items<T>${
                 if (subAction) ", subAction: SubAction" else ""
@@ -155,7 +167,7 @@ fun blockActions(actions: List<JsonObject>) {
         println(Json.encodeToString(action))
         e.printStackTrace()
     }
-    if (isSubActionCategory(className)) {
+    if (isSubActionCategory(codeblock)) {
         val found = mutableListOf<String>()
         for (action in actions) {
             val name = action["name"]!!.jsonPrimitive.content.trim()
@@ -170,67 +182,71 @@ fun blockActions(actions: List<JsonObject>) {
             }
         }
         subActionFile += "}"
-        writeToDirFile("gen/subaction", "${className}SubAction.kt", subActionFile)
+        writeToDirFile("gen/subaction", "${codeblock.name}SubAction.kt", subActionFile)
     }
     file += "}"
-    writeToDirFile("gen/categories", "${className}Category.kt", file)
+    writeToDirFile("gen/categories", "${codeblock.name}Category.kt", file)
+} catch (e: Exception) {
+    e.printStackTrace()
 }
 
-enum class CodeBlock(val block: String) {
-    PlayerAction("PLAYER ACTION"),
-    EntityAction("ENTITY ACTION"),
-    Control("CONTROL"),
-    GameAction("GAME ACTION"),
-    IfEntity("IF ENTITY"),
-    IfGame("IF GAME"),
-    IfPlayer("IF PLAYER"),
-    IfVar("IF VARIABLE"),
-    Repeat("REPEAT"),
-    SetVariable("SET VARIABLE"),
-    SelectObject("SELECT OBJECT");
+fun processEvents(codeblock: CodeBlock, events: List<JsonObject>) = try {
+    if (codeblock != CodeBlock.PlayerEvent && codeblock != CodeBlock.EntityEvent) throw IllegalArgumentException("codeblock cannot be a non-event block")
+    var file = """
+        package io.github.flyingpig525.base.block
+        
+        enum class ${codeblock.name}(val type: EventBlock.Type, val event: String) {
+    """.trimIndent()
+    for (event in events) {
+        val name = event["name"]!!.jsonPrimitive.content
+        val iconName = removeClutter(event["icon"]!!.jsonObject["name"]!!.jsonPrimitive.content)
+        val desc = event["icon"]!!.jsonObject["description"]!!.jsonArray.map { removeClutter(it.jsonPrimitive.content) }
+        file += "\n"
+        file += "\t/**\n"
+        file += "\t * $iconName\n"
+        file += "\t *\n"
+        file += "\t * #### Description:\n"
+        file += "\t *\n"
+        for (line in desc) {
+            file += "\t * *$line*\n"
+        }
+        file += "\t */\n"
+        file += "\t$name(EventBlock.Type.${codeblock.name}, \"$name\"),\n"
+    }
+    file += "}"
+    writeToDirFile("gen/events", "${codeblock.name}.kt", file)
+} catch (e: Exception) {
+    println("an error occurred during event processing")
+    e.printStackTrace()
+}
+
+enum class CodeBlock(val block: String, val shortName: String) {
+    PlayerAction("PLAYER ACTION", "player_action"),
+    EntityAction("ENTITY ACTION", "entity_action"),
+    Control("CONTROL", "control"),
+    GameAction("GAME ACTION", "game_action"),
+    IfEntity("IF ENTITY", "if_entity"),
+    IfGame("IF GAME", "if_game"),
+    IfPlayer("IF PLAYER", "if_player"),
+    IfVar("IF VARIABLE", "if_var"),
+    Repeat("REPEAT", "repeat"),
+    SetVariable("SET VARIABLE", "set_var"),
+    PlayerEvent("PLAYER EVENT", "player_event"),
+    EntityEvent("ENTITY EVENT", "entity_event"),
+    SelectObject("SELECT OBJECT", "select");
 
     override fun toString(): String = name
 
     companion object {
-        fun of(block: String) = entries.firstOrNull { it.block == block }
-            ?: entries.firstOrNull { it.name == block}
-            ?: throw UnknownError("Unknown codeblock $block")
+        fun of(block: String) = entries.firstOrNull { it.block == block.trim() }
+            ?: entries.firstOrNull { it.name == block.trim() }
+            ?: entries.firstOrNull { it.shortName == block.trim() }
+            ?: throw UnknownError("Unknown codeblock \"${block.trim()}\"")
     }
 }
 
-fun codeblockToFile(codeblock: String): String = CodeBlock.of(codeblock).name
-
-fun codeblockToSmallName(codeblock: String): String = when (CodeBlock.of(codeblock)) {
-    CodeBlock.PlayerAction -> "player_action"
-    CodeBlock.EntityAction -> "entity_action"
-    CodeBlock.Control -> "control"
-    CodeBlock.GameAction -> "game_action"
-    CodeBlock.IfEntity -> "if_entity"
-    CodeBlock.IfGame -> "if_game"
-    CodeBlock.IfPlayer -> "if_player"
-    CodeBlock.IfVar -> "if_var"
-    CodeBlock.Repeat -> "repeat"
-    CodeBlock.SetVariable -> "set_var"
-    CodeBlock.SelectObject -> "select"
-}
-
-fun smallNameToCodeblock(shortName: String): String = when (shortName) {
-    "player_action" -> CodeBlock.PlayerAction
-    "entity_action" -> CodeBlock.EntityAction
-    "control" -> CodeBlock.Control
-    "game_action" -> CodeBlock.GameAction
-    "if_entity" -> CodeBlock.IfEntity
-    "if_game" -> CodeBlock.IfGame
-    "if_player" -> CodeBlock.IfPlayer
-    "if_var" -> CodeBlock.IfVar
-    "repeat" -> CodeBlock.Repeat
-    "set_var" -> CodeBlock.SetVariable
-    "select" -> CodeBlock.SelectObject
-    else -> throw UnknownError("Unknown codeblock $shortName")
-}.name
-
-fun isSubActionCategory(codeblock: String): Boolean =
-    CodeBlock.of(codeblock) in listOf(
+fun isSubActionCategory(codeblock: CodeBlock): Boolean =
+    codeblock in listOf(
         CodeBlock.IfGame,
         CodeBlock.IfEntity,
         CodeBlock.IfVar,
@@ -290,7 +306,7 @@ fun removeClutter(str: String): String {
     }
 }
 
-fun enclosesCode(codeblock: String): Boolean = when (CodeBlock.of(codeblock)) {
+fun enclosesCode(codeblock: CodeBlock): Boolean = when (codeblock) {
     CodeBlock.IfEntity -> true
     CodeBlock.IfPlayer -> true
     CodeBlock.IfVar -> true

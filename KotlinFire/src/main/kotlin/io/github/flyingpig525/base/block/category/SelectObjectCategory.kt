@@ -7,7 +7,6 @@ import io.github.flyingpig525.base.block.*
 import io.github.flyingpig525.base.block.subaction.*
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
-import io.github.flyingpig525.base.block.subaction.*
 
 class SelectObjectCategory<T : Item> internal constructor(private val template: Template<T>) {
     private val blocks = template.blocks
@@ -21,15 +20,15 @@ class SelectObjectCategory<T : Item> internal constructor(private val template: 
 
 
 	/**
-	 * Creates a selection using
-	 * one or more random
-	 * players in the game.
+	 * *Creates a selection using*
+	 * *one or more random*
+	 * *players in the game.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [NumItem]
 	 *
-	 * (*) Selection size
+	 * (*) *Selection size*
 	 *
 	 * (*) = optional
 	 */
@@ -37,9 +36,9 @@ class SelectObjectCategory<T : Item> internal constructor(private val template: 
 
 
 	/**
-	 * Creates a selection using
-	 * the most recently spawned
-	 * entity.
+	 * *Creates a selection using*
+	 * *the most recently spawned*
+	 * *entity.*
 	 */
 	fun lastEntity(items: Items<T>) = block(items, "LastEntity")
 
@@ -55,19 +54,19 @@ class SelectObjectCategory<T : Item> internal constructor(private val template: 
 
 
 	/**
-	 * Creates a selection using all
-	 * entities in the game whose
-	 * name or UUID matches.
+	 * *Creates a selection using all*
+	 * *entities in the game whose*
+	 * *name or UUID matches.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [StringItem]
 	 *
-	 *  UUID to check for
+	 * *UUID to check for*
 	 *
 	 * [TextItem]
 	 *
-	 *  Name to check for
+	 * *Name to check for*
 	 *
 	 * (*) = optional
 	 */
@@ -75,15 +74,15 @@ class SelectObjectCategory<T : Item> internal constructor(private val template: 
 
 
 	/**
-	 * Filters the selection by
-	 * randomly picking one or
-	 * more objects from it.
+	 * *Filters the selection by*
+	 * *randomly picking one or*
+	 * *more objects from it.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [NumItem]
 	 *
-	 * (*) Selection size
+	 * (*) *Selection size*
 	 *
 	 * (*) = optional
 	 */
@@ -96,15 +95,15 @@ class SelectObjectCategory<T : Item> internal constructor(private val template: 
 
 
 	/**
-	 * Creates a selection using all
-	 * players in the game whose
-	 * name or UUID matches.
+	 * *Creates a selection using all*
+	 * *players in the game whose*
+	 * *name or UUID matches.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [StringItem]
 	 *
-	 *  Name or UUID
+	 * *Name or UUID*
 	 *
 	 * (*) = optional
 	 */
@@ -112,8 +111,8 @@ class SelectObjectCategory<T : Item> internal constructor(private val template: 
 
 
 	/**
-	 * Creates a selection of
-	 * all entities in the game.
+	 * *Creates a selection of*
+	 * *all entities in the game.*
 	 */
 	fun allEntities(items: Items<T>) = block(items, "AllEntities")
 
@@ -124,21 +123,20 @@ class SelectObjectCategory<T : Item> internal constructor(private val template: 
 
 
 	/**
-	 * Filters the selection to the
-	 * objects that are nearest
-	 * or farthest to a location.
+	 * *Filters the selection to the*
+	 * *objects that are nearest*
+	 * *or farthest to a location.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [LocItem]
 	 *
-	 *  Location to
-	 *
-	 *  compare to
+	 * *Location to*
+	 * *compare to*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) Selection size
+	 * (*) *Selection size*
 	 *
 	 * (*) = optional
 	 */
@@ -146,33 +144,32 @@ class SelectObjectCategory<T : Item> internal constructor(private val template: 
 
 
 	/**
-	 * Filters the selected objects
-	 * to the objects that intersect
-	 * a ray.
+	 * *Filters the selected objects*
+	 * *to the objects that intersect*
+	 * *a ray.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [VarItem]
 	 *
-	 * (*) Gets the end or
-	 *
-	 * (*) final hit location
+	 * (*) *Gets the end or*
+	 * (*) *final hit location*
 	 *
 	 * [LocItem]
 	 *
-	 *  Ray origin
+	 * *Ray origin*
 	 *
 	 * [NumItem]
 	 *
-	 *  Ray distance
+	 * *Ray distance*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) Ray width
+	 * (*) *Ray width*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) Selection size
+	 * (*) *Selection size*
 	 *
 	 * (*) = optional
 	 */
@@ -180,17 +177,17 @@ class SelectObjectCategory<T : Item> internal constructor(private val template: 
 
 
 	/**
-	 * Deactivates the selection.
-	 * Code that follows will run
-	 * normally with event targets.
+	 * *Deactivates the selection.*
+	 * *Code that follows will run*
+	 * *normally with event targets.*
 	 */
 	fun reset(items: Items<T>) = block(items, "Reset")
 
 
 	/**
-	 * Creates a selection using
-	 * a target involved in this
-	 * Event.
+	 * *Creates a selection using*
+	 * *a target involved in this*
+	 * *Event.*
 	 */
 	fun eventTarget(items: Items<T>) = block(items, "EventTarget")
 
@@ -206,11 +203,11 @@ class SelectObjectCategory<T : Item> internal constructor(private val template: 
 
 
 	/**
-	 * Creates a selection of
-	 * all entities in the game
-	 * that meet a condition.
+	 * *Creates a selection of*
+	 * *all entities in the game*
+	 * *that meet a condition.*
 	 *
-	 * Accepts sub actions:
+	 * ##### Accepts sub actions:
 	 * [IfEntitySubAction],
 	 * [IfVarSubAction],
 	 * [IfGameSubAction],
@@ -219,16 +216,16 @@ class SelectObjectCategory<T : Item> internal constructor(private val template: 
 
 
 	/**
-	 * Creates a selection of
-	 * all players in the game.
+	 * *Creates a selection of*
+	 * *all players in the game.*
 	 */
 	fun allPlayers(items: Items<T>) = block(items, "AllPlayers")
 
 
 	/**
-	 * Creates a new selection by
-	 * inverting the selection that
-	 * is currently active.
+	 * *Creates a new selection by*
+	 * *inverting the selection that*
+	 * *is currently active.*
 	 */
 	fun invert(items: Items<T>) = block(items, "Invert")
 
@@ -239,11 +236,11 @@ class SelectObjectCategory<T : Item> internal constructor(private val template: 
 
 
 	/**
-	 * Filters the selection to the
-	 * objects that meet a certain
-	 * condition.
+	 * *Filters the selection to the*
+	 * *objects that meet a certain*
+	 * *condition.*
 	 *
-	 * Accepts sub actions:
+	 * ##### Accepts sub actions:
 	 * [IfPlayerSubAction],
 	 * [IfEntitySubAction],
 	 * [IfVarSubAction],
@@ -254,7 +251,7 @@ class SelectObjectCategory<T : Item> internal constructor(private val template: 
 
 	/**
 	 *
-	 * Accepts sub actions:
+	 * ##### Accepts sub actions:
 	 * [IfEntitySubAction],
 	 * [IfVarSubAction],
 	 * [IfGameSubAction],
@@ -263,21 +260,20 @@ class SelectObjectCategory<T : Item> internal constructor(private val template: 
 
 
 	/**
-	 * Filters the selection by
-	 * sorting the value of each
-	 * object in order.
+	 * *Filters the selection by*
+	 * *sorting the value of each*
+	 * *object in order.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [Item]
 	 *
-	 *  Value to
-	 *
-	 *  compare
+	 * *Value to*
+	 * *compare*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) Selection size
+	 * (*) *Selection size*
 	 *
 	 * (*) = optional
 	 */
@@ -295,11 +291,11 @@ class SelectObjectCategory<T : Item> internal constructor(private val template: 
 
 
 	/**
-	 * Creates a selection of
-	 * all players in the game
-	 * that meet a condition.
+	 * *Creates a selection of*
+	 * *all players in the game*
+	 * *that meet a condition.*
 	 *
-	 * Accepts sub actions:
+	 * ##### Accepts sub actions:
 	 * [IfPlayerSubAction],
 	 * [IfVarSubAction],
 	 * [IfGameSubAction],

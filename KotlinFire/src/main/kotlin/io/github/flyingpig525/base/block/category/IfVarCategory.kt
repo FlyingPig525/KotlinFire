@@ -7,7 +7,6 @@ import io.github.flyingpig525.base.block.*
 import io.github.flyingpig525.base.block.subaction.*
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
-import io.github.flyingpig525.base.block.subaction.*
 
 class IfVarCategory<T : Item> internal constructor(private val template: Template<T>) {
     private val blocks = template.blocks
@@ -31,19 +30,19 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
         blocks += BracketBlock(false, "norm")
     }
 	/**
-	 * Checks if a number value is
-	 * less than or equal to another
-	 * number.
+	 * *Checks if a number value is*
+	 * *less than or equal to another*
+	 * *number.*
 	 *
-	 * ARGUMENTS:
-	 *
-	 * [NumItem]
-	 *
-	 *  Number to check
+	 * #### Args:
 	 *
 	 * [NumItem]
 	 *
-	 *  Number to compare to
+	 * *Number to check*
+	 *
+	 * [NumItem]
+	 *
+	 * *Number to compare to*
 	 *
 	 * (*) = optional
 	 */
@@ -51,24 +50,24 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Checks if an item has a
-	 * given enchantment, or,
-	 * if no enchantment is specified,
-	 * checks if it has any.
+	 * *Checks if an item has a*
+	 * *given enchantment, or,*
+	 * *if no enchantment is specified,*
+	 * *checks if it has any.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [MinecraftItem]
 	 *
-	 *  Item to check
+	 * *Item to check*
 	 *
 	 * [StringItem]
 	 *
-	 * (*) Enchantment
+	 * (*) *Enchantment*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) Level
+	 * (*) *Level*
 	 *
 	 * (*) = optional
 	 */
@@ -76,14 +75,14 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Checks if an item is
-	 * able to be placed.
+	 * *Checks if an item is*
+	 * *able to be placed.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [MinecraftItem]
 	 *
-	 *  Item to check
+	 * *Item to check*
 	 *
 	 * (*) = optional
 	 */
@@ -91,25 +90,24 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Checks if a dictionary's value
-	 * for the given key is equal to
-	 * any of the given values.
+	 * *Checks if a dictionary's value*
+	 * *for the given key is equal to*
+	 * *any of the given values.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [VarItem]
 	 *
-	 *  Dictionary to check
+	 * *Dictionary to check*
 	 *
 	 * [StringItem]
 	 *
-	 *  Key to check
+	 * *Key to check*
 	 *
 	 * [Item]
 	 *
-	 *  Values to
-	 *
-	 *  compare with
+	 * *Values to*
+	 * *compare with*
 	 *
 	 * (*) = optional
 	 */
@@ -117,28 +115,28 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Checks if an item has a
-	 * given custom tag, and (if
-	 * provided) whether the tag
-	 * matches the given value.
+	 * *Checks if an item has a*
+	 * *given custom tag, and (if*
+	 * *provided) whether the tag*
+	 * *matches the given value.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [MinecraftItem]
 	 *
-	 *  Item to check
+	 * *Item to check*
 	 *
 	 * [StringItem]
 	 *
-	 *  Tag name
+	 * *Tag name*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) Tag value
+	 * (*) *Tag value*
 	 *
 	 * [StringItem]
 	 *
-	 * (*) Tag value
+	 * (*) *Tag value*
 	 *
 	 * (*) = optional
 	 */
@@ -146,18 +144,18 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Checks if a string value matches
-	 * other values.
+	 * *Checks if a string value matches*
+	 * *other values.*
 	 *
-	 * ARGUMENTS:
-	 *
-	 * [StringItem]
-	 *
-	 *  String or source expression to match
+	 * #### Args:
 	 *
 	 * [StringItem]
 	 *
-	 *  String to compare
+	 * *String or source expression to match*
+	 *
+	 * [StringItem]
+	 *
+	 * *String to compare*
 	 *
 	 * (*) = optional
 	 */
@@ -165,13 +163,13 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Checks if a list is empty.
+	 * *Checks if a list is empty.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [VarItem]
 	 *
-	 *  List to check
+	 * *List to check*
 	 *
 	 * (*) = optional
 	 */
@@ -179,19 +177,19 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Checks if the first part of
-	 * a string value matches a
-	 * certain string.
+	 * *Checks if the first part of*
+	 * *a string value matches a*
+	 * *certain string.*
 	 *
-	 * ARGUMENTS:
-	 *
-	 * [StringItem]
-	 *
-	 *  String to check
+	 * #### Args:
 	 *
 	 * [StringItem]
 	 *
-	 *  String to start with
+	 * *String to check*
+	 *
+	 * [StringItem]
+	 *
+	 * *String to start with*
 	 *
 	 * (*) = optional
 	 */
@@ -199,24 +197,23 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Checks if a list's value at an
-	 * index is equal to a value.
+	 * *Checks if a list's value at an*
+	 * *index is equal to a value.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [VarItem]
 	 *
-	 *  List to check in
+	 * *List to check in*
 	 *
 	 * [NumItem]
 	 *
-	 *  Index to check at
+	 * *Index to check at*
 	 *
 	 * [Item]
 	 *
-	 *  Variable to
-	 *
-	 *  compare to
+	 * *Variable to*
+	 * *compare to*
 	 *
 	 * (*) = optional
 	 */
@@ -224,14 +221,14 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Checks if a value is of a
-	 * certain type.
+	 * *Checks if a value is of a*
+	 * *certain type.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [Item]
 	 *
-	 *  Value to check
+	 * *Value to check*
 	 *
 	 * (*) = optional
 	 */
@@ -249,24 +246,24 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Checks if a number value is
-	 * in between 2 other numbers or
-	 * a location value is within the
-	 * region of 2 other locations.
+	 * *Checks if a number value is*
+	 * *in between 2 other numbers or*
+	 * *a location value is within the*
+	 * *region of 2 other locations.*
 	 *
-	 * ARGUMENTS:
-	 *
-	 * [Item]
-	 *
-	 *  Check value
+	 * #### Args:
 	 *
 	 * [Item]
 	 *
-	 *  Minimum value
+	 * *Check value*
 	 *
 	 * [Item]
 	 *
-	 *  Maximum value
+	 * *Minimum value*
+	 *
+	 * [Item]
+	 *
+	 * *Maximum value*
 	 *
 	 * (*) = optional
 	 */
@@ -274,13 +271,13 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Checks if a variable exists.
+	 * *Checks if a variable exists.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [VarItem]
 	 *
-	 *  Variable to check
+	 * *Variable to check*
 	 *
 	 * (*) = optional
 	 */
@@ -293,14 +290,14 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Checks if a material will collide
-	 * with entities.
+	 * *Checks if a material will collide*
+	 * *with entities.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [MinecraftItem]
 	 *
-	 *  Block to check for
+	 * *Block to check for*
 	 *
 	 * (*) = optional
 	 */
@@ -308,19 +305,19 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Works the same as Value =
-	 * but has a few extra options
-	 * for item comparison.
+	 * *Works the same as Value =*
+	 * *but has a few extra options*
+	 * *for item comparison.*
 	 *
-	 * ARGUMENTS:
-	 *
-	 * [MinecraftItem]
-	 *
-	 *  Item to check
+	 * #### Args:
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) Item(s) to compare to
+	 * *Item to check*
+	 *
+	 * [MinecraftItem]
+	 *
+	 * (*) *Item(s) to compare to*
 	 *
 	 * (*) = optional
 	 */
@@ -328,18 +325,18 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Checks if any of a list's contents
-	 * match the given value.
+	 * *Checks if any of a list's contents*
+	 * *match the given value.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [VarItem]
 	 *
-	 *  List to check in
+	 * *List to check in*
 	 *
 	 * [Item]
 	 *
-	 *  Value to find
+	 * *Value to find*
 	 *
 	 * (*) = optional
 	 */
@@ -352,24 +349,23 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Checks if a location is
-	 * near another location.
+	 * *Checks if a location is*
+	 * *near another location.*
 	 *
-	 * ARGUMENTS:
-	 *
-	 * [LocItem]
-	 *
-	 *  Location to check
+	 * #### Args:
 	 *
 	 * [LocItem]
 	 *
-	 *  Location(s) to
+	 * *Location to check*
 	 *
-	 *  compare to
+	 * [LocItem]
+	 *
+	 * *Location(s) to*
+	 * *compare to*
 	 *
 	 * [NumItem]
 	 *
-	 *  Radius
+	 * *Radius*
 	 *
 	 * (*) = optional
 	 */
@@ -377,18 +373,18 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Checks if a string value
-	 * contains another string.
+	 * *Checks if a string value*
+	 * *contains another string.*
 	 *
-	 * ARGUMENTS:
-	 *
-	 * [StringItem]
-	 *
-	 *  String to check
+	 * #### Args:
 	 *
 	 * [StringItem]
 	 *
-	 *  String to check for
+	 * *String to check*
+	 *
+	 * [StringItem]
+	 *
+	 * *String to check for*
 	 *
 	 * (*) = optional
 	 */
@@ -396,18 +392,18 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Checks if a value does not
-	 * equal another value.
+	 * *Checks if a value does not*
+	 * *equal another value.*
 	 *
-	 * ARGUMENTS:
-	 *
-	 * [Item]
-	 *
-	 *  Value to check
+	 * #### Args:
 	 *
 	 * [Item]
 	 *
-	 *  Values to compare to
+	 * *Value to check*
+	 *
+	 * [Item]
+	 *
+	 * *Values to compare to*
 	 *
 	 * (*) = optional
 	 */
@@ -415,18 +411,18 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Checks if a number value is
-	 * less than another number.
+	 * *Checks if a number value is*
+	 * *less than another number.*
 	 *
-	 * ARGUMENTS:
-	 *
-	 * [NumItem]
-	 *
-	 *  Number to check
+	 * #### Args:
 	 *
 	 * [NumItem]
 	 *
-	 *  Number to compare to
+	 * *Number to check*
+	 *
+	 * [NumItem]
+	 *
+	 * *Number to compare to*
 	 *
 	 * (*) = optional
 	 */
@@ -434,18 +430,18 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Checks if a value is equal
-	 * to one of the given values.
+	 * *Checks if a value is equal*
+	 * *to one of the given values.*
 	 *
-	 * ARGUMENTS:
-	 *
-	 * [Item]
-	 *
-	 *  Value to check
+	 * #### Args:
 	 *
 	 * [Item]
 	 *
-	 *  Values to compare to
+	 * *Value to check*
+	 *
+	 * [Item]
+	 *
+	 * *Values to compare to*
 	 *
 	 * (*) = optional
 	 */
@@ -453,18 +449,18 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Checks if a number value is
-	 * greater than another number.
+	 * *Checks if a number value is*
+	 * *greater than another number.*
 	 *
-	 * ARGUMENTS:
-	 *
-	 * [NumItem]
-	 *
-	 *  Number to check
+	 * #### Args:
 	 *
 	 * [NumItem]
 	 *
-	 *  Number to compare to
+	 * *Number to check*
+	 *
+	 * [NumItem]
+	 *
+	 * *Number to compare to*
 	 *
 	 * (*) = optional
 	 */
@@ -472,19 +468,19 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Checks if the last part of
-	 * a string value matches a
-	 * certain string.
+	 * *Checks if the last part of*
+	 * *a string value matches a*
+	 * *certain string.*
 	 *
-	 * ARGUMENTS:
-	 *
-	 * [StringItem]
-	 *
-	 *  String to check
+	 * #### Args:
 	 *
 	 * [StringItem]
 	 *
-	 *  String to end with
+	 * *String to check*
+	 *
+	 * [StringItem]
+	 *
+	 * *String to end with*
 	 *
 	 * (*) = optional
 	 */
@@ -492,19 +488,19 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Checks if a number value
-	 * is greater than or equal to
-	 * another number.
+	 * *Checks if a number value*
+	 * *is greater than or equal to*
+	 * *another number.*
 	 *
-	 * ARGUMENTS:
-	 *
-	 * [NumItem]
-	 *
-	 *  Number to check
+	 * #### Args:
 	 *
 	 * [NumItem]
 	 *
-	 *  Number to compare to
+	 * *Number to check*
+	 *
+	 * [NumItem]
+	 *
+	 * *Number to compare to*
 	 *
 	 * (*) = optional
 	 */
@@ -512,18 +508,18 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 
 
 	/**
-	 * Checks if a dictionary has
-	 * the given key.
+	 * *Checks if a dictionary has*
+	 * *the given key.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [VarItem]
 	 *
-	 *  Dictionary to check
+	 * *Dictionary to check*
 	 *
 	 * [StringItem]
 	 *
-	 *  Key to look for
+	 * *Key to look for*
 	 *
 	 * (*) = optional
 	 */

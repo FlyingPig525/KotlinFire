@@ -7,7 +7,6 @@ import io.github.flyingpig525.base.block.*
 import io.github.flyingpig525.base.block.subaction.*
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
-import io.github.flyingpig525.base.block.subaction.*
 
 class RepeatCategory<T : Item> internal constructor(private val template: Template<T>) {
     private val blocks = template.blocks
@@ -31,20 +30,19 @@ class RepeatCategory<T : Item> internal constructor(private val template: Templa
         blocks += BracketBlock(false, "repeat")
     }
 	/**
-	 * Repeats code once for each
-	 * block adjacent to a location.
+	 * *Repeats code once for each*
+	 * *block adjacent to a location.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [VarItem]
 	 *
-	 *  Gets the current
-	 *
-	 *  block location each iteration
+	 * *Gets the current*
+	 * *block location each iteration*
 	 *
 	 * [LocItem]
 	 *
-	 *  Center block
+	 * *Center block*
 	 *
 	 * (*) = optional
 	 */
@@ -52,25 +50,24 @@ class RepeatCategory<T : Item> internal constructor(private val template: Templa
 
 
 	/**
-	 * Repeats code once for
-	 * each interpolated point in
-	 * a path of locations.
+	 * *Repeats code once for*
+	 * *each interpolated point in*
+	 * *a path of locations.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [VarItem]
 	 *
-	 *  Gets the current
-	 *
-	 *  path location each iteration
+	 * *Gets the current*
+	 * *path location each iteration*
 	 *
 	 * [LocItem]
 	 *
-	 *  Path locations
+	 * *Path locations*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) Point spacing
+	 * (*) *Point spacing*
 	 *
 	 * (*) = optional
 	 */
@@ -78,19 +75,18 @@ class RepeatCategory<T : Item> internal constructor(private val template: Templa
 
 
 	/**
-	 * Repeats code multiple times.
+	 * *Repeats code multiple times.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [VarItem]
 	 *
-	 * (*) Gets the
-	 *
-	 * (*) current index each iteration
+	 * (*) *Gets the*
+	 * (*) *current index each iteration*
 	 *
 	 * [NumItem]
 	 *
-	 *  Amount
+	 * *Amount*
 	 *
 	 * (*) = optional
 	 */
@@ -98,26 +94,25 @@ class RepeatCategory<T : Item> internal constructor(private val template: Templa
 
 
 	/**
-	 * Repeats code once for each
-	 * block in a region in order:
-	 * X → Z → Y. Iterates from the
-	 * first to the second location.
+	 * *Repeats code once for each*
+	 * *block in a region in order:*
+	 * *X → Z → Y. Iterates from the*
+	 * *first to the second location.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [VarItem]
 	 *
-	 *  Gets the current
-	 *
-	 *  block location each iteration
-	 *
-	 * [LocItem]
-	 *
-	 *  Start of region
+	 * *Gets the current*
+	 * *block location each iteration*
 	 *
 	 * [LocItem]
 	 *
-	 *  End of region
+	 * *Start of region*
+	 *
+	 * [LocItem]
+	 *
+	 * *End of region*
 	 *
 	 * (*) = optional
 	 */
@@ -125,10 +120,10 @@ class RepeatCategory<T : Item> internal constructor(private val template: Templa
 
 
 	/**
-	 * Repeats code as long as a
-	 * condition is true.
+	 * *Repeats code as long as a*
+	 * *condition is true.*
 	 *
-	 * Accepts sub actions:
+	 * ##### Accepts sub actions:
 	 * [IfPlayerSubAction],
 	 * [IfEntitySubAction],
 	 * [IfVarSubAction],
@@ -143,20 +138,19 @@ class RepeatCategory<T : Item> internal constructor(private val template: Templa
 
 
 	/**
-	 * Repeats code once for each
-	 * index of a list.
+	 * *Repeats code once for each*
+	 * *index of a list.*
 	 *
-	 * ARGUMENTS:
-	 *
-	 * [VarItem]
-	 *
-	 *  Gets the current
-	 *
-	 *  value each iteration
+	 * #### Args:
 	 *
 	 * [VarItem]
 	 *
-	 *  List to repeat through
+	 * *Gets the current*
+	 * *value each iteration*
+	 *
+	 * [VarItem]
+	 *
+	 * *List to repeat through*
 	 *
 	 * (*) = optional
 	 */
@@ -164,28 +158,27 @@ class RepeatCategory<T : Item> internal constructor(private val template: Templa
 
 
 	/**
-	 * Repeats code once for every
-	 * evenly distributed sphere point.
+	 * *Repeats code once for every*
+	 * *evenly distributed sphere point.*
 	 *
-	 * ARGUMENTS:
+	 * #### Args:
 	 *
 	 * [VarItem]
 	 *
-	 *  Gets the current
-	 *
-	 *  sphere location each iteration
+	 * *Gets the current*
+	 * *sphere location each iteration*
 	 *
 	 * [LocItem]
 	 *
-	 *  Sphere center
+	 * *Sphere center*
 	 *
 	 * [NumItem]
 	 *
-	 *  Sphere radius
+	 * *Sphere radius*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) Sphere points
+	 * (*) *Sphere points*
 	 *
 	 * (*) = optional
 	 */
@@ -193,34 +186,31 @@ class RepeatCategory<T : Item> internal constructor(private val template: Templa
 
 
 	/**
-	 * Repeats code indefinitely.
+	 * *Repeats code indefinitely.*
 	 */
 	fun forever(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "Forever", wrappedCode)
 
 
 	/**
-	 * Repeats code once per entry in
-	 * a dictionary
+	 * *Repeats code once per entry in*
+	 * *a dictionary*
 	 *
-	 * ARGUMENTS:
-	 *
-	 * [VarItem]
-	 *
-	 *  Gets the current key
-	 *
-	 *  each iteration
+	 * #### Args:
 	 *
 	 * [VarItem]
 	 *
-	 *  Gets the current value
-	 *
-	 *  each iteration
+	 * *Gets the current key*
+	 * *each iteration*
 	 *
 	 * [VarItem]
 	 *
-	 *  Dictionary to
+	 * *Gets the current value*
+	 * *each iteration*
 	 *
-	 *  repeat through
+	 * [VarItem]
+	 *
+	 * *Dictionary to*
+	 * *repeat through*
 	 *
 	 * (*) = optional
 	 */
