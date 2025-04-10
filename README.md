@@ -64,7 +64,7 @@ val template = Template {
 ```
 *Example code using a variable with the value of a `VarItem` to easily insert the same item in a code block*
 
-Each method in a code block category has documentation parsed directly from the [CodeClient](https://github.com/DFOnline/CodeClient)
+Each method in a code block category has documentation parsed directly from the df
 action dump.
 
 You can also provide a name and type, function or process, to the `Template` constructor. These default to 
