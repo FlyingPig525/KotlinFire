@@ -5,21 +5,21 @@ import io.github.flyingpig525.base.block.EventBlock
 import io.github.flyingpig525.base.block.PlayerEvent
 import io.github.flyingpig525.base.item.Item
 
-class EventTemplate<T : Item> private constructor(
-    event: EventBlock<T>,
-    a: Template<T>.() -> Unit
-) : Template<T>(
+class EventTemplate private constructor(
+    event: EventBlock,
+    a: Template.() -> Unit
+) : Template(
     Type.EVENT, "", a = a
 ) {
 
-    constructor(event: PlayerEvent, a: Template<T>.() -> Unit) : this(
+    constructor(event: PlayerEvent, a: Template.() -> Unit) : this(
         EventBlock(
             event.type,
             event.event
         ), a
     )
 
-    constructor(event: EntityEvent, a: Template<T>.() -> Unit) : this(
+    constructor(event: EntityEvent, a: Template.() -> Unit) : this(
         EventBlock(
             event.type,
             event.event

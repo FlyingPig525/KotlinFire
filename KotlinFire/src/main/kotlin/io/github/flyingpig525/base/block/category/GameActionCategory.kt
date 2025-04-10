@@ -8,10 +8,10 @@ import io.github.flyingpig525.base.block.subaction.*
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
 
-class GameActionCategory<T : Item> internal constructor(private val template: Template<T>) {
+class GameActionCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
-    private fun block(items: Items<T>, action: String, extra: JsonObjectBuilder.() -> Unit = {}) {
+    private fun block(items: Items, action: String, extra: JsonObjectBuilder.() -> Unit = {}) {
         blocks += Block("game_action", ItemCollection(items).items, action, extra)
     }
 	/**
@@ -30,7 +30,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun fillContainer(items: Items<T>) = block(items, "FillContainer")
+	fun fillContainer(items: Items) = block(items, "FillContainer")
 
 
 	/**
@@ -45,17 +45,17 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun breakBlock(items: Items<T>) = block(items, "BreakBlock")
+	fun breakBlock(items: Items) = block(items, "BreakBlock")
 
 
 	/**
 	 */
-	fun lPFXSpiral(items: Items<T>) = block(items, "L PFX Spiral")
+	fun lPFXSpiral(items: Items) = block(items, "L PFX Spiral")
 
 
 	/**
 	 */
-	fun particleSphere(items: Items<T>) = block(items, "ParticleSphere")
+	fun particleSphere(items: Items) = block(items, "ParticleSphere")
 
 
 	/**
@@ -78,7 +78,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun changeSign(items: Items<T>) = block(items, "ChangeSign")
+	fun changeSign(items: Items) = block(items, "ChangeSign")
 
 
 	/**
@@ -96,22 +96,22 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun webRequest(items: Items<T>) = block(items, "WebRequest")
+	fun webRequest(items: Items) = block(items, "WebRequest")
 
 
 	/**
 	 */
-	fun clearScBoard(items: Items<T>) = block(items, "ClearScBoard")
+	fun clearScBoard(items: Items) = block(items, "ClearScBoard")
 
 
 	/**
 	 */
-	fun hideSidebar(items: Items<T>) = block(items, "HideSidebar")
+	fun hideSidebar(items: Items) = block(items, "HideSidebar")
 
 
 	/**
 	 */
-	fun spawnItemDisplay(items: Items<T>) = block(items, "SpawnItemDisplay")
+	fun spawnItemDisplay(items: Items) = block(items, "SpawnItemDisplay")
 
 
 	/**
@@ -140,12 +140,12 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun writeTransaction(items: Items<T>) = block(items, "WriteTransaction")
+	fun writeTransaction(items: Items) = block(items, "WriteTransaction")
 
 
 	/**
 	 */
-	fun particleSpiral(items: Items<T>) = block(items, "ParticleSpiral")
+	fun particleSpiral(items: Items) = block(items, "ParticleSpiral")
 
 
 	/**
@@ -164,7 +164,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun setBlockData(items: Items<T>) = block(items, "SetBlockData")
+	fun setBlockData(items: Items) = block(items, "SetBlockData")
 
 
 	/**
@@ -183,7 +183,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun firework(items: Items<T>) = block(items, "Firework")
+	fun firework(items: Items) = block(items, "Firework")
 
 
 	/**
@@ -198,7 +198,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun setEventDamage(items: Items<T>) = block(items, "SetEventDamage")
+	fun setEventDamage(items: Items) = block(items, "SetEventDamage")
 
 
 	/**
@@ -220,7 +220,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun spawnItem(items: Items<T>) = block(items, "SpawnItem")
+	fun spawnItem(items: Items) = block(items, "SpawnItem")
 
 
 	/**
@@ -235,7 +235,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun signColor(items: Items<T>) = block(items, "SignColor")
+	fun signColor(items: Items) = block(items, "SignColor")
 
 
 	/**
@@ -249,12 +249,12 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun shulkerBullet(items: Items<T>) = block(items, "ShulkerBullet")
+	fun shulkerBullet(items: Items) = block(items, "ShulkerBullet")
 
 
 	/**
 	 */
-	fun fireworkEffect(items: Items<T>) = block(items, "FireworkEffect")
+	fun fireworkEffect(items: Items) = block(items, "FireworkEffect")
 
 
 	/**
@@ -273,7 +273,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun setContainer(items: Items<T>) = block(items, "SetContainer")
+	fun setContainer(items: Items) = block(items, "SetContainer")
 
 
 	/**
@@ -296,7 +296,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun spawnInteraction(items: Items<T>) = block(items, "SpawnInteraction")
+	fun spawnInteraction(items: Items) = block(items, "SpawnInteraction")
 
 
 	/**
@@ -319,7 +319,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun setItemInSlot(items: Items<T>) = block(items, "SetItemInSlot")
+	fun setItemInSlot(items: Items) = block(items, "SetItemInSlot")
 
 
 	/**
@@ -346,14 +346,14 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun cloneRegion(items: Items<T>) = block(items, "CloneRegion")
+	fun cloneRegion(items: Items) = block(items, "CloneRegion")
 
 
 	/**
 	 * *Uncancels the initial event that*
 	 * *triggered this line of code.*
 	 */
-	fun uncancelEvent(items: Items<T>) = block(items, "UncancelEvent")
+	fun uncancelEvent(items: Items) = block(items, "UncancelEvent")
 
 
 	/**
@@ -376,7 +376,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun setLecternBook(items: Items<T>) = block(items, "SetLecternBook")
+	fun setLecternBook(items: Items) = block(items, "SetLecternBook")
 
 
 	/**
@@ -399,7 +399,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun spawnArmorStand(items: Items<T>) = block(items, "SpawnArmorStand")
+	fun spawnArmorStand(items: Items) = block(items, "SpawnArmorStand")
 
 
 	/**
@@ -421,7 +421,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun spawnBlockDisp(items: Items<T>) = block(items, "SpawnBlockDisp")
+	fun spawnBlockDisp(items: Items) = block(items, "SpawnBlockDisp")
 
 
 	/**
@@ -435,19 +435,19 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun clearContainer(items: Items<T>) = block(items, "ClearContainer")
+	fun clearContainer(items: Items) = block(items, "ClearContainer")
 
 
 	/**
 	 * *Cancels the initial event that*
 	 * *triggered this line of code.*
 	 */
-	fun cancelEvent(items: Items<T>) = block(items, "CancelEvent")
+	fun cancelEvent(items: Items) = block(items, "CancelEvent")
 
 
 	/**
 	 */
-	fun particleEffect(items: Items<T>) = block(items, "ParticleEffect")
+	fun particleEffect(items: Items) = block(items, "ParticleEffect")
 
 
 	/**
@@ -466,7 +466,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun spawnFangs(items: Items<T>) = block(items, "SpawnFangs")
+	fun spawnFangs(items: Items) = block(items, "SpawnFangs")
 
 
 	/**
@@ -482,7 +482,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun setEventSound(items: Items<T>) = block(items, "SetEventSound")
+	fun setEventSound(items: Items) = block(items, "SetEventSound")
 
 
 	/**
@@ -497,7 +497,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun setEventXP(items: Items<T>) = block(items, "SetEventXP")
+	fun setEventXP(items: Items) = block(items, "SetEventXP")
 
 
 	/**
@@ -516,17 +516,17 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun lockContainer(items: Items<T>) = block(items, "LockContainer")
+	fun lockContainer(items: Items) = block(items, "LockContainer")
 
 
 	/**
 	 */
-	fun removeScore(items: Items<T>) = block(items, "RemoveScore")
+	fun removeScore(items: Items) = block(items, "RemoveScore")
 
 
 	/**
 	 */
-	fun createHologram(items: Items<T>) = block(items, "CreateHologram")
+	fun createHologram(items: Items) = block(items, "CreateHologram")
 
 
 	/**
@@ -541,17 +541,17 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun setExhaustion(items: Items<T>) = block(items, "SetExhaustion")
+	fun setExhaustion(items: Items) = block(items, "SetExhaustion")
 
 
 	/**
 	 */
-	fun particleCircle(items: Items<T>) = block(items, "ParticleCircle")
+	fun particleCircle(items: Items) = block(items, "ParticleCircle")
 
 
 	/**
 	 */
-	fun pFXLineA(items: Items<T>) = block(items, "PFX Line [A]")
+	fun pFXLineA(items: Items) = block(items, "PFX Line [A]")
 
 
 	/**
@@ -570,12 +570,12 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun clearItems(items: Items<T>) = block(items, "ClearItems")
+	fun clearItems(items: Items) = block(items, "ClearItems")
 
 
 	/**
 	 */
-	fun startLoop(items: Items<T>) = block(items, "StartLoop")
+	fun startLoop(items: Items) = block(items, "StartLoop")
 
 
 	/**
@@ -595,14 +595,14 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun setFurnaceSpeed(items: Items<T>) = block(items, "SetFurnaceSpeed")
+	fun setFurnaceSpeed(items: Items) = block(items, "SetFurnaceSpeed")
 
 
 	/**
 	 * *Enables blocks dropping*
 	 * *as items when broken.*
 	 */
-	fun blockDropsOn(items: Items<T>) = block(items, "BlockDropsOn")
+	fun blockDropsOn(items: Items) = block(items, "BlockDropsOn")
 
 
 	/**
@@ -620,12 +620,12 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun boneMeal(items: Items<T>) = block(items, "BoneMeal")
+	fun boneMeal(items: Items) = block(items, "BoneMeal")
 
 
 	/**
 	 */
-	fun debugStackTrace(items: Items<T>) = block(items, "DebugStackTrace")
+	fun debugStackTrace(items: Items) = block(items, "DebugStackTrace")
 
 
 	/**
@@ -648,7 +648,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun fallingBlock(items: Items<T>) = block(items, "FallingBlock")
+	fun fallingBlock(items: Items) = block(items, "FallingBlock")
 
 
 	/**
@@ -667,7 +667,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun discordWebhook(items: Items<T>) = block(items, "DiscordWebhook")
+	fun discordWebhook(items: Items) = block(items, "DiscordWebhook")
 
 
 	/**
@@ -687,7 +687,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun tickBlock(items: Items<T>) = block(items, "TickBlock")
+	fun tickBlock(items: Items) = block(items, "TickBlock")
 
 
 	/**
@@ -715,7 +715,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun replaceItems(items: Items<T>) = block(items, "ReplaceItems")
+	fun replaceItems(items: Items) = block(items, "ReplaceItems")
 
 
 	/**
@@ -730,7 +730,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun setEventProj(items: Items<T>) = block(items, "SetEventProj")
+	fun setEventProj(items: Items) = block(items, "SetEventProj")
 
 
 	/**
@@ -749,7 +749,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun explosion(items: Items<T>) = block(items, "Explosion")
+	fun explosion(items: Items) = block(items, "Explosion")
 
 
 	/**
@@ -783,7 +783,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun spawnMob(items: Items<T>) = block(items, "SpawnMob")
+	fun spawnMob(items: Items) = block(items, "SpawnMob")
 
 
 	/**
@@ -802,12 +802,12 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun setBrushableItem(items: Items<T>) = block(items, "SetBrushableItem")
+	fun setBrushableItem(items: Items) = block(items, "SetBrushableItem")
 
 
 	/**
 	 */
-	fun particleLineA(items: Items<T>) = block(items, "ParticleLineA")
+	fun particleLineA(items: Items) = block(items, "ParticleLineA")
 
 
 	/**
@@ -835,12 +835,12 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun spawnEnderEye(items: Items<T>) = block(items, "SpawnEnderEye")
+	fun spawnEnderEye(items: Items) = block(items, "SpawnEnderEye")
 
 
 	/**
 	 */
-	fun showSidebar(items: Items<T>) = block(items, "ShowSidebar")
+	fun showSidebar(items: Items) = block(items, "ShowSidebar")
 
 
 	/**
@@ -872,7 +872,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun spawnPotionCloud(items: Items<T>) = block(items, "SpawnPotionCloud")
+	fun spawnPotionCloud(items: Items) = block(items, "SpawnPotionCloud")
 
 
 	/**
@@ -902,7 +902,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun launchProj(items: Items<T>) = block(items, "LaunchProj")
+	fun launchProj(items: Items) = block(items, "LaunchProj")
 
 
 	/**
@@ -924,7 +924,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun setBlock(items: Items<T>) = block(items, " SetBlock ")
+	fun setBlock(items: Items) = block(items, " SetBlock ")
 
 
 	/**
@@ -942,7 +942,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun spawnItemDisp(items: Items<T>) = block(items, "SpawnItemDisp")
+	fun spawnItemDisp(items: Items) = block(items, "SpawnItemDisp")
 
 
 	/**
@@ -961,12 +961,12 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun setBlockGrowth(items: Items<T>) = block(items, "SetBlockGrowth")
+	fun setBlockGrowth(items: Items) = block(items, "SetBlockGrowth")
 
 
 	/**
 	 */
-	fun wait(items: Items<T>) = block(items, "Wait")
+	fun wait(items: Items) = block(items, "Wait")
 
 
 	/**
@@ -985,7 +985,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun setContainerName(items: Items<T>) = block(items, "SetContainerName")
+	fun setContainerName(items: Items) = block(items, "SetContainerName")
 
 
 	/**
@@ -1008,12 +1008,12 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun setHead(items: Items<T>) = block(items, "SetHead")
+	fun setHead(items: Items) = block(items, "SetHead")
 
 
 	/**
 	 */
-	fun removeHologram(items: Items<T>) = block(items, "RemoveHologram")
+	fun removeHologram(items: Items) = block(items, "RemoveHologram")
 
 
 	/**
@@ -1032,12 +1032,12 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun removeItems(items: Items<T>) = block(items, "RemoveItems")
+	fun removeItems(items: Items) = block(items, "RemoveItems")
 
 
 	/**
 	 */
-	fun spawnRngItem(items: Items<T>) = block(items, "SpawnRngItem")
+	fun spawnRngItem(items: Items) = block(items, "SpawnRngItem")
 
 
 	/**
@@ -1064,12 +1064,12 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun setRegion(items: Items<T>) = block(items, "SetRegion")
+	fun setRegion(items: Items) = block(items, "SetRegion")
 
 
 	/**
 	 */
-	fun particleCircleA(items: Items<T>) = block(items, "ParticleCircleA")
+	fun particleCircleA(items: Items) = block(items, "ParticleCircleA")
 
 
 	/**
@@ -1095,7 +1095,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun spawnTNT(items: Items<T>) = block(items, "SpawnTNT")
+	fun spawnTNT(items: Items) = block(items, "SpawnTNT")
 
 
 	/**
@@ -1118,7 +1118,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun spawnExpOrb(items: Items<T>) = block(items, "SpawnExpOrb")
+	fun spawnExpOrb(items: Items) = block(items, "SpawnExpOrb")
 
 
 	/**
@@ -1140,7 +1140,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun setBiome(items: Items<T>) = block(items, "SetBiome")
+	fun setBiome(items: Items) = block(items, "SetBiome")
 
 
 	/**
@@ -1155,24 +1155,24 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun setEventHeal(items: Items<T>) = block(items, "SetEventHeal")
+	fun setEventHeal(items: Items) = block(items, "SetEventHeal")
 
 
 	/**
 	 */
-	fun pFXPath(items: Items<T>) = block(items, "PFX Path")
+	fun pFXPath(items: Items) = block(items, "PFX Path")
 
 
 	/**
 	 * *Applies the current transaction*
 	 * *and generates a new one.*
 	 */
-	fun applyTransaction(items: Items<T>) = block(items, "ApplyTransaction")
+	fun applyTransaction(items: Items) = block(items, "ApplyTransaction")
 
 
 	/**
 	 */
-	fun particleRay(items: Items<T>) = block(items, "ParticleRay")
+	fun particleRay(items: Items) = block(items, "ParticleRay")
 
 
 	/**
@@ -1187,17 +1187,17 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun generateTree(items: Items<T>) = block(items, "GenerateTree")
+	fun generateTree(items: Items) = block(items, "GenerateTree")
 
 
 	/**
 	 */
-	fun stopLoop(items: Items<T>) = block(items, "StopLoop")
+	fun stopLoop(items: Items) = block(items, "StopLoop")
 
 
 	/**
 	 */
-	fun setScObj(items: Items<T>) = block(items, "SetScObj")
+	fun setScObj(items: Items) = block(items, "SetScObj")
 
 
 	/**
@@ -1216,7 +1216,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun spawnCrystal(items: Items<T>) = block(items, "SpawnCrystal")
+	fun spawnCrystal(items: Items) = block(items, "SpawnCrystal")
 
 
 	/**
@@ -1239,7 +1239,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun setCampfireItem(items: Items<T>) = block(items, "SetCampfireItem")
+	fun setCampfireItem(items: Items) = block(items, "SetCampfireItem")
 
 
 	/**
@@ -1257,7 +1257,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun spawnTextDisplay(items: Items<T>) = block(items, "SpawnTextDisplay")
+	fun spawnTextDisplay(items: Items) = block(items, "SpawnTextDisplay")
 
 
 	/**
@@ -1279,7 +1279,7 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun spawnVehicle(items: Items<T>) = block(items, "SpawnVehicle")
+	fun spawnVehicle(items: Items) = block(items, "SpawnVehicle")
 
 
 	/**
@@ -1293,33 +1293,33 @@ class GameActionCategory<T : Item> internal constructor(private val template: Te
 	 *
 	 * (*) = optional
 	 */
-	fun lightning(items: Items<T>) = block(items, "Lightning")
+	fun lightning(items: Items) = block(items, "Lightning")
 
 
 	/**
 	 */
-	fun particleSpiralA(items: Items<T>) = block(items, "ParticleSpiralA")
+	fun particleSpiralA(items: Items) = block(items, "ParticleSpiralA")
 
 
 	/**
 	 */
-	fun setScore(items: Items<T>) = block(items, "SetScore")
+	fun setScore(items: Items) = block(items, "SetScore")
 
 
 	/**
 	 */
-	fun particleCluster(items: Items<T>) = block(items, "ParticleCluster")
+	fun particleCluster(items: Items) = block(items, "ParticleCluster")
 
 
 	/**
 	 * *Disables blocks dropping*
 	 * *as items when broken.*
 	 */
-	fun blockDropsOff(items: Items<T>) = block(items, "BlockDropsOff")
+	fun blockDropsOff(items: Items) = block(items, "BlockDropsOff")
 
 
 	/**
 	 */
-	fun particleLine(items: Items<T>) = block(items, "ParticleLine")
+	fun particleLine(items: Items) = block(items, "ParticleLine")
 
 }

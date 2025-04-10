@@ -8,13 +8,13 @@ import io.github.flyingpig525.base.block.subaction.*
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
 
-class RepeatCategory<T : Item> internal constructor(private val template: Template<T>) {
+class RepeatCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
     private fun block(
-        items: Items<T>,
+        items: Items,
         action: String,
-        wrappedCode: Template<T>.() -> Unit,
+        wrappedCode: Template.() -> Unit,
         not: Boolean = false,
         extra: JsonObjectBuilder.() -> Unit = {}
     ) {
@@ -46,7 +46,7 @@ class RepeatCategory<T : Item> internal constructor(private val template: Templa
 	 *
 	 * (*) = optional
 	 */
-	fun adjacent(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "Adjacent", wrappedCode)
+	fun adjacent(items: Items, wrappedCode: Template.() -> Unit) = block(items, "Adjacent", wrappedCode)
 
 
 	/**
@@ -71,7 +71,7 @@ class RepeatCategory<T : Item> internal constructor(private val template: Templa
 	 *
 	 * (*) = optional
 	 */
-	fun path(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "Path", wrappedCode)
+	fun path(items: Items, wrappedCode: Template.() -> Unit) = block(items, "Path", wrappedCode)
 
 
 	/**
@@ -90,7 +90,7 @@ class RepeatCategory<T : Item> internal constructor(private val template: Templa
 	 *
 	 * (*) = optional
 	 */
-	fun multiple(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "Multiple", wrappedCode)
+	fun multiple(items: Items, wrappedCode: Template.() -> Unit) = block(items, "Multiple", wrappedCode)
 
 
 	/**
@@ -116,7 +116,7 @@ class RepeatCategory<T : Item> internal constructor(private val template: Templa
 	 *
 	 * (*) = optional
 	 */
-	fun grid(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "Grid", wrappedCode)
+	fun grid(items: Items, wrappedCode: Template.() -> Unit) = block(items, "Grid", wrappedCode)
 
 
 	/**
@@ -129,12 +129,12 @@ class RepeatCategory<T : Item> internal constructor(private val template: Templa
 	 * [IfVarSubAction],
 	 * [IfGameSubAction],
 	 */
-	fun whileLoop(items: Items<T>, subAction: SubAction, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "While", wrappedCode, not) { put("subAction", subAction.codeblock) }
+	fun whileLoop(items: Items, subAction: SubAction, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "While", wrappedCode, not) { put("subAction", subAction.codeblock) }
 
 
 	/**
 	 */
-	fun range(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "Range", wrappedCode)
+	fun range(items: Items, wrappedCode: Template.() -> Unit) = block(items, "Range", wrappedCode)
 
 
 	/**
@@ -154,7 +154,7 @@ class RepeatCategory<T : Item> internal constructor(private val template: Templa
 	 *
 	 * (*) = optional
 	 */
-	fun forEach(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "ForEach", wrappedCode)
+	fun forEach(items: Items, wrappedCode: Template.() -> Unit) = block(items, "ForEach", wrappedCode)
 
 
 	/**
@@ -182,13 +182,13 @@ class RepeatCategory<T : Item> internal constructor(private val template: Templa
 	 *
 	 * (*) = optional
 	 */
-	fun sphere(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "Sphere", wrappedCode)
+	fun sphere(items: Items, wrappedCode: Template.() -> Unit) = block(items, "Sphere", wrappedCode)
 
 
 	/**
 	 * *Repeats code indefinitely.*
 	 */
-	fun forever(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "Forever", wrappedCode)
+	fun forever(items: Items, wrappedCode: Template.() -> Unit) = block(items, "Forever", wrappedCode)
 
 
 	/**
@@ -214,6 +214,6 @@ class RepeatCategory<T : Item> internal constructor(private val template: Templa
 	 *
 	 * (*) = optional
 	 */
-	fun forEachEntry(items: Items<T>, wrappedCode: Template<T>.() -> Unit) = block(items, "ForEachEntry", wrappedCode)
+	fun forEachEntry(items: Items, wrappedCode: Template.() -> Unit) = block(items, "ForEachEntry", wrappedCode)
 
 }

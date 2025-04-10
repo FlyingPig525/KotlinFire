@@ -6,7 +6,7 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 
-class ElseBlock<T : Item> : Block<T>("else", mutableListOf(), "") {
+class ElseBlock : Block("else", mutableListOf(), "") {
     override fun getJsonData(): JsonObject {
         return buildJsonObject {
             put("id", "block")

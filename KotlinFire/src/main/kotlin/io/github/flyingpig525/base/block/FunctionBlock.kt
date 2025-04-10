@@ -7,7 +7,7 @@ import io.github.flyingpig525.base.item.Item
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.*
 
-class FunctionBlock<T : Item>(name: String = "PutNameHere", items: MutableList<T>) : Block<T>("func", items, name) {
+class FunctionBlock(name: String = "PutNameHere", items: MutableList<Item>) : Block("func", items, name) {
     @OptIn(ExperimentalSerializationApi::class)
     override fun getJsonData(): JsonObject {
         return buildJsonObject {

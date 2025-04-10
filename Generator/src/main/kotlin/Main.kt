@@ -69,22 +69,22 @@ fun blockActions(actions: List<JsonObject>) = try {
     """.trimIndent()
     if (!encloses) {
         file += """
-        class ${codeblock.name}Category<T : Item> internal constructor(private val template: Template<T>) {
+        class ${codeblock.name}Category internal constructor(private val template: Template) {
             private val blocks = template.blocks
 
-            private fun block(items: Items<T>, action: String, extra: JsonObjectBuilder.() -> Unit = {}) {
+            private fun block(items: Items, action: String, extra: JsonObjectBuilder.() -> Unit = {}) {
                 blocks += Block("${codeblock.shortName}", ItemCollection(items).items, action, extra)
             }
         """.trimIndent()
     } else {
         file += """
-            class ${codeblock.name}Category<T : Item> internal constructor(private val template: Template<T>) {
+            class ${codeblock.name}Category internal constructor(private val template: Template) {
                 private val blocks = template.blocks
 
                 private fun block(
-                    items: Items<T>,
+                    items: Items,
                     action: String,
-                    wrappedCode: Template<T>.() -> Unit,
+                    wrappedCode: Template.() -> Unit,
                     not: Boolean = false,
                     extra: JsonObjectBuilder.() -> Unit = {}
                 ) {
@@ -152,12 +152,12 @@ fun blockActions(actions: List<JsonObject>) = try {
         file += "\n$comment"
         val negatable = negatable(codeblock.name, funcName)
         file +=
-            "\tfun $funcName(items: Items<T>${
+            "\tfun $funcName(items: Items${
                 if (subAction) ", subAction: SubAction" else ""
             }${
                 if (negatable) ", not: Boolean = false" else ""
             }${
-                if (encloses) ", wrappedCode: Template<T>.() -> Unit" else ""
+                if (encloses) ", wrappedCode: Template.() -> Unit" else ""
             }) = block(items, \"$name\"${if (encloses) ", wrappedCode" else ""}${if (negatable) ", not" else ""})${
                 if (subAction) 
                     """ { put("subAction", subAction.codeblock) }"""

@@ -1,23 +1,27 @@
 package io.github.flyingpig525.base.item
 
 import io.github.flyingpig525.base.JsonData
+import io.github.flyingpig525.base.item.type.NumItem
+import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
+import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
 
-class ItemCollection<T : Item>(func: ItemCollection<T>.() -> Unit) {
-    val items: MutableList<T> = mutableListOf()
+class ItemCollection(func: ItemCollection.() -> Unit) {
+    val items: MutableList<Item> = mutableListOf()
 
     init {
         apply(func)
     }
 
-    operator fun T.unaryPlus() = also { addItem(it) }
+    operator fun Item.unaryPlus() = also { addItem(it) }
+    operator fun String.unaryPlus() = also { addItem(textItem) }
 
-    fun addItem(item: T) {
+    fun addItem(item: Item) {
         items += item.apply {
             slot = items.size
         }
     }
 
-    operator fun plusAssign(item: T) {
+    operator fun plusAssign(item: Item) {
         items += item.apply {
             slot = items.size
         }

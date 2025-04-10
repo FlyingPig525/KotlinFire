@@ -18,16 +18,16 @@ import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.putJsonArray
 import org.jetbrains.annotations.ApiStatus.Internal
 
-typealias Items<T> = ItemCollection<T>.() -> Unit
+typealias Items = ItemCollection.() -> Unit
 
 @Suppress("LeakingThis")
-open class Template<T : Item>(
+open class Template(
     type: Type = Type.FUNCTION,
     val name: String = "PutNameHere",
     vararg args: ParameterItem,
-    a: Template<T>.() -> Unit
+    a: Template.() -> Unit
 ) : JsonData {
-    val blocks: MutableList<Block<T>> = mutableListOf()
+    val blocks: MutableList<Block> = mutableListOf()
     val SetVariable = SetVariableCategory(this)
     val EntityAction = EntityActionCategory(this)
     val GameAction = GameActionCategory(this)
@@ -40,14 +40,14 @@ open class Template<T : Item>(
     val IfGame = IfGameCategory(this)
     val Control = ControlCategory(this)
 
-    fun callFunction(name: String, items: Items<T> = {}) {
+    fun callFunction(name: String, items: Items = {}) {
         blocks += CallFunctionBlock(name, items)
     }
-    fun callProcess(name: String, items: Items<T> = {}) {
+    fun callProcess(name: String, items: Items = {}) {
         blocks += CallProcessBlock(name, items)
     }
 
-    fun invokeTemplate(template: Template<T>, items: Items<T> = {}) {
+    fun invokeTemplate(template: Template, items: Items = {}) {
         if (template.blocks[0] is FunctionBlock) {
             callFunction(template.name, items)
             return
@@ -59,7 +59,7 @@ open class Template<T : Item>(
         throw Error("Cannot invoke Event template!")
     }
 
-    fun Else(wrappedCode: Template<T>.() -> Unit) {
+    fun Else(wrappedCode: Template.() -> Unit) {
         blocks += ElseBlock()
         blocks += BracketBlock(type = "norm")
         blocks += Template(
@@ -72,8 +72,8 @@ open class Template<T : Item>(
     init {
         if (type != Type.NONE) {
             blocks += when (type) {
-                Type.FUNCTION -> FunctionBlock(name, args.toMutableList()) as Block<T>
-                Type.PROCESS -> ProcessBlock(name, args.toMutableList()) as Block<T>
+                Type.FUNCTION -> FunctionBlock(name, args.toMutableList()) as Block
+                Type.PROCESS -> ProcessBlock(name, args.toMutableList()) as Block
                 // This will get changed by `EventTemplate`
                 Type.EVENT -> Block("", mutableListOf(), "")
                 // This will never get called, so it doesn't have to be implemented
@@ -113,7 +113,7 @@ open class Template<T : Item>(
 
     companion object {
         @Deprecated("Recode is no longer being worked on")
-        fun <T> recodeSendTemplate(template: Template<T>) where T : Item, T : JsonData {
+        fun recodeSendTemplate(template: Template) {
             val client = HttpClient(Java) {
                 install(WebSockets)
             }
@@ -142,9 +142,9 @@ open class Template<T : Item>(
             install(WebSockets)
         }
 
-        fun <T> codeClientPlaceTemplate(template: Template<T>) where T : Item, T : JsonData = codeClientPlaceMultipleTemplates(listOf(template))
+        fun codeClientPlaceTemplate(template: Template) = codeClientPlaceMultipleTemplates(listOf(template))
 
-        fun <T> codeClientPlaceMultipleTemplates(templates: List<Template<T>>, ignoreSizeWarning: Boolean = false) where T : Item, T : JsonData {
+        fun codeClientPlaceMultipleTemplates(templates: List<Template>, ignoreSizeWarning: Boolean = false) {
             runBlocking {
                 codeClientHttp.webSocket(
                     method = HttpMethod.Get,
@@ -200,7 +200,7 @@ open class Template<T : Item>(
         }
     }
 
-    fun <T> codeClientPlaceMultipleTemplates(vararg templates: Template<T>) where T : Item, T : JsonData =
+    fun codeClientPlaceMultipleTemplates(vararg templates: Template) =
         codeClientPlaceMultipleTemplates(templates.toList())
 
     enum class Type {

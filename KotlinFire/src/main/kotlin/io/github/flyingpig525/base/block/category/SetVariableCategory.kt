@@ -8,10 +8,10 @@ import io.github.flyingpig525.base.block.subaction.*
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
 
-class SetVariableCategory<T : Item> internal constructor(private val template: Template<T>) {
+class SetVariableCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
-    private fun block(items: Items<T>, action: String, extra: JsonObjectBuilder.() -> Unit = {}) {
+    private fun block(items: Items, action: String, extra: JsonObjectBuilder.() -> Unit = {}) {
         blocks += Block("set_var", ItemCollection(items).items, action, extra)
     }
 	/**
@@ -29,7 +29,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getItemFood(items: Items<T>) = block(items, "GetItemFood")
+	fun getItemFood(items: Items) = block(items, "GetItemFood")
 
 
 	/**
@@ -48,7 +48,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun string(items: Items<T>) = block(items, "String")
+	fun string(items: Items) = block(items, "String")
 
 
 	/**
@@ -71,12 +71,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setParticleType(items: Items<T>) = block(items, "SetParticleType")
+	fun setParticleType(items: Items) = block(items, "SetParticleType")
 
 
 	/**
 	 */
-	fun setItemEnchants(items: Items<T>) = block(items, "SetItemEnchants")
+	fun setItemEnchants(items: Items) = block(items, "SetItemEnchants")
 
 
 	/**
@@ -94,7 +94,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun clearItemTag(items: Items<T>) = block(items, "ClearItemTag")
+	fun clearItemTag(items: Items) = block(items, "ClearItemTag")
 
 
 	/**
@@ -109,7 +109,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun purgeVars(items: Items<T>) = block(items, "PurgeVars")
+	fun purgeVars(items: Items) = block(items, "PurgeVars")
 
 
 	/**
@@ -140,7 +140,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun shiftAllAxes(items: Items<T>) = block(items, "ShiftAllAxes")
+	fun shiftAllAxes(items: Items) = block(items, "ShiftAllAxes")
 
 
 	/**
@@ -160,7 +160,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getParticleMat(items: Items<T>) = block(items, "GetParticleMat")
+	fun getParticleMat(items: Items) = block(items, "GetParticleMat")
 
 
 	/**
@@ -187,7 +187,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setParticleSprd(items: Items<T>) = block(items, "SetParticleSprd")
+	fun setParticleSprd(items: Items) = block(items, "SetParticleSprd")
 
 
 	/**
@@ -206,7 +206,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun absoluteValue(items: Items<T>) = block(items, "AbsoluteValue")
+	fun absoluteValue(items: Items) = block(items, "AbsoluteValue")
 
 
 	/**
@@ -225,7 +225,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun appendValue(items: Items<T>) = block(items, "AppendValue")
+	fun appendValue(items: Items) = block(items, "AppendValue")
 
 
 	/**
@@ -249,7 +249,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun mod(items: Items<T>) = block(items, "%")
+	fun mod(items: Items) = block(items, "%")
 
 
 	/**
@@ -276,7 +276,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun shiftOnVector(items: Items<T>) = block(items, "ShiftOnVector")
+	fun shiftOnVector(items: Items) = block(items, "ShiftOnVector")
 
 
 	/**
@@ -295,7 +295,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getItemAttribute(items: Items<T>) = block(items, "GetItemAttribute")
+	fun getItemAttribute(items: Items) = block(items, "GetItemAttribute")
 
 
 	/**
@@ -310,7 +310,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun clearDict(items: Items<T>) = block(items, "ClearDict")
+	fun clearDict(items: Items) = block(items, "ClearDict")
 
 
 	/**
@@ -329,7 +329,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun plus(items: Items<T>) = block(items, "+")
+	fun plus(items: Items) = block(items, "+")
 
 
 	/**
@@ -352,7 +352,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun shiftRotation(items: Items<T>) = block(items, "ShiftRotation")
+	fun shiftRotation(items: Items) = block(items, "ShiftRotation")
 
 
 	/**
@@ -371,7 +371,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun minus(items: Items<T>) = block(items, "-")
+	fun minus(items: Items) = block(items, "-")
 
 
 	/**
@@ -389,7 +389,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getItemName(items: Items<T>) = block(items, " GetItemName ")
+	fun getItemName(items: Items) = block(items, " GetItemName ")
 
 
 	/**
@@ -407,7 +407,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getItemRarity(items: Items<T>) = block(items, "GetItemRarity")
+	fun getItemRarity(items: Items) = block(items, "GetItemRarity")
 
 
 	/**
@@ -430,7 +430,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun multiplyVector(items: Items<T>) = block(items, "MultiplyVector")
+	fun multiplyVector(items: Items) = block(items, "MultiplyVector")
 
 
 	/**
@@ -449,12 +449,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun divide(items: Items<T>) = block(items, "/")
+	fun divide(items: Items) = block(items, "/")
 
 
 	/**
 	 */
-	fun getSignText(items: Items<T>) = block(items, "GetSignText")
+	fun getSignText(items: Items) = block(items, "GetSignText")
 
 
 	/**
@@ -477,7 +477,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun bitwise(items: Items<T>) = block(items, "Bitwise")
+	fun bitwise(items: Items) = block(items, "Bitwise")
 
 
 	/**
@@ -496,12 +496,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getLecternPage(items: Items<T>) = block(items, "GetLecternPage")
+	fun getLecternPage(items: Items) = block(items, "GetLecternPage")
 
 
 	/**
 	 */
-	fun parseX(items: Items<T>) = block(items, "ParseX")
+	fun parseX(items: Items) = block(items, "ParseX")
 
 
 	/**
@@ -524,12 +524,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun shiftOnAxis(items: Items<T>) = block(items, "ShiftOnAxis")
+	fun shiftOnAxis(items: Items) = block(items, "ShiftOnAxis")
 
 
 	/**
 	 */
-	fun parseY(items: Items<T>) = block(items, "ParseY")
+	fun parseY(items: Items) = block(items, "ParseY")
 
 
 	/**
@@ -552,12 +552,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun vectorBetween(items: Items<T>) = block(items, "VectorBetween")
+	fun vectorBetween(items: Items) = block(items, "VectorBetween")
 
 
 	/**
 	 */
-	fun parseZ(items: Items<T>) = block(items, "ParseZ")
+	fun parseZ(items: Items) = block(items, "ParseZ")
 
 
 	/**
@@ -577,7 +577,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getVectorComp(items: Items<T>) = block(items, "GetVectorComp")
+	fun getVectorComp(items: Items) = block(items, "GetVectorComp")
 
 
 	/**
@@ -595,12 +595,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun equalTo(items: Items<T>) = block(items, "=")
+	fun equalTo(items: Items) = block(items, "=")
 
 
 	/**
 	 */
-	fun rmText(items: Items<T>) = block(items, "RmText")
+	fun rmText(items: Items) = block(items, "RmText")
 
 
 	/**
@@ -624,7 +624,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun addItemAttribute(items: Items<T>) = block(items, "AddItemAttribute")
+	fun addItemAttribute(items: Items) = block(items, "AddItemAttribute")
 
 
 	/**
@@ -643,7 +643,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getCenterLoc(items: Items<T>) = block(items, "GetCenterLoc")
+	fun getCenterLoc(items: Items) = block(items, "GetCenterLoc")
 
 
 	/**
@@ -662,7 +662,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun alignLoc(items: Items<T>) = block(items, "AlignLoc")
+	fun alignLoc(items: Items) = block(items, "AlignLoc")
 
 
 	/**
@@ -680,7 +680,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getSoundVolume(items: Items<T>) = block(items, "GetSoundVolume")
+	fun getSoundVolume(items: Items) = block(items, "GetSoundVolume")
 
 
 	/**
@@ -704,7 +704,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun randomNumber(items: Items<T>) = block(items, "RandomNumber")
+	fun randomNumber(items: Items) = block(items, "RandomNumber")
 
 
 	/**
@@ -723,7 +723,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun containerName(items: Items<T>) = block(items, "ContainerName")
+	fun containerName(items: Items) = block(items, "ContainerName")
 
 
 	/**
@@ -746,7 +746,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun raycast(items: Items<T>) = block(items, "Raycast")
+	fun raycast(items: Items) = block(items, "Raycast")
 
 
 	/**
@@ -773,7 +773,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun rotateAroundVec(items: Items<T>) = block(items, "RotateAroundVec")
+	fun rotateAroundVec(items: Items) = block(items, "RotateAroundVec")
 
 
 	/**
@@ -804,7 +804,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setItemFood(items: Items<T>) = block(items, "SetItemFood")
+	fun setItemFood(items: Items) = block(items, "SetItemFood")
 
 
 	/**
@@ -824,7 +824,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getParticleMotion(items: Items<T>) = block(items, "GetParticleMotion")
+	fun getParticleMotion(items: Items) = block(items, "GetParticleMotion")
 
 
 	/**
@@ -852,7 +852,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setParticleMotion(items: Items<T>) = block(items, "SetParticleMotion")
+	fun setParticleMotion(items: Items) = block(items, "SetParticleMotion")
 
 
 	/**
@@ -871,17 +871,17 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun average(items: Items<T>) = block(items, "Average")
+	fun average(items: Items) = block(items, "Average")
 
 
 	/**
 	 */
-	fun wrapNumber(items: Items<T>) = block(items, "WrapNumber")
+	fun wrapNumber(items: Items) = block(items, "WrapNumber")
 
 
 	/**
 	 */
-	fun setY(items: Items<T>) = block(items, "SetY")
+	fun setY(items: Items) = block(items, "SetY")
 
 
 	/**
@@ -904,7 +904,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setMapTexture(items: Items<T>) = block(items, "SetMapTexture")
+	fun setMapTexture(items: Items) = block(items, "SetMapTexture")
 
 
 	/**
@@ -927,12 +927,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getBlockData(items: Items<T>) = block(items, "GetBlockData")
+	fun getBlockData(items: Items) = block(items, "GetBlockData")
 
 
 	/**
 	 */
-	fun setX(items: Items<T>) = block(items, "SetX")
+	fun setX(items: Items) = block(items, "SetX")
 
 
 	/**
@@ -951,7 +951,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun sortDict(items: Items<T>) = block(items, "SortDict")
+	fun sortDict(items: Items) = block(items, "SortDict")
 
 
 	/**
@@ -970,7 +970,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getLecternBook(items: Items<T>) = block(items, "GetLecternBook")
+	fun getLecternBook(items: Items) = block(items, "GetLecternBook")
 
 
 	/**
@@ -988,7 +988,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getCustomSound(items: Items<T>) = block(items, "GetCustomSound")
+	fun getCustomSound(items: Items) = block(items, "GetCustomSound")
 
 
 	/**
@@ -1011,7 +1011,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun crossProduct(items: Items<T>) = block(items, "CrossProduct")
+	fun crossProduct(items: Items) = block(items, "CrossProduct")
 
 
 	/**
@@ -1030,7 +1030,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun x(items: Items<T>) = block(items, "x")
+	fun x(items: Items) = block(items, "x")
 
 
 	/**
@@ -1049,12 +1049,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getParticleRoll(items: Items<T>) = block(items, "GetParticleRoll")
+	fun getParticleRoll(items: Items) = block(items, "GetParticleRoll")
 
 
 	/**
 	 */
-	fun parseYaw(items: Items<T>) = block(items, "ParseYaw")
+	fun parseYaw(items: Items) = block(items, "ParseYaw")
 
 
 	/**
@@ -1077,12 +1077,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun dotProduct(items: Items<T>) = block(items, "DotProduct")
+	fun dotProduct(items: Items) = block(items, "DotProduct")
 
 
 	/**
 	 */
-	fun setZ(items: Items<T>) = block(items, "SetZ")
+	fun setZ(items: Items) = block(items, "SetZ")
 
 
 	/**
@@ -1101,7 +1101,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setArmorTrim(items: Items<T>) = block(items, "SetArmorTrim")
+	fun setArmorTrim(items: Items) = block(items, "SetArmorTrim")
 
 
 	/**
@@ -1124,7 +1124,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun popListValue(items: Items<T>) = block(items, "PopListValue")
+	fun popListValue(items: Items) = block(items, "PopListValue")
 
 
 	/**
@@ -1147,7 +1147,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setParticleOpac(items: Items<T>) = block(items, "SetParticleOpac")
+	fun setParticleOpac(items: Items) = block(items, "SetParticleOpac")
 
 
 	/**
@@ -1185,7 +1185,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun noise(items: Items<T>) = block(items, "Noise")
+	fun noise(items: Items) = block(items, "Noise")
 
 
 	/**
@@ -1205,7 +1205,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun minNumber(items: Items<T>) = block(items, "MinNumber")
+	fun minNumber(items: Items) = block(items, "MinNumber")
 
 
 	/**
@@ -1224,12 +1224,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getPotionType(items: Items<T>) = block(items, "GetPotionType")
+	fun getPotionType(items: Items) = block(items, "GetPotionType")
 
 
 	/**
 	 */
-	fun setItemName(items: Items<T>) = block(items, "SetItemName")
+	fun setItemName(items: Items) = block(items, "SetItemName")
 
 
 	/**
@@ -1248,7 +1248,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun listLength(items: Items<T>) = block(items, "ListLength")
+	fun listLength(items: Items) = block(items, "ListLength")
 
 
 	/**
@@ -1267,7 +1267,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun sine(items: Items<T>) = block(items, "Sine")
+	fun sine(items: Items) = block(items, "Sine")
 
 
 	/**
@@ -1286,7 +1286,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun directionName(items: Items<T>) = block(items, "DirectionName")
+	fun directionName(items: Items) = block(items, "DirectionName")
 
 
 	/**
@@ -1309,12 +1309,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun repeatString(items: Items<T>) = block(items, "RepeatString")
+	fun repeatString(items: Items) = block(items, "RepeatString")
 
 
 	/**
 	 */
-	fun getItemLore(items: Items<T>) = block(items, "GetItemLore")
+	fun getItemLore(items: Items) = block(items, "GetItemLore")
 
 
 	/**
@@ -1340,7 +1340,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun joinString(items: Items<T>) = block(items, "JoinString")
+	fun joinString(items: Items) = block(items, "JoinString")
 
 
 	/**
@@ -1359,7 +1359,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun reverseList(items: Items<T>) = block(items, "ReverseList")
+	fun reverseList(items: Items) = block(items, "ReverseList")
 
 
 	/**
@@ -1378,7 +1378,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun dedupList(items: Items<T>) = block(items, "DedupList")
+	fun dedupList(items: Items) = block(items, "DedupList")
 
 
 	/**
@@ -1401,7 +1401,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun createDict(items: Items<T>) = block(items, "CreateDict")
+	fun createDict(items: Items) = block(items, "CreateDict")
 
 
 	/**
@@ -1421,12 +1421,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getBlockByMCTag(items: Items<T>) = block(items, "GetBlockByMCTag")
+	fun getBlockByMCTag(items: Items) = block(items, "GetBlockByMCTag")
 
 
 	/**
 	 */
-	fun roundNumber(items: Items<T>) = block(items, "RoundNumber")
+	fun roundNumber(items: Items) = block(items, "RoundNumber")
 
 
 	/**
@@ -1449,12 +1449,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun faceLocation(items: Items<T>) = block(items, "FaceLocation")
+	fun faceLocation(items: Items) = block(items, "FaceLocation")
 
 
 	/**
 	 */
-	fun getItemLoreLine(items: Items<T>) = block(items, "GetItemLoreLine")
+	fun getItemLoreLine(items: Items) = block(items, "GetItemLoreLine")
 
 
 	/**
@@ -1477,7 +1477,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setVectorLength(items: Items<T>) = block(items, "SetVectorLength")
+	fun setVectorLength(items: Items) = block(items, "SetVectorLength")
 
 
 	/**
@@ -1499,7 +1499,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setPotionDur(items: Items<T>) = block(items, "SetPotionDur")
+	fun setPotionDur(items: Items) = block(items, "SetPotionDur")
 
 
 	/**
@@ -1521,7 +1521,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun blockResistance(items: Items<T>) = block(items, "BlockResistance")
+	fun blockResistance(items: Items) = block(items, "BlockResistance")
 
 
 	/**
@@ -1543,7 +1543,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun splitString(items: Items<T>) = block(items, "SplitString")
+	fun splitString(items: Items) = block(items, "SplitString")
 
 
 	/**
@@ -1567,7 +1567,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun normalRandom(items: Items<T>) = block(items, "NormalRandom")
+	fun normalRandom(items: Items) = block(items, "NormalRandom")
 
 
 	/**
@@ -1589,7 +1589,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setPotionType(items: Items<T>) = block(items, "SetPotionType")
+	fun setPotionType(items: Items) = block(items, "SetPotionType")
 
 
 	/**
@@ -1608,7 +1608,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun alignVector(items: Items<T>) = block(items, "AlignVector")
+	fun alignVector(items: Items) = block(items, "AlignVector")
 
 
 	/**
@@ -1630,7 +1630,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setItemDura(items: Items<T>) = block(items, "SetItemDura")
+	fun setItemDura(items: Items) = block(items, "SetItemDura")
 
 
 	/**
@@ -1649,7 +1649,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setBreakability(items: Items<T>) = block(items, "SetBreakability")
+	fun setBreakability(items: Items) = block(items, "SetBreakability")
 
 
 	/**
@@ -1672,12 +1672,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setMaxAmount(items: Items<T>) = block(items, "SetMaxAmount")
+	fun setMaxAmount(items: Items) = block(items, "SetMaxAmount")
 
 
 	/**
 	 */
-	fun raycastEntity(items: Items<T>) = block(items, "RaycastEntity")
+	fun raycastEntity(items: Items) = block(items, "RaycastEntity")
 
 
 	/**
@@ -1699,7 +1699,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setDictValue(items: Items<T>) = block(items, "SetDictValue")
+	fun setDictValue(items: Items) = block(items, "SetDictValue")
 
 
 	/**
@@ -1738,7 +1738,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setAllCoords(items: Items<T>) = block(items, "SetAllCoords")
+	fun setAllCoords(items: Items) = block(items, "SetAllCoords")
 
 
 	/**
@@ -1769,7 +1769,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun rGBColor(items: Items<T>) = block(items, "RGBColor")
+	fun rGBColor(items: Items) = block(items, "RGBColor")
 
 
 	/**
@@ -1792,7 +1792,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setCanDestroy(items: Items<T>) = block(items, "SetCanDestroy")
+	fun setCanDestroy(items: Items) = block(items, "SetCanDestroy")
 
 
 	/**
@@ -1823,12 +1823,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun hSLColor(items: Items<T>) = block(items, "HSLColor")
+	fun hSLColor(items: Items) = block(items, "HSLColor")
 
 
 	/**
 	 */
-	fun getDirection(items: Items<T>) = block(items, " GetDirection ")
+	fun getDirection(items: Items) = block(items, " GetDirection ")
 
 
 	/**
@@ -1848,7 +1848,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun removeListIndex(items: Items<T>) = block(items, "RemoveListIndex")
+	fun removeListIndex(items: Items) = block(items, "RemoveListIndex")
 
 
 	/**
@@ -1911,7 +1911,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun cellularNoise(items: Items<T>) = block(items, "CellularNoise")
+	fun cellularNoise(items: Items) = block(items, "CellularNoise")
 
 
 	/**
@@ -1936,7 +1936,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun logarithm(items: Items<T>) = block(items, "Logarithm")
+	fun logarithm(items: Items) = block(items, "Logarithm")
 
 
 	/**
@@ -1967,7 +1967,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setItemTag(items: Items<T>) = block(items, "SetItemTag")
+	fun setItemTag(items: Items) = block(items, "SetItemTag")
 
 
 	/**
@@ -1994,7 +1994,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun trimString(items: Items<T>) = block(items, "TrimString")
+	fun trimString(items: Items) = block(items, "TrimString")
 
 
 	/**
@@ -2013,7 +2013,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun parseMiniMessageExpr(items: Items<T>) = block(items, "ParseMiniMessageExpr")
+	fun parseMiniMessageExpr(items: Items) = block(items, "ParseMiniMessageExpr")
 
 
 	/**
@@ -2032,7 +2032,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getItemAmount(items: Items<T>) = block(items, "GetItemAmount")
+	fun getItemAmount(items: Items) = block(items, "GetItemAmount")
 
 
 	/**
@@ -2054,7 +2054,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setPotionAmp(items: Items<T>) = block(items, "SetPotionAmp")
+	fun setPotionAmp(items: Items) = block(items, "SetPotionAmp")
 
 
 	/**
@@ -2073,7 +2073,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getCanDestroy(items: Items<T>) = block(items, "GetCanDestroy")
+	fun getCanDestroy(items: Items) = block(items, "GetCanDestroy")
 
 
 	/**
@@ -2096,7 +2096,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun rotateAroundAxis(items: Items<T>) = block(items, "RotateAroundAxis")
+	fun rotateAroundAxis(items: Items) = block(items, "RotateAroundAxis")
 
 
 	/**
@@ -2115,7 +2115,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getItemDura(items: Items<T>) = block(items, "GetItemDura")
+	fun getItemDura(items: Items) = block(items, "GetItemDura")
 
 
 	/**
@@ -2138,7 +2138,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun shiftInDirection(items: Items<T>) = block(items, "ShiftInDirection")
+	fun shiftInDirection(items: Items) = block(items, "ShiftInDirection")
 
 
 	/**
@@ -2166,7 +2166,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun wrapNum(items: Items<T>) = block(items, "WrapNum")
+	fun wrapNum(items: Items) = block(items, "WrapNum")
 
 
 	/**
@@ -2194,7 +2194,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun replaceString(items: Items<T>) = block(items, "ReplaceString")
+	fun replaceString(items: Items) = block(items, "ReplaceString")
 
 
 	/**
@@ -2214,7 +2214,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setItemGlowing(items: Items<T>) = block(items, "SetItemGlowing")
+	fun setItemGlowing(items: Items) = block(items, "SetItemGlowing")
 
 
 	/**
@@ -2236,7 +2236,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setLodestoneLoc(items: Items<T>) = block(items, "SetLodestoneLoc")
+	fun setLodestoneLoc(items: Items) = block(items, "SetLodestoneLoc")
 
 
 	/**
@@ -2256,7 +2256,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun flattenList(items: Items<T>) = block(items, "FlattenList")
+	fun flattenList(items: Items) = block(items, "FlattenList")
 
 
 	/**
@@ -2278,7 +2278,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun blockHardness(items: Items<T>) = block(items, "BlockHardness")
+	fun blockHardness(items: Items) = block(items, "BlockHardness")
 
 
 	/**
@@ -2297,7 +2297,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getPotionAmp(items: Items<T>) = block(items, "GetPotionAmp")
+	fun getPotionAmp(items: Items) = block(items, "GetPotionAmp")
 
 
 	/**
@@ -2317,7 +2317,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getParticleAmount(items: Items<T>) = block(items, "GetParticleAmount")
+	fun getParticleAmount(items: Items) = block(items, "GetParticleAmount")
 
 
 	/**
@@ -2337,7 +2337,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getDictSize(items: Items<T>) = block(items, "GetDictSize")
+	fun getDictSize(items: Items) = block(items, "GetDictSize")
 
 
 	/**
@@ -2359,7 +2359,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setItemAmount(items: Items<T>) = block(items, "SetItemAmount")
+	fun setItemAmount(items: Items) = block(items, "SetItemAmount")
 
 
 	/**
@@ -2378,7 +2378,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun subtractVectors(items: Items<T>) = block(items, "SubtractVectors")
+	fun subtractVectors(items: Items) = block(items, "SubtractVectors")
 
 
 	/**
@@ -2397,7 +2397,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setCase(items: Items<T>) = block(items, "SetCase")
+	fun setCase(items: Items) = block(items, "SetCase")
 
 
 	/**
@@ -2425,7 +2425,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setParticleColor(items: Items<T>) = block(items, "SetParticleColor")
+	fun setParticleColor(items: Items) = block(items, "SetParticleColor")
 
 
 	/**
@@ -2444,7 +2444,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getLight(items: Items<T>) = block(items, "GetLight")
+	fun getLight(items: Items) = block(items, "GetLight")
 
 
 	/**
@@ -2466,7 +2466,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getBookText(items: Items<T>) = block(items, " GetBookText ")
+	fun getBookText(items: Items) = block(items, " GetBookText ")
 
 
 	/**
@@ -2486,7 +2486,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getDictValues(items: Items<T>) = block(items, "GetDictValues")
+	fun getDictValues(items: Items) = block(items, "GetDictValues")
 
 
 	/**
@@ -2512,7 +2512,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun vector(items: Items<T>) = block(items, "Vector")
+	fun vector(items: Items) = block(items, "Vector")
 
 
 	/**
@@ -2535,12 +2535,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun distance(items: Items<T>) = block(items, "Distance")
+	fun distance(items: Items) = block(items, "Distance")
 
 
 	/**
 	 */
-	fun setItemLore(items: Items<T>) = block(items, "SetItemLore")
+	fun setItemLore(items: Items) = block(items, "SetItemLore")
 
 
 	/**
@@ -2562,7 +2562,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun root(items: Items<T>) = block(items, "Root")
+	fun root(items: Items) = block(items, "Root")
 
 
 	/**
@@ -2586,7 +2586,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setParticleAmount(items: Items<T>) = block(items, "SetParticleAmount")
+	fun setParticleAmount(items: Items) = block(items, "SetParticleAmount")
 
 
 	/**
@@ -2612,7 +2612,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun addItemEnchant(items: Items<T>) = block(items, "AddItemEnchant")
+	fun addItemEnchant(items: Items) = block(items, "AddItemEnchant")
 
 
 	/**
@@ -2645,7 +2645,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun addItemToolRule(items: Items<T>) = block(items, "AddItemToolRule")
+	fun addItemToolRule(items: Items) = block(items, "AddItemToolRule")
 
 
 	/**
@@ -2663,7 +2663,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getItemType(items: Items<T>) = block(items, "GetItemType")
+	fun getItemType(items: Items) = block(items, "GetItemType")
 
 
 	/**
@@ -2686,7 +2686,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getLoreLine(items: Items<T>) = block(items, "GetLoreLine")
+	fun getLoreLine(items: Items) = block(items, "GetLoreLine")
 
 
 	/**
@@ -2705,7 +2705,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getParticleType(items: Items<T>) = block(items, "GetParticleType")
+	fun getParticleType(items: Items) = block(items, "GetParticleType")
 
 
 	/**
@@ -2727,7 +2727,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setItemMaxDura(items: Items<T>) = block(items, "SetItemMaxDura")
+	fun setItemMaxDura(items: Items) = block(items, "SetItemMaxDura")
 
 
 	/**
@@ -2751,7 +2751,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun removeString(items: Items<T>) = block(items, "RemoveString")
+	fun removeString(items: Items) = block(items, "RemoveString")
 
 
 	/**
@@ -2770,7 +2770,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getAllBlockData(items: Items<T>) = block(items, "GetAllBlockData")
+	fun getAllBlockData(items: Items) = block(items, "GetAllBlockData")
 
 
 	/**
@@ -2790,7 +2790,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun maxNumber(items: Items<T>) = block(items, "MaxNumber")
+	fun maxNumber(items: Items) = block(items, "MaxNumber")
 
 
 	/**
@@ -2810,7 +2810,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getDictKeys(items: Items<T>) = block(items, "GetDictKeys")
+	fun getDictKeys(items: Items) = block(items, "GetDictKeys")
 
 
 	/**
@@ -2837,7 +2837,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun trimStyledText(items: Items<T>) = block(items, "TrimStyledText")
+	fun trimStyledText(items: Items) = block(items, "TrimStyledText")
 
 
 	/**
@@ -2861,7 +2861,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setParticleMat(items: Items<T>) = block(items, "SetParticleMat")
+	fun setParticleMat(items: Items) = block(items, "SetParticleMat")
 
 
 	/**
@@ -2881,7 +2881,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getCoord(items: Items<T>) = block(items, "GetCoord")
+	fun getCoord(items: Items) = block(items, "GetCoord")
 
 
 	/**
@@ -2903,7 +2903,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun removeItemTag(items: Items<T>) = block(items, "RemoveItemTag")
+	fun removeItemTag(items: Items) = block(items, "RemoveItemTag")
 
 
 	/**
@@ -2931,7 +2931,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setParticleSize(items: Items<T>) = block(items, "SetParticleSize")
+	fun setParticleSize(items: Items) = block(items, "SetParticleSize")
 
 
 	/**
@@ -2950,7 +2950,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getPotionDur(items: Items<T>) = block(items, "GetPotionDur")
+	fun getPotionDur(items: Items) = block(items, "GetPotionDur")
 
 
 	/**
@@ -2973,7 +2973,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun randomLoc(items: Items<T>) = block(items, "RandomLoc")
+	fun randomLoc(items: Items) = block(items, "RandomLoc")
 
 
 	/**
@@ -2995,7 +2995,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setSoundType(items: Items<T>) = block(items, "SetSoundType")
+	fun setSoundType(items: Items) = block(items, "SetSoundType")
 
 
 	/**
@@ -3014,17 +3014,17 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getLodestoneLoc(items: Items<T>) = block(items, "GetLodestoneLoc")
+	fun getLodestoneLoc(items: Items) = block(items, "GetLodestoneLoc")
 
 
 	/**
 	 */
-	fun shiftDirection(items: Items<T>) = block(items, "ShiftDirection")
+	fun shiftDirection(items: Items) = block(items, "ShiftDirection")
 
 
 	/**
 	 */
-	fun getContainerName(items: Items<T>) = block(items, "GetContainerName")
+	fun getContainerName(items: Items) = block(items, "GetContainerName")
 
 
 	/**
@@ -3044,7 +3044,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getParticleSprd(items: Items<T>) = block(items, "GetParticleSprd")
+	fun getParticleSprd(items: Items) = block(items, "GetParticleSprd")
 
 
 	/**
@@ -3068,7 +3068,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun reflectVector(items: Items<T>) = block(items, "ReflectVector")
+	fun reflectVector(items: Items) = block(items, "ReflectVector")
 
 
 	/**
@@ -3087,12 +3087,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getHeadOwner(items: Items<T>) = block(items, "GetHeadOwner")
+	fun getHeadOwner(items: Items) = block(items, "GetHeadOwner")
 
 
 	/**
 	 */
-	fun getItemEnchants(items: Items<T>) = block(items, "GetItemEnchants")
+	fun getItemEnchants(items: Items) = block(items, "GetItemEnchants")
 
 
 	/**
@@ -3113,12 +3113,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun appendDict(items: Items<T>) = block(items, "AppendDict")
+	fun appendDict(items: Items) = block(items, "AppendDict")
 
 
 	/**
 	 */
-	fun getMaxItemAmount(items: Items<T>) = block(items, "GetMaxItemAmount")
+	fun getMaxItemAmount(items: Items) = block(items, "GetMaxItemAmount")
 
 
 	/**
@@ -3137,7 +3137,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getColorChannels(items: Items<T>) = block(items, "GetColorChannels")
+	fun getColorChannels(items: Items) = block(items, "GetColorChannels")
 
 
 	/**
@@ -3160,7 +3160,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setDirection(items: Items<T>) = block(items, " SetDirection ")
+	fun setDirection(items: Items) = block(items, " SetDirection ")
 
 
 	/**
@@ -3183,7 +3183,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setListValue(items: Items<T>) = block(items, "SetListValue")
+	fun setListValue(items: Items) = block(items, "SetListValue")
 
 
 	/**
@@ -3213,7 +3213,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setBookText(items: Items<T>) = block(items, "SetBookText")
+	fun setBookText(items: Items) = block(items, "SetBookText")
 
 
 	/**
@@ -3233,7 +3233,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun randomValue(items: Items<T>) = block(items, "RandomValue")
+	fun randomValue(items: Items) = block(items, "RandomValue")
 
 
 	/**
@@ -3252,7 +3252,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setItemFlags(items: Items<T>) = block(items, " SetItemFlags ")
+	fun setItemFlags(items: Items) = block(items, " SetItemFlags ")
 
 
 	/**
@@ -3274,7 +3274,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setItemType(items: Items<T>) = block(items, "SetItemType")
+	fun setItemType(items: Items) = block(items, "SetItemType")
 
 
 	/**
@@ -3292,7 +3292,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getSoundType(items: Items<T>) = block(items, "GetSoundType")
+	fun getSoundType(items: Items) = block(items, "GetSoundType")
 
 
 	/**
@@ -3315,7 +3315,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getListValue(items: Items<T>) = block(items, "GetListValue")
+	fun getListValue(items: Items) = block(items, "GetListValue")
 
 
 	/**
@@ -3343,7 +3343,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun bounceNum(items: Items<T>) = block(items, "BounceNum")
+	fun bounceNum(items: Items) = block(items, "BounceNum")
 
 
 	/**
@@ -3362,7 +3362,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun tangent(items: Items<T>) = block(items, "Tangent")
+	fun tangent(items: Items) = block(items, "Tangent")
 
 
 	/**
@@ -3394,7 +3394,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun voronoiNoise(items: Items<T>) = block(items, "VoronoiNoise")
+	fun voronoiNoise(items: Items) = block(items, "VoronoiNoise")
 
 
 	/**
@@ -3425,7 +3425,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun hSBColor(items: Items<T>) = block(items, "HSBColor")
+	fun hSBColor(items: Items) = block(items, "HSBColor")
 
 
 	/**
@@ -3446,7 +3446,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun increment(items: Items<T>) = block(items, "+=")
+	fun increment(items: Items) = block(items, "+=")
 
 
 	/**
@@ -3464,7 +3464,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getSoundVariant(items: Items<T>) = block(items, "GetSoundVariant")
+	fun getSoundVariant(items: Items) = block(items, "GetSoundVariant")
 
 
 	/**
@@ -3483,7 +3483,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getItemColor(items: Items<T>) = block(items, "GetItemColor")
+	fun getItemColor(items: Items) = block(items, "GetItemColor")
 
 
 	/**
@@ -3502,7 +3502,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun clearFormatting(items: Items<T>) = block(items, "ClearFormatting")
+	fun clearFormatting(items: Items) = block(items, "ClearFormatting")
 
 
 	/**
@@ -3527,7 +3527,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun insertListValue(items: Items<T>) = block(items, "InsertListValue")
+	fun insertListValue(items: Items) = block(items, "InsertListValue")
 
 
 	/**
@@ -3549,7 +3549,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setSoundVolume(items: Items<T>) = block(items, "SetSoundVolume")
+	fun setSoundVolume(items: Items) = block(items, "SetSoundVolume")
 
 
 	/**
@@ -3572,7 +3572,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setCoord(items: Items<T>) = block(items, "SetCoord")
+	fun setCoord(items: Items) = block(items, "SetCoord")
 
 
 	/**
@@ -3591,12 +3591,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun addVectors(items: Items<T>) = block(items, "AddVectors")
+	fun addVectors(items: Items) = block(items, "AddVectors")
 
 
 	/**
 	 */
-	fun setPitch(items: Items<T>) = block(items, "SetPitch")
+	fun setPitch(items: Items) = block(items, "SetPitch")
 
 
 	/**
@@ -3616,12 +3616,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getParticleFade(items: Items<T>) = block(items, "GetParticleFade")
+	fun getParticleFade(items: Items) = block(items, "GetParticleFade")
 
 
 	/**
 	 */
-	fun raycastBlock(items: Items<T>) = block(items, "RaycastBlock")
+	fun raycastBlock(items: Items) = block(items, "RaycastBlock")
 
 
 	/**
@@ -3647,7 +3647,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setItemTool(items: Items<T>) = block(items, "SetItemTool")
+	fun setItemTool(items: Items) = block(items, "SetItemTool")
 
 
 	/**
@@ -3672,7 +3672,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setHeadTexture(items: Items<T>) = block(items, "SetHeadTexture")
+	fun setHeadTexture(items: Items) = block(items, "SetHeadTexture")
 
 
 	/**
@@ -3711,7 +3711,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun perlinNoise(items: Items<T>) = block(items, "PerlinNoise")
+	fun perlinNoise(items: Items) = block(items, "PerlinNoise")
 
 
 	/**
@@ -3743,7 +3743,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun worleyNoise(items: Items<T>) = block(items, "WorleyNoise")
+	fun worleyNoise(items: Items) = block(items, "WorleyNoise")
 
 
 	/**
@@ -3765,7 +3765,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setItemColor(items: Items<T>) = block(items, "SetItemColor")
+	fun setItemColor(items: Items) = block(items, "SetItemColor")
 
 
 	/**
@@ -3785,7 +3785,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getParticleColor(items: Items<T>) = block(items, "GetParticleColor")
+	fun getParticleColor(items: Items) = block(items, "GetParticleColor")
 
 
 	/**
@@ -3811,7 +3811,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setSoundPitch(items: Items<T>) = block(items, "SetSoundPitch")
+	fun setSoundPitch(items: Items) = block(items, "SetSoundPitch")
 
 
 	/**
@@ -3830,7 +3830,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getCanPlaceOn(items: Items<T>) = block(items, "GetCanPlaceOn")
+	fun getCanPlaceOn(items: Items) = block(items, "GetCanPlaceOn")
 
 
 	/**
@@ -3848,7 +3848,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun sortList(items: Items<T>) = block(items, "SortList")
+	fun sortList(items: Items) = block(items, "SortList")
 
 
 	/**
@@ -3870,7 +3870,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setCustomSound(items: Items<T>) = block(items, "SetCustomSound")
+	fun setCustomSound(items: Items) = block(items, "SetCustomSound")
 
 
 	/**
@@ -3893,7 +3893,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun removeDictEntry(items: Items<T>) = block(items, "RemoveDictEntry")
+	fun removeDictEntry(items: Items) = block(items, "RemoveDictEntry")
 
 
 	/**
@@ -3917,7 +3917,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun formatTime(items: Items<T>) = block(items, "FormatTime")
+	fun formatTime(items: Items) = block(items, "FormatTime")
 
 
 	/**
@@ -3936,7 +3936,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun stringLength(items: Items<T>) = block(items, "StringLength")
+	fun stringLength(items: Items) = block(items, "StringLength")
 
 
 	/**
@@ -3955,7 +3955,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getItemEffects(items: Items<T>) = block(items, "GetItemEffects")
+	fun getItemEffects(items: Items) = block(items, "GetItemEffects")
 
 
 	/**
@@ -3974,7 +3974,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun styledText(items: Items<T>) = block(items, "StyledText")
+	fun styledText(items: Items) = block(items, "StyledText")
 
 
 	/**
@@ -3993,12 +3993,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getMiniMessageExpr(items: Items<T>) = block(items, "GetMiniMessageExpr")
+	fun getMiniMessageExpr(items: Items) = block(items, "GetMiniMessageExpr")
 
 
 	/**
 	 */
-	fun setYaw(items: Items<T>) = block(items, "SetYaw")
+	fun setYaw(items: Items) = block(items, "SetYaw")
 
 
 	/**
@@ -4021,7 +4021,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setItemEffects(items: Items<T>) = block(items, "SetItemEffects")
+	fun setItemEffects(items: Items) = block(items, "SetItemEffects")
 
 
 	/**
@@ -4042,7 +4042,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun decrement(items: Items<T>) = block(items, "-=")
+	fun decrement(items: Items) = block(items, "-=")
 
 
 	/**
@@ -4065,7 +4065,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getItemTag(items: Items<T>) = block(items, "GetItemTag")
+	fun getItemTag(items: Items) = block(items, "GetItemTag")
 
 
 	/**
@@ -4084,7 +4084,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun createList(items: Items<T>) = block(items, "CreateList")
+	fun createList(items: Items) = block(items, "CreateList")
 
 
 	/**
@@ -4103,7 +4103,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun appendList(items: Items<T>) = block(items, "AppendList")
+	fun appendList(items: Items) = block(items, "AppendList")
 
 
 	/**
@@ -4122,7 +4122,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getContainerItems(items: Items<T>) = block(items, "GetContainerItems")
+	fun getContainerItems(items: Items) = block(items, "GetContainerItems")
 
 
 	/**
@@ -4149,7 +4149,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun shiftToward(items: Items<T>) = block(items, "ShiftToward")
+	fun shiftToward(items: Items) = block(items, "ShiftToward")
 
 
 	/**
@@ -4176,7 +4176,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun trimList(items: Items<T>) = block(items, "TrimList")
+	fun trimList(items: Items) = block(items, "TrimList")
 
 
 	/**
@@ -4239,7 +4239,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun gradientNoise(items: Items<T>) = block(items, "GradientNoise")
+	fun gradientNoise(items: Items) = block(items, "GradientNoise")
 
 
 	/**
@@ -4258,7 +4258,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setItemHideTooltip(items: Items<T>) = block(items, "SetItemHideTooltip")
+	fun setItemHideTooltip(items: Items) = block(items, "SetItemHideTooltip")
 
 
 	/**
@@ -4281,7 +4281,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getBlockDrops(items: Items<T>) = block(items, "GetBlockDrops")
+	fun getBlockDrops(items: Items) = block(items, "GetBlockDrops")
 
 
 	/**
@@ -4299,7 +4299,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun clearEnchants(items: Items<T>) = block(items, "ClearEnchants")
+	fun clearEnchants(items: Items) = block(items, "ClearEnchants")
 
 
 	/**
@@ -4318,7 +4318,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun cosine(items: Items<T>) = block(items, "Cosine")
+	fun cosine(items: Items) = block(items, "Cosine")
 
 
 	/**
@@ -4337,7 +4337,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getParticleOpac(items: Items<T>) = block(items, "GetParticleOpac")
+	fun getParticleOpac(items: Items) = block(items, "GetParticleOpac")
 
 
 	/**
@@ -4357,7 +4357,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getItemByMCTag(items: Items<T>) = block(items, "GetItemByMCTag")
+	fun getItemByMCTag(items: Items) = block(items, "GetItemByMCTag")
 
 
 	/**
@@ -4381,7 +4381,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setParticleFade(items: Items<T>) = block(items, "SetParticleFade")
+	fun setParticleFade(items: Items) = block(items, "SetParticleFade")
 
 
 	/**
@@ -4404,7 +4404,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setVectorComp(items: Items<T>) = block(items, "SetVectorComp")
+	fun setVectorComp(items: Items) = block(items, "SetVectorComp")
 
 
 	/**
@@ -4422,7 +4422,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun parseNumber(items: Items<T>) = block(items, "ParseNumber")
+	fun parseNumber(items: Items) = block(items, "ParseNumber")
 
 
 	/**
@@ -4445,12 +4445,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun exponent(items: Items<T>) = block(items, "Exponent")
+	fun exponent(items: Items) = block(items, "Exponent")
 
 
 	/**
 	 */
-	fun shiftAllDirs(items: Items<T>) = block(items, "ShiftAllDirs")
+	fun shiftAllDirs(items: Items) = block(items, "ShiftAllDirs")
 
 
 	/**
@@ -4474,7 +4474,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getValueIndex(items: Items<T>) = block(items, "GetValueIndex")
+	fun getValueIndex(items: Items) = block(items, "GetValueIndex")
 
 
 	/**
@@ -4496,7 +4496,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun remItemEnchant(items: Items<T>) = block(items, "RemItemEnchant")
+	fun remItemEnchant(items: Items) = block(items, "RemItemEnchant")
 
 
 	/**
@@ -4518,7 +4518,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun addItemLore(items: Items<T>) = block(items, "AddItemLore")
+	fun addItemLore(items: Items) = block(items, "AddItemLore")
 
 
 	/**
@@ -4541,7 +4541,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setParticleRoll(items: Items<T>) = block(items, "SetParticleRoll")
+	fun setParticleRoll(items: Items) = block(items, "SetParticleRoll")
 
 
 	/**
@@ -4563,12 +4563,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setSoundVariant(items: Items<T>) = block(items, "SetSoundVariant")
+	fun setSoundVariant(items: Items) = block(items, "SetSoundVariant")
 
 
 	/**
 	 */
-	fun shiftLocation(items: Items<T>) = block(items, "ShiftLocation")
+	fun shiftLocation(items: Items) = block(items, "ShiftLocation")
 
 
 	/**
@@ -4587,7 +4587,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun randomizeList(items: Items<T>) = block(items, "RandomizeList")
+	fun randomizeList(items: Items) = block(items, "RandomizeList")
 
 
 	/**
@@ -4615,12 +4615,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun clampNumber(items: Items<T>) = block(items, "ClampNumber")
+	fun clampNumber(items: Items) = block(items, "ClampNumber")
 
 
 	/**
 	 */
-	fun round(items: Items<T>) = block(items, "Round")
+	fun round(items: Items) = block(items, "Round")
 
 
 	/**
@@ -4640,7 +4640,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getSoundPitch(items: Items<T>) = block(items, "GetSoundPitch")
+	fun getSoundPitch(items: Items) = block(items, "GetSoundPitch")
 
 
 	/**
@@ -4660,7 +4660,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun translateColors(items: Items<T>) = block(items, "TranslateColors")
+	fun translateColors(items: Items) = block(items, "TranslateColors")
 
 
 	/**
@@ -4679,7 +4679,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getBlockGrowth(items: Items<T>) = block(items, "GetBlockGrowth")
+	fun getBlockGrowth(items: Items) = block(items, "GetBlockGrowth")
 
 
 	/**
@@ -4698,7 +4698,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getAllItemTags(items: Items<T>) = block(items, "GetAllItemTags")
+	fun getAllItemTags(items: Items) = block(items, "GetAllItemTags")
 
 
 	/**
@@ -4718,7 +4718,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun removeListValue(items: Items<T>) = block(items, "RemoveListValue")
+	fun removeListValue(items: Items) = block(items, "RemoveListValue")
 
 
 	/**
@@ -4749,7 +4749,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun shiftAllDirections(items: Items<T>) = block(items, "ShiftAllDirections")
+	fun shiftAllDirections(items: Items) = block(items, "ShiftAllDirections")
 
 
 	/**
@@ -4812,7 +4812,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun valueNoise(items: Items<T>) = block(items, "ValueNoise")
+	fun valueNoise(items: Items) = block(items, "ValueNoise")
 
 
 	/**
@@ -4835,7 +4835,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setCanPlaceOn(items: Items<T>) = block(items, "SetCanPlaceOn")
+	fun setCanPlaceOn(items: Items) = block(items, "SetCanPlaceOn")
 
 
 	/**
@@ -4854,12 +4854,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getBlockType(items: Items<T>) = block(items, "GetBlockType")
+	fun getBlockType(items: Items) = block(items, "GetBlockType")
 
 
 	/**
 	 */
-	fun parsePitch(items: Items<T>) = block(items, "ParsePitch")
+	fun parsePitch(items: Items) = block(items, "ParsePitch")
 
 
 	/**
@@ -4883,7 +4883,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getDictValue(items: Items<T>) = block(items, "GetDictValue")
+	fun getDictValue(items: Items) = block(items, "GetDictValue")
 
 
 	/**
@@ -4902,7 +4902,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun containerLock(items: Items<T>) = block(items, "ContainerLock")
+	fun containerLock(items: Items) = block(items, "ContainerLock")
 
 
 	/**
@@ -4921,7 +4921,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getBlockPower(items: Items<T>) = block(items, "GetBlockPower")
+	fun getBlockPower(items: Items) = block(items, "GetBlockPower")
 
 
 	/**
@@ -4940,7 +4940,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getVectorLength(items: Items<T>) = block(items, "GetVectorLength")
+	fun getVectorLength(items: Items) = block(items, "GetVectorLength")
 
 
 	/**
@@ -4960,7 +4960,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun contentLength(items: Items<T>) = block(items, "ContentLength")
+	fun contentLength(items: Items) = block(items, "ContentLength")
 
 
 	/**
@@ -4983,12 +4983,12 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun setModelData(items: Items<T>) = block(items, "SetModelData")
+	fun setModelData(items: Items) = block(items, "SetModelData")
 
 
 	/**
 	 */
-	fun setCoords(items: Items<T>) = block(items, "SetCoords")
+	fun setCoords(items: Items) = block(items, "SetCoords")
 
 
 	/**
@@ -5007,7 +5007,7 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getMaxAmount(items: Items<T>) = block(items, "GetMaxAmount")
+	fun getMaxAmount(items: Items) = block(items, "GetMaxAmount")
 
 
 	/**
@@ -5027,6 +5027,6 @@ class SetVariableCategory<T : Item> internal constructor(private val template: T
 	 *
 	 * (*) = optional
 	 */
-	fun getParticleSize(items: Items<T>) = block(items, "GetParticleSize")
+	fun getParticleSize(items: Items) = block(items, "GetParticleSize")
 
 }

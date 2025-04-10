@@ -5,8 +5,8 @@ package io.github.flyingpig525.base.block
 import io.github.flyingpig525.base.item.Item
 import kotlinx.serialization.json.*
 
-class EventBlock<T : Item>(val type: Type, event: String) :
-    Block<T>("process", mutableListOf(), event) {
+class EventBlock(val type: Type, event: String) :
+    Block("process", mutableListOf(), event) {
     override fun getJsonData(): JsonObject {
         return buildJsonObject {
             put("id", "block")

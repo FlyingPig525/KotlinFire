@@ -58,7 +58,7 @@ object GlobalActionDump {
     //
     //        return tags;
     //    }
-    fun <T> getTags(block: Block<T>): List<JsonObject> where T : Item, T : JsonData {
+    fun getTags(block: Block): List<JsonObject> {
         return buildList {
             val tags = actionDumpBlocks?.find {
                 it.jsonObject["name"]?.jsonPrimitive?.content == block.action

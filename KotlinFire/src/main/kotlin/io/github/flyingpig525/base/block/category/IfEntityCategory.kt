@@ -8,13 +8,13 @@ import io.github.flyingpig525.base.block.subaction.*
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
 
-class IfEntityCategory<T : Item> internal constructor(private val template: Template<T>) {
+class IfEntityCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
     private fun block(
-        items: Items<T>,
+        items: Items,
         action: String,
-        wrappedCode: Template<T>.() -> Unit,
+        wrappedCode: Template.() -> Unit,
         not: Boolean = false,
         extra: JsonObjectBuilder.() -> Unit = {}
     ) {
@@ -33,14 +33,14 @@ class IfEntityCategory<T : Item> internal constructor(private val template: Temp
 	 * *Checks if an entity*
 	 * *is a boat or minecart.*
 	 */
-	fun isVehicle(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsVehicle", wrappedCode, not)
+	fun isVehicle(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsVehicle", wrappedCode, not)
 
 
 	/**
 	 * *Checks if an entity is*
 	 * *supported by a block.*
 	 */
-	fun isGrounded(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsGrounded", wrappedCode, not)
+	fun isGrounded(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsGrounded", wrappedCode, not)
 
 
 	/**
@@ -56,21 +56,21 @@ class IfEntityCategory<T : Item> internal constructor(private val template: Temp
 	 *
 	 * (*) = optional
 	 */
-	fun isType(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsType", wrappedCode, not)
+	fun isType(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsType", wrappedCode, not)
 
 
 	/**
 	 * *Checks if an entity*
 	 * *is a projectile.*
 	 */
-	fun isProj(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsProj", wrappedCode, not)
+	fun isProj(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsProj", wrappedCode, not)
 
 
 	/**
 	 * *Checks if an entity*
 	 * *is a mob.*
 	 */
-	fun isMob(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsMob", wrappedCode, not)
+	fun isMob(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsMob", wrappedCode, not)
 
 
 	/**
@@ -95,21 +95,21 @@ class IfEntityCategory<T : Item> internal constructor(private val template: Temp
 	 *
 	 * (*) = optional
 	 */
-	fun hasCustomTag(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "HasCustomTag", wrappedCode, not)
+	fun hasCustomTag(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "HasCustomTag", wrappedCode, not)
 
 
 	/**
 	 * *Checks if a sheep is*
 	 * *sheared.*
 	 */
-	fun isSheared(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsSheared", wrappedCode, not)
+	fun isSheared(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsSheared", wrappedCode, not)
 
 
 	/**
 	 * *Checks if an entity*
 	 * *is an item.*
 	 */
-	fun isItem(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsItem", wrappedCode, not)
+	fun isItem(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsItem", wrappedCode, not)
 
 
 	/**
@@ -133,14 +133,14 @@ class IfEntityCategory<T : Item> internal constructor(private val template: Temp
 	 *
 	 * (*) = optional
 	 */
-	fun isRiding(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, " IsRiding ", wrappedCode, not)
+	fun isRiding(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, " IsRiding ", wrappedCode, not)
 
 
 	/**
 	 * *Checks if an entity still*
 	 * *exists in the world.*
 	 */
-	fun exists(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "Exists", wrappedCode, not)
+	fun exists(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "Exists", wrappedCode, not)
 
 
 	/**
@@ -159,7 +159,7 @@ class IfEntityCategory<T : Item> internal constructor(private val template: Temp
 	 *
 	 * (*) = optional
 	 */
-	fun isNear(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsNear", wrappedCode, not)
+	fun isNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsNear", wrappedCode, not)
 
 
 	/**
@@ -176,12 +176,12 @@ class IfEntityCategory<T : Item> internal constructor(private val template: Temp
 	 *
 	 * (*) = optional
 	 */
-	fun hasPotion(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "HasPotion", wrappedCode, not)
+	fun hasPotion(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "HasPotion", wrappedCode, not)
 
 
 	/**
 	 */
-	fun standingOn(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "StandingOn", wrappedCode, not)
+	fun standingOn(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "StandingOn", wrappedCode, not)
 
 
 	/**
@@ -201,6 +201,6 @@ class IfEntityCategory<T : Item> internal constructor(private val template: Temp
 	 *
 	 * (*) = optional
 	 */
-	fun nameEquals(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "NameEquals", wrappedCode, not)
+	fun nameEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "NameEquals", wrappedCode, not)
 
 }

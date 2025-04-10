@@ -8,17 +8,17 @@ import io.github.flyingpig525.base.block.subaction.*
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
 
-class ControlCategory<T : Item> internal constructor(private val template: Template<T>) {
+class ControlCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
-    private fun block(items: Items<T>, action: String, extra: JsonObjectBuilder.() -> Unit = {}) {
+    private fun block(items: Items, action: String, extra: JsonObjectBuilder.() -> Unit = {}) {
         blocks += Block("control", ItemCollection(items).items, action, extra)
     }
 	/**
 	 * *Stops a Repeat sequence and*
 	 * *continues to the next code block.*
 	 */
-	fun stopRepeat(items: Items<T>) = block(items, "StopRepeat")
+	fun stopRepeat(items: Items) = block(items, "StopRepeat")
 
 
 	/**
@@ -26,12 +26,12 @@ class ControlCategory<T : Item> internal constructor(private val template: Templ
 	 * *sequence and returns to the*
 	 * *block it was called from.*
 	 */
-	fun returnFrom(items: Items<T>) = block(items, "Return")
+	fun returnFrom(items: Items) = block(items, "Return")
 
 
 	/**
 	 */
-	fun returnNTimes(items: Items<T>) = block(items, "ReturnNTimes")
+	fun returnNTimes(items: Items) = block(items, "ReturnNTimes")
 
 
 	/**
@@ -39,7 +39,7 @@ class ControlCategory<T : Item> internal constructor(private val template: Templ
 	 * *statement's code and continues*
 	 * *to the next repetition.*
 	 */
-	fun skip(items: Items<T>) = block(items, "Skip")
+	fun skip(items: Items) = block(items, "Skip")
 
 
 	/**
@@ -47,7 +47,7 @@ class ControlCategory<T : Item> internal constructor(private val template: Templ
 	 * *thread. Any code after this*
 	 * *block will not be executed.*
 	 */
-	fun end(items: Items<T>) = block(items, "End")
+	fun end(items: Items) = block(items, "End")
 
 
 	/**
@@ -63,6 +63,6 @@ class ControlCategory<T : Item> internal constructor(private val template: Templ
 	 *
 	 * (*) = optional
 	 */
-	fun wait(items: Items<T>) = block(items, "Wait")
+	fun wait(items: Items) = block(items, "Wait")
 
 }

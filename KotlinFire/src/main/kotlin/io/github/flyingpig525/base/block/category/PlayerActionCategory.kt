@@ -8,10 +8,10 @@ import io.github.flyingpig525.base.block.subaction.*
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
 
-class PlayerActionCategory<T : Item> internal constructor(private val template: Template<T>) {
+class PlayerActionCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
-    private fun block(items: Items<T>, action: String, extra: JsonObjectBuilder.() -> Unit = {}) {
+    private fun block(items: Items, action: String, extra: JsonObjectBuilder.() -> Unit = {}) {
         blocks += Block("player_action", ItemCollection(items).items, action, extra)
     }
 	/**
@@ -26,7 +26,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setHotbar(items: Items<T>) = block(items, "SetHotbar")
+	fun setHotbar(items: Items) = block(items, "SetHotbar")
 
 
 	/**
@@ -34,13 +34,13 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 * *able to see their coordinates,*
 	 * *block info, or other info.*
 	 */
-	fun setReducedDebug(items: Items<T>) = block(items, "SetReducedDebug")
+	fun setReducedDebug(items: Items) = block(items, "SetReducedDebug")
 
 
 	/**
 	 * *Closes a player's inventory.*
 	 */
-	fun closeInv(items: Items<T>) = block(items, "CloseInv")
+	fun closeInv(items: Items) = block(items, "CloseInv")
 
 
 	/**
@@ -59,12 +59,12 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun giveItems(items: Items<T>) = block(items, "GiveItems")
+	fun giveItems(items: Items) = block(items, "GiveItems")
 
 
 	/**
 	 */
-	fun noKeepInv(items: Items<T>) = block(items, "NoKeepInv")
+	fun noKeepInv(items: Items) = block(items, "NoKeepInv")
 
 
 	/**
@@ -72,12 +72,12 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 * *allowed to interact with*
 	 * *their hand-crafting menu.*
 	 */
-	fun setHandCrafting(items: Items<T>) = block(items, "SetHandCrafting")
+	fun setHandCrafting(items: Items) = block(items, "SetHandCrafting")
 
 
 	/**
 	 */
-	fun bossBar(items: Items<T>) = block(items, "BossBar")
+	fun bossBar(items: Items) = block(items, "BossBar")
 
 
 	/**
@@ -100,7 +100,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun particleSphere(items: Items<T>) = block(items, "ParticleSphere")
+	fun particleSphere(items: Items) = block(items, "ParticleSphere")
 
 
 	/**
@@ -115,7 +115,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setVelocity(items: Items<T>) = block(items, "SetVelocity")
+	fun setVelocity(items: Items) = block(items, "SetVelocity")
 
 
 	/**
@@ -134,7 +134,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun particle(items: Items<T>) = block(items, "Particle")
+	fun particle(items: Items) = block(items, "Particle")
 
 
 	/**
@@ -150,12 +150,12 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun addInvRow(items: Items<T>) = block(items, "AddInvRow")
+	fun addInvRow(items: Items) = block(items, "AddInvRow")
 
 
 	/**
 	 */
-	fun noNatRegen(items: Items<T>) = block(items, "NoNatRegen")
+	fun noNatRegen(items: Items) = block(items, "NoNatRegen")
 
 
 	/**
@@ -170,7 +170,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun displayLightning(items: Items<T>) = block(items, "DisplayLightning")
+	fun displayLightning(items: Items) = block(items, "DisplayLightning")
 
 
 	/**
@@ -192,12 +192,12 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun damage(items: Items<T>) = block(items, "Damage")
+	fun damage(items: Items) = block(items, "Damage")
 
 
 	/**
 	 */
-	fun sendAnimation(items: Items<T>) = block(items, "SendAnimation")
+	fun sendAnimation(items: Items) = block(items, "SendAnimation")
 
 
 	/**
@@ -212,7 +212,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setXPProg(items: Items<T>) = block(items, "SetXPProg")
+	fun setXPProg(items: Items) = block(items, "SetXPProg")
 
 
 	/**
@@ -227,7 +227,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setInventory(items: Items<T>) = block(items, "SetInventory")
+	fun setInventory(items: Items) = block(items, "SetInventory")
 
 
 	/**
@@ -249,7 +249,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun tpSequence(items: Items<T>) = block(items, "TpSequence")
+	fun tpSequence(items: Items) = block(items, "TpSequence")
 
 
 	/**
@@ -263,7 +263,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun heal(items: Items<T>) = block(items, "Heal")
+	fun heal(items: Items) = block(items, "Heal")
 
 
 	/**
@@ -278,14 +278,14 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setSpawnPoint(items: Items<T>) = block(items, "SetSpawnPoint")
+	fun setSpawnPoint(items: Items) = block(items, "SetSpawnPoint")
 
 
 	/**
 	 * *Sets whether a player's inventory*
 	 * *is kept after death.*
 	 */
-	fun setInventoryKept(items: Items<T>) = block(items, "SetInventoryKept")
+	fun setInventoryKept(items: Items) = block(items, "SetInventoryKept")
 
 
 	/**
@@ -299,25 +299,25 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun launchUp(items: Items<T>) = block(items, "LaunchUp")
+	fun launchUp(items: Items) = block(items, "LaunchUp")
 
 
 	/**
 	 */
-	fun getTargetEntity(items: Items<T>) = block(items, "GetTargetEntity")
+	fun getTargetEntity(items: Items) = block(items, "GetTargetEntity")
 
 
 	/**
 	 * *Forces a player to start*
 	 * *or stop flying.*
 	 */
-	fun forceFlight(items: Items<T>) = block(items, "ForceFlight")
+	fun forceFlight(items: Items) = block(items, "ForceFlight")
 
 
 	/**
 	 * *Loads a player's inventory.*
 	 */
-	fun loadInv(items: Items<T>) = block(items, "LoadInv")
+	fun loadInv(items: Items) = block(items, "LoadInv")
 
 
 	/**
@@ -332,19 +332,19 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun chatStyle(items: Items<T>) = block(items, "ChatStyle")
+	fun chatStyle(items: Items) = block(items, "ChatStyle")
 
 
 	/**
 	 * *Kicks a player from*
 	 * *the plot.*
 	 */
-	fun kick(items: Items<T>) = block(items, "Kick")
+	fun kick(items: Items) = block(items, "Kick")
 
 
 	/**
 	 */
-	fun projColl(items: Items<T>) = block(items, "ProjColl")
+	fun projColl(items: Items) = block(items, "ProjColl")
 
 
 	/**
@@ -360,7 +360,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun miscAttribute(items: Items<T>) = block(items, "MiscAttribute")
+	fun miscAttribute(items: Items) = block(items, "MiscAttribute")
 
 
 	/**
@@ -379,7 +379,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun spectateTarget(items: Items<T>) = block(items, "SpectateTarget")
+	fun spectateTarget(items: Items) = block(items, "SpectateTarget")
 
 
 	/**
@@ -394,14 +394,14 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun hurtAnimation(items: Items<T>) = block(items, "HurtAnimation")
+	fun hurtAnimation(items: Items) = block(items, "HurtAnimation")
 
 
 	/**
 	 * *Sets a player's game*
 	 * *mode to Survival.*
 	 */
-	fun survivalMode(items: Items<T>) = block(items, "SurvivalMode")
+	fun survivalMode(items: Items) = block(items, "SurvivalMode")
 
 
 	/**
@@ -416,7 +416,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun displayBellRing(items: Items<T>) = block(items, "DisplayBellRing")
+	fun displayBellRing(items: Items) = block(items, "DisplayBellRing")
 
 
 	/**
@@ -433,7 +433,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setStatus(items: Items<T>) = block(items, "SetStatus")
+	fun setStatus(items: Items) = block(items, "SetStatus")
 
 
 	/**
@@ -448,7 +448,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setCursorItem(items: Items<T>) = block(items, "SetCursorItem")
+	fun setCursorItem(items: Items) = block(items, "SetCursorItem")
 
 
 	/**
@@ -463,7 +463,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setAbsorption(items: Items<T>) = block(items, "SetAbsorption")
+	fun setAbsorption(items: Items) = block(items, "SetAbsorption")
 
 
 	/**
@@ -478,7 +478,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setFireTicks(items: Items<T>) = block(items, "SetFireTicks")
+	fun setFireTicks(items: Items) = block(items, "SetFireTicks")
 
 
 	/**
@@ -494,12 +494,12 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun combatAttribute(items: Items<T>) = block(items, "CombatAttribute")
+	fun combatAttribute(items: Items) = block(items, "CombatAttribute")
 
 
 	/**
 	 */
-	fun setGamemode(items: Items<T>) = block(items, "SetGamemode")
+	fun setGamemode(items: Items) = block(items, "SetGamemode")
 
 
 	/**
@@ -515,14 +515,14 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun removeInvRow(items: Items<T>) = block(items, "RemoveInvRow")
+	fun removeInvRow(items: Items) = block(items, "RemoveInvRow")
 
 
 	/**
 	 * *Displays the wake up (fade in)*
 	 * *animation to a player.*
 	 */
-	fun wakeUpAnimation(items: Items<T>) = block(items, "WakeUpAnimation")
+	fun wakeUpAnimation(items: Items) = block(items, "WakeUpAnimation")
 
 
 	/**
@@ -537,7 +537,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun disableBlocks(items: Items<T>) = block(items, "DisableBlocks")
+	fun disableBlocks(items: Items) = block(items, "DisableBlocks")
 
 
 	/**
@@ -552,23 +552,23 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setScoreObj(items: Items<T>) = block(items, "SetScoreObj")
+	fun setScoreObj(items: Items) = block(items, "SetScoreObj")
 
 
 	/**
 	 */
-	fun lSetHealth(items: Items<T>) = block(items, "L SetHealth")
+	fun lSetHealth(items: Items) = block(items, "L SetHealth")
 
 
 	/**
 	 */
-	fun particleEffect(items: Items<T>) = block(items, "ParticleEffect")
+	fun particleEffect(items: Items) = block(items, "ParticleEffect")
 
 
 	/**
 	 * *Empties a player's inventory.*
 	 */
-	fun clearInv(items: Items<T>) = block(items, "ClearInv")
+	fun clearInv(items: Items) = block(items, "ClearInv")
 
 
 	/**
@@ -584,14 +584,14 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setFreezeTicks(items: Items<T>) = block(items, "SetFreezeTicks")
+	fun setFreezeTicks(items: Items) = block(items, "SetFreezeTicks")
 
 
 	/**
 	 * *Sets whether a player*
 	 * *is gliding with elytra.*
 	 */
-	fun setGliding(items: Items<T>) = block(items, "SetGliding")
+	fun setGliding(items: Items) = block(items, "SetGliding")
 
 
 	/**
@@ -610,7 +610,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setRotation(items: Items<T>) = block(items, "SetRotation")
+	fun setRotation(items: Items) = block(items, "SetRotation")
 
 
 	/**
@@ -625,14 +625,14 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun clearItems(items: Items<T>) = block(items, "ClearItems")
+	fun clearItems(items: Items) = block(items, "ClearItems")
 
 
 	/**
 	 * *Sets whether a player*
 	 * *is flying.*
 	 */
-	fun setFlying(items: Items<T>) = block(items, "SetFlying")
+	fun setFlying(items: Items) = block(items, "SetFlying")
 
 
 	/**
@@ -648,12 +648,12 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun displayBlockOpen(items: Items<T>) = block(items, "DisplayBlockOpen")
+	fun displayBlockOpen(items: Items) = block(items, "DisplayBlockOpen")
 
 
 	/**
 	 */
-	fun setHandItem(items: Items<T>) = block(items, "SetHandItem")
+	fun setHandItem(items: Items) = block(items, "SetHandItem")
 
 
 	/**
@@ -672,12 +672,12 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun sendAdvancement(items: Items<T>) = block(items, "SendAdvancement")
+	fun sendAdvancement(items: Items) = block(items, "SendAdvancement")
 
 
 	/**
 	 */
-	fun clearChat(items: Items<T>) = block(items, "ClearChat")
+	fun clearChat(items: Items) = block(items, "ClearChat")
 
 
 	/**
@@ -697,7 +697,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setMenuItem(items: Items<T>) = block(items, "SetMenuItem")
+	fun setMenuItem(items: Items) = block(items, "SetMenuItem")
 
 
 	/**
@@ -716,7 +716,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun launchToward(items: Items<T>) = block(items, "LaunchToward")
+	fun launchToward(items: Items) = block(items, "LaunchToward")
 
 
 	/**
@@ -733,7 +733,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setArmor(items: Items<T>) = block(items, "SetArmor")
+	fun setArmor(items: Items) = block(items, "SetArmor")
 
 
 	/**
@@ -748,7 +748,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun displayGateway(items: Items<T>) = block(items, "DisplayGateway")
+	fun displayGateway(items: Items) = block(items, "DisplayGateway")
 
 
 	/**
@@ -762,7 +762,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun giveSaturation(items: Items<T>) = block(items, "GiveSaturation")
+	fun giveSaturation(items: Items) = block(items, "GiveSaturation")
 
 
 	/**
@@ -788,7 +788,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun displayEquipment(items: Items<T>) = block(items, "DisplayEquipment")
+	fun displayEquipment(items: Items) = block(items, "DisplayEquipment")
 
 
 	/**
@@ -803,7 +803,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun giveExp(items: Items<T>) = block(items, "GiveExp")
+	fun giveExp(items: Items) = block(items, "GiveExp")
 
 
 	/**
@@ -819,14 +819,14 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun faceLocation(items: Items<T>) = block(items, "FaceLocation")
+	fun faceLocation(items: Items) = block(items, "FaceLocation")
 
 
 	/**
 	 * *Removes all scores from*
 	 * *the scoreboard.*
 	 */
-	fun clearScoreboard(items: Items<T>) = block(items, "ClearScoreboard")
+	fun clearScoreboard(items: Items) = block(items, "ClearScoreboard")
 
 
 	/**
@@ -841,7 +841,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun actionBar(items: Items<T>) = block(items, "ActionBar")
+	fun actionBar(items: Items) = block(items, "ActionBar")
 
 
 	/**
@@ -855,7 +855,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setChatTag(items: Items<T>) = block(items, "SetChatTag")
+	fun setChatTag(items: Items) = block(items, "SetChatTag")
 
 
 	/**
@@ -874,7 +874,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun shiftWorldBorder(items: Items<T>) = block(items, "ShiftWorldBorder")
+	fun shiftWorldBorder(items: Items) = block(items, "ShiftWorldBorder")
 
 
 	/**
@@ -893,12 +893,12 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun displaySignText(items: Items<T>) = block(items, "DisplaySignText")
+	fun displaySignText(items: Items) = block(items, "DisplaySignText")
 
 
 	/**
 	 */
-	fun setSpeed(items: Items<T>) = block(items, "SetSpeed")
+	fun setSpeed(items: Items) = block(items, "SetSpeed")
 
 
 	/**
@@ -914,7 +914,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun expandInv(items: Items<T>) = block(items, "ExpandInv")
+	fun expandInv(items: Items) = block(items, "ExpandInv")
 
 
 	/**
@@ -946,17 +946,17 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun launchProj(items: Items<T>) = block(items, "LaunchProj")
+	fun launchProj(items: Items) = block(items, "LaunchProj")
 
 
 	/**
 	 */
-	fun noProjColl(items: Items<T>) = block(items, "NoProjColl")
+	fun noProjColl(items: Items) = block(items, "NoProjColl")
 
 
 	/**
 	 */
-	fun showDisguise(items: Items<T>) = block(items, "ShowDisguise")
+	fun showDisguise(items: Items) = block(items, "ShowDisguise")
 
 
 	/**
@@ -987,7 +987,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun particleCuboidA(items: Items<T>) = block(items, "ParticleCuboidA")
+	fun particleCuboidA(items: Items) = block(items, "ParticleCuboidA")
 
 
 	/**
@@ -1005,7 +1005,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun playSound(items: Items<T>) = block(items, "PlaySound")
+	fun playSound(items: Items) = block(items, "PlaySound")
 
 
 	/**
@@ -1020,7 +1020,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setCompass(items: Items<T>) = block(items, "SetCompass")
+	fun setCompass(items: Items) = block(items, "SetCompass")
 
 
 	/**
@@ -1036,7 +1036,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun rngTeleport(items: Items<T>) = block(items, "RngTeleport")
+	fun rngTeleport(items: Items) = block(items, "RngTeleport")
 
 
 	/**
@@ -1054,7 +1054,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun mobDisguise(items: Items<T>) = block(items, "MobDisguise")
+	fun mobDisguise(items: Items) = block(items, "MobDisguise")
 
 
 	/**
@@ -1069,7 +1069,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun enableBlocks(items: Items<T>) = block(items, "EnableBlocks")
+	fun enableBlocks(items: Items) = block(items, "EnableBlocks")
 
 
 	/**
@@ -1084,7 +1084,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun openBlockInv(items: Items<T>) = block(items, "OpenBlockInv")
+	fun openBlockInv(items: Items) = block(items, "OpenBlockInv")
 
 
 	/**
@@ -1111,12 +1111,12 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun particleCircleA(items: Items<T>) = block(items, "ParticleCircleA")
+	fun particleCircleA(items: Items) = block(items, "ParticleCircleA")
 
 
 	/**
 	 */
-	fun removeBossBar(items: Items<T>) = block(items, "RemoveBossBar")
+	fun removeBossBar(items: Items) = block(items, "RemoveBossBar")
 
 
 	/**
@@ -1132,19 +1132,19 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setEquipment(items: Items<T>) = block(items, "SetEquipment")
+	fun setEquipment(items: Items) = block(items, "SetEquipment")
 
 
 	/**
 	 */
-	fun giveRngItem(items: Items<T>) = block(items, "GiveRngItem")
+	fun giveRngItem(items: Items) = block(items, "GiveRngItem")
 
 
 	/**
 	 * *Sets whether a player drops*
 	 * *their items when dead.*
 	 */
-	fun setDropsEnabled(items: Items<T>) = block(items, "SetDropsEnabled")
+	fun setDropsEnabled(items: Items) = block(items, "SetDropsEnabled")
 
 
 	/**
@@ -1158,7 +1158,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun sendToPlot(items: Items<T>) = block(items, "SendToPlot")
+	fun sendToPlot(items: Items) = block(items, "SendToPlot")
 
 
 	/**
@@ -1174,7 +1174,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun removePotion(items: Items<T>) = block(items, "RemovePotion")
+	fun removePotion(items: Items) = block(items, "RemovePotion")
 
 
 	/**
@@ -1195,7 +1195,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun displayFracture(items: Items<T>) = block(items, "DisplayFracture")
+	fun displayFracture(items: Items) = block(items, "DisplayFracture")
 
 
 	/**
@@ -1214,19 +1214,19 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setEntityHidden(items: Items<T>) = block(items, "SetEntityHidden")
+	fun setEntityHidden(items: Items) = block(items, "SetEntityHidden")
 
 
 	/**
 	 * *Sets whether the scoreboard*
 	 * *sidebar is visible to a player.*
 	 */
-	fun setSidebar(items: Items<T>) = block(items, "SetSidebar")
+	fun setSidebar(items: Items) = block(items, "SetSidebar")
 
 
 	/**
 	 */
-	fun allowDrops(items: Items<T>) = block(items, "AllowDrops")
+	fun allowDrops(items: Items) = block(items, "AllowDrops")
 
 
 	/**
@@ -1249,7 +1249,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun vibration(items: Items<T>) = block(items, "Vibration")
+	fun vibration(items: Items) = block(items, "Vibration")
 
 
 	/**
@@ -1264,7 +1264,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setSlot(items: Items<T>) = block(items, "SetSlot")
+	fun setSlot(items: Items) = block(items, "SetSlot")
 
 
 	/**
@@ -1291,7 +1291,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun particleRay(items: Items<T>) = block(items, "ParticleRay")
+	fun particleRay(items: Items) = block(items, "ParticleRay")
 
 
 	/**
@@ -1319,7 +1319,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun particleCuboid(items: Items<T>) = block(items, "ParticleCuboid")
+	fun particleCuboid(items: Items) = block(items, "ParticleCuboid")
 
 
 	/**
@@ -1339,7 +1339,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun sendMessageSeq(items: Items<T>) = block(items, "SendMessageSeq")
+	fun sendMessageSeq(items: Items) = block(items, "SendMessageSeq")
 
 
 	/**
@@ -1354,7 +1354,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setNamePrefix(items: Items<T>) = block(items, "SetNamePrefix")
+	fun setNamePrefix(items: Items) = block(items, "SetNamePrefix")
 
 
 	/**
@@ -1375,7 +1375,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun clearDispBlock(items: Items<T>) = block(items, "ClearDispBlock")
+	fun clearDispBlock(items: Items) = block(items, "ClearDispBlock")
 
 
 	/**
@@ -1394,13 +1394,13 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setRainLevel(items: Items<T>) = block(items, "SetRainLevel")
+	fun setRainLevel(items: Items) = block(items, "SetRainLevel")
 
 
 	/**
 	 * *Removes a player's disguise.*
 	 */
-	fun undisguise(items: Items<T>) = block(items, "Undisguise")
+	fun undisguise(items: Items) = block(items, "Undisguise")
 
 
 	/**
@@ -1439,14 +1439,14 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun particleSpiralA(items: Items<T>) = block(items, "ParticleSpiralA")
+	fun particleSpiralA(items: Items) = block(items, "ParticleSpiralA")
 
 
 	/**
 	 * *Sets if a player is instantly*
 	 * *respawned upon dying.*
 	 */
-	fun instantRespawn(items: Items<T>) = block(items, "InstantRespawn")
+	fun instantRespawn(items: Items) = block(items, "InstantRespawn")
 
 
 	/**
@@ -1465,14 +1465,14 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setScore(items: Items<T>) = block(items, "SetScore")
+	fun setScore(items: Items) = block(items, "SetScore")
 
 
 	/**
 	 * *Sets the color a player's*
 	 * *name tag appears in.*
 	 */
-	fun setNameColor(items: Items<T>) = block(items, "SetNameColor")
+	fun setNameColor(items: Items) = block(items, "SetNameColor")
 
 
 	/**
@@ -1488,17 +1488,17 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun reachAttribute(items: Items<T>) = block(items, "ReachAttribute")
+	fun reachAttribute(items: Items) = block(items, "ReachAttribute")
 
 
 	/**
 	 */
-	fun setAtkSpeed(items: Items<T>) = block(items, "SetAtkSpeed")
+	fun setAtkSpeed(items: Items) = block(items, "SetAtkSpeed")
 
 
 	/**
 	 */
-	fun disablePvp(items: Items<T>) = block(items, "DisablePvp")
+	fun disablePvp(items: Items) = block(items, "DisablePvp")
 
 
 	/**
@@ -1512,7 +1512,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setTickRate(items: Items<T>) = block(items, "SetTickRate")
+	fun setTickRate(items: Items) = block(items, "SetTickRate")
 
 
 	/**
@@ -1535,12 +1535,12 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun playEntitySound(items: Items<T>) = block(items, "PlayEntitySound")
+	fun playEntitySound(items: Items) = block(items, "PlayEntitySound")
 
 
 	/**
 	 */
-	fun replaceProj(items: Items<T>) = block(items, "ReplaceProj")
+	fun replaceProj(items: Items) = block(items, "ReplaceProj")
 
 
 	/**
@@ -1555,7 +1555,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setExp(items: Items<T>) = block(items, "SetExp")
+	fun setExp(items: Items) = block(items, "SetExp")
 
 
 	/**
@@ -1571,7 +1571,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun miningAttribute(items: Items<T>) = block(items, "MiningAttribute")
+	fun miningAttribute(items: Items) = block(items, "MiningAttribute")
 
 
 	/**
@@ -1586,7 +1586,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun kBAttribute(items: Items<T>) = block(items, "KBAttribute")
+	fun kBAttribute(items: Items) = block(items, "KBAttribute")
 
 
 	/**
@@ -1602,7 +1602,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun movementAttribute(items: Items<T>) = block(items, "MovementAttribute")
+	fun movementAttribute(items: Items) = block(items, "MovementAttribute")
 
 
 	/**
@@ -1637,7 +1637,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun particleSpiral(items: Items<T>) = block(items, "ParticleSpiral")
+	fun particleSpiral(items: Items) = block(items, "ParticleSpiral")
 
 
 	/**
@@ -1653,7 +1653,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun fallingAttribute(items: Items<T>) = block(items, "FallingAttribute")
+	fun fallingAttribute(items: Items) = block(items, "FallingAttribute")
 
 
 	/**
@@ -1662,7 +1662,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 * *flight mode by double*
 	 * *tapping jump.*
 	 */
-	fun setAllowFlight(items: Items<T>) = block(items, "SetAllowFlight")
+	fun setAllowFlight(items: Items) = block(items, "SetAllowFlight")
 
 
 	/**
@@ -1677,7 +1677,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setMaxHealth(items: Items<T>) = block(items, "SetMaxHealth")
+	fun setMaxHealth(items: Items) = block(items, "SetMaxHealth")
 
 
 	/**
@@ -1693,21 +1693,21 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setFogDistance(items: Items<T>) = block(items, "SetFogDistance")
+	fun setFogDistance(items: Items) = block(items, "SetFogDistance")
 
 
 	/**
 	 * *Sets a player's game*
 	 * *mode to Adventure.*
 	 */
-	fun adventureMode(items: Items<T>) = block(items, "AdventureMode")
+	fun adventureMode(items: Items) = block(items, "AdventureMode")
 
 
 	/**
 	 * *Sets a player's game*
 	 * *mode to Spectator.*
 	 */
-	fun spectatorMode(items: Items<T>) = block(items, "SpectatorMode")
+	fun spectatorMode(items: Items) = block(items, "SpectatorMode")
 
 
 	/**
@@ -1730,14 +1730,14 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun dispHeadTexture(items: Items<T>) = block(items, "DispHeadTexture")
+	fun dispHeadTexture(items: Items) = block(items, "DispHeadTexture")
 
 
 	/**
 	 * *Removes all active potion*
 	 * *effects from a player.*
 	 */
-	fun clearPotions(items: Items<T>) = block(items, "ClearPotions")
+	fun clearPotions(items: Items) = block(items, "ClearPotions")
 
 
 	/**
@@ -1753,17 +1753,17 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setTabListInfo(items: Items<T>) = block(items, "SetTabListInfo")
+	fun setTabListInfo(items: Items) = block(items, "SetTabListInfo")
 
 
 	/**
 	 */
-	fun enablePvp(items: Items<T>) = block(items, "EnablePvp")
+	fun enablePvp(items: Items) = block(items, "EnablePvp")
 
 
 	/**
 	 */
-	fun hideDisguise(items: Items<T>) = block(items, "HideDisguise")
+	fun hideDisguise(items: Items) = block(items, "HideDisguise")
 
 
 	/**
@@ -1783,7 +1783,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun scoreLineFormat(items: Items<T>) = block(items, "ScoreLineFormat")
+	fun scoreLineFormat(items: Items) = block(items, "ScoreLineFormat")
 
 
 	/**
@@ -1811,7 +1811,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setBossBar(items: Items<T>) = block(items, " SetBossBar ")
+	fun setBossBar(items: Items) = block(items, " SetBossBar ")
 
 
 	/**
@@ -1825,7 +1825,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setSkin(items: Items<T>) = block(items, "SetSkin")
+	fun setSkin(items: Items) = block(items, "SetSkin")
 
 
 	/**
@@ -1833,14 +1833,14 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 * *collides with blocks in*
 	 * *spectator mode.*
 	 */
-	fun spectatorCollision(items: Items<T>) = block(items, "SpectatorCollision")
+	fun spectatorCollision(items: Items) = block(items, "SpectatorCollision")
 
 
 	/**
 	 * *Sets whether a player's*
 	 * *name tag is visible.*
 	 */
-	fun setNameVisible(items: Items<T>) = block(items, "SetNameVisible")
+	fun setNameVisible(items: Items) = block(items, "SetNameVisible")
 
 
 	/**
@@ -1856,12 +1856,12 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setInvulTicks(items: Items<T>) = block(items, "SetInvulTicks")
+	fun setInvulTicks(items: Items) = block(items, "SetInvulTicks")
 
 
 	/**
 	 */
-	fun enableFlight(items: Items<T>) = block(items, "EnableFlight")
+	fun enableFlight(items: Items) = block(items, "EnableFlight")
 
 
 	/**
@@ -1877,7 +1877,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setStingsStuck(items: Items<T>) = block(items, "SetStingsStuck")
+	fun setStingsStuck(items: Items) = block(items, "SetStingsStuck")
 
 
 	/**
@@ -1892,12 +1892,12 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun removeScore(items: Items<T>) = block(items, "RemoveScore")
+	fun removeScore(items: Items) = block(items, "RemoveScore")
 
 
 	/**
 	 */
-	fun disallowDrops(items: Items<T>) = block(items, "DisallowDrops")
+	fun disallowDrops(items: Items) = block(items, "DisallowDrops")
 
 
 	/**
@@ -1912,7 +1912,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setExhaustion(items: Items<T>) = block(items, "SetExhaustion")
+	fun setExhaustion(items: Items) = block(items, "SetExhaustion")
 
 
 	/**
@@ -1935,7 +1935,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun particleCircle(items: Items<T>) = block(items, "ParticleCircle")
+	fun particleCircle(items: Items) = block(items, "ParticleCircle")
 
 
 	/**
@@ -1963,7 +1963,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun displayBlock(items: Items<T>) = block(items, "DisplayBlock")
+	fun displayBlock(items: Items) = block(items, "DisplayBlock")
 
 
 	/**
@@ -1982,18 +1982,18 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun rideEntity(items: Items<T>) = block(items, "RideEntity")
+	fun rideEntity(items: Items) = block(items, "RideEntity")
 
 
 	/**
 	 */
-	fun weatherRain(items: Items<T>) = block(items, "WeatherRain")
+	fun weatherRain(items: Items) = block(items, "WeatherRain")
 
 
 	/**
 	 * *Removes a player's world border.*
 	 */
-	fun rmWorldBorder(items: Items<T>) = block(items, "RmWorldBorder")
+	fun rmWorldBorder(items: Items) = block(items, "RmWorldBorder")
 
 
 	/**
@@ -2007,7 +2007,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun resourcePack(items: Items<T>) = block(items, "ResourcePack")
+	fun resourcePack(items: Items) = block(items, "ResourcePack")
 
 
 	/**
@@ -2022,7 +2022,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setInvName(items: Items<T>) = block(items, " SetInvName ")
+	fun setInvName(items: Items) = block(items, " SetInvName ")
 
 
 	/**
@@ -2036,7 +2036,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun giveExhaustion(items: Items<T>) = block(items, "GiveExhaustion")
+	fun giveExhaustion(items: Items) = block(items, "GiveExhaustion")
 
 
 	/**
@@ -2051,7 +2051,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun teleport(items: Items<T>) = block(items, "Teleport")
+	fun teleport(items: Items) = block(items, "Teleport")
 
 
 	/**
@@ -2059,19 +2059,19 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 * *hurt or be hurt by other*
 	 * *players.*
 	 */
-	fun setAllowPVP(items: Items<T>) = block(items, "SetAllowPVP")
+	fun setAllowPVP(items: Items) = block(items, "SetAllowPVP")
 
 
 	/**
 	 */
-	fun disableFlight(items: Items<T>) = block(items, "DisableFlight")
+	fun disableFlight(items: Items) = block(items, "DisableFlight")
 
 
 	/**
 	 * *Sets whether a player*
 	 * *should appear on fire.*
 	 */
-	fun setVisualFire(items: Items<T>) = block(items, "SetVisualFire")
+	fun setVisualFire(items: Items) = block(items, "SetVisualFire")
 
 
 	/**
@@ -2080,7 +2080,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 * *is recommended that it is*
 	 * *almost always hidden.*
 	 */
-	fun setDisguiseVisible(items: Items<T>) = block(items, "SetDisguiseVisible")
+	fun setDisguiseVisible(items: Items) = block(items, "SetDisguiseVisible")
 
 
 	/**
@@ -2096,7 +2096,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setArrowsStuck(items: Items<T>) = block(items, "SetArrowsStuck")
+	fun setArrowsStuck(items: Items) = block(items, "SetArrowsStuck")
 
 
 	/**
@@ -2115,17 +2115,17 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun getItemCooldown(items: Items<T>) = block(items, "GetItemCooldown")
+	fun getItemCooldown(items: Items) = block(items, "GetItemCooldown")
 
 
 	/**
 	 */
-	fun setItems(items: Items<T>) = block(items, "SetItems")
+	fun setItems(items: Items) = block(items, "SetItems")
 
 
 	/**
 	 */
-	fun keepInv(items: Items<T>) = block(items, "KeepInv")
+	fun keepInv(items: Items) = block(items, "KeepInv")
 
 
 	/**
@@ -2149,7 +2149,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun replaceItems(items: Items<T>) = block(items, "ReplaceItems")
+	fun replaceItems(items: Items) = block(items, "ReplaceItems")
 
 
 	/**
@@ -2164,7 +2164,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun sendMessage(items: Items<T>) = block(items, "SendMessage")
+	fun sendMessage(items: Items) = block(items, "SendMessage")
 
 
 	/**
@@ -2183,7 +2183,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setSlotItem(items: Items<T>) = block(items, "SetSlotItem")
+	fun setSlotItem(items: Items) = block(items, "SetSlotItem")
 
 
 	/**
@@ -2208,7 +2208,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun playSoundSeq(items: Items<T>) = block(items, "PlaySoundSeq")
+	fun playSoundSeq(items: Items) = block(items, "PlaySoundSeq")
 
 
 	/**
@@ -2240,12 +2240,12 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun particleLineA(items: Items<T>) = block(items, "ParticleLineA")
+	fun particleLineA(items: Items) = block(items, "ParticleLineA")
 
 
 	/**
 	 */
-	fun respawn(items: Items<T>) = block(items, "Respawn")
+	fun respawn(items: Items) = block(items, "Respawn")
 
 
 	/**
@@ -2264,26 +2264,26 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setItemCooldown(items: Items<T>) = block(items, "SetItemCooldown")
+	fun setItemCooldown(items: Items) = block(items, "SetItemCooldown")
 
 
 	/**
 	 * *Sets the type of weather*
 	 * *visible to a player.*
 	 */
-	fun setPlayerWeather(items: Items<T>) = block(items, "SetPlayerWeather")
+	fun setPlayerWeather(items: Items) = block(items, "SetPlayerWeather")
 
 
 	/**
 	 */
-	fun sendHover(items: Items<T>) = block(items, "SendHover")
+	fun sendHover(items: Items) = block(items, "SendHover")
 
 
 	/**
 	 * *Displays a parrot on the targets'*
 	 * *shoulders.*
 	 */
-	fun setShoulder(items: Items<T>) = block(items, "SetShoulder")
+	fun setShoulder(items: Items) = block(items, "SetShoulder")
 
 
 	/**
@@ -2298,7 +2298,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setAirTicks(items: Items<T>) = block(items, "SetAirTicks")
+	fun setAirTicks(items: Items) = block(items, "SetAirTicks")
 
 
 	/**
@@ -2326,7 +2326,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun displayPickup(items: Items<T>) = block(items, "DisplayPickup")
+	fun displayPickup(items: Items) = block(items, "DisplayPickup")
 
 
 	/**
@@ -2349,7 +2349,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setWorldBorder(items: Items<T>) = block(items, "SetWorldBorder")
+	fun setWorldBorder(items: Items) = block(items, "SetWorldBorder")
 
 
 	/**
@@ -2364,7 +2364,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setPlayerTime(items: Items<T>) = block(items, "SetPlayerTime")
+	fun setPlayerTime(items: Items) = block(items, "SetPlayerTime")
 
 
 	/**
@@ -2378,12 +2378,12 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun giveFood(items: Items<T>) = block(items, "GiveFood")
+	fun giveFood(items: Items) = block(items, "GiveFood")
 
 
 	/**
 	 */
-	fun natRegen(items: Items<T>) = block(items, "NatRegen")
+	fun natRegen(items: Items) = block(items, "NatRegen")
 
 
 	/**
@@ -2399,7 +2399,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun givePotion(items: Items<T>) = block(items, "GivePotion")
+	fun givePotion(items: Items) = block(items, "GivePotion")
 
 
 	/**
@@ -2413,7 +2413,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun removeItems(items: Items<T>) = block(items, "RemoveItems")
+	fun removeItems(items: Items) = block(items, "RemoveItems")
 
 
 	/**
@@ -2428,7 +2428,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun boostElytra(items: Items<T>) = block(items, "BoostElytra")
+	fun boostElytra(items: Items) = block(items, "BoostElytra")
 
 
 	/**
@@ -2436,7 +2436,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 * *It can be loaded later with*
 	 * *'Load Saved Inventory'.*
 	 */
-	fun saveInv(items: Items<T>) = block(items, "SaveInv")
+	fun saveInv(items: Items) = block(items, "SaveInv")
 
 
 	/**
@@ -2451,7 +2451,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun openBook(items: Items<T>) = block(items, "OpenBook")
+	fun openBook(items: Items) = block(items, "OpenBook")
 
 
 	/**
@@ -2466,7 +2466,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setHealth(items: Items<T>) = block(items, "SetHealth")
+	fun setHealth(items: Items) = block(items, "SetHealth")
 
 
 	/**
@@ -2484,7 +2484,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun blockDisguise(items: Items<T>) = block(items, "BlockDisguise")
+	fun blockDisguise(items: Items) = block(items, "BlockDisguise")
 
 
 	/**
@@ -2499,12 +2499,12 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun rollbackBlocks(items: Items<T>) = block(items, "RollbackBlocks")
+	fun rollbackBlocks(items: Items) = block(items, "RollbackBlocks")
 
 
 	/**
 	 */
-	fun noDeathDrops(items: Items<T>) = block(items, "NoDeathDrops")
+	fun noDeathDrops(items: Items) = block(items, "NoDeathDrops")
 
 
 	/**
@@ -2520,7 +2520,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun walkSpeed(items: Items<T>) = block(items, "WalkSpeed")
+	fun walkSpeed(items: Items) = block(items, "WalkSpeed")
 
 
 	/**
@@ -2528,7 +2528,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 * *able to collide with other*
 	 * *entities.*
 	 */
-	fun setCollidable(items: Items<T>) = block(items, "SetCollidable")
+	fun setCollidable(items: Items) = block(items, "SetCollidable")
 
 
 	/**
@@ -2543,7 +2543,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun launchFwd(items: Items<T>) = block(items, "LaunchFwd")
+	fun launchFwd(items: Items) = block(items, "LaunchFwd")
 
 
 	/**
@@ -2559,21 +2559,21 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setFallDistance(items: Items<T>) = block(items, "SetFallDistance")
+	fun setFallDistance(items: Items) = block(items, "SetFallDistance")
 
 
 	/**
 	 * *Sets a player's game*
 	 * *mode to Creative.*
 	 */
-	fun creativeMode(items: Items<T>) = block(items, "CreativeMode")
+	fun creativeMode(items: Items) = block(items, "CreativeMode")
 
 
 	/**
 	 * *Makes a player perform*
 	 * *an attack animation.*
 	 */
-	fun attackAnimation(items: Items<T>) = block(items, "AttackAnimation")
+	fun attackAnimation(items: Items) = block(items, "AttackAnimation")
 
 
 	/**
@@ -2592,12 +2592,12 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun displayHologram(items: Items<T>) = block(items, "DisplayHologram")
+	fun displayHologram(items: Items) = block(items, "DisplayHologram")
 
 
 	/**
 	 */
-	fun deathDrops(items: Items<T>) = block(items, "DeathDrops")
+	fun deathDrops(items: Items) = block(items, "DeathDrops")
 
 
 	/**
@@ -2612,7 +2612,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun showInv(items: Items<T>) = block(items, "ShowInv")
+	fun showInv(items: Items) = block(items, "ShowInv")
 
 
 	/**
@@ -2627,7 +2627,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setFoodLevel(items: Items<T>) = block(items, "SetFoodLevel")
+	fun setFoodLevel(items: Items) = block(items, "SetFoodLevel")
 
 
 	/**
@@ -2646,7 +2646,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun playerDisguise(items: Items<T>) = block(items, "PlayerDisguise")
+	fun playerDisguise(items: Items) = block(items, "PlayerDisguise")
 
 
 	/**
@@ -2662,12 +2662,12 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun setSaturation(items: Items<T>) = block(items, "SetSaturation")
+	fun setSaturation(items: Items) = block(items, "SetSaturation")
 
 
 	/**
 	 */
-	fun weatherClear(items: Items<T>) = block(items, "WeatherClear")
+	fun weatherClear(items: Items) = block(items, "WeatherClear")
 
 
 	/**
@@ -2698,7 +2698,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun sendTitle(items: Items<T>) = block(items, "SendTitle")
+	fun sendTitle(items: Items) = block(items, "SendTitle")
 
 
 	/**
@@ -2713,7 +2713,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun scoreDefFormat(items: Items<T>) = block(items, "ScoreDefFormat")
+	fun scoreDefFormat(items: Items) = block(items, "ScoreDefFormat")
 
 
 	/**
@@ -2728,7 +2728,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun stopSound(items: Items<T>) = block(items, "StopSound")
+	fun stopSound(items: Items) = block(items, "StopSound")
 
 
 	/**
@@ -2744,7 +2744,7 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun healthAttribute(items: Items<T>) = block(items, "HealthAttribute")
+	fun healthAttribute(items: Items) = block(items, "HealthAttribute")
 
 
 	/**
@@ -2772,6 +2772,6 @@ class PlayerActionCategory<T : Item> internal constructor(private val template: 
 	 *
 	 * (*) = optional
 	 */
-	fun particleLine(items: Items<T>) = block(items, "ParticleLine")
+	fun particleLine(items: Items) = block(items, "ParticleLine")
 
 }

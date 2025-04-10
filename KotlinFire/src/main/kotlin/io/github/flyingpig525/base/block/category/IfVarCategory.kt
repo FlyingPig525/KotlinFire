@@ -8,13 +8,13 @@ import io.github.flyingpig525.base.block.subaction.*
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
 
-class IfVarCategory<T : Item> internal constructor(private val template: Template<T>) {
+class IfVarCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
     private fun block(
-        items: Items<T>,
+        items: Items,
         action: String,
-        wrappedCode: Template<T>.() -> Unit,
+        wrappedCode: Template.() -> Unit,
         not: Boolean = false,
         extra: JsonObjectBuilder.() -> Unit = {}
     ) {
@@ -46,7 +46,7 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun lessThanOrEqual(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "<=", wrappedCode, not)
+	fun lessThanOrEqual(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "<=", wrappedCode, not)
 
 
 	/**
@@ -71,7 +71,7 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun itemHasEnchant(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "ItemHasEnchant", wrappedCode, not)
+	fun itemHasEnchant(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "ItemHasEnchant", wrappedCode, not)
 
 
 	/**
@@ -86,7 +86,7 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun itemIsBlock(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "ItemIsBlock", wrappedCode, not)
+	fun itemIsBlock(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "ItemIsBlock", wrappedCode, not)
 
 
 	/**
@@ -111,7 +111,7 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun dictValueEquals(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "DictValueEquals", wrappedCode, not)
+	fun dictValueEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "DictValueEquals", wrappedCode, not)
 
 
 	/**
@@ -140,7 +140,7 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun itemHasTag(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "ItemHasTag", wrappedCode, not)
+	fun itemHasTag(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "ItemHasTag", wrappedCode, not)
 
 
 	/**
@@ -159,7 +159,7 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun stringMatches(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "StringMatches", wrappedCode, not)
+	fun stringMatches(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "StringMatches", wrappedCode, not)
 
 
 	/**
@@ -173,7 +173,7 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun listIsEmpty(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "ListIsEmpty", wrappedCode, not)
+	fun listIsEmpty(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "ListIsEmpty", wrappedCode, not)
 
 
 	/**
@@ -193,7 +193,7 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun startsWith(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "StartsWith", wrappedCode, not)
+	fun startsWith(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "StartsWith", wrappedCode, not)
 
 
 	/**
@@ -217,7 +217,7 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun listValueEq(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "ListValueEq", wrappedCode, not)
+	fun listValueEq(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "ListValueEq", wrappedCode, not)
 
 
 	/**
@@ -232,17 +232,17 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun varIsType(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "VarIsType", wrappedCode, not)
+	fun varIsType(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "VarIsType", wrappedCode, not)
 
 
 	/**
 	 */
-	fun textMatches(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "TextMatches", wrappedCode, not)
+	fun textMatches(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "TextMatches", wrappedCode, not)
 
 
 	/**
 	 */
-	fun isNear(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "IsNear", wrappedCode, not)
+	fun isNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsNear", wrappedCode, not)
 
 
 	/**
@@ -267,7 +267,7 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun inRange(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, " InRange ", wrappedCode, not)
+	fun inRange(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, " InRange ", wrappedCode, not)
 
 
 	/**
@@ -281,12 +281,12 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun varExists(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "VarExists", wrappedCode, not)
+	fun varExists(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "VarExists", wrappedCode, not)
 
 
 	/**
 	 */
-	fun legacyNotEqual(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "Legacy !=", wrappedCode, not)
+	fun legacyNotEqual(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "Legacy !=", wrappedCode, not)
 
 
 	/**
@@ -301,7 +301,7 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun blockIsSolid(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "BlockIsSolid", wrappedCode, not)
+	fun blockIsSolid(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "BlockIsSolid", wrappedCode, not)
 
 
 	/**
@@ -321,7 +321,7 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun itemEquals(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "ItemEquals", wrappedCode, not)
+	fun itemEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "ItemEquals", wrappedCode, not)
 
 
 	/**
@@ -340,12 +340,12 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun listContains(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "ListContains", wrappedCode, not)
+	fun listContains(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "ListContains", wrappedCode, not)
 
 
 	/**
 	 */
-	fun legacyEquals(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "Legacy =", wrappedCode, not)
+	fun legacyEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "Legacy =", wrappedCode, not)
 
 
 	/**
@@ -369,7 +369,7 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun locIsNear(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "LocIsNear", wrappedCode, not)
+	fun locIsNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "LocIsNear", wrappedCode, not)
 
 
 	/**
@@ -388,7 +388,7 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun contains(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "Contains", wrappedCode, not)
+	fun contains(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "Contains", wrappedCode, not)
 
 
 	/**
@@ -407,7 +407,7 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun notEqual(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "!=", wrappedCode, not)
+	fun notEqual(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "!=", wrappedCode, not)
 
 
 	/**
@@ -426,7 +426,7 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun lessThan(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "<", wrappedCode, not)
+	fun lessThan(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "<", wrappedCode, not)
 
 
 	/**
@@ -445,7 +445,7 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun equalTo(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "=", wrappedCode, not)
+	fun equalTo(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "=", wrappedCode, not)
 
 
 	/**
@@ -464,7 +464,7 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun greaterThan(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, ">", wrappedCode, not)
+	fun greaterThan(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, ">", wrappedCode, not)
 
 
 	/**
@@ -484,7 +484,7 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun endsWith(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "EndsWith", wrappedCode, not)
+	fun endsWith(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "EndsWith", wrappedCode, not)
 
 
 	/**
@@ -504,7 +504,7 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun greaterThanOrEqual(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, ">=", wrappedCode, not)
+	fun greaterThanOrEqual(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, ">=", wrappedCode, not)
 
 
 	/**
@@ -523,6 +523,6 @@ class IfVarCategory<T : Item> internal constructor(private val template: Templat
 	 *
 	 * (*) = optional
 	 */
-	fun dictHasKey(items: Items<T>, not: Boolean = false, wrappedCode: Template<T>.() -> Unit) = block(items, "DictHasKey", wrappedCode, not)
+	fun dictHasKey(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "DictHasKey", wrappedCode, not)
 
 }
