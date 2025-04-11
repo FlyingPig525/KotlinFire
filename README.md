@@ -26,8 +26,7 @@ To begin constructing a template, assign a variable the `Template` class. The `T
 argument with the type `Template.() -> Unit` meaning you can access `Template` members inside the function. The `Template`
 class contains one variable for each code block in DiamondFire with its respective name. These variables' member functions
 are what will be called in the lambda function. Each member function has another lambda function as an argument. Items
-And variables go in this function. ***There WILL be an error that a type cannot be inferred until you add blocks and items,
-this is just because of how I made everything, and it's very dumb, I know.***
+And variables go in this function.
 
 ```kotlin
 val template = Template { 
@@ -65,7 +64,7 @@ val template = Template {
 ```
 *Example code using a variable with the value of a `VarItem` to easily insert the same item in a code block*
 
-Each method in a code block category has documentation parsed directly from the [CodeClient](https://github.com/DFOnline/CodeClient)
+Each method in a code block category has documentation parsed directly from the df
 action dump.
 
 You can also provide a name and type, function or process, to the `Template` constructor. These default to 
