@@ -40,6 +40,4 @@ class GameValue(private val type: String, private var target: Target = Target.De
             return name
         }
     }
-
-
 }

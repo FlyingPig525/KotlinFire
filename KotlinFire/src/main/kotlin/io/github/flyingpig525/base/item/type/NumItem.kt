@@ -1,9 +1,12 @@
 package io.github.flyingpig525.base.item.type
 
 import io.github.flyingpig525.base.JsonData
+import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.item.Item
+import io.github.flyingpig525.base.item.ItemCollection
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
+import kotlin.reflect.KProperty
 
 class NumItem(private val value: String) : Item(ID.NUMBER) {
 
@@ -25,3 +28,5 @@ class NumItem(private val value: String) : Item(ID.NUMBER) {
         val String.numItem get() = toNumItem()
     }
 }
+
+class NumVariable(name: String, scope: VarItem.Scope) : VarClass(name, scope, NumItem::class)

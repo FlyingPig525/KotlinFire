@@ -132,7 +132,7 @@ Template("optional", ParameterItem.num("name").default((43).numItem).parameter()
 Code blocks requiring sub actions can now be used, as a result of recreating the file generation for code blocks
 
 ```kotlin
-EventTemplate(PLAYEREVENT.Join) {
+EventTemplate(PlayerEvent.Join) {
     SetVar.equalTo {
         +"%default ticks on ground".gameVar
     }
@@ -146,6 +146,23 @@ EventTemplate(PLAYEREVENT.Join) {
             +(1.numItem)
         }
     }
+}
+```
+
+### New, 1.4.0!
+There are now classes given extension functions under the scope of a template. There are only a few of these classes,
+being: TextVariable, NumVariable, and VecVariable. These are the only ones I thought of useful functions for at the time
+of writing this.
+
+```kotlin
+Template {
+    val numVar = NumVariable("number variable", VarItem.Scope.Game)
+    numVar++ // adds an increment
+    numVar += 43 // adds an increment with 43 as a parameter
+    numVar += "12" // adds an increment with a NumItem with the value "12" as a parameter
+    numVar -= 2 // adds a decrement with 2 as a parameter
+    numVar-- // adds a decrement
+    numVar.set(5.numItem) // sets the variable "number variable" to 5
 }
 ```
 

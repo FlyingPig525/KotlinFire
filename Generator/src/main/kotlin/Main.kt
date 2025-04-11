@@ -1,10 +1,8 @@
 package io.github.flyingpig525
 
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.*
 import java.io.File
 import java.io.FileNotFoundException
-import java.nio.file.Path
 import kotlin.io.path.*
 
 // This is not efficient in the slightest :skull:

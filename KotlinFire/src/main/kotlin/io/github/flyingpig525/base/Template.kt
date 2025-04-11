@@ -4,7 +4,9 @@ import io.github.flyingpig525.base.block.category.*
 import io.github.flyingpig525.base.block.*
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
-import io.github.flyingpig525.base.item.type.ParameterItem
+import io.github.flyingpig525.base.item.type.*
+import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
+import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
 import io.github.flyingpig525.encoding.TemplateEncoder
 import io.ktor.client.*
 import io.ktor.client.engine.java.*
@@ -17,6 +19,8 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.putJsonArray
 import org.jetbrains.annotations.ApiStatus.Internal
+import org.w3c.dom.Text
+import kotlin.reflect.typeOf
 
 typealias Items = ItemCollection.() -> Unit
 
@@ -110,6 +114,208 @@ open class Template(
     }
 
     fun getTemplateString(): String = TemplateEncoder.encode(this)
+
+    // Extension operator functions
+    // All VarClass implementations
+    fun VarClass.set(value: Item) {
+        assert(value !is VarItem && value::class in permittedTypes) {
+            "Value type set to this ${this::class.simpleName} must be in ${permittedTypes.map { it.simpleName }}"
+        }
+        SetVariable.equalTo {
+            +item
+            +value
+        }
+    }
+    inline fun <T : VarClass> T.set(value: T) {
+        SetVariable.equalTo {
+            +item
+            +value
+        }
+    }
+    // NumVariable
+    // +=
+    inline operator fun NumVariable.plusAssign(other: Number) = plusAssign(other.numItem)
+    inline operator fun NumVariable.plusAssign(other: String) = plusAssign(other.numItem)
+    inline operator fun NumVariable.plusAssign(other: NumVariable) {
+        SetVariable.increment {
+            +item
+            +other
+        }
+    }
+    inline operator fun NumVariable.plusAssign(other: NumItem) {
+        SetVariable.increment {
+            +item
+            +other
+        }
+    }
+    // -=
+    inline operator fun NumVariable.minusAssign(other: Number) = minusAssign(other.numItem)
+    inline operator fun NumVariable.minusAssign(other: String) = minusAssign(other.numItem)
+    inline operator fun NumVariable.minusAssign(other: NumVariable) {
+        SetVariable.increment {
+            +item
+            +other
+        }
+    }
+    inline operator fun NumVariable.minusAssign(other: NumItem) {
+        SetVariable.increment {
+            +item
+            +other
+        }
+    }
+    // /=
+    inline operator fun NumVariable.divAssign(other: Number) = divAssign(other.numItem)
+    inline operator fun NumVariable.divAssign(other: String) = divAssign(other.numItem)
+    inline operator fun NumVariable.divAssign(other: NumVariable) {
+        SetVariable.divide {
+            +item
+            +item
+            +other
+        }
+    }
+    inline operator fun NumVariable.divAssign(other: NumItem) {
+        SetVariable.divide {
+            +item
+            +item
+            +other
+        }
+    }
+    // *=
+    inline operator fun NumVariable.timesAssign(other: Number) = divAssign(other.numItem)
+    inline operator fun NumVariable.timesAssign(other: String) = divAssign(other.numItem)
+    inline operator fun NumVariable.timesAssign(other: NumVariable) {
+        SetVariable.x {
+            +item
+            +item
+            +other
+        }
+    }
+    inline operator fun NumVariable.timesAssign(other: NumItem) {
+        SetVariable.x {
+            +item
+            +item
+            +other
+        }
+    }
+    // %=
+    inline operator fun NumVariable.remAssign(other: Number) = divAssign(other.numItem)
+    inline operator fun NumVariable.remAssign(other: String) = divAssign(other.numItem)
+    inline operator fun NumVariable.remAssign(other: NumVariable) {
+        SetVariable.mod {
+            +item
+            +item
+            +other
+        }
+    }
+    inline operator fun NumVariable.remAssign(other: NumItem) {
+        SetVariable.mod {
+            +item
+            +item
+            +other
+        }
+    }
+    inline operator fun NumVariable.unaryMinus() = "-%var($name)".numItem
+    // TextVariable
+    // +=
+    inline operator fun TextVariable.plusAssign(other: String) = plusAssign(other.textItem)
+    inline operator fun TextVariable.plusAssign(other: VarClass) { plusAssign(other.item) }
+    inline operator fun TextVariable.plusAssign(other: TextItem) {
+        SetVariable.styledText {
+            +item
+            +item
+            +other
+        }
+    }
+    inline operator fun TextVariable.plusAssign(other: VarItem) {
+        SetVariable.styledText {
+            +item
+            +item
+            +other
+        }
+    }
+    // Trim
+    /**
+     * Trims the content of a styled text
+     */
+    inline fun TextVariable.trim(from: Number, to: Number? = null) = trim(from.numItem, to?.numItem)
+    /**
+     * Trims the content of a styled text
+     *
+     * [from] and [to] must be [NumItem] parsable strings
+     */
+    inline fun TextVariable.trim(from: String, to: String? = null) = trim(from.numItem, to?.numItem)
+    /**
+     * Trims the content of a styled text
+     *
+     * @param [to] - Can be an uninitialized variable
+     */
+    inline fun TextVariable.trim(from: VarItem, to: VarItem? = null) {
+        SetVariable.trimStyledText {
+            +item
+            +from
+            if (to != null) {
+                +to
+            }
+        }
+    }
+    /**
+     * Trims the content of a styled text
+     */
+    inline fun TextVariable.trim(from: NumItem, to: NumItem? = null) {
+        SetVariable.trimStyledText {
+            +item
+            +from
+            if (to != null) {
+                +to
+            }
+        }
+    }
+    // Replace
+    /**
+     * @param [replace] - A regex used to find replacement targets
+     */
+    inline fun TextVariable.replace(replace: String, with: String) = replace(replace.textItem, with.textItem)
+    /**
+     * @param [replace] - A regex used to find replacement targets
+     */
+    inline fun TextVariable.replace(replace: VarClass, with: VarClass) = replace(replace.item, with.item)
+    /**
+     * @param [replace] - A regex used to find replacement targets
+     */
+    inline fun TextVariable.replace(replace: TextItem, with: TextItem) {
+        SetVariable.rmText {
+            +item
+            +item
+            +replace
+            +with
+        }
+    }
+    /**
+     * @param [replace] - A regex used to find replacement targets
+     */
+    inline fun TextVariable.replace(replace: VarItem, with: VarItem) {
+        SetVariable.rmText {
+            +item
+            +item
+            +replace
+            +with
+        }
+    }
+    // VecVariable
+    // Length
+    inline fun VecVariable.setLength(length: Number) = setLength(length.numItem)
+    inline fun VecVariable.setLength(length: NumVariable) {
+        SetVariable.setVectorLength {
+            +item
+            +length
+        }
+    }
+    inline fun VecVariable.setLength(length: NumItem) {
+        SetVariable.setVectorLength {
+            +item
+            +length
+        }
+    }
 
     companion object {
         @Deprecated("Recode is no longer being worked on")

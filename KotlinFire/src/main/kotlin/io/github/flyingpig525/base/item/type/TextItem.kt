@@ -22,3 +22,5 @@ class TextItem(val text: String) : Item(ID.RICHTEXT) {
         val String.textItem get() = toTextItem()
     }
 }
+
+class TextVariable(name: String, scope: VarItem.Scope) : VarClass(name, scope, TextItem::class)

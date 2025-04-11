@@ -32,3 +32,5 @@ class VecItem(x: Number, y: Number, z: Number) : Item(ID.VECTOR) {
     }
 
 }
+
+class VecVariable(name: String, scope: VarItem.Scope) : VarClass(name, scope, VecItem::class)
