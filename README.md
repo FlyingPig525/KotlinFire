@@ -96,7 +96,7 @@ val template = EventTemplate(PLAYEREVENT.Join) {
 ```
 *Example code creating a player join event template*
 
-#### New, 1.2.0!
+### New, 1.2.0!
 Templates can now have parameters, permitting the use of the `ParameterItem`.
 
 `ParameterItem` can be better constructed using its builder functions.
