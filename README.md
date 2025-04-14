@@ -257,6 +257,3 @@ TemplateCollection {
 
 ### More Examples
 More fleshed-out examples can be found in the LibraryTest.kt file in [`KotlinFire/src/test/kotlin/org/example/LibraryTest.kt`](https://github.com/FlyingPig525/KotlinFire/blob/master/KotlinFire/src/test/kotlin/org/example/LibraryTest.kt)
-
-### Contributors
-- FlyingPig525
