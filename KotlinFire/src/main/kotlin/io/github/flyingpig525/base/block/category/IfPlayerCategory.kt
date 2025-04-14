@@ -50,7 +50,10 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun isLookingAt(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsLookingAt", wrappedCode, not)
+	fun isLookingAt(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsLookingAt", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -65,14 +68,20 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun inWorldBorder(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "InWorldBorder", wrappedCode, not)
+	fun inWorldBorder(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "InWorldBorder", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 * *Checks if a player is in*
 	 * *a specific game mode.*
 	 */
-	fun isInGameMode(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsInGameMode", wrappedCode, not)
+	fun isInGameMode(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsInGameMode", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -88,12 +97,18 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun hasRoomForItem(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "HasRoomForItem", wrappedCode, not)
+	fun hasRoomForItem(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "HasRoomForItem", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 */
-	fun isHoldingOff(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsHoldingOff", wrappedCode, not)
+	fun isHoldingOff(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsHoldingOff", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -101,7 +116,10 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * *using a plot resource*
 	 * *pack.*
 	 */
-	fun usingPack(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "UsingPack", wrappedCode, not)
+	fun usingPack(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "UsingPack", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -116,7 +134,10 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun noItemCooldown(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "NoItemCooldown", wrappedCode, not)
+	fun noItemCooldown(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "NoItemCooldown", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -131,19 +152,28 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun isUsingItem(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsUsingItem", wrappedCode, not)
+	fun isUsingItem(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsUsingItem", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 */
-	fun hasAllItems(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "HasAllItems", wrappedCode, not)
+	fun hasAllItems(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "HasAllItems", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 * *Checks if a player*
 	 * *is in water or lava.*
 	 */
-	fun isSwimming(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsSwimming", wrappedCode, not)
+	fun isSwimming(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsSwimming", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -158,12 +188,18 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun hasItem(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "HasItem", wrappedCode, not)
+	fun hasItem(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "HasItem", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 */
-	fun blockEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "BlockEquals", wrappedCode, not)
+	fun blockEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "BlockEquals", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -178,7 +214,10 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun isWearing(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsWearing", wrappedCode, not)
+	fun isWearing(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsWearing", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -197,29 +236,44 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun isNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsNear", wrappedCode, not)
+	fun isNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsNear", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 */
-	fun isRiding(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsRiding", wrappedCode, not)
+	fun isRiding(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsRiding", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 */
-	fun standingOn(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "StandingOn", wrappedCode, not)
+	fun standingOn(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "StandingOn", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 */
-	fun cmdEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "CmdEquals", wrappedCode, not)
+	fun cmdEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "CmdEquals", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 * *Checks if a player is*
 	 * *supported by a block.*
 	 */
-	fun isGrounded(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsGrounded", wrappedCode, not)
+	fun isGrounded(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsGrounded", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -234,7 +288,10 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun cursorItem(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "CursorItem", wrappedCode, not)
+	fun cursorItem(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "CursorItem", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -250,17 +307,26 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun slotEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "SlotEquals", wrappedCode, not)
+	fun slotEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "SlotEquals", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 */
-	fun itemEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "ItemEquals", wrappedCode, not)
+	fun itemEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "ItemEquals", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 */
-	fun isHoldingMain(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsHoldingMain", wrappedCode, not)
+	fun isHoldingMain(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsHoldingMain", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -275,7 +341,10 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun isHolding(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsHolding", wrappedCode, not)
+	fun isHolding(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsHolding", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -295,14 +364,20 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun menuSlotEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "MenuSlotEquals", wrappedCode, not)
+	fun menuSlotEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "MenuSlotEquals", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 * *Checks if a player is*
 	 * *blocking with a shield.*
 	 */
-	fun isBlocking(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsBlocking", wrappedCode, not)
+	fun isBlocking(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsBlocking", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -310,26 +385,38 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * *level of access on this plot, such*
 	 * *as builder or owner.*
 	 */
-	fun hasPermission(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "HasPermission", wrappedCode, not)
+	fun hasPermission(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "HasPermission", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 * *Checks if a player's main hand*
 	 * *is their left or right hand.*
 	 */
-	fun mainHandEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "MainHandEquals", wrappedCode, not)
+	fun mainHandEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "MainHandEquals", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 * *Checks if a player is sneaking.*
 	 */
-	fun isSneaking(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsSneaking", wrappedCode, not)
+	fun isSneaking(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsSneaking", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 * *Checks if a player is flying.*
 	 */
-	fun isFlying(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsFlying", wrappedCode, not)
+	fun isFlying(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsFlying", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -346,7 +433,10 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun hasPotion(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "HasPotion", wrappedCode, not)
+	fun hasPotion(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "HasPotion", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -362,14 +452,20 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun nameEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "NameEquals", wrappedCode, not)
+	fun nameEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "NameEquals", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 * *Checks if a player has a*
 	 * *certain inventory type open.*
 	 */
-	fun invOpen(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "InvOpen", wrappedCode, not)
+	fun invOpen(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "InvOpen", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -388,25 +484,37 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun hasSlotItem(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "HasSlotItem", wrappedCode, not)
+	fun hasSlotItem(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "HasSlotItem", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 * *Checks if a player is sprinting*
 	 * *or using the sprint key to swim.*
 	 */
-	fun isSprinting(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsSprinting", wrappedCode, not)
+	fun isSprinting(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsSprinting", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 * *Checks if a player is*
 	 * *gliding with elytra.*
 	 */
-	fun isGliding(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsGliding", wrappedCode, not)
+	fun isGliding(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsGliding", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 */
-	fun cmdArgEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "CmdArgEquals", wrappedCode, not)
+	fun cmdArgEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "CmdArgEquals", wrappedCode, not)
+		return ElseOperation()
+	}
 
 }

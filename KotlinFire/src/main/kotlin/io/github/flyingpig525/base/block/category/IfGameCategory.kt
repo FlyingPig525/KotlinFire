@@ -31,7 +31,10 @@ class IfGameCategory internal constructor(private val template: Template) {
     }
 	/**
 	 */
-	fun signHasTxt(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "SignHasTxt", wrappedCode, not)
+	fun signHasTxt(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "SignHasTxt", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -51,7 +54,10 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun hasRoomForItem(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "HasRoomForItem", wrappedCode, not)
+	fun hasRoomForItem(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "HasRoomForItem", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -66,7 +72,10 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun eventBlockEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "EventBlockEquals", wrappedCode, not)
+	fun eventBlockEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "EventBlockEquals", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -82,7 +91,10 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun commandEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "CommandEquals", wrappedCode, not)
+	fun commandEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "CommandEquals", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -97,14 +109,20 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun eventItemEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "EventItemEquals", wrappedCode, not)
+	fun eventItemEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "EventItemEquals", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 * *Checks if an event attack*
 	 * *is critical.*
 	 */
-	fun attackIsCrit(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "AttackIsCrit", wrappedCode, not)
+	fun attackIsCrit(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "AttackIsCrit", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -123,7 +141,10 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun containerHas(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "ContainerHas", wrappedCode, not)
+	fun containerHas(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "ContainerHas", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -146,7 +167,10 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun blockEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "BlockEquals", wrappedCode, not)
+	fun blockEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "BlockEquals", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -161,7 +185,10 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun inBlock(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "InBlock", wrappedCode, not)
+	fun inBlock(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "InBlock", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -176,7 +203,10 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun blockPowered(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "BlockPowered", wrappedCode, not)
+	fun blockPowered(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "BlockPowered", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -192,7 +222,10 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun hasPlayer(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "HasPlayer", wrappedCode, not)
+	fun hasPlayer(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "HasPlayer", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -212,7 +245,10 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun containerHasAll(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "ContainerHasAll", wrappedCode, not)
+	fun containerHasAll(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "ContainerHasAll", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -232,14 +268,20 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun cmdArgEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "CmdArgEquals", wrappedCode, not)
+	fun cmdArgEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "CmdArgEquals", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 * *Checks if the current*
 	 * *event is cancelled.*
 	 */
-	fun eventCancelled(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "EventCancelled", wrappedCode, not)
+	fun eventCancelled(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "EventCancelled", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -254,6 +296,9 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun isChunkLoaded(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsChunkLoaded", wrappedCode, not)
+	fun isChunkLoaded(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsChunkLoaded", wrappedCode, not)
+		return ElseOperation()
+	}
 
 }

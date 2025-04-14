@@ -39,6 +39,7 @@ class TemplateCollection(a: TemplateCollection.() -> Unit) {
     fun codeClientPlaceTemplates() {
         Template.codeClientPlaceMultipleTemplates(templates.toList())
     }
+    fun getStrings(): List<String> = templates.map { it.getTemplateString() }
 
     init {
         apply(a)

@@ -4,6 +4,7 @@ import io.github.flyingpig525.base.block.category.*
 import io.github.flyingpig525.base.block.*
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
+import io.github.flyingpig525.base.item.ItemComparison
 import io.github.flyingpig525.base.item.type.*
 import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
 import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
@@ -19,8 +20,6 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.putJsonArray
 import org.jetbrains.annotations.ApiStatus.Internal
-import org.w3c.dom.Text
-import kotlin.reflect.typeOf
 
 typealias Items = ItemCollection.() -> Unit
 
@@ -52,6 +51,9 @@ open class Template(
     }
 
     fun invokeTemplate(template: Template, items: Items = {}) {
+        if (template is EventTemplate) {
+            throw Error("Cannot invoke Event template!")
+        }
         if (template.blocks[0] is FunctionBlock) {
             callFunction(template.name, items)
             return
@@ -63,7 +65,9 @@ open class Template(
         throw Error("Cannot invoke Event template!")
     }
 
-    fun Else(wrappedCode: Template.() -> Unit) {
+    operator fun invoke(thisValue: Template, items: Items = {}) = thisValue.invokeTemplate(this, items)
+
+    infix fun ElseOperation.Else(wrappedCode: Template.() -> Unit) {
         blocks += ElseBlock()
         blocks += BracketBlock(type = "norm")
         blocks += Template(
@@ -72,6 +76,8 @@ open class Template(
         ).blocks
         blocks += BracketBlock(false, "norm")
     }
+
+
 
     init {
         if (type != Type.NONE) {
@@ -117,7 +123,7 @@ open class Template(
 
     // Extension operator functions
     // All VarClass implementations
-    fun VarClass.set(value: Item) {
+    infix fun VarClass.set(value: Item) {
         assert(value !is VarItem && value::class in permittedTypes) {
             "Value type set to this ${this::class.simpleName} must be in ${permittedTypes.map { it.simpleName }}"
         }
@@ -316,6 +322,12 @@ open class Template(
             +length
         }
     }
+
+    fun ifVal(comp: ItemComparison, wrappedCode: Template.() -> Unit): ElseOperation {
+        comp(this, wrappedCode)
+        return ElseOperation()
+    }
+
 
     companion object {
         @Deprecated("Recode is no longer being worked on")

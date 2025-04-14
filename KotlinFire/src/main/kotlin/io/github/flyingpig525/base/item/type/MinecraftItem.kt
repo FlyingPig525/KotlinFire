@@ -7,7 +7,7 @@ import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 
 /**
- * @param [nbt] NEVER making an item creator thing, so you have to get the nbt data yourself
+ * @param [nbt] NEVER making an nbt builder, so you have to get the nbt data yourself
  */
 class MinecraftItem(val nbt: String) : Item(ID.ITEM) {
     override fun getJsonData(): JsonObject {

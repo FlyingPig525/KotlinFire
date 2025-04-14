@@ -6,7 +6,10 @@ import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import kotlinx.serialization.json.putJsonObject
 
-abstract class Item(val id: ID) : JsonData {
+/**
+ * Represents a value item in df code
+ */
+abstract class Item(val id: ID) : JsonData, Insertable {
     var slot = 0
 
     enum class ID(val id: String) {

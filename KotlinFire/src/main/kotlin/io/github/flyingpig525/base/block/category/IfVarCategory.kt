@@ -46,7 +46,10 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun lessThanOrEqual(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "<=", wrappedCode, not)
+	fun lessThanOrEqual(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "<=", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -71,7 +74,10 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun itemHasEnchant(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "ItemHasEnchant", wrappedCode, not)
+	fun itemHasEnchant(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "ItemHasEnchant", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -86,7 +92,10 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun itemIsBlock(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "ItemIsBlock", wrappedCode, not)
+	fun itemIsBlock(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "ItemIsBlock", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -111,7 +120,10 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun dictValueEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "DictValueEquals", wrappedCode, not)
+	fun dictValueEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "DictValueEquals", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -140,7 +152,10 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun itemHasTag(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "ItemHasTag", wrappedCode, not)
+	fun itemHasTag(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "ItemHasTag", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -159,7 +174,10 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun stringMatches(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "StringMatches", wrappedCode, not)
+	fun stringMatches(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "StringMatches", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -173,7 +191,10 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun listIsEmpty(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "ListIsEmpty", wrappedCode, not)
+	fun listIsEmpty(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "ListIsEmpty", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -193,7 +214,10 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun startsWith(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "StartsWith", wrappedCode, not)
+	fun startsWith(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "StartsWith", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -217,7 +241,10 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun listValueEq(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "ListValueEq", wrappedCode, not)
+	fun listValueEq(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "ListValueEq", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -232,17 +259,26 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun varIsType(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "VarIsType", wrappedCode, not)
+	fun varIsType(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "VarIsType", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 */
-	fun textMatches(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "TextMatches", wrappedCode, not)
+	fun textMatches(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "TextMatches", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 */
-	fun isNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "IsNear", wrappedCode, not)
+	fun isNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsNear", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -267,7 +303,10 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun inRange(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, " InRange ", wrappedCode, not)
+	fun inRange(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, " InRange ", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -281,12 +320,18 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun varExists(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "VarExists", wrappedCode, not)
+	fun varExists(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "VarExists", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 */
-	fun legacyNotEqual(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "Legacy !=", wrappedCode, not)
+	fun legacyNotEqual(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "Legacy !=", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -301,7 +346,10 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun blockIsSolid(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "BlockIsSolid", wrappedCode, not)
+	fun blockIsSolid(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "BlockIsSolid", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -321,7 +369,10 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun itemEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "ItemEquals", wrappedCode, not)
+	fun itemEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "ItemEquals", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -340,12 +391,18 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun listContains(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "ListContains", wrappedCode, not)
+	fun listContains(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "ListContains", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
 	 */
-	fun legacyEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "Legacy =", wrappedCode, not)
+	fun legacyEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "Legacy =", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -369,7 +426,10 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun locIsNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "LocIsNear", wrappedCode, not)
+	fun locIsNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "LocIsNear", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -388,7 +448,10 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun contains(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "Contains", wrappedCode, not)
+	fun contains(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "Contains", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -407,7 +470,10 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun notEqual(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "!=", wrappedCode, not)
+	fun notEqual(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "!=", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -426,7 +492,10 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun lessThan(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "<", wrappedCode, not)
+	fun lessThan(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "<", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -445,7 +514,10 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun equalTo(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "=", wrappedCode, not)
+	fun equalTo(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "=", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -464,7 +536,10 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun greaterThan(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, ">", wrappedCode, not)
+	fun greaterThan(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, ">", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -484,7 +559,10 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun endsWith(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "EndsWith", wrappedCode, not)
+	fun endsWith(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "EndsWith", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -504,7 +582,10 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun greaterThanOrEqual(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, ">=", wrappedCode, not)
+	fun greaterThanOrEqual(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, ">=", wrappedCode, not)
+		return ElseOperation()
+	}
 
 
 	/**
@@ -523,6 +604,9 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun dictHasKey(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "DictHasKey", wrappedCode, not)
+	fun dictHasKey(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "DictHasKey", wrappedCode, not)
+		return ElseOperation()
+	}
 
 }

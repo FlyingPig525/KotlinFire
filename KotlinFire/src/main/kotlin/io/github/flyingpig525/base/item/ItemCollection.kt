@@ -6,16 +6,24 @@ import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
 import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
 import io.github.flyingpig525.base.item.type.VarClass
 
-class ItemCollection(func: ItemCollection.() -> Unit) {
+/**
+ * A class used internally to provide clean comparison syntax
+ */
+class ItemCollection internal constructor(func: ItemCollection.() -> Unit) {
     val items: MutableList<Item> = mutableListOf()
 
     init {
         apply(func)
     }
 
-    operator fun Item.unaryPlus() = also { addItem(it) }
     operator fun String.unaryPlus() = also { addItem(textItem) }
-    operator fun VarClass.unaryPlus() = also { addItem(item) }
+    operator fun Insertable.unaryPlus() = also {
+        if (this is Item) {
+            addItem(this)
+        } else if (this is VarClass) {
+            addItem(item)
+        }
+    }
 
     fun addItem(item: Item) {
         items += item.apply {

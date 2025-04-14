@@ -1,5 +1,6 @@
 package org.example
 
+import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.Template.Type.*
 import io.github.flyingpig525.base.TemplateCollection
 import io.github.flyingpig525.base.block.PlayerEvent
@@ -7,6 +8,7 @@ import io.github.flyingpig525.base.item.type.LocItem
 import io.github.flyingpig525.base.item.type.MinecraftItem
 import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
 import io.github.flyingpig525.base.item.type.NumItem.Companion.toNumItem
+import io.github.flyingpig525.base.item.type.NumVariable
 import io.github.flyingpig525.base.item.type.ParameterItem
 import io.github.flyingpig525.base.item.type.VarItem.Companion.lineVar
 import io.github.flyingpig525.base.item.type.VarItem.Companion.saveVar
@@ -154,6 +156,39 @@ class LibraryTest {
 
 //             Uncomment this when trying out this example
             // codeClientPlaceTemplates()
+        }
+    }
+
+    @Test
+    fun itemComparisonExample() {
+        TemplateCollection {
+            val v = NumVariable("variable", GAME)
+            val example = template(type = Template.Type.FUNCTION, name = "example") {
+                Repeat.forever({}) {
+                    ifVal(v equalTo 12.numItem) {
+                        PlayerAction.sendMessage {
+                            +"wow it equals :O"
+                        }
+                        Control.stopRepeat {  }
+                    } Else {
+                        PlayerAction.sendMessage {
+                            +"nope :("
+                        }
+                    }
+                    Control.wait {  }
+                }
+            }
+            val proc = template(PROCESS, "proc") {
+                Control.wait {
+                    +(16.numItem)
+                }
+                v set 12.numItem
+            }
+            val join = eventTemplate(PlayerEvent.Join) {
+                proc(this)
+                example(this)
+            }
+            println(getStrings())
         }
     }
 }

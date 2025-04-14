@@ -156,11 +156,11 @@ fun blockActions(actions: List<JsonObject>) = try {
                 if (negatable) ", not: Boolean = false" else ""
             }${
                 if (encloses) ", wrappedCode: Template.() -> Unit" else ""
-            }) = block(items, \"$name\"${if (encloses) ", wrappedCode" else ""}${if (negatable) ", not" else ""})${
+            }): ElseOperation {\n\t\tblock(items, \"$name\"${if (encloses) ", wrappedCode" else ""}${if (negatable) ", not" else ""})${
                 if (subAction) 
                     """ { put("subAction", subAction.codeblock) }"""
                 else ""
-            }\n\n"
+            }\n\t\treturn ElseOperation()\n\t}\n\n"
     } catch (e: Exception) {
         println(Json.encodeToString(action))
         e.printStackTrace()

@@ -1,7 +1,9 @@
 package io.github.flyingpig525.base.item.type
 
 import io.github.flyingpig525.base.JsonData
+import io.github.flyingpig525.base.item.Insertable
 import io.github.flyingpig525.base.item.Item
+import io.github.flyingpig525.base.item.ItemComparison
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 

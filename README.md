@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation("io.github.flyingpig525:kotlinfire:1.4.0")
+    implementation("io.github.flyingpig525:kotlinfire:1.4.1")
 }
 ```
 
@@ -149,7 +149,7 @@ EventTemplate(PlayerEvent.Join) {
 ```
 
 ### New, 1.4.0!
-There are now classes given extension functions under the scope of a template. There are only a few of these classes,
+There are now classes given extension functions under the scope of a template. There are only a few of these classes at the time of writing this,
 being: TextVariable, NumVariable, and VecVariable. These are the only ones I thought of useful functions for at the time
 of writing this.
 
@@ -164,6 +164,37 @@ Template {
     numVar.set(5.numItem) // sets the variable "number variable" to 5
 }
 ```
+
+### New, 1.4.1!
+While this does add a pretty large amount of functionality, I feel like it is just missing content that should have been
+in 1.4.0, so this is just marked as a patch.
+
+The above classes can now be compared using the new item comparison infix functions, allowing for a clean comparing
+experience. `ifVar` can be called while in the scope of a `Template`, which takes a new class, `ItemComparison`,
+as an argument. This class can be constructed through the functions provided on `VarClass` extending classes, such as
+`NumVariable`. This function returns a class that contains an `Else` function (capitalized to avoid clashes with
+builtin operators), which, quite obviously, allows you to add an else block to the comparison. Every comparison block
+also now returns an `ElseOperation` to allow easy else addition. Replacing the old `Else` function that was a member of
+`Template`, which could be called at any time.
+
+```kotlin
+Template {
+    val numVar = NumVariable("numvar", VarItem.Scope.Game)
+    ifVal(numVar equalTo 4.numItem) {
+        // do something
+    } Else {
+        // do another thing
+    }
+    val locVar = LocVariable("loc", VarItem.Scope.Game)
+    ifVal(locVar isNear locOf(14, 52, 23.5)) {
+        // do something
+    } // Else is not required
+}
+```
+
+Every `VarClass` extender has an `equalTo` and `exists` (not infix) function, but some do not have other comparison
+functions.
+
 
 ### Utilities
 Multiple utility functions exist, allowing the retrieval of encoded template strings and a function to interact with the
@@ -200,18 +231,20 @@ Template.codeClientPlaceMultipleTemplates(template, template2)
 ```
 *Example code sending multiple templates to the CodeClient API*
 
-A wrapper class, `TemplateCollection`, is also provided to make sending a large amount of templates easier.
+A wrapper class, `TemplateCollection`, is also provided to make sending a large amount of templates easier. When using
+`TemplateCollection`, ensure you use the provided functions for template collection `template` and `eventTemplate` instead
+of the class constructors.
 
 ```kotlin
 TemplateCollection {
-    val template = Template(name = "Name", type = Template.Type.PROCESS) {
+    val template = template(name = "Name", type = Template.Type.PROCESS) {
         val variable = "Very long and annoying to write name".toVarItem()
         SetVar.equalTo {
             +variable
             +(12.toNumItem())
         }
     }
-    val template2 = Template {
+    val template2 = template {
         PlayerAction.sendMessage {
             +"Hello, world!".toTextItem()
         }
