@@ -25,4 +25,4 @@ class TextItem(val text: String) : Item(ID.RICHTEXT) {
     }
 }
 
-class TextVariable(name: String, scope: VarItem.Scope) : VarClass(name, scope, TextItem::class)
+class TextVariable(name: String, scope: VarItem.Scope) : VarClass<TextItem>(name, scope, TextItem::class)

@@ -6,7 +6,7 @@ import java.io.FileNotFoundException
 import kotlin.io.path.*
 
 // This is not efficient in the slightest :skull:
-fun main() {
+fun main(vararg args: String) {
     val actionDumpFile = File("dbc.json")
     if (!actionDumpFile.exists()) {
         throw FileNotFoundException("action dump file not found")
@@ -15,27 +15,50 @@ fun main() {
     val actions = actionDump["actions"]!!.jsonArray
     val blocks = actionDump["codeblocks"]!!.jsonArray
     val actionMap = mutableMapOf<String, MutableList<JsonObject>>()
-    println("creating block keys")
-    blocks.forEach {
-        actionMap[it.jsonObject["name"]!!.jsonPrimitive.content] = mutableListOf()
+    if ("noBlock" !in args) {
+        println("creating block keys")
+        blocks.forEach {
+            actionMap[it.jsonObject["name"]!!.jsonPrimitive.content] = mutableListOf()
+        }
+        println("creating block actions")
+        actions.forEach {
+            actionMap[it.jsonObject["codeblockName"]!!.jsonPrimitive.content]!! += it.jsonObject
+        }
+        println("processing block actions")
+        actionMap.forEach { (k, v) ->
+            if (k.endsWith("PROCESS") || k.endsWith("FUNCTION") || k.endsWith("EVENT")) return@forEach
+            if (v.isEmpty()) return@forEach
+            blockActions(v.toList())
+        }
     }
-    println("creating block actions")
-    actions.forEach {
-        actionMap[it.jsonObject["codeblockName"]!!.jsonPrimitive.content]!! += it.jsonObject
+    if ("noEvent" !in args) {
+        println("processing events")
+        actionMap.filterKeys { it.endsWith("EVENT") }.forEach { (k, v) ->
+            processEvents(CodeBlock.of(k), v)
+        }
     }
-    println("processing block actions")
-    actionMap.forEach { (k, v) ->
-        if (k.endsWith("PROCESS") || k.endsWith("FUNCTION") || k.endsWith("EVENT")) return@forEach
-        if (v.isEmpty()) return@forEach
-        blockActions(v.toList())
-    }
-    println("processing events")
-    actionMap.filterKeys { it.endsWith("EVENT") }.forEach { (k, v) ->
-        processEvents(CodeBlock.of(k), v)
+    if ("noGameValue" !in args) {
+        println("creating game value categories")
+        val categories: MutableMap<String, MutableList<JsonObject>> = mutableMapOf()
+        for (value in actionDump["gameValueCategories"]!!.jsonArray.map { it.jsonObject }) {
+            categories[value["identifier"]!!.jsonPrimitive.content] = mutableListOf()
+        }
+        println("populating game value categories")
+        for (value in actionDump["gameValues"]!!.jsonArray.map { it.jsonObject }) {
+            categories[value["category"]!!.jsonPrimitive.content]!! += value
+        }
+        println("processing game value categories")
+        for (category in categories) try {
+            if (category.value.isEmpty()) continue
+            processGameValueCategory(category.key, category.value)
+        } catch (e: Throwable) {
+            println("something went wrong processing category ${category.key}")
+            e.printStackTrace()
+            break
+        }
     }
 
     // TODO: Add sound processing
-    // TODO: Add game value processing
     // TODO: Add potion processing
 }
 
@@ -113,7 +136,7 @@ fun blockActions(actions: List<JsonObject>) = try {
         val subAction = hasSubAction(action)
         if (subAction) {
             comment += "\t *\n"
-            comment += "\t * ##### Accepts sub actions:\n"
+            comment += "\t * **Accepts sub actions:**\n"
             val subActions = action["subActionBlocks"]!!.jsonArray.map { CodeBlock.of(it.jsonPrimitive.content) }
             subActions.forEach {
                 comment += "\t * [${it}SubAction],\n"
@@ -126,7 +149,7 @@ fun blockActions(actions: List<JsonObject>) = try {
         if (arguments?.isNotEmpty() == true) {
             comment +=
                 "\t *\n" +
-                "\t * #### Args:\n" +
+                "\t * **Args:**\n" +
                 "\t *\n"
             arguments.forEach { arg ->
                 val unprocessed = arg["type"]!!.jsonPrimitive.content
@@ -203,7 +226,7 @@ fun processEvents(codeblock: CodeBlock, events: List<JsonObject>) = try {
         file += "\t/**\n"
         file += "\t * $iconName\n"
         file += "\t *\n"
-        file += "\t * #### Description:\n"
+        file += "\t * **Description:**\n"
         file += "\t *\n"
         for (line in desc) {
             file += "\t * *$line*\n"
@@ -216,6 +239,58 @@ fun processEvents(codeblock: CodeBlock, events: List<JsonObject>) = try {
 } catch (e: Exception) {
     println("an error occurred during event processing")
     e.printStackTrace()
+}
+
+fun processGameValueCategory(category: String, values: List<JsonObject>) {
+    val className = category.replace(" ", "")
+    println(className)
+    var file = """
+        package io.github.flyingpig525.base.item.type.gamevalue
+        
+        import io.github.flyingpig525.base.item.*
+        import io.github.flyingpig525.base.item.type.*
+        
+        object $className {
+        
+    """.trimIndent()
+    for (value in values) try {
+        val icon = value["icon"]!!.jsonObject
+        val id = removeClutter(icon["name"]!!.jsonPrimitive.content)
+        val name = id.replace(" ", "").replace("-", "")
+        val description = icon["description"]!!.jsonArray.map { it.jsonPrimitive.content }
+        val type = typeToKType(icon["returnType"]!!.jsonPrimitive.content)
+        val typeDescription = icon["returnDescription"]!!.jsonArray.map { it.jsonPrimitive.content }
+        val additionalInfo = icon["additionalInfo"]!!.jsonArray.map { it.jsonArray.map { it.jsonPrimitive.content } }.flatten()
+        file += "\t/**\n"
+        if (description.isNotEmpty()) {
+            for (line in description) {
+                file += "\t * *${removeClutter(line)}*\n"
+            }
+            file += "\t *\n"
+        }
+        file += "\t * **Type:** [$type]\n"
+        if (typeDescription.isNotEmpty()) {
+            file += "\t *\n"
+            for (line in typeDescription) {
+                file += "\t * *${removeClutter(line)}*\n"
+            }
+        }
+        if (additionalInfo.isNotEmpty()) {
+            file += "\t *\n"
+            file += "\t * **Additional Info**\n\t *\n"
+            for (line in additionalInfo) {
+                file += "\t * *$line*\n"
+            }
+        }
+        file += "\t */\n"
+        file += "\tval $name get() = GameValue<$type>(\"$id\")\n\n"
+    } catch (e: Throwable) {
+        println("something went wrong processing $value")
+        e.printStackTrace()
+    }
+    file += "}"
+    println(file)
+    writeToDirFile("gen/gamevalue", "$className.kt", file)
 }
 
 enum class CodeBlock(val block: String, val shortName: String) {

@@ -8,7 +8,7 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 
-class GameValue(private val type: String, private var target: Target = Target.Default) : Item(ID.GAMEVALUE) {
+class GameValue <T : Item> internal constructor(private val type: String, private var target: Target = Target.Default) : Item(ID.GAMEVALUE) {
     override fun getJsonData(): JsonObject {
         return buildJsonObject {
             put("type", type)
@@ -22,8 +22,9 @@ class GameValue(private val type: String, private var target: Target = Target.De
 //		""".trimIndent()
     }
 
-    fun target(target: Target) {
+    fun target(target: Target): GameValue<T> {
         this.target = target
+        return this
     }
 
     enum class Target {

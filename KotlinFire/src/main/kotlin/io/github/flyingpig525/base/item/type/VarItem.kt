@@ -55,11 +55,11 @@ class VarItem(val name: String, val scope: Scope = Scope.GAME) : Item(ID.VAR) {
     }
 }
 
-open class VarClass(val name: String, scope: VarItem.Scope, internal vararg val permittedTypes: KClass<*>) : Insertable {
+open class VarClass<T : Item>(val name: String, scope: VarItem.Scope, internal vararg val permittedTypes: KClass<*>) : Insertable {
     val item = name.toVarItem(scope)
 
     private fun equalTo(other: Insertable): ItemComparison {
-        if (other !is VarClass && other !is Item) throw IllegalArgumentException("this should never happen, other is type ${other::class.simpleName}")
+        assertInsertable(other)
         return ItemComparison { not, nested ->
             IfVar.equalTo({
                 +item
@@ -67,12 +67,19 @@ open class VarClass(val name: String, scope: VarItem.Scope, internal vararg val 
             }, not, nested)
         }
     }
-    infix fun equalTo(other: VarClass): ItemComparison = equalTo(other as Insertable)
-    infix fun equalTo(other: Item): ItemComparison = equalTo(other as Insertable)
+    infix fun equalTo(other: VarClass<T>): ItemComparison = equalTo(other as Insertable)
+    infix fun equalTo(other: T): ItemComparison = equalTo(other as Insertable)
+    infix fun equalTo(other: GameValue<T>): ItemComparison = equalTo(other as Insertable)
 
     fun exists(): ItemComparison = ItemComparison { not, nested ->
         IfVar.varExists({
             +item
         }, not, nested)
+    }
+
+    companion object {
+        internal fun assertInsertable(o: Insertable) {
+            if (o !is VarClass<*> && o !is Item) throw IllegalArgumentException("this should never happen, other is type ${o::class.simpleName}")
+        }
     }
 }

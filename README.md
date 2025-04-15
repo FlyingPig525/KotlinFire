@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation("io.github.flyingpig525:kotlinfire:1.4.1")
+    implementation("io.github.flyingpig525:kotlinfire:1.5.0")
 }
 ```
 
@@ -195,6 +195,24 @@ Template {
 Every `VarClass` extender has an `equalTo` and `exists` (not infix) function, but some do not have other comparison
 functions.
 
+### New, 1.5.0!
+Game value generation has been implemented in the [Generation module](https://github.com/FlyingPig525/KotlinFire/blob/master/Generation),
+meaning the format has changed. Game values can now be accessed in their respective category objects: `EventValues`,
+`InformationalValues`, `ItemValues`, `LocationalValues`, `PlotValues`, and `StatisticalValues`.
+
+Each of the variables in these objects will create a new `GameValue` instance when accessed, and target can be changed
+by calling the `GameValue#target(GameValue.Target)` method.
+
+```kotlin
+Template {
+    val num = NumVariable("added latency", VarItem.Scope.Line)
+    // Redundant setting of target, `Default` is the default
+    num set 41.numItem
+    num += StatisticalValues.Ping.target(GameValue.Target.Default)
+}
+```
+
+More type-safety has also been added to `VarClass` extending classes.
 
 ### Utilities
 Multiple utility functions exist, allowing the retrieval of encoded template strings and a function to interact with the

@@ -31,9 +31,9 @@ class NumItem(private val value: String) : Item(ID.NUMBER) {
     }
 }
 
-class NumVariable(name: String, scope: VarItem.Scope) : VarClass(name, scope, NumItem::class) {
+class NumVariable(name: String, scope: VarItem.Scope) : VarClass<NumItem>(name, scope, NumItem::class) {
     private fun lessThan(other: Insertable): ItemComparison {
-        if (other !is VarClass && other !is Item) throw IllegalArgumentException("this should never happen, other is type ${other::class.simpleName}")
+        assertInsertable(other)
         return ItemComparison { not, nested ->
             IfVar.lessThan({
                 +item
@@ -43,9 +43,10 @@ class NumVariable(name: String, scope: VarItem.Scope) : VarClass(name, scope, Nu
     }
     infix fun lessThan(other: NumVariable) = lessThan(other as Insertable)
     infix fun lessThan(other: NumItem) = lessThan(other as Insertable)
+    infix fun lessThan(other: GameValue<NumItem>) = lessThan(other as Insertable)
 
     private fun lessThanOrEqual(other: Insertable): ItemComparison {
-        if (other !is VarClass && other !is Item) throw IllegalArgumentException("this should never happen, other is type ${other::class.simpleName}")
+        assertInsertable(other)
         return ItemComparison { not, nested ->
             IfVar.lessThanOrEqual({
                 +item
@@ -55,9 +56,10 @@ class NumVariable(name: String, scope: VarItem.Scope) : VarClass(name, scope, Nu
     }
     infix fun lessThanOrEqual(other: NumVariable) = lessThanOrEqual(other as Insertable)
     infix fun lessThanOrEqual(other: NumItem) = lessThanOrEqual(other as Insertable)
+    infix fun lessThanOrEqual(other: GameValue<NumItem>) = lessThanOrEqual(other as Insertable)
 
     private fun greaterThan(other: Insertable): ItemComparison {
-        if (other !is VarClass && other !is Item) throw IllegalArgumentException("this should never happen, other is type ${other::class.simpleName}")
+        assertInsertable(other)
         return ItemComparison { not, nested ->
             IfVar.greaterThan({
                 +item
@@ -67,9 +69,10 @@ class NumVariable(name: String, scope: VarItem.Scope) : VarClass(name, scope, Nu
     }
     infix fun greaterThan(other: NumVariable) = greaterThan(other as Insertable)
     infix fun greaterThan(other: NumItem) = greaterThan(other as Insertable)
+    infix fun greaterThan(other: GameValue<NumItem>) = greaterThan(other as Insertable)
 
     private fun greaterThanOrEqual(other: Insertable): ItemComparison {
-        if (other !is VarClass && other !is Item) throw IllegalArgumentException("this should never happen, other is type ${other::class.simpleName}")
+        assertInsertable(other)
         return ItemComparison { not, nested ->
             IfVar.greaterThanOrEqual({
                 +item
@@ -79,4 +82,5 @@ class NumVariable(name: String, scope: VarItem.Scope) : VarClass(name, scope, Nu
     }
     infix fun greaterThanOrEqual(other: NumVariable) = greaterThanOrEqual(other as Insertable)
     infix fun greaterThanOrEqual(other: NumItem) = greaterThanOrEqual(other as Insertable)
+    infix fun greaterThanOrEqual(other: GameValue<NumItem>) = greaterThanOrEqual(other as Insertable)
 }

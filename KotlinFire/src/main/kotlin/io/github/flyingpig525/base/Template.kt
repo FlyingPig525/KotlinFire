@@ -123,32 +123,39 @@ open class Template(
 
     // Extension operator functions
     // All VarClass implementations
-    infix fun VarClass.set(value: Item) {
-        assert(value !is VarItem && value::class in permittedTypes) {
-            "Value type set to this ${this::class.simpleName} must be in ${permittedTypes.map { it.simpleName }}"
-        }
+    infix fun <T : Item> VarClass<T>.set(value: T) {
+        VarClass.assertInsertable(value)
         SetVariable.equalTo {
             +item
             +value
         }
     }
-    inline fun <T : VarClass> T.set(value: T) {
+    // bullshit
+    infix fun <T : Item> VarClass<T>.set(value: GameValue<*>) {
         SetVariable.equalTo {
             +item
             +value
         }
     }
+    infix fun VarClass<*>.set(value: VarItem) {
+        SetVariable.equalTo {
+            +item
+            +value
+        }
+    }
+
     // NumVariable
     // +=
     inline operator fun NumVariable.plusAssign(other: Number) = plusAssign(other.numItem)
     inline operator fun NumVariable.plusAssign(other: String) = plusAssign(other.numItem)
-    inline operator fun NumVariable.plusAssign(other: NumVariable) {
+    inline operator fun NumVariable.plusAssign(other: NumVariable) = plusAssign(other.item)
+    inline operator fun NumVariable.plusAssign(other: NumItem) {
         SetVariable.increment {
             +item
             +other
         }
     }
-    inline operator fun NumVariable.plusAssign(other: NumItem) {
+    inline operator fun NumVariable.plusAssign(other: VarItem) {
         SetVariable.increment {
             +item
             +other
@@ -157,13 +164,14 @@ open class Template(
     // -=
     inline operator fun NumVariable.minusAssign(other: Number) = minusAssign(other.numItem)
     inline operator fun NumVariable.minusAssign(other: String) = minusAssign(other.numItem)
-    inline operator fun NumVariable.minusAssign(other: NumVariable) {
+    inline operator fun NumVariable.minusAssign(other: NumVariable) = minusAssign(other.item)
+    inline operator fun NumVariable.minusAssign(other: NumItem) {
         SetVariable.increment {
             +item
             +other
         }
     }
-    inline operator fun NumVariable.minusAssign(other: NumItem) {
+    inline operator fun NumVariable.minusAssign(other: VarItem) {
         SetVariable.increment {
             +item
             +other
@@ -172,13 +180,7 @@ open class Template(
     // /=
     inline operator fun NumVariable.divAssign(other: Number) = divAssign(other.numItem)
     inline operator fun NumVariable.divAssign(other: String) = divAssign(other.numItem)
-    inline operator fun NumVariable.divAssign(other: NumVariable) {
-        SetVariable.divide {
-            +item
-            +item
-            +other
-        }
-    }
+    inline operator fun NumVariable.divAssign(other: NumVariable) = divAssign(other.item)
     inline operator fun NumVariable.divAssign(other: NumItem) {
         SetVariable.divide {
             +item
@@ -186,16 +188,17 @@ open class Template(
             +other
         }
     }
-    // *=
-    inline operator fun NumVariable.timesAssign(other: Number) = divAssign(other.numItem)
-    inline operator fun NumVariable.timesAssign(other: String) = divAssign(other.numItem)
-    inline operator fun NumVariable.timesAssign(other: NumVariable) {
-        SetVariable.x {
+    inline operator fun NumVariable.divAssign(other: VarItem) {
+        SetVariable.divide {
             +item
             +item
             +other
         }
     }
+    // *=
+    inline operator fun NumVariable.timesAssign(other: Number) = timesAssign(other.numItem)
+    inline operator fun NumVariable.timesAssign(other: String) = timesAssign(other.numItem)
+    inline operator fun NumVariable.timesAssign(other: NumVariable) = timesAssign(other.item)
     inline operator fun NumVariable.timesAssign(other: NumItem) {
         SetVariable.x {
             +item
@@ -203,17 +206,25 @@ open class Template(
             +other
         }
     }
+    inline operator fun NumVariable.timesAssign(other: VarItem) {
+        SetVariable.x {
+            +item
+            +item
+            +other
+        }
+    }
     // %=
-    inline operator fun NumVariable.remAssign(other: Number) = divAssign(other.numItem)
-    inline operator fun NumVariable.remAssign(other: String) = divAssign(other.numItem)
-    inline operator fun NumVariable.remAssign(other: NumVariable) {
+    inline operator fun NumVariable.remAssign(other: Number) = remAssign(other.numItem)
+    inline operator fun NumVariable.remAssign(other: String) = remAssign(other.numItem)
+    inline operator fun NumVariable.remAssign(other: NumVariable) = remAssign(other.item)
+    inline operator fun NumVariable.remAssign(other: NumItem) {
         SetVariable.mod {
             +item
             +item
             +other
         }
     }
-    inline operator fun NumVariable.remAssign(other: NumItem) {
+    inline operator fun NumVariable.remAssign(other: VarItem) {
         SetVariable.mod {
             +item
             +item
@@ -224,7 +235,7 @@ open class Template(
     // TextVariable
     // +=
     inline operator fun TextVariable.plusAssign(other: String) = plusAssign(other.textItem)
-    inline operator fun TextVariable.plusAssign(other: VarClass) { plusAssign(other.item) }
+    inline operator fun TextVariable.plusAssign(other: VarClass<*>) { plusAssign(other.item) }
     inline operator fun TextVariable.plusAssign(other: TextItem) {
         SetVariable.styledText {
             +item
@@ -284,7 +295,7 @@ open class Template(
     /**
      * @param [replace] - A regex used to find replacement targets
      */
-    inline fun TextVariable.replace(replace: VarClass, with: VarClass) = replace(replace.item, with.item)
+    inline fun TextVariable.replace(replace: VarClass<*>, with: VarClass<*>) = replace(replace.item, with.item)
     /**
      * @param [replace] - A regex used to find replacement targets
      */

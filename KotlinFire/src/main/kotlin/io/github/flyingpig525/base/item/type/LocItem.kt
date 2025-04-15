@@ -4,6 +4,7 @@ import io.github.flyingpig525.base.JsonData
 import io.github.flyingpig525.base.item.Insertable
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemComparison
+import io.github.flyingpig525.base.item.type.VarClass.Companion.assertInsertable
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
@@ -77,9 +78,9 @@ fun locOf(
     yaw.toFloat()
 )
 
-class LocVariable(name: String, scope: VarItem.Scope) : VarClass(name, scope, LocItem::class) {
+class LocVariable(name: String, scope: VarItem.Scope) : VarClass<LocItem>(name, scope, LocItem::class) {
     private fun isNear(other: Insertable): ItemComparison {
-        if (other !is VarClass && other !is Item) throw IllegalArgumentException("this should never happen, other is type ${other::class.simpleName}")
+        assertInsertable(other)
         return ItemComparison { not, nested ->
             IfVar.isNear({
                 +item
@@ -89,4 +90,5 @@ class LocVariable(name: String, scope: VarItem.Scope) : VarClass(name, scope, Lo
     }
     infix fun isNear(other: LocVariable) = isNear(other as Insertable)
     infix fun isNear(other: LocItem) = isNear(other as Insertable)
+    infix fun isNear(other: GameValue<LocItem>) = isNear(other as Insertable)
 }

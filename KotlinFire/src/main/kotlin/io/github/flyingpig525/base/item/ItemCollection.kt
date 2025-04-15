@@ -20,7 +20,7 @@ class ItemCollection internal constructor(func: ItemCollection.() -> Unit) {
     operator fun Insertable.unaryPlus() = also {
         if (this is Item) {
             addItem(this)
-        } else if (this is VarClass) {
+        } else if (this is VarClass<*>) {
             addItem(item)
         }
     }

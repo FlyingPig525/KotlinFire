@@ -10,10 +10,13 @@ import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
 import io.github.flyingpig525.base.item.type.NumItem.Companion.toNumItem
 import io.github.flyingpig525.base.item.type.NumVariable
 import io.github.flyingpig525.base.item.type.ParameterItem
+import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
 import io.github.flyingpig525.base.item.type.VarItem.Companion.lineVar
 import io.github.flyingpig525.base.item.type.VarItem.Companion.saveVar
 import io.github.flyingpig525.base.item.type.VarItem.Companion.toVarItem
 import io.github.flyingpig525.base.item.type.VarItem.Scope.*
+import io.github.flyingpig525.base.item.type.gamevalue.InformationalValues
+import io.github.flyingpig525.base.item.type.gamevalue.StatisticalValues
 import kotlinx.serialization.json.Json
 import org.testng.annotations.Test
 
