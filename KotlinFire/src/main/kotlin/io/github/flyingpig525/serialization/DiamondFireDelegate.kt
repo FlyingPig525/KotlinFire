@@ -36,15 +36,3 @@ class DiamondFireDelegate<T : VarClass<I>, I : Item> internal constructor(val ty
         } as I
     }
 }
-
-class a : ReadWriteProperty<Any?, Int> {
-
-    override fun getValue(thisRef: Any?, property: KProperty<*>): Int {
-        println(thisRef)
-        return 5
-    }
-
-    override fun setValue(thisRef: Any?, property: KProperty<*>, value: Int) {
-        println(thisRef)
-    }
-}
