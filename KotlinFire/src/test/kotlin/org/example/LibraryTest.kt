@@ -11,14 +11,17 @@ import io.github.flyingpig525.base.item.type.NumItem.Companion.toNumItem
 import io.github.flyingpig525.base.item.type.NumVariable
 import io.github.flyingpig525.base.item.type.ParameterItem
 import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
+import io.github.flyingpig525.base.item.type.VarItem
 import io.github.flyingpig525.base.item.type.VarItem.Companion.lineVar
 import io.github.flyingpig525.base.item.type.VarItem.Companion.saveVar
 import io.github.flyingpig525.base.item.type.VarItem.Companion.toVarItem
 import io.github.flyingpig525.base.item.type.VarItem.Scope.*
 import io.github.flyingpig525.base.item.type.gamevalue.InformationalValues
 import io.github.flyingpig525.base.item.type.gamevalue.StatisticalValues
+import io.github.flyingpig525.serialization.DiamondFireClass
+import io.github.flyingpig525.serialization.DiamondFireClassOptIn
 import kotlinx.serialization.json.Json
-import org.testng.annotations.Test
+import kotlin.test.Test
 
 class LibraryTest {
 
@@ -194,4 +197,24 @@ class LibraryTest {
             println(getStrings())
         }
     }
+
+    @OptIn(DiamondFireClassOptIn::class)
+    @Test
+    fun classTest() {
+        val t = Template {
+            val clas = DFClass("name")
+            clas.init()
+            PlayerAction.sendMessage {
+                +clas.txt
+                +clas.num
+            }
+        }
+        println(Json { prettyPrint = true }.encodeToString(t.getJsonData()))
+    }
+}
+
+@OptIn(DiamondFireClassOptIn::class)
+class DFClass(name: String, scope: VarItem.Scope = VarItem.Scope.GAME) : DiamondFireClass(name, scope) {
+    val num by numProp(12)
+    val txt by textProp("aaaa")
 }

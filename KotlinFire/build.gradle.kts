@@ -110,19 +110,14 @@ repositories {
 }
 
 dependencies {
-    // Use the Kotlin JUnit 5 integration.
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-
-    // Use the JUnit 5 integration.
-    testImplementation(libs.junit.jupiter.engine)
-    testImplementation("org.testng:testng:7.1.0")
+    testImplementation(kotlin("test"))
 
     val ktor_version = "3.1.2"
     implementation("io.ktor:ktor-client-websockets:$ktor_version")
     implementation("io.ktor:ktor-client-java:$ktor_version")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
 
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+//    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     implementation(kotlin("stdlib-jdk8"))
 }
 

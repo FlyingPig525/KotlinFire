@@ -8,6 +8,8 @@ import io.github.flyingpig525.base.item.ItemComparison
 import io.github.flyingpig525.base.item.type.VarItem.Companion.toVarItem
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.contract
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 import kotlin.reflect.KProperty0
@@ -78,7 +80,11 @@ open class VarClass<T : Item>(val name: String, scope: VarItem.Scope, internal v
     }
 
     companion object {
+        @OptIn(ExperimentalContracts::class)
         internal fun assertInsertable(o: Insertable) {
+            contract {
+                returns() implies(o is VarClass<*> || o is Item)
+            }
             if (o !is VarClass<*> && o !is Item) throw IllegalArgumentException("this should never happen, other is type ${o::class.simpleName}")
         }
     }

@@ -8,7 +8,10 @@ import io.github.flyingpig525.base.item.ItemComparison
 import io.github.flyingpig525.base.item.type.*
 import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
 import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
+import io.github.flyingpig525.base.item.type.VarItem.Companion.toVarItem
 import io.github.flyingpig525.encoding.TemplateEncoder
+import io.github.flyingpig525.serialization.DiamondFireClass
+import io.github.flyingpig525.serialization.DiamondFireClassOptIn
 import io.ktor.client.*
 import io.ktor.client.engine.java.*
 import io.ktor.client.plugins.websocket.*
@@ -23,7 +26,8 @@ import org.jetbrains.annotations.ApiStatus.Internal
 
 typealias Items = ItemCollection.() -> Unit
 
-@Suppress("LeakingThis")
+@Suppress("LeakingThis", "NOTHING_TO_INLINE")
+@OptIn(DiamondFireClassOptIn::class)
 open class Template(
     type: Type = Type.FUNCTION,
     val name: String = "PutNameHere",
@@ -337,6 +341,34 @@ open class Template(
     fun ifVal(comp: ItemComparison, wrappedCode: Template.() -> Unit): ElseOperation {
         comp(this, wrappedCode)
         return ElseOperation()
+    }
+
+//    operator fun <T : VarClass<I>, I : Item> DiamondFireDelegate<T, I>.setValue(thisRef: Any?, property: KMutableProperty1<*, *>, value: I) {
+//        SetVariable.setDictValue {
+//            +clazz.name.toVarItem(clazz.scope)
+//            +property.name.stringItem
+//            +value
+//        }
+//    }
+//
+//    operator fun <T : VarClass<I>, I : Item> DiamondFireDelegate<T, I>.setValue(thisRef: Any?, property: KMutableProperty<*>, value: T) {
+//        SetVariable.setDictValue {
+//            +clazz.name.toVarItem(clazz.scope)
+//            +property.name.stringItem
+//            +value
+//        }
+//    }
+
+    @OptIn(DiamondFireClassOptIn::class)
+    fun DiamondFireClass.init() {
+        // TODO: add appending if toInitialize is too long for one chest
+        SetVariable.createDict {
+            +name.toVarItem(scope)
+            for ((prop, default) in toInitialize) {
+                +prop.name
+                +default
+            }
+        }
     }
 
 
