@@ -218,7 +218,7 @@ class LibraryTest {
                 +klass.dynamicDefault
             }
         }
-        println(json.encodeToString(t.getJsonData()))
+//        Template.codeClientPlaceTemplate(t)
     }
 }
 @OptIn(DiamondFireClassOptIn::class)

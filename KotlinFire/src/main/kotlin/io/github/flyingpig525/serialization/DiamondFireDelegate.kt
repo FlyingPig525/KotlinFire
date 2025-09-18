@@ -27,11 +27,11 @@ class DiamondFireDelegate<T : VarClass<I>, I : Item> internal constructor(val ty
     operator fun getValue(thisRef: DiamondFireClass, property: KProperty<*>): I {
         return when (type) {
             NumItem::class -> {
-                NumItem("%entry(${thisRef.name}, $name)")
+                NumItem("%entry(${thisRef.name},$name)")
             }
 
             TextItem::class -> {
-                TextItem("%entry(${thisRef.name}, $name)")
+                TextItem("%entry(${thisRef.name},$name)")
             }
 
             else -> throw RuntimeException("Unknown item type ${type.simpleName}")
