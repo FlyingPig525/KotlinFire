@@ -208,6 +208,8 @@ class LibraryTest {
                 +clas.txt
                 +clas.num
             }
+
+            clas.num = 62.numItem
         }
         println(Json { prettyPrint = true }.encodeToString(t.getJsonData()))
     }
@@ -215,6 +217,6 @@ class LibraryTest {
 
 @OptIn(DiamondFireClassOptIn::class)
 class DFClass(name: String, scope: VarItem.Scope = VarItem.Scope.GAME) : DiamondFireClass(name, scope) {
-    val num by numProp(12)
-    val txt by textProp("aaaa")
+    var num by numProp(12)
+    var txt by textProp("aaaa")
 }

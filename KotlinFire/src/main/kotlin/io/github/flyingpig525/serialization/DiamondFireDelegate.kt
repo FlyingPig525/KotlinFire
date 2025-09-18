@@ -1,10 +1,12 @@
 package io.github.flyingpig525.serialization
 
+import io.github.flyingpig525.base.TemplateContext
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.type.NumItem
 import io.github.flyingpig525.base.item.type.StringItem.Companion.stringItem
 import io.github.flyingpig525.base.item.type.TextItem
 import io.github.flyingpig525.base.item.type.VarClass
+import io.github.flyingpig525.base.item.type.VarItem.Companion.toVarItem
 import kotlinx.coroutines.runBlocking
 import java.io.InvalidClassException
 import kotlin.properties.ReadWriteProperty
@@ -34,5 +36,13 @@ class DiamondFireDelegate<T : VarClass<I>, I : Item> internal constructor(val ty
 
             else -> throw RuntimeException("Unknown item type ${type.simpleName}")
         } as I
+    }
+
+    operator fun setValue(thisRef: DiamondFireClass, property: KProperty<*>, value: I) {
+        TemplateContext.current.SetVariable.setDictValue {
+            +thisRef.name.toVarItem(thisRef.scope)
+            +property.name.stringItem
+            +value
+        }
     }
 }

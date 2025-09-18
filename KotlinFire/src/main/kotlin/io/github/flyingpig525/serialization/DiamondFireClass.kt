@@ -11,6 +11,10 @@ import io.github.flyingpig525.base.item.type.VarItem
 
 /**
  * @param [name] - The name of the variable that will hold this class. Will be defined as a dictionary.
+ *
+ * Should be extended to add properties delegated through [numProp], [textProp], and others.
+ *
+ * Before instance use, the variable must be initialized through [io.github.flyingpig525.base.Template.init]
  */
 @DiamondFireClassOptIn
 open class DiamondFireClass(val name: String, val scope: VarItem.Scope = VarItem.Scope.GAME) {

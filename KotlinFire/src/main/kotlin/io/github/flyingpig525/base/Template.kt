@@ -94,7 +94,9 @@ open class Template(
                 Type.NONE -> TODO()
             }
         }
+        TemplateContext.push(this)
         apply(a)
+        TemplateContext.pop()
     }
 
     override fun getJsonData(): JsonObject {
