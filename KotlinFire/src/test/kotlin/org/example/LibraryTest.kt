@@ -211,7 +211,7 @@ class LibraryTest {
             // they also must be using `Item` inheritors or `VarClass` inheritors
             klass.mutableNumber = 12.numItem
             PlayerAction.sendMessage {
-                // will be transformed into a TextItem("%entry(serialized class, immutableTextProperty)")
+                // will be transformed into a TextItem("%entry(serialized class,immutableTextProperty)")
                 // should send the player "str"
                 +klass.immutableTextProperty
                 // should send the player "0"
