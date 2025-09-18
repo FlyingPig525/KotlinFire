@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation("io.github.flyingpig525:kotlinfire:1.6.0")
+    implementation("io.github.flyingpig525:kotlinfire:1.6.1")
 }
 ```
 
