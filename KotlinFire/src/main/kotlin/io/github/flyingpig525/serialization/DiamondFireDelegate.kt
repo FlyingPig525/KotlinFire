@@ -41,7 +41,15 @@ class DiamondFireDelegate<T : VarClass<I>, I : Item> internal constructor(val ty
     operator fun setValue(thisRef: DiamondFireClass, property: KProperty<*>, value: I) {
         TemplateContext.current.SetVariable.setDictValue {
             +thisRef.name.toVarItem(thisRef.scope)
-            +property.name.stringItem
+            +name.stringItem
+            +value
+        }
+    }
+
+    operator fun setValue(thisRef: DiamondFireClass, property: KProperty<*>, value: T) {
+        TemplateContext.current.SetVariable.setDictValue {
+            +thisRef.name.toVarItem(thisRef.scope)
+            +name.stringItem
             +value
         }
     }

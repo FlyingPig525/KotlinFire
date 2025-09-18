@@ -214,6 +214,40 @@ Template {
 
 More type-safety has also been added to `VarClass` extending classes.
 
+### New, 1.6.0!
+Specific classes now have the ability to be "serialized" into DiamondFire dictionaries. This can be done through
+extending `DiamondFireClass` and delegating properties through the `DiamondFireClass#numProp` and
+`DiamondFireClass#textProp` members.
+
+```kotlin
+Template {
+    val pastVar = NumVariable("past variable", VarItem.Scope.LINE)
+    pastVar set 0
+    val klass = Serialized(pastVar, "serialized class")
+    // setting mutable properties will create a `SetVariable#setDictValue` codeblock
+    // they also must be using `Item` inheritors or `VarClass` inheritors
+    klass.mutableNumber = 12.numItem
+    PlayerAction.sendMessage {
+        // will be transformed into a TextItem("%dict(serialized class, immutableTextProperty)")
+        // should send the player "str"
+        +klass.immutableTextProperty
+        // should send the player "0"
+        +klass.dynamicDefault
+    }
+}
+
+// scope can be universal between all `Serialized` instances, or defined individually
+class Serialized(default: NumVariable, name: String, scope: VarItem.Scope = VarItem.Scope.GAME) : DiamondFireClass(name, scope) {
+    // a default value must be provided
+    var mutableNumber by numProp(0)
+    // immutability is also only enforced via the dsl, meaning an immutable property can be set though codeblocks, without
+    // any errors
+    val immutableTextProperty by textProp("str")
+    // properties can also be initialized through `VarClass` inheritors
+    var dynamicDefault by numProp(default)
+}
+```
+
 ### Utilities
 Multiple utility functions exist, allowing the retrieval of encoded template strings and a function to interact with the
 [CodeClient API](https://github.com/DFOnline/CodeClient/wiki/api). This function can be used to send individual or

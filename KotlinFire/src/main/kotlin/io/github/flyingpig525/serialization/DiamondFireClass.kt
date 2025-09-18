@@ -25,8 +25,14 @@ open class DiamondFireClass(val name: String, val scope: VarItem.Scope = VarItem
     }
     protected fun numProp(default: Int) = numProp(default.numItem)
     protected fun numProp(default: String) = numProp(default.numItem)
+    protected fun numProp(default: NumVariable): DiamondFireDelegateProvider<NumVariable, NumItem> {
+        return DiamondFireDelegateProvider(NumItem::class, default.item) as DiamondFireDelegateProvider<NumVariable, NumItem>
+    }
     protected fun textProp(default: TextItem): DiamondFireDelegateProvider<TextVariable, TextItem> {
         return DiamondFireDelegateProvider(TextItem::class, default) as DiamondFireDelegateProvider<TextVariable, TextItem>
     }
     protected fun textProp(default: String) = textProp(default.textItem)
+    protected fun textProp(default: TextVariable): DiamondFireDelegateProvider<TextVariable, TextItem> {
+        return DiamondFireDelegateProvider(TextItem::class, default.item) as DiamondFireDelegateProvider<TextVariable, TextItem>
+    }
 }
