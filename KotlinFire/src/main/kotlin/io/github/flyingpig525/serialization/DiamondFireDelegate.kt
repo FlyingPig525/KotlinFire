@@ -12,10 +12,10 @@ import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
 @OptIn(DiamondFireClassOptIn::class)
-class DiamondFireDelegateProvider<T : VarClass<I>, I : Item> internal constructor(val type: KClass<I>, val clazz: DiamondFireClass, val default: Item) {
+class DiamondFireDelegateProvider<T : VarClass<I>, I : Item> internal constructor(val type: KClass<I>, val default: Item) {
     operator fun provideDelegate(thisRef: DiamondFireClass, property: KProperty<*>) : DiamondFireDelegate<T, I> {
         val delegate = DiamondFireDelegate<T, I>(type, property.name)
-        clazz.toInitialize[delegate] = default
+        thisRef.toInitialize[delegate] = default
         return delegate
     }
 }

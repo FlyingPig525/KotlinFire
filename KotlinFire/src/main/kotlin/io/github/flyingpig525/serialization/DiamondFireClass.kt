@@ -17,12 +17,12 @@ open class DiamondFireClass(val name: String, val scope: VarItem.Scope = VarItem
     internal val toInitialize: MutableMap<DiamondFireDelegate<*, *>, Item> = mutableMapOf()
 
     protected fun numProp(default: NumItem): DiamondFireDelegateProvider<NumVariable, NumItem> {
-        return DiamondFireDelegateProvider(NumItem::class, this, default) as DiamondFireDelegateProvider<NumVariable, NumItem>
+        return DiamondFireDelegateProvider(NumItem::class, default) as DiamondFireDelegateProvider<NumVariable, NumItem>
     }
     protected fun numProp(default: Int) = numProp(default.numItem)
     protected fun numProp(default: String) = numProp(default.numItem)
     protected fun textProp(default: TextItem): DiamondFireDelegateProvider<TextVariable, TextItem> {
-        return DiamondFireDelegateProvider(TextItem::class, this, default) as DiamondFireDelegateProvider<TextVariable, TextItem>
+        return DiamondFireDelegateProvider(TextItem::class, default) as DiamondFireDelegateProvider<TextVariable, TextItem>
     }
     protected fun textProp(default: String) = textProp(default.textItem)
 }
