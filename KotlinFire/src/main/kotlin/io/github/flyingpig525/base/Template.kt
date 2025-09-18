@@ -95,7 +95,7 @@ open class Template(
                 // This will get changed by `EventTemplate`
                 Type.EVENT -> Block("", mutableListOf(), "")
                 // This will never get called, so it doesn't have to be implemented
-                Type.NONE -> TODO()
+                Type.NONE -> throw NotImplementedError()
             }
         }
         TemplateContext.push(this)
