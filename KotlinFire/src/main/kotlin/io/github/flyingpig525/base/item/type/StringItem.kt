@@ -23,3 +23,5 @@ class StringItem(val text: String) : Item(ID.STRING) {
         val String.stringItem get() = toStringItem()
     }
 }
+
+class StringVariable(name: String, scope: VarItem.Scope) : VarClass<StringItem>(name, scope, StringItem::class)
