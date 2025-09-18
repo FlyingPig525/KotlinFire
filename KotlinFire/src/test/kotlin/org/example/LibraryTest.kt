@@ -24,6 +24,7 @@ import kotlinx.serialization.json.Json
 import kotlin.test.Test
 
 class LibraryTest {
+    val json = Json { prettyPrint = true }
 
     @Test fun caveGenExample() {
         TemplateCollection {
@@ -197,26 +198,37 @@ class LibraryTest {
             println(getStrings())
         }
     }
-
     @OptIn(DiamondFireClassOptIn::class)
     @Test
-    fun classTest() {
+    // taken from README.md
+    fun serializedTest() {
         val t = Template {
-            val clas = DFClass("name")
-            clas.init()
+            val pastVar = NumVariable("past variable", VarItem.Scope.LINE)
+            pastVar set 0.numItem
+            val klass = Serialized(pastVar, "serialized class")
+            klass.init()
+            // setting mutable properties will create a `SetVariable#setDictValue` codeblock
+            // they also must be using `Item` inheritors or `VarClass` inheritors
+            klass.mutableNumber = 12.numItem
             PlayerAction.sendMessage {
-                +clas.txt
-                +clas.num
+                // will be transformed into a TextItem("%entry(serialized class, immutableTextProperty)")
+                // should send the player "str"
+                +klass.immutableTextProperty
+                // should send the player "0"
+                +klass.dynamicDefault
             }
-
-            clas.num = 62.numItem
         }
-        println(Json { prettyPrint = true }.encodeToString(t.getJsonData()))
+        println(json.encodeToString(t.getJsonData()))
     }
 }
-
 @OptIn(DiamondFireClassOptIn::class)
-class DFClass(name: String, scope: VarItem.Scope = VarItem.Scope.GAME) : DiamondFireClass(name, scope) {
-    var num by numProp(12)
-    var txt by textProp("aaaa")
+// scope can be universal between all `Serialized` instances, or defined individually
+class Serialized(default: NumVariable, name: String, scope: VarItem.Scope = VarItem.Scope.GAME) : DiamondFireClass(name, scope) {
+    // a default value must be provided
+    var mutableNumber by numProp(0)
+    // immutability is also only enforced via the dsl, meaning an immutable property can be set though codeblocks, without
+    // any errors
+    val immutableTextProperty by textProp("str")
+    // properties can also be initialized through `VarClass` inheritors
+    var dynamicDefault by numProp(default)
 }

@@ -7,7 +7,9 @@ import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.ItemComparison
 import io.github.flyingpig525.base.item.type.*
 import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
+import io.github.flyingpig525.base.item.type.StringItem.Companion.stringItem
 import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
+import io.github.flyingpig525.base.item.type.VarItem.Companion.lineVar
 import io.github.flyingpig525.base.item.type.VarItem.Companion.toVarItem
 import io.github.flyingpig525.encoding.TemplateEncoder
 import io.github.flyingpig525.serialization.DiamondFireClass
@@ -366,12 +368,22 @@ open class Template(
     @OptIn(DiamondFireClassOptIn::class)
     fun DiamondFireClass.init() {
         // TODO: add appending if toInitialize is too long for one chest
-        SetVariable.createDict {
-            +name.toVarItem(scope)
-            for ((prop, default) in toInitialize) {
-                +prop.name
+        SetVariable.createList {
+            +"${name}-KeyList-ajowdoiwajdpowd".lineVar
+            for (prop in toInitialize.keys) {
+                +prop.name.stringItem
+            }
+        }
+        SetVariable.createList {
+            +"${name}-ValueList-ajowdoiwajdpowd".lineVar
+            for (default in toInitialize.values) {
                 +default
             }
+        }
+        SetVariable.createDict {
+            +name.toVarItem(scope)
+            +"${name}-KeyList-ajowdoiwajdpowd".lineVar
+            +"${name}-ValueList-ajowdoiwajdpowd".lineVar
         }
     }
 
