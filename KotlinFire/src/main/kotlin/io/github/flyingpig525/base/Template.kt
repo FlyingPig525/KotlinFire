@@ -166,13 +166,13 @@ open class Template(
     inline operator fun NumVariable.minusAssign(other: String) = minusAssign(other.numItem)
     inline operator fun NumVariable.minusAssign(other: NumVariable) = minusAssign(other.item)
     inline operator fun NumVariable.minusAssign(other: NumItem) {
-        SetVariable.increment {
+        SetVariable.decrement {
             +item
             +other
         }
     }
     inline operator fun NumVariable.minusAssign(other: VarItem) {
-        SetVariable.increment {
+        SetVariable.decrement {
             +item
             +other
         }
