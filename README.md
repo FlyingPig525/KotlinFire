@@ -253,6 +253,42 @@ class Serialized(default: NumVariable, name: String, scope: VarItem.Scope = VarI
 }
 ```
 
+### New, 1.6.2!
+A new type has been added: `DictionaryVariable`!
+
+This type has two comparison functions, `containsKey` and `valueEquals`. `containsKey` takes a key parameter and checks
+whether the dictionary has a entry with that value as the key. `valueEquals` takes a key parameter and a list of values
+and checks if the value of the key is equal to any of the values in the passed list.
+
+`DictionaryVariable` also has the `get` and `set` operator functions defined when in a `Template`, and can be used to
+get and set values in the dictionary. It also has a `getAsVariable` function, which must be used when the value type is
+not a number, text, or string. It also inserts a codeblock to create a temporary variable with the value found at the
+key.
+
+```kotlin
+Template {
+    val dict = DictionaryVariable("%default data", VarItem.Scope.SAVE)
+    ifVal(dict containsKey "hasJoined") {
+        dict["firstJoin"] = 0
+    } Else {
+        dict["firstJoin"] = 1
+        dict["hasJoined"] = 1
+    }
+    dict["initialLocation"] = LocationalValues.Location
+
+    // later
+    
+    // if the value at key "firstJoin" equal 1, teleport the player to their initialLocation
+    ifVal(dict.valueEquals("firstJoin", 1.numItem)) {
+        // not a number, text, or string, so the value must be read as a VarItem
+        val initialLocation = dict.getAsVariable("initialLocation", VarItem.Scope.LINE)
+        PlayerAction.teleport {
+            +initialLocation
+        }
+    }
+}
+```
+
 ### Utilities
 Multiple utility functions exist, allowing the retrieval of encoded template strings and a function to interact with the
 [CodeClient API](https://github.com/DFOnline/CodeClient/wiki/api). This function can be used to send individual or

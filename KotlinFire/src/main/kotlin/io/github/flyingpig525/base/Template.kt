@@ -2,6 +2,7 @@ package io.github.flyingpig525.base
 
 import io.github.flyingpig525.base.block.category.*
 import io.github.flyingpig525.base.block.*
+import io.github.flyingpig525.base.item.Insertable
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.ItemComparison
@@ -333,7 +334,7 @@ open class Template(
         }
     }
     // DictionaryVariable
-    inline operator fun DictionaryVariable.set(key: String, value: Item) {
+    inline operator fun DictionaryVariable.set(key: String, value: Insertable) {
         SetVariable.setDictValue {
             +key.stringItem
             +value
@@ -341,7 +342,6 @@ open class Template(
     }
     inline operator fun DictionaryVariable.set(key: String, value: String) = set(key, value.textItem)
     inline operator fun DictionaryVariable.set(key: String, value: Number) = set(key, value.numItem)
-    inline operator fun DictionaryVariable.set(key: String, value: VarClass<*>) = set(key, value.item)
 
     /**
      * Should only be used when the type expected is string, text, or number.

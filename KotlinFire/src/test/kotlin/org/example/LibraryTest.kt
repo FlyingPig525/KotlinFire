@@ -18,6 +18,7 @@ import io.github.flyingpig525.base.item.type.VarItem.Companion.saveVar
 import io.github.flyingpig525.base.item.type.VarItem.Companion.toVarItem
 import io.github.flyingpig525.base.item.type.VarItem.Scope.*
 import io.github.flyingpig525.base.item.type.gamevalue.InformationalValues
+import io.github.flyingpig525.base.item.type.gamevalue.LocationalValues
 import io.github.flyingpig525.base.item.type.gamevalue.StatisticalValues
 import io.github.flyingpig525.serialization.DiamondFireClass
 import io.github.flyingpig525.serialization.DiamondFireClassOptIn
@@ -220,6 +221,30 @@ class LibraryTest {
             }
         }
 //        Template.codeClientPlaceTemplate(t)
+    }
+
+    @Test
+    fun dictionaryTest() {
+        Template {
+            val dict = DictionaryVariable("%default data", VarItem.Scope.SAVE)
+            ifVal(dict containsKey "hasJoined") {
+                dict["firstJoin"] = 0
+            } Else {
+                dict["firstJoin"] = 1
+                dict["hasJoined"] = 1
+            }
+            dict["initialLocation"] = LocationalValues.Location
+
+            // later
+            // if the value at key "firstJoin" equal 1, teleport the player to their initialLocation
+            ifVal(dict.valueEquals("firstJoin", 1.numItem)) {
+                // not a number, text, or string, so the value must be read as a VarItem
+                val initialLocation = dict.getAsVariable("initialLocation", VarItem.Scope.LINE)
+                PlayerAction.teleport {
+                    +initialLocation
+                }
+            }
+        }
     }
 }
 @OptIn(DiamondFireClassOptIn::class)
