@@ -6,6 +6,7 @@ import io.github.flyingpig525.base.item.Insertable
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.ItemComparison
+import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import kotlin.reflect.KProperty
@@ -28,6 +29,7 @@ class NumItem(private val value: String) : Item(ID.NUMBER) {
         val Number.numItem get() = toNumItem()
         fun String.toNumItem(): NumItem = NumItem(this)
         val String.numItem get() = toNumItem()
+        val NumVariable.numItem get() = "%var($name)".numItem
     }
 }
 

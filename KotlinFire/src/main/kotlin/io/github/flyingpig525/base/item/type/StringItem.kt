@@ -21,6 +21,7 @@ class StringItem(val text: String) : Item(ID.STRING) {
     companion object {
         fun String.toStringItem(): StringItem = StringItem(this)
         val String.stringItem get() = toStringItem()
+        val StringVariable.stringItem get() = "%var($name)".stringItem
     }
 }
 

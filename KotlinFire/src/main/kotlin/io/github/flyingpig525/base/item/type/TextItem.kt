@@ -22,6 +22,7 @@ class TextItem(val text: String) : Item(ID.RICHTEXT) {
     companion object {
         fun String.toTextItem(): TextItem = TextItem(this)
         val String.textItem get() = toTextItem()
+        val TextVariable.textItem get() = "%var($name)".textItem
     }
 }
 
