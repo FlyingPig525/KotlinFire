@@ -332,6 +332,30 @@ open class Template(
             +length
         }
     }
+    // DictionaryVariable
+    inline operator fun DictionaryVariable.set(key: String, value: Item) {
+        SetVariable.setDictValue {
+            +key.stringItem
+            +value
+        }
+    }
+    inline operator fun DictionaryVariable.set(key: String, value: String) = set(key, value.textItem)
+    inline operator fun DictionaryVariable.set(key: String, value: Number) = set(key, value.numItem)
+    inline operator fun DictionaryVariable.set(key: String, value: VarClass<*>) = set(key, value.item)
+
+    /**
+     * Should only be used when the type expected is string, text, or number.
+     */
+    inline operator fun DictionaryVariable.get(key: String): String = "%entry($name,$key)"
+    inline fun DictionaryVariable.getAsVariable(key: String, scope: VarItem.Scope = VarItem.Scope.LINE): VarItem {
+        val i = VarItem("$name-$key-GeneratedGet-oajwkfnvsiuh", scope)
+        SetVariable.getDictValue {
+            +i
+            +item
+            +key.stringItem
+        }
+        return i
+    }
 
     fun ifVal(comp: ItemComparison, wrappedCode: Template.() -> Unit): ElseOperation {
         comp(this, wrappedCode)

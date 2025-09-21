@@ -4,6 +4,7 @@ import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.Template.Type.*
 import io.github.flyingpig525.base.TemplateCollection
 import io.github.flyingpig525.base.block.PlayerEvent
+import io.github.flyingpig525.base.item.type.DictionaryVariable
 import io.github.flyingpig525.base.item.type.LocItem
 import io.github.flyingpig525.base.item.type.MinecraftItem
 import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
