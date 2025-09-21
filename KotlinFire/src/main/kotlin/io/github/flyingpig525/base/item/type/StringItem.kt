@@ -5,6 +5,20 @@ import io.github.flyingpig525.base.item.Item
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 
+/**
+ * A DiamondFire string.
+ *
+ * Can be constructed through the class constructor or the String extensions.
+ *
+ * For a DF variable containing this type, use [StringVariable].
+ *
+ * Generally not recommended for player-facing use, as [TextItem] support mini-message tags.
+ *
+ * @see toStringItem
+ * @see stringItem
+ * @see StringVariable
+ * @see TextItem
+ */
 class StringItem(val text: String) : Item(ID.STRING) {
 
     constructor(text: Char) : this(text.toString())
@@ -12,11 +26,6 @@ class StringItem(val text: String) : Item(ID.STRING) {
     override fun getJsonData() = buildJsonObject {
         put("name", text)
     }
-//        """
-//		{
-//			"name": "$text"
-//		}
-//	""".trimIndent()
 
     companion object {
         fun String.toStringItem(): StringItem = StringItem(this)

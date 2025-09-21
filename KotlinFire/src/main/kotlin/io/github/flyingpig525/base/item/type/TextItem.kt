@@ -4,20 +4,28 @@ import io.github.flyingpig525.base.JsonData
 import io.github.flyingpig525.base.item.Insertable
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemComparison
+import io.github.flyingpig525.base.item.type.StringItem.Companion.stringItem
+import io.github.flyingpig525.base.item.type.StringItem.Companion.toStringItem
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 
+/**
+ * A DiamondFire rich text.
+ *
+ * Can be constructed through the class constructor or the String extensions.
+ *
+ * For a DF variable containing this type, use [TextVariable].
+ *
+ * @see toTextItem
+ * @see textItem
+ * @see TextVariable
+ */
 class TextItem(val text: String) : Item(ID.RICHTEXT) {
     constructor(text: Char) : this(text.toString())
 
     override fun getJsonData() = buildJsonObject {
         put("name", text)
     }
-//        """
-//		{
-//			"name": "$text"
-//		}
-//	""".trimIndent()
 
     companion object {
         fun String.toTextItem(): TextItem = TextItem(this)

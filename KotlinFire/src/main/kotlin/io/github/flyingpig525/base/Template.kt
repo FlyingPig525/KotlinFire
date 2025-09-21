@@ -30,6 +30,11 @@ import kotlin.reflect.KProperty
 
 typealias Items = ItemCollection.() -> Unit
 
+/**
+ * A DiamondFire template.
+ *
+ * Check the [README](https://github.com/FlyingPig525/KotlinFire/blob/master/README.md) to see how to use this class.
+ */
 @Suppress("LeakingThis", "NOTHING_TO_INLINE")
 @OptIn(DiamondFireClassOptIn::class)
 open class Template(
@@ -111,22 +116,6 @@ open class Template(
                 }
             }
         }
-
-//        var string = """
-//            {
-//            "blocks": [
-//        """.trimIndent()
-//        var i = 1
-//        for (block in blocks) {
-//            string += block.getJsonData()
-//            if (blocks.size > i) string += ','
-//            i++
-//        }
-//        string += """
-//            ]
-//            }
-//        """.trimIndent()
-//        return string
     }
 
     fun getTemplateString(): String = TemplateEncoder.encode(this)
@@ -348,22 +337,6 @@ open class Template(
         comp(this, wrappedCode)
         return ElseOperation()
     }
-
-//    operator fun <T : VarClass<I>, I : Item> DiamondFireDelegate<T, I>.setValue(thisRef: Any?, property: KMutableProperty1<*, *>, value: I) {
-//        SetVariable.setDictValue {
-//            +clazz.name.toVarItem(clazz.scope)
-//            +property.name.stringItem
-//            +value
-//        }
-//    }
-//
-//    operator fun <T : VarClass<I>, I : Item> DiamondFireDelegate<T, I>.setValue(thisRef: Any?, property: KMutableProperty<*>, value: T) {
-//        SetVariable.setDictValue {
-//            +clazz.name.toVarItem(clazz.scope)
-//            +property.name.stringItem
-//            +value
-//        }
-//    }
 
     @OptIn(DiamondFireClassOptIn::class)
     fun DiamondFireClass.init() {

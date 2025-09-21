@@ -35,29 +35,6 @@ object GlobalActionDump {
         }
     }
 
-    //_parseTags(type, blockType="player_action"){
-    //        const blockData = actions[type];
-    //        if (!blockData) return [];
-    //        const tags = [];
-    //        for (let i = 0; i < blockData.tags.length; i++)
-    //        {
-    //            const tag = blockData.tags[i]
-    //            tags.push({
-    //                item: {
-    //                    id: 'bl_tag',
-    //                    data: {
-    //                        tag: tag.name,
-    //                        option: tag.defaultOption,
-    //                        action: type,
-    //                        block: blockType
-    //                    }
-    //                },
-    //                slot: 26-i
-    //            })
-    //        }
-    //
-    //        return tags;
-    //    }
     fun getTags(block: Block): List<JsonObject> {
         return buildList {
             val tags = actionDumpBlocks?.find {
@@ -80,30 +57,6 @@ object GlobalActionDump {
                 }
             }
         }
-//        var ret = ""
-//        val tags = actionDumpBlocks?.find {
-//            it.jsonObject["name"]?.jsonPrimitive?.content == block.action
-//        }?.jsonObject?.get("tags")?.jsonArray
-//        if (tags != null) {
-//            for ((i, el) in tags.withIndex()) {
-//                ret += """
-//                    {
-//                    "item": {
-//                        "id": "bl_tag",
-//                        "data": {
-//                            "tag": "${el.jsonObject["name"]?.jsonPrimitive?.content}",
-//                            "option": "${el.jsonObject["defaultOption"]?.jsonPrimitive?.content}",
-//                            "action": "${block.action}",
-//                            "block": "${block.codeBlock}"
-//                        }
-//                    },
-//                    "slot": ${26 - i}
-//                    }${if (i != tags.size-1) "," else ""}
-//                """.trimIndent()
-//            }
-//        }
-//        return ret
     }
-    fun tagAmount(tags: String) = tags.count { it == ',' }
 
 }

@@ -7,7 +7,7 @@ import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
 import io.github.flyingpig525.base.item.type.VarClass
 
 /**
- * A class used internally to provide clean comparison syntax
+ * A class used as context to allow inserting items into codeblocks.
  */
 class ItemCollection internal constructor(func: ItemCollection.() -> Unit) {
     val items: MutableList<Item> = mutableListOf()

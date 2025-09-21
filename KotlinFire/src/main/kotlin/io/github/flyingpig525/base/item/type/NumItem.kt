@@ -11,6 +11,17 @@ import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import kotlin.reflect.KProperty
 
+/**
+ * A DiamondFire number.
+ *
+ * Can be constructed through the class constructor, number extensions, or string extensions.
+ *
+ * For a DF variable containing this type, use [NumVariable].
+ *
+ * @see toNumItem
+ * @see numItem
+ * @see NumVariable
+ */
 class NumItem(private val value: String) : Item(ID.NUMBER) {
 
     constructor(value: Number) : this(value.toString())
@@ -18,11 +29,6 @@ class NumItem(private val value: String) : Item(ID.NUMBER) {
     override fun getJsonData() = buildJsonObject {
         put("name", value)
     }
-//        """
-//		{
-//			"name": "$value"
-//		}
-//	""".trimIndent()
 
     companion object {
         fun Number.toNumItem(): NumItem = NumItem(this)

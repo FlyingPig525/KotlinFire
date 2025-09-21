@@ -6,6 +6,17 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 
+/**
+ * A DiamondFire vector.
+ *
+ * Can be constructed through the class constructor, the list extensions, or the [vecOf] function.
+ *
+ * For a DF variable containing this type, use [VecVariable].
+ *
+ * @see toVecItem
+ * @see vecItem
+ * @see vecOf
+ */
 class VecItem(x: Number, y: Number, z: Number) : Item(ID.VECTOR) {
     val x = x.toFloat()
     val y = y.toFloat()
@@ -17,20 +28,17 @@ class VecItem(x: Number, y: Number, z: Number) : Item(ID.VECTOR) {
             put("y", y)
             put("z", z)
         }
-//        return """{
-//            "x": $x,
-//            "y": $y,
-//            "z": $z
-//        }""".trimIndent()
     }
 
     companion object {
-        fun List<Number>.toVecItem(): VecItem? {
+        fun List<Number>.toVecItem(): VecItem {
             if (this.size == 3) return VecItem(this[0].toFloat(), this[1].toFloat(), this[2].toFloat())
-            return null
+            throw IncompatibleListSizeException()
         }
+        val List<Number>.vecItem get() = toVecItem()
     }
-
 }
+
+fun vecOf(x: Number, y: Number, z: Number) = VecItem(x, y, z)
 
 class VecVariable(name: String, scope: VarItem.Scope) : VarClass<VecItem>(name, scope, VecItem::class)

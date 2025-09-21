@@ -10,6 +10,17 @@ import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import kotlinx.serialization.json.putJsonObject
 
+/**
+ * A DiamondFire location.
+ *
+ * Can be constructed through the class constructor, extension functions for lists, or the [locOf] function.
+ *
+ * For a DF variable containing this type, use [LocVariable].
+ *
+ * @see toLocItem
+ * @see locOf
+ * @see LocVariable
+ */
 class LocItem(val x: Float, val y: Float, val z: Float, val pitch: Float = 0f, val yaw: Float = 0f) : Item(ID.LOCATION),
     JsonData {
 
@@ -31,21 +42,9 @@ class LocItem(val x: Float, val y: Float, val z: Float, val pitch: Float = 0f, v
             put("yaw", yaw)
         }
     }
-//        """
-//		{
-//			"isBlock": false,
-//			"loc": {
-//				"x": $x,
-//				"y": $y,
-//				"z": $z,
-//				"pitch": $pitch,
-//				"yaw": $yaw
-//			}
-//		}
-//	""".trimIndent()
 
     companion object {
-        fun List<Number>.toLocItem(): LocItem? {
+        fun List<Number>.toLocItem(): LocItem {
             if (this.size == 3) {
                 return LocItem(this[0].toFloat(), this[1].toFloat(), this[2].toFloat())
             } else if (this.size == 5) {
@@ -57,12 +56,14 @@ class LocItem(val x: Float, val y: Float, val z: Float, val pitch: Float = 0f, v
                     this[4].toFloat()
                 )
             }
-            return null
+            throw IncompatibleListSizeException()
         }
-        val List<Number>.locItem: LocItem?
+        val List<Number>.locItem: LocItem
             get() = this.toLocItem()
     }
 }
+
+class IncompatibleListSizeException() : Exception("List does not conform to an expected size.")
 
 fun locOf(
     x: Number,

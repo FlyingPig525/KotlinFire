@@ -5,6 +5,9 @@ import io.github.flyingpig525.base.block.PlayerEvent
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.type.ParameterItem
 
+/**
+ * A helper class providing easy definition and sending of multiple [Template]s.
+ */
 class TemplateCollection(a: TemplateCollection.() -> Unit) {
     private val templates: MutableList<Template> = mutableListOf()
     fun eventTemplate(

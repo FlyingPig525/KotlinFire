@@ -5,6 +5,13 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 
+/**
+ * A DiamondFire potion.
+ *
+ * Can be constructed through the class constructor or the builder.
+ *
+ * @see Builder
+ */
 class PotionItem(val pot: String, val duration: Int, val amplifier: Int) : Item(ID.POTION) {
     override fun getJsonData(): JsonObject {
         return buildJsonObject {

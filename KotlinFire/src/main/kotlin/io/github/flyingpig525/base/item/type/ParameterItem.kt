@@ -9,32 +9,21 @@ import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import kotlinx.serialization.json.putJsonObject
 
-//{
-//    "blocks": [
-//        {
-//            "id": "block",
-//            "block": "func",
-//            "args": {
-//                "items": [
-//                    {
-//                        "item": {
-//                            "id": "pn_el",
-//                            "data": {
-//                                "name": "aa",
-//                                "type": "num",
-//                                "plural": false,
-//                                "optional": false
-//                            }
-//                        },
-//                        "slot": 0
-//                    }
-//                ]
-//            },
-//            "data": "fn"
-//        }
-//    ]
-//}
-
+/**
+ * A DiamondFire parameter for functions.
+ *
+ * Can be constructed through the class constructor, or the provided builder for a nicer, more understandable experience.
+ *
+ * @see Builder
+ * @see num
+ * @see str
+ * @see snd
+ * @see txt
+ * @see gameVal
+ * @see item
+ * @see loc
+ * @see vec
+ */
 class ParameterItem(val paramId: ID, val name: String, val plural: Boolean, val optional: Boolean, val optionalItem: Item?) : Item(ID.PARAMETER) {
     override fun getJsonData(): JsonObject = buildJsonObject {
         put("name", name)

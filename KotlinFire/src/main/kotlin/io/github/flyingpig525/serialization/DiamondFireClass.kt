@@ -29,7 +29,8 @@ private typealias Provider<T, I> = DiamondFireDelegateProvider<T, I>
 /**
  * @param [name] - The name of the variable that will hold this class. Will be defined as a dictionary.
  *
- * Should be extended to add properties delegated through [numProp], [textProp], and others.
+ * Should be extended to add properties delegated through [numProp], [textProp], and others. These will be accessible
+ * in DiamondFire when generated code runs.
  *
  * Before instance use, the variable must be initialized through [io.github.flyingpig525.base.Template.init]
  */

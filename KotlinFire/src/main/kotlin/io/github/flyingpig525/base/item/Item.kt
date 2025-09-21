@@ -7,7 +7,7 @@ import kotlinx.serialization.json.put
 import kotlinx.serialization.json.putJsonObject
 
 /**
- * Represents a value item in df code
+ * Represents a value item in DF code
  */
 abstract class Item(val id: ID) : JsonData, Insertable {
     var slot = 0
