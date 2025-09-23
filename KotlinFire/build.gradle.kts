@@ -11,14 +11,14 @@ import com.vanniktech.maven.publish.SonatypeHost
 
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
-    kotlin("jvm") version "2.1.10"
-    kotlin("plugin.serialization") version "2.1.10"
+    kotlin("jvm") apply true
+    kotlin("plugin.serialization") apply true
 
     id("com.vanniktech.maven.publish") version "0.31.0-rc2"
     id("org.jetbrains.dokka") version "2.0.0"
 }
 
-version = "1.6.3"
+version = "1.6.4"
 group = "io.github.flyingpig525"
 
 //publishing {
