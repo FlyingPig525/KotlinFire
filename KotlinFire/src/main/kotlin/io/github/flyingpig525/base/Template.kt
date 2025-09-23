@@ -334,19 +334,25 @@ open class Template(
         }
     }
     // DictionaryVariable
-    inline operator fun DictionaryVariable.set(key: String, value: Insertable) {
+    inline operator fun DictionaryVariable.set(key: StringItem, value: Insertable) {
         SetVariable.setDictValue {
-            +key.stringItem
+            +key
             +value
         }
     }
+    inline operator fun DictionaryVariable.set(key: String, value: Insertable) = set(key.stringItem, value)
     inline operator fun DictionaryVariable.set(key: String, value: String) = set(key, value.textItem)
     inline operator fun DictionaryVariable.set(key: String, value: Number) = set(key, value.numItem)
+    inline operator fun DictionaryVariable.set(key: StringVariable, value: Insertable) = set(key.stringItem, value)
+    inline operator fun DictionaryVariable.set(key: StringVariable, value: String) = set(key.stringItem, value.textItem)
+    inline operator fun DictionaryVariable.set(key: StringVariable, value: Number) = set(key.stringItem, value.numItem)
 
     /**
      * Should only be used when the type expected is string, text, or number.
      */
     inline operator fun DictionaryVariable.get(key: String): String = "%entry($name,$key)"
+    inline operator fun DictionaryVariable.get(key: StringVariable): String = "%entry($name,%var(${key.name})"
+    inline operator fun DictionaryVariable.get(key: StringItem): String = "%entry($name,${key.text})"
     inline fun DictionaryVariable.getAsVariable(key: String, scope: VarItem.Scope = VarItem.Scope.LINE): VarItem {
         val i = VarItem("$name-$key-GeneratedGet-oajwkfnvsiuh", scope)
         SetVariable.getDictValue {
@@ -355,6 +361,217 @@ open class Template(
             +key.stringItem
         }
         return i
+    }
+    inline fun DictionaryVariable.getAsVariable(key: StringVariable, scope: VarItem.Scope = VarItem.Scope.LINE): VarItem {
+        val i = VarItem("$name-%var(${key.name})-GeneratedGet-oajwkfnvsiuh", scope)
+        SetVariable.getDictValue {
+            +i
+            +item
+            +key
+        }
+        return i
+    }
+    inline fun DictionaryVariable.getAsVariable(key: StringItem, scope: VarItem.Scope = VarItem.Scope.LINE): VarItem {
+        val i = VarItem("$name-${key.text}-GeneratedGet-oajwkfnvsiuh", scope)
+        SetVariable.getDictValue {
+            +i
+            +item
+            +key
+        }
+        return i
+    }
+
+    inline operator fun ListVariable.set(index: NumItem, value: Insertable) {
+        SetVariable.setListValue {
+            +item
+            +index
+            +value
+        }
+    }
+    inline operator fun ListVariable.set(index: Int, value: Insertable) = set(index.numItem, value)
+    inline operator fun ListVariable.set(index: Int, value: String) = set(index, value.textItem)
+    inline operator fun ListVariable.set(index: Int, value: Number) = set(index, value.numItem)
+    inline operator fun ListVariable.set(index: NumItem, value: String) = set(index, value.textItem)
+    inline operator fun ListVariable.set(index: NumItem, value: Number) = set(index, value.numItem)
+    inline operator fun ListVariable.set(index: NumVariable, value: String) = set(index.numItem, value.textItem)
+    inline operator fun ListVariable.set(index: NumVariable, value: Number) = set(index.numItem, value.numItem)
+
+    inline operator fun ListVariable.get(index: NumVariable): String = TODO("add list get string")
+    inline operator fun ListVariable.get(index: NumItem): String = TODO("add list get string")
+    inline operator fun ListVariable.get(index: Int): String = get(index.numItem)
+    inline fun ListVariable.getAsVariable(index: NumItem, scope: VarItem.Scope = VarItem.Scope.LINE): VarItem {
+        val i = VarItem("$name-GeneratedGet-${index.value}-aiwhdoaiuhdioa", scope)
+        SetVariable.getListValue {
+            +i
+            +item
+            +index
+        }
+        return i
+    }
+    inline fun ListVariable.getAsVariable(index: Int, scope: VarItem.Scope = VarItem.Scope.LINE): VarItem {
+        val i = VarItem("$name-GeneratedGet-$index-aiwhdoaiuhdioa", scope)
+        SetVariable.getListValue {
+            +i
+            +item
+            +index.numItem
+        }
+        return i
+    }
+    inline fun ListVariable.getAsVariable(index: NumVariable, scope: VarItem.Scope = VarItem.Scope.LINE): VarItem {
+        val i = VarItem("$name-GeneratedGet-%var(${index.name})-aiwhdoaiuhdioa", scope)
+        SetVariable.getListValue {
+            +i
+            +item
+            +index
+        }
+        return i
+    }
+
+    inline fun ListVariable.flatten() = apply {
+        SetVariable.flattenList {
+            +item
+        }
+    }
+    inline fun ListVariable.flatten(out: ListVariable) {
+        SetVariable.flattenList {
+            +out
+            +item
+        }
+    }
+
+    // TODO: separate into multiple appends if [values] is too long
+    inline fun ListVariable.append(vararg values: Insertable) = apply {
+        SetVariable.appendValue {
+            +item
+            for (i in values) {
+                +i
+            }
+        }
+    }
+
+    inline fun ListVariable.appendAll(value: ListVariable) = apply {
+        SetVariable.appendList {
+            +item
+            +value
+        }
+    }
+
+    inline fun ListVariable.dedup() = apply {
+        SetVariable.dedupList {
+            +item
+        }
+    }
+    inline fun ListVariable.dedup(out: ListVariable) {
+        SetVariable.dedupList {
+            +out
+            +item
+        }
+    }
+
+    inline fun ListVariable.reverse() = apply {
+        SetVariable.reverseList {
+            +item
+        }
+    }
+    inline fun ListVariable.reverse(out: ListVariable) {
+        SetVariable.reverseList {
+            +out
+            +item
+        }
+    }
+
+    inline fun ListVariable.randomize() = apply {
+        SetVariable.randomizeList {
+            +item
+            +item
+        }
+    }
+    inline fun ListVariable.randomize(out: ListVariable) {
+        SetVariable.randomizeList {
+            +out
+            +item
+        }
+    }
+
+    inline fun ListVariable.trim(startIndex: NumItem, endIndex: NumItem) = apply {
+        SetVariable.trimList {
+            +item
+            +startIndex
+            +endIndex
+        }
+    }
+    inline fun ListVariable.trim(startIndex: Int, endIndex: Int) =
+        trim(startIndex.numItem, endIndex.numItem)
+    inline fun ListVariable.trim(startIndex: NumVariable, endIndex: NumVariable) =
+        trim(startIndex.numItem, endIndex.numItem)
+    inline fun ListVariable.trim(startIndex: NumItem, endIndex: NumItem, out: ListVariable) = apply {
+        SetVariable.trimList {
+            +out
+            +item
+            +startIndex
+            +endIndex
+        }
+    }
+    inline fun ListVariable.trim(startIndex: Int, endIndex: Int, out: ListVariable) =
+        trim(startIndex.numItem, endIndex.numItem, out)
+    inline fun ListVariable.trim(startIndex: NumVariable, endIndex: NumVariable, out: ListVariable) =
+        trim(startIndex.numItem, endIndex.numItem, out)
+
+    inline fun ListVariable.sort() = apply {
+        SetVariable.sortList {
+            +item
+        }
+    }
+    inline fun ListVariable.sort(out: ListVariable) {
+        SetVariable.sortList {
+            +out
+            +item
+        }
+    }
+
+    inline fun ListVariable.removeIndex(index: NumItem) = apply {
+        SetVariable.removeListIndex {
+            +item
+            +index
+        }
+    }
+    inline fun ListVariable.removeIndex(index: Int) = removeIndex(index.numItem)
+    inline fun ListVariable.removeIndex(index: NumVariable) = removeIndex(index.numItem)
+
+    inline fun ListVariable.removeValue(value: Insertable) = apply {
+        SetVariable.removeListValue {
+            +item
+            +value
+        }
+    }
+
+    inline fun ListVariable.popIndex(
+        index: NumItem,
+        out: VarItem = VarItem("$name-${index.value}-PopValue", VarItem.Scope.LINE)
+    ): VarItem {
+        SetVariable.popListValue {
+            +out
+            +item
+            +index
+        }
+        return out
+    }
+    inline fun ListVariable.popIndex(
+        index: Int,
+        out: VarItem = VarItem("$name-$index-PopValue", VarItem.Scope.LINE)
+    ) = popIndex(index.numItem, out)
+    inline fun ListVariable.popIndex(
+        index: NumVariable,
+        out: VarItem = VarItem("$name-%var(${index.name})-PopValue", VarItem.Scope.LINE)
+    ) = popIndex(index.numItem, out)
+
+    inline val ListVariable.size: NumItem get() {
+        val i = VarItem("$name-ListLength-auhdoiwauhisd", VarItem.Scope.LINE)
+        SetVariable.listLength {
+            +i
+            +item
+        }
+        return "%var(${i.name})".numItem
     }
 
     fun ifVal(comp: ItemComparison, wrappedCode: Template.() -> Unit): ElseOperation {

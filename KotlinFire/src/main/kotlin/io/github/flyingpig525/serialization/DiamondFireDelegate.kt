@@ -46,18 +46,10 @@ class DiamondFireDelegate<T : VarClass<*>, I : Item> internal constructor(val ty
                 StringItem("%entry(${thisRef.name},$name")
             }
 
-            SoundItem::class -> {
-                insertDictGetCodeblock(thisRef)
-            }
-            MinecraftItem::class -> {
-                insertDictGetCodeblock(thisRef)
-            }
-            LocItem::class -> {
-                insertDictGetCodeblock(thisRef)
-            }
-            VecItem::class -> {
-                insertDictGetCodeblock(thisRef)
-            }
+            SoundItem::class,
+            MinecraftItem::class,
+            LocItem::class,
+            VecItem::class,
             PotionItem::class -> {
                 insertDictGetCodeblock(thisRef)
             }

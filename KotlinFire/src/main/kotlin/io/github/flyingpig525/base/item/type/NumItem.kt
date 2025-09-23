@@ -22,7 +22,7 @@ import kotlin.reflect.KProperty
  * @see numItem
  * @see NumVariable
  */
-class NumItem(private val value: String) : Item(ID.NUMBER) {
+class NumItem(val value: String) : Item(ID.NUMBER) {
 
     constructor(value: Number) : this(value.toString())
 
