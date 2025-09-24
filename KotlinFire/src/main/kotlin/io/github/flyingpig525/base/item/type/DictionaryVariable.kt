@@ -17,15 +17,14 @@ class DictionaryVariable(name: String, scope: VarItem.Scope) : VarClass<VarItem>
         }, not, nested)
     }
 
-    fun valueEquals(key: VarItem, vararg values: Insertable) = valueEquals_(key, values)
-    fun valueEquals(key: String, vararg values: Insertable) = valueEquals_(key.stringItem, values)
-    fun valueEquals(key: StringVariable, vararg values: Insertable) = valueEquals_(key.item, values)
-    fun valueEquals(key: StringItem, vararg values: Insertable) = valueEquals_(key, values)
-    private fun valueEquals_(key: Insertable, items: Array<out Insertable>) = ItemComparison { not, nested ->
+    fun valueEquals(key: VarItem, vararg values: Insertable) = valueEquals("%var(${key.name})".stringItem, *values)
+    fun valueEquals(key: String, vararg values: Insertable) = valueEquals(key.stringItem, *values)
+    fun valueEquals(key: StringVariable, vararg values: Insertable) = valueEquals(key.stringItem, *values)
+    fun valueEquals(key: StringItem, vararg values: Insertable) = ItemComparison { not, nested ->
         IfVar.dictValueEquals({
             +item
             +key
-            for (i in items) {
+            for (i in values) {
                 +i
             }
         }, not, nested)

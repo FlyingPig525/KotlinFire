@@ -5,6 +5,7 @@ import io.github.flyingpig525.base.Template.Type.*
 import io.github.flyingpig525.base.TemplateCollection
 import io.github.flyingpig525.base.block.PlayerEvent
 import io.github.flyingpig525.base.item.type.DictionaryVariable
+import io.github.flyingpig525.base.item.type.ListVariable
 import io.github.flyingpig525.base.item.type.LocItem
 import io.github.flyingpig525.base.item.type.MinecraftItem
 import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
@@ -17,9 +18,13 @@ import io.github.flyingpig525.base.item.type.VarItem.Companion.lineVar
 import io.github.flyingpig525.base.item.type.VarItem.Companion.saveVar
 import io.github.flyingpig525.base.item.type.VarItem.Companion.toVarItem
 import io.github.flyingpig525.base.item.type.VarItem.Scope.*
+import io.github.flyingpig525.base.item.type.emptyListVar
 import io.github.flyingpig525.base.item.type.gamevalue.InformationalValues
 import io.github.flyingpig525.base.item.type.gamevalue.LocationalValues
 import io.github.flyingpig525.base.item.type.gamevalue.StatisticalValues
+import io.github.flyingpig525.base.item.type.listVarOf
+import io.github.flyingpig525.base.item.type.locOf
+import io.github.flyingpig525.base.item.type.vecOf
 import io.github.flyingpig525.serialization.DiamondFireClass
 import io.github.flyingpig525.serialization.DiamondFireClassOptIn
 import kotlinx.serialization.json.Json
@@ -242,6 +247,46 @@ class LibraryTest {
                 val initialLocation = dict.getAsVariable("initialLocation", VarItem.Scope.LINE)
                 PlayerAction.teleport {
                     +initialLocation
+                }
+            }
+        }
+    }
+
+    @Test
+    fun listTest() {
+        Template {
+            // the ListVariable constructor is internal, so you must use `emptyListVar` or `listVarOf`
+            val list = emptyListVar("listName", VarItem.Scope.GAME)
+
+            // setting indices
+            list[0] = 52.numItem
+            // appending values
+            list += InformationalValues.Name
+            // overwriting a value
+            list[1] = vecOf(2, 51, 921)
+            // removing duplicates
+            list += 52.numItem
+
+            list.dedup()
+            // getting values
+            PlayerAction.sendMessage {
+                // gets return a string, which can be transformed into a num, text, or string
+                // here, it is getting appended to another string and transformed into a text
+                +("The 0th index in the list is " + list[0]).textItem
+                // if the value might not be a num, text, or string, use `getAsVariable`
+                +("Its not a num, text, or string! ")
+                +list.getAsVariable(1)
+            }
+
+            // performing an operation and saving the result to another variable
+            val newList = emptyListVar("newList", VarItem.Scope.LINE)
+            // newList is passed to the `out` parameter
+            list.reverse(newList)
+
+            // ListVariable also has comparisons
+            ifVal(!(list contains "random text")) {
+                PlayerAction.sendMessage {
+                    +"The list does not contain a text item with the content \"random text\"".textItem
                 }
             }
         }

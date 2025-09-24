@@ -289,6 +289,53 @@ Template {
 }
 ```
 
+### New, 1.6.4!
+A new type has been added: `ListVariable`!
+
+List `DictionaryVariable`, `ListVariable` is used to define DiamondFire list variables, and has a multitude of methods
+to interact with the underlying item in an easy way. Every code block in the `SetVariable` category containing the word
+"list" has been implemented as a member of `ListVariable` (they are actually extension functions defined in the
+`Template` class)
+
+```kotlin
+Template {
+    // the ListVariable constructor is internal, so you must use `emptyListVar` or `listVarOf`
+    val list = emptyListVar("listName", VarItem.Scope.GAME)
+
+    // setting indices
+    list[0] = 52.numItem
+    // appending values
+    list += InformationalValues.Name
+    // overwriting a value
+    list[1] = vecOf(2, 51, 921)
+    // removing duplicates
+    list += 52.numItem
+
+    list.dedup()
+    // getting values
+    PlayerAction.sendMessage {
+        // gets return a string, which can be transformed into a num, text, or string
+        // here, it is getting appended to another string and transformed into a text
+        +("The 0th index in the list is " + list[0]).textItem
+        // if the value might not be a num, text, or string, use `getAsVariable`
+        +("Its not a num, text, or string! ")
+        +list.getAsVariable(1)
+    }
+
+    // performing an operation and saving the result to another variable
+    val newList = emptyListVar("newList", VarItem.Scope.LINE)
+    // newList is passed to the `out` parameter
+    list.reverse(newList)
+    
+    // ListVariable also has comparisons
+    ifVal(!(list contains "random text")) {
+        PlayerAction.sendMessage {
+            +"The list does not contain a text item with the content \"random text\"".textItem
+        }
+    }
+}
+```
+
 ### Utilities
 Multiple utility functions exist, allowing the retrieval of encoded template strings and a function to interact with the
 [CodeClient API](https://github.com/DFOnline/CodeClient/wiki/api). This function can be used to send individual or

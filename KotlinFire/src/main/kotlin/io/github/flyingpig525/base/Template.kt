@@ -15,7 +15,6 @@ import io.github.flyingpig525.base.item.type.VarItem.Companion.toVarItem
 import io.github.flyingpig525.encoding.TemplateEncoder
 import io.github.flyingpig525.serialization.DiamondFireClass
 import io.github.flyingpig525.serialization.DiamondFireClassOptIn
-import io.github.flyingpig525.serialization.DiamondFireDelegate
 import io.ktor.client.*
 import io.ktor.client.engine.java.*
 import io.ktor.client.plugins.websocket.*
@@ -27,7 +26,6 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.putJsonArray
 import org.jetbrains.annotations.ApiStatus.Internal
-import kotlin.reflect.KProperty
 
 typealias Items = ItemCollection.() -> Unit
 
@@ -396,9 +394,24 @@ open class Template(
     inline operator fun ListVariable.set(index: NumVariable, value: String) = set(index.numItem, value.textItem)
     inline operator fun ListVariable.set(index: NumVariable, value: Number) = set(index.numItem, value.numItem)
 
-    inline operator fun ListVariable.get(index: NumVariable): String = TODO("add list get string")
-    inline operator fun ListVariable.get(index: NumItem): String = TODO("add list get string")
+    inline operator fun ListVariable.get(index: NumVariable): String = "%index($name,%var(${index.name})"
+    inline operator fun ListVariable.get(index: NumItem): String = "%index($name,${index.value})"
     inline operator fun ListVariable.get(index: Int): String = get(index.numItem)
+
+    inline operator fun ListVariable.plusAssign(value: Insertable) {
+        SetVariable.appendValue {
+            +item
+            +value
+        }
+    }
+
+    inline operator fun ListVariable.minusAssign(value: Insertable) {
+        SetVariable.removeListValue {
+            +item
+            +value
+        }
+    }
+
     inline fun ListVariable.getAsVariable(index: NumItem, scope: VarItem.Scope = VarItem.Scope.LINE): VarItem {
         val i = VarItem("$name-GeneratedGet-${index.value}-aiwhdoaiuhdioa", scope)
         SetVariable.getListValue {
@@ -545,7 +558,7 @@ open class Template(
         }
     }
 
-    inline fun ListVariable.popIndex(
+    inline fun ListVariable.pop(
         index: NumItem,
         out: VarItem = VarItem("$name-${index.value}-PopValue", VarItem.Scope.LINE)
     ): VarItem {
@@ -556,14 +569,14 @@ open class Template(
         }
         return out
     }
-    inline fun ListVariable.popIndex(
+    inline fun ListVariable.pop(
         index: Int,
         out: VarItem = VarItem("$name-$index-PopValue", VarItem.Scope.LINE)
-    ) = popIndex(index.numItem, out)
-    inline fun ListVariable.popIndex(
+    ) = pop(index.numItem, out)
+    inline fun ListVariable.pop(
         index: NumVariable,
         out: VarItem = VarItem("$name-%var(${index.name})-PopValue", VarItem.Scope.LINE)
-    ) = popIndex(index.numItem, out)
+    ) = pop(index.numItem, out)
 
     inline val ListVariable.size: NumItem get() {
         val i = VarItem("$name-ListLength-auhdoiwauhisd", VarItem.Scope.LINE)
