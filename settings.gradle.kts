@@ -8,7 +8,7 @@
 plugins {
     // Apply the foojay-resolver plugin to allow automatic download of JDKs
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
-    val kotlinVersion = "2.1.10"
+    val kotlinVersion = "2.2.20"
     kotlin("jvm") version kotlinVersion apply false
     kotlin("plugin.serialization") version kotlinVersion apply false
 }
