@@ -74,6 +74,7 @@ fun blockActions(actions: List<JsonObject>) = try {
         
         import io.github.flyingpig525.base.block.subaction.SubAction
         
+        @Suppress("unused")
         enum class ${codeblock.name}SubAction(override val codeblock: String) : SubAction {
         
         """.trimIndent()
@@ -92,6 +93,7 @@ fun blockActions(actions: List<JsonObject>) = try {
     """.trimIndent()
     if (!encloses) {
         file += """
+        @Suppress("unused")
         class ${codeblock.name}Category internal constructor(private val template: Template) {
             private val blocks = template.blocks
 
@@ -101,6 +103,7 @@ fun blockActions(actions: List<JsonObject>) = try {
         """.trimIndent()
     } else {
         file += """
+            @Suppress("unused")
             class ${codeblock.name}Category internal constructor(private val template: Template) {
                 private val blocks = template.blocks
 
@@ -237,6 +240,7 @@ fun processEvents(codeblock: CodeBlock, events: List<JsonObject>) = try {
     var file = """
         package io.github.flyingpig525.base.block
         
+        @Suppress("unused")
         enum class ${codeblock.name}(val type: EventBlock.Type, val event: String) {
     """.trimIndent()
     for (event in events) {
@@ -271,6 +275,7 @@ fun processGameValueCategory(category: String, values: List<JsonObject>) {
         import io.github.flyingpig525.base.item.*
         import io.github.flyingpig525.base.item.type.*
         
+        @Suppress("unused")
         object $className {
         
     """.trimIndent()
