@@ -128,12 +128,13 @@ fun blockActions(actions: List<JsonObject>) = try {
         val name = action["name"]!!.jsonPrimitive.content
         val funcName = removeClutter(actionNameToFunction(name))
         if (funcName in alreadyDone) continue
+        if (funcName == "listValueEq") println(action)
         alreadyDone += funcName
         val icon = action["icon"]!!.jsonObject
         val description: List<String> = icon["description"]!!.jsonArray.map { it.jsonPrimitive.content }
         var comment = "\t/**\n"
         description.forEach {
-            comment += "\t * *${removeClutter(it)}*\n"
+            comment += "\t * ${removeClutter(it)}\n"
         }
         val subAction = hasSubAction(action)
         if (subAction) {
@@ -171,7 +172,14 @@ fun blockActions(actions: List<JsonObject>) = try {
                 }
                 comment += "\n\t *\n"
                 description?.forEach {
-                    comment += "\t * ${if (optional) "(*) " else ""}*${removeClutter(it)}*\n"
+                    comment += "\t * ${if (optional) "(*) " else ""}${removeClutter(it)}\n"
+                }
+                val notes = arg["notes"]?.jsonArray?.map { it.jsonArray.joinToString(" ") { it.jsonPrimitive.content } }
+                if (notes != null && notes.isNotEmpty()) {
+                    comment += "\t *\n"
+                    for (note in notes) {
+                        comment += "\t * *$note*\n"
+                    }
                 }
                 comment += "\t *\n"
             }
@@ -302,7 +310,7 @@ fun processGameValueCategory(category: String, values: List<JsonObject>) {
         e.printStackTrace()
     }
     file += "}"
-    println(file)
+//    println(file)
     writeToDirFile("gen/gamevalue", "$className.kt", file)
 }
 

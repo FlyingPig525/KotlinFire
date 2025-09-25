@@ -14,18 +14,18 @@ class GameActionCategory internal constructor(private val template: Template) {
         blocks += Block("game_action", ItemCollection(items).items, action, extra)
     }
 	/**
-	 * *Fills the container at a location*
-	 * *with items.*
+	 * Fills the container at a location
+	 * with items.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Container location*
+	 * Container location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item(s) to fill with*
+	 * Item(s) to fill with
 	 *
 	 * (*) = optional
 	 */
@@ -35,14 +35,14 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Breaks the block at a location*
-	 * *as if it was broken by a player.*
+	 * Breaks the block at a location
+	 * as if it was broken by a player.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Block(s) to break*
+	 * Block(s) to break
 	 *
 	 * (*) = optional
 	 */
@@ -66,22 +66,22 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Changes a line of text*
-	 * *on a sign.*
+	 * Changes a line of text
+	 * on a sign.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Sign location*
+	 * Sign location
 	 *
 	 * [NumItem]
 	 *
-	 * *Line number*
+	 * Line number
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *New text*
+	 * (*) New text
 	 *
 	 * (*) = optional
 	 */
@@ -91,17 +91,17 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sends a web request to a URL.*
+	 * Sends a web request to a URL.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *URL to request*
+	 * URL to request
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *Content body*
+	 * (*) Content body
 	 *
 	 * (*) = optional
 	 */
@@ -125,14 +125,14 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the death message in*
-	 * *this event.*
+	 * Sets the death message in
+	 * this event.
 	 *
 	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *New death message*
+	 * New death message
 	 *
 	 * (*) = optional
 	 */
@@ -149,28 +149,30 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Adds blocks to the next transaction; a method*
-	 * *of queuing up block operations so that*
-	 * *they can be sent simultaneously.*
+	 * Adds blocks to the next transaction; a method
+	 * of queuing up block operations so that
+	 * they can be sent simultaneously.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Block to set*
+	 * Block to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Corner 1*
+	 * Corner 1
 	 *
 	 * [LocItem]
 	 *
-	 * *Corner 2*
+	 * Corner 2
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Block data*
-	 * (*) *(comma separated)*
+	 * (*) Block data
+	 * (*) (comma separated)
+	 *
+	 * *Example: "facing=up,half=top"*
 	 *
 	 * (*) = optional
 	 */
@@ -187,18 +189,20 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a data tag value of*
-	 * *the block at a location.*
+	 * Sets a data tag value of
+	 * the block at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Location*
+	 * Location
 	 *
 	 * [TextItem]
 	 *
-	 * *Block data*
+	 * Block data
+	 *
+	 * *Example: "facing=up"*
 	 *
 	 * (*) = optional
 	 */
@@ -208,18 +212,18 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Launches a firework*
-	 * *rocket at a location.*
+	 * Launches a firework
+	 * rocket at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Firework rocket*
+	 * Firework rocket
 	 *
 	 * [LocItem]
 	 *
-	 * *Spawn location*
+	 * Spawn location
 	 *
 	 * (*) = optional
 	 */
@@ -229,14 +233,16 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the damage dealt in*
-	 * *this event.*
+	 * Sets the damage dealt in
+	 * this event.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *New damage amount*
+	 * New damage amount
+	 *
+	 * *❤ = 2 Health*
 	 *
 	 * (*) = optional
 	 */
@@ -246,21 +252,21 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Spawns an item at a location.*
+	 * Spawns an item at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item(s) to spawn*
+	 * Item(s) to spawn
 	 *
 	 * [LocItem]
 	 *
-	 * *Spawn location*
+	 * Spawn location
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Custom name*
+	 * (*) Custom name
 	 *
 	 * (*) = optional
 	 */
@@ -270,14 +276,14 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Changes the text color*
-	 * *of a sign.*
+	 * Changes the text color
+	 * of a sign.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Sign location*
+	 * Sign location
 	 *
 	 * (*) = optional
 	 */
@@ -287,13 +293,13 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Spawns a shulker bullet at a location.*
+	 * Spawns a shulker bullet at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Spawn Location*
+	 * Spawn Location
 	 *
 	 * (*) = optional
 	 */
@@ -310,18 +316,18 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the contents of the container*
-	 * *at a location.*
+	 * Sets the contents of the container
+	 * at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Container location*
+	 * Container location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item(s) to set*
+	 * Item(s) to set
 	 *
 	 * (*) = optional
 	 */
@@ -331,22 +337,22 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Spawns an invisible hitbox*
-	 * *with the specified size.*
+	 * Spawns an invisible hitbox
+	 * with the specified size.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Spawn location*
+	 * Spawn location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Hitbox width*
+	 * (*) Hitbox width
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Hitbox height*
+	 * (*) Hitbox height
 	 *
 	 * (*) = optional
 	 */
@@ -356,22 +362,22 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the item in a slot of the*
-	 * *container at a location.*
+	 * Sets the item in a slot of the
+	 * container at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Container location*
+	 * Container location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to set*
+	 * (*) Item to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Slot*
+	 * Slot
 	 *
 	 * (*) = optional
 	 */
@@ -381,26 +387,26 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Copies a region of blocks to another*
-	 * *region, including air.*
+	 * Copies a region of blocks to another
+	 * region, including air.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Corner 1*
+	 * Corner 1
 	 *
 	 * [LocItem]
 	 *
-	 * *Corner 2*
+	 * Corner 2
 	 *
 	 * [LocItem]
 	 *
-	 * *Position to copy from*
+	 * Position to copy from
 	 *
 	 * [LocItem]
 	 *
-	 * *Position to paste to*
+	 * Position to paste to
 	 *
 	 * (*) = optional
 	 */
@@ -410,8 +416,8 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Uncancels the initial event that*
-	 * *triggered this line of code.*
+	 * Uncancels the initial event that
+	 * triggered this line of code.
 	 */
 	fun uncancelEvent(items: Items) {
 		block(items, "UncancelEvent")
@@ -419,22 +425,22 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the book and the*
-	 * *displayed page of a Lectern.*
+	 * Sets the book and the
+	 * displayed page of a Lectern.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Lectern location*
+	 * Lectern location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Book to put*
+	 * (*) Book to put
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Displayed page*
+	 * (*) Displayed page
 	 *
 	 * (*) = optional
 	 */
@@ -444,22 +450,22 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Spawns an armor stand at a*
-	 * *location.*
+	 * Spawns an armor stand at a
+	 * location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Spawn location*
+	 * Spawn location
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Custom name*
+	 * (*) Custom name
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Equipment*
+	 * (*) Equipment
 	 *
 	 * (*) = optional
 	 */
@@ -469,21 +475,23 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Spawns a block display entity.*
+	 * Spawns a block display entity.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Spawn location*
+	 * Spawn location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Displayed block*
+	 * Displayed block
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Block data*
+	 * (*) Block data
+	 *
+	 * *Example: "facing=up", "half=top"*
 	 *
 	 * (*) = optional
 	 */
@@ -493,13 +501,13 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Empties a container at a location.*
+	 * Empties a container at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Container location*
+	 * Container location
 	 *
 	 * (*) = optional
 	 */
@@ -509,8 +517,8 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Cancels the initial event that*
-	 * *triggered this line of code.*
+	 * Cancels the initial event that
+	 * triggered this line of code.
 	 */
 	fun cancelEvent(items: Items) {
 		block(items, "CancelEvent")
@@ -525,18 +533,18 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Spawns evoker fangs at a*
-	 * *location.*
+	 * Spawns evoker fangs at a
+	 * location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Spawn location*
+	 * Spawn location
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Custom name*
+	 * (*) Custom name
 	 *
 	 * (*) = optional
 	 */
@@ -546,15 +554,15 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the sound to play for*
-	 * *this event, replacing the*
-	 * *original sound.*
+	 * Sets the sound to play for
+	 * this event, replacing the
+	 * original sound.
 	 *
 	 * **Args:**
 	 *
 	 * [SoundItem]
 	 *
-	 * *New sound*
+	 * New sound
 	 *
 	 * (*) = optional
 	 */
@@ -564,14 +572,14 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the amount of experience*
-	 * *this event should drop.*
+	 * Sets the amount of experience
+	 * this event should drop.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Experience*
+	 * Experience
 	 *
 	 * (*) = optional
 	 */
@@ -581,18 +589,18 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the lock key of the container*
-	 * *at a location.*
+	 * Sets the lock key of the container
+	 * at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Container location*
+	 * Container location
 	 *
 	 * [StringItem]
 	 *
-	 * *Lock key*
+	 * Lock key
 	 *
 	 * (*) = optional
 	 */
@@ -616,14 +624,14 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the exhaustion*
-	 * *gained in this event.*
+	 * Sets the exhaustion
+	 * gained in this event.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *New exhaustion amount*
+	 * New exhaustion amount
 	 *
 	 * (*) = optional
 	 */
@@ -647,18 +655,18 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Removes all of an item from*
-	 * *the container at a location.*
+	 * Removes all of an item from
+	 * the container at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Container location*
+	 * Container location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item(s) to clear*
+	 * Item(s) to clear
 	 *
 	 * (*) = optional
 	 */
@@ -675,19 +683,19 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the amount of ticks it*
-	 * *takes for a furnace block*
-	 * *to cook an item.*
+	 * Sets the amount of ticks it
+	 * takes for a furnace block
+	 * to cook an item.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Furnace location*
+	 * Furnace location
 	 *
 	 * [NumItem]
 	 *
-	 * *Ticks*
+	 * Ticks
 	 *
 	 * (*) = optional
 	 */
@@ -697,8 +705,8 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Enables blocks dropping*
-	 * *as items when broken.*
+	 * Enables blocks dropping
+	 * as items when broken.
 	 */
 	fun blockDropsOn(items: Items) {
 		block(items, "BlockDropsOn")
@@ -706,17 +714,17 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Applies bone meal to a block.*
+	 * Applies bone meal to a block.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Block(s) to bone meal*
+	 * Block(s) to bone meal
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Number of uses*
+	 * (*) Number of uses
 	 *
 	 * (*) = optional
 	 */
@@ -733,22 +741,22 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Spawns a falling block at a*
-	 * *location.*
+	 * Spawns a falling block at a
+	 * location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Block location*
+	 * Block location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Block material*
+	 * Block material
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Block data*
+	 * (*) Block data
 	 *
 	 * (*) = optional
 	 */
@@ -758,18 +766,18 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sends a message to a Discord*
-	 * *webhook.*
+	 * Sends a message to a Discord
+	 * webhook.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Webhook URL*
+	 * Webhook URL
 	 *
 	 * [StringItem]
 	 *
-	 * *Message content*
+	 * Message content
 	 *
 	 * (*) = optional
 	 */
@@ -779,19 +787,19 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Causes a block to get "random*
-	 * *ticked", which could cause a*
-	 * *block update.*
+	 * Causes a block to get "random
+	 * ticked", which could cause a
+	 * block update.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Block(s) to tick*
+	 * Block(s) to tick
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Number of ticks*
+	 * (*) Number of ticks
 	 *
 	 * (*) = optional
 	 */
@@ -801,27 +809,27 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Replaces items in the container*
-	 * *at a location with the given item.*
+	 * Replaces items in the container
+	 * at a location with the given item.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Container location*
+	 * Container location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item(s) to replace*
+	 * (*) Item(s) to replace
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to replace with*
+	 * Item to replace with
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Amount of items to*
-	 * (*) *replace*
+	 * (*) Amount of items to
+	 * (*) replace
 	 *
 	 * (*) = optional
 	 */
@@ -831,14 +839,14 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Replaces the projectile fired in*
-	 * *the Shoot Bow Event.*
+	 * Replaces the projectile fired in
+	 * the Shoot Bow Event.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Projectile to launch*
+	 * (*) Projectile to launch
 	 *
 	 * (*) = optional
 	 */
@@ -848,18 +856,20 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Creates an explosion at a location.*
+	 * Creates an explosion at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Explosion*
-	 * *location*
+	 * Explosion
+	 * location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Explosion power (0-4)*
+	 * (*) Explosion power (0-4)
+	 *
+	 * *Default = 4*
 	 *
 	 * (*) = optional
 	 */
@@ -869,33 +879,33 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Spawns a mob at a location.*
+	 * Spawns a mob at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Mob type*
+	 * Mob type
 	 *
 	 * [LocItem]
 	 *
-	 * *Spawn location*
+	 * Spawn location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Health*
+	 * (*) Health
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Custom name*
+	 * (*) Custom name
 	 *
 	 * [PotionItem]
 	 *
-	 * (*) *Effect(s)*
+	 * (*) Effect(s)
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Equipment*
+	 * (*) Equipment
 	 *
 	 * (*) = optional
 	 */
@@ -905,18 +915,18 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the item buried in a*
-	 * *suspicious sand or gravel.*
+	 * Sets the item buried in a
+	 * suspicious sand or gravel.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Block location*
+	 * Block location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item*
+	 * (*) Item
 	 *
 	 * (*) = optional
 	 */
@@ -933,27 +943,27 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Spawns an eye of ender at a*
-	 * *location, which (if specified) will*
-	 * *float towards its destination.*
+	 * Spawns an eye of ender at a
+	 * location, which (if specified) will
+	 * float towards its destination.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Location to spawn at*
+	 * Location to spawn at
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Destination*
+	 * (*) Destination
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Lifespan (ticks)*
+	 * (*) Lifespan (ticks)
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Custom name*
+	 * (*) Custom name
 	 *
 	 * (*) = optional
 	 */
@@ -970,31 +980,35 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Spawns a lingering potion cloud*
-	 * *at a location that imbues effects*
-	 * *onto entities who enter it.*
+	 * Spawns a lingering potion cloud
+	 * at a location that imbues effects
+	 * onto entities who enter it.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Spawn location*
+	 * Spawn location
 	 *
 	 * [PotionItem]
 	 *
-	 * (*) *Effect to apply*
+	 * (*) Effect to apply
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Custom name*
+	 * (*) Custom name
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Radius (blocks)*
+	 * (*) Radius (blocks)
+	 *
+	 * *Default = 3*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Duration (ticks)*
+	 * (*) Duration (ticks)
+	 *
+	 * *Default = 200*
 	 *
 	 * (*) = optional
 	 */
@@ -1004,29 +1018,32 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Launches a projectile.*
+	 * Launches a projectile.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Projectile to launch*
+	 * Projectile to launch
 	 *
 	 * [LocItem]
 	 *
-	 * *Launch point*
+	 * Launch point
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Custom name*
+	 * (*) Custom name
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Speed*
+	 * (*) Speed
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Inaccuracy*
+	 * (*) Inaccuracy
+	 *
+	 * *Controls how much random motion is applied on launch*
+	 * *Default = 1*
 	 *
 	 * (*) = optional
 	 */
@@ -1036,21 +1053,23 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the block at a location.*
+	 * Sets the block at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Block to set*
+	 * Block to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Block location(s)*
+	 * Block location(s)
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Block data*
+	 * (*) Block data
+	 *
+	 * *Example: "facing=up", "half=top"*
 	 *
 	 * (*) = optional
 	 */
@@ -1060,17 +1079,17 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Spawns an item display entity.*
+	 * Spawns an item display entity.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Spawn location*
+	 * Spawn location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Displayed item*
+	 * Displayed item
 	 *
 	 * (*) = optional
 	 */
@@ -1080,18 +1099,20 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the growth stage of the block*
-	 * *(eg. carrots) at a location.*
+	 * Sets the growth stage of the block
+	 * (eg. carrots) at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Block location*
+	 * Block location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Growth stage*
+	 * (*) Growth stage
+	 *
+	 * *Default = 0*
 	 *
 	 * (*) = optional
 	 */
@@ -1108,18 +1129,18 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the name of the container*
-	 * *at a location.*
+	 * Sets the name of the container
+	 * at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Container location*
+	 * Container location
 	 *
 	 * [TextItem]
 	 *
-	 * *Name*
+	 * Name
 	 *
 	 * (*) = optional
 	 */
@@ -1129,22 +1150,24 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the block at a location*
-	 * *to a player head.*
+	 * Sets the block at a location
+	 * to a player head.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Head location*
+	 * Head location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Player Head*
+	 * Player Head
 	 *
 	 * [StringItem]
 	 *
-	 * *Head owner*
+	 * Head owner
+	 *
+	 * *Player name or UUID*
 	 *
 	 * (*) = optional
 	 */
@@ -1161,18 +1184,18 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Removes items from the container*
-	 * *at a location.*
+	 * Removes items from the container
+	 * at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Container location*
+	 * Container location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item(s) to remove*
+	 * Item(s) to remove
 	 *
 	 * (*) = optional
 	 */
@@ -1189,26 +1212,28 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Fills a region with a type of block.*
+	 * Fills a region with a type of block.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Block to set*
+	 * Block to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Corner 1*
+	 * Corner 1
 	 *
 	 * [LocItem]
 	 *
-	 * *Corner 2*
+	 * Corner 2
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Block data*
-	 * (*) *(comma separated)*
+	 * (*) Block data
+	 * (*) (comma separated)
+	 *
+	 * *Example: "facing=up,half=top"*
 	 *
 	 * (*) = optional
 	 */
@@ -1225,25 +1250,29 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Spawns primed TNT at a location.*
+	 * Spawns primed TNT at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Spawn location*
+	 * Spawn location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *TNT power (0-4)*
+	 * (*) TNT power (0-4)
+	 *
+	 * *Default = 4*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Fuse duration*
+	 * (*) Fuse duration
+	 *
+	 * *Default = 80*
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Custom name*
+	 * (*) Custom name
 	 *
 	 * (*) = optional
 	 */
@@ -1253,22 +1282,22 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Spawns an experience orb at*
-	 * *a location.*
+	 * Spawns an experience orb at
+	 * a location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Spawn location*
+	 * Spawn location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Experience amount*
+	 * (*) Experience amount
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Custom name*
+	 * (*) Custom name
 	 *
 	 * (*) = optional
 	 */
@@ -1278,21 +1307,23 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the biome of a region.*
+	 * Sets the biome of a region.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Biome to set*
+	 * Biome to set
+	 *
+	 * *Example: "basalt_deltas", "plains"*
 	 *
 	 * [LocItem]
 	 *
-	 * *Corner 1*
+	 * Corner 1
 	 *
 	 * [LocItem]
 	 *
-	 * *Corner 2*
+	 * Corner 2
 	 *
 	 * (*) = optional
 	 */
@@ -1302,14 +1333,16 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the amount of health*
-	 * *regained in this event.*
+	 * Sets the amount of health
+	 * regained in this event.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *New healing amount*
+	 * New healing amount
+	 *
+	 * *❤ = 2 Health*
 	 *
 	 * (*) = optional
 	 */
@@ -1326,8 +1359,8 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Applies the current transaction*
-	 * *and generates a new one.*
+	 * Applies the current transaction
+	 * and generates a new one.
 	 */
 	fun applyTransaction(items: Items) {
 		block(items, "ApplyTransaction")
@@ -1342,14 +1375,14 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Generates a tree at a location.*
+	 * Generates a tree at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Tree location (bottom*
-	 * *log block)*
+	 * Tree location (bottom
+	 * log block)
 	 *
 	 * (*) = optional
 	 */
@@ -1373,18 +1406,18 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Spawns an end crystal at a*
-	 * *location.*
+	 * Spawns an end crystal at a
+	 * location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Spawn location*
+	 * Spawn location
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Custom name*
+	 * (*) Custom name
 	 *
 	 * (*) = optional
 	 */
@@ -1394,22 +1427,24 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the item being cooked in*
-	 * *one of a campfire's slots.*
+	 * Sets the item being cooked in
+	 * one of a campfire's slots.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Campfire location*
+	 * Campfire location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Campfire item*
+	 * Campfire item
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Cooking time (ticks)*
+	 * (*) Cooking time (ticks)
+	 *
+	 * *Default = 600*
 	 *
 	 * (*) = optional
 	 */
@@ -1419,17 +1454,17 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Spawns a text display entity.*
+	 * Spawns a text display entity.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Spawn location*
+	 * Spawn location
 	 *
 	 * [TextItem]
 	 *
-	 * *Displayed text*
+	 * Displayed text
 	 *
 	 * (*) = optional
 	 */
@@ -1439,21 +1474,21 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Spawns a vehicle at a location.*
+	 * Spawns a vehicle at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Vehicle type*
+	 * Vehicle type
 	 *
 	 * [LocItem]
 	 *
-	 * *Spawn location*
+	 * Spawn location
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Custom name*
+	 * (*) Custom name
 	 *
 	 * (*) = optional
 	 */
@@ -1463,13 +1498,13 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Strikes lightning at a location.*
+	 * Strikes lightning at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Impact location*
+	 * Impact location
 	 *
 	 * (*) = optional
 	 */
@@ -1500,8 +1535,8 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Disables blocks dropping*
-	 * *as items when broken.*
+	 * Disables blocks dropping
+	 * as items when broken.
 	 */
 	fun blockDropsOff(items: Items) {
 		block(items, "BlockDropsOff")

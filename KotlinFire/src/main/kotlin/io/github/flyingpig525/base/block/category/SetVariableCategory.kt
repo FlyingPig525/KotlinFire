@@ -15,18 +15,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
         blocks += Block("set_var", ItemCollection(items).items, action, extra)
     }
 	/**
-	 * *Sets a variable to a string, or combines*
-	 * *multiple values into one string.*
+	 * Sets a variable to a string, or combines
+	 * multiple values into one string.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [Item]
 	 *
-	 * (*) *String to set to*
+	 * (*) String to set to
 	 *
 	 * (*) = optional
 	 */
@@ -36,22 +36,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a list of all capture groups*
-	 * *in a Regex match.*
+	 * Gets a list of all capture groups
+	 * in a Regex match.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [StringItem]
 	 *
-	 * *Input string*
+	 * Input string
 	 *
 	 * [StringItem]
 	 *
-	 * *Regex pattern*
+	 * Regex pattern
 	 *
 	 * (*) = optional
 	 */
@@ -61,21 +61,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the contents of a bundle.*
+	 * Sets the contents of a bundle.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Bundle*
+	 * (*) Bundle
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Contents*
+	 * (*) Contents
 	 *
 	 * (*) = optional
 	 */
@@ -85,22 +85,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a particle effect's type.*
+	 * Sets a particle effect's type.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * (*) *Effect to*
-	 * (*) *change*
+	 * (*) Effect to
+	 * (*) change
 	 *
 	 * [StringItem]
 	 *
-	 * *Type*
+	 * Type
 	 *
 	 * (*) = optional
 	 */
@@ -117,17 +117,17 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Removes all item custom tags.*
+	 * Removes all item custom tags.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * (*) = optional
 	 */
@@ -137,14 +137,14 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Clears all variables with names*
-	 * *that match the given text.*
+	 * Clears all variables with names
+	 * that match the given text.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Name to match*
+	 * Name to match
 	 *
 	 * (*) = optional
 	 */
@@ -154,30 +154,30 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Shifts a location's coordinates*
-	 * *on the X, Y, and Z axes.*
+	 * Shifts a location's coordinates
+	 * on the X, Y, and Z axes.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Location to change*
+	 * (*) Location to change
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *X Change*
+	 * (*) X Change
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Y Change*
+	 * (*) Y Change
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Z Change*
+	 * (*) Z Change
 	 *
 	 * (*) = optional
 	 */
@@ -187,19 +187,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a particle effect's particle*
-	 * *display material.*
+	 * Gets a particle effect's particle
+	 * display material.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect to get*
-	 * *material of*
+	 * Effect to get
+	 * material of
 	 *
 	 * (*) = optional
 	 */
@@ -209,26 +209,26 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a particle effect's horizontal*
-	 * *and vertical spread.*
+	 * Sets a particle effect's horizontal
+	 * and vertical spread.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * (*) *Effect to change*
+	 * (*) Effect to change
 	 *
 	 * [NumItem]
 	 *
-	 * *Horizontal spread*
+	 * Horizontal spread
 	 *
 	 * [NumItem]
 	 *
-	 * *Vertical spread*
+	 * Vertical spread
 	 *
 	 * (*) = optional
 	 */
@@ -238,18 +238,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Makes a number positive*
-	 * *if it is negative.*
+	 * Makes a number positive
+	 * if it is negative.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Number input*
+	 * (*) Number input
 	 *
 	 * (*) = optional
 	 */
@@ -259,18 +259,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Removes all attributes from an*
-	 * *item with the given attribute type and slot.*
+	 * Removes all attributes from an
+	 * item with the given attribute type and slot.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item*
+	 * (*) Item
 	 *
 	 * (*) = optional
 	 */
@@ -280,18 +280,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Adds a value to the end of a list*
-	 * *variable.*
+	 * Adds a value to the end of a list
+	 * variable.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *List to append to*
+	 * List to append to
 	 *
 	 * [Item]
 	 *
-	 * *Value(s) to append*
+	 * Value(s) to append
 	 *
 	 * (*) = optional
 	 */
@@ -301,23 +301,23 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to the remainder*
-	 * *after dividing two numbers with*
-	 * *a whole quotient.*
+	 * Sets a variable to the remainder
+	 * after dividing two numbers with
+	 * a whole quotient.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Dividend*
+	 * Dividend
 	 *
 	 * [NumItem]
 	 *
-	 * *Divisor*
+	 * Divisor
 	 *
 	 * (*) = optional
 	 */
@@ -327,26 +327,26 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Shifts a location along a*
-	 * *vector.*
+	 * Shifts a location along a
+	 * vector.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Location to shift*
+	 * (*) Location to shift
 	 *
 	 * [VecItem]
 	 *
-	 * *Shift vector*
+	 * Shift vector
 	 *
 	 * [NumItem]
 	 *
-	 * *Shift distance*
+	 * Shift distance
 	 *
 	 * (*) = optional
 	 */
@@ -356,18 +356,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Get an attribute's*
-	 * *multiplier for a specific slot.*
+	 * Get an attribute's
+	 * multiplier for a specific slot.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item*
+	 * Item
 	 *
 	 * (*) = optional
 	 */
@@ -377,14 +377,14 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Removes all entries from*
-	 * *a dictionary.*
+	 * Removes all entries from
+	 * a dictionary.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Dictionary to clear*
+	 * Dictionary to clear
 	 *
 	 * (*) = optional
 	 */
@@ -394,18 +394,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to the sum of*
-	 * *the given numbers.*
+	 * Sets a variable to the sum of
+	 * the given numbers.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Numbers to add*
+	 * Numbers to add
 	 *
 	 * (*) = optional
 	 */
@@ -415,22 +415,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Rotates a location by shifting its pitch*
-	 * *(up/down) or yaw (left/right) value.*
+	 * Rotates a location by shifting its pitch
+	 * (up/down) or yaw (left/right) value.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Location to shift*
+	 * (*) Location to shift
 	 *
 	 * [NumItem]
 	 *
-	 * *Rotation amount*
+	 * Rotation amount
 	 *
 	 * (*) = optional
 	 */
@@ -440,18 +440,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to the difference*
-	 * *between the given numbers.*
+	 * Sets a variable to the difference
+	 * between the given numbers.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Numbers to subtract*
+	 * Numbers to subtract
 	 *
 	 * (*) = optional
 	 */
@@ -461,17 +461,17 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets an item's name.*
+	 * Gets an item's name.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to get name of*
+	 * Item to get name of
 	 *
 	 * (*) = optional
 	 */
@@ -481,17 +481,17 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets an item's rarity.*
+	 * Gets an item's rarity.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item*
+	 * Item
 	 *
 	 * (*) = optional
 	 */
@@ -501,22 +501,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Multiplies a vector's length*
-	 * *by a number.*
+	 * Multiplies a vector's length
+	 * by a number.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VecItem]
 	 *
-	 * (*) *Vector to multiply*
+	 * (*) Vector to multiply
 	 *
 	 * [NumItem]
 	 *
-	 * *Multiplier*
+	 * Multiplier
 	 *
 	 * (*) = optional
 	 */
@@ -526,18 +526,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to the quotient*
-	 * *of the given numbers.*
+	 * Sets a variable to the quotient
+	 * of the given numbers.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Numbers to divide*
+	 * Numbers to divide
 	 *
 	 * (*) = optional
 	 */
@@ -554,22 +554,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to the result*
-	 * *of a bitwise operation.*
+	 * Sets a variable to the result
+	 * of a bitwise operation.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Operand 1*
+	 * Operand 1
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Operand 2*
+	 * (*) Operand 2
 	 *
 	 * (*) = optional
 	 */
@@ -579,18 +579,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets the displayed page*
-	 * *number of a Lectern.*
+	 * Gets the displayed page
+	 * number of a Lectern.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Lectern location*
+	 * Lectern location
 	 *
 	 * (*) = optional
 	 */
@@ -607,22 +607,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Shifts the X, Y, or Z coordinate*
-	 * *of a location on its axis.*
+	 * Shifts the X, Y, or Z coordinate
+	 * of a location on its axis.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Location to shift*
+	 * (*) Location to shift
 	 *
 	 * [NumItem]
 	 *
-	 * *Shift distance*
+	 * Shift distance
 	 *
 	 * (*) = optional
 	 */
@@ -639,22 +639,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to the vector*
-	 * *between two locations.*
+	 * Sets a variable to the vector
+	 * between two locations.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Start location*
+	 * Start location
 	 *
 	 * [LocItem]
 	 *
-	 * *End location*
+	 * End location
 	 *
 	 * (*) = optional
 	 */
@@ -671,22 +671,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets which sound an item*
-	 * *makes when it breaks.*
+	 * Sets which sound an item
+	 * makes when it breaks.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [SoundItem]
 	 *
-	 * *Break sound*
+	 * Break sound
 	 *
 	 * (*) = optional
 	 */
@@ -696,19 +696,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a vector's X, Y, or Z*
-	 * *component.*
+	 * Gets a vector's X, Y, or Z
+	 * component.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VecItem]
 	 *
-	 * *Vector to get*
-	 * *component of*
+	 * Vector to get
+	 * component of
 	 *
 	 * (*) = optional
 	 */
@@ -718,17 +718,17 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to a value.*
+	 * Sets a variable to a value.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [Item]
 	 *
-	 * *Value*
+	 * Value
 	 *
 	 * (*) = optional
 	 */
@@ -745,23 +745,23 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Adds an attribute modifier to an*
-	 * *item, which is active in a certain*
-	 * *equipment slot.*
+	 * Adds an attribute modifier to an
+	 * item, which is active in a certain
+	 * equipment slot.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item*
+	 * (*) Item
 	 *
 	 * [NumItem]
 	 *
-	 * *Modifier Amount*
+	 * Modifier Amount
 	 *
 	 * (*) = optional
 	 */
@@ -771,18 +771,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Finds an average position (center)*
-	 * *of the given locations.*
+	 * Finds an average position (center)
+	 * of the given locations.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Locations to center*
+	 * Locations to center
 	 *
 	 * (*) = optional
 	 */
@@ -792,18 +792,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Decodes Base64-encoded*
-	 * *bytes as a list of numbers.*
+	 * Decodes Base64-encoded
+	 * bytes as a list of numbers.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Base64 byte(s) to decode*
+	 * Base64 byte(s) to decode
 	 *
 	 * (*) = optional
 	 */
@@ -813,18 +813,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Aligns a location to the center*
-	 * *or corner of the block it is in.*
+	 * Aligns a location to the center
+	 * or corner of the block it is in.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Location to align*
+	 * (*) Location to align
 	 *
 	 * (*) = optional
 	 */
@@ -834,17 +834,17 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a sound's volume.*
+	 * Gets a sound's volume.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [SoundItem]
 	 *
-	 * *Sound to get volume of*
+	 * Sound to get volume of
 	 *
 	 * (*) = optional
 	 */
@@ -854,23 +854,23 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to a random*
-	 * *number between two other*
-	 * *numbers.*
+	 * Sets a variable to a random
+	 * number between two other
+	 * numbers.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Minimum number*
+	 * Minimum number
 	 *
 	 * [NumItem]
 	 *
-	 * *Maximum number*
+	 * Maximum number
 	 *
 	 * (*) = optional
 	 */
@@ -880,18 +880,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a crossbow's*
-	 * *loaded projectile list.*
+	 * Gets a crossbow's
+	 * loaded projectile list.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Crossbow*
+	 * Crossbow
 	 *
 	 * (*) = optional
 	 */
@@ -901,18 +901,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Decompresses Gzip-compressed*
-	 * *bytes as a list of numbers.*
+	 * Decompresses Gzip-compressed
+	 * bytes as a list of numbers.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Byte(s) to decompress*
+	 * Byte(s) to decompress
 	 *
 	 * (*) = optional
 	 */
@@ -922,18 +922,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a container's name at*
-	 * *a location.*
+	 * Gets a container's name at
+	 * a location.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Container location*
+	 * Container location
 	 *
 	 * (*) = optional
 	 */
@@ -943,22 +943,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Raycasts from a location*
-	 * *to the first intersection.*
+	 * Raycasts from a location
+	 * to the first intersection.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Ray origin*
+	 * Ray origin
 	 *
 	 * [NumItem]
 	 *
-	 * *Ray distance*
+	 * Ray distance
 	 *
 	 * (*) = optional
 	 */
@@ -968,26 +968,26 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Rotates a vector around*
-	 * *another vector by an angle.*
+	 * Rotates a vector around
+	 * another vector by an angle.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VecItem]
 	 *
-	 * (*) *Vector to rotate*
+	 * (*) Vector to rotate
 	 *
 	 * [VecItem]
 	 *
-	 * *Axis vector*
+	 * Axis vector
 	 *
 	 * [NumItem]
 	 *
-	 * *Angle*
+	 * Angle
 	 *
 	 * (*) = optional
 	 */
@@ -1004,19 +1004,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a particle effect's particle*
-	 * *motion.*
+	 * Gets a particle effect's particle
+	 * motion.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect to get*
-	 * *motion of*
+	 * Effect to get
+	 * motion of
 	 *
 	 * (*) = optional
 	 */
@@ -1026,21 +1026,23 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets an item's custom tooltip.*
+	 * Sets an item's custom tooltip.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *Tooltip key*
+	 * (*) Tooltip key
+	 *
+	 * *A namespaced key ("minecraft:" by default)*
 	 *
 	 * (*) = optional
 	 */
@@ -1050,34 +1052,36 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Adds consumable properties to an item.*
+	 * Adds consumable properties to an item.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [SoundItem]
 	 *
-	 * (*) *Consuming sound*
+	 * (*) Consuming sound
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Nutrition*
+	 * (*) Nutrition
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Saturation*
+	 * (*) Saturation
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Use duration*
-	 * (*) *(seconds)*
+	 * (*) Use duration
+	 * (*) (seconds)
+	 *
+	 * *Default = 1.6*
 	 *
 	 * (*) = optional
 	 */
@@ -1087,27 +1091,27 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a particle effect's particle*
-	 * *motion and motion variation.*
+	 * Sets a particle effect's particle
+	 * motion and motion variation.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * (*) *Effect to*
-	 * (*) *change*
+	 * (*) Effect to
+	 * (*) change
 	 *
 	 * [VecItem]
 	 *
-	 * (*) *Particle motion*
+	 * (*) Particle motion
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Motion variation (%)*
+	 * (*) Motion variation (%)
 	 *
 	 * (*) = optional
 	 */
@@ -1117,18 +1121,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to the average*
-	 * *of the given numbers.*
+	 * Sets a variable to the average
+	 * of the given numbers.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Numbers to average*
+	 * Numbers to average
 	 *
 	 * (*) = optional
 	 */
@@ -1145,26 +1149,26 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Clamps a location to a region*
-	 * *defined by 2 corners.*
+	 * Clamps a location to a region
+	 * defined by 2 corners.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Location to clamp*
+	 * (*) Location to clamp
 	 *
 	 * [LocItem]
 	 *
-	 * *Corner 1*
+	 * Corner 1
 	 *
 	 * [LocItem]
 	 *
-	 * *Corner 2*
+	 * Corner 2
 	 *
 	 * (*) = optional
 	 */
@@ -1181,22 +1185,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a map item's texture to the*
-	 * *image at the given URL.*
+	 * Sets a map item's texture to the
+	 * image at the given URL.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [StringItem]
 	 *
-	 * *Image URL*
+	 * Image URL
 	 *
 	 * (*) = optional
 	 */
@@ -1206,22 +1210,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a block state tag*
-	 * *value at a location.*
+	 * Gets a block state tag
+	 * value at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Block location*
+	 * Block location
 	 *
 	 * [StringItem]
 	 *
-	 * *Tag name*
+	 * Tag name
 	 *
 	 * (*) = optional
 	 */
@@ -1238,18 +1242,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sorts a dictionary*
-	 * *by its keys or values.*
+	 * Sorts a dictionary
+	 * by its keys or values.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VarItem]
 	 *
-	 * (*) *Dictionary to sort*
+	 * (*) Dictionary to sort
 	 *
 	 * (*) = optional
 	 */
@@ -1259,18 +1263,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets the book on the*
-	 * *Lectern at a location.*
+	 * Gets the book on the
+	 * Lectern at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Lectern location*
+	 * Lectern location
 	 *
 	 * (*) = optional
 	 */
@@ -1280,17 +1284,17 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets the key of a custom sound.*
+	 * Gets the key of a custom sound.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [SoundItem]
 	 *
-	 * *Sound to get key of*
+	 * Sound to get key of
 	 *
 	 * (*) = optional
 	 */
@@ -1300,22 +1304,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to the cross*
-	 * *product of two vectors.*
+	 * Sets a variable to the cross
+	 * product of two vectors.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VecItem]
 	 *
-	 * *Vector 1*
+	 * Vector 1
 	 *
 	 * [VecItem]
 	 *
-	 * *Vector 2*
+	 * Vector 2
 	 *
 	 * (*) = optional
 	 */
@@ -1325,18 +1329,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to the product*
-	 * *of the given numbers.*
+	 * Sets a variable to the product
+	 * of the given numbers.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Numbers to multiply*
+	 * Numbers to multiply
 	 *
 	 * (*) = optional
 	 */
@@ -1346,18 +1350,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a particle effect's roll.*
+	 * Gets a particle effect's roll.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect to get*
-	 * *roll of*
+	 * Effect to get
+	 * roll of
 	 *
 	 * (*) = optional
 	 */
@@ -1374,22 +1378,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to the dot*
-	 * *product of two vectors.*
+	 * Sets a variable to the dot
+	 * product of two vectors.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VecItem]
 	 *
-	 * *Vector 1*
+	 * Vector 1
 	 *
 	 * [VecItem]
 	 *
-	 * *Vector 2*
+	 * Vector 2
 	 *
 	 * (*) = optional
 	 */
@@ -1406,18 +1410,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the trim of an*
-	 * *armor item.*
+	 * Sets the trim of an
+	 * armor item.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * (*) = optional
 	 */
@@ -1427,22 +1431,24 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a list variable's value at*
-	 * *an index and removes it.*
+	 * Gets a list variable's value at
+	 * an index and removes it.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VarItem]
 	 *
-	 * *List to get value of*
+	 * List to get value of
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Index*
+	 * (*) Index
+	 *
+	 * *Default = Last index*
 	 *
 	 * (*) = optional
 	 */
@@ -1452,22 +1458,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a particle effect's opacity.*
+	 * Sets a particle effect's opacity.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * (*) *Effect to*
-	 * (*) *change*
+	 * (*) Effect to
+	 * (*) change
 	 *
 	 * [NumItem]
 	 *
-	 * *Particle opacity*
+	 * Particle opacity
 	 *
 	 * (*) = optional
 	 */
@@ -1477,37 +1483,45 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a seeded noise value.*
+	 * Gets a seeded noise value.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Noise location*
+	 * Noise location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Frequency*
+	 * (*) Frequency
+	 *
+	 * *Modifies the scale that the noise generates at. Default = 1*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Octaves*
+	 * (*) Octaves
+	 *
+	 * *Adds an additional layer of noise to the output. 1-16, Default = 1*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Lacunarity*
+	 * (*) Lacunarity
+	 *
+	 * *Every time a new octave is added, the frequency is multiplied by this value. Default = 1.5*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Gain*
+	 * (*) Gain
+	 *
+	 * *Every time a new octave is added, the weight of it is multiplied by this value. Default = 0.5*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Generation seed*
+	 * (*) Generation seed
 	 *
 	 * (*) = optional
 	 */
@@ -1517,19 +1531,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to the lowest*
-	 * *number in a set.*
+	 * Sets a variable to the lowest
+	 * number in a set.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Number set*
-	 * *to compare*
+	 * Number set
+	 * to compare
 	 *
 	 * (*) = optional
 	 */
@@ -1539,18 +1553,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a potion effect's type.*
+	 * Gets a potion effect's type.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [PotionItem]
 	 *
-	 * *Potion to get*
-	 * *type of*
+	 * Potion to get
+	 * type of
 	 *
 	 * (*) = optional
 	 */
@@ -1567,18 +1581,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets the number of values*
-	 * *a list has.*
+	 * Gets the number of values
+	 * a list has.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VarItem]
 	 *
-	 * *List to measure*
+	 * List to measure
 	 *
 	 * (*) = optional
 	 */
@@ -1588,18 +1602,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to the trigonometric*
-	 * *sine function of a number.*
+	 * Sets a variable to the trigonometric
+	 * sine function of a number.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Number input*
+	 * Number input
 	 *
 	 * (*) = optional
 	 */
@@ -1609,18 +1623,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to the name*
-	 * *of the direction of a vector.*
+	 * Sets a variable to the name
+	 * of the direction of a vector.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VecItem]
 	 *
-	 * *Direction*
+	 * Direction
 	 *
 	 * (*) = optional
 	 */
@@ -1630,22 +1644,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Repeats a string the given number*
-	 * *of times.*
+	 * Repeats a string the given number
+	 * of times.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [StringItem]
 	 *
-	 * *String to repeat*
+	 * String to repeat
 	 *
 	 * [NumItem]
 	 *
-	 * *Times to repeat*
+	 * Times to repeat
 	 *
 	 * (*) = optional
 	 */
@@ -1662,25 +1676,25 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Combines a list of strings.*
+	 * Combines a list of strings.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VarItem]
 	 *
-	 * *Strings to join*
+	 * Strings to join
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *Joining string*
+	 * (*) Joining string
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *Final joining string*
+	 * (*) Final joining string
 	 *
 	 * (*) = optional
 	 */
@@ -1690,18 +1704,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Reverses the order of a*
-	 * *list variable's values.*
+	 * Reverses the order of a
+	 * list variable's values.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VarItem]
 	 *
-	 * (*) *List to reverse*
+	 * (*) List to reverse
 	 *
 	 * (*) = optional
 	 */
@@ -1711,18 +1725,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Removes list elements that appear*
-	 * *more than once.*
+	 * Removes list elements that appear
+	 * more than once.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VarItem]
 	 *
-	 * (*) *List to de-duplicate*
+	 * (*) List to de-duplicate
 	 *
 	 * (*) = optional
 	 */
@@ -1732,22 +1746,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Creates a dictionary with the*
-	 * *given keys and values.*
+	 * Creates a dictionary with the
+	 * given keys and values.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VarItem]
 	 *
-	 * (*) *Key list*
+	 * (*) Key list
 	 *
 	 * [VarItem]
 	 *
-	 * (*) *Value list*
+	 * (*) Value list
 	 *
 	 * (*) = optional
 	 */
@@ -1757,19 +1771,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets an item's leftover item that*
-	 * *gets replaced on use, e.g. drinking*
-	 * *stew gives a bowl.*
+	 * Gets an item's leftover item that
+	 * gets replaced on use, e.g. drinking
+	 * stew gives a bowl.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to get remainder of*
+	 * Item to get remainder of
 	 *
 	 * (*) = optional
 	 */
@@ -1779,19 +1793,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a list of blocks that*
-	 * *belongs to the specified*
-	 * *block tag.*
+	 * Gets a list of blocks that
+	 * belongs to the specified
+	 * block tag.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [StringItem]
 	 *
-	 * *Block tag ID*
+	 * Block tag ID
+	 *
+	 * *Example: "#mineable/pickaxe"*
 	 *
 	 * (*) = optional
 	 */
@@ -1808,22 +1824,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a location's rotation to*
-	 * *face another location.*
+	 * Sets a location's rotation to
+	 * face another location.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Location to change*
+	 * (*) Location to change
 	 *
 	 * [LocItem]
 	 *
-	 * *Target location*
+	 * Target location
 	 *
 	 * (*) = optional
 	 */
@@ -1840,22 +1856,24 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a vector's length. This*
-	 * *affects all components.*
+	 * Sets a vector's length. This
+	 * affects all components.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VecItem]
 	 *
-	 * (*) *Vector to change*
+	 * (*) Vector to change
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Length*
+	 * (*) Length
+	 *
+	 * *Default = 1*
 	 *
 	 * (*) = optional
 	 */
@@ -1865,21 +1883,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a potion effect's duration.*
+	 * Sets a potion effect's duration.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [PotionItem]
 	 *
-	 * (*) *Potion to change*
+	 * (*) Potion to change
 	 *
 	 * [NumItem]
 	 *
-	 * *Duration (ticks)*
+	 * Duration (ticks)
 	 *
 	 * (*) = optional
 	 */
@@ -1889,21 +1907,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a block's blast resistance.*
+	 * Gets a block's blast resistance.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Block to check*
+	 * Block to check
 	 *
 	 * [LocItem]
 	 *
-	 * *Location to check*
+	 * Location to check
 	 *
 	 * (*) = optional
 	 */
@@ -1913,21 +1931,23 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Splits a string into a list of strings.*
+	 * Splits a string into a list of strings.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [StringItem]
 	 *
-	 * *String to split*
+	 * String to split
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *Splitter string*
+	 * (*) Splitter string
+	 *
+	 * *Default = " "*
 	 *
 	 * (*) = optional
 	 */
@@ -1937,23 +1957,23 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to a normally distributed*
-	 * *random number. Values closer to μ are*
-	 * *more likely to be chosen.*
+	 * Sets a variable to a normally distributed
+	 * random number. Values closer to μ are
+	 * more likely to be chosen.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *μ (Mean midpoint)*
+	 * μ (Mean midpoint)
 	 *
 	 * [NumItem]
 	 *
-	 * *σ (Standard deviation)*
+	 * σ (Standard deviation)
 	 *
 	 * (*) = optional
 	 */
@@ -1963,21 +1983,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a potion effect's type.*
+	 * Sets a potion effect's type.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [PotionItem]
 	 *
-	 * (*) *Potion to change*
+	 * (*) Potion to change
 	 *
 	 * [StringItem]
 	 *
-	 * *Type*
+	 * Type
 	 *
 	 * (*) = optional
 	 */
@@ -1987,30 +2007,30 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets the value of a specific Regex Group*
-	 * *in a Regex match.*
+	 * Gets the value of a specific Regex Group
+	 * in a Regex match.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [StringItem]
 	 *
-	 * *Input string*
+	 * Input string
 	 *
 	 * [StringItem]
 	 *
-	 * *Regex pattern*
+	 * Regex pattern
 	 *
 	 * [StringItem]
 	 *
-	 * *Group name*
+	 * Group name
 	 *
 	 * [NumItem]
 	 *
-	 * *Group index*
+	 * Group index
 	 *
 	 * (*) = optional
 	 */
@@ -2020,18 +2040,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Aligns a vector to the*
-	 * *nearest axis.*
+	 * Aligns a vector to the
+	 * nearest axis.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VecItem]
 	 *
-	 * (*) *Vector to align*
+	 * (*) Vector to align
 	 *
 	 * (*) = optional
 	 */
@@ -2041,21 +2061,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets an item's durability.*
+	 * Sets an item's durability.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item*
+	 * (*) Item
 	 *
 	 * [NumItem]
 	 *
-	 * *Item durability*
+	 * Item durability
 	 *
 	 * (*) = optional
 	 */
@@ -2065,18 +2085,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets whether an item is*
-	 * *unbreakable.*
+	 * Sets whether an item is
+	 * unbreakable.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item*
+	 * (*) Item
 	 *
 	 * (*) = optional
 	 */
@@ -2086,22 +2106,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Set an item's maximum stack size.*
+	 * Set an item's maximum stack size.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Maximum stack size*
-	 * (*) *(1-99)*
+	 * (*) Maximum stack size
+	 * (*) (1-99)
 	 *
 	 * (*) = optional
 	 */
@@ -2118,21 +2138,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the given key to the value.*
+	 * Sets the given key to the value.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Dictionary to add to*
+	 * Dictionary to add to
 	 *
 	 * [StringItem]
 	 *
-	 * *Key*
+	 * Key
 	 *
 	 * [Item]
 	 *
-	 * *Value*
+	 * Value
 	 *
 	 * (*) = optional
 	 */
@@ -2142,38 +2162,38 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a location's coordinates or*
-	 * *creates a new location.*
+	 * Sets a location's coordinates or
+	 * creates a new location.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Location to change*
+	 * (*) Location to change
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *New X*
+	 * (*) New X
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *New Y*
+	 * (*) New Y
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *New Z*
+	 * (*) New Z
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *New Pitch*
+	 * (*) New Pitch
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *New Yaw*
+	 * (*) New Yaw
 	 *
 	 * (*) = optional
 	 */
@@ -2183,30 +2203,30 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Creates a color hex based on red,*
-	 * *green, and blue channels.*
+	 * Creates a color hex based on red,
+	 * green, and blue channels.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Red (0-255)*
+	 * Red (0-255)
 	 *
 	 * [NumItem]
 	 *
-	 * *Green (0-255)*
+	 * Green (0-255)
 	 *
 	 * [NumItem]
 	 *
-	 * *Blue (0-255)*
+	 * Blue (0-255)
 	 *
 	 * [VarItem]
 	 *
-	 * *R, G, B values*
+	 * R, G, B values
 	 *
 	 * (*) = optional
 	 */
@@ -2216,22 +2236,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets which blocks an item*
-	 * *can break in Adventure Mode.*
+	 * Sets which blocks an item
+	 * can break in Adventure Mode.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Breakable blocks*
+	 * Breakable blocks
 	 *
 	 * (*) = optional
 	 */
@@ -2241,30 +2261,34 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Creates a color based on hue,*
-	 * *saturation, and lightness.*
+	 * Creates a color based on hue,
+	 * saturation, and lightness.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Hue (Color circle, 0-360)*
+	 * Hue (Color circle, 0-360)
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Saturation (0-100)*
+	 * (*) Saturation (0-100)
+	 *
+	 * *Default = 100*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Lightness (0-100)*
+	 * (*) Lightness (0-100)
+	 *
+	 * *Default = 50*
 	 *
 	 * [VarItem]
 	 *
-	 * *H, S, L values*
+	 * H, S, L values
 	 *
 	 * (*) = optional
 	 */
@@ -2281,19 +2305,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Removes a list variable's value*
-	 * *at an index and shifts all values*
-	 * *after it to the left.*
+	 * Removes a list variable's value
+	 * at an index and shifts all values
+	 * after it to the left.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *List to change*
+	 * List to change
 	 *
 	 * [NumItem]
 	 *
-	 * *Index to remove*
+	 * Index to remove
 	 *
 	 * (*) = optional
 	 */
@@ -2303,62 +2327,82 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets cellular noise: A type of noise*
-	 * *based on distance from cell origins.*
+	 * Gets cellular noise: A type of noise
+	 * based on distance from cell origins.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Noise location*
+	 * Noise location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Frequency*
+	 * (*) Frequency
+	 *
+	 * *Modifies the scale that the noise generates at. Default = 1*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Marbling*
+	 * (*) Marbling
+	 *
+	 * *Every 0.5 adds an additional ring to the noise output. Default = 0.5*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Octaves*
+	 * (*) Octaves
+	 *
+	 * *Adds an additional layer of cellular noise to the output. 1-16, Default = 1*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Lacunarity*
+	 * (*) Lacunarity
+	 *
+	 * *Every time a new octave is added, the frequency is multiplied by this value. Default = 1.5*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Gain*
+	 * (*) Gain
+	 *
+	 * *Every time a new octave is added, the weight of it is multiplied by this value. Default = 0.5*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Warping*
+	 * (*) Warping
+	 *
+	 * *Distorts the noise output. Default = 0*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Resonance*
+	 * (*) Resonance
+	 *
+	 * *Modifies the frequency of warping. Default = 1*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Domains*
+	 * (*) Domains
+	 *
+	 * *Adds an additional layer of warping to the output. Default = 1*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Domain lacunarity*
+	 * (*) Domain lacunarity
+	 *
+	 * *Every time a new domain is added, the resonance is multiplied by this value. Default = 1.5*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Domain gain*
+	 * (*) Domain gain
+	 *
+	 * *Every time a new domain is added, the weight of it is multiplied by this value. Default = 0.5*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Generation seed*
+	 * (*) Generation seed
 	 *
 	 * (*) = optional
 	 */
@@ -2368,18 +2412,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Encodes bytes as a list*
-	 * *of numbers to Base64.*
+	 * Encodes bytes as a list
+	 * of numbers to Base64.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Byte(s) to encode*
+	 * Byte(s) to encode
 	 *
 	 * (*) = optional
 	 */
@@ -2389,24 +2433,24 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Finds the logarithm of a number.*
-	 * *A logarithm is the power the*
-	 * *base must be raised to to get*
-	 * *the given input.*
+	 * Finds the logarithm of a number.
+	 * A logarithm is the power the
+	 * base must be raised to to get
+	 * the given input.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Number input*
+	 * (*) Number input
 	 *
 	 * [NumItem]
 	 *
-	 * *Base*
+	 * Base
 	 *
 	 * (*) = optional
 	 */
@@ -2416,30 +2460,30 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the value of or creates*
-	 * *a custom stored tag value.*
+	 * Sets the value of or creates
+	 * a custom stored tag value.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [StringItem]
 	 *
-	 * *Tag name*
+	 * Tag name
 	 *
 	 * [NumItem]
 	 *
-	 * *Tag value*
+	 * Tag value
 	 *
 	 * [StringItem]
 	 *
-	 * *Tag value*
+	 * Tag value
 	 *
 	 * (*) = optional
 	 */
@@ -2449,26 +2493,28 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Trims a string, starting and ending*
-	 * *at the given positions.*
+	 * Trims a string, starting and ending
+	 * at the given positions.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *String to trim*
+	 * (*) String to trim
 	 *
 	 * [NumItem]
 	 *
-	 * *Start character position*
+	 * Start character position
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *End character position*
+	 * (*) End character position
+	 *
+	 * *Default = String length*
 	 *
 	 * (*) = optional
 	 */
@@ -2485,18 +2531,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets an item's stack size.*
+	 * Gets an item's stack size.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to get stack*
-	 * *size of*
+	 * Item to get stack
+	 * size of
 	 *
 	 * (*) = optional
 	 */
@@ -2506,21 +2552,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a potion effect's amplifier.*
+	 * Sets a potion effect's amplifier.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [PotionItem]
 	 *
-	 * (*) *Potion to change*
+	 * (*) Potion to change
 	 *
 	 * [NumItem]
 	 *
-	 * *Amplifier*
+	 * Amplifier
 	 *
 	 * (*) = optional
 	 */
@@ -2530,18 +2576,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets which blocks an item*
-	 * *can break in Adventure Mode.*
+	 * Gets which blocks an item
+	 * can break in Adventure Mode.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item*
+	 * Item
 	 *
 	 * (*) = optional
 	 */
@@ -2551,22 +2597,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Rotates a vector around an*
-	 * *axis by an angle.*
+	 * Rotates a vector around an
+	 * axis by an angle.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VecItem]
 	 *
-	 * (*) *Vector to rotate*
+	 * (*) Vector to rotate
 	 *
 	 * [NumItem]
 	 *
-	 * *Angle*
+	 * Angle
 	 *
 	 * (*) = optional
 	 */
@@ -2576,18 +2622,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets an item's current or*
-	 * *maximum durability.*
+	 * Gets an item's current or
+	 * maximum durability.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item*
+	 * Item
 	 *
 	 * (*) = optional
 	 */
@@ -2597,22 +2643,24 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Shifts a location forward, upward,*
-	 * *or sideways based on its rotation.*
+	 * Shifts a location forward, upward,
+	 * or sideways based on its rotation.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Location to shift*
+	 * (*) Location to shift
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Shift distance*
+	 * (*) Shift distance
+	 *
+	 * *Default = 1*
 	 *
 	 * (*) = optional
 	 */
@@ -2622,17 +2670,17 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Converts JSON to a value.*
+	 * Converts JSON to a value.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [StringItem]
 	 *
-	 * *JSON to convert*
+	 * JSON to convert
 	 *
 	 * (*) = optional
 	 */
@@ -2642,27 +2690,27 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if a number is inside*
-	 * *the bounds and if not, wraps*
-	 * *it around the farthest bound.*
+	 * Checks if a number is inside
+	 * the bounds and if not, wraps
+	 * it around the farthest bound.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Number to wrap*
+	 * (*) Number to wrap
 	 *
 	 * [NumItem]
 	 *
-	 * *Lower bound (inclusive)*
+	 * Lower bound (inclusive)
 	 *
 	 * [NumItem]
 	 *
-	 * *Upper bound (exclusive)*
+	 * Upper bound (exclusive)
 	 *
 	 * (*) = optional
 	 */
@@ -2672,22 +2720,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the numerical model values*
-	 * *on an item, used in resource packs.*
+	 * Sets the numerical model values
+	 * on an item, used in resource packs.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [NumItem]
 	 *
-	 * *Number model value(s)*
+	 * Number model value(s)
 	 *
 	 * (*) = optional
 	 */
@@ -2697,27 +2745,27 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Searches for part of a string*
-	 * *and replaces it.*
+	 * Searches for part of a string
+	 * and replaces it.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable*
-	 * *to set*
+	 * Variable
+	 * to set
 	 *
 	 * [StringItem]
 	 *
-	 * *String to change*
+	 * String to change
 	 *
 	 * [StringItem]
 	 *
-	 * *String part to replace*
+	 * String part to replace
 	 *
 	 * [StringItem]
 	 *
-	 * *Replacement*
+	 * Replacement
 	 *
 	 * (*) = optional
 	 */
@@ -2727,19 +2775,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets whether an item is*
-	 * *glowing regardless of*
-	 * *its enchantments.*
+	 * Sets whether an item is
+	 * glowing regardless of
+	 * its enchantments.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * (*) = optional
 	 */
@@ -2749,21 +2797,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a compass's lodestone location.*
+	 * Sets a compass's lodestone location.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [LocItem]
 	 *
-	 * *Lodestone location*
+	 * Lodestone location
 	 *
 	 * (*) = optional
 	 */
@@ -2773,19 +2821,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to a list with*
-	 * *its sub-lists spread out*
-	 * *into individual elements.*
+	 * Sets a variable to a list with
+	 * its sub-lists spread out
+	 * into individual elements.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VarItem]
 	 *
-	 * (*) *List to flatten*
+	 * (*) List to flatten
 	 *
 	 * (*) = optional
 	 */
@@ -2795,18 +2843,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets an item's rarity, affecting its*
-	 * *default name color.*
+	 * Sets an item's rarity, affecting its
+	 * default name color.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * (*) = optional
 	 */
@@ -2816,21 +2864,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a block's hardness value.*
+	 * Gets a block's hardness value.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Block to check*
+	 * Block to check
 	 *
 	 * [LocItem]
 	 *
-	 * *Location to check*
+	 * Location to check
 	 *
 	 * (*) = optional
 	 */
@@ -2840,18 +2888,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a potion effect's amplifier.*
+	 * Gets a potion effect's amplifier.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [PotionItem]
 	 *
-	 * *Potion to get*
-	 * *amplifier of*
+	 * Potion to get
+	 * amplifier of
 	 *
 	 * (*) = optional
 	 */
@@ -2861,17 +2909,17 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets the contents of a bundle.*
+	 * Gets the contents of a bundle.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Bundle*
+	 * Bundle
 	 *
 	 * (*) = optional
 	 */
@@ -2881,19 +2929,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a particle effect's particle*
-	 * *amount.*
+	 * Gets a particle effect's particle
+	 * amount.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect to get*
-	 * *amount of*
+	 * Effect to get
+	 * amount of
 	 *
 	 * (*) = optional
 	 */
@@ -2903,19 +2951,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets the number of entries*
-	 * *in a dictionary.*
+	 * Gets the number of entries
+	 * in a dictionary.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VarItem]
 	 *
-	 * *Dictionary to*
-	 * *measure*
+	 * Dictionary to
+	 * measure
 	 *
 	 * (*) = optional
 	 */
@@ -2925,21 +2973,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets an item's stack size.*
+	 * Sets an item's stack size.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [NumItem]
 	 *
-	 * *Stack size*
+	 * Stack size
 	 *
 	 * (*) = optional
 	 */
@@ -2949,18 +2997,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to the difference*
-	 * *between the given vectors.*
+	 * Sets a variable to the difference
+	 * between the given vectors.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VecItem]
 	 *
-	 * *Vectors to subtract*
+	 * Vectors to subtract
 	 *
 	 * (*) = optional
 	 */
@@ -2970,18 +3018,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a string's capitalization*
-	 * *(eg. to uppercase).*
+	 * Sets a string's capitalization
+	 * (eg. to uppercase).
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *String to change*
+	 * (*) String to change
 	 *
 	 * (*) = optional
 	 */
@@ -2991,27 +3039,29 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a particle effect's particle*
-	 * *color and color variation.*
+	 * Sets a particle effect's particle
+	 * color and color variation.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * (*) *Effect to*
-	 * (*) *change*
+	 * (*) Effect to
+	 * (*) change
 	 *
 	 * [StringItem]
 	 *
-	 * *Color hexadecimal*
+	 * Color hexadecimal
+	 *
+	 * *Example: "#FF0000" (red)*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Color variation (%)*
+	 * (*) Color variation (%)
 	 *
 	 * (*) = optional
 	 */
@@ -3021,18 +3071,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets the light level at*
-	 * *a location.*
+	 * Gets the light level at
+	 * a location.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Light location*
+	 * Light location
 	 *
 	 * (*) = optional
 	 */
@@ -3042,21 +3092,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a book's text.*
+	 * Gets a book's text.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Book*
+	 * Book
 	 *
 	 * [NumItem]
 	 *
-	 * *Page number*
+	 * Page number
 	 *
 	 * (*) = optional
 	 */
@@ -3066,19 +3116,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets the list of values*
-	 * *in this dictionary.*
+	 * Gets the list of values
+	 * in this dictionary.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VarItem]
 	 *
-	 * *Dictionary to*
-	 * *pull from*
+	 * Dictionary to
+	 * pull from
 	 *
 	 * (*) = optional
 	 */
@@ -3088,25 +3138,25 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to a vector.*
+	 * Sets a variable to a vector.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *X component*
+	 * X component
 	 *
 	 * [NumItem]
 	 *
-	 * *Y component*
+	 * Y component
 	 *
 	 * [NumItem]
 	 *
-	 * *Z component*
+	 * Z component
 	 *
 	 * (*) = optional
 	 */
@@ -3116,22 +3166,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to the distance*
-	 * *between two locations.*
+	 * Sets a variable to the distance
+	 * between two locations.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Location 1*
+	 * Location 1
 	 *
 	 * [LocItem]
 	 *
-	 * *Location 2*
+	 * Location 2
 	 *
 	 * (*) = optional
 	 */
@@ -3148,18 +3198,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Parses a MiniMessage expression from*
-	 * *a string value into a styled text.*
+	 * Parses a MiniMessage expression from
+	 * a string value into a styled text.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [StringItem]
 	 *
-	 * *String to parse*
+	 * String to parse
 	 *
 	 * (*) = optional
 	 */
@@ -3169,21 +3219,23 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Takes the root of a number.*
+	 * Takes the root of a number.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Number input*
+	 * (*) Number input
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Root index*
+	 * (*) Root index
+	 *
+	 * *Default = 2 (²√input)*
 	 *
 	 * (*) = optional
 	 */
@@ -3193,22 +3245,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the model string values*
-	 * *on an item, used in resource packs.*
+	 * Sets the model string values
+	 * on an item, used in resource packs.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [StringItem]
 	 *
-	 * *String model value(s)*
+	 * String model value(s)
 	 *
 	 * (*) = optional
 	 */
@@ -3218,23 +3270,23 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a particle effect's particle*
-	 * *amount.*
+	 * Sets a particle effect's particle
+	 * amount.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * (*) *Effect to*
-	 * (*) *change*
+	 * (*) Effect to
+	 * (*) change
 	 *
 	 * [NumItem]
 	 *
-	 * *Particle amount*
+	 * Particle amount
 	 *
 	 * (*) = optional
 	 */
@@ -3244,25 +3296,25 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Adds an enchantment to an item.*
+	 * Adds an enchantment to an item.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [StringItem]
 	 *
-	 * *Enchantment name*
+	 * Enchantment name
 	 *
 	 * [NumItem]
 	 *
-	 * *Enchantment level*
+	 * Enchantment level
 	 *
 	 * (*) = optional
 	 */
@@ -3272,32 +3324,34 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Adds a rule for breaking blocks*
-	 * *to a tool item.*
+	 * Adds a rule for breaking blocks
+	 * to a tool item.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [NumItem]
 	 *
-	 * *Mining speed*
+	 * Mining speed
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Blocks to apply*
-	 * *the rule for*
+	 * Blocks to apply
+	 * the rule for
 	 *
 	 * [StringItem]
 	 *
-	 * *Block tag ID to*
-	 * *apply the rule for*
+	 * Block tag ID to
+	 * apply the rule for
+	 *
+	 * *Example: "#mineable/pickaxe"*
 	 *
 	 * (*) = optional
 	 */
@@ -3307,17 +3361,17 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets an item's material.*
+	 * Gets an item's material.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to get material of*
+	 * Item to get material of
 	 *
 	 * (*) = optional
 	 */
@@ -3327,22 +3381,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a single line from*
-	 * *an item's lore.*
+	 * Gets a single line from
+	 * an item's lore.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to get lore from*
+	 * Item to get lore from
 	 *
 	 * [NumItem]
 	 *
-	 * *Lore line to get*
+	 * Lore line to get
 	 *
 	 * (*) = optional
 	 */
@@ -3352,22 +3406,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to the*
-	 * *arc tangent of 2 numbers.*
+	 * Sets a variable to the
+	 * arc tangent of 2 numbers.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Y*
+	 * Y
 	 *
 	 * [NumItem]
 	 *
-	 * *X*
+	 * X
 	 *
 	 * (*) = optional
 	 */
@@ -3377,18 +3431,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a particle effect's type.*
+	 * Gets a particle effect's type.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect to get*
-	 * *type of*
+	 * Effect to get
+	 * type of
 	 *
 	 * (*) = optional
 	 */
@@ -3398,21 +3452,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets an item's maximum durability.*
+	 * Sets an item's maximum durability.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item*
+	 * (*) Item
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Maximum durability*
+	 * (*) Maximum durability
 	 *
 	 * (*) = optional
 	 */
@@ -3422,23 +3476,23 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Searches for part of a string and*
-	 * *removes all instances of it.*
+	 * Searches for part of a string and
+	 * removes all instances of it.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable*
-	 * *to set*
+	 * Variable
+	 * to set
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *String to change*
+	 * (*) String to change
 	 *
 	 * [StringItem]
 	 *
-	 * *String to remove*
+	 * String to remove
 	 *
 	 * (*) = optional
 	 */
@@ -3448,18 +3502,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets the block state tags*
-	 * *at a location.*
+	 * Gets the block state tags
+	 * at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Block location*
+	 * Block location
 	 *
 	 * (*) = optional
 	 */
@@ -3469,21 +3523,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a crossbow's loaded projectiles.*
+	 * Sets a crossbow's loaded projectiles.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Crossbow*
+	 * (*) Crossbow
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Projectiles*
+	 * (*) Projectiles
 	 *
 	 * (*) = optional
 	 */
@@ -3493,19 +3547,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to the highest*
-	 * *number in a set.*
+	 * Sets a variable to the highest
+	 * number in a set.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Number set*
-	 * *to compare*
+	 * Number set
+	 * to compare
 	 *
 	 * (*) = optional
 	 */
@@ -3515,19 +3569,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets the list of keys*
-	 * *in this dictionary.*
+	 * Gets the list of keys
+	 * in this dictionary.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VarItem]
 	 *
-	 * *Dictionary to*
-	 * *pull from*
+	 * Dictionary to
+	 * pull from
 	 *
 	 * (*) = optional
 	 */
@@ -3537,26 +3591,28 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Trims the content of styled text,*
-	 * *leaving all formatting in place.*
+	 * Trims the content of styled text,
+	 * leaving all formatting in place.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Text to trim*
+	 * (*) Text to trim
 	 *
 	 * [NumItem]
 	 *
-	 * *Start character position*
+	 * Start character position
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *End character position*
+	 * (*) End character position
+	 *
+	 * *Default = Text length*
 	 *
 	 * (*) = optional
 	 */
@@ -3566,23 +3622,23 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a particle effect's particle*
-	 * *display material.*
+	 * Sets a particle effect's particle
+	 * display material.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * (*) *Effect to*
-	 * (*) *change*
+	 * (*) Effect to
+	 * (*) change
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Particle material*
+	 * Particle material
 	 *
 	 * (*) = optional
 	 */
@@ -3592,19 +3648,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a location's X, Y, Z, pitch,*
-	 * *or yaw coordinate.*
+	 * Gets a location's X, Y, Z, pitch,
+	 * or yaw coordinate.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Location to get*
-	 * *coordinate of*
+	 * Location to get
+	 * coordinate of
 	 *
 	 * (*) = optional
 	 */
@@ -3614,21 +3670,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Removes a custom item tag.*
+	 * Removes a custom item tag.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [StringItem]
 	 *
-	 * *Tag name*
+	 * Tag name
 	 *
 	 * (*) = optional
 	 */
@@ -3638,18 +3694,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets the model string values*
-	 * *on an item, used in resource packs.*
+	 * Gets the model string values
+	 * on an item, used in resource packs.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to get model data from*
+	 * Item to get model data from
 	 *
 	 * (*) = optional
 	 */
@@ -3659,27 +3715,27 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a particle effect's particle*
-	 * *size and size variation.*
+	 * Sets a particle effect's particle
+	 * size and size variation.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * (*) *Effect to*
-	 * (*) *change*
+	 * (*) Effect to
+	 * (*) change
 	 *
 	 * [NumItem]
 	 *
-	 * *Particle size*
+	 * Particle size
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Size variation (%)*
+	 * (*) Size variation (%)
 	 *
 	 * (*) = optional
 	 */
@@ -3689,18 +3745,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a potion effect's duration.*
+	 * Gets a potion effect's duration.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [PotionItem]
 	 *
-	 * *Potion to get*
-	 * *duration of*
+	 * Potion to get
+	 * duration of
 	 *
 	 * (*) = optional
 	 */
@@ -3710,22 +3766,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the variable to a random*
-	 * *location between two locations.*
+	 * Sets the variable to a random
+	 * location between two locations.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Location 1*
+	 * Location 1
 	 *
 	 * [LocItem]
 	 *
-	 * *Location 2*
+	 * Location 2
 	 *
 	 * (*) = optional
 	 */
@@ -3735,21 +3791,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a sound's type.*
+	 * Sets a sound's type.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [SoundItem]
 	 *
-	 * (*) *Sound to change*
+	 * (*) Sound to change
 	 *
 	 * [StringItem]
 	 *
-	 * *Sound name (e.g. "pling")*
+	 * Sound name (e.g. "pling")
 	 *
 	 * (*) = optional
 	 */
@@ -3759,18 +3815,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a compass's lodestone location.*
+	 * Gets a compass's lodestone location.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Compass to get lodestone*
-	 * *location of*
+	 * Compass to get lodestone
+	 * location of
 	 *
 	 * (*) = optional
 	 */
@@ -3794,26 +3850,28 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Searches for a string in another string*
-	 * *and gets the index if found.*
+	 * Searches for a string in another string
+	 * and gets the index if found.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [StringItem]
 	 *
-	 * *String to search in*
+	 * String to search in
 	 *
 	 * [StringItem]
 	 *
-	 * *String to search for*
+	 * String to search for
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Starting index*
+	 * (*) Starting index
+	 *
+	 * *Default = 1*
 	 *
 	 * (*) = optional
 	 */
@@ -3823,19 +3881,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a particle effect's horizontal*
-	 * *or vertical spread.*
+	 * Gets a particle effect's horizontal
+	 * or vertical spread.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect to get*
-	 * *spread of*
+	 * Effect to get
+	 * spread of
 	 *
 	 * (*) = optional
 	 */
@@ -3845,23 +3903,23 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets an item's leftover item that*
-	 * *gets replaced on use, e.g. drinking*
-	 * *stew gives a bowl.*
+	 * Sets an item's leftover item that
+	 * gets replaced on use, e.g. drinking
+	 * stew gives a bowl.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Remainder item*
+	 * (*) Remainder item
 	 *
 	 * (*) = optional
 	 */
@@ -3871,23 +3929,23 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Reflects a vector off a*
-	 * *surface defined by another*
-	 * *vector.*
+	 * Reflects a vector off a
+	 * surface defined by another
+	 * vector.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VecItem]
 	 *
-	 * (*) *Vector to reflect*
+	 * (*) Vector to reflect
 	 *
 	 * [VecItem]
 	 *
-	 * *Surface vector*
+	 * Surface vector
 	 *
 	 * (*) = optional
 	 */
@@ -3897,17 +3955,17 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Clears all attributes from an item.*
+	 * Clears all attributes from an item.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item*
+	 * (*) Item
 	 *
 	 * (*) = optional
 	 */
@@ -3917,18 +3975,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a player head's owner*
-	 * *name or UUID.*
+	 * Gets a player head's owner
+	 * name or UUID.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Head to get owner of*
+	 * Head to get owner of
 	 *
 	 * (*) = optional
 	 */
@@ -3945,20 +4003,20 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Adds all entries from one*
-	 * *dictionary into the other.*
+	 * Adds all entries from one
+	 * dictionary into the other.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Dictionary to*
-	 * *add to*
+	 * Dictionary to
+	 * add to
 	 *
 	 * [VarItem]
 	 *
-	 * *Dictionary*
-	 * *to append*
+	 * Dictionary
+	 * to append
 	 *
 	 * (*) = optional
 	 */
@@ -3975,21 +4033,24 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets an item's model.*
+	 * Sets an item's model.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *Model key*
+	 * (*) Model key
+	 *
+	 * *A namespaced key ("minecraft:" by default)*
+	 * *Example: "stone"*
 	 *
 	 * (*) = optional
 	 */
@@ -3999,18 +4060,20 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a color's RGB/HSB/HSL*
-	 * *number values as a list.*
+	 * Gets a color's RGB/HSB/HSL
+	 * number values as a list.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [StringItem]
 	 *
-	 * *Color hexadecimal*
+	 * Color hexadecimal
+	 *
+	 * *Example: "#FF0000" (red)*
 	 *
 	 * (*) = optional
 	 */
@@ -4020,22 +4083,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a location's rotation*
-	 * *(pitch and yaw) to a direction.*
+	 * Sets a location's rotation
+	 * (pitch and yaw) to a direction.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Location to change*
+	 * (*) Location to change
 	 *
 	 * [VecItem]
 	 *
-	 * *Direction*
+	 * Direction
 	 *
 	 * (*) = optional
 	 */
@@ -4045,22 +4108,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a list variable's value at*
-	 * *an index.*
+	 * Sets a list variable's value at
+	 * an index.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *List to change*
+	 * List to change
 	 *
 	 * [NumItem]
 	 *
-	 * *Index*
+	 * Index
 	 *
 	 * [Item]
 	 *
-	 * *Value to set*
+	 * Value to set
 	 *
 	 * (*) = optional
 	 */
@@ -4070,29 +4133,29 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a book's text.*
+	 * Sets a book's text.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Book*
+	 * (*) Book
 	 *
 	 * [TextItem]
 	 *
-	 * *Pages*
+	 * Pages
 	 *
 	 * [TextItem]
 	 *
-	 * *Page text*
+	 * Page text
 	 *
 	 * [NumItem]
 	 *
-	 * *Page number*
+	 * Page number
 	 *
 	 * (*) = optional
 	 */
@@ -4102,19 +4165,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to a random*
-	 * *value from a set.*
+	 * Sets a variable to a random
+	 * value from a set.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [Item]
 	 *
-	 * *Value set*
-	 * *to choose from*
+	 * Value set
+	 * to choose from
 	 *
 	 * (*) = optional
 	 */
@@ -4131,21 +4194,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets an item's material.*
+	 * Sets an item's material.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [StringItem]
 	 *
-	 * *Material*
+	 * Material
 	 *
 	 * (*) = optional
 	 */
@@ -4155,17 +4218,17 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets the given sound's type.*
+	 * Gets the given sound's type.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [SoundItem]
 	 *
-	 * *Sound to get type of*
+	 * Sound to get type of
 	 *
 	 * (*) = optional
 	 */
@@ -4175,22 +4238,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a list variable's value at*
-	 * *an index.*
+	 * Gets a list variable's value at
+	 * an index.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VarItem]
 	 *
-	 * *List to get value of*
+	 * List to get value of
 	 *
 	 * [NumItem]
 	 *
-	 * *Index*
+	 * Index
 	 *
 	 * (*) = optional
 	 */
@@ -4200,29 +4263,29 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Converts a value to JSON.*
+	 * Converts a value to JSON.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Value to convert*
+	 * Value to convert
 	 *
 	 * [StringItem]
 	 *
-	 * *Value to convert*
+	 * Value to convert
 	 *
 	 * [VarItem]
 	 *
-	 * *Value to convert*
+	 * Value to convert
 	 *
 	 * [VarItem]
 	 *
-	 * *Value to convert*
+	 * Value to convert
 	 *
 	 * (*) = optional
 	 */
@@ -4232,27 +4295,27 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if a number is inside*
-	 * *the bounds and if not, bounces*
-	 * *it towards the other bound.*
+	 * Checks if a number is inside
+	 * the bounds and if not, bounces
+	 * it towards the other bound.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Number to bounce*
+	 * (*) Number to bounce
 	 *
 	 * [NumItem]
 	 *
-	 * *Lower bound (inclusive)*
+	 * Lower bound (inclusive)
 	 *
 	 * [NumItem]
 	 *
-	 * *Upper bound (exclusive)*
+	 * Upper bound (exclusive)
 	 *
 	 * (*) = optional
 	 */
@@ -4262,18 +4325,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to the trigonometric*
-	 * *tangent function of a number.*
+	 * Sets a variable to the trigonometric
+	 * tangent function of a number.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Number input*
+	 * Number input
 	 *
 	 * (*) = optional
 	 */
@@ -4283,31 +4346,35 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a Voronoi noise value: A cellular*
-	 * *noise in which the value of an entire*
-	 * *cell is calculated.*
+	 * Gets a Voronoi noise value: A cellular
+	 * noise in which the value of an entire
+	 * cell is calculated.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Noise location*
+	 * Noise location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Cell frequency*
+	 * (*) Cell frequency
+	 *
+	 * *Default = 1*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Cell scatter*
+	 * (*) Cell scatter
+	 *
+	 * *5-15 for cell shapes (Default = 10)*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Generation seed*
+	 * (*) Generation seed
 	 *
 	 * (*) = optional
 	 */
@@ -4317,30 +4384,34 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Creates a color based on hue,*
-	 * *saturation, and brightness.*
+	 * Creates a color based on hue,
+	 * saturation, and brightness.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Hue (Color circle, 0-360)*
+	 * Hue (Color circle, 0-360)
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Saturation (0-100)*
+	 * (*) Saturation (0-100)
+	 *
+	 * *Default = 100*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Brightness (0-100)*
+	 * (*) Brightness (0-100)
+	 *
+	 * *Default = 100*
 	 *
 	 * [VarItem]
 	 *
-	 * *H, S, B values*
+	 * H, S, B values
 	 *
 	 * (*) = optional
 	 */
@@ -4350,20 +4421,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Increments a number variable*
-	 * *by 1 or more other numbers.*
+	 * Increments a number variable
+	 * by 1 or more other numbers.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable*
-	 * *to increment*
+	 * Variable
+	 * to increment
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Number(s) to*
-	 * (*) *increment by*
+	 * (*) Number(s) to
+	 * (*) increment by
+	 *
+	 * *Default = 1*
 	 *
 	 * (*) = optional
 	 */
@@ -4373,27 +4446,31 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Interpolates two numbers*
-	 * *based on a time value and*
-	 * *an easing type.*
+	 * Interpolates two numbers
+	 * based on a time value and
+	 * an easing type.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Time (%)*
+	 * Time (%)
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *First number*
+	 * (*) First number
+	 *
+	 * *Default = 0*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Second number*
+	 * (*) Second number
+	 *
+	 * *Default = 1*
 	 *
 	 * (*) = optional
 	 */
@@ -4403,17 +4480,17 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets the variant of a sound.*
+	 * Gets the variant of a sound.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [SoundItem]
 	 *
-	 * *Sound to get variant of*
+	 * Sound to get variant of
 	 *
 	 * (*) = optional
 	 */
@@ -4423,18 +4500,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a colorable item's color.*
+	 * Gets a colorable item's color.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable*
-	 * *to set*
+	 * Variable
+	 * to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to get color of*
+	 * Item to get color of
 	 *
 	 * (*) = optional
 	 */
@@ -4444,18 +4521,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Clears all formatting from the*
-	 * *given styled text.*
+	 * Clears all formatting from the
+	 * given styled text.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Text to change*
+	 * (*) Text to change
 	 *
 	 * (*) = optional
 	 */
@@ -4465,24 +4542,24 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Inserts a value into a list*
-	 * *variable at an index, shifting*
-	 * *all values at and after it to*
-	 * *the right.*
+	 * Inserts a value into a list
+	 * variable at an index, shifting
+	 * all values at and after it to
+	 * the right.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *List to change*
+	 * List to change
 	 *
 	 * [NumItem]
 	 *
-	 * *Index*
+	 * Index
 	 *
 	 * [Item]
 	 *
-	 * *Value to insert*
+	 * Value to insert
 	 *
 	 * (*) = optional
 	 */
@@ -4492,18 +4569,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a particle effect's duration.*
+	 * Gets a particle effect's duration.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect to get*
-	 * *duration of*
+	 * Effect to get
+	 * duration of
 	 *
 	 * (*) = optional
 	 */
@@ -4513,21 +4590,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a sound's volume.*
+	 * Sets a sound's volume.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [SoundItem]
 	 *
-	 * (*) *Sound to change*
+	 * (*) Sound to change
 	 *
 	 * [NumItem]
 	 *
-	 * *Volume*
+	 * Volume
 	 *
 	 * (*) = optional
 	 */
@@ -4537,22 +4614,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a location's X, Y, Z, pitch,*
-	 * *or yaw coordinate.*
+	 * Sets a location's X, Y, Z, pitch,
+	 * or yaw coordinate.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Location to change*
+	 * (*) Location to change
 	 *
 	 * [NumItem]
 	 *
-	 * *Coordinate*
+	 * Coordinate
 	 *
 	 * (*) = optional
 	 */
@@ -4562,18 +4639,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to the sum*
-	 * *of the given vectors.*
+	 * Sets a variable to the sum
+	 * of the given vectors.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VecItem]
 	 *
-	 * *Vectors to add*
+	 * Vectors to add
 	 *
 	 * (*) = optional
 	 */
@@ -4583,19 +4660,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sanitizes all MiniMessage tags in a string.*
-	 * *This is useful for using user input in*
-	 * *the Parse MiniMessage Set Variable.*
+	 * Sanitizes all MiniMessage tags in a string.
+	 * This is useful for using user input in
+	 * the Parse MiniMessage Set Variable.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *String to sanitize*
+	 * (*) String to sanitize
 	 *
 	 * (*) = optional
 	 */
@@ -4612,19 +4689,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a particle effect's particle*
-	 * *fade color.*
+	 * Gets a particle effect's particle
+	 * fade color.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect to get*
-	 * *fade color of*
+	 * Effect to get
+	 * fade color of
 	 *
 	 * (*) = optional
 	 */
@@ -4641,25 +4718,29 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Adds tool properties to an item.*
+	 * Adds tool properties to an item.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Default mining speed*
+	 * (*) Default mining speed
+	 *
+	 * *Default = 1*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Damage per block*
+	 * (*) Damage per block
+	 *
+	 * *Default = 1*
 	 *
 	 * (*) = optional
 	 */
@@ -4669,17 +4750,17 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets an item's custom tooltip.*
+	 * Gets an item's custom tooltip.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to get tooltip style of*
+	 * Item to get tooltip style of
 	 *
 	 * (*) = optional
 	 */
@@ -4689,24 +4770,24 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a player head's texture*
-	 * *using an owning player*
-	 * *or custom texture.*
+	 * Sets a player head's texture
+	 * using an owning player
+	 * or custom texture.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Player head*
+	 * (*) Player head
 	 *
 	 * [StringItem]
 	 *
-	 * *Owner name, UUID or*
-	 * *texture value*
+	 * Owner name, UUID or
+	 * texture value
 	 *
 	 * (*) = optional
 	 */
@@ -4716,18 +4797,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Compresses bytes as a*
-	 * *list of numbers to Gzip.*
+	 * Compresses bytes as a
+	 * list of numbers to Gzip.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Byte(s) to compress*
+	 * Byte(s) to compress
 	 *
 	 * (*) = optional
 	 */
@@ -4737,38 +4818,46 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a Perlin noise value: A type*
-	 * *of fractal gradient noise.*
+	 * Gets a Perlin noise value: A type
+	 * of fractal gradient noise.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Noise location*
+	 * Noise location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Frequency (Scale)*
+	 * (*) Frequency (Scale)
+	 *
+	 * *Default = 1*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Octaves (Perlin layers)*
+	 * (*) Octaves (Perlin layers)
+	 *
+	 * *1-8, default = 1*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Octave frequency gain*
+	 * (*) Octave frequency gain
+	 *
+	 * *Default = 1.5*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Octave amplitude gain*
+	 * (*) Octave amplitude gain
+	 *
+	 * *Default = 0.75*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Generation seed*
+	 * (*) Generation seed
 	 *
 	 * (*) = optional
 	 */
@@ -4778,31 +4867,35 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a Worley noise value: A cellular*
-	 * *noise in which the distance between*
-	 * *two cells' nuclei is calculated.*
+	 * Gets a Worley noise value: A cellular
+	 * noise in which the distance between
+	 * two cells' nuclei is calculated.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Noise location*
+	 * Noise location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Cell frequency*
+	 * (*) Cell frequency
+	 *
+	 * *Default = 1*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Cell scatter*
+	 * (*) Cell scatter
+	 *
+	 * *5-15 for cell shapes (Default = 10)*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Generation seed*
+	 * (*) Generation seed
 	 *
 	 * (*) = optional
 	 */
@@ -4812,21 +4905,23 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a colorable item's color.*
+	 * Sets a colorable item's color.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [StringItem]
 	 *
-	 * *Color hexadecimal*
+	 * Color hexadecimal
+	 *
+	 * *Example: "#FF0000" (red)*
 	 *
 	 * (*) = optional
 	 */
@@ -4836,19 +4931,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a particle effect's particle*
-	 * *color.*
+	 * Gets a particle effect's particle
+	 * color.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect to get*
-	 * *color of*
+	 * Effect to get
+	 * color of
 	 *
 	 * (*) = optional
 	 */
@@ -4858,25 +4953,25 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a sound's pitch or note*
+	 * Sets a sound's pitch or note
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [SoundItem]
 	 *
-	 * (*) *Sound to change*
+	 * (*) Sound to change
 	 *
 	 * [NumItem]
 	 *
-	 * *Pitch*
+	 * Pitch
 	 *
 	 * [StringItem]
 	 *
-	 * *Note*
+	 * Note
 	 *
 	 * (*) = optional
 	 */
@@ -4886,18 +4981,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets which blocks an item*
-	 * *can be placed on in Adventure Mode.*
+	 * Gets which blocks an item
+	 * can be placed on in Adventure Mode.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item*
+	 * Item
 	 *
 	 * (*) = optional
 	 */
@@ -4907,17 +5002,17 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sorts a list variable's values.*
+	 * Sorts a list variable's values.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VarItem]
 	 *
-	 * (*) *List to sort*
+	 * (*) List to sort
 	 *
 	 * (*) = optional
 	 */
@@ -4927,21 +5022,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the key of a custom sound.*
+	 * Sets the key of a custom sound.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [SoundItem]
 	 *
-	 * (*) *Sound to change*
+	 * (*) Sound to change
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *Sound key*
+	 * (*) Sound key
 	 *
 	 * (*) = optional
 	 */
@@ -4951,22 +5046,24 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Removes the dictionary entry*
-	 * *with the given key.*
+	 * Removes the dictionary entry
+	 * with the given key.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Dictionary to change*
+	 * Dictionary to change
 	 *
 	 * [StringItem]
 	 *
-	 * *Key to remove*
+	 * Key to remove
 	 *
 	 * [Item]
 	 *
-	 * (*) *Expected value(s)*
+	 * (*) Expected value(s)
+	 *
+	 * *When given, the entry will only be removed if the current value matches.*
 	 *
 	 * (*) = optional
 	 */
@@ -4976,23 +5073,25 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Converts a numerical timestamp to*
-	 * *a human-readable time/date text*
-	 * *using a date format.*
+	 * Converts a numerical timestamp to
+	 * a human-readable time/date text
+	 * using a date format.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Time to format*
+	 * Time to format
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *Custom Format*
+	 * (*) Custom Format
+	 *
+	 * *Used only if Tag: Format is set to Custom*
 	 *
 	 * (*) = optional
 	 */
@@ -5002,22 +5101,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a particle effect's duration.*
+	 * Sets a particle effect's duration.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * (*) *Effect to*
-	 * (*) *change*
+	 * (*) Effect to
+	 * (*) change
 	 *
 	 * [NumItem]
 	 *
-	 * *Particle duration in ticks*
+	 * Particle duration in ticks
 	 *
 	 * (*) = optional
 	 */
@@ -5027,18 +5126,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets the number of characters*
-	 * *a string has.*
+	 * Gets the number of characters
+	 * a string has.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [StringItem]
 	 *
-	 * *String to measure*
+	 * String to measure
 	 *
 	 * (*) = optional
 	 */
@@ -5048,18 +5147,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets the potion effects applied by*
-	 * *an item.*
+	 * Gets the potion effects applied by
+	 * an item.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to get effects from*
+	 * Item to get effects from
 	 *
 	 * (*) = optional
 	 */
@@ -5069,18 +5168,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to a styled text, or combines*
-	 * *multiple values into one styled text.*
+	 * Sets a variable to a styled text, or combines
+	 * multiple values into one styled text.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [Item]
 	 *
-	 * (*) *Text to set to*
+	 * (*) Text to set to
 	 *
 	 * (*) = optional
 	 */
@@ -5090,18 +5189,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets the MiniMessage expression for*
-	 * *a styled text value.*
+	 * Gets the MiniMessage expression for
+	 * a styled text value.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [TextItem]
 	 *
-	 * *Text to read*
+	 * Text to read
 	 *
 	 * (*) = optional
 	 */
@@ -5118,22 +5217,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the potion effects applied by*
-	 * *an item.*
+	 * Sets the potion effects applied by
+	 * an item.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [PotionItem]
 	 *
-	 * *Item effects*
+	 * Item effects
 	 *
 	 * (*) = optional
 	 */
@@ -5143,20 +5242,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Decrements a number variable*
-	 * *by 1 or more other numbers.*
+	 * Decrements a number variable
+	 * by 1 or more other numbers.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable*
-	 * *to decrement*
+	 * Variable
+	 * to decrement
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Number(s) to*
-	 * (*) *decrement by*
+	 * (*) Number(s) to
+	 * (*) decrement by
+	 *
+	 * *Default = 1*
 	 *
 	 * (*) = optional
 	 */
@@ -5166,22 +5267,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets the value of a custom*
-	 * *item tag.*
+	 * Gets the value of a custom
+	 * item tag.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to get tag of*
+	 * Item to get tag of
 	 *
 	 * [StringItem]
 	 *
-	 * *Tag name*
+	 * Tag name
 	 *
 	 * (*) = optional
 	 */
@@ -5191,18 +5292,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Creates a list from the given*
-	 * *values.*
+	 * Creates a list from the given
+	 * values.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [Item]
 	 *
-	 * (*) *Value list*
+	 * (*) Value list
 	 *
 	 * (*) = optional
 	 */
@@ -5212,18 +5313,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Adds a list to the end of*
-	 * *another list variable.*
+	 * Adds a list to the end of
+	 * another list variable.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *List to append to*
+	 * List to append to
 	 *
 	 * [VarItem]
 	 *
-	 * *List(s) to append*
+	 * List(s) to append
 	 *
 	 * (*) = optional
 	 */
@@ -5233,18 +5334,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a container's contents*
-	 * *at a location.*
+	 * Gets a container's contents
+	 * at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Container location*
+	 * Container location
 	 *
 	 * (*) = optional
 	 */
@@ -5254,18 +5355,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets the numerical model values*
-	 * *on an item, used in resource packs.*
+	 * Gets the numerical model values
+	 * on an item, used in resource packs.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to get model data from*
+	 * Item to get model data from
 	 *
 	 * (*) = optional
 	 */
@@ -5275,26 +5376,28 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Shifts a location toward another*
-	 * *location by the given distance.*
+	 * Shifts a location toward another
+	 * location by the given distance.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Location to shift*
+	 * (*) Location to shift
 	 *
 	 * [LocItem]
 	 *
-	 * *Target location*
+	 * Target location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Shift distance*
+	 * (*) Shift distance
+	 *
+	 * *Default = 1*
 	 *
 	 * (*) = optional
 	 */
@@ -5304,26 +5407,28 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Trims a list, starting and ending*
-	 * *at the given indices.*
+	 * Trims a list, starting and ending
+	 * at the given indices.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VarItem]
 	 *
-	 * (*) *List to trim*
+	 * (*) List to trim
 	 *
 	 * [NumItem]
 	 *
-	 * *Start index*
+	 * Start index
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *End index*
+	 * (*) End index
+	 *
+	 * *Default = List length*
 	 *
 	 * (*) = optional
 	 */
@@ -5333,62 +5438,82 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets gradient noise: A type of noise*
-	 * *based on a lattice of random gradients.*
+	 * Gets gradient noise: A type of noise
+	 * based on a lattice of random gradients.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Noise location*
+	 * Noise location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Frequency*
+	 * (*) Frequency
+	 *
+	 * *Modifies the scale that the noise generates at. Default = 1*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Marbling*
+	 * (*) Marbling
+	 *
+	 * *Every 0.5 adds an additional ring to the noise output. Default = 0.5*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Octaves*
+	 * (*) Octaves
+	 *
+	 * *Adds an additional layer of gradient noise to the output. 1-16, Default = 1*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Lacunarity*
+	 * (*) Lacunarity
+	 *
+	 * *Every time a new octave is added, the frequency is multiplied by this value. Default = 1.5*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Gain*
+	 * (*) Gain
+	 *
+	 * *Every time a new octave is added, the weight of it is multiplied by this value. Default = 0.5*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Warping*
+	 * (*) Warping
+	 *
+	 * *Distorts the noise output. Default = 0*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Resonance*
+	 * (*) Resonance
+	 *
+	 * *Modifies the frequency of warping. Default = 1*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Domains*
+	 * (*) Domains
+	 *
+	 * *Adds an additional layer of warping to the output. Default = 1*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Domain lacunarity*
+	 * (*) Domain lacunarity
+	 *
+	 * *Every time a new domain is added, the resonance is multiplied by this value. Default = 1.5*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Domain gain*
+	 * (*) Domain gain
+	 *
+	 * *Every time a new domain is added, the weight of it is multiplied by this value. Default = 0.5*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Generation seed*
+	 * (*) Generation seed
 	 *
 	 * (*) = optional
 	 */
@@ -5398,18 +5523,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets whether an item's tooltip*
-	 * *is visible or not.*
+	 * Sets whether an item's tooltip
+	 * is visible or not.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * (*) = optional
 	 */
@@ -5419,22 +5544,24 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets the items dropped by a*
-	 * *block if mined by a given tool.*
+	 * Gets the items dropped by a
+	 * block if mined by a given tool.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Location to check*
+	 * Location to check
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Tool to use*
+	 * (*) Tool to use
+	 *
+	 * *Default = Required Tool*
 	 *
 	 * (*) = optional
 	 */
@@ -5444,22 +5571,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a dictionary of all named*
-	 * *capture groups in a Regex match.*
+	 * Gets a dictionary of all named
+	 * capture groups in a Regex match.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [StringItem]
 	 *
-	 * *Input string*
+	 * Input string
 	 *
 	 * [StringItem]
 	 *
-	 * *Regex pattern*
+	 * Regex pattern
 	 *
 	 * (*) = optional
 	 */
@@ -5469,17 +5596,17 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Removes enchantments from an item.*
+	 * Removes enchantments from an item.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * (*) = optional
 	 */
@@ -5489,18 +5616,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a variable to the trigonometric*
-	 * *cosine function of a number.*
+	 * Sets a variable to the trigonometric
+	 * cosine function of a number.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Number input*
+	 * Number input
 	 *
 	 * (*) = optional
 	 */
@@ -5510,18 +5637,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a particle effect's opacity.*
+	 * Gets a particle effect's opacity.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect to get*
-	 * *opacity of*
+	 * Effect to get
+	 * opacity of
 	 *
 	 * (*) = optional
 	 */
@@ -5531,18 +5658,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets which sound an item*
-	 * *makes when it breaks.*
+	 * Gets which sound an item
+	 * makes when it breaks.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to get break sound from*
+	 * Item to get break sound from
 	 *
 	 * (*) = optional
 	 */
@@ -5552,19 +5679,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a list of items that*
-	 * *belongs to the specified*
-	 * *item tag.*
+	 * Gets a list of items that
+	 * belongs to the specified
+	 * item tag.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [StringItem]
 	 *
-	 * *Item tag ID*
+	 * Item tag ID
+	 *
+	 * *Example: "#enchantable/sword"*
 	 *
 	 * (*) = optional
 	 */
@@ -5574,23 +5703,25 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a particle effect's particle*
-	 * *fade color.*
+	 * Sets a particle effect's particle
+	 * fade color.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * (*) *Effect to*
-	 * (*) *change*
+	 * (*) Effect to
+	 * (*) change
 	 *
 	 * [StringItem]
 	 *
-	 * *Color hexadecimal*
+	 * Color hexadecimal
+	 *
+	 * *Example: "#FF0000" (red)*
 	 *
 	 * (*) = optional
 	 */
@@ -5600,22 +5731,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a vector's X, Y, or Z*
-	 * *component.*
+	 * Sets a vector's X, Y, or Z
+	 * component.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VecItem]
 	 *
-	 * (*) *Vector to change*
+	 * (*) Vector to change
 	 *
 	 * [NumItem]
 	 *
-	 * *Component*
+	 * Component
 	 *
 	 * (*) = optional
 	 */
@@ -5625,17 +5756,17 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Converts a string to a number.*
+	 * Converts a string to a number.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *String to convert*
+	 * (*) String to convert
 	 *
 	 * (*) = optional
 	 */
@@ -5645,22 +5776,24 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Raises a number to the power*
-	 * *of an exponent.*
+	 * Raises a number to the power
+	 * of an exponent.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Number input*
+	 * (*) Number input
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Exponent*
+	 * (*) Exponent
+	 *
+	 * *Default = 2 (input²)*
 	 *
 	 * (*) = optional
 	 */
@@ -5677,23 +5810,23 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Searches for a value in a list*
-	 * *variable and gets the index if*
-	 * *found.*
+	 * Searches for a value in a list
+	 * variable and gets the index if
+	 * found.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VarItem]
 	 *
-	 * *List to search in*
+	 * List to search in
 	 *
 	 * [Item]
 	 *
-	 * *Value to search*
+	 * Value to search
 	 *
 	 * (*) = optional
 	 */
@@ -5703,25 +5836,29 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Adds weapon properties to an item.*
+	 * Adds weapon properties to an item.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Durability reduction per attack*
+	 * (*) Durability reduction per attack
+	 *
+	 * *Default = 1*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Seconds to disable blocking for*
+	 * (*) Seconds to disable blocking for
+	 *
+	 * *Default = 0*
 	 *
 	 * (*) = optional
 	 */
@@ -5731,21 +5868,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Removes an enchantment from an item.*
+	 * Removes an enchantment from an item.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [StringItem]
 	 *
-	 * *Enchantment name*
+	 * Enchantment name
 	 *
 	 * (*) = optional
 	 */
@@ -5755,21 +5892,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Adds lines to an item's lore.*
+	 * Adds lines to an item's lore.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [TextItem]
 	 *
-	 * *Lore to add*
+	 * Lore to add
 	 *
 	 * (*) = optional
 	 */
@@ -5779,17 +5916,17 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets an item's consumable property.*
+	 * Gets an item's consumable property.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to get properties of*
+	 * Item to get properties of
 	 *
 	 * (*) = optional
 	 */
@@ -5799,22 +5936,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets a particle effect's roll.*
+	 * Sets a particle effect's roll.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * (*) *Effect to*
-	 * (*) *change*
+	 * (*) Effect to
+	 * (*) change
 	 *
 	 * [NumItem]
 	 *
-	 * *Particle roll*
+	 * Particle roll
 	 *
 	 * (*) = optional
 	 */
@@ -5824,21 +5961,21 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets the variant of a sound.*
+	 * Sets the variant of a sound.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [SoundItem]
 	 *
-	 * (*) *Sound to change*
+	 * (*) Sound to change
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *Variant ID (e.g. "break1")*
+	 * (*) Variant ID (e.g. "break1")
 	 *
 	 * (*) = optional
 	 */
@@ -5855,18 +5992,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Randomizes the order of a*
-	 * *list variable's values.*
+	 * Randomizes the order of a
+	 * list variable's values.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VarItem]
 	 *
-	 * (*) *List to randomize*
+	 * (*) List to randomize
 	 *
 	 * (*) = optional
 	 */
@@ -5876,22 +6013,24 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets an item's components that should*
-	 * *show up in its lore.*
+	 * Sets an item's components that should
+	 * show up in its lore.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *Item component(s) to hide*
+	 * (*) Item component(s) to hide
+	 *
+	 * *Item component keys, Example: "attribute_modifiers"*
 	 *
 	 * (*) = optional
 	 */
@@ -5901,27 +6040,27 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if a number is between*
-	 * *a minimum and maximum value, and*
-	 * *if not, sets it to the nearest.*
+	 * Checks if a number is between
+	 * a minimum and maximum value, and
+	 * if not, sets it to the nearest.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Number to clamp*
+	 * (*) Number to clamp
 	 *
 	 * [NumItem]
 	 *
-	 * *Minimum*
+	 * Minimum
 	 *
 	 * [NumItem]
 	 *
-	 * *Maximum*
+	 * Maximum
 	 *
 	 * (*) = optional
 	 */
@@ -5938,17 +6077,17 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets an item's model.*
+	 * Gets an item's model.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to get model of*
+	 * Item to get model of
 	 *
 	 * (*) = optional
 	 */
@@ -5958,19 +6097,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a sound's pitch or*
-	 * *note.*
+	 * Gets a sound's pitch or
+	 * note.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [SoundItem]
 	 *
-	 * *Sound to get pitch or*
-	 * *note of*
+	 * Sound to get pitch or
+	 * note of
 	 *
 	 * (*) = optional
 	 */
@@ -5980,19 +6119,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Converts legacy color codes written in*
-	 * *"&" or hex format to*
-	 * *functional color codes, or vice versa.*
+	 * Converts legacy color codes written in
+	 * "&" or hex format to
+	 * functional color codes, or vice versa.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *String to translate*
+	 * (*) String to translate
 	 *
 	 * (*) = optional
 	 */
@@ -6002,18 +6141,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a block's current*
-	 * *growth at a location.*
+	 * Gets a block's current
+	 * growth at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Block location*
+	 * Block location
 	 *
 	 * (*) = optional
 	 */
@@ -6023,18 +6162,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets all tags registered*
-	 * *on an item.*
+	 * Gets all tags registered
+	 * on an item.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to get tags from*
+	 * Item to get tags from
 	 *
 	 * (*) = optional
 	 */
@@ -6044,19 +6183,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Removes all matching values*
-	 * *from a list variable.*
+	 * Removes all matching values
+	 * from a list variable.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *List to change*
+	 * List to change
 	 *
 	 * [Item]
 	 *
-	 * *Value(s) to*
-	 * *remove*
+	 * Value(s) to
+	 * remove
 	 *
 	 * (*) = optional
 	 */
@@ -6066,18 +6205,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Converts a list of numbers*
-	 * *representing bytes to a string.*
+	 * Converts a list of numbers
+	 * representing bytes to a string.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Byte(s) to convert*
+	 * Byte(s) to convert
 	 *
 	 * (*) = optional
 	 */
@@ -6087,30 +6226,30 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Shifts a location in multiple directions*
-	 * *based on its rotation.*
+	 * Shifts a location in multiple directions
+	 * based on its rotation.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Location to shift*
+	 * (*) Location to shift
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Forwards change*
+	 * (*) Forwards change
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Upwards change*
+	 * (*) Upwards change
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Sideways change (-L / +R)*
+	 * (*) Sideways change (-L / +R)
 	 *
 	 * (*) = optional
 	 */
@@ -6120,62 +6259,82 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets value noise: A type of noise*
-	 * *based on a lattice of random values.*
+	 * Gets value noise: A type of noise
+	 * based on a lattice of random values.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Noise location*
+	 * Noise location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Frequency*
+	 * (*) Frequency
+	 *
+	 * *Modifies the scale that the noise generates at. Default = 1*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Marbling*
+	 * (*) Marbling
+	 *
+	 * *Every 0.5 adds an additional ring to the noise output. Default = 0.5*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Octaves*
+	 * (*) Octaves
+	 *
+	 * *Adds an additional layer of value noise to the output. 1-16, Default = 1*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Lacunarity*
+	 * (*) Lacunarity
+	 *
+	 * *Every time a new octave is added, the frequency is multiplied by this value. Default = 1.5*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Gain*
+	 * (*) Gain
+	 *
+	 * *Every time a new octave is added, the weight of it is multiplied by this value. Default = 0.5*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Warping*
+	 * (*) Warping
+	 *
+	 * *Distorts the noise output. Default = 0*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Resonance*
+	 * (*) Resonance
+	 *
+	 * *Modifies the frequency of warping. Default = 1*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Domains*
+	 * (*) Domains
+	 *
+	 * *Adds an additional layer of warping to the output. Default = 1*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Domain lacunarity*
+	 * (*) Domain lacunarity
+	 *
+	 * *Every time a new domain is added, the resonance is multiplied by this value. Default = 1.5*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Domain gain*
+	 * (*) Domain gain
+	 *
+	 * *Every time a new domain is added, the weight of it is multiplied by this value. Default = 0.5*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Generation seed*
+	 * (*) Generation seed
 	 *
 	 * (*) = optional
 	 */
@@ -6185,26 +6344,26 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets the response from a web request.*
-	 * **
-	 * *The output dictionary has 3 keys:*
-	 * *"status": The HTTP status code.*
-	 * *"statusText": The HTTP status message.*
-	 * *And "body", or "json" if the response is JSON.*
+	 * Gets the response from a web request.
+	 * 
+	 * The output dictionary has 3 keys:
+	 * "status": The HTTP status code.
+	 * "statusText": The HTTP status message.
+	 * And "body", or "json" if the response is JSON.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to store response*
+	 * Variable to store response
 	 *
 	 * [StringItem]
 	 *
-	 * *URL to request*
+	 * URL to request
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *Content body*
+	 * (*) Content body
 	 *
 	 * (*) = optional
 	 */
@@ -6214,22 +6373,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets custom tags on an item*
-	 * *based on the input dictionary.*
+	 * Sets custom tags on an item
+	 * based on the input dictionary.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item*
+	 * (*) Item
 	 *
 	 * [VarItem]
 	 *
-	 * *Tags*
+	 * Tags
 	 *
 	 * (*) = optional
 	 */
@@ -6239,22 +6398,22 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sets which blocks an item*
-	 * *can be placed on in Adventure Mode.*
+	 * Sets which blocks an item
+	 * can be placed on in Adventure Mode.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to change*
+	 * (*) Item to change
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Placeable blocks*
+	 * Placeable blocks
 	 *
 	 * (*) = optional
 	 */
@@ -6264,18 +6423,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a block's material*
-	 * *at a location.*
+	 * Gets a block's material
+	 * at a location.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Block location*
+	 * Block location
 	 *
 	 * (*) = optional
 	 */
@@ -6292,23 +6451,23 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Get a dictionary variable's*
-	 * *value for a key.*
+	 * Get a dictionary variable's
+	 * value for a key.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VarItem]
 	 *
-	 * *Dictionary to*
-	 * *pull from*
+	 * Dictionary to
+	 * pull from
 	 *
 	 * [StringItem]
 	 *
-	 * *Key*
+	 * Key
 	 *
 	 * (*) = optional
 	 */
@@ -6318,18 +6477,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a container's lock key at a*
-	 * *location.*
+	 * Gets a container's lock key at a
+	 * location.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Container location*
+	 * Container location
 	 *
 	 * (*) = optional
 	 */
@@ -6339,17 +6498,17 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets an item's weapon property.*
+	 * Gets an item's weapon property.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to get property of*
+	 * Item to get property of
 	 *
 	 * (*) = optional
 	 */
@@ -6359,18 +6518,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a block's redstone*
-	 * *power level.*
+	 * Gets a block's redstone
+	 * power level.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [LocItem]
 	 *
-	 * *Block location*
+	 * Block location
 	 *
 	 * (*) = optional
 	 */
@@ -6380,18 +6539,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a vector's length.*
+	 * Gets a vector's length.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [VecItem]
 	 *
-	 * *Vector to get*
-	 * *length of*
+	 * Vector to get
+	 * length of
 	 *
 	 * (*) = optional
 	 */
@@ -6401,19 +6560,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets the number of characters*
-	 * *a styled text has, ignoring all*
-	 * *formatting tags.*
+	 * Gets the number of characters
+	 * a styled text has, ignoring all
+	 * formatting tags.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [TextItem]
 	 *
-	 * *Text to measure*
+	 * Text to measure
 	 *
 	 * (*) = optional
 	 */
@@ -6430,18 +6589,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Converts a string to a list of*
-	 * *numbers representing bytes.*
+	 * Converts a string to a list of
+	 * numbers representing bytes.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [StringItem]
 	 *
-	 * *String to convert*
+	 * String to convert
 	 *
 	 * (*) = optional
 	 */
@@ -6458,18 +6617,18 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets an item's maximum stack size.*
+	 * Gets an item's maximum stack size.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to get maximum stack*
-	 * *size of*
+	 * Item to get maximum stack
+	 * size of
 	 *
 	 * (*) = optional
 	 */
@@ -6479,19 +6638,19 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Gets a particle effect's particle*
-	 * *size.*
+	 * Gets a particle effect's particle
+	 * size.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect to get*
-	 * *size of*
+	 * Effect to get
+	 * size of
 	 *
 	 * (*) = optional
 	 */

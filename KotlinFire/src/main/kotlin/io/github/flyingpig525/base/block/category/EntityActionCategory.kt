@@ -14,27 +14,27 @@ class EntityActionCategory internal constructor(private val template: Template) 
         blocks += Block("entity_action", ItemCollection(items).items, action, extra)
     }
 	/**
-	 * *Sets the left or right rotation of a*
-	 * *display entity from 3 angles on*
-	 * *each axis.*
+	 * Sets the left or right rotation of a
+	 * display entity from 3 angles on
+	 * each axis.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Pitch (0-360)*
+	 * Pitch (0-360)
 	 *
 	 * [NumItem]
 	 *
-	 * *Yaw (0-360)*
+	 * Yaw (0-360)
 	 *
 	 * [NumItem]
 	 *
-	 * *Roll (0-360)*
+	 * Roll (0-360)
 	 *
 	 * [VecItem]
 	 *
-	 * *Pitch/Yaw/Roll Vector*
+	 * Pitch/Yaw/Roll Vector
 	 *
 	 * (*) = optional
 	 */
@@ -44,8 +44,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a mob in the sheared*
-	 * *state.*
+	 * Sets a mob in the sheared
+	 * state.
 	 */
 	fun shear(items: Items) {
 		block(items, "Shear")
@@ -53,14 +53,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets an entity's movement*
-	 * *velocity.*
+	 * Sets an entity's movement
+	 * velocity.
 	 *
 	 * **Args:**
 	 *
 	 * [VecItem]
 	 *
-	 * *New velocity*
+	 * New velocity
 	 *
 	 * (*) = optional
 	 */
@@ -70,14 +70,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the number of ticks a*
-	 * *glow squid will stop glowing for.*
+	 * Sets the number of ticks a
+	 * glow squid will stop glowing for.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Ticks*
+	 * Ticks
 	 *
 	 * (*) = optional
 	 */
@@ -87,19 +87,19 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the left or right rotation of*
-	 * *a display entity from axis-angle*
-	 * *rotation.*
+	 * Sets the left or right rotation of
+	 * a display entity from axis-angle
+	 * rotation.
 	 *
 	 * **Args:**
 	 *
 	 * [VecItem]
 	 *
-	 * *Axis vector*
+	 * Axis vector
 	 *
 	 * [NumItem]
 	 *
-	 * *Angle (0-360)*
+	 * Angle (0-360)
 	 *
 	 * (*) = optional
 	 */
@@ -109,21 +109,23 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Damages a mob.*
+	 * Damages a mob.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Damage to inflict*
+	 * Damage to inflict
+	 *
+	 * *❤ = 2 Health*
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *UUID of damager entity*
+	 * (*) UUID of damager entity
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Name of damager entity*
+	 * (*) Name of damager entity
 	 *
 	 * (*) = optional
 	 */
@@ -133,8 +135,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether an entity*
-	 * *is sitting.*
+	 * Sets whether an entity
+	 * is sitting.
 	 */
 	fun setMobSitting(items: Items) {
 		block(items, "SetMobSitting")
@@ -142,8 +144,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Makes a mob perform*
-	 * *an animation.*
+	 * Makes a mob perform
+	 * an animation.
 	 */
 	fun sendAnimation(items: Items) {
 		block(items, "SendAnimation")
@@ -158,23 +160,23 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the anger level*
-	 * *of a Warden.*
+	 * Sets the anger level
+	 * of a Warden.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Anger level*
-	 * *(0-150)*
+	 * Anger level
+	 * (0-150)
 	 *
 	 * [StringItem]
 	 *
-	 * *Entity name*
+	 * Entity name
 	 *
 	 * [TextItem]
 	 *
-	 * *Entity UUID*
+	 * Entity UUID
 	 *
 	 * (*) = optional
 	 */
@@ -184,7 +186,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a horse's color and pattern.*
+	 * Sets a horse's color and pattern.
 	 */
 	fun setHorsePattern(items: Items) {
 		block(items, "SetHorsePattern")
@@ -192,13 +194,15 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Restores a mob's health.*
+	 * Restores a mob's health.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Amount to heal*
+	 * Amount to heal
+	 *
+	 * *❤ = 2 Health*
 	 *
 	 * (*) = optional
 	 */
@@ -208,14 +212,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Makes a panda sad for*
-	 * *the specified duration.*
+	 * Makes a panda sad for
+	 * the specified duration.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Ticks*
+	 * Ticks
 	 *
 	 * (*) = optional
 	 */
@@ -232,7 +236,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a mob's dye color.*
+	 * Sets a mob's dye color.
 	 */
 	fun setDyeColor(items: Items) {
 		block(items, "SetDyeColor")
@@ -240,13 +244,13 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Launches an entity up or down.*
+	 * Launches an entity up or down.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Launch power*
+	 * Launch power
 	 *
 	 * (*) = optional
 	 */
@@ -256,13 +260,13 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets an animal's age.*
+	 * Sets an animal's age.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Age*
+	 * Age
 	 *
 	 * (*) = optional
 	 */
@@ -272,13 +276,13 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets an entity's custom name.*
+	 * Sets an entity's custom name.
 	 *
 	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Custom name*
+	 * Custom name
 	 *
 	 * (*) = optional
 	 */
@@ -295,8 +299,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a mob has its*
-	 * *arms raised.*
+	 * Sets whether a mob has its
+	 * arms raised.
 	 */
 	fun setArmsRaised(items: Items) {
 		block(items, "SetArmsRaised")
@@ -311,8 +315,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether an entity is*
-	 * *invulnerable to damage.*
+	 * Sets whether an entity is
+	 * invulnerable to damage.
 	 */
 	fun setInvulnerable(items: Items) {
 		block(items, "SetInvulnerable")
@@ -320,8 +324,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Changes the type of friction*
-	 * *an entity experiences.*
+	 * Changes the type of friction
+	 * an entity experiences.
 	 */
 	fun setFriction(items: Items) {
 		block(items, "SetFriction")
@@ -343,15 +347,15 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the number of ticks a*
-	 * *dropped item cannot be*
-	 * *picked up for.*
+	 * Sets the number of ticks a
+	 * dropped item cannot be
+	 * picked up for.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Delay*
+	 * Delay
 	 *
 	 * (*) = optional
 	 */
@@ -368,15 +372,15 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets one of the entity's miscellaneous*
-	 * *attributes such as scale and*
-	 * *burning time.*
+	 * Sets one of the entity's miscellaneous
+	 * attributes such as scale and
+	 * burning time.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
 	 */
@@ -386,15 +390,17 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a creeper's explosion power.*
-	 * *This affects the damage and area*
-	 * *of effect.*
+	 * Sets a creeper's explosion power.
+	 * This affects the damage and area
+	 * of effect.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Power (0-25)*
+	 * Power (0-25)
+	 *
+	 * *Default = 3 (6 for charged creepers)*
 	 *
 	 * (*) = optional
 	 */
@@ -404,8 +410,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether an armor stand*
-	 * *is a marker.*
+	 * Sets whether an armor stand
+	 * is a marker.
 	 */
 	fun setMarker(items: Items) {
 		block(items, "SetMarker")
@@ -413,14 +419,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Removes a custom tag*
-	 * *from an entity.*
+	 * Removes a custom tag
+	 * from an entity.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Tag name*
+	 * Tag name
 	 *
 	 * (*) = optional
 	 */
@@ -430,14 +436,16 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets an entity's absorption*
-	 * *health (golden hearts).*
+	 * Sets an entity's absorption
+	 * health (golden hearts).
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Absorption health*
+	 * Absorption health
+	 *
+	 * *❤ = 2 Health*
 	 *
 	 * (*) = optional
 	 */
@@ -447,8 +455,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a creeper*
-	 * *has the charged effect.*
+	 * Sets whether a creeper
+	 * has the charged effect.
 	 */
 	fun creeperCharged(items: Items) {
 		block(items, "CreeperCharged")
@@ -456,14 +464,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the remaining time an entity is on*
-	 * *fire for.*
+	 * Sets the remaining time an entity is on
+	 * fire for.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Ticks*
+	 * Ticks
 	 *
 	 * (*) = optional
 	 */
@@ -473,15 +481,15 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets one of the entity's combat-related*
-	 * *attributes such as attack damage*
-	 * *and attack speed.*
+	 * Sets one of the entity's combat-related
+	 * attributes such as attack damage
+	 * and attack speed.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
 	 */
@@ -491,7 +499,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Causes a mob to jump.*
+	 * Causes a mob to jump.
 	 */
 	fun jump(items: Items) {
 		block(items, "Jump")
@@ -499,18 +507,20 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the displayed block*
-	 * *of a block display.*
+	 * Sets the displayed block
+	 * of a block display.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Displayed block*
+	 * Displayed block
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Block data*
+	 * (*) Block data
+	 *
+	 * *Example: "facing=up", "half=top"*
 	 *
 	 * (*) = optional
 	 */
@@ -520,15 +530,15 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets an entity's current*
-	 * *freeze ticks.*
+	 * Sets an entity's current
+	 * freeze ticks.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Ticks*
-	 * *(0-140)*
+	 * Ticks
+	 * (0-140)
 	 *
 	 * (*) = optional
 	 */
@@ -538,9 +548,9 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a text display*
-	 * *is visible through walls*
-	 * *or not.*
+	 * Sets whether a text display
+	 * is visible through walls
+	 * or not.
 	 */
 	fun tDisplaySeeThru(items: Items) {
 		block(items, "TDisplaySeeThru")
@@ -548,8 +558,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether an entity*
-	 * *is gliding.*
+	 * Sets whether an entity
+	 * is gliding.
 	 */
 	fun setGliding(items: Items) {
 		block(items, "SetGliding")
@@ -557,18 +567,18 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Changes an entity's pitch and*
-	 * *yaw without teleporting it.*
+	 * Changes an entity's pitch and
+	 * yaw without teleporting it.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Pitch (-90 to 90)*
+	 * Pitch (-90 to 90)
 	 *
 	 * [NumItem]
 	 *
-	 * *Yaw (-180 to 180)*
+	 * Yaw (-180 to 180)
 	 *
 	 * (*) = optional
 	 */
@@ -578,8 +588,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a panda is*
-	 * *rolling or not.*
+	 * Sets whether a panda is
+	 * rolling or not.
 	 */
 	fun setPandaRolling(items: Items) {
 		block(items, "SetPandaRolling")
@@ -587,8 +597,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a tropical fish's*
-	 * *color and pattern.*
+	 * Sets a tropical fish's
+	 * color and pattern.
 	 */
 	fun setFishPattern(items: Items) {
 		block(items, "SetFishPattern")
@@ -596,7 +606,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a mob's temperature variant.*
+	 * Sets a mob's temperature variant.
 	 */
 	fun setTemperature(items: Items) {
 		block(items, "SetTemperature")
@@ -604,7 +614,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a wolf's variant.*
+	 * Sets a wolf's variant.
 	 */
 	fun setWolfType(items: Items) {
 		block(items, "SetWolfType")
@@ -612,21 +622,25 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the interpolation*
-	 * *properties of a display*
-	 * *entity.*
+	 * Sets the interpolation
+	 * properties of a display
+	 * entity.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Interpolation duration*
-	 * (*) *in ticks*
+	 * (*) Interpolation duration
+	 * (*) in ticks
+	 *
+	 * *Default = 0*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Interpolation delay*
-	 * (*) *in ticks*
+	 * (*) Interpolation delay
+	 * (*) in ticks
+	 *
+	 * *Default = 0*
 	 *
 	 * (*) = optional
 	 */
@@ -643,13 +657,13 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Set an enderman's held block.*
+	 * Set an enderman's held block.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Block to hold*
+	 * Block to hold
 	 *
 	 * (*) = optional
 	 */
@@ -659,18 +673,18 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Launches an entity toward or away*
-	 * *from a location.*
+	 * Launches an entity toward or away
+	 * from a location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Launch destination*
+	 * Launch destination
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Launch power*
+	 * (*) Launch power
 	 *
 	 * (*) = optional
 	 */
@@ -680,16 +694,16 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a mob's armor items.*
-	 * *Place the armor in slots 1-4*
-	 * *of the chest, with 1 being the*
-	 * *helmet and 4 being the boots.*
+	 * Sets a mob's armor items.
+	 * Place the armor in slots 1-4
+	 * of the chest, with 1 being the
+	 * helmet and 4 being the boots.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Armor to set*
+	 * Armor to set
 	 *
 	 * (*) = optional
 	 */
@@ -699,18 +713,18 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Gets the value of a custom*
-	 * *entity tag.*
+	 * Gets the value of a custom
+	 * entity tag.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [StringItem]
 	 *
-	 * *Tag name*
+	 * Tag name
 	 *
 	 * (*) = optional
 	 */
@@ -720,18 +734,22 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the hitbox size of*
-	 * *an interaction entity.*
+	 * Sets the hitbox size of
+	 * an interaction entity.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Width*
+	 * (*) Width
+	 *
+	 * *Default = 1*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Height*
+	 * (*) Height
+	 *
+	 * *Default = 1*
 	 *
 	 * (*) = optional
 	 */
@@ -741,15 +759,15 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Rotates an entity to look*
-	 * *toward a location without*
-	 * *teleporting them.*
+	 * Rotates an entity to look
+	 * toward a location without
+	 * teleporting them.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Location to face*
+	 * Location to face
 	 *
 	 * (*) = optional
 	 */
@@ -759,7 +777,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a cat's skin type.*
+	 * Sets a cat's skin type.
 	 */
 	fun setCatType(items: Items) {
 		block(items, "SetCatType")
@@ -767,14 +785,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the base damage*
-	 * *dealt by an arrow or trident.*
+	 * Sets the base damage
+	 * dealt by an arrow or trident.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Base Damage*
+	 * Base Damage
 	 *
 	 * (*) = optional
 	 */
@@ -784,26 +802,26 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the scale of*
-	 * *a display entity.*
+	 * Sets the scale of
+	 * a display entity.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *X scale*
+	 * X scale
 	 *
 	 * [NumItem]
 	 *
-	 * *Y scale*
+	 * Y scale
 	 *
 	 * [NumItem]
 	 *
-	 * *Z scale*
+	 * Z scale
 	 *
 	 * [VecItem]
 	 *
-	 * *Scale vector*
+	 * Scale vector
 	 *
 	 * (*) = optional
 	 */
@@ -813,8 +831,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the text alignment*
-	 * *of a text display.*
+	 * Sets the text alignment
+	 * of a text display.
 	 */
 	fun tDisplayAlign(items: Items) {
 		block(items, "TDisplayAlign")
@@ -822,29 +840,32 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Launches a projectile from a mob.*
+	 * Launches a projectile from a mob.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Projectile to launch*
+	 * Projectile to launch
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Launch point*
+	 * (*) Launch point
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Projectile name*
+	 * (*) Projectile name
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Speed*
+	 * (*) Speed
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Inaccuracy*
+	 * (*) Inaccuracy
+	 *
+	 * *Controls how much random motion is applied on launch*
+	 * *Default = 1*
 	 *
 	 * (*) = optional
 	 */
@@ -861,9 +882,9 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets how a display entity*
-	 * *is rotated with a*
-	 * *player's view.*
+	 * Sets how a display entity
+	 * is rotated with a
+	 * player's view.
 	 */
 	fun displayBillboard(items: Items) {
 		block(items, "DisplayBillboard")
@@ -878,18 +899,18 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Tames and sets the owner*
-	 * *of a tameable mob.*
+	 * Tames and sets the owner
+	 * of a tameable mob.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Owner UUID*
+	 * Owner UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Owner name*
+	 * Owner name
 	 *
 	 * (*) = optional
 	 */
@@ -899,8 +920,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a goat*
-	 * *screams or not.*
+	 * Sets whether a goat
+	 * screams or not.
 	 */
 	fun setGoatScreaming(items: Items) {
 		block(items, "SetGoatScreaming")
@@ -908,8 +929,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a bee*
-	 * *has its stinger.*
+	 * Sets whether a bee
+	 * has its stinger.
 	 */
 	fun setBeeStinger(items: Items) {
 		block(items, "SetBeeStinger")
@@ -917,17 +938,17 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Disguises an entity as a mob.*
+	 * Disguises an entity as a mob.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Mob to disguise as*
+	 * Mob to disguise as
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Display name*
+	 * (*) Display name
 	 *
 	 * (*) = optional
 	 */
@@ -937,19 +958,19 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the block shown inside*
-	 * *a minecart. This does not*
-	 * *affect its functionality.*
+	 * Sets the block shown inside
+	 * a minecart. This does not
+	 * affect its functionality.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Block to show*
+	 * Block to show
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Block offset*
+	 * (*) Block offset
 	 *
 	 * (*) = optional
 	 */
@@ -959,8 +980,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Causes a fox to start*
-	 * *or stop sleeping.*
+	 * Causes a fox to start
+	 * or stop sleeping.
 	 */
 	fun foxSleeping(items: Items) {
 		block(items, "FoxSleeping")
@@ -968,15 +989,15 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the item in one of the*
-	 * *equipment slots (including*
-	 * *horse items) of an entity.*
+	 * Sets the item in one of the
+	 * equipment slots (including
+	 * horse items) of an entity.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to set*
+	 * (*) Item to set
 	 *
 	 * (*) = optional
 	 */
@@ -986,8 +1007,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether an entity will*
-	 * *produce sound effects.*
+	 * Sets whether an entity will
+	 * produce sound effects.
 	 */
 	fun setSilenced(items: Items) {
 		block(items, "SetSilenced")
@@ -995,8 +1016,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets if a bee has nectar*
-	 * *on its body.*
+	 * Sets if a bee has nectar
+	 * on its body.
 	 */
 	fun setBeeNectar(items: Items) {
 		block(items, "SetBeeNectar")
@@ -1004,22 +1025,24 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Attaches a lead to the target,*
-	 * *held by an entity or lead knot.*
+	 * Attaches a lead to the target,
+	 * held by an entity or lead knot.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Lead holder UUID*
+	 * Lead holder UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Lead holder name*
+	 * Lead holder name
 	 *
 	 * [LocItem]
 	 *
-	 * *Lead knot location*
+	 * Lead knot location
+	 *
+	 * *Spawns a Leash Knot entity. Requires a fence block.*
 	 *
 	 * (*) = optional
 	 */
@@ -1029,15 +1052,15 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Removes one or more potion*
-	 * *effects from an entity.*
+	 * Removes one or more potion
+	 * effects from an entity.
 	 *
 	 * **Args:**
 	 *
 	 * [PotionItem]
 	 *
-	 * *Effect(s)*
-	 * *to remove*
+	 * Effect(s)
+	 * to remove
 	 *
 	 * (*) = optional
 	 */
@@ -1047,8 +1070,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Causes a sheep to*
-	 * *be sheared.*
+	 * Causes a sheep to
+	 * be sheared.
 	 */
 	fun shearSheep(items: Items) {
 		block(items, "ShearSheep")
@@ -1056,9 +1079,9 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the possible interactions, such*
-	 * *as adding or removing items, of an*
-	 * *armor stand's slot(s).*
+	 * Sets the possible interactions, such
+	 * as adding or removing items, of an
+	 * armor stand's slot(s).
 	 */
 	fun armorStandSlots(items: Items) {
 		block(items, "ArmorStandSlots")
@@ -1066,8 +1089,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether an allay is*
-	 * *dancing or not.*
+	 * Sets whether an allay is
+	 * dancing or not.
 	 */
 	fun setAllayDancing(items: Items) {
 		block(items, "SetAllayDancing")
@@ -1075,7 +1098,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a rabbit's skin type.*
+	 * Sets a rabbit's skin type.
 	 */
 	fun setRabbitType(items: Items) {
 		block(items, "SetRabbitType")
@@ -1083,15 +1106,15 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the size of an entity.*
-	 * *This may also affect its*
-	 * *health and strength.*
+	 * Sets the size of an entity.
+	 * This may also affect its
+	 * health and strength.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Size*
+	 * Size
 	 *
 	 * (*) = optional
 	 */
@@ -1108,8 +1131,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a mob is*
-	 * *angry at players.*
+	 * Sets whether a mob is
+	 * angry at players.
 	 */
 	fun setAngry(items: Items) {
 		block(items, "SetAngry")
@@ -1117,7 +1140,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Removes an entity's disguise.*
+	 * Removes an entity's disguise.
 	 */
 	fun undisguise(items: Items) {
 		block(items, "Undisguise")
@@ -1125,8 +1148,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a mob drops*
-	 * *their items when dead.*
+	 * Sets whether a mob drops
+	 * their items when dead.
 	 */
 	fun setDeathDrops(items: Items) {
 		block(items, "SetDeathDrops")
@@ -1134,9 +1157,9 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether an item*
-	 * *or a falling block will*
-	 * *never despawn.*
+	 * Sets whether an item
+	 * or a falling block will
+	 * never despawn.
 	 */
 	fun setPersistent(items: Items) {
 		block(items, "SetPersistent")
@@ -1144,14 +1167,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the item a projectile*
-	 * *displays as.*
+	 * Sets the item a projectile
+	 * displays as.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Display item*
+	 * Display item
 	 *
 	 * (*) = optional
 	 */
@@ -1161,8 +1184,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the color an entity's*
-	 * *name tag appears in.*
+	 * Sets the color an entity's
+	 * name tag appears in.
 	 */
 	fun setNameColor(items: Items) {
 		block(items, "SetNameColor")
@@ -1170,9 +1193,9 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a mob carries*
-	 * *a chest, which allows its*
-	 * *inventory to be accessed.*
+	 * Sets whether a mob carries
+	 * a chest, which allows its
+	 * inventory to be accessed.
 	 */
 	fun setCarryingChest(items: Items) {
 		block(items, "SetCarryingChest")
@@ -1180,7 +1203,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a parrot's color.*
+	 * Sets a parrot's color.
 	 */
 	fun setParrotColor(items: Items) {
 		block(items, "SetParrotColor")
@@ -1188,26 +1211,26 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the translation values*
-	 * *of a display entity.*
+	 * Sets the translation values
+	 * of a display entity.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *X translation*
+	 * X translation
 	 *
 	 * [NumItem]
 	 *
-	 * *Y translation*
+	 * Y translation
 	 *
 	 * [NumItem]
 	 *
-	 * *Z translation*
+	 * Z translation
 	 *
 	 * [VecItem]
 	 *
-	 * *Translation vector*
+	 * Translation vector
 	 *
 	 * (*) = optional
 	 */
@@ -1217,7 +1240,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Deletes an entity.*
+	 * Deletes an entity.
 	 */
 	fun remove(items: Items) {
 		block(items, "Remove")
@@ -1225,18 +1248,20 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the background color*
-	 * *and opacity of a text display.*
+	 * Sets the background color
+	 * and opacity of a text display.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *Color hexadecimal*
+	 * (*) Color hexadecimal
+	 *
+	 * *Example: "#FF0000" (red)*
 	 *
 	 * [NumItem]
 	 *
-	 * *Opacity in percentage*
+	 * Opacity in percentage
 	 *
 	 * (*) = optional
 	 */
@@ -1246,19 +1271,23 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the culling width*
-	 * *and height of a*
-	 * *display entity.*
+	 * Sets the culling width
+	 * and height of a
+	 * display entity.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Width*
+	 * (*) Width
+	 *
+	 * *Default = 0*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Height*
+	 * (*) Height
+	 *
+	 * *Default = 0*
 	 *
 	 * (*) = optional
 	 */
@@ -1275,8 +1304,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a sheep*
-	 * *has its wool.*
+	 * Sets whether a sheep
+	 * has its wool.
 	 */
 	fun setSheepSheared(items: Items) {
 		block(items, "SetSheepSheared")
@@ -1284,7 +1313,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets an axolotl's color.*
+	 * Sets an axolotl's color.
 	 */
 	fun setAxolotlColor(items: Items) {
 		block(items, "SetAxolotlColor")
@@ -1292,14 +1321,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Gets all tags registered*
-	 * *on an entity.*
+	 * Gets all tags registered
+	 * on an entity.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * (*) = optional
 	 */
@@ -1309,9 +1338,9 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether an entity is*
-	 * *sentient and/or affected*
-	 * *by physics.*
+	 * Sets whether an entity is
+	 * sentient and/or affected
+	 * by physics.
 	 */
 	fun setAI(items: Items) {
 		block(items, "SetAI")
@@ -1319,14 +1348,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets one of the entity's knockback-related*
-	 * *attributes such as knockback resistance.*
+	 * Sets one of the entity's knockback-related
+	 * attributes such as knockback resistance.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
 	 */
@@ -1336,15 +1365,15 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets one of the entity's movement-related*
-	 * *attributes, such as walking speed*
-	 * *and jump height.*
+	 * Sets one of the entity's movement-related
+	 * attributes, such as walking speed
+	 * and jump height.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
 	 */
@@ -1354,8 +1383,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether an entity*
-	 * *is riptiding.*
+	 * Sets whether an entity
+	 * is riptiding.
 	 */
 	fun setRiptiding(items: Items) {
 		block(items, "SetRiptiding")
@@ -1363,9 +1392,9 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether an arrow*
-	 * *will pass through blocks*
-	 * *and through entities.*
+	 * Sets whether an arrow
+	 * will pass through blocks
+	 * and through entities.
 	 */
 	fun setArrowNoClip(items: Items) {
 		block(items, "SetArrowNoClip")
@@ -1373,15 +1402,15 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets one of the entity's falling-related*
-	 * *attributes, such as gravity*
-	 * *and fall damage multiplier.*
+	 * Sets one of the entity's falling-related
+	 * attributes, such as gravity
+	 * and fall damage multiplier.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
 	 */
@@ -1391,18 +1420,18 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the projectile source of*
-	 * *a projectile (or removes it).*
+	 * Sets the projectile source of
+	 * a projectile (or removes it).
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Shooter UUID*
+	 * Shooter UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Shooter name*
+	 * Shooter name
 	 *
 	 * (*) = optional
 	 */
@@ -1412,8 +1441,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a fox appears*
-	 * *to be leaping.*
+	 * Sets whether a fox appears
+	 * to be leaping.
 	 */
 	fun setFoxLeaping(items: Items) {
 		block(items, "SetFoxLeaping")
@@ -1421,9 +1450,9 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the gene of a panda.*
-	 * *This affects their behavior*
-	 * *and appearance.*
+	 * Sets the gene of a panda.
+	 * This affects their behavior
+	 * and appearance.
 	 */
 	fun setPandaGene(items: Items) {
 		block(items, "SetPandaGene")
@@ -1431,14 +1460,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets an entity's maximum*
-	 * *health.*
+	 * Sets an entity's maximum
+	 * health.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Maximum health*
+	 * Maximum health
 	 *
 	 * (*) = optional
 	 */
@@ -1448,15 +1477,15 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the time until a fish*
-	 * *starts to approach a*
-	 * *fishing hook.*
+	 * Sets the time until a fish
+	 * starts to approach a
+	 * fishing hook.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Wait time (ticks)*
+	 * Wait time (ticks)
 	 *
 	 * (*) = optional
 	 */
@@ -1466,14 +1495,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the location an end*
-	 * *crystal points its beam at.*
+	 * Sets the location an end
+	 * crystal points its beam at.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Target*
+	 * (*) Target
 	 *
 	 * (*) = optional
 	 */
@@ -1483,18 +1512,18 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Makes a frog try to eat the*
-	 * *specified mob or player.*
+	 * Makes a frog try to eat the
+	 * specified mob or player.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Target UUID*
+	 * Target UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Target name*
+	 * Target name
 	 *
 	 * (*) = optional
 	 */
@@ -1504,7 +1533,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a salmon's variant.*
+	 * Sets a salmon's variant.
 	 */
 	fun setSalmonType(items: Items) {
 		block(items, "SetSalmonType")
@@ -1512,18 +1541,18 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the brightness*
-	 * *of a display entity.*
+	 * Sets the brightness
+	 * of a display entity.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Block light level (0-15)*
+	 * Block light level (0-15)
 	 *
 	 * [NumItem]
 	 *
-	 * *Sky light level (0-15)*
+	 * Sky light level (0-15)
 	 *
 	 * (*) = optional
 	 */
@@ -1533,7 +1562,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a villager's profession.*
+	 * Sets a villager's profession.
 	 */
 	fun setProfession(items: Items) {
 		block(items, "SetProfession")
@@ -1541,8 +1570,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Removes all active potion*
-	 * *effects from an entity.*
+	 * Removes all active potion
+	 * effects from an entity.
 	 */
 	fun clearPotions(items: Items) {
 		block(items, "ClearPotions")
@@ -1550,8 +1579,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether an armor stand has*
-	 * *arms and a base plate.*
+	 * Sets whether an armor stand has
+	 * arms and a base plate.
 	 */
 	fun armorStandParts(items: Items) {
 		block(items, "ArmorStandParts")
@@ -1559,9 +1588,9 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether an entity's*
-	 * *custom name is always*
-	 * *displayed above them.*
+	 * Sets whether an entity's
+	 * custom name is always
+	 * displayed above them.
 	 */
 	fun setNameVisible(items: Items) {
 		block(items, " SetNameVisible ")
@@ -1569,18 +1598,18 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Instructs a mob's AI to target*
-	 * *a specific mob or player.*
+	 * Instructs a mob's AI to target
+	 * a specific mob or player.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Target UUID*
+	 * Target UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Target name*
+	 * Target name
 	 *
 	 * (*) = optional
 	 */
@@ -1590,9 +1619,9 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether the text in*
-	 * *a text display has*
-	 * *shadow or not.*
+	 * Sets whether the text in
+	 * a text display has
+	 * shadow or not.
 	 */
 	fun tDisplayShadow(items: Items) {
 		block(items, "TDisplayShadow")
@@ -1600,15 +1629,15 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the currently*
-	 * *remaining ticks until an*
-	 * *entity can next be hurt.*
+	 * Sets the currently
+	 * remaining ticks until an
+	 * entity can next be hurt.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Ticks*
+	 * Ticks
 	 *
 	 * (*) = optional
 	 */
@@ -1618,14 +1647,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets how far a shulker*
-	 * *should peek up to.*
+	 * Sets how far a shulker
+	 * should peek up to.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Peek Percentage*
+	 * Peek Percentage
 	 *
 	 * (*) = optional
 	 */
@@ -1635,10 +1664,10 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Changes the pose of an entity.*
-	 * *This affects their animations*
-	 * *and/or hitbox, depending on*
-	 * *the pose and entity type.*
+	 * Changes the pose of an entity.
+	 * This affects their animations
+	 * and/or hitbox, depending on
+	 * the pose and entity type.
 	 */
 	fun setPose(items: Items) {
 		block(items, " SetPose ")
@@ -1646,8 +1675,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a horse is*
-	 * *standing on its hind legs.*
+	 * Sets whether a horse is
+	 * standing on its hind legs.
 	 */
 	fun setRearing(items: Items) {
 		block(items, "SetRearing")
@@ -1655,19 +1684,19 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets an area of effect cloud's*
-	 * *radius and shrinking speed.*
+	 * Sets an area of effect cloud's
+	 * radius and shrinking speed.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Radius*
+	 * Radius
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Shrinking speed*
-	 * (*) *(blocks per second)*
+	 * (*) Shrinking speed
+	 * (*) (blocks per second)
 	 *
 	 * (*) = optional
 	 */
@@ -1677,8 +1706,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether an entity*
-	 * *is affected by gravity.*
+	 * Sets whether an entity
+	 * is affected by gravity.
 	 */
 	fun setGravity(items: Items) {
 		block(items, "SetGravity")
@@ -1686,16 +1715,18 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets how long a display entity takes*
-	 * *to visually move to its destination*
-	 * *when it teleports.*
+	 * Sets how long a display entity takes
+	 * to visually move to its destination
+	 * when it teleports.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Teleport duration*
-	 * (*) *in ticks*
+	 * (*) Teleport duration
+	 * (*) in ticks
+	 *
+	 * *Default = 0*
 	 *
 	 * (*) = optional
 	 */
@@ -1705,14 +1736,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the remaining ticks of*
-	 * *invulnerability a wither has.*
+	 * Sets the remaining ticks of
+	 * invulnerability a wither has.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Ticks*
+	 * Ticks
 	 *
 	 * (*) = optional
 	 */
@@ -1729,16 +1760,16 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets how many targets an*
-	 * *arrow can pierce through.*
-	 * *A pierce of 1 can hit*
-	 * *up to 2 entities.*
+	 * Sets how many targets an
+	 * arrow can pierce through.
+	 * A pierce of 1 can hit
+	 * up to 2 entities.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Targets to pierce*
+	 * Targets to pierce
 	 *
 	 * (*) = optional
 	 */
@@ -1748,19 +1779,23 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the shadow properties*
-	 * *of a display entity.*
+	 * Sets the shadow properties
+	 * of a display entity.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Shadow radius in blocks*
+	 * (*) Shadow radius in blocks
+	 *
+	 * *Default = 1*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Shadow opacity in*
-	 * (*) *percentage*
+	 * (*) Shadow opacity in
+	 * (*) percentage
+	 *
+	 * *Default = 100*
 	 *
 	 * (*) = optional
 	 */
@@ -1770,9 +1805,9 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether an interaction*
-	 * *entity has response when*
-	 * *interacting with it.*
+	 * Sets whether an interaction
+	 * entity has response when
+	 * interacting with it.
 	 */
 	fun interactResponse(items: Items) {
 		block(items, "InteractResponse")
@@ -1780,8 +1815,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Forces a mob to use held items*
-	 * *such as bow or spyglass.*
+	 * Forces a mob to use held items
+	 * such as bow or spyglass.
 	 */
 	fun useItem(items: Items) {
 		block(items, "UseItem")
@@ -1789,18 +1824,18 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Mounts an entity on top of*
-	 * *another entity or player.*
+	 * Mounts an entity on top of
+	 * another entity or player.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Target UUID*
+	 * Target UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Target name*
+	 * Target name
 	 *
 	 * (*) = optional
 	 */
@@ -1810,15 +1845,15 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the affine transformation*
-	 * *matrix of a display entity.*
+	 * Sets the affine transformation
+	 * matrix of a display entity.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *16 numbers describing*
-	 * *a row-major matrix*
+	 * 16 numbers describing
+	 * a row-major matrix
 	 *
 	 * (*) = optional
 	 */
@@ -1835,7 +1870,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a wolf's sound variant.*
+	 * Sets a wolf's sound variant.
 	 */
 	fun setWolfSoundType(items: Items) {
 		block(items, "SetWolfSoundType")
@@ -1843,8 +1878,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Forces a sniffer to perform*
-	 * *a specific action.*
+	 * Forces a sniffer to perform
+	 * a specific action.
 	 */
 	fun snifferState(items: Items) {
 		block(items, "SnifferState")
@@ -1859,14 +1894,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Teleports an entity to a*
-	 * *specified location.*
+	 * Teleports an entity to a
+	 * specified location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *New position*
+	 * New position
 	 *
 	 * (*) = optional
 	 */
@@ -1876,14 +1911,16 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the glowing color*
-	 * *of a display entity.*
+	 * Sets the glowing color
+	 * of a display entity.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Color hexadecimal*
+	 * Color hexadecimal
+	 *
+	 * *Example: "#FF0000" (red)*
 	 *
 	 * (*) = optional
 	 */
@@ -1893,8 +1930,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether an entity*
-	 * *should appear on fire.*
+	 * Sets whether an entity
+	 * should appear on fire.
 	 */
 	fun setVisualFire(items: Items) {
 		block(items, "SetVisualFire")
@@ -1916,8 +1953,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a mob wears*
-	 * *a saddle.*
+	 * Sets whether a mob wears
+	 * a saddle.
 	 */
 	fun setSaddle(items: Items) {
 		block(items, "SetSaddle")
@@ -1925,18 +1962,18 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Causes a shulker bullet to start*
-	 * *targeting the provided entity.*
+	 * Causes a shulker bullet to start
+	 * targeting the provided entity.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Target UUID*
+	 * Target UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Target name*
+	 * Target name
 	 *
 	 * (*) = optional
 	 */
@@ -1946,14 +1983,16 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the maximum line width*
-	 * *of a text display.*
+	 * Sets the maximum line width
+	 * of a text display.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Line width*
+	 * (*) Line width
+	 *
+	 * *Default = 200*
 	 *
 	 * (*) = optional
 	 */
@@ -1963,8 +2002,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the behavior phase*
-	 * *of an Ender Dragon.*
+	 * Sets the behavior phase
+	 * of an Ender Dragon.
 	 */
 	fun setDragonPhase(items: Items) {
 		block(items, "SetDragonPhase")
@@ -1972,7 +2011,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a llama's fur color.*
+	 * Sets a llama's fur color.
 	 */
 	fun setLlamaColor(items: Items) {
 		block(items, "SetLlamaColor")
@@ -1980,9 +2019,9 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the biome type of a*
-	 * *villager. This affects their*
-	 * *appearance only.*
+	 * Sets the biome type of a
+	 * villager. This affects their
+	 * appearance only.
 	 */
 	fun setVillagerBiome(items: Items) {
 		block(items, "SetVillagerBiome")
@@ -1990,15 +2029,15 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the starting amount*
-	 * *of ticks it takes for a*
-	 * *creeper to explode.*
+	 * Sets the starting amount
+	 * of ticks it takes for a
+	 * creeper to explode.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Fuse ticks*
+	 * Fuse ticks
 	 *
 	 * (*) = optional
 	 */
@@ -2008,8 +2047,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether an entity*
-	 * *is a baby (permanently).*
+	 * Sets whether an entity
+	 * is a baby (permanently).
 	 */
 	fun setBaby(items: Items) {
 		block(items, "SetBaby")
@@ -2017,8 +2056,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a mooshroom's skin*
-	 * *type.*
+	 * Sets a mooshroom's skin
+	 * type.
 	 */
 	fun mooshroomType(items: Items) {
 		block(items, "MooshroomType")
@@ -2026,8 +2065,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether an entity*
-	 * *is invisible.*
+	 * Sets whether an entity
+	 * is invisible.
 	 */
 	fun setInvisible(items: Items) {
 		block(items, "SetInvisible")
@@ -2035,8 +2074,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Causes a sheep to*
-	 * *eat grass.*
+	 * Causes a sheep to
+	 * eat grass.
 	 */
 	fun sheepEat(items: Items) {
 		block(items, "SheepEat")
@@ -2044,8 +2083,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a cat appears*
-	 * *to be lying down.*
+	 * Sets whether a cat appears
+	 * to be lying down.
 	 */
 	fun setCatResting(items: Items) {
 		block(items, "SetCatResting")
@@ -2053,15 +2092,15 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Gives one or more potion*
-	 * *effects to an entity.*
+	 * Gives one or more potion
+	 * effects to an entity.
 	 *
 	 * **Args:**
 	 *
 	 * [PotionItem]
 	 *
-	 * *Effect(s)*
-	 * *to give*
+	 * Effect(s)
+	 * to give
 	 *
 	 * (*) = optional
 	 */
@@ -2071,8 +2110,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets which goat horns*
-	 * *are shown or hidden.*
+	 * Sets which goat horns
+	 * are shown or hidden.
 	 */
 	fun setGoatHorns(items: Items) {
 		block(items, "SetGoatHorns")
@@ -2080,9 +2119,9 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether this entity has*
-	 * *a glowing outline that can*
-	 * *be seen through blocks.*
+	 * Sets whether this entity has
+	 * a glowing outline that can
+	 * be seen through blocks.
 	 */
 	fun setGlowing(items: Items) {
 		block(items, "SetGlowing")
@@ -2090,8 +2129,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a panda is*
-	 * *laying on its back or not.*
+	 * Sets whether a panda is
+	 * laying on its back or not.
 	 */
 	fun setPandaOnBack(items: Items) {
 		block(items, "SetPandaOnBack")
@@ -2099,8 +2138,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the model type*
-	 * *of an item display.*
+	 * Sets the model type
+	 * of an item display.
 	 */
 	fun iDisplayModelType(items: Items) {
 		block(items, "IDisplayModelType")
@@ -2108,14 +2147,16 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets an entity's current*
-	 * *health.*
+	 * Sets an entity's current
+	 * health.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Current health*
+	 * Current health
+	 *
+	 * *❤ = 2 Health*
 	 *
 	 * (*) = optional
 	 */
@@ -2125,17 +2166,17 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Disguises an entity as a block.*
+	 * Disguises an entity as a block.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Block to disguise as*
+	 * Block to disguise as
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Display name*
+	 * (*) Display name
 	 *
 	 * (*) = optional
 	 */
@@ -2145,8 +2186,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a mob is able*
-	 * *to collide with other entities.*
+	 * Sets whether a mob is able
+	 * to collide with other entities.
 	 */
 	fun setCollidable(items: Items) {
 		block(items, "SetCollidable")
@@ -2154,26 +2195,32 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the rotation of an armor*
-	 * *stand part.*
+	 * Sets the rotation of an armor
+	 * stand part.
 	 *
 	 * **Args:**
 	 *
 	 * [VecItem]
 	 *
-	 * *Direction*
+	 * Direction
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *X Rotation (0-360)*
+	 * (*) X Rotation (0-360)
+	 *
+	 * *Default = 0*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Y Rotation (0-360)*
+	 * (*) Y Rotation (0-360)
+	 *
+	 * *Default = 0*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Z Rotation (0-360)*
+	 * (*) Z Rotation (0-360)
+	 *
+	 * *Default = 0*
 	 *
 	 * (*) = optional
 	 */
@@ -2183,14 +2230,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Launches an entity forward*
-	 * *or backward.*
+	 * Launches an entity forward
+	 * or backward.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Launch power*
+	 * Launch power
 	 *
 	 * (*) = optional
 	 */
@@ -2200,15 +2247,15 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets an entity's fall distance,*
-	 * *affecting fall damage upon*
-	 * *landing.*
+	 * Sets an entity's fall distance,
+	 * affecting fall damage upon
+	 * landing.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Fall distance (blocks)*
+	 * Fall distance (blocks)
 	 *
 	 * (*) = optional
 	 */
@@ -2218,19 +2265,19 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Instructs a mob's AI to always*
-	 * *pathfind to a certain location*
-	 * *at a certain speed.*
+	 * Instructs a mob's AI to always
+	 * pathfind to a certain location
+	 * at a certain speed.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Target location*
+	 * Target location
 	 *
 	 * [NumItem]
 	 *
-	 * *Walk speed*
+	 * Walk speed
 	 *
 	 * (*) = optional
 	 */
@@ -2240,14 +2287,16 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the text opacity*
-	 * *of a text display.*
+	 * Sets the text opacity
+	 * of a text display.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Text opacity*
+	 * (*) Text opacity
+	 *
+	 * *Default = 100*
 	 *
 	 * (*) = optional
 	 */
@@ -2257,14 +2306,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the displayed item*
-	 * *of an item display.*
+	 * Sets the displayed item
+	 * of an item display.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Displayed item*
+	 * Displayed item
 	 *
 	 * (*) = optional
 	 */
@@ -2274,8 +2323,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Makes a mob perform*
-	 * *an attack animation.*
+	 * Makes a mob perform
+	 * an attack animation.
 	 */
 	fun attackAnimation(items: Items) {
 		block(items, "AttackAnimation")
@@ -2283,8 +2332,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a snow golem*
-	 * *is wearing a pumpkin.*
+	 * Sets whether a snow golem
+	 * is wearing a pumpkin.
 	 */
 	fun snowmanPumpkin(items: Items) {
 		block(items, "SnowmanPumpkin")
@@ -2292,22 +2341,22 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the value of or creates*
-	 * *a custom tag value.*
+	 * Sets the value of or creates
+	 * a custom tag value.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Tag name*
+	 * Tag name
 	 *
 	 * [NumItem]
 	 *
-	 * *Tag value*
+	 * Tag value
 	 *
 	 * [StringItem]
 	 *
-	 * *Tag value*
+	 * Tag value
 	 *
 	 * (*) = optional
 	 */
@@ -2324,14 +2373,16 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the view range of a*
-	 * *display entity.*
+	 * Sets the view range of a
+	 * display entity.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *View range in blocks*
+	 * (*) View range in blocks
+	 *
+	 * *Default = 64*
 	 *
 	 * (*) = optional
 	 */
@@ -2348,17 +2399,17 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Disguises an entity as a player.*
+	 * Disguises an entity as a player.
 	 *
 	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Player name to disguise as*
+	 * Player name to disguise as
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Display skin*
+	 * (*) Display skin
 	 *
 	 * (*) = optional
 	 */
@@ -2368,14 +2419,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the item of*
-	 * *an item entity.*
+	 * Sets the item of
+	 * an item entity.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *New item*
+	 * New item
 	 *
 	 * (*) = optional
 	 */
@@ -2385,8 +2436,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Causes an entity*
-	 * *to explode.*
+	 * Causes an entity
+	 * to explode.
 	 */
 	fun explode(items: Items) {
 		block(items, "Explode")
@@ -2394,8 +2445,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Makes a warden emerge*
-	 * *or dig into the ground.*
+	 * Makes a warden emerge
+	 * or dig into the ground.
 	 */
 	fun setDigging(items: Items) {
 		block(items, "SetDigging")
@@ -2410,14 +2461,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the sound an arrow*
-	 * *plays whenever it lands.*
+	 * Sets the sound an arrow
+	 * plays whenever it lands.
 	 *
 	 * **Args:**
 	 *
 	 * [SoundItem]
 	 *
-	 * *Sound to play*
+	 * Sound to play
 	 *
 	 * (*) = optional
 	 */
@@ -2427,8 +2478,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a vex is*
-	 * *charging or not.*
+	 * Sets whether a vex is
+	 * charging or not.
 	 */
 	fun setVexCharging(items: Items) {
 		block(items, "SetVexCharging")
@@ -2436,14 +2487,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a villager's experience*
-	 * *points, which affects their level.*
+	 * Sets a villager's experience
+	 * points, which affects their level.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Experience*
+	 * Experience
 	 *
 	 * (*) = optional
 	 */
@@ -2453,9 +2504,9 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Ignites a creeper, causing*
-	 * *it to explode after a fuse*
-	 * *period.*
+	 * Ignites a creeper, causing
+	 * it to explode after a fuse
+	 * period.
 	 */
 	fun igniteCreeper(items: Items) {
 		block(items, "IgniteCreeper")
@@ -2463,8 +2514,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Causes a mob to start*
-	 * *or stop celebrating.*
+	 * Causes a mob to start
+	 * or stop celebrating.
 	 */
 	fun setCelebrating(items: Items) {
 		block(items, "SetCelebrating")
@@ -2472,14 +2523,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the displayed text*
-	 * *of a text display.*
+	 * Sets the displayed text
+	 * of a text display.
 	 *
 	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Displayed text*
+	 * Displayed text
 	 *
 	 * (*) = optional
 	 */
@@ -2489,13 +2540,15 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a horse's jump strength.*
+	 * Sets a horse's jump strength.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Strength*
+	 * Strength
+	 *
+	 * *0.0 (can't jump) to 2.0*
 	 *
 	 * (*) = optional
 	 */
@@ -2512,15 +2565,15 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets one of the entity's health-related*
-	 * *attributes such as max health*
-	 * *and armor defense points.*
+	 * Sets one of the entity's health-related
+	 * attributes such as max health
+	 * and armor defense points.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
 	 */
@@ -2530,18 +2583,18 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Makes a goat ram the*
-	 * *specified mob or player.*
+	 * Makes a goat ram the
+	 * specified mob or player.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Target UUID*
+	 * Target UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Target name*
+	 * Target name
 	 *
 	 * (*) = optional
 	 */
@@ -2551,7 +2604,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a fox's fur type.*
+	 * Sets a fox's fur type.
 	 */
 	fun setFoxType(items: Items) {
 		block(items, "SetFoxType")

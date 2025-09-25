@@ -37,7 +37,6 @@ class ListVariable internal constructor(name: String, scope: VarItem.Scope = Var
     fun isEmpty() = ItemComparison { not, nested ->
         IfVar.listSizeEquals({
             +item
-            +NumItem(0)
         }, not, nested)
     }
 

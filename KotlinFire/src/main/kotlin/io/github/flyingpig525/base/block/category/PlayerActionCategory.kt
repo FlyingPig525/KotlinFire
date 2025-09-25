@@ -14,14 +14,16 @@ class PlayerActionCategory internal constructor(private val template: Template) 
         blocks += Block("player_action", ItemCollection(items).items, action, extra)
     }
 	/**
-	 * *Sets items in a player's*
-	 * *hotbar.*
+	 * Sets items in a player's
+	 * hotbar.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item(s) to set*
+	 * Item(s) to set
+	 *
+	 * *Slots 1-9*
 	 *
 	 * (*) = optional
 	 */
@@ -31,9 +33,9 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *When enabled, a player won't be*
-	 * *able to see their coordinates,*
-	 * *block info, or other info.*
+	 * When enabled, a player won't be
+	 * able to see their coordinates,
+	 * block info, or other info.
 	 */
 	fun setReducedDebug(items: Items) {
 		block(items, "SetReducedDebug")
@@ -41,7 +43,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Closes a player's inventory.*
+	 * Closes a player's inventory.
 	 */
 	fun closeInv(items: Items) {
 		block(items, "CloseInv")
@@ -49,18 +51,18 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Gives a player all of the*
-	 * *items in the chest.*
+	 * Gives a player all of the
+	 * items in the chest.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item(s) to give*
+	 * Item(s) to give
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Amount to give*
+	 * (*) Amount to give
 	 *
 	 * (*) = optional
 	 */
@@ -77,9 +79,9 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets if a player is*
-	 * *allowed to interact with*
-	 * *their hand-crafting menu.*
+	 * Sets if a player is
+	 * allowed to interact with
+	 * their hand-crafting menu.
 	 */
 	fun setHandCrafting(items: Items) {
 		block(items, "SetHandCrafting")
@@ -94,22 +96,24 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays a sphere of particles*
-	 * *at a location to a player.*
+	 * Displays a sphere of particles
+	 * at a location to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect*
+	 * Effect
 	 *
 	 * [LocItem]
 	 *
-	 * *Center location*
+	 * Center location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Diameter*
+	 * (*) Diameter
+	 *
+	 * *Default = 2 blocks*
 	 *
 	 * (*) = optional
 	 */
@@ -119,14 +123,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a player's movement*
-	 * *velocity.*
+	 * Sets a player's movement
+	 * velocity.
 	 *
 	 * **Args:**
 	 *
 	 * [VecItem]
 	 *
-	 * *New velocity*
+	 * New velocity
 	 *
 	 * (*) = optional
 	 */
@@ -136,18 +140,18 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays a particle effect*
-	 * *to a player.*
+	 * Displays a particle effect
+	 * to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect*
+	 * Effect
 	 *
 	 * [LocItem]
 	 *
-	 * *Effect location*
+	 * Effect location
 	 *
 	 * (*) = optional
 	 */
@@ -157,15 +161,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Adds a row to the bottom of*
-	 * *a player's current inventory*
-	 * *menu.*
+	 * Adds a row to the bottom of
+	 * a player's current inventory
+	 * menu.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Items to display*
+	 * (*) Items to display
 	 *
 	 * (*) = optional
 	 */
@@ -182,14 +186,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays a lightning strike*
-	 * *effect to a player.*
+	 * Displays a lightning strike
+	 * effect to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Strike location*
+	 * Strike location
 	 *
 	 * (*) = optional
 	 */
@@ -199,21 +203,23 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Damages a player.*
+	 * Damages a player.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Damage to inflict*
+	 * Damage to inflict
+	 *
+	 * *❤ = 2 Health*
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *UUID of damager entity*
+	 * (*) UUID of damager entity
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Name of damager entity*
+	 * (*) Name of damager entity
 	 *
 	 * (*) = optional
 	 */
@@ -230,14 +236,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the XP progress bar*
-	 * *to a certain percentage.*
+	 * Sets the XP progress bar
+	 * to a certain percentage.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Progress % (0-100)*
+	 * Progress % (0-100)
 	 *
 	 * (*) = optional
 	 */
@@ -247,14 +253,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets items in a player's*
-	 * *upper inventory.*
+	 * Sets items in a player's
+	 * upper inventory.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item(s) to set*
+	 * Item(s) to set
 	 *
 	 * (*) = optional
 	 */
@@ -264,21 +270,21 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Teleports a player to multiple*
-	 * *locations, with a delay between*
-	 * *each teleport.*
+	 * Teleports a player to multiple
+	 * locations, with a delay between
+	 * each teleport.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Locations to*
-	 * *teleport to*
+	 * Locations to
+	 * teleport to
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Teleport delay (ticks,*
-	 * (*) *default = 60)*
+	 * (*) Teleport delay (ticks,
+	 * (*) default = 60)
 	 *
 	 * (*) = optional
 	 */
@@ -288,13 +294,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Restores a player's health.*
+	 * Restores a player's health.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Amount to heal*
+	 * Amount to heal
+	 *
+	 * *❤ = 2 Health*
 	 *
 	 * (*) = optional
 	 */
@@ -304,14 +312,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the location a player will*
-	 * *spawn when they die and respawn.*
+	 * Sets the location a player will
+	 * spawn when they die and respawn.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *The new spawn location*
+	 * The new spawn location
 	 *
 	 * (*) = optional
 	 */
@@ -321,8 +329,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a player's inventory*
-	 * *is kept after death.*
+	 * Sets whether a player's inventory
+	 * is kept after death.
 	 */
 	fun setInventoryKept(items: Items) {
 		block(items, "SetInventoryKept")
@@ -330,13 +338,13 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Launches a player up or down.*
+	 * Launches a player up or down.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Launch power*
+	 * Launch power
 	 *
 	 * (*) = optional
 	 */
@@ -353,8 +361,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Forces a player to start*
-	 * *or stop flying.*
+	 * Forces a player to start
+	 * or stop flying.
 	 */
 	fun forceFlight(items: Items) {
 		block(items, "ForceFlight")
@@ -362,7 +370,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Loads a player's inventory.*
+	 * Loads a player's inventory.
 	 */
 	fun loadInv(items: Items) {
 		block(items, "LoadInv")
@@ -370,14 +378,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a player's chat color or*
-	 * *decoration.*
+	 * Sets a player's chat color or
+	 * decoration.
 	 *
 	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *New chat style*
+	 * New chat style
 	 *
 	 * (*) = optional
 	 */
@@ -387,8 +395,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Kicks a player from*
-	 * *the plot.*
+	 * Kicks a player from
+	 * the plot.
 	 */
 	fun kick(items: Items) {
 		block(items, "Kick")
@@ -403,15 +411,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets one of the player's miscellaneous*
-	 * *attributes such as scale and*
-	 * *burning time.*
+	 * Sets one of the player's miscellaneous
+	 * attributes such as scale and
+	 * burning time.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
 	 */
@@ -421,18 +429,18 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Makes a player spectate*
-	 * *another player or entity.*
+	 * Makes a player spectate
+	 * another player or entity.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Target UUID*
+	 * Target UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Target name*
+	 * Target name
 	 *
 	 * (*) = optional
 	 */
@@ -442,14 +450,16 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Makes a player perform*
-	 * *a hurt animation.*
+	 * Makes a player perform
+	 * a hurt animation.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Damage source*
+	 * (*) Damage source
+	 *
+	 * *Affects the direction of the screen tilt effect.*
 	 *
 	 * (*) = optional
 	 */
@@ -459,8 +469,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a player's game*
-	 * *mode to Survival.*
+	 * Sets a player's game
+	 * mode to Survival.
 	 */
 	fun survivalMode(items: Items) {
 		block(items, "SurvivalMode")
@@ -468,14 +478,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays a bell ring animation*
-	 * *at a location to a player.*
+	 * Displays a bell ring animation
+	 * at a location to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Block location*
+	 * Block location
 	 *
 	 * (*) = optional
 	 */
@@ -485,16 +495,18 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the player's game status,*
-	 * *which is used to display information*
-	 * *about what the player is doing*
-	 * *in the game.*
+	 * Sets the player's game status,
+	 * which is used to display information
+	 * about what the player is doing
+	 * in the game.
 	 *
 	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Game Status*
+	 * Game Status
+	 *
+	 * *Limited at 50 characters*
 	 *
 	 * (*) = optional
 	 */
@@ -504,14 +516,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the item on a*
-	 * *player's cursor.*
+	 * Sets the item on a
+	 * player's cursor.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to set*
+	 * Item to set
 	 *
 	 * (*) = optional
 	 */
@@ -521,14 +533,16 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a player's absorption*
-	 * *health (golden hearts).*
+	 * Sets a player's absorption
+	 * health (golden hearts).
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Absorption health*
+	 * Absorption health
+	 *
+	 * *❤ = 2 Health*
 	 *
 	 * (*) = optional
 	 */
@@ -538,14 +552,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the remaining time a*
-	 * *player is on fire for.*
+	 * Sets the remaining time a
+	 * player is on fire for.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Ticks*
+	 * Ticks
 	 *
 	 * (*) = optional
 	 */
@@ -555,15 +569,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets one of the player's combat-related*
-	 * *attributes such as attack damage*
-	 * *and attack speed.*
+	 * Sets one of the player's combat-related
+	 * attributes such as attack damage
+	 * and attack speed.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
 	 */
@@ -580,15 +594,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Removes the given number of*
-	 * *rows from the bottom of a player's*
-	 * *current inventory menu.*
+	 * Removes the given number of
+	 * rows from the bottom of a player's
+	 * current inventory menu.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Rows to remove*
+	 * (*) Rows to remove
 	 *
 	 * (*) = optional
 	 */
@@ -598,8 +612,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays the wake up (fade in)*
-	 * *animation to a player.*
+	 * Displays the wake up (fade in)
+	 * animation to a player.
 	 */
 	fun wakeUpAnimation(items: Items) {
 		block(items, "WakeUpAnimation")
@@ -607,14 +621,16 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Prevents a player from placing*
-	 * *and breaking certain blocks.*
+	 * Prevents a player from placing
+	 * and breaking certain blocks.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Blocks to disallow*
+	 * (*) Blocks to disallow
+	 *
+	 * *If no blocks are given, disallows all blocks*
 	 *
 	 * (*) = optional
 	 */
@@ -624,14 +640,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the objective name of the*
-	 * *scoreboard sidebar.*
+	 * Sets the objective name of the
+	 * scoreboard sidebar.
 	 *
 	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Objective name*
+	 * Objective name
 	 *
 	 * (*) = optional
 	 */
@@ -655,7 +671,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Empties a player's inventory.*
+	 * Empties a player's inventory.
 	 */
 	fun clearInv(items: Items) {
 		block(items, "ClearInv")
@@ -663,15 +679,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets how long a player*
-	 * *is frozen for.*
+	 * Sets how long a player
+	 * is frozen for.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Ticks*
-	 * *(0-140)*
+	 * Ticks
+	 * (0-140)
 	 *
 	 * (*) = optional
 	 */
@@ -681,8 +697,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a player*
-	 * *is gliding with elytra.*
+	 * Sets whether a player
+	 * is gliding with elytra.
 	 */
 	fun setGliding(items: Items) {
 		block(items, "SetGliding")
@@ -690,18 +706,18 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Changes a player's pitch and*
-	 * *yaw.*
+	 * Changes a player's pitch and
+	 * yaw.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Pitch (-90 to 90)*
+	 * Pitch (-90 to 90)
 	 *
 	 * [NumItem]
 	 *
-	 * *Yaw (-180 to 180)*
+	 * Yaw (-180 to 180)
 	 *
 	 * (*) = optional
 	 */
@@ -711,14 +727,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Removes all of an item from*
-	 * *a player.*
+	 * Removes all of an item from
+	 * a player.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item(s) to clear*
+	 * Item(s) to clear
 	 *
 	 * (*) = optional
 	 */
@@ -728,14 +744,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Opens a sign for a player.*
-	 * *Also works with client-side signs.*
+	 * Opens a sign for a player.
+	 * Also works with client-side signs.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Sign location*
+	 * Sign location
 	 *
 	 * (*) = optional
 	 */
@@ -745,8 +761,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a player*
-	 * *is flying.*
+	 * Sets whether a player
+	 * is flying.
 	 */
 	fun setFlying(items: Items) {
 		block(items, "SetFlying")
@@ -754,15 +770,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays a container block*
-	 * *at a location as being open*
-	 * *or closed to a player.*
+	 * Displays a container block
+	 * at a location as being open
+	 * or closed to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Block location*
+	 * Block location
 	 *
 	 * (*) = optional
 	 */
@@ -779,18 +795,18 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays a custom advancement*
-	 * *popup to a player.*
+	 * Displays a custom advancement
+	 * popup to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Advancement name*
+	 * Advancement name
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Advancement icon*
+	 * (*) Advancement icon
 	 *
 	 * (*) = optional
 	 */
@@ -807,19 +823,19 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the item in a slot*
-	 * *of a player's current*
-	 * *inventory menu.*
+	 * Sets the item in a slot
+	 * of a player's current
+	 * inventory menu.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Slot*
+	 * Slot
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to set*
+	 * (*) Item to set
 	 *
 	 * (*) = optional
 	 */
@@ -829,18 +845,18 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Launches a player toward or away*
-	 * *from a location.*
+	 * Launches a player toward or away
+	 * from a location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Launch destination*
+	 * Launch destination
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Launch power*
+	 * (*) Launch power
 	 *
 	 * (*) = optional
 	 */
@@ -850,16 +866,16 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a player's armor items.*
-	 * *Place the armor in slots 1-4*
-	 * *of the chest, with 1 being the*
-	 * *helmet and 4 being the boots.*
+	 * Sets a player's armor items.
+	 * Place the armor in slots 1-4
+	 * of the chest, with 1 being the
+	 * helmet and 4 being the boots.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Armor to set*
+	 * Armor to set
 	 *
 	 * (*) = optional
 	 */
@@ -869,14 +885,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays a vertical beam on*
-	 * *an end gateway to a player.*
+	 * Displays a vertical beam on
+	 * an end gateway to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Gateway location*
+	 * Gateway location
 	 *
 	 * (*) = optional
 	 */
@@ -886,13 +902,13 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Adds saturation to a player.*
+	 * Adds saturation to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Saturation to give*
+	 * Saturation to give
 	 *
 	 * (*) = optional
 	 */
@@ -902,25 +918,25 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays equipment on an entity*
-	 * *to a player. Equipment goes from*
-	 * *slots 2-7 in order of Helmet,*
-	 * *Chestplate, Leggings, Boots,*
-	 * *Main Hand, Off Hand.*
+	 * Displays equipment on an entity
+	 * to a player. Equipment goes from
+	 * slots 2-7 in order of Helmet,
+	 * Chestplate, Leggings, Boots,
+	 * Main Hand, Off Hand.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Entity UUID*
+	 * Entity UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Entity name*
+	 * Entity name
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Equipment*
+	 * Equipment
 	 *
 	 * (*) = optional
 	 */
@@ -930,14 +946,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Adds experience points or*
-	 * *levels to a player.*
+	 * Adds experience points or
+	 * levels to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Experience to give*
+	 * Experience to give
 	 *
 	 * (*) = optional
 	 */
@@ -947,15 +963,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Rotates a player to look*
-	 * *toward a location without*
-	 * *teleporting them.*
+	 * Rotates a player to look
+	 * toward a location without
+	 * teleporting them.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Location to face*
+	 * Location to face
 	 *
 	 * (*) = optional
 	 */
@@ -965,8 +981,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Removes all scores from*
-	 * *the scoreboard.*
+	 * Removes all scores from
+	 * the scoreboard.
 	 */
 	fun clearScoreboard(items: Items) {
 		block(items, "ClearScoreboard")
@@ -974,14 +990,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays text directly above*
-	 * *a player's hotbar.*
+	 * Displays text directly above
+	 * a player's hotbar.
 	 *
 	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Message to send*
+	 * Message to send
 	 *
 	 * (*) = optional
 	 */
@@ -991,13 +1007,13 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a player's chat tag.*
+	 * Sets a player's chat tag.
 	 *
 	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Chat tag*
+	 * Chat tag
 	 *
 	 * (*) = optional
 	 */
@@ -1007,18 +1023,18 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Changes a player's world border*
-	 * *size if they have one active.*
+	 * Changes a player's world border
+	 * size if they have one active.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *New radius*
+	 * New radius
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Blocks per second*
+	 * (*) Blocks per second
 	 *
 	 * (*) = optional
 	 */
@@ -1028,18 +1044,18 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays text on a sign*
-	 * *to a player.*
+	 * Displays text on a sign
+	 * to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Sign location*
+	 * Sign location
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Text line(s)*
+	 * (*) Text line(s)
 	 *
 	 * (*) = optional
 	 */
@@ -1056,15 +1072,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Adds 3 more rows to a player's*
-	 * *current inventory menu using the*
-	 * *contents of the chest.*
+	 * Adds 3 more rows to a player's
+	 * current inventory menu using the
+	 * contents of the chest.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Items to display*
+	 * (*) Items to display
 	 *
 	 * (*) = optional
 	 */
@@ -1074,31 +1090,34 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Launches a projectile from*
-	 * *a player.*
+	 * Launches a projectile from
+	 * a player.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Projectile to*
-	 * *launch*
+	 * Projectile to
+	 * launch
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Launch point*
+	 * (*) Launch point
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Projectile name*
+	 * (*) Projectile name
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Speed*
+	 * (*) Speed
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Inaccuracy*
+	 * (*) Inaccuracy
+	 *
+	 * *Controls how much random motion is applied on launch*
+	 * *Default = 1*
 	 *
 	 * (*) = optional
 	 */
@@ -1122,30 +1141,34 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays an animated particle*
-	 * *cuboid to a player.*
+	 * Displays an animated particle
+	 * cuboid to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect*
+	 * Effect
 	 *
 	 * [LocItem]
 	 *
-	 * *Corner 1*
+	 * Corner 1
 	 *
 	 * [LocItem]
 	 *
-	 * *Corner 2*
+	 * Corner 2
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Effect spacing*
+	 * (*) Effect spacing
+	 *
+	 * *Default = 0.5 blocks*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Animation duration*
+	 * (*) Animation duration
+	 *
+	 * *Default = 40 ticks*
 	 *
 	 * (*) = optional
 	 */
@@ -1155,17 +1178,17 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Plays a sound for a player.*
+	 * Plays a sound for a player.
 	 *
 	 * **Args:**
 	 *
 	 * [SoundItem]
 	 *
-	 * *Sound to play*
+	 * Sound to play
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Playback location*
+	 * (*) Playback location
 	 *
 	 * (*) = optional
 	 */
@@ -1175,14 +1198,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the location compasses*
-	 * *point to for a player.*
+	 * Sets the location compasses
+	 * point to for a player.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *New Target*
+	 * New Target
 	 *
 	 * (*) = optional
 	 */
@@ -1192,15 +1215,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Teleports a player to a random*
-	 * *location in the chest.*
+	 * Teleports a player to a random
+	 * location in the chest.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Locations to*
-	 * *choose from*
+	 * Locations to
+	 * choose from
 	 *
 	 * (*) = optional
 	 */
@@ -1210,17 +1233,17 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Disguises a player as a mob.*
+	 * Disguises a player as a mob.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Mob to disguise as*
+	 * Mob to disguise as
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Display name*
+	 * (*) Display name
 	 *
 	 * (*) = optional
 	 */
@@ -1230,14 +1253,16 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Allows a player to place*
-	 * *and break certain blocks.*
+	 * Allows a player to place
+	 * and break certain blocks.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Blocks to allow*
+	 * (*) Blocks to allow
+	 *
+	 * *If no blocks are given, allows all blocks*
 	 *
 	 * (*) = optional
 	 */
@@ -1247,14 +1272,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Opens a container's inventory.*
-	 * *Also works with crafting tables.*
+	 * Opens a container's inventory.
+	 * Also works with crafting tables.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Container location*
+	 * Container location
 	 *
 	 * (*) = optional
 	 */
@@ -1264,26 +1289,30 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays an animated circle*
-	 * *of particles to a player.*
+	 * Displays an animated circle
+	 * of particles to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect*
+	 * Effect
 	 *
 	 * [LocItem]
 	 *
-	 * *Center location*
+	 * Center location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Diameter*
+	 * (*) Diameter
+	 *
+	 * *Default = 2 blocks*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Animation duration*
+	 * (*) Animation duration
+	 *
+	 * *Default = 40 ticks*
 	 *
 	 * (*) = optional
 	 */
@@ -1300,15 +1329,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the item in one of the*
-	 * *equipment slots (armor and*
-	 * *held items) of a player.*
+	 * Sets the item in one of the
+	 * equipment slots (armor and
+	 * held items) of a player.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to set*
+	 * (*) Item to set
 	 *
 	 * (*) = optional
 	 */
@@ -1325,8 +1354,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a player drops*
-	 * *their items when dead.*
+	 * Sets whether a player drops
+	 * their items when dead.
 	 */
 	fun setDropsEnabled(items: Items) {
 		block(items, "SetDropsEnabled")
@@ -1334,13 +1363,13 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sends a player to another plot.*
+	 * Sends a player to another plot.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Plot handle or ID*
+	 * Plot handle or ID
 	 *
 	 * (*) = optional
 	 */
@@ -1350,15 +1379,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Removes one or more potion*
-	 * *effects from a player.*
+	 * Removes one or more potion
+	 * effects from a player.
 	 *
 	 * **Args:**
 	 *
 	 * [PotionItem]
 	 *
-	 * *Effect(s)*
-	 * *to remove*
+	 * Effect(s)
+	 * to remove
 	 *
 	 * (*) = optional
 	 */
@@ -1368,20 +1397,22 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays a block fracture*
-	 * *effect at a location to a*
-	 * *player.*
+	 * Displays a block fracture
+	 * effect at a location to a
+	 * player.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Block(s) to*
-	 * *fracture*
+	 * Block(s) to
+	 * fracture
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Fracture level*
+	 * (*) Fracture level
+	 *
+	 * *0-10 (default = 0)*
 	 *
 	 * (*) = optional
 	 */
@@ -1391,18 +1422,18 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets if an entity is hidden*
-	 * *to a target.*
+	 * Sets if an entity is hidden
+	 * to a target.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Entity UUIDs*
+	 * Entity UUIDs
 	 *
 	 * [TextItem]
 	 *
-	 * *Entity names*
+	 * Entity names
 	 *
 	 * (*) = optional
 	 */
@@ -1412,8 +1443,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether the scoreboard*
-	 * *sidebar is visible to a player.*
+	 * Sets whether the scoreboard
+	 * sidebar is visible to a player.
 	 */
 	fun setSidebar(items: Items) {
 		block(items, "SetSidebar")
@@ -1428,31 +1459,33 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Highlights a specific block for a player.*
-	 * *The highlight is overlaid on a block,*
-	 * *showing text on top if provided.*
+	 * Highlights a specific block for a player.
+	 * The highlight is overlaid on a block,
+	 * showing text on top if provided.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Block location*
+	 * Block location
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *Color hexadecimal*
+	 * (*) Color hexadecimal
+	 *
+	 * *Example: "#FF0000" (red)*
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *Name*
+	 * (*) Name
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Opacity in percentage*
+	 * (*) Opacity in percentage
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Duration (milliseconds)*
+	 * (*) Duration (milliseconds)
 	 *
 	 * (*) = optional
 	 */
@@ -1469,14 +1502,16 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a player's selected*
-	 * *hotbar slot.*
+	 * Sets a player's selected
+	 * hotbar slot.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *New slot*
+	 * New slot
+	 *
+	 * *1 (left) to 9 (right)*
 	 *
 	 * (*) = optional
 	 */
@@ -1486,26 +1521,28 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays a ray of particles*
-	 * *to a player.*
+	 * Displays a ray of particles
+	 * to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect*
+	 * Effect
 	 *
 	 * [LocItem]
 	 *
-	 * *Ray location*
+	 * Ray location
 	 *
 	 * [VecItem]
 	 *
-	 * *Ray vector*
+	 * Ray vector
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Effect spacing*
+	 * (*) Effect spacing
+	 *
+	 * *Default = 0.5 blocks*
 	 *
 	 * (*) = optional
 	 */
@@ -1515,27 +1552,29 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays a particle cuboid as a*
-	 * *solid, hollow or wireframe*
-	 * *shape to a player.*
+	 * Displays a particle cuboid as a
+	 * solid, hollow or wireframe
+	 * shape to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect*
+	 * Effect
 	 *
 	 * [LocItem]
 	 *
-	 * *Corner 1*
+	 * Corner 1
 	 *
 	 * [LocItem]
 	 *
-	 * *Corner 2*
+	 * Corner 2
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Effect spacing*
+	 * (*) Effect spacing
+	 *
+	 * *Default = 0.5 blocks*
 	 *
 	 * (*) = optional
 	 */
@@ -1545,19 +1584,21 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sends a series of messages*
-	 * *in chat to a player, with a*
-	 * *delay after each message.*
+	 * Sends a series of messages
+	 * in chat to a player, with a
+	 * delay after each message.
 	 *
 	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Messages to send*
+	 * Messages to send
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Message delay ticks*
+	 * (*) Message delay ticks
+	 *
+	 * *Default = 60*
 	 *
 	 * (*) = optional
 	 */
@@ -1567,14 +1608,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the prefix or suffix*
-	 * *for the player's name.*
+	 * Sets the prefix or suffix
+	 * for the player's name.
 	 *
 	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Prefix/suffix text*
+	 * (*) Prefix/suffix text
 	 *
 	 * (*) = optional
 	 */
@@ -1584,20 +1625,22 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays the real block at a*
-	 * *location to a player, effectively*
-	 * *removing any client-side blocks.*
+	 * Displays the real block at a
+	 * location to a player, effectively
+	 * removing any client-side blocks.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Block location,*
-	 * *or start of region*
+	 * Block location,
+	 * or start of region
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *End of region*
+	 * (*) End of region
+	 *
+	 * *Region size limit: 500 blocks*
 	 *
 	 * (*) = optional
 	 */
@@ -1607,18 +1650,18 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the heaviness of rain and*
-	 * *storm visible to a player.*
+	 * Sets the heaviness of rain and
+	 * storm visible to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Rain level (%)*
+	 * Rain level (%)
 	 *
 	 * [NumItem]
 	 *
-	 * *Storm level (%)*
+	 * Storm level (%)
 	 *
 	 * (*) = optional
 	 */
@@ -1628,7 +1671,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Removes a player's disguise.*
+	 * Removes a player's disguise.
 	 */
 	fun undisguise(items: Items) {
 		block(items, "Undisguise")
@@ -1636,38 +1679,48 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays an animated spiral of*
-	 * *particles to a player.*
+	 * Displays an animated spiral of
+	 * particles to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect*
+	 * Effect
 	 *
 	 * [LocItem]
 	 *
-	 * *Base location*
+	 * Base location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Length*
+	 * (*) Length
+	 *
+	 * *Default = 10 blocks*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Diameter*
+	 * (*) Diameter
+	 *
+	 * *Default = 2 blocks*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Effect count*
+	 * (*) Effect count
+	 *
+	 * *Default = 50*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Rotations*
+	 * (*) Rotations
+	 *
+	 * *Default = 4*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Animation duration*
+	 * (*) Animation duration
+	 *
+	 * *Default = 40 ticks*
 	 *
 	 * (*) = optional
 	 */
@@ -1677,8 +1730,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets if a player is instantly*
-	 * *respawned upon dying.*
+	 * Sets if a player is instantly
+	 * respawned upon dying.
 	 */
 	fun instantRespawn(items: Items) {
 		block(items, "InstantRespawn")
@@ -1686,18 +1739,20 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a score on the*
-	 * *scoreboard.*
+	 * Sets a score on the
+	 * scoreboard.
 	 *
 	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Score name*
+	 * Score name
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Score value*
+	 * (*) Score value
+	 *
+	 * *Default = 0*
 	 *
 	 * (*) = optional
 	 */
@@ -1707,8 +1762,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the color a player's*
-	 * *name tag appears in.*
+	 * Sets the color a player's
+	 * name tag appears in.
 	 */
 	fun setNameColor(items: Items) {
 		block(items, "SetNameColor")
@@ -1716,15 +1771,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets one of the player's reach-related*
-	 * *attributes such as block and*
-	 * *entity interaction ranges.*
+	 * Sets one of the player's reach-related
+	 * attributes such as block and
+	 * entity interaction ranges.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
 	 */
@@ -1748,13 +1803,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Changes the tick rate of a player.*
+	 * Changes the tick rate of a player.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Ticks per second (0-20)*
+	 * (*) Ticks per second (0-20)
+	 *
+	 * *Default = 20*
 	 *
 	 * (*) = optional
 	 */
@@ -1764,22 +1821,22 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Plays a sound that follows a*
-	 * *moving entity or player.*
+	 * Plays a sound that follows a
+	 * moving entity or player.
 	 *
 	 * **Args:**
 	 *
 	 * [SoundItem]
 	 *
-	 * *Sound to play*
+	 * Sound to play
 	 *
 	 * [StringItem]
 	 *
-	 * *Target UUID*
+	 * Target UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Target name*
+	 * Target name
 	 *
 	 * (*) = optional
 	 */
@@ -1796,14 +1853,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a player's experience*
-	 * *level, points or progress.*
+	 * Sets a player's experience
+	 * level, points or progress.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Experience to set*
+	 * Experience to set
 	 *
 	 * (*) = optional
 	 */
@@ -1813,15 +1870,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets one of the player's mining-related*
-	 * *attributes such as break speed*
-	 * *and mining efficiency.*
+	 * Sets one of the player's mining-related
+	 * attributes such as break speed
+	 * and mining efficiency.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
 	 */
@@ -1831,14 +1888,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets one of the player's knockback-related*
-	 * *attributes such as knockback resistance.*
+	 * Sets one of the player's knockback-related
+	 * attributes such as knockback resistance.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
 	 */
@@ -1848,15 +1905,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets one of the player's movement-related*
-	 * *attributes, such as walking speed*
-	 * *and jump height.*
+	 * Sets one of the player's movement-related
+	 * attributes, such as walking speed
+	 * and jump height.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
 	 */
@@ -1866,34 +1923,42 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays a spiral of particles*
-	 * *at a location to a player.*
+	 * Displays a spiral of particles
+	 * at a location to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect*
+	 * Effect
 	 *
 	 * [LocItem]
 	 *
-	 * *Base location*
+	 * Base location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Length*
+	 * (*) Length
+	 *
+	 * *Default = 10 blocks*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Diameter*
+	 * (*) Diameter
+	 *
+	 * *Default = 2 blocks*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Effect count*
+	 * (*) Effect count
+	 *
+	 * *Default = 50*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Rotations*
+	 * (*) Rotations
+	 *
+	 * *Default = 4*
 	 *
 	 * (*) = optional
 	 */
@@ -1903,15 +1968,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets one of the player's falling-related*
-	 * *attributes, such as gravity*
-	 * *and fall damage multiplier.*
+	 * Sets one of the player's falling-related
+	 * attributes, such as gravity
+	 * and fall damage multiplier.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
 	 */
@@ -1921,10 +1986,10 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a player*
-	 * *is able to enter and exit*
-	 * *flight mode by double*
-	 * *tapping jump.*
+	 * Sets whether a player
+	 * is able to enter and exit
+	 * flight mode by double
+	 * tapping jump.
 	 */
 	fun setAllowFlight(items: Items) {
 		block(items, "SetAllowFlight")
@@ -1932,14 +1997,16 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a player's maximum*
-	 * *health.*
+	 * Sets a player's maximum
+	 * health.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Maximum health*
+	 * Maximum health
+	 *
+	 * *❤ = 2 Health*
 	 *
 	 * (*) = optional
 	 */
@@ -1949,15 +2016,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets how far the fog is*
-	 * *displayed to a player.*
+	 * Sets how far the fog is
+	 * displayed to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Fog distance in chunks*
-	 * *(2-7)*
+	 * Fog distance in chunks
+	 * (2-7)
 	 *
 	 * (*) = optional
 	 */
@@ -1967,8 +2034,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a player's game*
-	 * *mode to Adventure.*
+	 * Sets a player's game
+	 * mode to Adventure.
 	 */
 	fun adventureMode(items: Items) {
 		block(items, "AdventureMode")
@@ -1976,8 +2043,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a player's game*
-	 * *mode to Spectator.*
+	 * Sets a player's game
+	 * mode to Spectator.
 	 */
 	fun spectatorMode(items: Items) {
 		block(items, "SpectatorMode")
@@ -1985,22 +2052,24 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Changes a head's texture at*
-	 * *a location for a player.*
+	 * Changes a head's texture at
+	 * a location for a player.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Head location*
+	 * Head location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Player Head*
+	 * Player Head
 	 *
 	 * [StringItem]
 	 *
-	 * *Head owner*
+	 * Head owner
+	 *
+	 * *Player name, UUID, or texture*
 	 *
 	 * (*) = optional
 	 */
@@ -2010,8 +2079,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Removes all active potion*
-	 * *effects from a player.*
+	 * Removes all active potion
+	 * effects from a player.
 	 */
 	fun clearPotions(items: Items) {
 		block(items, "ClearPotions")
@@ -2019,15 +2088,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the text to be displayed*
-	 * *above or below a player's player*
-	 * *list shown when pressing Tab.*
+	 * Sets the text to be displayed
+	 * above or below a player's player
+	 * list shown when pressing Tab.
 	 *
 	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Header/footer text*
+	 * (*) Header/footer text
 	 *
 	 * (*) = optional
 	 */
@@ -2044,14 +2113,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Prompts the player to*
-	 * *purchase a plot product.*
+	 * Prompts the player to
+	 * purchase a plot product.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Product ID*
+	 * Product ID
 	 *
 	 * (*) = optional
 	 */
@@ -2068,19 +2137,19 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the number format of a*
-	 * *single line in the player's*
-	 * *scoreboard.*
+	 * Sets the number format of a
+	 * single line in the player's
+	 * scoreboard.
 	 *
 	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Score name*
+	 * Score name
 	 *
 	 * [TextItem]
 	 *
-	 * *Content or style*
+	 * Content or style
 	 *
 	 * (*) = optional
 	 */
@@ -2090,27 +2159,31 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Creates or modifies a custom boss*
-	 * *health bar at the top of a player's*
-	 * *screen.*
+	 * Creates or modifies a custom boss
+	 * health bar at the top of a player's
+	 * screen.
 	 *
 	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Title*
+	 * (*) Title
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Current health*
+	 * (*) Current health
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Maximum health*
+	 * (*) Maximum health
+	 *
+	 * *Default = 100*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Boss bar position*
+	 * (*) Boss bar position
+	 *
+	 * *Default = 1 (top)*
 	 *
 	 * (*) = optional
 	 */
@@ -2120,13 +2193,13 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the player's skin.*
+	 * Sets the player's skin.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Player head*
+	 * Player head
 	 *
 	 * (*) = optional
 	 */
@@ -2136,9 +2209,9 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Toggles whether a player*
-	 * *collides with blocks in*
-	 * *spectator mode.*
+	 * Toggles whether a player
+	 * collides with blocks in
+	 * spectator mode.
 	 */
 	fun spectatorCollision(items: Items) {
 		block(items, "SpectatorCollision")
@@ -2146,8 +2219,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a player's*
-	 * *name tag is visible.*
+	 * Sets whether a player's
+	 * name tag is visible.
 	 */
 	fun setNameVisible(items: Items) {
 		block(items, "SetNameVisible")
@@ -2155,15 +2228,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the currently*
-	 * *remaining ticks until a*
-	 * *player can next be hurt.*
+	 * Sets the currently
+	 * remaining ticks until a
+	 * player can next be hurt.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Ticks*
+	 * Ticks
 	 *
 	 * (*) = optional
 	 */
@@ -2180,15 +2253,17 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the amount of bee stings*
-	 * *sticking out of a player's*
-	 * *character model.*
+	 * Sets the amount of bee stings
+	 * sticking out of a player's
+	 * character model.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Sting Count*
+	 * (*) Sting Count
+	 *
+	 * *Default = 0*
 	 *
 	 * (*) = optional
 	 */
@@ -2198,14 +2273,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Removes a score from*
-	 * *the scoreboard.*
+	 * Removes a score from
+	 * the scoreboard.
 	 *
 	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Score name*
+	 * Score name
 	 *
 	 * (*) = optional
 	 */
@@ -2222,14 +2297,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a player's exhaustion level.*
+	 * Sets a player's exhaustion level.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Exhaustion level*
-	 * *(0-4)*
+	 * Exhaustion level
+	 * (0-4)
 	 *
 	 * (*) = optional
 	 */
@@ -2239,22 +2314,24 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays a circle of particles*
-	 * *to a player.*
+	 * Displays a circle of particles
+	 * to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect*
+	 * Effect
 	 *
 	 * [LocItem]
 	 *
-	 * *Center location*
+	 * Center location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Diameter*
+	 * (*) Diameter
+	 *
+	 * *Default = 2 blocks*
 	 *
 	 * (*) = optional
 	 */
@@ -2264,27 +2341,31 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays a block at a location to*
-	 * *a player.*
+	 * Displays a block at a location to
+	 * a player.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Block to display*
+	 * Block to display
 	 *
 	 * [LocItem]
 	 *
-	 * *Block location,*
-	 * *or start of region*
+	 * Block location,
+	 * or start of region
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *End of region*
+	 * (*) End of region
+	 *
+	 * *Region size limit: 250,000 blocks*
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Block data*
+	 * (*) Block data
+	 *
+	 * *Example: "facing=up", "half=top"*
 	 *
 	 * (*) = optional
 	 */
@@ -2294,18 +2375,18 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Mounts a player on top of*
-	 * *another player or entity.*
+	 * Mounts a player on top of
+	 * another player or entity.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Target UUID*
+	 * Target UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Target name*
+	 * Target name
 	 *
 	 * (*) = optional
 	 */
@@ -2322,7 +2403,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Removes a player's world border.*
+	 * Removes a player's world border.
 	 */
 	fun rmWorldBorder(items: Items) {
 		block(items, "RmWorldBorder")
@@ -2330,13 +2411,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Send a resource pack to a player.*
+	 * Send a resource pack to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Resource Pack URL*
+	 * Resource Pack URL
+	 *
+	 * *Must link directly to a .zip file.*
 	 *
 	 * (*) = optional
 	 */
@@ -2346,14 +2429,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Renames a player's current*
-	 * *inventory menu.*
+	 * Renames a player's current
+	 * inventory menu.
 	 *
 	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Inventory name*
+	 * Inventory name
 	 *
 	 * (*) = optional
 	 */
@@ -2363,13 +2446,13 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Adds exhaustion to a player.*
+	 * Adds exhaustion to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Exhaustion to give*
+	 * Exhaustion to give
 	 *
 	 * (*) = optional
 	 */
@@ -2379,14 +2462,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Teleports a player to*
-	 * *a location.*
+	 * Teleports a player to
+	 * a location.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *New position*
+	 * New position
 	 *
 	 * (*) = optional
 	 */
@@ -2396,9 +2479,9 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a player can*
-	 * *hurt or be hurt by other*
-	 * *players.*
+	 * Sets whether a player can
+	 * hurt or be hurt by other
+	 * players.
 	 */
 	fun setAllowPVP(items: Items) {
 		block(items, "SetAllowPVP")
@@ -2413,8 +2496,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a player*
-	 * *should appear on fire.*
+	 * Sets whether a player
+	 * should appear on fire.
 	 */
 	fun setVisualFire(items: Items) {
 		block(items, "SetVisualFire")
@@ -2422,10 +2505,10 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a player's ability to*
-	 * *see their own disguise. It*
-	 * *is recommended that it is*
-	 * *almost always hidden.*
+	 * Sets a player's ability to
+	 * see their own disguise. It
+	 * is recommended that it is
+	 * almost always hidden.
 	 */
 	fun setDisguiseVisible(items: Items) {
 		block(items, "SetDisguiseVisible")
@@ -2433,15 +2516,17 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the amount of arrows*
-	 * *sticking out of a player's*
-	 * *character model.*
+	 * Sets the amount of arrows
+	 * sticking out of a player's
+	 * character model.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Arrow Count*
+	 * (*) Arrow Count
+	 *
+	 * *Default = 0*
 	 *
 	 * (*) = optional
 	 */
@@ -2451,18 +2536,18 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Gets the remaining cooldown*
-	 * *on an item type.*
+	 * Gets the remaining cooldown
+	 * on an item type.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item type to check*
+	 * Item type to check
 	 *
 	 * (*) = optional
 	 */
@@ -2486,23 +2571,23 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Replaces items in a player's*
-	 * *inventory with the given item.*
+	 * Replaces items in a player's
+	 * inventory with the given item.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item(s) to replace*
+	 * (*) Item(s) to replace
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to replace with*
+	 * Item to replace with
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Amount of items to*
-	 * (*) *replace*
+	 * (*) Amount of items to
+	 * (*) replace
 	 *
 	 * (*) = optional
 	 */
@@ -2512,14 +2597,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sends a chat message to a*
-	 * *player.*
+	 * Sends a chat message to a
+	 * player.
 	 *
 	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Message to send*
+	 * (*) Message to send
 	 *
 	 * (*) = optional
 	 */
@@ -2529,18 +2614,23 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the item in a slot*
-	 * *of a player's inventory.*
+	 * Sets the item in a slot
+	 * of a player's inventory.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to set*
+	 * (*) Item to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Slot to set*
+	 * Slot to set
+	 *
+	 * *1-9 Hotbar*
+	 * *10-36 Inventory (Top to bottom)*
+	 * *37-40 Armor (foot to head)*
+	 * *41 Offhand*
 	 *
 	 * (*) = optional
 	 */
@@ -2550,24 +2640,24 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Plays a sequence of sounds*
-	 * *to a player, with a delay*
-	 * *between each sound.*
+	 * Plays a sequence of sounds
+	 * to a player, with a delay
+	 * between each sound.
 	 *
 	 * **Args:**
 	 *
 	 * [SoundItem]
 	 *
-	 * *Sounds to play*
+	 * Sounds to play
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Sound delay (ticks,*
-	 * (*) *default = 60)*
+	 * (*) Sound delay (ticks,
+	 * (*) default = 60)
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Playback location*
+	 * (*) Playback location
 	 *
 	 * (*) = optional
 	 */
@@ -2577,31 +2667,35 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays an animated line of*
-	 * *particles between two locations*
-	 * *to a player.*
+	 * Displays an animated line of
+	 * particles between two locations
+	 * to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect*
+	 * Effect
 	 *
 	 * [LocItem]
 	 *
-	 * *Start location*
+	 * Start location
 	 *
 	 * [LocItem]
 	 *
-	 * *End location*
+	 * End location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Effect spacing*
+	 * (*) Effect spacing
+	 *
+	 * *Default = 0.5 blocks*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Animation duration*
+	 * (*) Animation duration
+	 *
+	 * *Default = 40 ticks*
 	 *
 	 * (*) = optional
 	 */
@@ -2618,18 +2712,18 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Applies a cooldown visual effect*
-	 * *to an item type.*
+	 * Applies a cooldown visual effect
+	 * to an item type.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item type to affect*
+	 * Item type to affect
 	 *
 	 * [NumItem]
 	 *
-	 * *Cooldown in ticks*
+	 * Cooldown in ticks
 	 *
 	 * (*) = optional
 	 */
@@ -2639,8 +2733,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the type of weather*
-	 * *visible to a player.*
+	 * Sets the type of weather
+	 * visible to a player.
 	 */
 	fun setPlayerWeather(items: Items) {
 		block(items, "SetPlayerWeather")
@@ -2655,8 +2749,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays a parrot on the targets'*
-	 * *shoulders.*
+	 * Displays a parrot on the targets'
+	 * shoulders.
 	 */
 	fun setShoulder(items: Items) {
 		block(items, "SetShoulder")
@@ -2664,14 +2758,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a player's remaining*
-	 * *breath ticks.*
+	 * Sets a player's remaining
+	 * breath ticks.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Breath ticks*
+	 * Breath ticks
 	 *
 	 * (*) = optional
 	 */
@@ -2681,27 +2775,27 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays a pickup animation*
-	 * *of one entity being collected*
-	 * *by another entity.*
+	 * Displays a pickup animation
+	 * of one entity being collected
+	 * by another entity.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Entity UUID*
+	 * Entity UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Entity name*
+	 * Entity name
 	 *
 	 * [StringItem]
 	 *
-	 * *Collector UUID*
+	 * Collector UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Collector name*
+	 * Collector name
 	 *
 	 * (*) = optional
 	 */
@@ -2711,22 +2805,24 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Creates a world border only*
-	 * *visible to a player.*
+	 * Creates a world border only
+	 * visible to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Center position*
+	 * Center position
 	 *
 	 * [NumItem]
 	 *
-	 * *Radius in blocks*
+	 * Radius in blocks
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Warning distance*
+	 * (*) Warning distance
+	 *
+	 * *Default = 0*
 	 *
 	 * (*) = optional
 	 */
@@ -2736,14 +2832,19 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the time of day visible*
-	 * *to a player.*
+	 * Sets the time of day visible
+	 * to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Daylight ticks*
+	 * Daylight ticks
+	 *
+	 * *Day: 1000*
+	 * *Noon: 6000*
+	 * *Night: 13000*
+	 * *Midnight: 18000*
 	 *
 	 * (*) = optional
 	 */
@@ -2753,13 +2854,13 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Adds food to a player.*
+	 * Adds food to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Food to give*
+	 * Food to give
 	 *
 	 * (*) = optional
 	 */
@@ -2776,15 +2877,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Gives one or more potion*
-	 * *effects to a player.*
+	 * Gives one or more potion
+	 * effects to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [PotionItem]
 	 *
-	 * *Effect(s)*
-	 * *to give*
+	 * Effect(s)
+	 * to give
 	 *
 	 * (*) = optional
 	 */
@@ -2794,13 +2895,13 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Removes items from a player.*
+	 * Removes items from a player.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item(s) to remove*
+	 * Item(s) to remove
 	 *
 	 * (*) = optional
 	 */
@@ -2810,14 +2911,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Boosts a player's elytra*
-	 * *using a firework rocket.*
+	 * Boosts a player's elytra
+	 * using a firework rocket.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Firework*
+	 * Firework
 	 *
 	 * (*) = optional
 	 */
@@ -2827,9 +2928,9 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Saves a player's inventory.*
-	 * *It can be loaded later with*
-	 * *'Load Saved Inventory'.*
+	 * Saves a player's inventory.
+	 * It can be loaded later with
+	 * 'Load Saved Inventory'.
 	 */
 	fun saveInv(items: Items) {
 		block(items, "SaveInv")
@@ -2837,14 +2938,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Opens a written book*
-	 * *menu for a player.*
+	 * Opens a written book
+	 * menu for a player.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Book item*
+	 * Book item
 	 *
 	 * (*) = optional
 	 */
@@ -2854,14 +2955,16 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a player's current*
-	 * *health.*
+	 * Sets a player's current
+	 * health.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Current health*
+	 * Current health
+	 *
+	 * *❤ = 2 Health*
 	 *
 	 * (*) = optional
 	 */
@@ -2871,17 +2974,17 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Disguises a player as a block.*
+	 * Disguises a player as a block.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Block to disguise as*
+	 * Block to disguise as
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Display name*
+	 * (*) Display name
 	 *
 	 * (*) = optional
 	 */
@@ -2891,14 +2994,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Undoes the interactions with*
-	 * *blocks by a player.*
+	 * Undoes the interactions with
+	 * blocks by a player.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Rollback time*
+	 * (*) Rollback time
 	 *
 	 * (*) = optional
 	 */
@@ -2915,15 +3018,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a player's walk*
-	 * *speed.*
+	 * Sets a player's walk
+	 * speed.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *% of normal*
-	 * *walk speed (0 to 500)*
+	 * % of normal
+	 * walk speed (0 to 500)
 	 *
 	 * (*) = optional
 	 */
@@ -2933,8 +3036,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Clears all block highlighters*
-	 * *displayed to a player.*
+	 * Clears all block highlighters
+	 * displayed to a player.
 	 */
 	fun clearHighlighters(items: Items) {
 		block(items, "ClearHighlighters")
@@ -2942,9 +3045,9 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets whether a player is*
-	 * *able to collide with other*
-	 * *entities.*
+	 * Sets whether a player is
+	 * able to collide with other
+	 * entities.
 	 */
 	fun setCollidable(items: Items) {
 		block(items, "SetCollidable")
@@ -2952,14 +3055,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Launches a player forward*
-	 * *or backward.*
+	 * Launches a player forward
+	 * or backward.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Launch power*
+	 * Launch power
 	 *
 	 * (*) = optional
 	 */
@@ -2969,15 +3072,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a player's fall distance,*
-	 * *affecting fall damage upon*
-	 * *landing.*
+	 * Sets a player's fall distance,
+	 * affecting fall damage upon
+	 * landing.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Fall distance (blocks)*
+	 * Fall distance (blocks)
 	 *
 	 * (*) = optional
 	 */
@@ -2987,8 +3090,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a player's game*
-	 * *mode to Creative.*
+	 * Sets a player's game
+	 * mode to Creative.
 	 */
 	fun creativeMode(items: Items) {
 		block(items, "CreativeMode")
@@ -2996,8 +3099,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Makes a player perform*
-	 * *an attack animation.*
+	 * Makes a player perform
+	 * an attack animation.
 	 */
 	fun attackAnimation(items: Items) {
 		block(items, "AttackAnimation")
@@ -3005,18 +3108,18 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays a floating name tag*
-	 * *at a location to a player.*
+	 * Displays a floating name tag
+	 * at a location to a player.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Display location*
+	 * Display location
 	 *
 	 * [TextItem]
 	 *
-	 * *Text to display*
+	 * Text to display
 	 *
 	 * (*) = optional
 	 */
@@ -3033,14 +3136,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Opens a custom inventory*
-	 * *for a player.*
+	 * Opens a custom inventory
+	 * for a player.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Items to display*
+	 * (*) Items to display
 	 *
 	 * (*) = optional
 	 */
@@ -3050,14 +3153,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a player's food hunger level.*
+	 * Sets a player's food hunger level.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Food level*
-	 * *(1-20)*
+	 * Food level
+	 * (1-20)
 	 *
 	 * (*) = optional
 	 */
@@ -3067,18 +3170,18 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Disguises a player as another*
-	 * *player.*
+	 * Disguises a player as another
+	 * player.
 	 *
 	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Player name to disguise as*
+	 * Player name to disguise as
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Display skin*
+	 * (*) Display skin
 	 *
 	 * (*) = optional
 	 */
@@ -3088,15 +3191,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets a player's saturation*
-	 * *level.*
+	 * Sets a player's saturation
+	 * level.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Saturation level*
-	 * *(1-20)*
+	 * Saturation level
+	 * (1-20)
 	 *
 	 * (*) = optional
 	 */
@@ -3113,30 +3216,36 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays text in the center*
-	 * *of a player's screen.*
+	 * Displays text in the center
+	 * of a player's screen.
 	 *
 	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Title text*
+	 * Title text
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Subtitle text*
+	 * (*) Subtitle text
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Title duration*
+	 * (*) Title duration
+	 *
+	 * *Default = 60 ticks*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Fade in length*
+	 * (*) Fade in length
+	 *
+	 * *Default = 20 ticks*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Fade out length*
+	 * (*) Fade out length
+	 *
+	 * *Default = 20 ticks*
 	 *
 	 * (*) = optional
 	 */
@@ -3146,14 +3255,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets the default number format*
-	 * *of the player's scoreboard.*
+	 * Sets the default number format
+	 * of the player's scoreboard.
 	 *
 	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Content or style*
+	 * Content or style
 	 *
 	 * (*) = optional
 	 */
@@ -3163,14 +3272,14 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Stops all or specific sounds*
-	 * *for a player.*
+	 * Stops all or specific sounds
+	 * for a player.
 	 *
 	 * **Args:**
 	 *
 	 * [SoundItem]
 	 *
-	 * (*) *Sounds to stop*
+	 * (*) Sounds to stop
 	 *
 	 * (*) = optional
 	 */
@@ -3180,15 +3289,15 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Sets one of the player's health-related*
-	 * *attributes such as max health*
-	 * *and armor defense points.*
+	 * Sets one of the player's health-related
+	 * attributes such as max health
+	 * and armor defense points.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
 	 */
@@ -3198,27 +3307,29 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * *Displays a line of particles*
-	 * *between two locations to*
-	 * *a player.*
+	 * Displays a line of particles
+	 * between two locations to
+	 * a player.
 	 *
 	 * **Args:**
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect*
+	 * Effect
 	 *
 	 * [LocItem]
 	 *
-	 * *Start location*
+	 * Start location
 	 *
 	 * [LocItem]
 	 *
-	 * *End location*
+	 * End location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Effect spacing*
+	 * (*) Effect spacing
+	 *
+	 * *Default = 0.5 blocks*
 	 *
 	 * (*) = optional
 	 */

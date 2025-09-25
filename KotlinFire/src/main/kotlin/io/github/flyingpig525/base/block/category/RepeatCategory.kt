@@ -34,19 +34,19 @@ class RepeatCategory internal constructor(private val template: Template) {
         blocks += BracketBlock(false, "repeat")
     }
 	/**
-	 * *Repeats code once for each*
-	 * *block adjacent to a location.*
+	 * Repeats code once for each
+	 * block adjacent to a location.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Gets the current*
-	 * *block location each iteration*
+	 * Gets the current
+	 * block location each iteration
 	 *
 	 * [LocItem]
 	 *
-	 * *Center block*
+	 * Center block
 	 *
 	 * (*) = optional
 	 */
@@ -56,24 +56,26 @@ class RepeatCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Repeats code once for*
-	 * *each interpolated point in*
-	 * *a path of locations.*
+	 * Repeats code once for
+	 * each interpolated point in
+	 * a path of locations.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Gets the current*
-	 * *path location each iteration*
+	 * Gets the current
+	 * path location each iteration
 	 *
 	 * [LocItem]
 	 *
-	 * *Path locations*
+	 * Path locations
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Point spacing*
+	 * (*) Point spacing
+	 *
+	 * *Default = 0.5 blocks*
 	 *
 	 * (*) = optional
 	 */
@@ -83,18 +85,18 @@ class RepeatCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Repeats code multiple times.*
+	 * Repeats code multiple times.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * (*) *Gets the*
-	 * (*) *current index each iteration*
+	 * (*) Gets the
+	 * (*) current index each iteration
 	 *
 	 * [NumItem]
 	 *
-	 * *Amount*
+	 * Amount
 	 *
 	 * (*) = optional
 	 */
@@ -104,25 +106,25 @@ class RepeatCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Repeats code once for each*
-	 * *block in a region in order:*
-	 * *X → Z → Y. Iterates from the*
-	 * *first to the second location.*
+	 * Repeats code once for each
+	 * block in a region in order:
+	 * X → Z → Y. Iterates from the
+	 * first to the second location.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Gets the current*
-	 * *block location each iteration*
+	 * Gets the current
+	 * block location each iteration
 	 *
 	 * [LocItem]
 	 *
-	 * *Start of region*
+	 * Start of region
 	 *
 	 * [LocItem]
 	 *
-	 * *End of region*
+	 * End of region
 	 *
 	 * (*) = optional
 	 */
@@ -132,11 +134,11 @@ class RepeatCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Repeats code as long as a*
-	 * *condition is true.*
-	 * *The condition is evaluated*
-	 * *at the end of each*
-	 * *loop iteration.*
+	 * Repeats code as long as a
+	 * condition is true.
+	 * The condition is evaluated
+	 * at the end of each
+	 * loop iteration.
 	 *
 	 * **Accepts sub actions:**
 	 * [IfPlayerSubAction],
@@ -150,10 +152,10 @@ class RepeatCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Repeats code as long as a*
-	 * *condition is true.*
-	 * *The condition is evaluated*
-	 * *before each loop iteration.*
+	 * Repeats code as long as a
+	 * condition is true.
+	 * The condition is evaluated
+	 * before each loop iteration.
 	 *
 	 * **Accepts sub actions:**
 	 * [IfPlayerSubAction],
@@ -174,19 +176,19 @@ class RepeatCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Repeats code once for each*
-	 * *index of a list.*
+	 * Repeats code once for each
+	 * index of a list.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Gets the current*
-	 * *value each iteration*
+	 * Gets the current
+	 * value each iteration
 	 *
 	 * [VarItem]
 	 *
-	 * *List to repeat through*
+	 * List to repeat through
 	 *
 	 * (*) = optional
 	 */
@@ -196,27 +198,27 @@ class RepeatCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Repeats code once for every*
-	 * *evenly distributed sphere point.*
+	 * Repeats code once for every
+	 * evenly distributed sphere point.
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Gets the current*
-	 * *sphere location each iteration*
+	 * Gets the current
+	 * sphere location each iteration
 	 *
 	 * [LocItem]
 	 *
-	 * *Sphere center*
+	 * Sphere center
 	 *
 	 * [NumItem]
 	 *
-	 * *Sphere radius*
+	 * Sphere radius
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Sphere points*
+	 * (*) Sphere points
 	 *
 	 * (*) = optional
 	 */
@@ -226,7 +228,7 @@ class RepeatCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Repeats code indefinitely.*
+	 * Repeats code indefinitely.
 	 */
 	fun forever(items: Items, wrappedCode: Template.() -> Unit) {
 		block(items, "Forever", wrappedCode)
@@ -234,25 +236,25 @@ class RepeatCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Repeats code once per entry in*
-	 * *a dictionary*
+	 * Repeats code once per entry in
+	 * a dictionary
 	 *
 	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Gets the current key*
-	 * *each iteration*
+	 * Gets the current key
+	 * each iteration
 	 *
 	 * [VarItem]
 	 *
-	 * *Gets the current value*
-	 * *each iteration*
+	 * Gets the current value
+	 * each iteration
 	 *
 	 * [VarItem]
 	 *
-	 * *Dictionary to*
-	 * *repeat through*
+	 * Dictionary to
+	 * repeat through
 	 *
 	 * (*) = optional
 	 */

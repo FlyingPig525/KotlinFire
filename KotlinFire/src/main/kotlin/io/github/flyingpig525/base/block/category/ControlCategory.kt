@@ -15,8 +15,8 @@ class ControlCategory internal constructor(private val template: Template) {
         blocks += Block("control", ItemCollection(items).items, action, extra)
     }
 	/**
-	 * *Stops a Repeat sequence and*
-	 * *continues to the next code block.*
+	 * Stops a Repeat sequence and
+	 * continues to the next code block.
 	 */
 	fun stopRepeat(items: Items) {
 		block(items, "StopRepeat")
@@ -24,9 +24,9 @@ class ControlCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Skips the rest of a Function*
-	 * *sequence and returns to the*
-	 * *block it was called from.*
+	 * Skips the rest of a Function
+	 * sequence and returns to the
+	 * block it was called from.
 	 */
 	fun returnFrom(items: Items) {
 		block(items, "Return")
@@ -34,18 +34,18 @@ class ControlCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Sends a formatted message to*
-	 * *the specified plot staff group*
-	 * *regardless of which mode*
-	 * *they're currently in.*
-	 * *Clicking on the message will*
-	 * *teleport you to this block.*
+	 * Sends a formatted message to
+	 * the specified plot staff group
+	 * regardless of which mode
+	 * they're currently in.
+	 * Clicking on the message will
+	 * teleport you to this block.
 	 *
 	 * **Args:**
 	 *
 	 * [Item]
 	 *
-	 * (*) *Message to format*
+	 * (*) Message to format
 	 *
 	 * (*) = optional
 	 */
@@ -62,9 +62,9 @@ class ControlCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Skips the rest of this repeat*
-	 * *statement's code and continues*
-	 * *to the next repetition.*
+	 * Skips the rest of this repeat
+	 * statement's code and continues
+	 * to the next repetition.
 	 */
 	fun skip(items: Items) {
 		block(items, "Skip")
@@ -72,9 +72,9 @@ class ControlCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Stops the current event*
-	 * *thread. Any code after this*
-	 * *block will not be executed.*
+	 * Stops the current event
+	 * thread. Any code after this
+	 * block will not be executed.
 	 */
 	fun end(items: Items) {
 		block(items, "End")
@@ -82,15 +82,17 @@ class ControlCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Pauses the current code*
-	 * *sequence for a duration of*
-	 * *ticks, seconds, or minutes.*
+	 * Pauses the current code
+	 * sequence for a duration of
+	 * ticks, seconds, or minutes.
 	 *
 	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Wait duration*
+	 * (*) Wait duration
+	 *
+	 * *Default = 1*
 	 *
 	 * (*) = optional
 	 */

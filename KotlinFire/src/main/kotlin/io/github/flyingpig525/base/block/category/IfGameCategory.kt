@@ -40,19 +40,19 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if the container at a*
-	 * *location has room for one or*
-	 * *more items to be given.*
+	 * Checks if the container at a
+	 * location has room for one or
+	 * more items to be given.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Container location*
+	 * Container location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item(s) to check with*
+	 * Item(s) to check with
 	 *
 	 * (*) = optional
 	 */
@@ -63,14 +63,14 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if the block in a block*
-	 * *related event is the given block.*
+	 * Checks if the block in a block
+	 * related event is the given block.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Block(s) to check for*
+	 * Block(s) to check for
 	 *
 	 * (*) = optional
 	 */
@@ -81,15 +81,15 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if the command entered*
-	 * *in the Command Event is equal*
-	 * *to the given string.*
+	 * Checks if the command entered
+	 * in the Command Event is equal
+	 * to the given string.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *String(s) to check for*
+	 * String(s) to check for
 	 *
 	 * (*) = optional
 	 */
@@ -100,14 +100,14 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if the item in a item*
-	 * *related event is the given item.*
+	 * Checks if the item in a item
+	 * related event is the given item.
 	 *
 	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item(s) to check for*
+	 * Item(s) to check for
 	 *
 	 * (*) = optional
 	 */
@@ -118,8 +118,8 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if an event attack*
-	 * *is critical.*
+	 * Checks if an event attack
+	 * is critical.
 	 */
 	fun attackIsCrit(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "AttackIsCrit", wrappedCode, not)
@@ -128,18 +128,18 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if the container at a*
-	 * *location has the given item.*
+	 * Checks if the container at a
+	 * location has the given item.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Container location*
+	 * Container location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item(s) to check for*
+	 * Item(s) to check for
 	 *
 	 * (*) = optional
 	 */
@@ -150,22 +150,24 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if the block at a location*
-	 * *is the given block.*
+	 * Checks if the block at a location
+	 * is the given block.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Check location*
+	 * Check location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Block(s) to check for*
+	 * (*) Block(s) to check for
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Block data*
+	 * (*) Block data
+	 *
+	 * *Example: "facing=up"*
 	 *
 	 * (*) = optional
 	 */
@@ -176,14 +178,14 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if a location collides with*
-	 * *the hitbox of the nearest block.*
+	 * Checks if a location collides with
+	 * the hitbox of the nearest block.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Check location*
+	 * Check location
 	 *
 	 * (*) = optional
 	 */
@@ -194,8 +196,8 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if specific movement keys*
-	 * *changed state in the current event.*
+	 * Checks if specific movement keys
+	 * changed state in the current event.
 	 */
 	fun movementKey(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "MovementKey", wrappedCode, not)
@@ -204,14 +206,14 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if the block at a location*
-	 * *is powered by redstone.*
+	 * Checks if the block at a location
+	 * is powered by redstone.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Check location(s)*
+	 * Check location(s)
 	 *
 	 * (*) = optional
 	 */
@@ -222,15 +224,15 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if there is currently*
-	 * *a player in the game with the*
-	 * *given name or UUID.*
+	 * Checks if there is currently
+	 * a player in the game with the
+	 * given name or UUID.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Name or UUID*
+	 * Name or UUID
 	 *
 	 * (*) = optional
 	 */
@@ -241,19 +243,19 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if the container at a*
-	 * *location has all of the given*
-	 * *items.*
+	 * Checks if the container at a
+	 * location has all of the given
+	 * items.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Container location*
+	 * Container location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item(s) to check for*
+	 * Item(s) to check for
 	 *
 	 * (*) = optional
 	 */
@@ -264,19 +266,19 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if a part of the command*
-	 * *entered in the Command Event*
-	 * *is equal to the given string.*
+	 * Checks if a part of the command
+	 * entered in the Command Event
+	 * is equal to the given string.
 	 *
 	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *String(s) to check for*
+	 * String(s) to check for
 	 *
 	 * [NumItem]
 	 *
-	 * *Argument number*
+	 * Argument number
 	 *
 	 * (*) = optional
 	 */
@@ -287,8 +289,8 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if the current*
-	 * *event is cancelled.*
+	 * Checks if the current
+	 * event is cancelled.
 	 */
 	fun eventCancelled(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "EventCancelled", wrappedCode, not)
@@ -297,14 +299,14 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if the chunk at a location*
-	 * *is currently loaded.*
+	 * Checks if the chunk at a location
+	 * is currently loaded.
 	 *
 	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Location in chunk*
+	 * Location in chunk
 	 *
 	 * (*) = optional
 	 */

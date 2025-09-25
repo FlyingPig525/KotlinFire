@@ -1,14 +1,12 @@
-import com.vanniktech.maven.publish.SonatypeHost
-
 plugins {
     kotlin("jvm") apply true
     kotlin("plugin.serialization") apply true
 
-    id("com.vanniktech.maven.publish") version "0.31.0-rc2"
+    id("com.vanniktech.maven.publish") version "0.34.0"
     id("org.jetbrains.dokka") version "2.0.0"
 }
 
-version = "1.6.4"
+version = "1.7.0-SNAPSHOT"
 group = "io.github.flyingpig525"
 
 mavenPublishing {
@@ -45,7 +43,7 @@ mavenPublishing {
     }
 
     signAllPublications()
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    publishToMavenCentral(automaticRelease = true)
 }
 
 
