@@ -1,10 +1,12 @@
 package io.github.flyingpig525.base.block.category
 
-import io.github.flyingpig525.base.*
-import io.github.flyingpig525.base.item.*
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
+import io.github.flyingpig525.base.block.Block
+import io.github.flyingpig525.base.block.BracketBlock
+import io.github.flyingpig525.base.block.ElseOperation
+import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
-import io.github.flyingpig525.base.block.*
-import io.github.flyingpig525.base.block.subaction.*
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
 
@@ -30,70 +32,15 @@ class IfPlayerCategory internal constructor(private val template: Template) {
         blocks += BracketBlock(false, "norm")
     }
 	/**
-	 * *Checks if a player is looking at*
-	 * *the given block or location.*
-	 *
-	 * #### Args:
-	 *
-	 * [MinecraftItem]
-	 *
-	 * (*) *Block to check for*
-	 *
-	 * [LocItem]
-	 *
-	 * *Location to check for*
-	 *
-	 * [NumItem]
-	 *
-	 * (*) *Maximum distance from*
-	 * (*) *target block/location*
-	 *
-	 * (*) = optional
-	 */
-	fun isLookingAt(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "IsLookingAt", wrappedCode, not)
-		return ElseOperation()
-	}
-
-
-	/**
-	 * *Checks if a player (or a location)*
-	 * *is within their world border.*
-	 *
-	 * #### Args:
-	 *
-	 * [LocItem]
-	 *
-	 * (*) *Location to check*
-	 *
-	 * (*) = optional
-	 */
-	fun inWorldBorder(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "InWorldBorder", wrappedCode, not)
-		return ElseOperation()
-	}
-
-
-	/**
-	 * *Checks if a player is in*
-	 * *a specific game mode.*
-	 */
-	fun isInGameMode(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "IsInGameMode", wrappedCode, not)
-		return ElseOperation()
-	}
-
-
-	/**
 	 * *Checks if a player's inventory*
 	 * *has room for one or more*
 	 * *items to be given.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item(s) to check with*
+	 * *Item(s) to check with*
 	 *
 	 * (*) = optional
 	 */
@@ -112,21 +59,10 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if a player is*
-	 * *using a plot resource*
-	 * *pack.*
-	 */
-	fun usingPack(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "UsingPack", wrappedCode, not)
-		return ElseOperation()
-	}
-
-
-	/**
 	 * *Checks if a player does not have a*
 	 * *cooldown applied to an item type.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
@@ -144,7 +80,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * *Checks if a player is currently*
 	 * *using an item (eg. bow).*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
@@ -167,20 +103,10 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if a player*
-	 * *is in water or lava.*
-	 */
-	fun isSwimming(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "IsSwimming", wrappedCode, not)
-		return ElseOperation()
-	}
-
-
-	/**
 	 * *Checks if a player has an item*
 	 * *in their inventory.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
@@ -206,7 +132,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * *Checks if a player is wearing*
 	 * *an item.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
@@ -224,7 +150,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * *Checks if a player is within a*
 	 * *range of a location.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
@@ -252,26 +178,8 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 
 	/**
 	 */
-	fun standingOn(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "StandingOn", wrappedCode, not)
-		return ElseOperation()
-	}
-
-
-	/**
-	 */
 	fun cmdEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "CmdEquals", wrappedCode, not)
-		return ElseOperation()
-	}
-
-
-	/**
-	 * *Checks if a player is*
-	 * *supported by a block.*
-	 */
-	fun isGrounded(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "IsGrounded", wrappedCode, not)
 		return ElseOperation()
 	}
 
@@ -280,7 +188,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * *Checks if the item that is being moved*
 	 * *with a player's cursor is the given item.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
@@ -299,7 +207,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * *selected hotbar slot equals the*
 	 * *given slot ID.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
@@ -322,37 +230,11 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 */
-	fun isHoldingMain(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "IsHoldingMain", wrappedCode, not)
-		return ElseOperation()
-	}
-
-
-	/**
-	 * *Checks if a player is holding*
-	 * *an item in their hand.*
-	 *
-	 * #### Args:
-	 *
-	 * [MinecraftItem]
-	 *
-	 * (*) *Item(s) to check for*
-	 *
-	 * (*) = optional
-	 */
-	fun isHolding(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "IsHolding", wrappedCode, not)
-		return ElseOperation()
-	}
-
-
-	/**
 	 * *Checks if a player's currently*
 	 * *open inventory menu contains*
 	 * *an item in the given slot.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
@@ -366,16 +248,6 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 */
 	fun menuSlotEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "MenuSlotEquals", wrappedCode, not)
-		return ElseOperation()
-	}
-
-
-	/**
-	 * *Checks if a player is*
-	 * *blocking with a shield.*
-	 */
-	fun isBlocking(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "IsBlocking", wrappedCode, not)
 		return ElseOperation()
 	}
 
@@ -411,49 +283,20 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 
 
 	/**
+	 * *Checks if a player is holding*
+	 * *a specific movement key.*
+	 */
+	fun movementKey(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "MovementKey", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
 	 * *Checks if a player is flying.*
 	 */
 	fun isFlying(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "IsFlying", wrappedCode, not)
-		return ElseOperation()
-	}
-
-
-	/**
-	 * *Checks if a player has a*
-	 * *potion effect of the given*
-	 * *type active.*
-	 *
-	 * #### Args:
-	 *
-	 * [PotionItem]
-	 *
-	 * *Effect(s)*
-	 * *to check for*
-	 *
-	 * (*) = optional
-	 */
-	fun hasPotion(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "HasPotion", wrappedCode, not)
-		return ElseOperation()
-	}
-
-
-	/**
-	 * *Checks if a player's username is*
-	 * *equal to one of the given*
-	 * *usernames (case insensitive).*
-	 *
-	 * #### Args:
-	 *
-	 * [StringItem]
-	 *
-	 * *Name(s) to check for*
-	 *
-	 * (*) = optional
-	 */
-	fun nameEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "NameEquals", wrappedCode, not)
 		return ElseOperation()
 	}
 
@@ -472,7 +315,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * *Checks if a player has an item*
 	 * *in the given inventory slot.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
@@ -514,6 +357,225 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 */
 	fun cmdArgEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "CmdArgEquals", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * *Checks if a player is looking at*
+	 * *the given block or location.*
+	 *
+	 * **Args:**
+	 *
+	 * [MinecraftItem]
+	 *
+	 * (*) *Block to check for*
+	 *
+	 * [LocItem]
+	 *
+	 * *Location to check for*
+	 *
+	 * [NumItem]
+	 *
+	 * (*) *Maximum distance from*
+	 * (*) *target block/location*
+	 *
+	 * (*) = optional
+	 */
+	fun isLookingAt(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsLookingAt", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * *Checks if a player (or a location)*
+	 * *is within their world border.*
+	 *
+	 * **Args:**
+	 *
+	 * [LocItem]
+	 *
+	 * *Location to check*
+	 *
+	 * (*) = optional
+	 */
+	fun inWorldBorder(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "InWorldBorder", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * *Checks if a player is in*
+	 * *a specific game mode.*
+	 */
+	fun isInGameMode(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsInGameMode", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * *Checks if a player is*
+	 * *using a plot resource*
+	 * *pack.*
+	 */
+	fun usingPack(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "UsingPack", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * *Checks if a player*
+	 * *is in water or lava.*
+	 */
+	fun isSwimming(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsSwimming", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
+	 */
+	fun standingOn(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "StandingOn", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * *Checks if a player is*
+	 * *supported by a block.*
+	 */
+	fun isGrounded(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsGrounded", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * *Checks if a player owns a plot*
+	 * *product or is a developer or*
+	 * *builder.*
+	 *
+	 * **Args:**
+	 *
+	 * [StringItem]
+	 *
+	 * *Product ID*
+	 *
+	 * (*) = optional
+	 */
+	fun ownsProduct(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "OwnsProduct", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
+	 */
+	fun isHoldingMain(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsHoldingMain", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * *Checks if a player is holding*
+	 * *an item in their hand.*
+	 *
+	 * **Args:**
+	 *
+	 * [MinecraftItem]
+	 *
+	 * (*) *Item(s) to check for*
+	 *
+	 * (*) = optional
+	 */
+	fun isHolding(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsHolding", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * *Checks if a player is*
+	 * *blocking with a shield.*
+	 */
+	fun isBlocking(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsBlocking", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * *Checks if a player's hitbox is*
+	 * *within a range of a location.*
+	 *
+	 * **Args:**
+	 *
+	 * [LocItem]
+	 *
+	 * *Center location*
+	 *
+	 * [NumItem]
+	 *
+	 * (*) *Range*
+	 *
+	 * (*) = optional
+	 */
+	fun isHitboxNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsHitboxNear", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * *Checks if a player has a*
+	 * *potion effect of the given*
+	 * *type active.*
+	 *
+	 * **Args:**
+	 *
+	 * [PotionItem]
+	 *
+	 * *Effect(s)*
+	 * *to check for*
+	 *
+	 * (*) = optional
+	 */
+	fun hasPotion(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "HasPotion", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * *Checks if a player's username is*
+	 * *equal to one of the given*
+	 * *usernames (case insensitive).*
+	 *
+	 * **Args:**
+	 *
+	 * [StringItem]
+	 *
+	 * *Name(s) to check for*
+	 *
+	 * (*) = optional
+	 */
+	fun nameEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "NameEquals", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * *Checks if a player can fly.*
+	 */
+	fun canFly(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "CanFly", wrappedCode, not)
 		return ElseOperation()
 	}
 

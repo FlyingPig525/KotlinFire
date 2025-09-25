@@ -1,10 +1,12 @@
 package io.github.flyingpig525.base.block.category
 
-import io.github.flyingpig525.base.*
-import io.github.flyingpig525.base.item.*
-import io.github.flyingpig525.base.item.type.*
-import io.github.flyingpig525.base.block.*
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
+import io.github.flyingpig525.base.block.Block
 import io.github.flyingpig525.base.block.subaction.*
+import io.github.flyingpig525.base.item.Item
+import io.github.flyingpig525.base.item.ItemCollection
+import io.github.flyingpig525.base.item.type.*
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
 
@@ -16,7 +18,9 @@ class SelectObjectCategory internal constructor(private val template: Template) 
     }
 	/**
 	 */
-	fun lastMob(items: Items) = block(items, "LastMob")
+	fun lastMob(items: Items) {
+		block(items, "LastMob")
+	}
 
 
 	/**
@@ -24,7 +28,7 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * *one or more random*
 	 * *players in the game.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
@@ -32,7 +36,9 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) = optional
 	 */
-	fun randomPlayer(items: Items) = block(items, "RandomPlayer")
+	fun randomPlayer(items: Items) {
+		block(items, "RandomPlayer")
+	}
 
 
 	/**
@@ -40,17 +46,23 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * *the most recently spawned*
 	 * *entity.*
 	 */
-	fun lastEntity(items: Items) = block(items, "LastEntity")
+	fun lastEntity(items: Items) {
+		block(items, "LastEntity")
+	}
 
 
 	/**
 	 */
-	fun shooter(items: Items) = block(items, "Shooter")
+	fun shooter(items: Items) {
+		block(items, "Shooter")
+	}
 
 
 	/**
 	 */
-	fun allMobs(items: Items) = block(items, "AllMobs")
+	fun allMobs(items: Items) {
+		block(items, "AllMobs")
+	}
 
 
 	/**
@@ -58,7 +70,7 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * *entities in the game whose*
 	 * *name or UUID matches.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
@@ -70,7 +82,9 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) = optional
 	 */
-	fun entityName(items: Items) = block(items, "EntityName")
+	fun entityName(items: Items) {
+		block(items, "EntityName")
+	}
 
 
 	/**
@@ -78,7 +92,7 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * *randomly picking one or*
 	 * *more objects from it.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
@@ -86,12 +100,16 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) = optional
 	 */
-	fun filterRandom(items: Items) = block(items, "FilterRandom")
+	fun filterRandom(items: Items) {
+		block(items, "FilterRandom")
+	}
 
 
 	/**
 	 */
-	fun defaultEntity(items: Items) = block(items, "DefaultEntity")
+	fun defaultEntity(items: Items) {
+		block(items, "DefaultEntity")
+	}
 
 
 	/**
@@ -99,7 +117,7 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * *players in the game whose*
 	 * *name or UUID matches.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
@@ -107,19 +125,25 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) = optional
 	 */
-	fun playerName(items: Items) = block(items, "PlayerName")
+	fun playerName(items: Items) {
+		block(items, "PlayerName")
+	}
 
 
 	/**
 	 * *Creates a selection of*
 	 * *all entities in the game.*
 	 */
-	fun allEntities(items: Items) = block(items, "AllEntities")
+	fun allEntities(items: Items) {
+		block(items, "AllEntities")
+	}
 
 
 	/**
 	 */
-	fun damager(items: Items) = block(items, "Damager")
+	fun damager(items: Items) {
+		block(items, "Damager")
+	}
 
 
 	/**
@@ -127,7 +151,7 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * *objects that are nearest*
 	 * *or farthest to a location.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
@@ -140,7 +164,9 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) = optional
 	 */
-	fun filterDistance(items: Items) = block(items, "FilterDistance")
+	fun filterDistance(items: Items) {
+		block(items, "FilterDistance")
+	}
 
 
 	/**
@@ -148,7 +174,7 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * *to the objects that intersect*
 	 * *a ray.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
@@ -173,7 +199,9 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) = optional
 	 */
-	fun filterRay(items: Items) = block(items, "FilterRay")
+	fun filterRay(items: Items) {
+		block(items, "FilterRay")
+	}
 
 
 	/**
@@ -181,7 +209,9 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * *Code that follows will run*
 	 * *normally with event targets.*
 	 */
-	fun reset(items: Items) = block(items, "Reset")
+	fun reset(items: Items) {
+		block(items, "Reset")
+	}
 
 
 	/**
@@ -189,17 +219,23 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * *a target involved in this*
 	 * *Event.*
 	 */
-	fun eventTarget(items: Items) = block(items, "EventTarget")
+	fun eventTarget(items: Items) {
+		block(items, "EventTarget")
+	}
 
 
 	/**
 	 */
-	fun killer(items: Items) = block(items, "Killer")
+	fun killer(items: Items) {
+		block(items, "Killer")
+	}
 
 
 	/**
 	 */
-	fun victim(items: Items) = block(items, "Victim")
+	fun victim(items: Items) {
+		block(items, "Victim")
+	}
 
 
 	/**
@@ -207,19 +243,23 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * *all entities in the game*
 	 * *that meet a condition.*
 	 *
-	 * ##### Accepts sub actions:
+	 * **Accepts sub actions:**
 	 * [IfEntitySubAction],
 	 * [IfVarSubAction],
 	 * [IfGameSubAction],
 	 */
-	fun entitiesCond(items: Items, subAction: SubAction) = block(items, "EntitiesCond") { put("subAction", subAction.codeblock) }
+	fun entitiesCond(items: Items, subAction: SubAction) {
+		block(items, "EntitiesCond") { put("subAction", subAction.codeblock) }
+	}
 
 
 	/**
 	 * *Creates a selection of*
 	 * *all players in the game.*
 	 */
-	fun allPlayers(items: Items) = block(items, "AllPlayers")
+	fun allPlayers(items: Items) {
+		block(items, "AllPlayers")
+	}
 
 
 	/**
@@ -227,12 +267,16 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * *inverting the selection that*
 	 * *is currently active.*
 	 */
-	fun invert(items: Items) = block(items, "Invert")
+	fun invert(items: Items) {
+		block(items, "Invert")
+	}
 
 
 	/**
 	 */
-	fun randomEntity(items: Items) = block(items, "RandomEntity")
+	fun randomEntity(items: Items) {
+		block(items, "RandomEntity")
+	}
 
 
 	/**
@@ -240,23 +284,27 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * *objects that meet a certain*
 	 * *condition.*
 	 *
-	 * ##### Accepts sub actions:
+	 * **Accepts sub actions:**
 	 * [IfPlayerSubAction],
 	 * [IfEntitySubAction],
 	 * [IfVarSubAction],
 	 * [IfGameSubAction],
 	 */
-	fun filterCondition(items: Items, subAction: SubAction) = block(items, "FilterCondition") { put("subAction", subAction.codeblock) }
+	fun filterCondition(items: Items, subAction: SubAction) {
+		block(items, "FilterCondition") { put("subAction", subAction.codeblock) }
+	}
 
 
 	/**
 	 *
-	 * ##### Accepts sub actions:
+	 * **Accepts sub actions:**
 	 * [IfEntitySubAction],
 	 * [IfVarSubAction],
 	 * [IfGameSubAction],
 	 */
-	fun mobsCond(items: Items, subAction: SubAction) = block(items, "MobsCond") { put("subAction", subAction.codeblock) }
+	fun mobsCond(items: Items, subAction: SubAction) {
+		block(items, "MobsCond") { put("subAction", subAction.codeblock) }
+	}
 
 
 	/**
@@ -264,7 +312,7 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * *sorting the value of each*
 	 * *object in order.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [Item]
 	 *
@@ -277,17 +325,23 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) = optional
 	 */
-	fun filterSort(items: Items) = block(items, "FilterSort")
+	fun filterSort(items: Items) {
+		block(items, "FilterSort")
+	}
 
 
 	/**
 	 */
-	fun projectile(items: Items) = block(items, "Projectile")
+	fun projectile(items: Items) {
+		block(items, "Projectile")
+	}
 
 
 	/**
 	 */
-	fun defaultPlayer(items: Items) = block(items, "DefaultPlayer")
+	fun defaultPlayer(items: Items) {
+		block(items, "DefaultPlayer")
+	}
 
 
 	/**
@@ -295,16 +349,20 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * *all players in the game*
 	 * *that meet a condition.*
 	 *
-	 * ##### Accepts sub actions:
+	 * **Accepts sub actions:**
 	 * [IfPlayerSubAction],
 	 * [IfVarSubAction],
 	 * [IfGameSubAction],
 	 */
-	fun playersCond(items: Items, subAction: SubAction) = block(items, "PlayersCond") { put("subAction", subAction.codeblock) }
+	fun playersCond(items: Items, subAction: SubAction) {
+		block(items, "PlayersCond") { put("subAction", subAction.codeblock) }
+	}
 
 
 	/**
 	 */
-	fun mobName(items: Items) = block(items, "MobName")
+	fun mobName(items: Items) {
+		block(items, "MobName")
+	}
 
 }

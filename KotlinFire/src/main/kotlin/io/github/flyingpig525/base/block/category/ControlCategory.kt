@@ -1,12 +1,12 @@
 package io.github.flyingpig525.base.block.category
 
-import io.github.flyingpig525.base.*
-import io.github.flyingpig525.base.item.*
-import io.github.flyingpig525.base.item.type.*
-import io.github.flyingpig525.base.block.*
-import io.github.flyingpig525.base.block.subaction.*
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
+import io.github.flyingpig525.base.block.Block
+import io.github.flyingpig525.base.item.Item
+import io.github.flyingpig525.base.item.ItemCollection
+import io.github.flyingpig525.base.item.type.NumItem
 import kotlinx.serialization.json.JsonObjectBuilder
-import kotlinx.serialization.json.put
 
 class ControlCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
@@ -18,7 +18,9 @@ class ControlCategory internal constructor(private val template: Template) {
 	 * *Stops a Repeat sequence and*
 	 * *continues to the next code block.*
 	 */
-	fun stopRepeat(items: Items) = block(items, "StopRepeat")
+	fun stopRepeat(items: Items) {
+		block(items, "StopRepeat")
+	}
 
 
 	/**
@@ -26,12 +28,37 @@ class ControlCategory internal constructor(private val template: Template) {
 	 * *sequence and returns to the*
 	 * *block it was called from.*
 	 */
-	fun returnFrom(items: Items) = block(items, "Return")
+	fun returnFrom(items: Items) {
+		block(items, "Return")
+	}
+
+
+	/**
+	 * *Sends a formatted message to*
+	 * *the specified plot staff group*
+	 * *regardless of which mode*
+	 * *they're currently in.*
+	 * *Clicking on the message will*
+	 * *teleport you to this block.*
+	 *
+	 * **Args:**
+	 *
+	 * [Item]
+	 *
+	 * (*) *Message to format*
+	 *
+	 * (*) = optional
+	 */
+	fun printDebug(items: Items) {
+		block(items, "PrintDebug")
+	}
 
 
 	/**
 	 */
-	fun returnNTimes(items: Items) = block(items, "ReturnNTimes")
+	fun returnNTimes(items: Items) {
+		block(items, "ReturnNTimes")
+	}
 
 
 	/**
@@ -39,7 +66,9 @@ class ControlCategory internal constructor(private val template: Template) {
 	 * *statement's code and continues*
 	 * *to the next repetition.*
 	 */
-	fun skip(items: Items) = block(items, "Skip")
+	fun skip(items: Items) {
+		block(items, "Skip")
+	}
 
 
 	/**
@@ -47,7 +76,9 @@ class ControlCategory internal constructor(private val template: Template) {
 	 * *thread. Any code after this*
 	 * *block will not be executed.*
 	 */
-	fun end(items: Items) = block(items, "End")
+	fun end(items: Items) {
+		block(items, "End")
+	}
 
 
 	/**
@@ -55,7 +86,7 @@ class ControlCategory internal constructor(private val template: Template) {
 	 * *sequence for a duration of*
 	 * *ticks, seconds, or minutes.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
@@ -63,6 +94,8 @@ class ControlCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun wait(items: Items) = block(items, "Wait")
+	fun wait(items: Items) {
+		block(items, "Wait")
+	}
 
 }

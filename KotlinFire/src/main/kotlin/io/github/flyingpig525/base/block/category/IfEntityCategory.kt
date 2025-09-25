@@ -1,10 +1,12 @@
 package io.github.flyingpig525.base.block.category
 
-import io.github.flyingpig525.base.*
-import io.github.flyingpig525.base.item.*
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
+import io.github.flyingpig525.base.block.Block
+import io.github.flyingpig525.base.block.BracketBlock
+import io.github.flyingpig525.base.block.ElseOperation
+import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
-import io.github.flyingpig525.base.block.*
-import io.github.flyingpig525.base.block.subaction.*
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
 
@@ -53,7 +55,7 @@ class IfEntityCategory internal constructor(private val template: Template) {
 	 * *Checks if an entity is the*
 	 * *given type.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
@@ -94,7 +96,7 @@ class IfEntityCategory internal constructor(private val template: Template) {
 	 * *provided) whether the tag*
 	 * *matches the given value.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
@@ -140,20 +142,20 @@ class IfEntityCategory internal constructor(private val template: Template) {
 	 * *Checks if an entity is riding*
 	 * *another entity.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Spawn egg,*
-	 * (*) *projectile, or vehicle*
+	 * *Spawn egg,*
+	 * *projectile, or vehicle*
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *Entity UUID*
+	 * *Entity UUID*
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Entity name*
+	 * *Entity name*
 	 *
 	 * (*) = optional
 	 */
@@ -174,10 +176,32 @@ class IfEntityCategory internal constructor(private val template: Template) {
 
 
 	/**
+	 * *Checks if an entity's hitbox is*
+	 * *within a range of a location.*
+	 *
+	 * **Args:**
+	 *
+	 * [LocItem]
+	 *
+	 * *Center location*
+	 *
+	 * [NumItem]
+	 *
+	 * (*) *Range*
+	 *
+	 * (*) = optional
+	 */
+	fun isHitboxNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsHitboxNear", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
 	 * *Checks if an entity is within a*
 	 * *range of a location.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
@@ -200,7 +224,7 @@ class IfEntityCategory internal constructor(private val template: Template) {
 	 * *potion effect of a certain*
 	 * *type active.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [PotionItem]
 	 *
@@ -228,7 +252,7 @@ class IfEntityCategory internal constructor(private val template: Template) {
 	 * *custom name is equal to the*
 	 * *given text.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *

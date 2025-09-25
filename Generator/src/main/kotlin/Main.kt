@@ -156,7 +156,13 @@ fun blockActions(actions: List<JsonObject>) = try {
             arguments.forEach { arg ->
                 val unprocessed = arg["type"]!!.jsonPrimitive.content
                 if (unprocessed == "NONE") return@forEach
-                val type = typeToKType(unprocessed)
+                val type: String
+                try {
+                    type = typeToKType(unprocessed)
+                } catch (e: Throwable) {
+                    println(Json { prettyPrint = true }.encodeToString(action))
+                    throw e
+                }
                 val description = arg["description"]?.jsonArray?.map { it.jsonPrimitive.content }
                 val optional = arg["optional"]!!.jsonPrimitive.boolean
                 comment += "\t * [$type]"
@@ -335,6 +341,7 @@ fun isSubActionCategory(codeblock: CodeBlock): Boolean =
 
 fun typeToKType(type: String): String = when (type) {
     "NUMBER" -> "NumItem"
+    "BYTE" -> "NumItem"
     "VARIABLE" -> "VarItem"
     "ITEM" -> "MinecraftItem"
     "BLOCK" -> "MinecraftItem"

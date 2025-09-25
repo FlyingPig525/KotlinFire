@@ -1,7 +1,9 @@
 package io.github.flyingpig525.base.item.type.gamevalue
 
-import io.github.flyingpig525.base.item.*
-import io.github.flyingpig525.base.item.type.*
+import io.github.flyingpig525.base.item.type.GameValue
+import io.github.flyingpig525.base.item.type.LocItem
+import io.github.flyingpig525.base.item.type.NumItem
+import io.github.flyingpig525.base.item.type.VecItem
 
 object LocationalValues {
 	/**
@@ -98,8 +100,8 @@ object LocationalValues {
 	 *
 	 * **Additional Info**
 	 *
-	 * *§c-90.0§7° = up*
-	 * *§c90.0§7° = down*
+	 * *-90.0° = up*
+	 * *90.0° = down*
 	 */
 	val Pitch get() = GameValue<NumItem>("Pitch")
 
@@ -114,10 +116,10 @@ object LocationalValues {
 	 *
 	 * **Additional Info**
 	 *
-	 * *§c-180.0§7° & §c180.0§7° = north*
-	 * *§c-90.0§7° = east*
-	 * *§c0.0§7° = south*
-	 * *§c90.0§7° = west*
+	 * *-180.0° & 180.0° = north*
+	 * *-90.0° = east*
+	 * *0.0° = south*
+	 * *90.0° = west*
 	 */
 	val Yaw get() = GameValue<NumItem>("Yaw")
 
@@ -132,10 +134,10 @@ object LocationalValues {
 	 *
 	 * **Additional Info**
 	 *
-	 * *§c-180.0§7° & §c180.0§7° = north*
-	 * *§c-90.0§7° = east*
-	 * *§c0.0§7° = south*
-	 * *§c90.0§7° = west*
+	 * *-180.0° & 180.0° = north*
+	 * *-90.0° = east*
+	 * *0.0° = south*
+	 * *90.0° = west*
 	 */
 	val BodyYaw get() = GameValue<NumItem>("Body Yaw")
 

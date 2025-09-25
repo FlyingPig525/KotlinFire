@@ -4,7 +4,7 @@ enum class EntityEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Entity Kill Entity Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when an entity*
 	 * *kills another entity.*
@@ -12,9 +12,19 @@ enum class EntityEvent(val type: EventBlock.Type, val event: String) {
 	EntityKillEntity(EventBlock.Type.EntityEvent, "EntityKillEntity"),
 
 	/**
+	 * Entity Combust Event
+	 *
+	 * **Description:**
+	 *
+	 * *Executes code when an*
+	 * *entity catches on fire.*
+	 */
+	EntityCombust(EventBlock.Type.EntityEvent, "EntityCombust"),
+
+	/**
 	 * Block Fall Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a block*
 	 * *affected by gravity turns*
@@ -25,7 +35,7 @@ enum class EntityEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Projectile Kill Entity Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a*
 	 * *projectile kills an entity.*
@@ -35,7 +45,7 @@ enum class EntityEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Entity Damage Entity Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when an entity*
 	 * *damages another entity.*
@@ -45,7 +55,7 @@ enum class EntityEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Falling Block Land Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a falling*
 	 * *block lands on the ground.*
@@ -55,7 +65,7 @@ enum class EntityEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Entity Resurrect Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when*
 	 * *an entity resurrects with*
@@ -66,7 +76,7 @@ enum class EntityEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Item Merge Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when dropped items*
 	 * *try to merge into a stack.*
@@ -76,7 +86,7 @@ enum class EntityEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Entity Heal Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when an*
 	 * *entity regains health.*
@@ -86,7 +96,7 @@ enum class EntityEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Entity Teleport Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when*
 	 * *an entity is teleported.*
@@ -96,7 +106,7 @@ enum class EntityEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Entity Shoot Bow Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when an*
 	 * *entity shoots a bow.*
@@ -106,7 +116,7 @@ enum class EntityEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Entity Take Damage Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when*
 	 * *an entity takes damage.*
@@ -116,7 +126,7 @@ enum class EntityEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Projectile Damage Entity Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a projectile*
 	 * *damages an entity.*
@@ -126,7 +136,7 @@ enum class EntityEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Entity Explode Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when an*
 	 * *entity explodes.*
@@ -136,7 +146,7 @@ enum class EntityEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Entity Death Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when an entity*
 	 * *dies by natural causes.*
@@ -146,7 +156,7 @@ enum class EntityEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Vehicle Take Damage Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a vehicle*
 	 * *entity (minecart or boat) is*
@@ -157,7 +167,7 @@ enum class EntityEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Entity Transform Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when an*
 	 * *entity turns into another or*
@@ -168,7 +178,7 @@ enum class EntityEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Sheep Regrow Wool Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a sheep*
 	 * *regrows its wool.*

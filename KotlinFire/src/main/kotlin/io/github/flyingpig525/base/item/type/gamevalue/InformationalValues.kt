@@ -1,6 +1,5 @@
 package io.github.flyingpig525.base.item.type.gamevalue
 
-import io.github.flyingpig525.base.item.*
 import io.github.flyingpig525.base.item.type.*
 
 object InformationalValues {
@@ -40,7 +39,7 @@ object InformationalValues {
 	 *
 	 * *Game mode:*
 	 * *"survival", "creative", "adventure",*
-	 * *"spectator",*
+	 * *"spectator"*
 	 */
 	val GameMode get() = GameValue<StringItem>("Game Mode")
 
@@ -184,21 +183,66 @@ object InformationalValues {
 	 * *Pose:*
 	 * *"dying" (dead),*
 	 * *"fall_flying" (gliding),*
-	 * *"sleeping" (sleeping),*
-	 * *"sneaking" (sneaking),*
+	 * *"sleeping", "sneaking",*
 	 * *"spin_attack" (riptiding with a trident),*
 	 * *"standing" (standing normally),*
-	 * *"swimming" (swimming/crawling),*
+	 * *"swimming" (swimming/crawling)*
 	 * *Camel Only:*
-	 * *"sitting" (sitting),*
+	 * *"sitting"*
 	 * *Frog Only:*
 	 * *"croaking", "long_jumping",*
-	 * *"using_tongue" (using its tongue),*
+	 * *"using_tongue"*
 	 * *Warden Only:*
-	 * *"digging", "emerging", "roaring", "sniffing",*
+	 * *"digging", "emerging", "roaring", "sniffing"*
 	 * *Breeze Only:*
 	 * *"inhaling", "shooting", "sliding"*
 	 */
 	val Pose get() = GameValue<StringItem>("Pose")
+
+	/**
+	 * *Gets a player's weather type.*
+	 *
+	 * **Type:** [StringItem]
+	 *
+	 * *Weather:*
+	 * *"clear", "downfall"*
+	 */
+	val WeatherType get() = GameValue<StringItem>("Weather Type")
+
+	/**
+	 * *Gets the item that would be created*
+	 * *when a player middle clicks*
+	 * *the target in Creative mode.*
+	 *
+	 * **Type:** [MinecraftItem]
+	 *
+	 * *Item or air*
+	 */
+	val PickEntityResult get() = GameValue<MinecraftItem>("Pick Entity Result")
+
+	/**
+	 * *Gets the target's Particles setting.*
+	 *
+	 * **Type:** [StringItem]
+	 *
+	 * *Particle Visibility Status:*
+	 * *"all", "decreased", "minimal"*
+	 */
+	val ParticleVisibilityStatus get() = GameValue<StringItem>("Particle Visibility Status")
+
+	/**
+	 * *Gets a list of all movement*
+	 * *keys that are currently*
+	 * *pressed by a player.*
+	 *
+	 * **Type:** [VarItem]
+	 *
+	 * *Contains one String*
+	 * *value for each movement type:*
+	 * *"forward", "backward", "left",*
+	 * *"right", "jump", "sneak",*
+	 * *"sprint"*
+	 */
+	val PressedMovementKeys get() = GameValue<VarItem>("Pressed Movement Keys")
 
 }

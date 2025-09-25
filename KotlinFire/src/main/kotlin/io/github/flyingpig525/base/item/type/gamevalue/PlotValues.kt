@@ -1,6 +1,5 @@
 package io.github.flyingpig525.base.item.type.gamevalue
 
-import io.github.flyingpig525.base.item.*
 import io.github.flyingpig525.base.item.type.*
 
 object PlotValues {
@@ -93,13 +92,23 @@ object PlotValues {
 	val SelectionTargetUUIDs get() = GameValue<VarItem>("Selection Target UUIDs")
 
 	/**
-	 * *Gets the id of the plot as text.*
+	 * *Gets the id of the plot as a string.*
 	 *
 	 * **Type:** [StringItem]
 	 *
 	 * *Plot ID*
 	 */
 	val PlotID get() = GameValue<StringItem>("Plot ID")
+
+	/**
+	 * *Gets the name of the plot*
+	 * *as a styled text.*
+	 *
+	 * **Type:** [TextItem]
+	 *
+	 * *Plot Name*
+	 */
+	val PlotName get() = GameValue<TextItem>("Plot Name")
 
 	/**
 	 * *Gets the size of the plot.*
@@ -113,7 +122,7 @@ object PlotValues {
 	 * *A basic plot will return 51.*
 	 * *A large plot will return 101.*
 	 * *A massive plot will return 301.*
-	 * *A mega plot will return 1001*
+	 * *A mega plot will return 1001.*
 	 */
 	val PlotSize get() = GameValue<NumItem>("Plot Size")
 
@@ -130,7 +139,19 @@ object PlotValues {
 	val MicrosecondsSinceStartup get() = GameValue<NumItem>("Microseconds Since Startup")
 
 	/**
-	 * *Gets the number of block transactions a plot is executing.*
+	 * *Gets the number of ticks*
+	 * *that elapsed since the*
+	 * *first player joined the plot.*
+	 *
+	 * **Type:** [NumItem]
+	 *
+	 * *Ticks*
+	 */
+	val TicksSinceStartup get() = GameValue<NumItem>("Ticks Since Startup")
+
+	/**
+	 * *Gets the number of block*
+	 * *transactions a plot is executing.*
 	 *
 	 * **Type:** [NumItem]
 	 *

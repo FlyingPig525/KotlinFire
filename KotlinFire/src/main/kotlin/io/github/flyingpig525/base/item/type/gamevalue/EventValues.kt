@@ -1,6 +1,5 @@
 package io.github.flyingpig525.base.item.type.gamevalue
 
-import io.github.flyingpig525.base.item.*
 import io.github.flyingpig525.base.item.type.*
 
 object EventValues {
@@ -36,7 +35,7 @@ object EventValues {
 	 *
 	 * **Additional Info**
 	 *
-	 * *§c❤§7 = §c2§7 Health*
+	 * *❤ = 2 Health*
 	 */
 	val EventDamage get() = GameValue<NumItem>("Event Damage")
 
@@ -53,11 +52,11 @@ object EventValues {
 	 * *(fish on land), "entity_attack",*
 	 * *"entity_explosion", "entity_sweep_attack",*
 	 * *"fall", "falling_block", "fire" (in fire block),*
-	 * *"fire_tick", "fly_into_wall", "hot_floor",*
-	 * *(magma block), "kill", "lava", "magic",*
-	 * *"melting" (snowman), "poison", "projectile",*
-	 * *"starvation", "suffocation", "thorns", "void",*
-	 * *"wither", "world_border", "freeze"*
+	 * *"fire_tick", "fly_into_wall", "freeze",*
+	 * *"hot_floor (magma block)", "kill", "lava",*
+	 * *"magic", "melting" (snowman), "poison",*
+	 * *"projectile", "starvation", "suffocation", "thorns",*
+	 * *"void", "wither", "world_border"*
 	 */
 	val DamageEventCause get() = GameValue<StringItem>("Damage Event Cause")
 
@@ -72,7 +71,7 @@ object EventValues {
 	 *
 	 * **Additional Info**
 	 *
-	 * *§c❤§7 = §c2§7 Health*
+	 * *❤ = 2 Health*
 	 */
 	val RawEventDamage get() = GameValue<NumItem>("Raw Event Damage")
 
@@ -80,11 +79,11 @@ object EventValues {
 	 * *Gets the death message for*
 	 * *this death event.*
 	 *
-	 * **Type:** [StringItem]
+	 * **Type:** [TextItem]
 	 *
 	 * *Death message*
 	 */
-	val EventDeathMessage get() = GameValue<StringItem>("Event Death Message")
+	val EventDeathMessage get() = GameValue<TextItem>("Event Death Message")
 
 	/**
 	 * *Gets the amount of health*
@@ -96,7 +95,7 @@ object EventValues {
 	 *
 	 * **Additional Info**
 	 *
-	 * *§c❤§7 = §c2§7 Health*
+	 * *❤ = 2 Health*
 	 */
 	val EventHealAmount get() = GameValue<NumItem>("Event Heal Amount")
 
@@ -269,7 +268,7 @@ object EventValues {
 	 *
 	 * *Teleport Cause:*
 	 * *"code", "ender_pearl",*
-	 * *"chorus_fruit", "unknown",*
+	 * *"chorus_fruit", "unknown"*
 	 */
 	val TeleportEventCause get() = GameValue<StringItem>("Teleport Event Cause")
 
@@ -295,7 +294,7 @@ object EventValues {
 	 * *"crouch", "damaged", "hunger_effect",*
 	 * *"jump", "jump_sprint", "none",*
 	 * *"regen", "sprint", "swim", "walk",*
-	 * *"walk_on_water", "walk_underwater",*
+	 * *"walk_on_water", "walk_underwater"*
 	 */
 	val ExhaustionEventCause get() = GameValue<StringItem>("Exhaustion Event Cause")
 
@@ -348,5 +347,67 @@ object EventValues {
 	 * *"block", "entity"*
 	 */
 	val EventHitType get() = GameValue<StringItem>("Event Hit Type")
+
+	/**
+	 * *Gets the ID of the*
+	 * *product purchased.*
+	 *
+	 * **Type:** [StringItem]
+	 *
+	 * *Product ID*
+	 */
+	val ProductID get() = GameValue<StringItem>("Product ID")
+
+	/**
+	 * *The message sent in this*
+	 * *event*
+	 *
+	 * **Type:** [StringItem]
+	 *
+	 * *Chat message*
+	 */
+	val EventMessage get() = GameValue<StringItem>("Event Message")
+
+	/**
+	 * *Gets the sign text*
+	 * *in this event.*
+	 *
+	 * **Type:** [VarItem]
+	 *
+	 * *Contains one String*
+	 * *entry for each sign line.*
+	 */
+	val EventSignText get() = GameValue<VarItem>("Event Sign Text")
+
+	/**
+	 * *Gets the sign side modified*
+	 * *in this event.*
+	 *
+	 * **Type:** [StringItem]
+	 *
+	 * *"front" or "back"*
+	 */
+	val EventSignSide get() = GameValue<StringItem>("Event Sign Side")
+
+	/**
+	 * *Gets the duration of fire inflicted*
+	 * *in this event.*
+	 *
+	 * **Type:** [NumItem]
+	 *
+	 * *Fire duration in ticks*
+	 */
+	val CombustEventDuration get() = GameValue<NumItem>("Combust Event Duration")
+
+	/**
+	 * *Gets the reason the target caught*
+	 * *on fire in this event.*
+	 *
+	 * **Type:** [StringItem]
+	 *
+	 * *Combust Cause:*
+	 * *"player", "entity", "block", "unknown"*
+	 */
+	val CombustEventCause get() = GameValue<StringItem>("Combust Event Cause")
 
 }

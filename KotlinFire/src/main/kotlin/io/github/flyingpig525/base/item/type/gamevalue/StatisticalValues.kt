@@ -1,7 +1,7 @@
 package io.github.flyingpig525.base.item.type.gamevalue
 
-import io.github.flyingpig525.base.item.*
-import io.github.flyingpig525.base.item.type.*
+import io.github.flyingpig525.base.item.type.GameValue
+import io.github.flyingpig525.base.item.type.NumItem
 
 object StatisticalValues {
 	/**
@@ -16,7 +16,7 @@ object StatisticalValues {
 	 *
 	 * **Additional Info**
 	 *
-	 * *§c❤§7 = §c2§7 Health*
+	 * *❤ = 2 Health*
 	 */
 	val CurrentHealth get() = GameValue<NumItem>("Current Health")
 
@@ -31,7 +31,7 @@ object StatisticalValues {
 	 *
 	 * **Additional Info**
 	 *
-	 * *§c❤§7 = §c2§7 Health*
+	 * *❤ = 2 Health*
 	 */
 	val MaximumHealth get() = GameValue<NumItem>("Maximum Health")
 
@@ -47,7 +47,7 @@ object StatisticalValues {
 	 *
 	 * **Additional Info**
 	 *
-	 * *§c❤§7 = §c2§7 Health*
+	 * *❤ = 2 Health*
 	 */
 	val AbsorptionHealth get() = GameValue<NumItem>("Absorption Health")
 
@@ -74,7 +74,7 @@ object StatisticalValues {
 	 *
 	 * **Additional Info**
 	 *
-	 * *If saturation is > §c0.0§7, the*
+	 * *If saturation is > 0.0, the*
 	 * *player's food level will not drop.*
 	 */
 	val FoodSaturation get() = GameValue<NumItem>("Food Saturation")
@@ -92,8 +92,8 @@ object StatisticalValues {
 	 * **Additional Info**
 	 *
 	 * *When exhaustion resets*
-	 * *from §c4.0§7 to §c0.0§7, a player's*
-	 * *saturation decreases by §c1§7.*
+	 * *from 4.0 to 0.0, a player's*
+	 * *saturation decreases by 1.*
 	 */
 	val FoodExhaustion get() = GameValue<NumItem>("Food Exhaustion")
 
@@ -109,7 +109,7 @@ object StatisticalValues {
 	 *
 	 * **Additional Info**
 	 *
-	 * *Default base value = §c1.0§7*
+	 * *Default base value = 1.0*
 	 */
 	val AttackDamage get() = GameValue<NumItem>("Attack Damage")
 
@@ -125,7 +125,7 @@ object StatisticalValues {
 	 *
 	 * **Additional Info**
 	 *
-	 * *Default base value = §c4.0§7*
+	 * *Default base value = 4.0*
 	 */
 	val AttackSpeed get() = GameValue<NumItem>("Attack Speed")
 
@@ -154,7 +154,7 @@ object StatisticalValues {
 	 *
 	 * **Additional Info**
 	 *
-	 * *This value is set to §c-1§7*
+	 * *This value is set to -1*
 	 * *if it will never recharge.*
 	 */
 	val AttackCooldownTicks get() = GameValue<NumItem>("Attack Cooldown Ticks")
@@ -171,7 +171,7 @@ object StatisticalValues {
 	 *
 	 * **Additional Info**
 	 *
-	 * *Default base value = §c0.0§7*
+	 * *Default base value = 0.0*
 	 */
 	val ArmorPoints get() = GameValue<NumItem>("Armor Points")
 
@@ -190,7 +190,7 @@ object StatisticalValues {
 	 * *Armor Toughness increases *
 	 * *the amount of damage required*
 	 * *to penetrate one armor point.*
-	 * *Default base value = §c0.0§7*
+	 * *Default base value = 0.0*
 	 */
 	val ArmorToughness get() = GameValue<NumItem>("Armor Toughness")
 
@@ -205,7 +205,7 @@ object StatisticalValues {
 	 *
 	 * **Additional Info**
 	 *
-	 * *This value is set to §c10§7*
+	 * *This value is set to 10*
 	 * *upon taking damage.*
 	 */
 	val InvulnerabilityTicks get() = GameValue<NumItem>("Invulnerability Ticks")
@@ -267,7 +267,7 @@ object StatisticalValues {
 	 * **Additional Info**
 	 *
 	 * *One breath bubble is*
-	 * *equal to §c30§7 air ticks.*
+	 * *equal to 30 air ticks.*
 	 */
 	val RemainingAir get() = GameValue<NumItem>("Remaining Air")
 
@@ -351,7 +351,7 @@ object StatisticalValues {
 	 * **Additional Info**
 	 *
 	 * *Bows, crossbows and tridents*
-	 * *remain at §c100.0§7% until they*
+	 * *remain at 100.0% until they*
 	 * *are released.*
 	 */
 	val ItemUsageProgress get() = GameValue<NumItem>("Item Usage Progress")

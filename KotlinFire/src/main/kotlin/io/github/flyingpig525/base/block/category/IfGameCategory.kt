@@ -1,10 +1,12 @@
 package io.github.flyingpig525.base.block.category
 
-import io.github.flyingpig525.base.*
-import io.github.flyingpig525.base.item.*
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
+import io.github.flyingpig525.base.block.Block
+import io.github.flyingpig525.base.block.BracketBlock
+import io.github.flyingpig525.base.block.ElseOperation
+import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
-import io.github.flyingpig525.base.block.*
-import io.github.flyingpig525.base.block.subaction.*
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
 
@@ -42,7 +44,7 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 * *location has room for one or*
 	 * *more items to be given.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
@@ -50,7 +52,7 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item(s) to check with*
+	 * *Item(s) to check with*
 	 *
 	 * (*) = optional
 	 */
@@ -64,7 +66,7 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 * *Checks if the block in a block*
 	 * *related event is the given block.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
@@ -83,7 +85,7 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 * *in the Command Event is equal*
 	 * *to the given string.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
@@ -101,7 +103,7 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 * *Checks if the item in a item*
 	 * *related event is the given item.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
@@ -129,7 +131,7 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 * *Checks if the container at a*
 	 * *location has the given item.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
@@ -151,7 +153,7 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 * *Checks if the block at a location*
 	 * *is the given block.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
@@ -177,7 +179,7 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 * *Checks if a location collides with*
 	 * *the hitbox of the nearest block.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
@@ -192,10 +194,20 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
+	 * *Checks if specific movement keys*
+	 * *changed state in the current event.*
+	 */
+	fun movementKey(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "MovementKey", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
 	 * *Checks if the block at a location*
 	 * *is powered by redstone.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
@@ -214,7 +226,7 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 * *a player in the game with the*
 	 * *given name or UUID.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
@@ -233,7 +245,7 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 * *location has all of the given*
 	 * *items.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
@@ -256,7 +268,7 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 * *entered in the Command Event*
 	 * *is equal to the given string.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
@@ -288,7 +300,7 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 * *Checks if the chunk at a location*
 	 * *is currently loaded.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *

@@ -1,10 +1,14 @@
 package io.github.flyingpig525.base.block.category
 
-import io.github.flyingpig525.base.*
-import io.github.flyingpig525.base.item.*
-import io.github.flyingpig525.base.item.type.*
-import io.github.flyingpig525.base.block.*
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
+import io.github.flyingpig525.base.block.Block
+import io.github.flyingpig525.base.block.BracketBlock
 import io.github.flyingpig525.base.block.subaction.*
+import io.github.flyingpig525.base.item.ItemCollection
+import io.github.flyingpig525.base.item.type.LocItem
+import io.github.flyingpig525.base.item.type.NumItem
+import io.github.flyingpig525.base.item.type.VarItem
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
 
@@ -33,7 +37,7 @@ class RepeatCategory internal constructor(private val template: Template) {
 	 * *Repeats code once for each*
 	 * *block adjacent to a location.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
@@ -46,7 +50,9 @@ class RepeatCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun adjacent(items: Items, wrappedCode: Template.() -> Unit) = block(items, "Adjacent", wrappedCode)
+	fun adjacent(items: Items, wrappedCode: Template.() -> Unit) {
+		block(items, "Adjacent", wrappedCode)
+	}
 
 
 	/**
@@ -54,7 +60,7 @@ class RepeatCategory internal constructor(private val template: Template) {
 	 * *each interpolated point in*
 	 * *a path of locations.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
@@ -71,13 +77,15 @@ class RepeatCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun path(items: Items, wrappedCode: Template.() -> Unit) = block(items, "Path", wrappedCode)
+	fun path(items: Items, wrappedCode: Template.() -> Unit) {
+		block(items, "Path", wrappedCode)
+	}
 
 
 	/**
 	 * *Repeats code multiple times.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
@@ -90,7 +98,9 @@ class RepeatCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun multiple(items: Items, wrappedCode: Template.() -> Unit) = block(items, "Multiple", wrappedCode)
+	fun multiple(items: Items, wrappedCode: Template.() -> Unit) {
+		block(items, "Multiple", wrappedCode)
+	}
 
 
 	/**
@@ -99,7 +109,7 @@ class RepeatCategory internal constructor(private val template: Template) {
 	 * *X → Z → Y. Iterates from the*
 	 * *first to the second location.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
@@ -116,32 +126,58 @@ class RepeatCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun grid(items: Items, wrappedCode: Template.() -> Unit) = block(items, "Grid", wrappedCode)
+	fun grid(items: Items, wrappedCode: Template.() -> Unit) {
+		block(items, "Grid", wrappedCode)
+	}
 
 
 	/**
 	 * *Repeats code as long as a*
 	 * *condition is true.*
+	 * *The condition is evaluated*
+	 * *at the end of each*
+	 * *loop iteration.*
 	 *
-	 * ##### Accepts sub actions:
+	 * **Accepts sub actions:**
 	 * [IfPlayerSubAction],
 	 * [IfEntitySubAction],
 	 * [IfVarSubAction],
 	 * [IfGameSubAction],
 	 */
-	fun whileLoop(items: Items, subAction: SubAction, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "While", wrappedCode, not) { put("subAction", subAction.codeblock) }
+	fun doWhile(items: Items, subAction: SubAction, wrappedCode: Template.() -> Unit) {
+		block(items, "DoWhile", wrappedCode) { put("subAction", subAction.codeblock) }
+	}
+
+
+	/**
+	 * *Repeats code as long as a*
+	 * *condition is true.*
+	 * *The condition is evaluated*
+	 * *before each loop iteration.*
+	 *
+	 * **Accepts sub actions:**
+	 * [IfPlayerSubAction],
+	 * [IfEntitySubAction],
+	 * [IfVarSubAction],
+	 * [IfGameSubAction],
+	 */
+	fun whileLoop(items: Items, subAction: SubAction, not: Boolean = false, wrappedCode: Template.() -> Unit) {
+		block(items, "While", wrappedCode, not) { put("subAction", subAction.codeblock) }
+	}
 
 
 	/**
 	 */
-	fun range(items: Items, wrappedCode: Template.() -> Unit) = block(items, "Range", wrappedCode)
+	fun range(items: Items, wrappedCode: Template.() -> Unit) {
+		block(items, "Range", wrappedCode)
+	}
 
 
 	/**
 	 * *Repeats code once for each*
 	 * *index of a list.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
@@ -154,14 +190,16 @@ class RepeatCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun forEach(items: Items, wrappedCode: Template.() -> Unit) = block(items, "ForEach", wrappedCode)
+	fun forEach(items: Items, wrappedCode: Template.() -> Unit) {
+		block(items, "ForEach", wrappedCode)
+	}
 
 
 	/**
 	 * *Repeats code once for every*
 	 * *evenly distributed sphere point.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
@@ -182,20 +220,24 @@ class RepeatCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun sphere(items: Items, wrappedCode: Template.() -> Unit) = block(items, "Sphere", wrappedCode)
+	fun sphere(items: Items, wrappedCode: Template.() -> Unit) {
+		block(items, "Sphere", wrappedCode)
+	}
 
 
 	/**
 	 * *Repeats code indefinitely.*
 	 */
-	fun forever(items: Items, wrappedCode: Template.() -> Unit) = block(items, "Forever", wrappedCode)
+	fun forever(items: Items, wrappedCode: Template.() -> Unit) {
+		block(items, "Forever", wrappedCode)
+	}
 
 
 	/**
 	 * *Repeats code once per entry in*
 	 * *a dictionary*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
@@ -214,6 +256,8 @@ class RepeatCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 	 */
-	fun forEachEntry(items: Items, wrappedCode: Template.() -> Unit) = block(items, "ForEachEntry", wrappedCode)
+	fun forEachEntry(items: Items, wrappedCode: Template.() -> Unit) {
+		block(items, "ForEachEntry", wrappedCode)
+	}
 
 }

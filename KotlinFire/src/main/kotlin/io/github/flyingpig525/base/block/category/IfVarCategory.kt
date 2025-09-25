@@ -1,10 +1,13 @@
 package io.github.flyingpig525.base.block.category
 
-import io.github.flyingpig525.base.*
-import io.github.flyingpig525.base.item.*
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
+import io.github.flyingpig525.base.block.Block
+import io.github.flyingpig525.base.block.BracketBlock
+import io.github.flyingpig525.base.block.ElseOperation
+import io.github.flyingpig525.base.item.Item
+import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
-import io.github.flyingpig525.base.block.*
-import io.github.flyingpig525.base.block.subaction.*
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
 
@@ -34,7 +37,7 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * *less than or equal to another*
 	 * *number.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
@@ -58,7 +61,7 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * *if no enchantment is specified,*
 	 * *checks if it has any.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
@@ -84,7 +87,7 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * *Checks if an item is*
 	 * *able to be placed.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
@@ -103,7 +106,7 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * *for the given key is equal to*
 	 * *any of the given values.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
@@ -132,7 +135,7 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * *provided) whether the tag*
 	 * *matches the given value.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
@@ -159,10 +162,31 @@ class IfVarCategory internal constructor(private val template: Template) {
 
 
 	/**
+	 * *Checks if a list is of a given size.*
+	 *
+	 * **Args:**
+	 *
+	 * [VarItem]
+	 *
+	 * *List to check*
+	 *
+	 * [NumItem]
+	 *
+	 * (*) *Size to compare*
+	 *
+	 * (*) = optional
+	 */
+	fun listSizeEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "ListSizeEquals", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
 	 * *Checks if a string value matches*
 	 * *other values.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
@@ -181,18 +205,20 @@ class IfVarCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if a list is empty.*
+	 * *Checks if the input string*
+	 * *would be filtered by the*
+	 * *selected chat filters.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
-	 * [VarItem]
+	 * [StringItem]
 	 *
-	 * *List to check*
+	 * *String to check*
 	 *
 	 * (*) = optional
 	 */
-	fun listIsEmpty(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "ListIsEmpty", wrappedCode, not)
+	fun isFiltered(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsFiltered", wrappedCode, not)
 		return ElseOperation()
 	}
 
@@ -202,7 +228,7 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * *a string value matches a*
 	 * *certain string.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
@@ -224,7 +250,7 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * *Checks if a list's value at an*
 	 * *index is equal to a value.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
@@ -251,7 +277,7 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * *Checks if a value is of a*
 	 * *certain type.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [Item]
 	 *
@@ -287,7 +313,7 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * *a location value is within the*
 	 * *region of 2 other locations.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [Item]
 	 *
@@ -310,9 +336,44 @@ class IfVarCategory internal constructor(private val template: Template) {
 
 
 	/**
+	 * *Checks if a value is empty.*
+	 *
+	 * **Args:**
+	 *
+	 * [StringItem]
+	 *
+	 * *String to check if empty*
+	 *
+	 * [TextItem]
+	 *
+	 * *Text to compare*
+	 * *content length to 0*
+	 *
+	 * [VarItem]
+	 *
+	 * *List to compare size to 0*
+	 *
+	 * [VarItem]
+	 *
+	 * *Dictionary to*
+	 * *compare size to 0*
+	 *
+	 * [MinecraftItem]
+	 *
+	 * *Item to compare to air*
+	 *
+	 * (*) = optional
+	 */
+	fun valueIsEmpty(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "ValueIsEmpty", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
 	 * *Checks if a variable exists.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
@@ -322,6 +383,28 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 */
 	fun varExists(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "VarExists", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * *Checks if a dictionary has*
+	 * *the given keys.*
+	 *
+	 * **Args:**
+	 *
+	 * [VarItem]
+	 *
+	 * *Dictionary to check*
+	 *
+	 * [StringItem]
+	 *
+	 * *Key(s) to look for*
+	 *
+	 * (*) = optional
+	 */
+	fun dictHasKeys(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "DictHasKeys", wrappedCode, not)
 		return ElseOperation()
 	}
 
@@ -338,7 +421,7 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * *Checks if a material will collide*
 	 * *with entities.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
@@ -357,7 +440,7 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * *but has a few extra options*
 	 * *for item comparison.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
@@ -379,7 +462,7 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * *Checks if any of a list's contents*
 	 * *match the given value.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
@@ -409,7 +492,7 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * *Checks if a location is*
 	 * *near another location.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
@@ -433,10 +516,27 @@ class IfVarCategory internal constructor(private val template: Template) {
 
 
 	/**
+	 * *Checks if an item is unbreakable.*
+	 *
+	 * **Args:**
+	 *
+	 * [MinecraftItem]
+	 *
+	 * *Item to check*
+	 *
+	 * (*) = optional
+	 */
+	fun itemIsUnbreakable(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "ItemIsUnbreakable", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
 	 * *Checks if a string value*
 	 * *contains another string.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
@@ -458,7 +558,7 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * *Checks if a value does not*
 	 * *equal another value.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [Item]
 	 *
@@ -480,7 +580,7 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * *Checks if a number value is*
 	 * *less than another number.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
@@ -502,7 +602,7 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * *Checks if a value is equal*
 	 * *to one of the given values.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [Item]
 	 *
@@ -524,7 +624,7 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * *Checks if a number value is*
 	 * *greater than another number.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
@@ -547,7 +647,7 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * *a string value matches a*
 	 * *certain string.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
@@ -570,7 +670,7 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * *is greater than or equal to*
 	 * *another number.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
@@ -592,7 +692,7 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * *Checks if a dictionary has*
 	 * *the given key.*
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
