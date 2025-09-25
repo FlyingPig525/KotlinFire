@@ -37,6 +37,7 @@ class NumItem(val value: String) : Item(ID.NUMBER) {
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 class NumVariable(name: String, scope: VarItem.Scope) : VarClass<NumItem>(name, scope, NumItem::class) {
     private fun lessThan(other: Insertable): ItemComparison {
         assertInsertable(other)

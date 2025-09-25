@@ -35,6 +35,7 @@ class TextItem(val text: String) : Item(ID.RICHTEXT) {
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 class TextVariable(name: String, scope: VarItem.Scope) : VarClass<TextItem>(name, scope, TextItem::class) {
     infix fun contains(value: String) = contains_(value.textItem)
     infix fun contains(value: VarItem) = contains_(value)

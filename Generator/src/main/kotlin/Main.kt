@@ -3,7 +3,9 @@ package io.github.flyingpig525
 import kotlinx.serialization.json.*
 import java.io.File
 import java.io.FileNotFoundException
-import kotlin.io.path.*
+import kotlin.io.path.Path
+import kotlin.io.path.createDirectories
+import kotlin.io.path.exists
 
 // This is not efficient in the slightest :skull:
 fun main(vararg args: String) {
@@ -172,6 +174,7 @@ fun blockActions(actions: List<JsonObject>) = try {
         comment += "\t */\n"
         file += "\n$comment"
         val negatable = negatable(codeblock.name, funcName)
+        val elseOp = codeblock.name.startsWith("if", true)
         file +=
             "\tfun $funcName(items: Items${
                 if (subAction) ", subAction: SubAction" else ""
@@ -179,11 +182,15 @@ fun blockActions(actions: List<JsonObject>) = try {
                 if (negatable) ", not: Boolean = false" else ""
             }${
                 if (encloses) ", wrappedCode: Template.() -> Unit" else ""
-            }): ElseOperation {\n\t\tblock(items, \"$name\"${if (encloses) ", wrappedCode" else ""}${if (negatable) ", not" else ""})${
+            })${
+                if (elseOp) ": ElseOperation" else ""
+            } {\n\t\tblock(items, \"$name\"${if (encloses) ", wrappedCode" else ""}${if (negatable) ", not" else ""})${
                 if (subAction) 
                     """ { put("subAction", subAction.codeblock) }"""
                 else ""
-            }\n\t\treturn ElseOperation()\n\t}\n\n"
+            }${
+                if (elseOp) "\n\t\treturn ElseOperation()" else ""
+            }\n\t}\n\n"
     } catch (e: Exception) {
         println(Json.encodeToString(action))
         e.printStackTrace()
