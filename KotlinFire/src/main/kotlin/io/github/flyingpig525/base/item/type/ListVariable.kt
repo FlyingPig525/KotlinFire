@@ -1,8 +1,8 @@
 package io.github.flyingpig525.base.item.type
 
 import io.github.flyingpig525.base.Template
-import io.github.flyingpig525.base.item.Insertable
 import io.github.flyingpig525.base.block.category.SetVariableCategory
+import io.github.flyingpig525.base.item.Insertable
 import io.github.flyingpig525.base.item.ItemComparison
 import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
 import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
@@ -14,6 +14,7 @@ import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
  *
  * Is represented in DF code as a normal variable, and all type-safety is compile-time only.
  */
+@Suppress("NOTHING_TO_INLINE")
 class ListVariable internal constructor(name: String, scope: VarItem.Scope = VarItem.Scope.GAME) : VarClass<VarItem>(name, scope) {
     infix fun contains(value: Insertable) = ItemComparison { not, nested ->
         IfVar.listContains({
@@ -24,9 +25,19 @@ class ListVariable internal constructor(name: String, scope: VarItem.Scope = Var
     infix fun contains(value: String) = contains(value.textItem)
     infix fun contains(value: Int) = contains(value.numItem)
 
-    fun isEmpty() = ItemComparison { not, nested ->
-        IfVar.listIsEmpty({
+    infix fun sizeEquals(size: NumItem) = ItemComparison { not, nested ->
+        IfVar.listSizeEquals({
             +item
+            +size
+        }, not, nested)
+    }
+    infix fun sizeEquals(size: Int) = sizeEquals(size.numItem)
+    infix fun sizeEquals(size: NumVariable) = sizeEquals(size.numItem)
+
+    fun isEmpty() = ItemComparison { not, nested ->
+        IfVar.listSizeEquals({
+            +item
+            +NumItem(0)
         }, not, nested)
     }
 
