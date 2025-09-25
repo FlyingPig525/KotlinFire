@@ -1,28 +1,17 @@
 package io.github.flyingpig525.serialization
 
+import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.item.Item
-import io.github.flyingpig525.base.item.type.LocItem
+import io.github.flyingpig525.base.item.type.*
 import io.github.flyingpig525.base.item.type.LocItem.Companion.toLocItem
-import io.github.flyingpig525.base.item.type.LocVariable
-import io.github.flyingpig525.base.item.type.MinecraftItem
 import io.github.flyingpig525.base.item.type.MinecraftItem.Companion.mcItem
-import io.github.flyingpig525.base.item.type.NumItem
 import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
-import io.github.flyingpig525.base.item.type.NumVariable
-import io.github.flyingpig525.base.item.type.PotionItem
-import io.github.flyingpig525.base.item.type.SoundItem
 import io.github.flyingpig525.base.item.type.SoundItem.Companion.soundItem
-import io.github.flyingpig525.base.item.type.StringItem
 import io.github.flyingpig525.base.item.type.StringItem.Companion.stringItem
-import io.github.flyingpig525.base.item.type.StringVariable
-import io.github.flyingpig525.base.item.type.TextItem
 import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
-import io.github.flyingpig525.base.item.type.TextVariable
-import io.github.flyingpig525.base.item.type.VarClass
-import io.github.flyingpig525.base.item.type.VarItem
-import io.github.flyingpig525.base.item.type.VecItem
+import io.github.flyingpig525.base.item.type.VarItem.Companion.lineVar
+import io.github.flyingpig525.base.item.type.VarItem.Companion.toVarItem
 import io.github.flyingpig525.base.item.type.VecItem.Companion.toVecItem
-import io.github.flyingpig525.base.item.type.VecVariable
 
 private typealias Provider<T, I> = DiamondFireDelegateProvider<T, I>
 
@@ -91,6 +80,29 @@ open class DiamondFireClass(val name: String, val scope: VarItem.Scope = VarItem
 
     protected fun potionProp(default: PotionItem): Provider<VarClass<PotionItem>, PotionItem> {
         return Provider(PotionItem::class, default)
+    }
+
+    @OptIn(DiamondFireClassOptIn::class)
+    context(t: Template)
+    fun init() {
+        // TODO: add appending if toInitialize is too long for one chest
+        t.SetVariable.createList {
+            +"${name}-KeyList-ajowdoiwajdpowd".lineVar
+            for (prop in toInitialize.keys) {
+                +prop.name.stringItem
+            }
+        }
+        t.SetVariable.createList {
+            +"${name}-ValueList-ajowdoiwajdpowd".lineVar
+            for (default in toInitialize.values) {
+                +default
+            }
+        }
+        t.SetVariable.createDict {
+            +name.toVarItem(scope)
+            +"${name}-KeyList-ajowdoiwajdpowd".lineVar
+            +"${name}-ValueList-ajowdoiwajdpowd".lineVar
+        }
     }
 
     class DiamondFireClassDefaultException : Exception("Invalid default input for DiamondFireClass delegated property")

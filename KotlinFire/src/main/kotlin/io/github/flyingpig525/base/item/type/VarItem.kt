@@ -1,20 +1,19 @@
 package io.github.flyingpig525.base.item.type
 
-import io.github.flyingpig525.base.JsonData
 import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.item.Insertable
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemComparison
-import io.github.flyingpig525.base.item.type.StringItem.Companion.stringItem
-import io.github.flyingpig525.base.item.type.StringItem.Companion.toStringItem
+import io.github.flyingpig525.base.item.type.VarItem.Companion.gameVar
+import io.github.flyingpig525.base.item.type.VarItem.Companion.lineVar
+import io.github.flyingpig525.base.item.type.VarItem.Companion.localVar
+import io.github.flyingpig525.base.item.type.VarItem.Companion.saveVar
 import io.github.flyingpig525.base.item.type.VarItem.Companion.toVarItem
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
 import kotlin.reflect.KClass
-import kotlin.reflect.KProperty
-import kotlin.reflect.KProperty0
 
 /**
  * A DiamondFire variable.
@@ -114,6 +113,29 @@ open class VarClass<T : Item>(val name: String, scope: VarItem.Scope, internal v
         IfVar.varExists({
             +item
         }, not, nested)
+    }
+
+    context(t: Template)
+    infix fun <T : Item> set(value: T) {
+        assertInsertable(value)
+        t.SetVariable.equalTo {
+            +item
+            +value
+        }
+    }
+    context(t: Template)
+    infix fun <T : Item> set(value: GameValue<T>) {
+        t.SetVariable.equalTo {
+            +item
+            +value
+        }
+    }
+    context(t: Template)
+    infix fun set(value: VarItem) {
+        t.SetVariable.equalTo {
+            +item
+            +value
+        }
     }
 
     companion object {

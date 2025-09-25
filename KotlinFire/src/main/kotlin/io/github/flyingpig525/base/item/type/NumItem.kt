@@ -1,15 +1,13 @@
 package io.github.flyingpig525.base.item.type
 
-import io.github.flyingpig525.base.JsonData
 import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.item.Insertable
 import io.github.flyingpig525.base.item.Item
-import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.ItemComparison
 import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
+import io.github.flyingpig525.base.item.type.NumItem.Companion.toNumItem
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
-import kotlin.reflect.KProperty
 
 /**
  * A DiamondFire number.
@@ -91,4 +89,118 @@ class NumVariable(name: String, scope: VarItem.Scope) : VarClass<NumItem>(name, 
     infix fun greaterThanOrEqual(other: NumVariable) = greaterThanOrEqual(other as Insertable)
     infix fun greaterThanOrEqual(other: NumItem) = greaterThanOrEqual(other as Insertable)
     infix fun greaterThanOrEqual(other: GameValue<NumItem>) = greaterThanOrEqual(other as Insertable)
+
+    // +=
+    context(_: Template)
+    inline operator fun plusAssign(other: Number) = plusAssign(other.numItem)
+    context(_: Template)
+    inline operator fun plusAssign(other: String) = plusAssign(other.numItem)
+    context(_: Template)
+    inline operator fun plusAssign(other: NumVariable) = plusAssign(other.item)
+    context(t: Template)
+    inline operator fun plusAssign(other: NumItem) {
+        t.SetVariable.increment {
+            +item
+            +other
+        }
+    }
+    context(t: Template)
+    inline operator fun plusAssign(other: VarItem) {
+        t.SetVariable.increment {
+            +item
+            +other
+        }
+    }
+    // -=
+    context(_: Template)
+    inline operator fun minusAssign(other: Number) = minusAssign(other.numItem)
+    context(_: Template)
+    inline operator fun minusAssign(other: String) = minusAssign(other.numItem)
+    context(_: Template)
+    inline operator fun minusAssign(other: NumVariable) = minusAssign(other.item)
+    context(t: Template)
+    inline operator fun minusAssign(other: NumItem) {
+        t.SetVariable.decrement {
+            +item
+            +other
+        }
+    }
+    context(t: Template)
+    inline operator fun minusAssign(other: VarItem) {
+        t.SetVariable.decrement {
+            +item
+            +other
+        }
+    }
+    // /=
+    context(_: Template)
+    inline operator fun divAssign(other: Number) = divAssign(other.numItem)
+    context(_: Template)
+    inline operator fun divAssign(other: String) = divAssign(other.numItem)
+    context(_: Template)
+    inline operator fun divAssign(other: NumVariable) = divAssign(other.item)
+    context(t: Template)
+    inline operator fun divAssign(other: NumItem) {
+        t.SetVariable.divide {
+            +item
+            +item
+            +other
+        }
+    }
+    context(t: Template)
+    inline operator fun divAssign(other: VarItem) {
+        t.SetVariable.divide {
+            +item
+            +item
+            +other
+        }
+    }
+    // *=
+    context(_: Template)
+    inline operator fun timesAssign(other: Number) = timesAssign(other.numItem)
+    context(_: Template)
+    inline operator fun timesAssign(other: String) = timesAssign(other.numItem)
+    context(_: Template)
+    inline operator fun timesAssign(other: NumVariable) = timesAssign(other.item)
+    context(t: Template)
+    inline operator fun timesAssign(other: NumItem) {
+        t.SetVariable.x {
+            +item
+            +item
+            +other
+        }
+    }
+    context(t: Template)
+    inline operator fun timesAssign(other: VarItem) {
+        t.SetVariable.x {
+            +item
+            +item
+            +other
+        }
+    }
+    // %=
+    context(_: Template)
+    inline operator fun remAssign(other: Number) = remAssign(other.numItem)
+    context(_: Template)
+    inline operator fun remAssign(other: String) = remAssign(other.numItem)
+    context(_: Template)
+    inline operator fun remAssign(other: NumVariable) = remAssign(other.item)
+    context(t: Template)
+    inline operator fun remAssign(other: NumItem) {
+        t.SetVariable.mod {
+            +item
+            +item
+            +other
+        }
+    }
+    context(t: Template)
+    inline operator fun remAssign(other: VarItem) {
+        t.SetVariable.mod {
+            +item
+            +item
+            +other
+        }
+    }
+    context(_: Template)
+    inline operator fun unaryMinus() = "-%var($name)".numItem
 }
