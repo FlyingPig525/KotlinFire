@@ -18,7 +18,7 @@ dependencies {
 }
 ```
 
-KotlinFire requires java >=17 and kotlin >=2.1.10 be used.
+KotlinFire requires java >= 17 and kotlin >= 2.2.20 be used.
 
 ## Usage
 
