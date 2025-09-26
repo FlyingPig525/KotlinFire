@@ -1,9 +1,10 @@
 package io.github.flyingpig525.base.item.type.tag
 
-@Suppress("unused")
+@Suppress("unused", "RemoveRedundantQualifierName")
 object EntityActionTags {
 	object DispRotationEuler {
 		enum class RotationType(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			LeftRotation("Left Rotation"),
 			RightRotation("Right Rotation");
 
@@ -17,6 +18,7 @@ object EntityActionTags {
 	object SetVelocity {
 		enum class AddtoCurrentVelocity(override val option: kotlin.String) : TagItem {
 			True("True"),
+			/** **Default** */
 			False("False");
 
 			override val action: kotlin.String = "SetVelocity"
@@ -28,6 +30,7 @@ object EntityActionTags {
 
 	object DispRotAxisAngle {
 		enum class RotationType(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			LeftRotation("Left Rotation"),
 			RightRotation("Right Rotation");
 
@@ -40,6 +43,7 @@ object EntityActionTags {
 
 	object Damage {
 		enum class IgnoreFormatting(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -52,6 +56,7 @@ object EntityActionTags {
 
 	object SetMobSitting {
 		enum class IsSitting(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -64,6 +69,7 @@ object EntityActionTags {
 
 	object SendAnimation {
 		enum class AnimationType(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			HurtAnimation("Hurt animation"),
 			CritParticles("Crit particles"),
 			EnchantedHitParticles("Enchanted hit particles");
@@ -77,6 +83,7 @@ object EntityActionTags {
 
 	object SetWardenAnger {
 		enum class IgnoreFormatting(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -91,6 +98,7 @@ object EntityActionTags {
 		enum class HorseColor(override val option: kotlin.String) : TagItem {
 			White("White"),
 			Buckskin("Buckskin"),
+			/** **Default** */
 			FlaxenChestnut("Flaxen chestnut"),
 			Bay("Bay"),
 			Black("Black"),
@@ -105,6 +113,7 @@ object EntityActionTags {
 		}
 		enum class HorseMarkings(override val option: kotlin.String) : TagItem {
 			NoMarkings("No markings"),
+			/** **Default** */
 			StockingsAndBlaze("Stockings and blaze"),
 			Paint("Paint"),
 			SnowflakeAppaloosa("Snowflake appaloosa"),
@@ -120,6 +129,7 @@ object EntityActionTags {
 
 	object SetDyeColor {
 		enum class Dye(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			White("White"),
 			Orange("Orange"),
 			Magenta("Magenta"),
@@ -146,6 +156,7 @@ object EntityActionTags {
 
 	object LaunchUp {
 		enum class AddtoCurrentVelocity(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -160,6 +171,7 @@ object EntityActionTags {
 		enum class AgeLock(override val option: kotlin.String) : TagItem {
 			Enable("Enable"),
 			Disable("Disable"),
+			/** **Default** */
 			DontChange("Don't change");
 
 			override val action: kotlin.String = "SetAge"
@@ -171,6 +183,7 @@ object EntityActionTags {
 
 	object SetName {
 		enum class NameTagVisibility(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Always("Always"),
 			Default("Default"),
 			Never("Never"),
@@ -185,6 +198,7 @@ object EntityActionTags {
 
 	object SetArmsRaised {
 		enum class ArmsRaised(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -197,6 +211,7 @@ object EntityActionTags {
 
 	object SetMoveSpeed {
 		enum class RelativetoEntityBase(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -209,6 +224,7 @@ object EntityActionTags {
 
 	object SetInvulnerable {
 		enum class Invulnerable(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -222,6 +238,7 @@ object EntityActionTags {
 	object SetFriction {
 		enum class FrictionType(override val option: kotlin.String) : TagItem {
 			Normal("Normal"),
+			/** **Default** */
 			NoFriction("No Friction");
 
 			override val action: kotlin.String = "SetFriction"
@@ -235,6 +252,7 @@ object EntityActionTags {
 		enum class IsVisible(override val option: kotlin.String) : TagItem {
 			True("True"),
 			False("False"),
+			/** **Default** */
 			DontChange("Don't change");
 
 			override val action: kotlin.String = "ArmorStandTags"
@@ -245,6 +263,7 @@ object EntityActionTags {
 		enum class IsMarkerNoHitbox(override val option: kotlin.String) : TagItem {
 			True("True"),
 			False("False"),
+			/** **Default** */
 			DontChange("Don't change");
 
 			override val action: kotlin.String = "ArmorStandTags"
@@ -255,6 +274,7 @@ object EntityActionTags {
 		enum class AllowItemTakingorAdding(override val option: kotlin.String) : TagItem {
 			True("True"),
 			False("False"),
+			/** **Default** */
 			DontChange("Don't change");
 
 			override val action: kotlin.String = "ArmorStandTags"
@@ -265,6 +285,7 @@ object EntityActionTags {
 		enum class HasPhysicsorUpdates(override val option: kotlin.String) : TagItem {
 			True("True"),
 			False("False"),
+			/** **Default** */
 			DontChange("Don't change");
 
 			override val action: kotlin.String = "ArmorStandTags"
@@ -275,6 +296,7 @@ object EntityActionTags {
 		enum class IsSmall(override val option: kotlin.String) : TagItem {
 			True("True"),
 			False("False"),
+			/** **Default** */
 			DontChange("Don't change");
 
 			override val action: kotlin.String = "ArmorStandTags"
@@ -285,6 +307,7 @@ object EntityActionTags {
 		enum class HasArms(override val option: kotlin.String) : TagItem {
 			True("True"),
 			False("False"),
+			/** **Default** */
 			DontChange("Don't change");
 
 			override val action: kotlin.String = "ArmorStandTags"
@@ -295,6 +318,7 @@ object EntityActionTags {
 		enum class HasBasePlate(override val option: kotlin.String) : TagItem {
 			True("True"),
 			False("False"),
+			/** **Default** */
 			DontChange("Don't change");
 
 			override val action: kotlin.String = "ArmorStandTags"
@@ -306,6 +330,7 @@ object EntityActionTags {
 
 	object MiscAttribute {
 		enum class Attribute(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Scale("Scale"),
 			FollowRange("Follow range"),
 			ZombieSpawnReinforcements("Zombie spawn reinforcements"),
@@ -320,6 +345,7 @@ object EntityActionTags {
 			override val tag: kotlin.String = "Attribute"
 		}
 		enum class ValueType(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Direct("Direct"),
 			PercentageBase("Percentage (Base)"),
 			PercentageRelative("Percentage (Relative)");
@@ -333,6 +359,7 @@ object EntityActionTags {
 
 	object SetMarker {
 		enum class Marker(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -345,6 +372,7 @@ object EntityActionTags {
 
 	object CreeperCharged {
 		enum class Charged(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -357,6 +385,7 @@ object EntityActionTags {
 
 	object CombatAttribute {
 		enum class Attribute(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			AttackDamage("Attack damage"),
 			AttackKnockback("Attack knockback");
 
@@ -366,6 +395,7 @@ object EntityActionTags {
 			override val tag: kotlin.String = "Attribute"
 		}
 		enum class ValueType(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Direct("Direct"),
 			PercentageBase("Percentage (Base)"),
 			PercentageRelative("Percentage (Relative)");
@@ -380,6 +410,7 @@ object EntityActionTags {
 	object SetFreezeTicks {
 		enum class TickingLocked(override val option: kotlin.String) : TagItem {
 			Enable("Enable"),
+			/** **Default** */
 			Disable("Disable");
 
 			override val action: kotlin.String = "SetFreezeTicks"
@@ -391,6 +422,7 @@ object EntityActionTags {
 
 	object TDisplaySeeThru {
 		enum class Seethrough(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -403,6 +435,7 @@ object EntityActionTags {
 
 	object SetGliding {
 		enum class Gliding(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -415,6 +448,7 @@ object EntityActionTags {
 
 	object SetPandaRolling {
 		enum class RollType(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Roll("Roll"),
 			StopRolling("Stop Rolling");
 
@@ -427,6 +461,7 @@ object EntityActionTags {
 
 	object SetFishPattern {
 		enum class PatternColor(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			White("White"),
 			Orange("Orange"),
 			Magenta("Magenta"),
@@ -451,6 +486,7 @@ object EntityActionTags {
 			override val tag: kotlin.String = "Pattern Color"
 		}
 		enum class BodyColor(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			White("White"),
 			Orange("Orange"),
 			Magenta("Magenta"),
@@ -475,6 +511,7 @@ object EntityActionTags {
 			override val tag: kotlin.String = "Body Color"
 		}
 		enum class Pattern(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Kob("Kob"),
 			Sunstreak("Sunstreak"),
 			Snooper("Snooper"),
@@ -499,6 +536,7 @@ object EntityActionTags {
 	object SetTemperature {
 		enum class TemperatureType(override val option: kotlin.String) : TagItem {
 			Cold("Cold"),
+			/** **Default** */
 			Temperate("Temperate"),
 			Warm("Warm");
 
@@ -511,6 +549,7 @@ object EntityActionTags {
 
 	object SetWolfType {
 		enum class WolfType(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Ashen("Ashen"),
 			Black("Black"),
 			Chestnut("Chestnut"),
@@ -530,6 +569,7 @@ object EntityActionTags {
 
 	object SetHandItem {
 		enum class HandSlot(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			MainHand("Main Hand"),
 			OffHand("Off Hand");
 
@@ -542,6 +582,7 @@ object EntityActionTags {
 
 	object LaunchToward {
 		enum class AddtoCurrentVelocity(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -552,6 +593,7 @@ object EntityActionTags {
 		}
 		enum class IgnoreDistance(override val option: kotlin.String) : TagItem {
 			True("True"),
+			/** **Default** */
 			False("False");
 
 			override val action: kotlin.String = "LaunchToward"
@@ -563,6 +605,7 @@ object EntityActionTags {
 
 	object FaceLocation {
 		enum class FaceDirection(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			TowardLocation("Toward location"),
 			AwayFromLocation("Away from location");
 
@@ -575,6 +618,7 @@ object EntityActionTags {
 
 	object SetCatType {
 		enum class SkinType(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Tabby("Tabby"),
 			Tuxedo("Tuxedo"),
 			Red("Red"),
@@ -596,6 +640,7 @@ object EntityActionTags {
 
 	object TDisplayAlign {
 		enum class TextAlignment(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Center("Center"),
 			Left("Left"),
 			Right("Right");
@@ -609,6 +654,7 @@ object EntityActionTags {
 
 	object DisplayBillboard {
 		enum class BillboardType(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Fixed("Fixed"),
 			Vertical("Vertical"),
 			Horizontal("Horizontal"),
@@ -623,6 +669,7 @@ object EntityActionTags {
 
 	object SetGoatScreaming {
 		enum class Screams(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -635,6 +682,7 @@ object EntityActionTags {
 
 	object SetBeeStinger {
 		enum class HasStinger(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -647,6 +695,7 @@ object EntityActionTags {
 
 	object FoxSleeping {
 		enum class Sleeping(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -659,6 +708,7 @@ object EntityActionTags {
 
 	object SetEquipment {
 		enum class EquipmentSlot(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			MainHand("Main hand"),
 			OffHand("Off hand"),
 			Head("Head"),
@@ -678,6 +728,7 @@ object EntityActionTags {
 
 	object SetSilenced {
 		enum class Silenced(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -690,6 +741,7 @@ object EntityActionTags {
 
 	object SetBeeNectar {
 		enum class HasNectar(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -702,6 +754,7 @@ object EntityActionTags {
 
 	object AttachLead {
 		enum class IgnoreFormatting(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -714,6 +767,7 @@ object EntityActionTags {
 
 	object ArmorStandSlots {
 		enum class Interactions(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			TakeSwapOrPlaceItem("Take, swap or place item"),
 			TakeOrSwapItem("Take or swap item"),
 			TakeItem("Take item"),
@@ -726,6 +780,7 @@ object EntityActionTags {
 			override val tag: kotlin.String = "Interactions"
 		}
 		enum class EquipmentSlot(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			All("All"),
 			MainHand("Main hand"),
 			OffHand("Off hand"),
@@ -743,6 +798,7 @@ object EntityActionTags {
 
 	object SetAllayDancing {
 		enum class Dancing(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -755,6 +811,7 @@ object EntityActionTags {
 
 	object SetRabbitType {
 		enum class SkinType(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Brown("Brown"),
 			White("White"),
 			Black("Black"),
@@ -772,6 +829,7 @@ object EntityActionTags {
 
 	object SetAngry {
 		enum class Angry(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -784,6 +842,7 @@ object EntityActionTags {
 
 	object SetDeathDrops {
 		enum class HasDeathDrops(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -796,6 +855,7 @@ object EntityActionTags {
 
 	object SetPersistent {
 		enum class Persistent(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -808,6 +868,7 @@ object EntityActionTags {
 
 	object SetNameColor {
 		enum class NameColor(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Black("Black"),
 			DarkBlue("Dark blue"),
 			DarkGreen("Dark green"),
@@ -835,6 +896,7 @@ object EntityActionTags {
 
 	object SetCarryingChest {
 		enum class CarryingChest(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -847,6 +909,7 @@ object EntityActionTags {
 
 	object SetParrotColor {
 		enum class ParrotColor(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Red("Red"),
 			Blue("Blue"),
 			Green("Green"),
@@ -862,6 +925,7 @@ object EntityActionTags {
 
 	object SetSheepSheared {
 		enum class Sheared(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -874,6 +938,7 @@ object EntityActionTags {
 
 	object SetAxolotlColor {
 		enum class AxolotlColor(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Pink("Pink"),
 			Brown("Brown"),
 			Yellow("Yellow"),
@@ -891,6 +956,7 @@ object EntityActionTags {
 		enum class AI(override val option: kotlin.String) : TagItem {
 			Sentient("Sentient"),
 			Insentient("Insentient"),
+			/** **Default** */
 			None("None");
 
 			override val action: kotlin.String = "SetAI"
@@ -902,6 +968,7 @@ object EntityActionTags {
 
 	object KBAttribute {
 		enum class Attribute(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			KnockbackResistance("Knockback resistance"),
 			ExplosionKnockbackResistance("Explosion knockback resistance");
 
@@ -911,6 +978,7 @@ object EntityActionTags {
 			override val tag: kotlin.String = "Attribute"
 		}
 		enum class ValueType(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Direct("Direct"),
 			PercentageBase("Percentage (Base)"),
 			PercentageRelative("Percentage (Relative)");
@@ -924,6 +992,7 @@ object EntityActionTags {
 
 	object MovementAttribute {
 		enum class Attribute(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			WalkingSpeed("Walking speed"),
 			FlyingSpeed("Flying speed"),
 			JumpStrength("Jump strength"),
@@ -937,6 +1006,7 @@ object EntityActionTags {
 			override val tag: kotlin.String = "Attribute"
 		}
 		enum class ValueType(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Direct("Direct"),
 			PercentageBase("Percentage (Base)"),
 			PercentageRelative("Percentage (Relative)");
@@ -950,6 +1020,7 @@ object EntityActionTags {
 
 	object SetRiptiding {
 		enum class Riptiding(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -962,6 +1033,7 @@ object EntityActionTags {
 
 	object SetArrowNoClip {
 		enum class HasNoClip(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -974,6 +1046,7 @@ object EntityActionTags {
 
 	object FallingAttribute {
 		enum class Attribute(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Gravity("Gravity"),
 			SafeFallDistance("Safe fall distance"),
 			FallDamageMultiplier("Fall damage multiplier");
@@ -984,6 +1057,7 @@ object EntityActionTags {
 			override val tag: kotlin.String = "Attribute"
 		}
 		enum class ValueType(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Direct("Direct"),
 			PercentageBase("Percentage (Base)"),
 			PercentageRelative("Percentage (Relative)");
@@ -997,6 +1071,7 @@ object EntityActionTags {
 
 	object SetProjSource {
 		enum class IgnoreFormatting(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -1009,6 +1084,7 @@ object EntityActionTags {
 
 	object SetFoxLeaping {
 		enum class Leaping(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -1023,6 +1099,7 @@ object EntityActionTags {
 		enum class SetGene(override val option: kotlin.String) : TagItem {
 			MainGene("Main gene"),
 			HiddenGene("Hidden gene"),
+			/** **Default** */
 			Both("Both");
 
 			override val action: kotlin.String = "SetPandaGene"
@@ -1031,6 +1108,7 @@ object EntityActionTags {
 			override val tag: kotlin.String = "Set Gene"
 		}
 		enum class GeneType(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Aggressive("Aggressive"),
 			Lazy("Lazy"),
 			Weak("Weak"),
@@ -1049,6 +1127,7 @@ object EntityActionTags {
 	object SetMaxHealth {
 		enum class HealMobtoMaxHealth(override val option: kotlin.String) : TagItem {
 			True("True"),
+			/** **Default** */
 			False("False");
 
 			override val action: kotlin.String = "SetMaxHealth"
@@ -1060,6 +1139,7 @@ object EntityActionTags {
 
 	object FrogEat {
 		enum class IgnoreFormatting(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -1073,6 +1153,7 @@ object EntityActionTags {
 	object SetSalmonType {
 		enum class SalmonType(override val option: kotlin.String) : TagItem {
 			Small("Small"),
+			/** **Default** */
 			Medium("Medium"),
 			Large("Large");
 
@@ -1086,6 +1167,7 @@ object EntityActionTags {
 	object SetProfession {
 		enum class Profession(override val option: kotlin.String) : TagItem {
 			Unemployed("Unemployed"),
+			/** **Default** */
 			Armorer("Armorer"),
 			Butcher("Butcher"),
 			Cartographer("Cartographer"),
@@ -1110,6 +1192,7 @@ object EntityActionTags {
 
 	object ArmorStandParts {
 		enum class Arms(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable"),
 			DontChange("Don't change");
@@ -1120,6 +1203,7 @@ object EntityActionTags {
 			override val tag: kotlin.String = "Arms"
 		}
 		enum class BasePlate(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable"),
 			DontChange("Don't change");
@@ -1133,6 +1217,7 @@ object EntityActionTags {
 
 	object SetNameVisible {
 		enum class NameTagVisibility(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Always("Always"),
 			Default("Default"),
 			Never("Never");
@@ -1146,6 +1231,7 @@ object EntityActionTags {
 
 	object SetTarget {
 		enum class IgnoreFormatting(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -1158,6 +1244,7 @@ object EntityActionTags {
 
 	object TDisplayShadow {
 		enum class TextShadow(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -1170,6 +1257,7 @@ object EntityActionTags {
 
 	object SetShulkerPeek {
 		enum class IsSilent(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -1182,6 +1270,7 @@ object EntityActionTags {
 
 	object SetPose {
 		enum class Pose(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Standing("Standing"),
 			Sleeping("Sleeping"),
 			Swimming("Swimming"),
@@ -1196,6 +1285,7 @@ object EntityActionTags {
 
 	object SetRearing {
 		enum class Rearing(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -1209,6 +1299,7 @@ object EntityActionTags {
 	object SetGravity {
 		enum class Gravity(override val option: kotlin.String) : TagItem {
 			Enable("Enable"),
+			/** **Default** */
 			Disable("Disable");
 
 			override val action: kotlin.String = "SetGravity"
@@ -1220,6 +1311,7 @@ object EntityActionTags {
 
 	object InteractResponse {
 		enum class Responsive(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -1232,6 +1324,7 @@ object EntityActionTags {
 
 	object UseItem {
 		enum class Hand(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			MainHand("Main Hand"),
 			OffHand("Off Hand");
 
@@ -1241,6 +1334,7 @@ object EntityActionTags {
 			override val tag: kotlin.String = "Hand"
 		}
 		enum class UseItem(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -1253,6 +1347,7 @@ object EntityActionTags {
 
 	object RideEntity {
 		enum class IgnoreFormatting(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -1265,6 +1360,7 @@ object EntityActionTags {
 
 	object SetWolfSoundType {
 		enum class WolfSoundType(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Angry("Angry"),
 			Big("Big"),
 			Classic("Classic"),
@@ -1282,6 +1378,7 @@ object EntityActionTags {
 
 	object SnifferState {
 		enum class Behavior(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Idle("Idle"),
 			FeelingHappy("Feeling Happy"),
 			Scenting("Scenting"),
@@ -1299,6 +1396,7 @@ object EntityActionTags {
 	object Teleport {
 		enum class KeepCurrentRotation(override val option: kotlin.String) : TagItem {
 			True("True"),
+			/** **Default** */
 			False("False");
 
 			override val action: kotlin.String = "Teleport"
@@ -1310,6 +1408,7 @@ object EntityActionTags {
 
 	object SetVisualFire {
 		enum class OnFire(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -1322,6 +1421,7 @@ object EntityActionTags {
 
 	object SetSaddle {
 		enum class Saddle(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -1334,6 +1434,7 @@ object EntityActionTags {
 
 	object SetBulletTarget {
 		enum class IgnoreFormatting(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -1346,6 +1447,7 @@ object EntityActionTags {
 
 	object SetDragonPhase {
 		enum class Phase(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Flying("Flying"),
 			Hovering("Hovering"),
 			BreathAttack("Breath attack"),
@@ -1360,6 +1462,7 @@ object EntityActionTags {
 
 	object SetLlamaColor {
 		enum class LlamaColor(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Brown("Brown"),
 			Creamy("Creamy"),
 			White("White"),
@@ -1374,6 +1477,7 @@ object EntityActionTags {
 
 	object SetVillagerBiome {
 		enum class Biome(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Desert("Desert"),
 			Jungle("Jungle"),
 			Plains("Plains"),
@@ -1391,6 +1495,7 @@ object EntityActionTags {
 
 	object SetBaby {
 		enum class Baby(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -1403,6 +1508,7 @@ object EntityActionTags {
 
 	object MooshroomType {
 		enum class MooshroomVariant(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Red("Red"),
 			Brown("Brown");
 
@@ -1415,6 +1521,7 @@ object EntityActionTags {
 
 	object SetInvisible {
 		enum class Invisible(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -1427,6 +1534,7 @@ object EntityActionTags {
 
 	object SetCatResting {
 		enum class Resting(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -1439,6 +1547,7 @@ object EntityActionTags {
 
 	object GivePotion {
 		enum class OverwriteEffect(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -1448,6 +1557,7 @@ object EntityActionTags {
 			override val tag: kotlin.String = "Overwrite Effect"
 		}
 		enum class EffectParticles(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Regular("Regular"),
 			Ambient("Ambient"),
 			None("None");
@@ -1463,6 +1573,7 @@ object EntityActionTags {
 		enum class LeftHorn(override val option: kotlin.String) : TagItem {
 			Show("Show"),
 			Hide("Hide"),
+			/** **Default** */
 			NoChange("No Change");
 
 			override val action: kotlin.String = "SetGoatHorns"
@@ -1473,6 +1584,7 @@ object EntityActionTags {
 		enum class RightHorn(override val option: kotlin.String) : TagItem {
 			Show("Show"),
 			Hide("Hide"),
+			/** **Default** */
 			NoChange("No Change");
 
 			override val action: kotlin.String = "SetGoatHorns"
@@ -1484,6 +1596,7 @@ object EntityActionTags {
 
 	object SetGlowing {
 		enum class Glowing(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -1496,6 +1609,7 @@ object EntityActionTags {
 
 	object SetPandaOnBack {
 		enum class OnItsBack(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -1508,6 +1622,7 @@ object EntityActionTags {
 
 	object IDisplayModelType {
 		enum class ModelType(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			None("None"),
 			FirstPersonLeftHand("First Person Left Hand"),
 			FirstPersonRightHand("First Person Right Hand"),
@@ -1528,6 +1643,7 @@ object EntityActionTags {
 	object SetCollidable {
 		enum class Collision(override val option: kotlin.String) : TagItem {
 			Enable("Enable"),
+			/** **Default** */
 			Disable("Disable");
 
 			override val action: kotlin.String = "SetCollidable"
@@ -1539,6 +1655,7 @@ object EntityActionTags {
 
 	object ArmorStandPose {
 		enum class ArmorStandPart(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Head("Head"),
 			Body("Body"),
 			LeftArm("Left Arm"),
@@ -1555,6 +1672,7 @@ object EntityActionTags {
 
 	object LaunchFwd {
 		enum class AddtoCurrentVelocity(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -1564,6 +1682,7 @@ object EntityActionTags {
 			override val tag: kotlin.String = "Add to Current Velocity"
 		}
 		enum class LaunchAxis(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			PitchAndYaw("Pitch and Yaw"),
 			YawOnly("Yaw Only");
 
@@ -1576,6 +1695,7 @@ object EntityActionTags {
 
 	object AttackAnimation {
 		enum class AnimationArm(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			SwingMainArm("Swing main arm"),
 			SwingOffArm("Swing off arm");
 
@@ -1589,6 +1709,7 @@ object EntityActionTags {
 	object SnowmanPumpkin {
 		enum class Pumpkin(override val option: kotlin.String) : TagItem {
 			Enable("Enable"),
+			/** **Default** */
 			Disable("Disable");
 
 			override val action: kotlin.String = "SnowmanPumpkin"
@@ -1600,6 +1721,7 @@ object EntityActionTags {
 
 	object SetDigging {
 		enum class DiggingType(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Emerge("Emerge"),
 			DigDown("Dig Down");
 
@@ -1612,6 +1734,7 @@ object EntityActionTags {
 
 	object SetVexCharging {
 		enum class Charging(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -1624,6 +1747,7 @@ object EntityActionTags {
 
 	object SetCelebrating {
 		enum class Celebrate(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Enable("Enable"),
 			Disable("Disable");
 
@@ -1637,6 +1761,7 @@ object EntityActionTags {
 	object TDisplayText {
 		enum class TextValueMerging(override val option: kotlin.String) : TagItem {
 			AddSpaces("Add spaces"),
+			/** **Default** */
 			NoSpaces("No spaces");
 
 			override val action: kotlin.String = "TDisplayText"
@@ -1645,6 +1770,7 @@ object EntityActionTags {
 			override val tag: kotlin.String = "Text Value Merging"
 		}
 		enum class InheritStyles(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -1657,6 +1783,7 @@ object EntityActionTags {
 
 	object HealthAttribute {
 		enum class Attribute(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			MaximumHealth("Maximum health"),
 			MaximumAbsorptionHealth("Maximum absorption health"),
 			Armor("Armor"),
@@ -1668,6 +1795,7 @@ object EntityActionTags {
 			override val tag: kotlin.String = "Attribute"
 		}
 		enum class ValueType(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Direct("Direct"),
 			PercentageBase("Percentage (Base)"),
 			PercentageRelative("Percentage (Relative)");
@@ -1681,6 +1809,7 @@ object EntityActionTags {
 
 	object Ram {
 		enum class IgnoreFormatting(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -1693,6 +1822,7 @@ object EntityActionTags {
 
 	object SetFoxType {
 		enum class FoxType(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Red("Red"),
 			Snow("Snow");
 

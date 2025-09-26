@@ -1,9 +1,10 @@
 package io.github.flyingpig525.base.item.type.tag
 
-@Suppress("unused")
+@Suppress("unused", "RemoveRedundantQualifierName")
 object IfEntityTags {
 	object IsRiding {
 		enum class IgnoreFormatting(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -16,6 +17,7 @@ object IfEntityTags {
 
 	object IsHitboxNear {
 		enum class Shape(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Sphere("Sphere"),
 			Circle("Circle"),
 			Cube("Cube"),
@@ -30,6 +32,7 @@ object IfEntityTags {
 
 	object IsNear {
 		enum class Shape(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Sphere("Sphere"),
 			Circle("Circle"),
 			Cube("Cube"),
@@ -44,6 +47,7 @@ object IfEntityTags {
 
 	object HasPotion {
 		enum class CheckProperties(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			None("None"),
 			Amplifier("Amplifier"),
 			Duration("Duration"),
@@ -55,6 +59,7 @@ object IfEntityTags {
 			override val tag: kotlin.String = "Check Properties"
 		}
 		enum class CheckMode(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			HasAnyEffect("Has any effect"),
 			HasAllEffects("Has all effects");
 
@@ -67,6 +72,7 @@ object IfEntityTags {
 
 	object NameEquals {
 		enum class IgnoreFormatting(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 

@@ -1,10 +1,11 @@
 package io.github.flyingpig525.base.item.type.tag
 
-@Suppress("unused")
+@Suppress("unused", "RemoveRedundantQualifierName")
 object RepeatTags {
 	object Adjacent {
 		enum class ChangeLocationRotation(override val option: kotlin.String) : TagItem {
 			True("True"),
+			/** **Default** */
 			False("False");
 
 			override val action: kotlin.String = "Adjacent"
@@ -14,6 +15,7 @@ object RepeatTags {
 		}
 		enum class IncludeOriginBlock(override val option: kotlin.String) : TagItem {
 			True("True"),
+			/** **Default** */
 			False("False");
 
 			override val action: kotlin.String = "Adjacent"
@@ -24,6 +26,7 @@ object RepeatTags {
 		enum class Pattern(override val option: kotlin.String) : TagItem {
 			CardinalFourBlocks("Cardinal (4 blocks)"),
 			SquareEightBlocks("Square (8 blocks)"),
+			/** **Default** */
 			AdjacentSixBlocks("Adjacent (6 blocks)"),
 			CubeTwoSixBlocks("Cube (26 blocks)");
 
@@ -37,6 +40,7 @@ object RepeatTags {
 	object Path {
 		enum class RotateLocation(override val option: kotlin.String) : TagItem {
 			True("True"),
+			/** **Default** */
 			False("False");
 
 			override val action: kotlin.String = "Path"
@@ -48,6 +52,7 @@ object RepeatTags {
 
 	object ForEach {
 		enum class AllowListChanges(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			FalseCopyList("False (copy list)");
 
@@ -61,6 +66,7 @@ object RepeatTags {
 	object Sphere {
 		enum class PointLocationsInwards(override val option: kotlin.String) : TagItem {
 			True("True"),
+			/** **Default** */
 			False("False");
 
 			override val action: kotlin.String = "Sphere"

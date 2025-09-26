@@ -1,6 +1,6 @@
 package io.github.flyingpig525.base.item.type.tag
 
-@Suppress("unused")
+@Suppress("unused", "RemoveRedundantQualifierName")
 object IfGameTags {
 	object SignHasTxt {
 		enum class SignLine(override val option: kotlin.String) : TagItem {
@@ -8,6 +8,7 @@ object IfGameTags {
 			Two("2"),
 			Three("3"),
 			Four("4"),
+			/** **Default** */
 			AllLines("All lines");
 
 			override val action: kotlin.String = "SignHasTxt"
@@ -16,6 +17,7 @@ object IfGameTags {
 			override val tag: kotlin.String = "Sign Line"
 		}
 		enum class CheckMode(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Contains("Contains"),
 			Equals("Equals");
 
@@ -28,6 +30,7 @@ object IfGameTags {
 
 	object HasRoomForItem {
 		enum class CheckMode(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			HasRoomForAnyItem("Has Room for Any Item"),
 			HasRoomForAllItems("Has Room for All Items");
 
@@ -40,6 +43,7 @@ object IfGameTags {
 
 	object CommandEquals {
 		enum class CheckMode(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			CheckEntireCommand("Check entire command"),
 			CheckBeginning("Check beginning");
 
@@ -49,6 +53,7 @@ object IfGameTags {
 			override val tag: kotlin.String = "Check Mode"
 		}
 		enum class IgnoreCase(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -62,6 +67,7 @@ object IfGameTags {
 	object EventItemEquals {
 		enum class ComparisonMode(override val option: kotlin.String) : TagItem {
 			ExactlyEquals("Exactly equals"),
+			/** **Default** */
 			IgnoreStackSizeOrDurability("Ignore stack size/durability"),
 			MaterialOnly("Material only");
 
@@ -74,6 +80,7 @@ object IfGameTags {
 
 	object MovementKey {
 		enum class MovementKey(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			ForwardW("Forward (W)"),
 			BackwardS("Backward (S)"),
 			LeftA("Left (A)"),
@@ -88,6 +95,7 @@ object IfGameTags {
 			override val tag: kotlin.String = "Movement Key"
 		}
 		enum class Action(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			JustPressed("Just pressed"),
 			JustReleased("Just released");
 
@@ -100,6 +108,7 @@ object IfGameTags {
 
 	object BlockPowered {
 		enum class RedstonePowerMode(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			DirectPower("Direct power"),
 			IndirectPower("Indirect power");
 
@@ -112,6 +121,7 @@ object IfGameTags {
 
 	object CmdArgEquals {
 		enum class IgnoreCase(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 

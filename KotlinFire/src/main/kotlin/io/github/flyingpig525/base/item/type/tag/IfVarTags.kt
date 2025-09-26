@@ -1,10 +1,11 @@
 package io.github.flyingpig525.base.item.type.tag
 
-@Suppress("unused")
+@Suppress("unused", "RemoveRedundantQualifierName")
 object IfVarTags {
 	object StringMatches {
 		enum class RegularExpressions(override val option: kotlin.String) : TagItem {
 			Enable("Enable"),
+			/** **Default** */
 			Disable("Disable");
 
 			override val action: kotlin.String = "StringMatches"
@@ -14,6 +15,7 @@ object IfVarTags {
 		}
 		enum class IgnoreCase(override val option: kotlin.String) : TagItem {
 			True("True"),
+			/** **Default** */
 			False("False");
 
 			override val action: kotlin.String = "StringMatches"
@@ -25,6 +27,7 @@ object IfVarTags {
 
 	object IsFiltered {
 		enum class LinkFilter(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -34,6 +37,7 @@ object IfVarTags {
 			override val tag: kotlin.String = "Link Filter"
 		}
 		enum class SwearFilter(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -43,6 +47,7 @@ object IfVarTags {
 			override val tag: kotlin.String = "Swear Filter"
 		}
 		enum class CapsFilter(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -52,6 +57,7 @@ object IfVarTags {
 			override val tag: kotlin.String = "Caps Filter"
 		}
 		enum class CharacterSpacing(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -61,6 +67,7 @@ object IfVarTags {
 			override val tag: kotlin.String = "Character Spacing"
 		}
 		enum class CharacterDragFilter(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -74,6 +81,7 @@ object IfVarTags {
 	object StartsWith {
 		enum class IgnoreCase(override val option: kotlin.String) : TagItem {
 			True("True"),
+			/** **Default** */
 			False("False");
 
 			override val action: kotlin.String = "StartsWith"
@@ -85,6 +93,7 @@ object IfVarTags {
 
 	object VarIsType {
 		enum class VariableType(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Number("Number"),
 			String("String"),
 			StyledText("Styled Text"),
@@ -107,6 +116,7 @@ object IfVarTags {
 	object TextMatches {
 		enum class RegularExpressions(override val option: kotlin.String) : TagItem {
 			Enable("Enable"),
+			/** **Default** */
 			Disable("Disable");
 
 			override val action: kotlin.String = "TextMatches"
@@ -116,6 +126,7 @@ object IfVarTags {
 		}
 		enum class IgnoreCase(override val option: kotlin.String) : TagItem {
 			True("True"),
+			/** **Default** */
 			False("False");
 
 			override val action: kotlin.String = "TextMatches"
@@ -128,6 +139,7 @@ object IfVarTags {
 	object InRange {
 		enum class LocationHandling(override val option: kotlin.String) : TagItem {
 			Block("Block"),
+			/** **Default** */
 			Exact("Exact");
 
 			override val action: kotlin.String = " InRange "
@@ -139,6 +151,7 @@ object IfVarTags {
 
 	object DictHasKeys {
 		enum class CheckMode(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			HasAnyKey("Has Any Key"),
 			HasAllKeys("Has All Keys");
 
@@ -151,6 +164,7 @@ object IfVarTags {
 
 	object ItemEquals {
 		enum class ComparisonMode(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			ExactlyEquals("Exactly equals"),
 			IgnoreStackSize("Ignore stack size"),
 			IgnoreDurabilityAndStackSize("Ignore durability and stack size"),
@@ -165,6 +179,7 @@ object IfVarTags {
 
 	object ListContains {
 		enum class CheckMode(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			HasAnyValue("Has Any Value"),
 			HasAllValues("Has All Values");
 
@@ -177,6 +192,7 @@ object IfVarTags {
 
 	object LocIsNear {
 		enum class Shape(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Sphere("Sphere"),
 			Circle("Circle"),
 			Cube("Cube"),
@@ -192,6 +208,7 @@ object IfVarTags {
 	object Contains {
 		enum class IgnoreCase(override val option: kotlin.String) : TagItem {
 			True("True"),
+			/** **Default** */
 			False("False");
 
 			override val action: kotlin.String = "Contains"
@@ -204,6 +221,7 @@ object IfVarTags {
 	object EndsWith {
 		enum class IgnoreCase(override val option: kotlin.String) : TagItem {
 			True("True"),
+			/** **Default** */
 			False("False");
 
 			override val action: kotlin.String = "EndsWith"

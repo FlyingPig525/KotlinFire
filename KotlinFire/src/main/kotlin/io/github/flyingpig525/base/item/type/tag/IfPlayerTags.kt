@@ -1,9 +1,10 @@
 package io.github.flyingpig525.base.item.type.tag
 
-@Suppress("unused")
+@Suppress("unused", "RemoveRedundantQualifierName")
 object IfPlayerTags {
 	object HasRoomForItem {
 		enum class CheckMode(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			HasRoomForAnyItem("Has Room for Any Item"),
 			HasRoomForAllItems("Has Room for All Items");
 
@@ -14,6 +15,7 @@ object IfPlayerTags {
 		}
 		enum class CheckedSlots(override val option: kotlin.String) : TagItem {
 			EntireInventory("Entire inventory"),
+			/** **Default** */
 			MainInventory("Main inventory"),
 			UpperInventory("Upper inventory"),
 			Hotbar("Hotbar"),
@@ -28,6 +30,7 @@ object IfPlayerTags {
 
 	object HasItem {
 		enum class CheckMode(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			HasAnyItem("Has Any Item"),
 			HasAllItems("Has All Items");
 
@@ -40,6 +43,7 @@ object IfPlayerTags {
 
 	object IsWearing {
 		enum class CheckMode(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			IsWearingSome("Is Wearing Some"),
 			IsWearingAll("Is Wearing All");
 
@@ -52,6 +56,7 @@ object IfPlayerTags {
 
 	object IsNear {
 		enum class Shape(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Sphere("Sphere"),
 			Circle("Circle"),
 			Cube("Cube"),
@@ -66,6 +71,7 @@ object IfPlayerTags {
 
 	object IsRiding {
 		enum class CompareTextTo(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			EntityType("Entity type"),
 			NameOrUuid("Name or UUID");
 
@@ -78,6 +84,7 @@ object IfPlayerTags {
 
 	object CmdEquals {
 		enum class CheckMode(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			CheckEntireCommand("Check Entire Command"),
 			CheckFirstWord("Check First Word");
 
@@ -87,6 +94,7 @@ object IfPlayerTags {
 			override val tag: kotlin.String = "Check Mode"
 		}
 		enum class IgnoreCase(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -102,6 +110,7 @@ object IfPlayerTags {
 			Owner("Owner"),
 			Developer("Developer"),
 			Builder("Builder"),
+			/** **Default** */
 			DeveloperOrBuilder("Developer or builder"),
 			Whitelisted("Whitelisted");
 
@@ -114,6 +123,7 @@ object IfPlayerTags {
 
 	object MainHandEquals {
 		enum class MainHand(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			LeftHand("Left Hand"),
 			RightHand("Right Hand");
 
@@ -128,6 +138,7 @@ object IfPlayerTags {
 		enum class ForwardW(override val option: kotlin.String) : TagItem {
 			Pressed("Pressed"),
 			Released("Released"),
+			/** **Default** */
 			DontCheck("Don't check");
 
 			override val action: kotlin.String = "MovementKey"
@@ -138,6 +149,7 @@ object IfPlayerTags {
 		enum class BackwardS(override val option: kotlin.String) : TagItem {
 			Pressed("Pressed"),
 			Released("Released"),
+			/** **Default** */
 			DontCheck("Don't check");
 
 			override val action: kotlin.String = "MovementKey"
@@ -148,6 +160,7 @@ object IfPlayerTags {
 		enum class LeftA(override val option: kotlin.String) : TagItem {
 			Pressed("Pressed"),
 			Released("Released"),
+			/** **Default** */
 			DontCheck("Don't check");
 
 			override val action: kotlin.String = "MovementKey"
@@ -158,6 +171,7 @@ object IfPlayerTags {
 		enum class RightD(override val option: kotlin.String) : TagItem {
 			Pressed("Pressed"),
 			Released("Released"),
+			/** **Default** */
 			DontCheck("Don't check");
 
 			override val action: kotlin.String = "MovementKey"
@@ -168,6 +182,7 @@ object IfPlayerTags {
 		enum class JumpSpace(override val option: kotlin.String) : TagItem {
 			Pressed("Pressed"),
 			Released("Released"),
+			/** **Default** */
 			DontCheck("Don't check");
 
 			override val action: kotlin.String = "MovementKey"
@@ -178,6 +193,7 @@ object IfPlayerTags {
 		enum class SneakLeftShift(override val option: kotlin.String) : TagItem {
 			Pressed("Pressed"),
 			Released("Released"),
+			/** **Default** */
 			DontCheck("Don't check");
 
 			override val action: kotlin.String = "MovementKey"
@@ -188,6 +204,7 @@ object IfPlayerTags {
 		enum class SprintLeftControl(override val option: kotlin.String) : TagItem {
 			Pressed("Pressed"),
 			Released("Released"),
+			/** **Default** */
 			DontCheck("Don't check");
 
 			override val action: kotlin.String = "MovementKey"
@@ -199,6 +216,7 @@ object IfPlayerTags {
 
 	object InvOpen {
 		enum class InventoryType(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			AnyInventory("Any Inventory"),
 			PlotMenu("Plot Menu"),
 			CraftingTable("Crafting Table"),
@@ -238,6 +256,7 @@ object IfPlayerTags {
 
 	object CmdArgEquals {
 		enum class IgnoreCase(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -250,6 +269,7 @@ object IfPlayerTags {
 
 	object IsLookingAt {
 		enum class FluidMode(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			IgnoreFluids("Ignore fluids"),
 			DetectFluids("Detect fluids");
 
@@ -262,6 +282,7 @@ object IfPlayerTags {
 
 	object IsInGameMode {
 		enum class GameMode(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Survival("Survival"),
 			Creative("Creative"),
 			Adventure("Adventure"),
@@ -276,6 +297,7 @@ object IfPlayerTags {
 
 	object IsHolding {
 		enum class HandSlot(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			EitherHand("Either hand"),
 			MainHand("Main hand"),
 			OffHand("Off hand");
@@ -289,6 +311,7 @@ object IfPlayerTags {
 
 	object IsHitboxNear {
 		enum class Shape(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Sphere("Sphere"),
 			Circle("Circle"),
 			Cube("Cube"),
@@ -303,6 +326,7 @@ object IfPlayerTags {
 
 	object HasPotion {
 		enum class CheckProperties(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			None("None"),
 			Amplifier("Amplifier"),
 			Duration("Duration"),
@@ -314,6 +338,7 @@ object IfPlayerTags {
 			override val tag: kotlin.String = "Check Properties"
 		}
 		enum class CheckMode(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			HasAnyEffect("Has any effect"),
 			HasAllEffects("Has all effects");
 

@@ -97,7 +97,7 @@ fun blockActions(actions: List<JsonObject>) = try {
         var tagFile: String = """
             package io.github.flyingpig525.base.item.type.tag
             
-            @Suppress("unused")
+            @Suppress("unused", "RemoveRedundantQualifierName")
             object ${codeblock.name}Tags {
         """.trimIndent()
     }
@@ -271,7 +271,11 @@ fun processTags(action: JsonObject, tagFile: KMutableProperty0<String>) {
         val options = tag["options"]!!.jsonArray.map { it.jsonObject }
         for (option in options) {
             val optionName = option["name"]!!.jsonPrimitive.content
+            val isDefault = tag["defaultOption"]!!.jsonPrimitive.content == optionName
             val ordinalName = optionName.transformedSymbols.capitalWords.noSpace
+            if (isDefault) {
+                tagFile += "\t\t\t/** **Default** */\n"
+            }
             tagFile += "\t\t\t$ordinalName(\"$optionName\"),\n"
         }
         tagFile = tagFile.dropLast(2)

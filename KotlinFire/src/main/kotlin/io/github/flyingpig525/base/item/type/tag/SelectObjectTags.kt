@@ -1,9 +1,10 @@
 package io.github.flyingpig525.base.item.type.tag
 
-@Suppress("unused")
+@Suppress("unused", "RemoveRedundantQualifierName")
 object SelectObjectTags {
 	object EntityName {
 		enum class IgnoreFormatting(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			True("True"),
 			False("False");
 
@@ -17,6 +18,7 @@ object SelectObjectTags {
 	object FilterDistance {
 		enum class IgnoreYAxis(override val option: kotlin.String) : TagItem {
 			True("True"),
+			/** **Default** */
 			False("False");
 
 			override val action: kotlin.String = "FilterDistance"
@@ -25,6 +27,7 @@ object SelectObjectTags {
 			override val tag: kotlin.String = "Ignore Y-Axis"
 		}
 		enum class CompareMode(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Nearest("Nearest"),
 			Farthest("Farthest");
 
@@ -39,6 +42,7 @@ object SelectObjectTags {
 		enum class BlockCollision(override val option: kotlin.String) : TagItem {
 			AllBlocks("All blocks"),
 			NonFluidBlocks("Non-fluid blocks"),
+			/** **Default** */
 			SolidBlocks("Solid blocks"),
 			None("None");
 
@@ -51,6 +55,7 @@ object SelectObjectTags {
 
 	object EventTarget {
 		enum class EventTarget(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Default("Default"),
 			Killer("Killer"),
 			Damager("Damager"),
@@ -67,6 +72,7 @@ object SelectObjectTags {
 
 	object FilterSort {
 		enum class SortOrder(override val option: kotlin.String) : TagItem {
+			/** **Default** */
 			Ascending("Ascending"),
 			Descending("Descending");
 
