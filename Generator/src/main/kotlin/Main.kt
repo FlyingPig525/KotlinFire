@@ -6,6 +6,7 @@ import java.io.FileNotFoundException
 import kotlin.io.path.Path
 import kotlin.io.path.createDirectories
 import kotlin.io.path.exists
+import kotlin.reflect.KMutableProperty0
 
 // This is not efficient in the slightest :skull:
 fun main(vararg args: String) {
@@ -84,6 +85,7 @@ fun blockActions(actions: List<JsonObject>) = try {
         import io.github.flyingpig525.base.*
         import io.github.flyingpig525.base.item.*
         import io.github.flyingpig525.base.item.type.*
+        import io.github.flyingpig525.base.item.type.tag.*
         import io.github.flyingpig525.base.block.*
         import io.github.flyingpig525.base.block.subaction.*
         import kotlinx.serialization.json.JsonObjectBuilder
@@ -91,6 +93,14 @@ fun blockActions(actions: List<JsonObject>) = try {
         
         
     """.trimIndent()
+    val tag = object {
+        var tagFile: String = """
+            package io.github.flyingpig525.base.item.type.tag
+            
+            @Suppress("unused")
+            object ${codeblock.name}Tags {
+        """.trimIndent()
+    }
     if (!encloses) {
         file += """
         @Suppress("unused")
@@ -131,8 +141,12 @@ fun blockActions(actions: List<JsonObject>) = try {
         val name = action["name"]!!.jsonPrimitive.content
         val funcName = removeClutter(actionNameToFunction(name))
         if (funcName in alreadyDone) continue
-        if (funcName == "listValueEq") println(action)
+        if (funcName == "sendMessage") {
+            println(getActionTagContainerName(action))
+        }
         alreadyDone += funcName
+        val hasTags = action["tags"]?.jsonArray?.isNotEmpty() == true
+        if (hasTags) processTags(action, tag::tagFile)
         val icon = action["icon"]!!.jsonObject
         val description: List<String> = icon["description"]!!.jsonArray.map { it.jsonPrimitive.content }
         var comment = "\t/**\n"
@@ -187,6 +201,7 @@ fun blockActions(actions: List<JsonObject>) = try {
                 comment += "\t *\n"
             }
             comment += "\t * (*) = optional\n"
+            if (hasTags) comment += "\n\t * @see [${getActionTagContainerName(action)}]\n"
         }
         comment += "\t */\n"
         file += "\n$comment"
@@ -231,8 +246,46 @@ fun blockActions(actions: List<JsonObject>) = try {
     }
     file += "}"
     writeToDirFile("gen/categories", "${codeblock.name}Category.kt", file)
+    tag.tagFile += "}"
+    writeToDirFile("gen/tags", "${codeblock.name}Tags.kt", tag.tagFile)
+//    println(tag.tagFile)
 } catch (e: Exception) {
     e.printStackTrace()
+}
+
+fun processTags(action: JsonObject, tagFile: KMutableProperty0<String>) {
+    var tagFile by tagFile
+
+    val tags = action["tags"]!!.jsonArray.map { it.jsonObject }
+    val actionName = action["name"]!!.jsonPrimitive.content
+    val actionClassName = removeClutter(actionName).noSpace.replaceFirstChar { it.uppercaseChar() }
+    if (actionClassName == "mod") println(action)
+    val codeblock = CodeBlock.of(action["codeblockName"]!!.jsonPrimitive.content)
+    tagFile += "\n\tobject $actionClassName {\n"
+    for (tag in tags) {
+        val unprocessedName = tag["name"]!!.jsonPrimitive.content
+        val name = tag["name"]!!.jsonPrimitive.content.transformedSymbols.noSpace
+        println(name)
+        // type has to be kotlin.String because SetVariable has a codeblock named "String"
+        tagFile += "\t\tenum class $name(override val option: kotlin.String) : TagItem {\n"
+        val options = tag["options"]!!.jsonArray.map { it.jsonObject }
+        for (option in options) {
+            val optionName = option["name"]!!.jsonPrimitive.content
+            val ordinalName = optionName.transformedSymbols.capitalWords.noSpace
+            tagFile += "\t\t\t$ordinalName(\"$optionName\"),\n"
+        }
+        tagFile = tagFile.dropLast(2)
+        tagFile += ";\n\n"
+        // type has to be kotlin.String because SetVariable has a codeblock named "String"
+        tagFile += "\t\t\toverride val action: kotlin.String = \"$actionName\"\n"
+        // type has to be kotlin.String because SetVariable has a codeblock named "String"
+        tagFile += "\t\t\toverride val block: kotlin.String = \"${codeblock.shortName}\"\n"
+        tagFile += "\t\t\toverride var slot: Int = 26\n"
+        // type has to be kotlin.String because SetVariable has a codeblock named "String"
+        tagFile += "\t\t\toverride val tag: kotlin.String = \"$unprocessedName\"\n"
+        tagFile += "\t\t}\n"
+    }
+    tagFile += "\t}\n"
 }
 
 fun processEvents(codeblock: CodeBlock, events: List<JsonObject>) = try {
@@ -380,6 +433,12 @@ fun actionNameToFunction(name: String): String {
     return name.replace(" ", "").replaceFirstChar { it.lowercase() }
 }
 
+fun getActionTagContainerName(action: JsonObject): String {
+    val codeblock = CodeBlock.of(action["codeblockName"]!!.jsonPrimitive.content)
+    val name = action["name"]!!.jsonPrimitive.content
+    return "${codeblock.name}Tags.${removeClutter(name).noSpace}"
+}
+
 fun removeClutter(str: String): String {
     return when (str) {
         "+" -> "plus"
@@ -405,6 +464,57 @@ fun removeClutter(str: String): String {
         else -> str.replace(Regex("§."), "").trim()
     }
 }
+
+val String.noSpace: String get() = replace(" ", "")
+
+val String.capitalWords: String get() {
+    var lastWasSpace = true
+    return map {
+        if (it.isWhitespace()) {
+            lastWasSpace = true
+            return@map it
+        }
+        if (!lastWasSpace) return@map it.lowercaseChar()
+        lastWasSpace = false
+        it.uppercaseChar()
+    }.joinToString("")
+}
+
+val String.transformedSymbols: String get() = this
+    .replace("2020/08/17 17:20:54", " yyyy mm dd hh mm ss ")
+    .replace("2020/08/17", " yyy mm dd ")
+    .replace("Mon, August 17", " day month date ")
+    .replace("Monday", " day ")
+    .replace("17:20:54", " hh mm ss ")
+    .replace("5:20 PM", " hh mm am or pm ")
+    .replace("17h20m54s", " hh h mm m ss s")
+    .replace("54.229 seconds", " seconds")
+    .replace("/", " or ")
+    .replace("(", " ")
+    .replace(")", " ")
+    .replace("10", " ten ")
+    .replace("12", " twelve ")
+    .replace("20", " twenty ")
+    .replace("1", " one ")
+    .replace("2", " two ")
+    .replace("3", " three ")
+    .replace("4", " four ")
+    .replace("5", " five ")
+    .replace("6", " six ")
+    .replace("7", " seven ")
+    .replace("8", " eight ")
+    .replace("9", " nine ")
+    .replace("-", " ")
+    .replace("'", "")
+    .replace(",", " ")
+    .replace("|", " or ")
+    .replace("&", " and ")
+    .replace("~", " not ")
+    .replace("<<", " shift left ")
+    .replace(">>>", " unsigned shift right")
+    .replace(">>", " shift right ")
+    .replace("^", " XOR ")
+    .replace("+", " ")
 
 fun enclosesCode(codeblock: CodeBlock): Boolean = when (codeblock) {
     CodeBlock.IfEntity -> true

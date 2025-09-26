@@ -1,16 +1,14 @@
 package io.github.flyingpig525.base.item
 
-import io.github.flyingpig525.base.JsonData
-import io.github.flyingpig525.base.item.type.NumItem
-import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
 import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
 import io.github.flyingpig525.base.item.type.VarClass
+import io.github.flyingpig525.base.item.type.tag.TagItem
 
 /**
  * A class used as context to allow inserting items into codeblocks.
  */
 class ItemCollection internal constructor(func: ItemCollection.() -> Unit) {
-    val items: MutableList<Item> = mutableListOf()
+    val items: MutableList<Insertable> = mutableListOf()
 
     init {
         apply(func)
@@ -22,20 +20,28 @@ class ItemCollection internal constructor(func: ItemCollection.() -> Unit) {
             addItem(this)
         } else if (this is VarClass<*>) {
             addItem(item)
+        } else if (this is TagItem) {
+            addItem(this)
         }
     }
 
     fun addItem(item: Item) {
         items += item.apply {
-            slot = items.size
+            if (item is TagItem) {
+                slot = 26 - items.count { it is TagItem }
+            } else {
+                slot = items.size
+            }
         }
     }
 
-    operator fun plusAssign(item: Item) {
-        items += item.apply {
-            slot = items.size
+    private fun addItem(tag: TagItem) {
+        items += tag.apply {
+            slot = 26 - items.count { it is TagItem }
         }
     }
+
+    operator fun plusAssign(item: Insertable) { item.unaryPlus() }
 
     operator fun get(index: Int) = items[index]
 }

@@ -1,30 +1,21 @@
 package org.example
 
 import io.github.flyingpig525.base.Template
-import io.github.flyingpig525.base.Template.Type.*
+import io.github.flyingpig525.base.Template.Type.FUNCTION
+import io.github.flyingpig525.base.Template.Type.PROCESS
 import io.github.flyingpig525.base.TemplateCollection
 import io.github.flyingpig525.base.block.PlayerEvent
-import io.github.flyingpig525.base.item.type.DictionaryVariable
-import io.github.flyingpig525.base.item.type.ListVariable
-import io.github.flyingpig525.base.item.type.LocItem
-import io.github.flyingpig525.base.item.type.MinecraftItem
+import io.github.flyingpig525.base.item.type.*
 import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
 import io.github.flyingpig525.base.item.type.NumItem.Companion.toNumItem
-import io.github.flyingpig525.base.item.type.NumVariable
-import io.github.flyingpig525.base.item.type.ParameterItem
 import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
-import io.github.flyingpig525.base.item.type.VarItem
 import io.github.flyingpig525.base.item.type.VarItem.Companion.lineVar
 import io.github.flyingpig525.base.item.type.VarItem.Companion.saveVar
 import io.github.flyingpig525.base.item.type.VarItem.Companion.toVarItem
 import io.github.flyingpig525.base.item.type.VarItem.Scope.*
-import io.github.flyingpig525.base.item.type.emptyListVar
 import io.github.flyingpig525.base.item.type.gamevalue.InformationalValues
 import io.github.flyingpig525.base.item.type.gamevalue.LocationalValues
-import io.github.flyingpig525.base.item.type.gamevalue.StatisticalValues
-import io.github.flyingpig525.base.item.type.listVarOf
-import io.github.flyingpig525.base.item.type.locOf
-import io.github.flyingpig525.base.item.type.vecOf
+import io.github.flyingpig525.base.item.type.tag.PlayerActionTags
 import io.github.flyingpig525.serialization.DiamondFireClass
 import io.github.flyingpig525.serialization.DiamondFireClassOptIn
 import kotlinx.serialization.json.Json
@@ -290,6 +281,20 @@ class LibraryTest {
                 }
             }
         }
+    }
+
+    @Test
+    fun tagTest() {
+        val t = Template {
+            PlayerAction.sendMessage {
+                +"Hello World!".textItem
+
+                +PlayerActionTags.SendMessage.AlignmentMode.Centered
+            }
+        }
+        println(Json { prettyPrint = true }.encodeToString(t.getJsonData()))
+        println(t.getTemplateString())
+        Template.codeClientPlaceTemplate(t)
     }
 }
 @OptIn(DiamondFireClassOptIn::class)

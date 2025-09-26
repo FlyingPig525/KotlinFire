@@ -5,6 +5,7 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import kotlinx.serialization.json.putJsonObject
+import org.jetbrains.annotations.ApiStatus
 
 /**
  * Represents a value item in DF code
@@ -24,7 +25,9 @@ abstract class Item(val id: ID) : JsonData, Insertable {
         PARAMETER("pn_el"),
         POTION("pot"),
         PARTICLE("part"),
-        ITEM("item");
+        ITEM("item"),
+        @ApiStatus.Internal
+        TAG("bl_tag");
 
 
         override fun toString(): String = id

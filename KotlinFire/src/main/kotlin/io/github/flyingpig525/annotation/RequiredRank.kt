@@ -19,3 +19,4 @@ annotation class Mythic
 @Retention(AnnotationRetention.RUNTIME)
 @MustBeDocumented
 annotation class Overlord
+
