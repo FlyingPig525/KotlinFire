@@ -7,9 +7,11 @@ import io.github.flyingpig525.base.block.BracketBlock
 import io.github.flyingpig525.base.block.ElseOperation
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
+import io.github.flyingpig525.base.item.type.tag.IfEntityTags
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
 
+@Suppress("unused")
 class IfEntityCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
@@ -158,6 +160,8 @@ class IfEntityCategory internal constructor(private val template: Template) {
 	 * Entity name
 	 *
 	 * (*) = optional
+
+	 * @see [IfEntityTags.IsRiding]
 	 */
 	fun isRiding(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, " IsRiding ", wrappedCode, not)
@@ -192,6 +196,8 @@ class IfEntityCategory internal constructor(private val template: Template) {
 	 * *Default = 5 blocks*
 	 *
 	 * (*) = optional
+
+	 * @see [IfEntityTags.IsHitboxNear]
 	 */
 	fun isHitboxNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "IsHitboxNear", wrappedCode, not)
@@ -216,6 +222,8 @@ class IfEntityCategory internal constructor(private val template: Template) {
 	 * *Default = 5 blocks*
 	 *
 	 * (*) = optional
+
+	 * @see [IfEntityTags.IsNear]
 	 */
 	fun isNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "IsNear", wrappedCode, not)
@@ -236,6 +244,8 @@ class IfEntityCategory internal constructor(private val template: Template) {
 	 * to check for
 	 *
 	 * (*) = optional
+
+	 * @see [IfEntityTags.HasPotion]
 	 */
 	fun hasPotion(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "HasPotion", wrappedCode, not)
@@ -267,6 +277,8 @@ class IfEntityCategory internal constructor(private val template: Template) {
 	 * Name to check for
 	 *
 	 * (*) = optional
+
+	 * @see [IfEntityTags.NameEquals]
 	 */
 	fun nameEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "NameEquals", wrappedCode, not)

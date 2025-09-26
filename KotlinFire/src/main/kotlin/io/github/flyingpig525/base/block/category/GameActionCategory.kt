@@ -5,8 +5,10 @@ import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.block.Block
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
+import io.github.flyingpig525.base.item.type.tag.GameActionTags
 import kotlinx.serialization.json.JsonObjectBuilder
 
+@Suppress("unused")
 class GameActionCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
@@ -84,6 +86,8 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * (*) New text
 	 *
 	 * (*) = optional
+
+	 * @see [GameActionTags.ChangeSign]
 	 */
 	fun changeSign(items: Items) {
 		block(items, "ChangeSign")
@@ -104,6 +108,8 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * (*) Content body
 	 *
 	 * (*) = optional
+
+	 * @see [GameActionTags.WebRequest]
 	 */
 	fun webRequest(items: Items) {
 		block(items, "WebRequest")
@@ -205,6 +211,8 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * *Example: "facing=up"*
 	 *
 	 * (*) = optional
+
+	 * @see [GameActionTags.SetBlockData]
 	 */
 	fun setBlockData(items: Items) {
 		block(items, "SetBlockData")
@@ -226,6 +234,8 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * Spawn location
 	 *
 	 * (*) = optional
+
+	 * @see [GameActionTags.Firework]
 	 */
 	fun firework(items: Items) {
 		block(items, "Firework")
@@ -269,6 +279,8 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * (*) Custom name
 	 *
 	 * (*) = optional
+
+	 * @see [GameActionTags.SpawnItem]
 	 */
 	fun spawnItem(items: Items) {
 		block(items, "SpawnItem")
@@ -286,6 +298,8 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * Sign location
 	 *
 	 * (*) = optional
+
+	 * @see [GameActionTags.SignColor]
 	 */
 	fun signColor(items: Items) {
 		block(items, "SignColor")
@@ -355,6 +369,8 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * (*) Hitbox height
 	 *
 	 * (*) = optional
+
+	 * @see [GameActionTags.SpawnInteraction]
 	 */
 	fun spawnInteraction(items: Items) {
 		block(items, "SpawnInteraction")
@@ -409,6 +425,8 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * Position to paste to
 	 *
 	 * (*) = optional
+
+	 * @see [GameActionTags.CloneRegion]
 	 */
 	fun cloneRegion(items: Items) {
 		block(items, "CloneRegion")
@@ -468,6 +486,8 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * (*) Equipment
 	 *
 	 * (*) = optional
+
+	 * @see [GameActionTags.SpawnArmorStand]
 	 */
 	fun spawnArmorStand(items: Items) {
 		block(items, "SpawnArmorStand")
@@ -727,6 +747,8 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * (*) Number of uses
 	 *
 	 * (*) = optional
+
+	 * @see [GameActionTags.BoneMeal]
 	 */
 	fun boneMeal(items: Items) {
 		block(items, "BoneMeal")
@@ -759,6 +781,8 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * (*) Block data
 	 *
 	 * (*) = optional
+
+	 * @see [GameActionTags.FallingBlock]
 	 */
 	fun fallingBlock(items: Items) {
 		block(items, "FallingBlock")
@@ -966,6 +990,8 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * (*) Custom name
 	 *
 	 * (*) = optional
+
+	 * @see [GameActionTags.SpawnEnderEye]
 	 */
 	fun spawnEnderEye(items: Items) {
 		block(items, "SpawnEnderEye")
@@ -1115,6 +1141,8 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * *Default = 0*
 	 *
 	 * (*) = optional
+
+	 * @see [GameActionTags.SetBlockGrowth]
 	 */
 	fun setBlockGrowth(items: Items) {
 		block(items, "SetBlockGrowth")
@@ -1385,6 +1413,8 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * log block)
 	 *
 	 * (*) = optional
+
+	 * @see [GameActionTags.GenerateTree]
 	 */
 	fun generateTree(items: Items) {
 		block(items, "GenerateTree")
@@ -1420,6 +1450,8 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * (*) Custom name
 	 *
 	 * (*) = optional
+
+	 * @see [GameActionTags.SpawnCrystal]
 	 */
 	fun spawnCrystal(items: Items) {
 		block(items, "SpawnCrystal")
@@ -1447,6 +1479,8 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * *Default = 600*
 	 *
 	 * (*) = optional
+
+	 * @see [GameActionTags.SetCampfireItem]
 	 */
 	fun setCampfireItem(items: Items) {
 		block(items, "SetCampfireItem")
@@ -1467,6 +1501,8 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * Displayed text
 	 *
 	 * (*) = optional
+
+	 * @see [GameActionTags.SpawnTextDisplay]
 	 */
 	fun spawnTextDisplay(items: Items) {
 		block(items, "SpawnTextDisplay")

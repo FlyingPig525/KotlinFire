@@ -7,9 +7,11 @@ import io.github.flyingpig525.base.block.BracketBlock
 import io.github.flyingpig525.base.block.ElseOperation
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
+import io.github.flyingpig525.base.item.type.tag.IfPlayerTags
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
 
+@Suppress("unused")
 class IfPlayerCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
@@ -43,6 +45,8 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * Item(s) to check with
 	 *
 	 * (*) = optional
+
+	 * @see [IfPlayerTags.HasRoomForItem]
 	 */
 	fun hasRoomForItem(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "HasRoomForItem", wrappedCode, not)
@@ -115,6 +119,8 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * Item(s) to check for
 	 *
 	 * (*) = optional
+
+	 * @see [IfPlayerTags.HasItem]
 	 */
 	fun hasItem(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "HasItem", wrappedCode, not)
@@ -141,6 +147,8 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * Item(s) to check for
 	 *
 	 * (*) = optional
+
+	 * @see [IfPlayerTags.IsWearing]
 	 */
 	fun isWearing(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "IsWearing", wrappedCode, not)
@@ -165,6 +173,8 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * *Default = 5 blocks*
 	 *
 	 * (*) = optional
+
+	 * @see [IfPlayerTags.IsNear]
 	 */
 	fun isNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "IsNear", wrappedCode, not)
@@ -389,6 +399,8 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * *This is distance from the player's selected block *
 	 *
 	 * (*) = optional
+
+	 * @see [IfPlayerTags.IsLookingAt]
 	 */
 	fun isLookingAt(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "IsLookingAt", wrappedCode, not)
@@ -501,6 +513,8 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * (*) Item(s) to check for
 	 *
 	 * (*) = optional
+
+	 * @see [IfPlayerTags.IsHolding]
 	 */
 	fun isHolding(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "IsHolding", wrappedCode, not)
@@ -535,6 +549,8 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * *Default = 5 blocks*
 	 *
 	 * (*) = optional
+
+	 * @see [IfPlayerTags.IsHitboxNear]
 	 */
 	fun isHitboxNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "IsHitboxNear", wrappedCode, not)
@@ -555,6 +571,8 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * to check for
 	 *
 	 * (*) = optional
+
+	 * @see [IfPlayerTags.HasPotion]
 	 */
 	fun hasPotion(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "HasPotion", wrappedCode, not)

@@ -9,9 +9,11 @@ import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.LocItem
 import io.github.flyingpig525.base.item.type.NumItem
 import io.github.flyingpig525.base.item.type.VarItem
+import io.github.flyingpig525.base.item.type.tag.RepeatTags
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
 
+@Suppress("unused")
 class RepeatCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
@@ -49,6 +51,8 @@ class RepeatCategory internal constructor(private val template: Template) {
 	 * Center block
 	 *
 	 * (*) = optional
+
+	 * @see [RepeatTags.Adjacent]
 	 */
 	fun adjacent(items: Items, wrappedCode: Template.() -> Unit) {
 		block(items, "Adjacent", wrappedCode)
@@ -78,6 +82,8 @@ class RepeatCategory internal constructor(private val template: Template) {
 	 * *Default = 0.5 blocks*
 	 *
 	 * (*) = optional
+
+	 * @see [RepeatTags.Path]
 	 */
 	fun path(items: Items, wrappedCode: Template.() -> Unit) {
 		block(items, "Path", wrappedCode)
@@ -191,6 +197,8 @@ class RepeatCategory internal constructor(private val template: Template) {
 	 * List to repeat through
 	 *
 	 * (*) = optional
+
+	 * @see [RepeatTags.ForEach]
 	 */
 	fun forEach(items: Items, wrappedCode: Template.() -> Unit) {
 		block(items, "ForEach", wrappedCode)
@@ -221,6 +229,8 @@ class RepeatCategory internal constructor(private val template: Template) {
 	 * (*) Sphere points
 	 *
 	 * (*) = optional
+
+	 * @see [RepeatTags.Sphere]
 	 */
 	fun sphere(items: Items, wrappedCode: Template.() -> Unit) {
 		block(items, "Sphere", wrappedCode)

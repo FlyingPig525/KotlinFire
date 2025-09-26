@@ -8,9 +8,11 @@ import io.github.flyingpig525.base.block.ElseOperation
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
+import io.github.flyingpig525.base.item.type.tag.IfVarTags
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
 
+@Suppress("unused")
 class IfVarCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
@@ -199,6 +201,8 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * String to compare
 	 *
 	 * (*) = optional
+
+	 * @see [IfVarTags.StringMatches]
 	 */
 	fun stringMatches(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "StringMatches", wrappedCode, not)
@@ -218,6 +222,8 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * String to check
 	 *
 	 * (*) = optional
+
+	 * @see [IfVarTags.IsFiltered]
 	 */
 	fun isFiltered(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "IsFiltered", wrappedCode, not)
@@ -241,6 +247,8 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * String to start with
 	 *
 	 * (*) = optional
+
+	 * @see [IfVarTags.StartsWith]
 	 */
 	fun startsWith(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "StartsWith", wrappedCode, not)
@@ -286,6 +294,8 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * Value to check
 	 *
 	 * (*) = optional
+
+	 * @see [IfVarTags.VarIsType]
 	 */
 	fun varIsType(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "VarIsType", wrappedCode, not)
@@ -330,6 +340,8 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * Maximum value
 	 *
 	 * (*) = optional
+
+	 * @see [IfVarTags.InRange]
 	 */
 	fun inRange(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, " InRange ", wrappedCode, not)
@@ -404,6 +416,8 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * Key(s) to look for
 	 *
 	 * (*) = optional
+
+	 * @see [IfVarTags.DictHasKeys]
 	 */
 	fun dictHasKeys(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "DictHasKeys", wrappedCode, not)
@@ -453,6 +467,8 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * (*) Item(s) to compare to
 	 *
 	 * (*) = optional
+
+	 * @see [IfVarTags.ItemEquals]
 	 */
 	fun itemEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "ItemEquals", wrappedCode, not)
@@ -475,6 +491,8 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * Value to find
 	 *
 	 * (*) = optional
+
+	 * @see [IfVarTags.ListContains]
 	 */
 	fun listContains(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "ListContains", wrappedCode, not)
@@ -510,6 +528,8 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * Radius
 	 *
 	 * (*) = optional
+
+	 * @see [IfVarTags.LocIsNear]
 	 */
 	fun locIsNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "LocIsNear", wrappedCode, not)
@@ -549,6 +569,8 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * String to check for
 	 *
 	 * (*) = optional
+
+	 * @see [IfVarTags.Contains]
 	 */
 	fun contains(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "Contains", wrappedCode, not)
@@ -660,6 +682,8 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 * String to end with
 	 *
 	 * (*) = optional
+
+	 * @see [IfVarTags.EndsWith]
 	 */
 	fun endsWith(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "EndsWith", wrappedCode, not)

@@ -6,8 +6,10 @@ import io.github.flyingpig525.base.block.Block
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.NumItem
+import io.github.flyingpig525.base.item.type.tag.ControlTags
 import kotlinx.serialization.json.JsonObjectBuilder
 
+@Suppress("unused")
 class ControlCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
@@ -48,6 +50,8 @@ class ControlCategory internal constructor(private val template: Template) {
 	 * (*) Message to format
 	 *
 	 * (*) = optional
+
+	 * @see [ControlTags.PrintDebug]
 	 */
 	fun printDebug(items: Items) {
 		block(items, "PrintDebug")
@@ -95,6 +99,8 @@ class ControlCategory internal constructor(private val template: Template) {
 	 * *Default = 1*
 	 *
 	 * (*) = optional
+
+	 * @see [ControlTags.Wait]
 	 */
 	fun wait(items: Items) {
 		block(items, "Wait")

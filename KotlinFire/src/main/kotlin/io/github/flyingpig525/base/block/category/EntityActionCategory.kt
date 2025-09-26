@@ -5,8 +5,10 @@ import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.block.Block
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
+import io.github.flyingpig525.base.item.type.tag.EntityActionTags
 import kotlinx.serialization.json.JsonObjectBuilder
 
+@Suppress("unused")
 class EntityActionCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
@@ -37,6 +39,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Pitch/Yaw/Roll Vector
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.DispRotationEuler]
 	 */
 	fun dispRotationEuler(items: Items) {
 		block(items, "DispRotationEuler")
@@ -63,6 +67,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * New velocity
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.SetVelocity]
 	 */
 	fun setVelocity(items: Items) {
 		block(items, "SetVelocity")
@@ -102,6 +108,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Angle (0-360)
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.DispRotAxisAngle]
 	 */
 	fun dispRotAxisAngle(items: Items) {
 		block(items, "DispRotAxisAngle")
@@ -128,6 +136,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * (*) Name of damager entity
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.Damage]
 	 */
 	fun damage(items: Items) {
 		block(items, "Damage")
@@ -179,6 +189,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Entity UUID
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.SetWardenAnger]
 	 */
 	fun setWardenAnger(items: Items) {
 		block(items, "SetWardenAnger")
@@ -253,6 +265,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Launch power
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.LaunchUp]
 	 */
 	fun launchUp(items: Items) {
 		block(items, "LaunchUp")
@@ -269,6 +283,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Age
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.SetAge]
 	 */
 	fun setAge(items: Items) {
 		block(items, "SetAge")
@@ -285,6 +301,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Custom name
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.SetName]
 	 */
 	fun setName(items: Items) {
 		block(items, " SetName ")
@@ -383,6 +401,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.MiscAttribute]
 	 */
 	fun miscAttribute(items: Items) {
 		block(items, "MiscAttribute")
@@ -492,6 +512,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.CombatAttribute]
 	 */
 	fun combatAttribute(items: Items) {
 		block(items, "CombatAttribute")
@@ -541,6 +563,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * (0-140)
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.SetFreezeTicks]
 	 */
 	fun setFreezeTicks(items: Items) {
 		block(items, "SetFreezeTicks")
@@ -687,6 +711,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * (*) Launch power
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.LaunchToward]
 	 */
 	fun launchToward(items: Items) {
 		block(items, "LaunchToward")
@@ -770,6 +796,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Location to face
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.FaceLocation]
 	 */
 	fun faceLocation(items: Items) {
 		block(items, "FaceLocation")
@@ -1000,6 +1028,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * (*) Item to set
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.SetEquipment]
 	 */
 	fun setEquipment(items: Items) {
 		block(items, "SetEquipment")
@@ -1045,6 +1075,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * *Spawns a Leash Knot entity. Requires a fence block.*
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.AttachLead]
 	 */
 	fun attachLead(items: Items) {
 		block(items, "AttachLead")
@@ -1358,6 +1390,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.KBAttribute]
 	 */
 	fun kBAttribute(items: Items) {
 		block(items, "KBAttribute")
@@ -1376,6 +1410,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.MovementAttribute]
 	 */
 	fun movementAttribute(items: Items) {
 		block(items, "MovementAttribute")
@@ -1413,6 +1449,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.FallingAttribute]
 	 */
 	fun fallingAttribute(items: Items) {
 		block(items, "FallingAttribute")
@@ -1434,6 +1472,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Shooter name
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.SetProjSource]
 	 */
 	fun setProjSource(items: Items) {
 		block(items, "SetProjSource")
@@ -1470,6 +1510,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Maximum health
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.SetMaxHealth]
 	 */
 	fun setMaxHealth(items: Items) {
 		block(items, "SetMaxHealth")
@@ -1526,6 +1568,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Target name
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.FrogEat]
 	 */
 	fun frogEat(items: Items) {
 		block(items, "FrogEat")
@@ -1612,6 +1656,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Target name
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.SetTarget]
 	 */
 	fun setTarget(items: Items) {
 		block(items, "SetTarget")
@@ -1657,6 +1703,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Peek Percentage
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.SetShulkerPeek]
 	 */
 	fun setShulkerPeek(items: Items) {
 		block(items, "SetShulkerPeek")
@@ -1838,6 +1886,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Target name
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.RideEntity]
 	 */
 	fun rideEntity(items: Items) {
 		block(items, "RideEntity")
@@ -1904,6 +1954,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * New position
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.Teleport]
 	 */
 	fun teleport(items: Items) {
 		block(items, "Teleport")
@@ -1976,6 +2028,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Target name
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.SetBulletTarget]
 	 */
 	fun setBulletTarget(items: Items) {
 		block(items, "SetBulletTarget")
@@ -2103,6 +2157,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * to give
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.GivePotion]
 	 */
 	fun givePotion(items: Items) {
 		block(items, "GivePotion")
@@ -2223,6 +2279,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * *Default = 0*
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.ArmorStandPose]
 	 */
 	fun armorStandPose(items: Items) {
 		block(items, "ArmorStandPose")
@@ -2240,6 +2298,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Launch power
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.LaunchFwd]
 	 */
 	fun launchFwd(items: Items) {
 		block(items, "LaunchFwd")
@@ -2533,6 +2593,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Displayed text
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.TDisplayText]
 	 */
 	fun tDisplayText(items: Items) {
 		block(items, "TDisplayText")
@@ -2576,6 +2638,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.HealthAttribute]
 	 */
 	fun healthAttribute(items: Items) {
 		block(items, "HealthAttribute")
@@ -2597,6 +2661,8 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Target name
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.Ram]
 	 */
 	fun ram(items: Items) {
 		block(items, "Ram")

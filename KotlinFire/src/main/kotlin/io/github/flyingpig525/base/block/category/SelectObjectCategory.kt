@@ -7,9 +7,11 @@ import io.github.flyingpig525.base.block.subaction.*
 import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
+import io.github.flyingpig525.base.item.type.tag.SelectObjectTags
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
 
+@Suppress("unused")
 class SelectObjectCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
@@ -83,6 +85,8 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * Name to check for
 	 *
 	 * (*) = optional
+
+	 * @see [SelectObjectTags.EntityName]
 	 */
 	fun entityName(items: Items) {
 		block(items, "EntityName")
@@ -169,6 +173,8 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * *Default = 1*
 	 *
 	 * (*) = optional
+
+	 * @see [SelectObjectTags.FilterDistance]
 	 */
 	fun filterDistance(items: Items) {
 		block(items, "FilterDistance")
@@ -208,6 +214,8 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * *Default = 1*
 	 *
 	 * (*) = optional
+
+	 * @see [SelectObjectTags.FilterRay]
 	 */
 	fun filterRay(items: Items) {
 		block(items, "FilterRay")
@@ -336,6 +344,8 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * *Default = 1*
 	 *
 	 * (*) = optional
+
+	 * @see [SelectObjectTags.FilterSort]
 	 */
 	fun filterSort(items: Items) {
 		block(items, "FilterSort")

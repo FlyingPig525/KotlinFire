@@ -7,9 +7,11 @@ import io.github.flyingpig525.base.block.BracketBlock
 import io.github.flyingpig525.base.block.ElseOperation
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
+import io.github.flyingpig525.base.item.type.tag.IfGameTags
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
 
+@Suppress("unused")
 class IfGameCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
@@ -55,6 +57,8 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 * Item(s) to check with
 	 *
 	 * (*) = optional
+
+	 * @see [IfGameTags.HasRoomForItem]
 	 */
 	fun hasRoomForItem(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "HasRoomForItem", wrappedCode, not)
@@ -92,6 +96,8 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 * String(s) to check for
 	 *
 	 * (*) = optional
+
+	 * @see [IfGameTags.CommandEquals]
 	 */
 	fun commandEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "CommandEquals", wrappedCode, not)
@@ -110,6 +116,8 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 * Item(s) to check for
 	 *
 	 * (*) = optional
+
+	 * @see [IfGameTags.EventItemEquals]
 	 */
 	fun eventItemEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "EventItemEquals", wrappedCode, not)
@@ -216,6 +224,8 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 * Check location(s)
 	 *
 	 * (*) = optional
+
+	 * @see [IfGameTags.BlockPowered]
 	 */
 	fun blockPowered(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "BlockPowered", wrappedCode, not)
@@ -281,6 +291,8 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 * Argument number
 	 *
 	 * (*) = optional
+
+	 * @see [IfGameTags.CmdArgEquals]
 	 */
 	fun cmdArgEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "CmdArgEquals", wrappedCode, not)

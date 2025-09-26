@@ -5,8 +5,10 @@ import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.block.Block
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
+import io.github.flyingpig525.base.item.type.tag.PlayerActionTags
 import kotlinx.serialization.json.JsonObjectBuilder
 
+@Suppress("unused")
 class PlayerActionCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
@@ -133,6 +135,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * New velocity
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SetVelocity]
 	 */
 	fun setVelocity(items: Items) {
 		block(items, "SetVelocity")
@@ -172,6 +176,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (*) Items to display
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.AddInvRow]
 	 */
 	fun addInvRow(items: Items) {
 		block(items, "AddInvRow")
@@ -222,6 +228,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (*) Name of damager entity
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.Damage]
 	 */
 	fun damage(items: Items) {
 		block(items, "Damage")
@@ -347,6 +355,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * Launch power
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.LaunchUp]
 	 */
 	fun launchUp(items: Items) {
 		block(items, "LaunchUp")
@@ -422,6 +432,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.MiscAttribute]
 	 */
 	fun miscAttribute(items: Items) {
 		block(items, "MiscAttribute")
@@ -443,6 +455,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * Target name
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SpectateTarget]
 	 */
 	fun spectateTarget(items: Items) {
 		block(items, "SpectateTarget")
@@ -488,6 +502,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * Block location
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.DisplayBellRing]
 	 */
 	fun displayBellRing(items: Items) {
 		block(items, "DisplayBellRing")
@@ -580,6 +596,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.CombatAttribute]
 	 */
 	fun combatAttribute(items: Items) {
 		block(items, "CombatAttribute")
@@ -605,6 +623,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (*) Rows to remove
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.RemoveInvRow]
 	 */
 	fun removeInvRow(items: Items) {
 		block(items, "RemoveInvRow")
@@ -690,6 +710,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (0-140)
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SetFreezeTicks]
 	 */
 	fun setFreezeTicks(items: Items) {
 		block(items, "SetFreezeTicks")
@@ -754,6 +776,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * Sign location
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.OpenSign]
 	 */
 	fun openSign(items: Items) {
 		block(items, "OpenSign")
@@ -781,6 +805,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * Block location
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.DisplayBlockOpen]
 	 */
 	fun displayBlockOpen(items: Items) {
 		block(items, "DisplayBlockOpen")
@@ -809,6 +835,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (*) Advancement icon
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SendAdvancement]
 	 */
 	fun sendAdvancement(items: Items) {
 		block(items, "SendAdvancement")
@@ -859,6 +887,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (*) Launch power
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.LaunchToward]
 	 */
 	fun launchToward(items: Items) {
 		block(items, "LaunchToward")
@@ -895,6 +925,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * Gateway location
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.DisplayGateway]
 	 */
 	fun displayGateway(items: Items) {
 		block(items, "DisplayGateway")
@@ -956,6 +988,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * Experience to give
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.GiveExp]
 	 */
 	fun giveExp(items: Items) {
 		block(items, "GiveExp")
@@ -1000,6 +1034,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * Message to send
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.ActionBar]
 	 */
 	fun actionBar(items: Items) {
 		block(items, "ActionBar")
@@ -1058,6 +1094,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (*) Text line(s)
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.DisplaySignText]
 	 */
 	fun displaySignText(items: Items) {
 		block(items, "DisplaySignText")
@@ -1171,6 +1209,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * *Default = 40 ticks*
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.ParticleCuboidA]
 	 */
 	fun particleCuboidA(items: Items) {
 		block(items, "ParticleCuboidA")
@@ -1191,6 +1231,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (*) Playback location
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.PlaySound]
 	 */
 	fun playSound(items: Items) {
 		block(items, "PlaySound")
@@ -1226,6 +1268,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * choose from
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.RngTeleport]
 	 */
 	fun rngTeleport(items: Items) {
 		block(items, "RngTeleport")
@@ -1340,6 +1384,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (*) Item to set
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SetEquipment]
 	 */
 	fun setEquipment(items: Items) {
 		block(items, "SetEquipment")
@@ -1415,6 +1461,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * *0-10 (default = 0)*
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.DisplayFracture]
 	 */
 	fun displayFracture(items: Items) {
 		block(items, "DisplayFracture")
@@ -1436,6 +1484,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * Entity names
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SetEntityHidden]
 	 */
 	fun setEntityHidden(items: Items) {
 		block(items, "SetEntityHidden")
@@ -1577,6 +1627,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * *Default = 0.5 blocks*
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.ParticleCuboid]
 	 */
 	fun particleCuboid(items: Items) {
 		block(items, "ParticleCuboid")
@@ -1601,6 +1653,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * *Default = 60*
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SendMessageSeq]
 	 */
 	fun sendMessageSeq(items: Items) {
 		block(items, "SendMessageSeq")
@@ -1618,6 +1672,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (*) Prefix/suffix text
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SetNamePrefix]
 	 */
 	fun setNamePrefix(items: Items) {
 		block(items, "SetNamePrefix")
@@ -1782,6 +1838,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.ReachAttribute]
 	 */
 	fun reachAttribute(items: Items) {
 		block(items, "ReachAttribute")
@@ -1839,6 +1897,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * Target name
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.PlayEntitySound]
 	 */
 	fun playEntitySound(items: Items) {
 		block(items, "PlayEntitySound")
@@ -1863,6 +1923,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * Experience to set
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SetExp]
 	 */
 	fun setExp(items: Items) {
 		block(items, "SetExp")
@@ -1881,6 +1943,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.MiningAttribute]
 	 */
 	fun miningAttribute(items: Items) {
 		block(items, "MiningAttribute")
@@ -1898,6 +1962,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.KBAttribute]
 	 */
 	fun kBAttribute(items: Items) {
 		block(items, "KBAttribute")
@@ -1916,6 +1982,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.MovementAttribute]
 	 */
 	fun movementAttribute(items: Items) {
 		block(items, "MovementAttribute")
@@ -1979,6 +2047,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.FallingAttribute]
 	 */
 	fun fallingAttribute(items: Items) {
 		block(items, "FallingAttribute")
@@ -2009,6 +2079,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * *❤ = 2 Health*
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SetMaxHealth]
 	 */
 	fun setMaxHealth(items: Items) {
 		block(items, "SetMaxHealth")
@@ -2099,6 +2171,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (*) Header/footer text
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SetTabListInfo]
 	 */
 	fun setTabListInfo(items: Items) {
 		block(items, "SetTabListInfo")
@@ -2152,6 +2226,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * Content or style
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.ScoreLineFormat]
 	 */
 	fun scoreLineFormat(items: Items) {
 		block(items, "ScoreLineFormat")
@@ -2186,6 +2262,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * *Default = 1 (top)*
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SetBossBar]
 	 */
 	fun setBossBar(items: Items) {
 		block(items, " SetBossBar ")
@@ -2389,6 +2467,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * Target name
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.RideEntity]
 	 */
 	fun rideEntity(items: Items) {
 		block(items, "RideEntity")
@@ -2439,6 +2519,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * Inventory name
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SetInvName]
 	 */
 	fun setInvName(items: Items) {
 		block(items, " SetInvName ")
@@ -2472,6 +2554,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * New position
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.Teleport]
 	 */
 	fun teleport(items: Items) {
 		block(items, "Teleport")
@@ -2607,6 +2691,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (*) Message to send
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SendMessage]
 	 */
 	fun sendMessage(items: Items) {
 		block(items, "SendMessage")
@@ -2660,6 +2746,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (*) Playback location
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.PlaySoundSeq]
 	 */
 	fun playSoundSeq(items: Items) {
 		block(items, "PlaySoundSeq")
@@ -2798,6 +2886,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * Collector name
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.DisplayPickup]
 	 */
 	fun displayPickup(items: Items) {
 		block(items, "DisplayPickup")
@@ -2888,6 +2978,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * to give
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.GivePotion]
 	 */
 	fun givePotion(items: Items) {
 		block(items, "GivePotion")
@@ -3065,6 +3157,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * Launch power
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.LaunchFwd]
 	 */
 	fun launchFwd(items: Items) {
 		block(items, "LaunchFwd")
@@ -3265,6 +3359,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * Content or style
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.ScoreDefFormat]
 	 */
 	fun scoreDefFormat(items: Items) {
 		block(items, "ScoreDefFormat")
@@ -3282,6 +3378,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (*) Sounds to stop
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.StopSound]
 	 */
 	fun stopSound(items: Items) {
 		block(items, "StopSound")
@@ -3300,6 +3398,8 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.HealthAttribute]
 	 */
 	fun healthAttribute(items: Items) {
 		block(items, "HealthAttribute")
