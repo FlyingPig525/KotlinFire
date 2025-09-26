@@ -6,6 +6,7 @@ import io.github.flyingpig525.base.item.Insertable
 import io.github.flyingpig525.base.item.ItemComparison
 import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
 import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
+import io.github.flyingpig525.base.item.type.tag.SetVariableTags
 
 /**
  * A DiamondFire list.
@@ -234,17 +235,23 @@ class ListVariable internal constructor(name: String, scope: VarItem.Scope = Var
         trim(startIndex.numItem, endIndex.numItem, out)
 
     context(t: Template)
-    inline fun sort() = apply {
+    inline fun sort(sortOrder: SortOrder = SortOrder.Ascending) = apply {
         t.SetVariable.sortList {
             +item
+            +sortOrder.tag
         }
     }
     context(t: Template)
-    inline fun sort(out: ListVariable) {
+    inline fun sort(out: ListVariable, sortOrder: SortOrder = SortOrder.Ascending) {
         t.SetVariable.sortList {
             +out
             +item
+            +sortOrder.tag
         }
+    }
+    enum class SortOrder(val tag: SetVariableTags.SortList.SortOrder) {
+        Ascending(SetVariableTags.SortList.SortOrder.Ascending),
+        Descending(SetVariableTags.SortList.SortOrder.Descending)
     }
 
     context(t: Template)
@@ -260,11 +267,17 @@ class ListVariable internal constructor(name: String, scope: VarItem.Scope = Var
     inline fun removeIndex(index: NumVariable) = removeIndex(index.numItem)
 
     context(t: Template)
-    inline fun removeValue(value: Insertable) = apply {
+    inline fun removeValue(value: Insertable, itemsToRemove: ItemsToRemove = ItemsToRemove.AllMatches) = apply {
         t.SetVariable.removeListValue {
             +item
             +value
+            +itemsToRemove.tag
         }
+    }
+    enum class ItemsToRemove(val tag: SetVariableTags.RemoveListValue.Itemstoremove) {
+        AllMatches(SetVariableTags.RemoveListValue.Itemstoremove.AllMatches),
+        FirstMatch(SetVariableTags.RemoveListValue.Itemstoremove.FirstMatch),
+        LastMatch(SetVariableTags.RemoveListValue.Itemstoremove.LastMatch)
     }
 
     context(t: Template)

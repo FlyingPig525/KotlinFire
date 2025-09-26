@@ -6,6 +6,7 @@ import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemComparison
 import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
 import io.github.flyingpig525.base.item.type.NumItem.Companion.toNumItem
+import io.github.flyingpig525.base.item.type.tag.SetVariableTags
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 
@@ -192,6 +193,7 @@ class NumVariable(name: String, scope: VarItem.Scope) : VarClass<NumItem>(name, 
             +item
             +item
             +other
+            +SetVariableTags.Mod.RemainderMode.Remainder
         }
     }
     context(t: Template)
@@ -200,6 +202,7 @@ class NumVariable(name: String, scope: VarItem.Scope) : VarClass<NumItem>(name, 
             +item
             +item
             +other
+            +SetVariableTags.Mod.RemainderMode.Remainder
         }
     }
     context(_: Template)
