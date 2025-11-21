@@ -58,6 +58,7 @@ dependencies {
     implementation("io.ktor:ktor-client-websockets:$ktor_version")
     implementation("io.ktor:ktor-client-java:$ktor_version")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
+    implementation(kotlin("reflect"))
 }
 
 kotlin {

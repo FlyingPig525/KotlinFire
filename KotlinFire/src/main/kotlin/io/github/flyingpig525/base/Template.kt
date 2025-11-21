@@ -157,13 +157,18 @@ open class Template(
                     port = 31375
                 ) {
                     send("scopes read_plot write_code")
+
+                    println("Sent auth request to codeclient")
                     
                     if ("auth" !in String(incoming.receive().data)) {
                         close()
                         return@webSocket
                     }
 
+                    println("Authed successfully")
+
                     send("size")
+                    println("Sent size request to codeclient")
                     val size = String(incoming.receive().data)
 
                     val sizeNum = when(size) {
@@ -173,12 +178,15 @@ open class Template(
                         "MEGA" -> 300
                         else -> 0
                     }
+
+                    println("Received size $sizeNum")
                     
                     if (sizeNum == 0) {
                         close()
                         return@webSocket
                     }
-                    
+
+
                     for (temp in templates) {
                         if (temp.blocks.size*2 > sizeNum && !ignoreSizeWarning) {
                             println("TEMPLATE PLACE ERROR\n"
@@ -190,15 +198,19 @@ open class Template(
                         }
                     }
 
+                    println("Sending templates to codeclient")
                     send("place swap")
                     
                     for (temp in templates) {
                         send("place ${temp.getTemplateString()}")
+                        println("Sent ${temp.name}")
                     }
-                    
+
+                    println("Sent place request to codeclient")
                     send("place go")
                     incoming.receive()
-                    
+
+                    println("Done, closing websocket")
                     close(CloseReason(CloseReason.Codes.NORMAL, "Function done."))
                 }
             }

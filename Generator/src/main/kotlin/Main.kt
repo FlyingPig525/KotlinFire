@@ -60,6 +60,16 @@ fun main(vararg args: String) {
             break
         }
     }
+    if ("noSound" !in args) {
+        println("processing sounds")
+        val sounds = actionDump["sounds"]!!.jsonArray
+        try {
+            processSounds(sounds)
+        } catch (e: Throwable) {
+            println("something went wrong processing sounds")
+            e.printStackTrace()
+        }
+    }
 
     // TODO: Add sound processing
     // TODO: Add potion processing
@@ -79,6 +89,7 @@ fun blockActions(actions: List<JsonObject>) = try {
         enum class ${codeblock.name}SubAction(override val codeblock: String) : SubAction {
         
         """.trimIndent()
+    //language=
     var file: String = """
         package io.github.flyingpig525.base.block.category
         
@@ -90,10 +101,13 @@ fun blockActions(actions: List<JsonObject>) = try {
         import io.github.flyingpig525.base.block.subaction.*
         import kotlinx.serialization.json.JsonObjectBuilder
         import kotlinx.serialization.json.put
+        import kotlin.reflect.full.superclasses
+        import kotlin.reflect.KClass
         
         
     """.trimIndent()
     val tag = object {
+        //language=kotlin
         var tagFile: String = """
             package io.github.flyingpig525.base.item.type.tag
             
@@ -102,16 +116,32 @@ fun blockActions(actions: List<JsonObject>) = try {
         """.trimIndent()
     }
     if (!encloses) {
+        //language=kotlin
         file += """
         @Suppress("unused")
         class ${codeblock.name}Category internal constructor(private val template: Template) {
             private val blocks = template.blocks
 
-            private fun block(items: Items, action: String, extra: JsonObjectBuilder.() -> Unit = {}) {
-                blocks += Block("${codeblock.shortName}", ItemCollection(items).items, action, extra)
+            private fun block(items: Items, action: String, tagClass: KClass<*>? = null, extra: JsonObjectBuilder.() -> Unit = {}) {
+                val collection = ItemCollection(items)
+                tagClass?.nestedClasses?.forEach { klass ->
+                    if (klass.superclasses.any { it.qualifiedName == "kotlin.Enum" }) {
+                        @Suppress("UNCHECKED_CAST")
+                        val entries = klass.java.enumConstants as Array<Enum<*>>
+                        entries.forEach { entry ->
+                            if (entry is TagItem) {
+                                if (!entry.default) return@forEach
+                                if (collection.items.none { it is TagItem && it.tag == entry.tag })
+                                collection += entry
+                            }
+                        }
+                    }
+                }
+                blocks += Block("${codeblock.shortName}", collection.items, action, extra)
             }
         """.trimIndent()
     } else {
+        //language=kotlin
         file += """
             @Suppress("unused")
             class ${codeblock.name}Category internal constructor(private val template: Template) {
@@ -122,9 +152,24 @@ fun blockActions(actions: List<JsonObject>) = try {
                     action: String,
                     wrappedCode: Template.() -> Unit,
                     not: Boolean = false,
+                    tagClass: KClass<*>? = null,
                     extra: JsonObjectBuilder.() -> Unit = {}
                 ) {
-                    blocks += Block("${codeblock.shortName}", ItemCollection(items).items, action) {
+                    val collection = ItemCollection(items)
+                    tagClass?.nestedClasses?.forEach { klass ->
+                        if (klass.superclasses.any { it.qualifiedName == "kotlin.Enum" }) {
+                            @Suppress("UNCHECKED_CAST")
+                            val entries = klass.java.enumConstants as Array<Enum<*>>
+                            entries.forEach { entry ->
+                                if (entry is TagItem) {
+                                    if (!entry.default) return@forEach
+                                    if (collection.items.none { it is TagItem && it.tag == entry.tag })
+                                    collection += entry
+                                }
+                            }
+                        }
+                    }
+                    blocks += Block("${codeblock.shortName}", collection.items, action) {
                         if (not) put("attribute", "NOT")
                         extra()
                     }
@@ -216,7 +261,9 @@ fun blockActions(actions: List<JsonObject>) = try {
                 if (encloses) ", wrappedCode: Template.() -> Unit" else ""
             })${
                 if (elseOp) ": ElseOperation" else ""
-            } {\n\t\tblock(items, \"$name\"${if (encloses) ", wrappedCode" else ""}${if (negatable) ", not" else ""})${
+            } {\n\t\tblock(items, \"$name\"${if (encloses) ", wrappedCode" else ""}${if (negatable) ", not" else ""}${
+                if (hasTags) ", tagClass = ${getActionTagContainerName(action)}::class" else ""
+            })${
                 if (subAction) 
                     """ { put("subAction", subAction.codeblock) }"""
                 else ""
@@ -267,7 +314,8 @@ fun processTags(action: JsonObject, tagFile: KMutableProperty0<String>) {
         val name = tag["name"]!!.jsonPrimitive.content.transformedSymbols.noSpace
         println(name)
         // type has to be kotlin.String because SetVariable has a codeblock named "String"
-        tagFile += "\t\tenum class $name(override val option: kotlin.String) : TagItem {\n"
+        //language=kotlin
+        tagFile += "\t\tenum class $name(override val option: kotlin.String, override val default: Boolean) : TagItem {\n"
         val options = tag["options"]!!.jsonArray.map { it.jsonObject }
         for (option in options) {
             val optionName = option["name"]!!.jsonPrimitive.content
@@ -276,7 +324,7 @@ fun processTags(action: JsonObject, tagFile: KMutableProperty0<String>) {
             if (isDefault) {
                 tagFile += "\t\t\t/** **Default** */\n"
             }
-            tagFile += "\t\t\t$ordinalName(\"$optionName\"),\n"
+            tagFile += "\t\t\t$ordinalName(\"$optionName\", $isDefault),\n"
         }
         tagFile = tagFile.dropLast(2)
         tagFile += ";\n\n"
@@ -376,6 +424,28 @@ fun processGameValueCategory(category: String, values: List<JsonObject>) {
     writeToDirFile("gen/gamevalue", "$className.kt", file)
 }
 
+fun processSounds(sounds: JsonArray) {
+    var file = """
+        @file:Suppress("Unused")
+        package io.github.flyingpig525.base.item
+
+        import io.github.flyingpig525.base.item.type.SoundItem
+
+        object Sounds {
+    """.trimIndent()
+    file += "\n"
+    for (sound in sounds.map { it.jsonObject }) {
+        val icon = sound["icon"]?.jsonObject ?: continue
+        val name = icon["name"]?.jsonPrimitive?.content ?: continue
+        val decluttered = name.replace("(", "").replace(")", "").replace("-", "").noSpace
+        println(decluttered)
+        file += "\tval $decluttered get() = SoundItem(\"$name\")\n"
+    }
+    file += "}"
+    println(file)
+    writeToDirFile("gen/sound", "Sounds.kt", file)
+}
+
 enum class CodeBlock(val block: String, val shortName: String) {
     PlayerAction("PLAYER ACTION", "player_action"),
     EntityAction("ENTITY ACTION", "entity_action"),
@@ -440,7 +510,7 @@ fun actionNameToFunction(name: String): String {
 fun getActionTagContainerName(action: JsonObject): String {
     val codeblock = CodeBlock.of(action["codeblockName"]!!.jsonPrimitive.content)
     val name = action["name"]!!.jsonPrimitive.content
-    return "${codeblock.name}Tags.${removeClutter(name).noSpace}"
+    return "${codeblock.name}Tags.${removeClutter(name).noSpace.replaceFirstChar { it.uppercaseChar() }}"
 }
 
 fun removeClutter(str: String): String {

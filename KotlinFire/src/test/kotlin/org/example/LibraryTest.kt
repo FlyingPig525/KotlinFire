@@ -8,6 +8,7 @@ import io.github.flyingpig525.base.block.PlayerEvent
 import io.github.flyingpig525.base.item.type.*
 import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
 import io.github.flyingpig525.base.item.type.NumItem.Companion.toNumItem
+import io.github.flyingpig525.base.item.type.StringItem.Companion.stringItem
 import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
 import io.github.flyingpig525.base.item.type.VarItem.Companion.lineVar
 import io.github.flyingpig525.base.item.type.VarItem.Companion.saveVar
@@ -291,10 +292,14 @@ class LibraryTest {
 
                 +PlayerActionTags.SendMessage.AlignmentMode.Centered
             }
+            IfVar.stringMatches({
+                +"Heelo world".stringItem
+                +"Heelo world".stringItem
+            }) { }
         }
         println(Json { prettyPrint = true }.encodeToString(t.getJsonData()))
         println(t.getTemplateString())
-        Template.codeClientPlaceTemplate(t)
+//        Template.codeClientPlaceTemplate(t)
     }
 }
 @OptIn(DiamondFireClassOptIn::class)

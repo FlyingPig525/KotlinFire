@@ -7,14 +7,31 @@ import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
 import io.github.flyingpig525.base.item.type.tag.SetVariableTags
+import io.github.flyingpig525.base.item.type.tag.TagItem
 import kotlinx.serialization.json.JsonObjectBuilder
+import kotlin.reflect.KClass
+import kotlin.reflect.full.superclasses
 
 @Suppress("unused")
 class SetVariableCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
-    private fun block(items: Items, action: String, extra: JsonObjectBuilder.() -> Unit = {}) {
-        blocks += Block("set_var", ItemCollection(items).items, action, extra)
+    private fun block(items: Items, action: String, tagClass: KClass<*>? = null, extra: JsonObjectBuilder.() -> Unit = {}) {
+        val collection = ItemCollection(items)
+        tagClass?.nestedClasses?.forEach { klass ->
+            if (klass.superclasses.any { it.qualifiedName == "kotlin.Enum" }) {
+                @Suppress("UNCHECKED_CAST")
+                val entries = klass.java.enumConstants as Array<Enum<*>>
+                entries.forEach { entry ->
+                    if (entry is TagItem) {
+                        if (!entry.default) return@forEach
+                        if (collection.items.none { it is TagItem && it.tag == entry.tag })
+                        collection += entry
+                    }
+                }
+            }
+        }
+        blocks += Block("set_var", collection.items, action, extra)
     }
 	/**
 	 * Sets a variable to a string, or combines
@@ -35,7 +52,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.String]
 	 */
 	fun string(items: Items) {
-		block(items, "String")
+		block(items, "String", tagClass = SetVariableTags.String::class)
 	}
 
 
@@ -155,7 +172,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.PurgeVars]
 	 */
 	fun purgeVars(items: Items) {
-		block(items, "PurgeVars")
+		block(items, "PurgeVars", tagClass = SetVariableTags.PurgeVars::class)
 	}
 
 
@@ -283,7 +300,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.RemoveItemAttrs]
 	 */
 	fun removeItemAttrs(items: Items) {
-		block(items, "RemoveItemAttrs")
+		block(items, "RemoveItemAttrs", tagClass = SetVariableTags.RemoveItemAttrs::class)
 	}
 
 
@@ -329,10 +346,10 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 
-	 * @see [SetVariableTags.mod]
+	 * @see [SetVariableTags.Mod]
 	 */
 	fun mod(items: Items) {
-		block(items, "%")
+		block(items, "%", tagClass = SetVariableTags.Mod::class)
 	}
 
 
@@ -363,7 +380,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.ShiftOnVector]
 	 */
 	fun shiftOnVector(items: Items) {
-		block(items, "ShiftOnVector")
+		block(items, "ShiftOnVector", tagClass = SetVariableTags.ShiftOnVector::class)
 	}
 
 
@@ -386,7 +403,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.GetItemAttribute]
 	 */
 	fun getItemAttribute(items: Items) {
-		block(items, "GetItemAttribute")
+		block(items, "GetItemAttribute", tagClass = SetVariableTags.GetItemAttribute::class)
 	}
 
 
@@ -451,7 +468,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.ShiftRotation]
 	 */
 	fun shiftRotation(items: Items) {
-		block(items, "ShiftRotation")
+		block(items, "ShiftRotation", tagClass = SetVariableTags.ShiftRotation::class)
 	}
 
 
@@ -557,17 +574,17 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) = optional
 
-	 * @see [SetVariableTags.divide]
+	 * @see [SetVariableTags.Divide]
 	 */
 	fun divide(items: Items) {
-		block(items, "/")
+		block(items, "/", tagClass = SetVariableTags.Divide::class)
 	}
 
 
 	/**
 	 */
 	fun getSignText(items: Items) {
-		block(items, "GetSignText")
+		block(items, "GetSignText", tagClass = SetVariableTags.GetSignText::class)
 	}
 
 
@@ -594,7 +611,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.Bitwise]
 	 */
 	fun bitwise(items: Items) {
-		block(items, "Bitwise")
+		block(items, "Bitwise", tagClass = SetVariableTags.Bitwise::class)
 	}
 
 
@@ -649,7 +666,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.ShiftOnAxis]
 	 */
 	fun shiftOnAxis(items: Items) {
-		block(items, "ShiftOnAxis")
+		block(items, "ShiftOnAxis", tagClass = SetVariableTags.ShiftOnAxis::class)
 	}
 
 
@@ -737,7 +754,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.GetVectorComp]
 	 */
 	fun getVectorComp(items: Items) {
-		block(items, "GetVectorComp")
+		block(items, "GetVectorComp", tagClass = SetVariableTags.GetVectorComp::class)
 	}
 
 
@@ -764,7 +781,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	/**
 	 */
 	fun rmText(items: Items) {
-		block(items, "RmText")
+		block(items, "RmText", tagClass = SetVariableTags.RmText::class)
 	}
 
 
@@ -792,7 +809,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.AddItemAttribute]
 	 */
 	fun addItemAttribute(items: Items) {
-		block(items, "AddItemAttribute")
+		block(items, "AddItemAttribute", tagClass = SetVariableTags.AddItemAttribute::class)
 	}
 
 
@@ -857,7 +874,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.AlignLoc]
 	 */
 	fun alignLoc(items: Items) {
-		block(items, "AlignLoc")
+		block(items, "AlignLoc", tagClass = SetVariableTags.AlignLoc::class)
 	}
 
 
@@ -905,7 +922,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.RandomNumber]
 	 */
 	fun randomNumber(items: Items) {
-		block(items, "RandomNumber")
+		block(items, "RandomNumber", tagClass = SetVariableTags.RandomNumber::class)
 	}
 
 
@@ -995,7 +1012,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.Raycast]
 	 */
 	fun raycast(items: Items) {
-		block(items, "Raycast")
+		block(items, "Raycast", tagClass = SetVariableTags.Raycast::class)
 	}
 
 
@@ -1026,14 +1043,14 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.RotateAroundVec]
 	 */
 	fun rotateAroundVec(items: Items) {
-		block(items, "RotateAroundVec")
+		block(items, "RotateAroundVec", tagClass = SetVariableTags.RotateAroundVec::class)
 	}
 
 
 	/**
 	 */
 	fun setItemFood(items: Items) {
-		block(items, "SetItemFood")
+		block(items, "SetItemFood", tagClass = SetVariableTags.SetItemFood::class)
 	}
 
 
@@ -1122,7 +1139,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.SetConsumable]
 	 */
 	fun setConsumable(items: Items) {
-		block(items, "SetConsumable")
+		block(items, "SetConsumable", tagClass = SetVariableTags.SetConsumable::class)
 	}
 
 
@@ -1211,7 +1228,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.ClampLoc]
 	 */
 	fun clampLoc(items: Items) {
-		block(items, "ClampLoc")
+		block(items, "ClampLoc", tagClass = SetVariableTags.ClampLoc::class)
 	}
 
 
@@ -1298,7 +1315,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.SortDict]
 	 */
 	fun sortDict(items: Items) {
-		block(items, "SortDict")
+		block(items, "SortDict", tagClass = SetVariableTags.SortDict::class)
 	}
 
 
@@ -1468,7 +1485,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.SetArmorTrim]
 	 */
 	fun setArmorTrim(items: Items) {
-		block(items, "SetArmorTrim")
+		block(items, "SetArmorTrim", tagClass = SetVariableTags.SetArmorTrim::class)
 	}
 
 
@@ -1570,7 +1587,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.Noise]
 	 */
 	fun noise(items: Items) {
-		block(items, "Noise")
+		block(items, "Noise", tagClass = SetVariableTags.Noise::class)
 	}
 
 
@@ -1664,7 +1681,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.Sine]
 	 */
 	fun sine(items: Items) {
-		block(items, "Sine")
+		block(items, "Sine", tagClass = SetVariableTags.Sine::class)
 	}
 
 
@@ -1860,14 +1877,14 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.GetBlockByMCTag]
 	 */
 	fun getBlockByMCTag(items: Items) {
-		block(items, "GetBlockByMCTag")
+		block(items, "GetBlockByMCTag", tagClass = SetVariableTags.GetBlockByMCTag::class)
 	}
 
 
 	/**
 	 */
 	fun roundNumber(items: Items) {
-		block(items, "RoundNumber")
+		block(items, "RoundNumber", tagClass = SetVariableTags.RoundNumber::class)
 	}
 
 
@@ -1894,7 +1911,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.FaceLocation]
 	 */
 	fun faceLocation(items: Items) {
-		block(items, "FaceLocation")
+		block(items, "FaceLocation", tagClass = SetVariableTags.FaceLocation::class)
 	}
 
 
@@ -2030,7 +2047,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.NormalRandom]
 	 */
 	fun normalRandom(items: Items) {
-		block(items, "NormalRandom")
+		block(items, "NormalRandom", tagClass = SetVariableTags.NormalRandom::class)
 	}
 
 
@@ -2134,7 +2151,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.SetItemDura]
 	 */
 	fun setItemDura(items: Items) {
-		block(items, "SetItemDura")
+		block(items, "SetItemDura", tagClass = SetVariableTags.SetItemDura::class)
 	}
 
 
@@ -2157,7 +2174,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.SetBreakability]
 	 */
 	fun setBreakability(items: Items) {
-		block(items, "SetBreakability")
+		block(items, "SetBreakability", tagClass = SetVariableTags.SetBreakability::class)
 	}
 
 
@@ -2256,7 +2273,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.SetAllCoords]
 	 */
 	fun setAllCoords(items: Items) {
-		block(items, "SetAllCoords")
+		block(items, "SetAllCoords", tagClass = SetVariableTags.SetAllCoords::class)
 	}
 
 
@@ -2358,7 +2375,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	/**
 	 */
 	fun getDirection(items: Items) {
-		block(items, " GetDirection ")
+		block(items, " GetDirection ", tagClass = SetVariableTags.GetDirection::class)
 	}
 
 
@@ -2467,7 +2484,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.CellularNoise]
 	 */
 	fun cellularNoise(items: Items) {
-		block(items, "CellularNoise")
+		block(items, "CellularNoise", tagClass = SetVariableTags.CellularNoise::class)
 	}
 
 
@@ -2586,7 +2603,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	/**
 	 */
 	fun parseMiniMessageExpr(items: Items) {
-		block(items, "ParseMiniMessageExpr")
+		block(items, "ParseMiniMessageExpr", tagClass = SetVariableTags.ParseMiniMessageExpr::class)
 	}
 
 
@@ -2679,7 +2696,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.RotateAroundAxis]
 	 */
 	fun rotateAroundAxis(items: Items) {
-		block(items, "RotateAroundAxis")
+		block(items, "RotateAroundAxis", tagClass = SetVariableTags.RotateAroundAxis::class)
 	}
 
 
@@ -2702,7 +2719,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.GetItemDura]
 	 */
 	fun getItemDura(items: Items) {
-		block(items, "GetItemDura")
+		block(items, "GetItemDura", tagClass = SetVariableTags.GetItemDura::class)
 	}
 
 
@@ -2731,7 +2748,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.ShiftInDirection]
 	 */
 	fun shiftInDirection(items: Items) {
-		block(items, "ShiftInDirection")
+		block(items, "ShiftInDirection", tagClass = SetVariableTags.ShiftInDirection::class)
 	}
 
 
@@ -2808,7 +2825,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.SetModelDataNums]
 	 */
 	fun setModelDataNums(items: Items) {
-		block(items, "SetModelDataNums")
+		block(items, "SetModelDataNums", tagClass = SetVariableTags.SetModelDataNums::class)
 	}
 
 
@@ -2840,7 +2857,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.ReplaceString]
 	 */
 	fun replaceString(items: Items) {
-		block(items, "ReplaceString")
+		block(items, "ReplaceString", tagClass = SetVariableTags.ReplaceString::class)
 	}
 
 
@@ -2864,7 +2881,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.SetItemGlowing]
 	 */
 	fun setItemGlowing(items: Items) {
-		block(items, "SetItemGlowing")
+		block(items, "SetItemGlowing", tagClass = SetVariableTags.SetItemGlowing::class)
 	}
 
 
@@ -2890,7 +2907,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.SetLodestoneLoc]
 	 */
 	fun setLodestoneLoc(items: Items) {
-		block(items, "SetLodestoneLoc")
+		block(items, "SetLodestoneLoc", tagClass = SetVariableTags.SetLodestoneLoc::class)
 	}
 
 
@@ -2935,7 +2952,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.SetItemRarity]
 	 */
 	fun setItemRarity(items: Items) {
-		block(items, "SetItemRarity")
+		block(items, "SetItemRarity", tagClass = SetVariableTags.SetItemRarity::class)
 	}
 
 
@@ -3112,7 +3129,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.SetCase]
 	 */
 	fun setCase(items: Items) {
-		block(items, "SetCase")
+		block(items, "SetCase", tagClass = SetVariableTags.SetCase::class)
 	}
 
 
@@ -3167,7 +3184,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.GetLight]
 	 */
 	fun getLight(items: Items) {
-		block(items, "GetLight")
+		block(items, "GetLight", tagClass = SetVariableTags.GetLight::class)
 	}
 
 
@@ -3268,7 +3285,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.Distance]
 	 */
 	fun distance(items: Items) {
-		block(items, "Distance")
+		block(items, "Distance", tagClass = SetVariableTags.Distance::class)
 	}
 
 
@@ -3298,7 +3315,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.ParseMiniMessage]
 	 */
 	fun parseMiniMessage(items: Items) {
-		block(items, "ParseMiniMessage")
+		block(items, "ParseMiniMessage", tagClass = SetVariableTags.ParseMiniMessage::class)
 	}
 
 
@@ -3442,7 +3459,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.AddItemToolRule]
 	 */
 	fun addItemToolRule(items: Items) {
-		block(items, "AddItemToolRule")
+		block(items, "AddItemToolRule", tagClass = SetVariableTags.AddItemToolRule::class)
 	}
 
 
@@ -3464,7 +3481,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.GetItemType]
 	 */
 	fun getItemType(items: Items) {
-		block(items, "GetItemType")
+		block(items, "GetItemType", tagClass = SetVariableTags.GetItemType::class)
 	}
 
 
@@ -3516,7 +3533,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.ArcTangent2]
 	 */
 	fun arcTangent2(items: Items) {
-		block(items, "ArcTangent2")
+		block(items, "ArcTangent2", tagClass = SetVariableTags.ArcTangent2::class)
 	}
 
 
@@ -3589,7 +3606,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.RemoveString]
 	 */
 	fun removeString(items: Items) {
-		block(items, "RemoveString")
+		block(items, "RemoveString", tagClass = SetVariableTags.RemoveString::class)
 	}
 
 
@@ -3612,7 +3629,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.GetAllBlockData]
 	 */
 	fun getAllBlockData(items: Items) {
-		block(items, "GetAllBlockData")
+		block(items, "GetAllBlockData", tagClass = SetVariableTags.GetAllBlockData::class)
 	}
 
 
@@ -3761,7 +3778,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.GetCoord]
 	 */
 	fun getCoord(items: Items) {
-		block(items, "GetCoord")
+		block(items, "GetCoord", tagClass = SetVariableTags.GetCoord::class)
 	}
 
 
@@ -3934,7 +3951,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	/**
 	 */
 	fun shiftDirection(items: Items) {
-		block(items, "ShiftDirection")
+		block(items, "ShiftDirection", tagClass = SetVariableTags.ShiftDirection::class)
 	}
 
 
@@ -3974,7 +3991,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.IndexOfSubstring]
 	 */
 	fun indexOfSubstring(items: Items) {
-		block(items, "IndexOfSubstring")
+		block(items, "IndexOfSubstring", tagClass = SetVariableTags.IndexOfSubstring::class)
 	}
 
 
@@ -3998,7 +4015,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.GetParticleSprd]
 	 */
 	fun getParticleSprd(items: Items) {
-		block(items, "GetParticleSprd")
+		block(items, "GetParticleSprd", tagClass = SetVariableTags.GetParticleSprd::class)
 	}
 
 
@@ -4093,7 +4110,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.GetHeadOwner]
 	 */
 	fun getHeadOwner(items: Items) {
-		block(items, "GetHeadOwner")
+		block(items, "GetHeadOwner", tagClass = SetVariableTags.GetHeadOwner::class)
 	}
 
 
@@ -4182,7 +4199,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.GetColorChannels]
 	 */
 	fun getColorChannels(items: Items) {
-		block(items, "GetColorChannels")
+		block(items, "GetColorChannels", tagClass = SetVariableTags.GetColorChannels::class)
 	}
 
 
@@ -4293,7 +4310,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	/**
 	 */
 	fun setItemFlags(items: Items) {
-		block(items, " SetItemFlags ")
+		block(items, " SetItemFlags ", tagClass = SetVariableTags.SetItemFlags::class)
 	}
 
 
@@ -4447,7 +4464,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.Tangent]
 	 */
 	fun tangent(items: Items) {
-		block(items, "Tangent")
+		block(items, "Tangent", tagClass = SetVariableTags.Tangent::class)
 	}
 
 
@@ -4487,7 +4504,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.VoronoiNoise]
 	 */
 	fun voronoiNoise(items: Items) {
-		block(items, "VoronoiNoise")
+		block(items, "VoronoiNoise", tagClass = SetVariableTags.VoronoiNoise::class)
 	}
 
 
@@ -4585,7 +4602,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.Interpolate]
 	 */
 	fun interpolate(items: Items) {
-		block(items, "Interpolate")
+		block(items, "Interpolate", tagClass = SetVariableTags.Interpolate::class)
 	}
 
 
@@ -4746,7 +4763,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.SetCoord]
 	 */
 	fun setCoord(items: Items) {
-		block(items, "SetCoord")
+		block(items, "SetCoord", tagClass = SetVariableTags.SetCoord::class)
 	}
 
 
@@ -4825,7 +4842,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	/**
 	 */
 	fun raycastBlock(items: Items) {
-		block(items, "RaycastBlock")
+		block(items, "RaycastBlock", tagClass = SetVariableTags.RaycastBlock::class)
 	}
 
 
@@ -4976,7 +4993,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.PerlinNoise]
 	 */
 	fun perlinNoise(items: Items) {
-		block(items, "PerlinNoise")
+		block(items, "PerlinNoise", tagClass = SetVariableTags.PerlinNoise::class)
 	}
 
 
@@ -5016,7 +5033,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.WorleyNoise]
 	 */
 	fun worleyNoise(items: Items) {
-		block(items, "WorleyNoise")
+		block(items, "WorleyNoise", tagClass = SetVariableTags.WorleyNoise::class)
 	}
 
 
@@ -5135,7 +5152,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.SortList]
 	 */
 	fun sortList(items: Items) {
-		block(items, "SortList")
+		block(items, "SortList", tagClass = SetVariableTags.SortList::class)
 	}
 
 
@@ -5216,7 +5233,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.FormatTime]
 	 */
 	fun formatTime(items: Items) {
-		block(items, "FormatTime")
+		block(items, "FormatTime", tagClass = SetVariableTags.FormatTime::class)
 	}
 
 
@@ -5306,7 +5323,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.StyledText]
 	 */
 	fun styledText(items: Items) {
-		block(items, "StyledText")
+		block(items, "StyledText", tagClass = SetVariableTags.StyledText::class)
 	}
 
 
@@ -5474,7 +5491,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.GetContainerItems]
 	 */
 	fun getContainerItems(items: Items) {
-		block(items, "GetContainerItems")
+		block(items, "GetContainerItems", tagClass = SetVariableTags.GetContainerItems::class)
 	}
 
 
@@ -5497,7 +5514,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.GetModelDataNums]
 	 */
 	fun getModelDataNums(items: Items) {
-		block(items, "GetModelDataNums")
+		block(items, "GetModelDataNums", tagClass = SetVariableTags.GetModelDataNums::class)
 	}
 
 
@@ -5646,7 +5663,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.GradientNoise]
 	 */
 	fun gradientNoise(items: Items) {
-		block(items, "GradientNoise")
+		block(items, "GradientNoise", tagClass = SetVariableTags.GradientNoise::class)
 	}
 
 
@@ -5669,7 +5686,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.SetItemHideTooltip]
 	 */
 	fun setItemHideTooltip(items: Items) {
-		block(items, "SetItemHideTooltip")
+		block(items, "SetItemHideTooltip", tagClass = SetVariableTags.SetItemHideTooltip::class)
 	}
 
 
@@ -5764,7 +5781,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.Cosine]
 	 */
 	fun cosine(items: Items) {
-		block(items, "Cosine")
+		block(items, "Cosine", tagClass = SetVariableTags.Cosine::class)
 	}
 
 
@@ -5832,7 +5849,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.GetItemByMCTag]
 	 */
 	fun getItemByMCTag(items: Items) {
-		block(items, "GetItemByMCTag")
+		block(items, "GetItemByMCTag", tagClass = SetVariableTags.GetItemByMCTag::class)
 	}
 
 
@@ -5887,7 +5904,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.SetVectorComp]
 	 */
 	fun setVectorComp(items: Items) {
-		block(items, "SetVectorComp")
+		block(items, "SetVectorComp", tagClass = SetVariableTags.SetVectorComp::class)
 	}
 
 
@@ -5941,7 +5958,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	/**
 	 */
 	fun shiftAllDirs(items: Items) {
-		block(items, "ShiftAllDirs")
+		block(items, "ShiftAllDirs", tagClass = SetVariableTags.ShiftAllDirs::class)
 	}
 
 
@@ -5969,7 +5986,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.GetValueIndex]
 	 */
 	fun getValueIndex(items: Items) {
-		block(items, "GetValueIndex")
+		block(items, "GetValueIndex", tagClass = SetVariableTags.GetValueIndex::class)
 	}
 
 
@@ -6071,7 +6088,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.GetConsumable]
 	 */
 	fun getConsumable(items: Items) {
-		block(items, "GetConsumable")
+		block(items, "GetConsumable", tagClass = SetVariableTags.GetConsumable::class)
 	}
 
 
@@ -6127,7 +6144,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	/**
 	 */
 	fun shiftLocation(items: Items) {
-		block(items, "ShiftLocation")
+		block(items, "ShiftLocation", tagClass = SetVariableTags.ShiftLocation::class)
 	}
 
 
@@ -6177,7 +6194,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.HiddenComponents]
 	 */
 	fun hiddenComponents(items: Items) {
-		block(items, "HiddenComponents")
+		block(items, "HiddenComponents", tagClass = SetVariableTags.HiddenComponents::class)
 	}
 
 
@@ -6214,7 +6231,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	/**
 	 */
 	fun round(items: Items) {
-		block(items, "Round")
+		block(items, "Round", tagClass = SetVariableTags.Round::class)
 	}
 
 
@@ -6258,7 +6275,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.GetSoundPitch]
 	 */
 	fun getSoundPitch(items: Items) {
-		block(items, "GetSoundPitch")
+		block(items, "GetSoundPitch", tagClass = SetVariableTags.GetSoundPitch::class)
 	}
 
 
@@ -6282,7 +6299,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.TranslateColors]
 	 */
 	fun translateColors(items: Items) {
-		block(items, "TranslateColors")
+		block(items, "TranslateColors", tagClass = SetVariableTags.TranslateColors::class)
 	}
 
 
@@ -6305,7 +6322,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.GetBlockGrowth]
 	 */
 	fun getBlockGrowth(items: Items) {
-		block(items, "GetBlockGrowth")
+		block(items, "GetBlockGrowth", tagClass = SetVariableTags.GetBlockGrowth::class)
 	}
 
 
@@ -6350,7 +6367,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.RemoveListValue]
 	 */
 	fun removeListValue(items: Items) {
-		block(items, "RemoveListValue")
+		block(items, "RemoveListValue", tagClass = SetVariableTags.RemoveListValue::class)
 	}
 
 
@@ -6373,7 +6390,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.BytesToString]
 	 */
 	fun bytesToString(items: Items) {
-		block(items, "BytesToString")
+		block(items, "BytesToString", tagClass = SetVariableTags.BytesToString::class)
 	}
 
 
@@ -6493,7 +6510,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.ValueNoise]
 	 */
 	fun valueNoise(items: Items) {
-		block(items, "ValueNoise")
+		block(items, "ValueNoise", tagClass = SetVariableTags.ValueNoise::class)
 	}
 
 
@@ -6524,7 +6541,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.WebResponse]
 	 */
 	fun webResponse(items: Items) {
-		block(items, "WebResponse")
+		block(items, "WebResponse", tagClass = SetVariableTags.WebResponse::class)
 	}
 
 
@@ -6597,7 +6614,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.GetBlockType]
 	 */
 	fun getBlockType(items: Items) {
-		block(items, "GetBlockType")
+		block(items, "GetBlockType", tagClass = SetVariableTags.GetBlockType::class)
 	}
 
 
@@ -6673,7 +6690,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.GetItemWeapon]
 	 */
 	fun getItemWeapon(items: Items) {
-		block(items, "GetItemWeapon")
+		block(items, "GetItemWeapon", tagClass = SetVariableTags.GetItemWeapon::class)
 	}
 
 
@@ -6717,7 +6734,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.GetVectorLength]
 	 */
 	fun getVectorLength(items: Items) {
-		block(items, "GetVectorLength")
+		block(items, "GetVectorLength", tagClass = SetVariableTags.GetVectorLength::class)
 	}
 
 
@@ -6769,7 +6786,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * @see [SetVariableTags.StringToBytes]
 	 */
 	fun stringToBytes(items: Items) {
-		block(items, "StringToBytes")
+		block(items, "StringToBytes", tagClass = SetVariableTags.StringToBytes::class)
 	}
 
 

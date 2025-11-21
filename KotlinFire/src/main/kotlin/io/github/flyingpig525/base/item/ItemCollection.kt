@@ -44,4 +44,6 @@ class ItemCollection internal constructor(func: ItemCollection.() -> Unit) {
     operator fun plusAssign(item: Insertable) { item.unaryPlus() }
 
     operator fun get(index: Int) = items[index]
+
+    override fun toString(): String = items.toString()
 }

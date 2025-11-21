@@ -3,10 +3,10 @@ package io.github.flyingpig525.base.item.type.tag
 @Suppress("unused", "RemoveRedundantQualifierName")
 object SelectObjectTags {
 	object EntityName {
-		enum class IgnoreFormatting(override val option: kotlin.String) : TagItem {
+		enum class IgnoreFormatting(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "EntityName"
 			override val block: kotlin.String = "select"
@@ -16,20 +16,20 @@ object SelectObjectTags {
 	}
 
 	object FilterDistance {
-		enum class IgnoreYAxis(override val option: kotlin.String) : TagItem {
-			True("True"),
+		enum class IgnoreYAxis(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			True("True", false),
 			/** **Default** */
-			False("False");
+			False("False", true);
 
 			override val action: kotlin.String = "FilterDistance"
 			override val block: kotlin.String = "select"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Ignore Y-Axis"
 		}
-		enum class CompareMode(override val option: kotlin.String) : TagItem {
+		enum class CompareMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Nearest("Nearest"),
-			Farthest("Farthest");
+			Nearest("Nearest", true),
+			Farthest("Farthest", false);
 
 			override val action: kotlin.String = "FilterDistance"
 			override val block: kotlin.String = "select"
@@ -39,12 +39,12 @@ object SelectObjectTags {
 	}
 
 	object FilterRay {
-		enum class BlockCollision(override val option: kotlin.String) : TagItem {
-			AllBlocks("All blocks"),
-			NonFluidBlocks("Non-fluid blocks"),
+		enum class BlockCollision(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			AllBlocks("All blocks", false),
+			NonFluidBlocks("Non-fluid blocks", false),
 			/** **Default** */
-			SolidBlocks("Solid blocks"),
-			None("None");
+			SolidBlocks("Solid blocks", true),
+			None("None", false);
 
 			override val action: kotlin.String = "FilterRay"
 			override val block: kotlin.String = "select"
@@ -54,14 +54,14 @@ object SelectObjectTags {
 	}
 
 	object EventTarget {
-		enum class EventTarget(override val option: kotlin.String) : TagItem {
+		enum class EventTarget(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Default("Default"),
-			Killer("Killer"),
-			Damager("Damager"),
-			Victim("Victim"),
-			Shooter("Shooter"),
-			Projectile("Projectile");
+			Default("Default", true),
+			Killer("Killer", false),
+			Damager("Damager", false),
+			Victim("Victim", false),
+			Shooter("Shooter", false),
+			Projectile("Projectile", false);
 
 			override val action: kotlin.String = "EventTarget"
 			override val block: kotlin.String = "select"
@@ -71,10 +71,10 @@ object SelectObjectTags {
 	}
 
 	object FilterSort {
-		enum class SortOrder(override val option: kotlin.String) : TagItem {
+		enum class SortOrder(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Ascending("Ascending"),
-			Descending("Descending");
+			Ascending("Ascending", true),
+			Descending("Descending", false);
 
 			override val action: kotlin.String = "FilterSort"
 			override val block: kotlin.String = "select"

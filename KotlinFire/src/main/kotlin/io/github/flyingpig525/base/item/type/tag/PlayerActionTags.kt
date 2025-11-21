@@ -3,10 +3,10 @@ package io.github.flyingpig525.base.item.type.tag
 @Suppress("unused", "RemoveRedundantQualifierName")
 object PlayerActionTags {
 	object SetReducedDebug {
-		enum class ReducedDebugInfoEnabled(override val option: kotlin.String) : TagItem {
+		enum class ReducedDebugInfoEnabled(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "SetReducedDebug"
 			override val block: kotlin.String = "player_action"
@@ -16,10 +16,10 @@ object PlayerActionTags {
 	}
 
 	object SetHandCrafting {
-		enum class AllowHandCrafting(override val option: kotlin.String) : TagItem {
-			Enable("Enable"),
+		enum class AllowHandCrafting(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Enable("Enable", false),
 			/** **Default** */
-			Disable("Disable");
+			Disable("Disable", true);
 
 			override val action: kotlin.String = "SetHandCrafting"
 			override val block: kotlin.String = "player_action"
@@ -29,57 +29,57 @@ object PlayerActionTags {
 	}
 
 	object BossBar {
-		enum class BarSlot(override val option: kotlin.String) : TagItem {
+		enum class BarSlot(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			SlotOne("Slot 1"),
-			SlotTwo("Slot 2"),
-			SlotThree("Slot 3"),
-			SlotFour("Slot 4"),
-			SlotFive("Slot 5"),
-			SlotSix("Slot 6"),
-			SlotSeven("Slot 7"),
-			SlotEight("Slot 8"),
-			SlotNine("Slot 9");
+			SlotOne("Slot 1", true),
+			SlotTwo("Slot 2", false),
+			SlotThree("Slot 3", false),
+			SlotFour("Slot 4", false),
+			SlotFive("Slot 5", false),
+			SlotSix("Slot 6", false),
+			SlotSeven("Slot 7", false),
+			SlotEight("Slot 8", false),
+			SlotNine("Slot 9", false);
 
 			override val action: kotlin.String = "BossBar"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Bar Slot"
 		}
-		enum class BarStyle(override val option: kotlin.String) : TagItem {
+		enum class BarStyle(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Solid("Solid"),
-			SixSegments("6 segments"),
-			TenSegments("10 segments"),
-			TwelveSegments("12 segments"),
-			TwentySegments("20 segments");
+			Solid("Solid", true),
+			SixSegments("6 segments", false),
+			TenSegments("10 segments", false),
+			TwelveSegments("12 segments", false),
+			TwentySegments("20 segments", false);
 
 			override val action: kotlin.String = "BossBar"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Bar Style"
 		}
-		enum class SkyEffect(override val option: kotlin.String) : TagItem {
+		enum class SkyEffect(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			None("None"),
-			CreateFog("Create fog"),
-			DarkenSky("Darken sky"),
-			Both("Both");
+			None("None", true),
+			CreateFog("Create fog", false),
+			DarkenSky("Darken sky", false),
+			Both("Both", false);
 
 			override val action: kotlin.String = "BossBar"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Sky Effect"
 		}
-		enum class BarColor(override val option: kotlin.String) : TagItem {
-			Red("Red"),
+		enum class BarColor(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Red("Red", false),
 			/** **Default** */
-			Purple("Purple"),
-			Pink("Pink"),
-			Blue("Blue"),
-			Green("Green"),
-			Yellow("Yellow"),
-			White("White");
+			Purple("Purple", true),
+			Pink("Pink", false),
+			Blue("Blue", false),
+			Green("Green", false),
+			Yellow("Yellow", false),
+			White("White", false);
 
 			override val action: kotlin.String = "BossBar"
 			override val block: kotlin.String = "player_action"
@@ -89,10 +89,10 @@ object PlayerActionTags {
 	}
 
 	object SetVelocity {
-		enum class AddtoCurrentVelocity(override val option: kotlin.String) : TagItem {
-			True("True"),
+		enum class AddtoCurrentVelocity(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			True("True", false),
 			/** **Default** */
-			False("False");
+			False("False", true);
 
 			override val action: kotlin.String = "SetVelocity"
 			override val block: kotlin.String = "player_action"
@@ -102,10 +102,10 @@ object PlayerActionTags {
 	}
 
 	object AddInvRow {
-		enum class NewRowPosition(override val option: kotlin.String) : TagItem {
-			TopRow("Top row"),
+		enum class NewRowPosition(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			TopRow("Top row", false),
 			/** **Default** */
-			BottomRow("Bottom row");
+			BottomRow("Bottom row", true);
 
 			override val action: kotlin.String = "AddInvRow"
 			override val block: kotlin.String = "player_action"
@@ -115,10 +115,10 @@ object PlayerActionTags {
 	}
 
 	object Damage {
-		enum class IgnoreFormatting(override val option: kotlin.String) : TagItem {
+		enum class IgnoreFormatting(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "Damage"
 			override val block: kotlin.String = "player_action"
@@ -128,10 +128,10 @@ object PlayerActionTags {
 	}
 
 	object SendAnimation {
-		enum class AnimationType(override val option: kotlin.String) : TagItem {
+		enum class AnimationType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			HurtAnimation("Hurt animation"),
-			WakeUpFadeEffect("Wake up (fade effect)");
+			HurtAnimation("Hurt animation", true),
+			WakeUpFadeEffect("Wake up (fade effect)", false);
 
 			override val action: kotlin.String = "SendAnimation"
 			override val block: kotlin.String = "player_action"
@@ -141,10 +141,10 @@ object PlayerActionTags {
 	}
 
 	object SetInventoryKept {
-		enum class InventoryKept(override val option: kotlin.String) : TagItem {
+		enum class InventoryKept(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Enable("Enable"),
-			Disable("Disable");
+			Enable("Enable", true),
+			Disable("Disable", false);
 
 			override val action: kotlin.String = "SetInventoryKept"
 			override val block: kotlin.String = "player_action"
@@ -154,10 +154,10 @@ object PlayerActionTags {
 	}
 
 	object LaunchUp {
-		enum class AddtoCurrentVelocity(override val option: kotlin.String) : TagItem {
+		enum class AddtoCurrentVelocity(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "LaunchUp"
 			override val block: kotlin.String = "player_action"
@@ -167,10 +167,10 @@ object PlayerActionTags {
 	}
 
 	object GetTargetEntity {
-		enum class IgnoreBlocks(override val option: kotlin.String) : TagItem {
-			True("True"),
+		enum class IgnoreBlocks(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			True("True", false),
 			/** **Default** */
-			False("False");
+			False("False", true);
 
 			override val action: kotlin.String = "GetTargetEntity"
 			override val block: kotlin.String = "player_action"
@@ -180,10 +180,10 @@ object PlayerActionTags {
 	}
 
 	object ForceFlight {
-		enum class FlightMode(override val option: kotlin.String) : TagItem {
+		enum class FlightMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			StartFlight("Start Flight"),
-			StopFlight("Stop Flight");
+			StartFlight("Start Flight", true),
+			StopFlight("Stop Flight", false);
 
 			override val action: kotlin.String = "ForceFlight"
 			override val block: kotlin.String = "player_action"
@@ -193,10 +193,10 @@ object PlayerActionTags {
 	}
 
 	object LoadInv {
-		enum class CodeFlow(override val option: kotlin.String) : TagItem {
+		enum class CodeFlow(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Synchronous("Synchronous"),
-			Asynchronous("Asynchronous");
+			Synchronous("Synchronous", true),
+			Asynchronous("Asynchronous", false);
 
 			override val action: kotlin.String = "LoadInv"
 			override val block: kotlin.String = "player_action"
@@ -206,24 +206,24 @@ object PlayerActionTags {
 	}
 
 	object MiscAttribute {
-		enum class Attribute(override val option: kotlin.String) : TagItem {
+		enum class Attribute(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Scale("Scale"),
-			Luck("Luck"),
-			OxygenBonus("Oxygen bonus"),
-			BurningTime("Burning time"),
-			CameraDistance("Camera distance");
+			Scale("Scale", true),
+			Luck("Luck", false),
+			OxygenBonus("Oxygen bonus", false),
+			BurningTime("Burning time", false),
+			CameraDistance("Camera distance", false);
 
 			override val action: kotlin.String = "MiscAttribute"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Attribute"
 		}
-		enum class ValueType(override val option: kotlin.String) : TagItem {
+		enum class ValueType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Direct("Direct"),
-			PercentageBase("Percentage (Base)"),
-			PercentageRelative("Percentage (Relative)");
+			Direct("Direct", true),
+			PercentageBase("Percentage (Base)", false),
+			PercentageRelative("Percentage (Relative)", false);
 
 			override val action: kotlin.String = "MiscAttribute"
 			override val block: kotlin.String = "player_action"
@@ -233,10 +233,10 @@ object PlayerActionTags {
 	}
 
 	object SpectateTarget {
-		enum class IgnoreFormatting(override val option: kotlin.String) : TagItem {
+		enum class IgnoreFormatting(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "SpectateTarget"
 			override val block: kotlin.String = "player_action"
@@ -246,12 +246,12 @@ object PlayerActionTags {
 	}
 
 	object DisplayBellRing {
-		enum class RingDirection(override val option: kotlin.String) : TagItem {
+		enum class RingDirection(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			North("North"),
-			South("South"),
-			West("West"),
-			East("East");
+			North("North", true),
+			South("South", false),
+			West("West", false),
+			East("East", false);
 
 			override val action: kotlin.String = "DisplayBellRing"
 			override val block: kotlin.String = "player_action"
@@ -261,22 +261,22 @@ object PlayerActionTags {
 	}
 
 	object CombatAttribute {
-		enum class Attribute(override val option: kotlin.String) : TagItem {
+		enum class Attribute(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			AttackDamage("Attack damage"),
-			AttackSpeed("Attack speed"),
-			SweepingDamageRatio("Sweeping damage ratio");
+			AttackDamage("Attack damage", true),
+			AttackSpeed("Attack speed", false),
+			SweepingDamageRatio("Sweeping damage ratio", false);
 
 			override val action: kotlin.String = "CombatAttribute"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Attribute"
 		}
-		enum class ValueType(override val option: kotlin.String) : TagItem {
+		enum class ValueType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Direct("Direct"),
-			PercentageBase("Percentage (Base)"),
-			PercentageRelative("Percentage (Relative)");
+			Direct("Direct", true),
+			PercentageBase("Percentage (Base)", false),
+			PercentageRelative("Percentage (Relative)", false);
 
 			override val action: kotlin.String = "CombatAttribute"
 			override val block: kotlin.String = "player_action"
@@ -286,21 +286,21 @@ object PlayerActionTags {
 	}
 
 	object SetGamemode {
-		enum class FlightMode(override val option: kotlin.String) : TagItem {
+		enum class FlightMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			RespectGamemode("Respect Gamemode"),
-			KeepOriginal("Keep Original");
+			RespectGamemode("Respect Gamemode", true),
+			KeepOriginal("Keep Original", false);
 
 			override val action: kotlin.String = "SetGamemode"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Flight Mode"
 		}
-		enum class Gamemode(override val option: kotlin.String) : TagItem {
+		enum class Gamemode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Survival("Survival"),
-			Creative("Creative"),
-			Adventure("Adventure");
+			Survival("Survival", true),
+			Creative("Creative", false),
+			Adventure("Adventure", false);
 
 			override val action: kotlin.String = "SetGamemode"
 			override val block: kotlin.String = "player_action"
@@ -310,10 +310,10 @@ object PlayerActionTags {
 	}
 
 	object RemoveInvRow {
-		enum class RowtoRemove(override val option: kotlin.String) : TagItem {
-			TopRow("Top row"),
+		enum class RowtoRemove(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			TopRow("Top row", false),
 			/** **Default** */
-			BottomRow("Bottom row");
+			BottomRow("Bottom row", true);
 
 			override val action: kotlin.String = "RemoveInvRow"
 			override val block: kotlin.String = "player_action"
@@ -323,11 +323,11 @@ object PlayerActionTags {
 	}
 
 	object LSetHealth {
-		enum class HealType(override val option: kotlin.String) : TagItem {
+		enum class HealType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			RegularHealth("Regular Health"),
-			AbsorptionHealth("Absorption Health"),
-			CombinedHealth("Combined Health");
+			RegularHealth("Regular Health", true),
+			AbsorptionHealth("Absorption Health", false),
+			CombinedHealth("Combined Health", false);
 
 			override val action: kotlin.String = "L SetHealth"
 			override val block: kotlin.String = "player_action"
@@ -337,23 +337,23 @@ object PlayerActionTags {
 	}
 
 	object ClearInv {
-		enum class ClearMode(override val option: kotlin.String) : TagItem {
+		enum class ClearMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			EntireInventory("Entire inventory"),
-			MainInventory("Main inventory"),
-			UpperInventory("Upper inventory"),
-			Hotbar("Hotbar"),
-			Armor("Armor");
+			EntireInventory("Entire inventory", true),
+			MainInventory("Main inventory", false),
+			UpperInventory("Upper inventory", false),
+			Hotbar("Hotbar", false),
+			Armor("Armor", false);
 
 			override val action: kotlin.String = "ClearInv"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Clear Mode"
 		}
-		enum class ClearCraftingandCursor(override val option: kotlin.String) : TagItem {
+		enum class ClearCraftingandCursor(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "ClearInv"
 			override val block: kotlin.String = "player_action"
@@ -363,10 +363,10 @@ object PlayerActionTags {
 	}
 
 	object SetFreezeTicks {
-		enum class TickingLocked(override val option: kotlin.String) : TagItem {
-			Enable("Enable"),
+		enum class TickingLocked(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Enable("Enable", false),
 			/** **Default** */
-			Disable("Disable");
+			Disable("Disable", true);
 
 			override val action: kotlin.String = "SetFreezeTicks"
 			override val block: kotlin.String = "player_action"
@@ -376,10 +376,10 @@ object PlayerActionTags {
 	}
 
 	object SetGliding {
-		enum class Gliding(override val option: kotlin.String) : TagItem {
+		enum class Gliding(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Enable("Enable"),
-			Disable("Disable");
+			Enable("Enable", true),
+			Disable("Disable", false);
 
 			override val action: kotlin.String = "SetGliding"
 			override val block: kotlin.String = "player_action"
@@ -389,10 +389,10 @@ object PlayerActionTags {
 	}
 
 	object OpenSign {
-		enum class SignSide(override val option: kotlin.String) : TagItem {
+		enum class SignSide(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Front("Front"),
-			Back("Back");
+			Front("Front", true),
+			Back("Back", false);
 
 			override val action: kotlin.String = "OpenSign"
 			override val block: kotlin.String = "player_action"
@@ -402,10 +402,10 @@ object PlayerActionTags {
 	}
 
 	object SetFlying {
-		enum class Flying(override val option: kotlin.String) : TagItem {
+		enum class Flying(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Enable("Enable"),
-			Disable("Disable");
+			Enable("Enable", true),
+			Disable("Disable", false);
 
 			override val action: kotlin.String = "SetFlying"
 			override val block: kotlin.String = "player_action"
@@ -415,10 +415,10 @@ object PlayerActionTags {
 	}
 
 	object DisplayBlockOpen {
-		enum class ContainerState(override val option: kotlin.String) : TagItem {
+		enum class ContainerState(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Open("Open"),
-			Closed("Closed");
+			Open("Open", true),
+			Closed("Closed", false);
 
 			override val action: kotlin.String = "DisplayBlockOpen"
 			override val block: kotlin.String = "player_action"
@@ -428,10 +428,10 @@ object PlayerActionTags {
 	}
 
 	object SetHandItem {
-		enum class HandSlot(override val option: kotlin.String) : TagItem {
+		enum class HandSlot(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			MainHand("Main Hand"),
-			OffHand("Off Hand");
+			MainHand("Main Hand", true),
+			OffHand("Off Hand", false);
 
 			override val action: kotlin.String = "SetHandItem"
 			override val block: kotlin.String = "player_action"
@@ -441,11 +441,11 @@ object PlayerActionTags {
 	}
 
 	object SendAdvancement {
-		enum class ToastType(override val option: kotlin.String) : TagItem {
+		enum class ToastType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Advancement("Advancement"),
-			Goal("Goal"),
-			Challenge("Challenge");
+			Advancement("Advancement", true),
+			Goal("Goal", false),
+			Challenge("Challenge", false);
 
 			override val action: kotlin.String = "SendAdvancement"
 			override val block: kotlin.String = "player_action"
@@ -455,20 +455,20 @@ object PlayerActionTags {
 	}
 
 	object LaunchToward {
-		enum class AddtoCurrentVelocity(override val option: kotlin.String) : TagItem {
+		enum class AddtoCurrentVelocity(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "LaunchToward"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Add to Current Velocity"
 		}
-		enum class IgnoreDistance(override val option: kotlin.String) : TagItem {
-			True("True"),
+		enum class IgnoreDistance(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			True("True", false),
 			/** **Default** */
-			False("False");
+			False("False", true);
 
 			override val action: kotlin.String = "LaunchToward"
 			override val block: kotlin.String = "player_action"
@@ -478,10 +478,10 @@ object PlayerActionTags {
 	}
 
 	object DisplayGateway {
-		enum class AnimationType(override val option: kotlin.String) : TagItem {
+		enum class AnimationType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			InitialBeam("Initial beam"),
-			PeriodicBeam("Periodic beam");
+			InitialBeam("Initial beam", true),
+			PeriodicBeam("Periodic beam", false);
 
 			override val action: kotlin.String = "DisplayGateway"
 			override val block: kotlin.String = "player_action"
@@ -491,11 +491,11 @@ object PlayerActionTags {
 	}
 
 	object GiveExp {
-		enum class GiveExperience(override val option: kotlin.String) : TagItem {
+		enum class GiveExperience(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Points("Points"),
-			Levels("Levels"),
-			LevelPercentage("Level Percentage");
+			Points("Points", true),
+			Levels("Levels", false),
+			LevelPercentage("Level Percentage", false);
 
 			override val action: kotlin.String = "GiveExp"
 			override val block: kotlin.String = "player_action"
@@ -505,20 +505,20 @@ object PlayerActionTags {
 	}
 
 	object ActionBar {
-		enum class TextValueMerging(override val option: kotlin.String) : TagItem {
-			AddSpaces("Add spaces"),
+		enum class TextValueMerging(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			AddSpaces("Add spaces", false),
 			/** **Default** */
-			NoSpaces("No spaces");
+			NoSpaces("No spaces", true);
 
 			override val action: kotlin.String = "ActionBar"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Text Value Merging"
 		}
-		enum class InheritStyles(override val option: kotlin.String) : TagItem {
+		enum class InheritStyles(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "ActionBar"
 			override val block: kotlin.String = "player_action"
@@ -528,44 +528,44 @@ object PlayerActionTags {
 	}
 
 	object DisplaySignText {
-		enum class SignSide(override val option: kotlin.String) : TagItem {
+		enum class SignSide(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Front("Front"),
-			Back("Back");
+			Front("Front", true),
+			Back("Back", false);
 
 			override val action: kotlin.String = "DisplaySignText"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Sign Side"
 		}
-		enum class TextColor(override val option: kotlin.String) : TagItem {
-			White("White"),
-			Orange("Orange"),
-			Magenta("Magenta"),
-			LightBlue("Light blue"),
-			Yellow("Yellow"),
-			Lime("Lime"),
-			Pink("Pink"),
-			Gray("Gray"),
-			LightGray("Light gray"),
-			Cyan("Cyan"),
-			Purple("Purple"),
-			Blue("Blue"),
-			Brown("Brown"),
-			Green("Green"),
-			Red("Red"),
+		enum class TextColor(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			White("White", false),
+			Orange("Orange", false),
+			Magenta("Magenta", false),
+			LightBlue("Light blue", false),
+			Yellow("Yellow", false),
+			Lime("Lime", false),
+			Pink("Pink", false),
+			Gray("Gray", false),
+			LightGray("Light gray", false),
+			Cyan("Cyan", false),
+			Purple("Purple", false),
+			Blue("Blue", false),
+			Brown("Brown", false),
+			Green("Green", false),
+			Red("Red", false),
 			/** **Default** */
-			Black("Black");
+			Black("Black", true);
 
 			override val action: kotlin.String = "DisplaySignText"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Text Color"
 		}
-		enum class Glowing(override val option: kotlin.String) : TagItem {
-			Enable("Enable"),
+		enum class Glowing(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Enable("Enable", false),
 			/** **Default** */
-			Disable("Disable");
+			Disable("Disable", true);
 
 			override val action: kotlin.String = "DisplaySignText"
 			override val block: kotlin.String = "player_action"
@@ -575,11 +575,11 @@ object PlayerActionTags {
 	}
 
 	object SetSpeed {
-		enum class SpeedType(override val option: kotlin.String) : TagItem {
+		enum class SpeedType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			GroundSpeed("Ground speed"),
-			FlightSpeed("Flight speed"),
-			Both("Both");
+			GroundSpeed("Ground speed", true),
+			FlightSpeed("Flight speed", false),
+			Both("Both", false);
 
 			override val action: kotlin.String = "SetSpeed"
 			override val block: kotlin.String = "player_action"
@@ -589,11 +589,11 @@ object PlayerActionTags {
 	}
 
 	object ParticleCuboidA {
-		enum class FillType(override val option: kotlin.String) : TagItem {
+		enum class FillType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Wireframe("Wireframe"),
-			Hollow("Hollow"),
-			Solid("Solid");
+			Wireframe("Wireframe", true),
+			Hollow("Hollow", false),
+			Solid("Solid", false);
 
 			override val action: kotlin.String = "ParticleCuboidA"
 			override val block: kotlin.String = "player_action"
@@ -603,19 +603,19 @@ object PlayerActionTags {
 	}
 
 	object PlaySound {
-		enum class SoundSource(override val option: kotlin.String) : TagItem {
+		enum class SoundSource(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Master("Master"),
-			Music("Music"),
-			JukeboxOrNoteBlocks("Jukebox/Note Blocks"),
-			Weather("Weather"),
-			Blocks("Blocks"),
-			HostileCreatures("Hostile Creatures"),
-			FriendlyCreatures("Friendly Creatures"),
-			Players("Players"),
-			AmbientOrEnvironment("Ambient/Environment"),
-			VoiceOrSpeech("Voice/Speech"),
-			Ui("UI");
+			Master("Master", true),
+			Music("Music", false),
+			JukeboxOrNoteBlocks("Jukebox/Note Blocks", false),
+			Weather("Weather", false),
+			Blocks("Blocks", false),
+			HostileCreatures("Hostile Creatures", false),
+			FriendlyCreatures("Friendly Creatures", false),
+			Players("Players", false),
+			AmbientOrEnvironment("Ambient/Environment", false),
+			VoiceOrSpeech("Voice/Speech", false),
+			Ui("UI", false);
 
 			override val action: kotlin.String = "PlaySound"
 			override val block: kotlin.String = "player_action"
@@ -625,10 +625,10 @@ object PlayerActionTags {
 	}
 
 	object RngTeleport {
-		enum class KeepCurrentRotation(override val option: kotlin.String) : TagItem {
-			True("True"),
+		enum class KeepCurrentRotation(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			True("True", false),
 			/** **Default** */
-			False("False");
+			False("False", true);
 
 			override val action: kotlin.String = "RngTeleport"
 			override val block: kotlin.String = "player_action"
@@ -638,18 +638,18 @@ object PlayerActionTags {
 	}
 
 	object RemoveBossBar {
-		enum class BossBarSlot(override val option: kotlin.String) : TagItem {
+		enum class BossBarSlot(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			AllBossBars("All boss bars"),
-			One("1"),
-			Two("2"),
-			Three("3"),
-			Four("4"),
-			Five("5"),
-			Six("6"),
-			Seven("7"),
-			Eight("8"),
-			Nine("9");
+			AllBossBars("All boss bars", true),
+			One("1", false),
+			Two("2", false),
+			Three("3", false),
+			Four("4", false),
+			Five("5", false),
+			Six("6", false),
+			Seven("7", false),
+			Eight("8", false),
+			Nine("9", false);
 
 			override val action: kotlin.String = "RemoveBossBar"
 			override val block: kotlin.String = "player_action"
@@ -659,14 +659,14 @@ object PlayerActionTags {
 	}
 
 	object SetEquipment {
-		enum class EquipmentSlot(override val option: kotlin.String) : TagItem {
+		enum class EquipmentSlot(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			MainHand("Main hand"),
-			OffHand("Off hand"),
-			Head("Head"),
-			Chest("Chest"),
-			Legs("Legs"),
-			Feet("Feet");
+			MainHand("Main hand", true),
+			OffHand("Off hand", false),
+			Head("Head", false),
+			Chest("Chest", false),
+			Legs("Legs", false),
+			Feet("Feet", false);
 
 			override val action: kotlin.String = "SetEquipment"
 			override val block: kotlin.String = "player_action"
@@ -676,10 +676,10 @@ object PlayerActionTags {
 	}
 
 	object SetDropsEnabled {
-		enum class SpawnDeathDrops(override val option: kotlin.String) : TagItem {
+		enum class SpawnDeathDrops(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Enable("Enable"),
-			Disable("Disable");
+			Enable("Enable", true),
+			Disable("Disable", false);
 
 			override val action: kotlin.String = "SetDropsEnabled"
 			override val block: kotlin.String = "player_action"
@@ -689,10 +689,10 @@ object PlayerActionTags {
 	}
 
 	object DisplayFracture {
-		enum class OverwritePreviousFracture(override val option: kotlin.String) : TagItem {
+		enum class OverwritePreviousFracture(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "DisplayFracture"
 			override val block: kotlin.String = "player_action"
@@ -702,20 +702,20 @@ object PlayerActionTags {
 	}
 
 	object SetEntityHidden {
-		enum class Hidden(override val option: kotlin.String) : TagItem {
+		enum class Hidden(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Enable("Enable"),
-			Disable("Disable");
+			Enable("Enable", true),
+			Disable("Disable", false);
 
 			override val action: kotlin.String = "SetEntityHidden"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Hidden"
 		}
-		enum class IgnoreFormatting(override val option: kotlin.String) : TagItem {
+		enum class IgnoreFormatting(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "SetEntityHidden"
 			override val block: kotlin.String = "player_action"
@@ -725,10 +725,10 @@ object PlayerActionTags {
 	}
 
 	object SetSidebar {
-		enum class Sidebar(override val option: kotlin.String) : TagItem {
+		enum class Sidebar(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Enable("Enable"),
-			Disable("Disable");
+			Enable("Enable", true),
+			Disable("Disable", false);
 
 			override val action: kotlin.String = "SetSidebar"
 			override val block: kotlin.String = "player_action"
@@ -738,11 +738,11 @@ object PlayerActionTags {
 	}
 
 	object ParticleCuboid {
-		enum class FillType(override val option: kotlin.String) : TagItem {
+		enum class FillType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Wireframe("Wireframe"),
-			Hollow("Hollow"),
-			Solid("Solid");
+			Wireframe("Wireframe", true),
+			Hollow("Hollow", false),
+			Solid("Solid", false);
 
 			override val action: kotlin.String = "ParticleCuboid"
 			override val block: kotlin.String = "player_action"
@@ -752,10 +752,10 @@ object PlayerActionTags {
 	}
 
 	object SendMessageSeq {
-		enum class AlignmentMode(override val option: kotlin.String) : TagItem {
+		enum class AlignmentMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Regular("Regular"),
-			Centered("Centered");
+			Regular("Regular", true),
+			Centered("Centered", false);
 
 			override val action: kotlin.String = "SendMessageSeq"
 			override val block: kotlin.String = "player_action"
@@ -765,10 +765,10 @@ object PlayerActionTags {
 	}
 
 	object SetNamePrefix {
-		enum class TextType(override val option: kotlin.String) : TagItem {
+		enum class TextType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Prefix("Prefix"),
-			Suffix("Suffix");
+			Prefix("Prefix", true),
+			Suffix("Suffix", false);
 
 			override val action: kotlin.String = "SetNamePrefix"
 			override val block: kotlin.String = "player_action"
@@ -778,10 +778,10 @@ object PlayerActionTags {
 	}
 
 	object InstantRespawn {
-		enum class InstantRespawn(override val option: kotlin.String) : TagItem {
+		enum class InstantRespawn(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Enable("Enable"),
-			Disable("Disable");
+			Enable("Enable", true),
+			Disable("Disable", false);
 
 			override val action: kotlin.String = "InstantRespawn"
 			override val block: kotlin.String = "player_action"
@@ -791,25 +791,25 @@ object PlayerActionTags {
 	}
 
 	object SetNameColor {
-		enum class NameColor(override val option: kotlin.String) : TagItem {
+		enum class NameColor(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Black("Black"),
-			DarkBlue("Dark blue"),
-			DarkGreen("Dark green"),
-			DarkAqua("Dark aqua"),
-			DarkRed("Dark red"),
-			DarkPurple("Dark purple"),
-			Gold("Gold"),
-			Gray("Gray"),
-			DarkGray("Dark gray"),
-			Blue("Blue"),
-			Green("Green"),
-			Aqua("Aqua"),
-			Red("Red"),
-			LightPurple("Light purple"),
-			Yellow("Yellow"),
-			White("White"),
-			None("None");
+			Black("Black", true),
+			DarkBlue("Dark blue", false),
+			DarkGreen("Dark green", false),
+			DarkAqua("Dark aqua", false),
+			DarkRed("Dark red", false),
+			DarkPurple("Dark purple", false),
+			Gold("Gold", false),
+			Gray("Gray", false),
+			DarkGray("Dark gray", false),
+			Blue("Blue", false),
+			Green("Green", false),
+			Aqua("Aqua", false),
+			Red("Red", false),
+			LightPurple("Light purple", false),
+			Yellow("Yellow", false),
+			White("White", false),
+			None("None", false);
 
 			override val action: kotlin.String = "SetNameColor"
 			override val block: kotlin.String = "player_action"
@@ -819,21 +819,21 @@ object PlayerActionTags {
 	}
 
 	object ReachAttribute {
-		enum class Attribute(override val option: kotlin.String) : TagItem {
+		enum class Attribute(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			BlockInteractionRange("Block interaction range"),
-			EntityInteractionRange("Entity interaction range");
+			BlockInteractionRange("Block interaction range", true),
+			EntityInteractionRange("Entity interaction range", false);
 
 			override val action: kotlin.String = "ReachAttribute"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Attribute"
 		}
-		enum class ValueType(override val option: kotlin.String) : TagItem {
+		enum class ValueType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Direct("Direct"),
-			PercentageBase("Percentage (Base)"),
-			PercentageRelative("Percentage (Relative)");
+			Direct("Direct", true),
+			PercentageBase("Percentage (Base)", false),
+			PercentageRelative("Percentage (Relative)", false);
 
 			override val action: kotlin.String = "ReachAttribute"
 			override val block: kotlin.String = "player_action"
@@ -843,29 +843,29 @@ object PlayerActionTags {
 	}
 
 	object PlayEntitySound {
-		enum class SoundSource(override val option: kotlin.String) : TagItem {
+		enum class SoundSource(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Master("Master"),
-			Music("Music"),
-			JukeboxOrNoteBlocks("Jukebox/Note Blocks"),
-			Weather("Weather"),
-			Blocks("Blocks"),
-			HostileCreatures("Hostile Creatures"),
-			FriendlyCreatures("Friendly Creatures"),
-			Players("Players"),
-			AmbientOrEnvironment("Ambient/Environment"),
-			VoiceOrSpeech("Voice/Speech"),
-			Ui("UI");
+			Master("Master", true),
+			Music("Music", false),
+			JukeboxOrNoteBlocks("Jukebox/Note Blocks", false),
+			Weather("Weather", false),
+			Blocks("Blocks", false),
+			HostileCreatures("Hostile Creatures", false),
+			FriendlyCreatures("Friendly Creatures", false),
+			Players("Players", false),
+			AmbientOrEnvironment("Ambient/Environment", false),
+			VoiceOrSpeech("Voice/Speech", false),
+			Ui("UI", false);
 
 			override val action: kotlin.String = "PlayEntitySound"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Sound Source"
 		}
-		enum class IgnoreFormatting(override val option: kotlin.String) : TagItem {
+		enum class IgnoreFormatting(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "PlayEntitySound"
 			override val block: kotlin.String = "player_action"
@@ -875,11 +875,11 @@ object PlayerActionTags {
 	}
 
 	object SetExp {
-		enum class SetExperience(override val option: kotlin.String) : TagItem {
-			Points("Points"),
+		enum class SetExperience(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Points("Points", false),
 			/** **Default** */
-			Level("Level"),
-			LevelPercentage("Level Percentage");
+			Level("Level", true),
+			LevelPercentage("Level Percentage", false);
 
 			override val action: kotlin.String = "SetExp"
 			override val block: kotlin.String = "player_action"
@@ -889,22 +889,22 @@ object PlayerActionTags {
 	}
 
 	object MiningAttribute {
-		enum class Attribute(override val option: kotlin.String) : TagItem {
+		enum class Attribute(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			BlockBreakSpeed("Block break speed"),
-			MiningEfficiency("Mining efficiency"),
-			SubmergedMiningSpeed("Submerged mining speed");
+			BlockBreakSpeed("Block break speed", true),
+			MiningEfficiency("Mining efficiency", false),
+			SubmergedMiningSpeed("Submerged mining speed", false);
 
 			override val action: kotlin.String = "MiningAttribute"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Attribute"
 		}
-		enum class ValueType(override val option: kotlin.String) : TagItem {
+		enum class ValueType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Direct("Direct"),
-			PercentageBase("Percentage (Base)"),
-			PercentageRelative("Percentage (Relative)");
+			Direct("Direct", true),
+			PercentageBase("Percentage (Base)", false),
+			PercentageRelative("Percentage (Relative)", false);
 
 			override val action: kotlin.String = "MiningAttribute"
 			override val block: kotlin.String = "player_action"
@@ -914,21 +914,21 @@ object PlayerActionTags {
 	}
 
 	object KBAttribute {
-		enum class Attribute(override val option: kotlin.String) : TagItem {
+		enum class Attribute(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			KnockbackResistance("Knockback resistance"),
-			ExplosionKnockbackResistance("Explosion knockback resistance");
+			KnockbackResistance("Knockback resistance", true),
+			ExplosionKnockbackResistance("Explosion knockback resistance", false);
 
 			override val action: kotlin.String = "KBAttribute"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Attribute"
 		}
-		enum class ValueType(override val option: kotlin.String) : TagItem {
+		enum class ValueType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Direct("Direct"),
-			PercentageBase("Percentage (Base)"),
-			PercentageRelative("Percentage (Relative)");
+			Direct("Direct", true),
+			PercentageBase("Percentage (Base)", false),
+			PercentageRelative("Percentage (Relative)", false);
 
 			override val action: kotlin.String = "KBAttribute"
 			override val block: kotlin.String = "player_action"
@@ -938,26 +938,26 @@ object PlayerActionTags {
 	}
 
 	object MovementAttribute {
-		enum class Attribute(override val option: kotlin.String) : TagItem {
+		enum class Attribute(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			WalkingSpeed("Walking speed"),
-			FlyingSpeed("Flying speed"),
-			JumpStrength("Jump strength"),
-			SneakingSpeed("Sneaking speed"),
-			StepHeight("Step height"),
-			MovementEfficiency("Movement efficiency"),
-			WaterMovementEfficiency("Water movement efficiency");
+			WalkingSpeed("Walking speed", true),
+			FlyingSpeed("Flying speed", false),
+			JumpStrength("Jump strength", false),
+			SneakingSpeed("Sneaking speed", false),
+			StepHeight("Step height", false),
+			MovementEfficiency("Movement efficiency", false),
+			WaterMovementEfficiency("Water movement efficiency", false);
 
 			override val action: kotlin.String = "MovementAttribute"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Attribute"
 		}
-		enum class ValueType(override val option: kotlin.String) : TagItem {
+		enum class ValueType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Direct("Direct"),
-			PercentageBase("Percentage (Base)"),
-			PercentageRelative("Percentage (Relative)");
+			Direct("Direct", true),
+			PercentageBase("Percentage (Base)", false),
+			PercentageRelative("Percentage (Relative)", false);
 
 			override val action: kotlin.String = "MovementAttribute"
 			override val block: kotlin.String = "player_action"
@@ -967,22 +967,22 @@ object PlayerActionTags {
 	}
 
 	object FallingAttribute {
-		enum class Attribute(override val option: kotlin.String) : TagItem {
+		enum class Attribute(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Gravity("Gravity"),
-			SafeFallDistance("Safe fall distance"),
-			FallDamageMultiplier("Fall damage multiplier");
+			Gravity("Gravity", true),
+			SafeFallDistance("Safe fall distance", false),
+			FallDamageMultiplier("Fall damage multiplier", false);
 
 			override val action: kotlin.String = "FallingAttribute"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Attribute"
 		}
-		enum class ValueType(override val option: kotlin.String) : TagItem {
+		enum class ValueType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Direct("Direct"),
-			PercentageBase("Percentage (Base)"),
-			PercentageRelative("Percentage (Relative)");
+			Direct("Direct", true),
+			PercentageBase("Percentage (Base)", false),
+			PercentageRelative("Percentage (Relative)", false);
 
 			override val action: kotlin.String = "FallingAttribute"
 			override val block: kotlin.String = "player_action"
@@ -992,10 +992,10 @@ object PlayerActionTags {
 	}
 
 	object SetAllowFlight {
-		enum class AllowFlight(override val option: kotlin.String) : TagItem {
+		enum class AllowFlight(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Enable("Enable"),
-			Disable("Disable");
+			Enable("Enable", true),
+			Disable("Disable", false);
 
 			override val action: kotlin.String = "SetAllowFlight"
 			override val block: kotlin.String = "player_action"
@@ -1005,10 +1005,10 @@ object PlayerActionTags {
 	}
 
 	object SetMaxHealth {
-		enum class HealPlayertoMaxHealth(override val option: kotlin.String) : TagItem {
-			True("True"),
+		enum class HealPlayertoMaxHealth(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			True("True", false),
 			/** **Default** */
-			False("False");
+			False("False", true);
 
 			override val action: kotlin.String = "SetMaxHealth"
 			override val block: kotlin.String = "player_action"
@@ -1018,30 +1018,30 @@ object PlayerActionTags {
 	}
 
 	object SetTabListInfo {
-		enum class PlayerListField(override val option: kotlin.String) : TagItem {
+		enum class PlayerListField(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Header("Header"),
-			Footer("Footer");
+			Header("Header", true),
+			Footer("Footer", false);
 
 			override val action: kotlin.String = "SetTabListInfo"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Player List Field"
 		}
-		enum class TextValueMerging(override val option: kotlin.String) : TagItem {
-			AddSpaces("Add spaces"),
+		enum class TextValueMerging(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			AddSpaces("Add spaces", false),
 			/** **Default** */
-			NoSpaces("No spaces");
+			NoSpaces("No spaces", true);
 
 			override val action: kotlin.String = "SetTabListInfo"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Text Value Merging"
 		}
-		enum class InheritStyles(override val option: kotlin.String) : TagItem {
+		enum class InheritStyles(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "SetTabListInfo"
 			override val block: kotlin.String = "player_action"
@@ -1051,12 +1051,12 @@ object PlayerActionTags {
 	}
 
 	object ScoreLineFormat {
-		enum class NumberFormat(override val option: kotlin.String) : TagItem {
+		enum class NumberFormat(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Fixed("Fixed"),
-			Styled("Styled"),
-			Blank("Blank"),
-			Reset("Reset");
+			Fixed("Fixed", true),
+			Styled("Styled", false),
+			Blank("Blank", false),
+			Reset("Reset", false);
 
 			override val action: kotlin.String = "ScoreLineFormat"
 			override val block: kotlin.String = "player_action"
@@ -1066,40 +1066,40 @@ object PlayerActionTags {
 	}
 
 	object SetBossBar {
-		enum class BarStyle(override val option: kotlin.String) : TagItem {
+		enum class BarStyle(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Solid("Solid"),
-			SixSegments("6 segments"),
-			TenSegments("10 segments"),
-			TwelveSegments("12 segments"),
-			TwentySegments("20 segments");
+			Solid("Solid", true),
+			SixSegments("6 segments", false),
+			TenSegments("10 segments", false),
+			TwelveSegments("12 segments", false),
+			TwentySegments("20 segments", false);
 
 			override val action: kotlin.String = " SetBossBar "
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Bar Style"
 		}
-		enum class SkyEffect(override val option: kotlin.String) : TagItem {
+		enum class SkyEffect(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			None("None"),
-			CreateFog("Create fog"),
-			DarkenSky("Darken sky"),
-			Both("Both");
+			None("None", true),
+			CreateFog("Create fog", false),
+			DarkenSky("Darken sky", false),
+			Both("Both", false);
 
 			override val action: kotlin.String = " SetBossBar "
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Sky Effect"
 		}
-		enum class BarColor(override val option: kotlin.String) : TagItem {
-			Red("Red"),
+		enum class BarColor(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Red("Red", false),
 			/** **Default** */
-			Purple("Purple"),
-			Pink("Pink"),
-			Blue("Blue"),
-			Green("Green"),
-			Yellow("Yellow"),
-			White("White");
+			Purple("Purple", true),
+			Pink("Pink", false),
+			Blue("Blue", false),
+			Green("Green", false),
+			Yellow("Yellow", false),
+			White("White", false);
 
 			override val action: kotlin.String = " SetBossBar "
 			override val block: kotlin.String = "player_action"
@@ -1109,10 +1109,10 @@ object PlayerActionTags {
 	}
 
 	object SpectatorCollision {
-		enum class SpectatorCollision(override val option: kotlin.String) : TagItem {
+		enum class SpectatorCollision(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Enable("Enable"),
-			Disable("Disable");
+			Enable("Enable", true),
+			Disable("Disable", false);
 
 			override val action: kotlin.String = "SpectatorCollision"
 			override val block: kotlin.String = "player_action"
@@ -1122,10 +1122,10 @@ object PlayerActionTags {
 	}
 
 	object SetNameVisible {
-		enum class NameTagVisible(override val option: kotlin.String) : TagItem {
-			Enable("Enable"),
+		enum class NameTagVisible(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Enable("Enable", false),
 			/** **Default** */
-			Disable("Disable");
+			Disable("Disable", true);
 
 			override val action: kotlin.String = "SetNameVisible"
 			override val block: kotlin.String = "player_action"
@@ -1135,10 +1135,10 @@ object PlayerActionTags {
 	}
 
 	object RideEntity {
-		enum class IgnoreFormatting(override val option: kotlin.String) : TagItem {
+		enum class IgnoreFormatting(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "RideEntity"
 			override val block: kotlin.String = "player_action"
@@ -1148,10 +1148,10 @@ object PlayerActionTags {
 	}
 
 	object SetInvName {
-		enum class AlignmentMode(override val option: kotlin.String) : TagItem {
+		enum class AlignmentMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Regular("Regular"),
-			Centered("Centered");
+			Regular("Regular", true),
+			Centered("Centered", false);
 
 			override val action: kotlin.String = " SetInvName "
 			override val block: kotlin.String = "player_action"
@@ -1161,20 +1161,20 @@ object PlayerActionTags {
 	}
 
 	object Teleport {
-		enum class KeepCurrentRotation(override val option: kotlin.String) : TagItem {
-			True("True"),
+		enum class KeepCurrentRotation(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			True("True", false),
 			/** **Default** */
-			False("False");
+			False("False", true);
 
 			override val action: kotlin.String = "Teleport"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Keep Current Rotation"
 		}
-		enum class KeepVelocity(override val option: kotlin.String) : TagItem {
-			True("True"),
+		enum class KeepVelocity(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			True("True", false),
 			/** **Default** */
-			False("False");
+			False("False", true);
 
 			override val action: kotlin.String = "Teleport"
 			override val block: kotlin.String = "player_action"
@@ -1184,10 +1184,10 @@ object PlayerActionTags {
 	}
 
 	object SetAllowPVP {
-		enum class PVP(override val option: kotlin.String) : TagItem {
-			Enable("Enable"),
+		enum class PVP(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Enable("Enable", false),
 			/** **Default** */
-			Disable("Disable");
+			Disable("Disable", true);
 
 			override val action: kotlin.String = "SetAllowPVP"
 			override val block: kotlin.String = "player_action"
@@ -1197,10 +1197,10 @@ object PlayerActionTags {
 	}
 
 	object SetVisualFire {
-		enum class OnFire(override val option: kotlin.String) : TagItem {
+		enum class OnFire(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "SetVisualFire"
 			override val block: kotlin.String = "player_action"
@@ -1210,10 +1210,10 @@ object PlayerActionTags {
 	}
 
 	object SetDisguiseVisible {
-		enum class DisguiseVisible(override val option: kotlin.String) : TagItem {
-			Enable("Enable"),
+		enum class DisguiseVisible(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Enable("Enable", false),
 			/** **Default** */
-			Disable("Disable");
+			Disable("Disable", true);
 
 			override val action: kotlin.String = "SetDisguiseVisible"
 			override val block: kotlin.String = "player_action"
@@ -1223,30 +1223,30 @@ object PlayerActionTags {
 	}
 
 	object SendMessage {
-		enum class AlignmentMode(override val option: kotlin.String) : TagItem {
+		enum class AlignmentMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Regular("Regular"),
-			Centered("Centered");
+			Regular("Regular", true),
+			Centered("Centered", false);
 
 			override val action: kotlin.String = "SendMessage"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Alignment Mode"
 		}
-		enum class TextValueMerging(override val option: kotlin.String) : TagItem {
+		enum class TextValueMerging(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			AddSpaces("Add spaces"),
-			NoSpaces("No spaces");
+			AddSpaces("Add spaces", true),
+			NoSpaces("No spaces", false);
 
 			override val action: kotlin.String = "SendMessage"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Text Value Merging"
 		}
-		enum class InheritStyles(override val option: kotlin.String) : TagItem {
+		enum class InheritStyles(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "SendMessage"
 			override val block: kotlin.String = "player_action"
@@ -1256,19 +1256,19 @@ object PlayerActionTags {
 	}
 
 	object PlaySoundSeq {
-		enum class SoundSource(override val option: kotlin.String) : TagItem {
+		enum class SoundSource(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Master("Master"),
-			Music("Music"),
-			JukeboxOrNoteBlocks("Jukebox/Note Blocks"),
-			Weather("Weather"),
-			Blocks("Blocks"),
-			HostileCreatures("Hostile Creatures"),
-			FriendlyCreatures("Friendly Creatures"),
-			Players("Players"),
-			AmbientOrEnvironment("Ambient/Environment"),
-			VoiceOrSpeech("Voice/Speech"),
-			Ui("UI");
+			Master("Master", true),
+			Music("Music", false),
+			JukeboxOrNoteBlocks("Jukebox/Note Blocks", false),
+			Weather("Weather", false),
+			Blocks("Blocks", false),
+			HostileCreatures("Hostile Creatures", false),
+			FriendlyCreatures("Friendly Creatures", false),
+			Players("Players", false),
+			AmbientOrEnvironment("Ambient/Environment", false),
+			VoiceOrSpeech("Voice/Speech", false),
+			Ui("UI", false);
 
 			override val action: kotlin.String = "PlaySoundSeq"
 			override val block: kotlin.String = "player_action"
@@ -1278,10 +1278,10 @@ object PlayerActionTags {
 	}
 
 	object SetPlayerWeather {
-		enum class Weather(override val option: kotlin.String) : TagItem {
-			Clear("Clear"),
+		enum class Weather(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Clear("Clear", false),
 			/** **Default** */
-			Downfall("Downfall");
+			Downfall("Downfall", true);
 
 			override val action: kotlin.String = "SetPlayerWeather"
 			override val block: kotlin.String = "player_action"
@@ -1291,24 +1291,24 @@ object PlayerActionTags {
 	}
 
 	object SetShoulder {
-		enum class Shoulder(override val option: kotlin.String) : TagItem {
+		enum class Shoulder(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Left("Left"),
-			Right("Right");
+			Left("Left", true),
+			Right("Right", false);
 
 			override val action: kotlin.String = "SetShoulder"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Shoulder"
 		}
-		enum class Type(override val option: kotlin.String) : TagItem {
+		enum class Type(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Remove("Remove"),
-			Red("Red"),
-			Blue("Blue"),
-			Green("Green"),
-			Cyan("Cyan"),
-			Gray("Gray");
+			Remove("Remove", true),
+			Red("Red", false),
+			Blue("Blue", false),
+			Green("Green", false),
+			Cyan("Cyan", false),
+			Gray("Gray", false);
 
 			override val action: kotlin.String = "SetShoulder"
 			override val block: kotlin.String = "player_action"
@@ -1318,10 +1318,10 @@ object PlayerActionTags {
 	}
 
 	object DisplayPickup {
-		enum class IgnoreFormatting(override val option: kotlin.String) : TagItem {
+		enum class IgnoreFormatting(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "DisplayPickup"
 			override val block: kotlin.String = "player_action"
@@ -1331,31 +1331,31 @@ object PlayerActionTags {
 	}
 
 	object GivePotion {
-		enum class ShowIcon(override val option: kotlin.String) : TagItem {
+		enum class ShowIcon(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "GivePotion"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Show Icon"
 		}
-		enum class OverwriteEffect(override val option: kotlin.String) : TagItem {
+		enum class OverwriteEffect(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "GivePotion"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Overwrite Effect"
 		}
-		enum class EffectParticles(override val option: kotlin.String) : TagItem {
+		enum class EffectParticles(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Regular("Regular"),
-			Ambient("Ambient"),
-			None("None");
+			Regular("Regular", true),
+			Ambient("Ambient", false),
+			None("None", false);
 
 			override val action: kotlin.String = "GivePotion"
 			override val block: kotlin.String = "player_action"
@@ -1365,10 +1365,10 @@ object PlayerActionTags {
 	}
 
 	object SetCollidable {
-		enum class Collision(override val option: kotlin.String) : TagItem {
-			Enable("Enable"),
+		enum class Collision(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Enable("Enable", false),
 			/** **Default** */
-			Disable("Disable");
+			Disable("Disable", true);
 
 			override val action: kotlin.String = "SetCollidable"
 			override val block: kotlin.String = "player_action"
@@ -1378,20 +1378,20 @@ object PlayerActionTags {
 	}
 
 	object LaunchFwd {
-		enum class AddtoCurrentVelocity(override val option: kotlin.String) : TagItem {
+		enum class AddtoCurrentVelocity(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "LaunchFwd"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Add to Current Velocity"
 		}
-		enum class LaunchAxis(override val option: kotlin.String) : TagItem {
+		enum class LaunchAxis(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			PitchAndYaw("Pitch and Yaw"),
-			YawOnly("Yaw Only");
+			PitchAndYaw("Pitch and Yaw", true),
+			YawOnly("Yaw Only", false);
 
 			override val action: kotlin.String = "LaunchFwd"
 			override val block: kotlin.String = "player_action"
@@ -1401,10 +1401,10 @@ object PlayerActionTags {
 	}
 
 	object AttackAnimation {
-		enum class AnimationArm(override val option: kotlin.String) : TagItem {
+		enum class AnimationArm(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			SwingMainArm("Swing main arm"),
-			SwingOffArm("Swing off arm");
+			SwingMainArm("Swing main arm", true),
+			SwingOffArm("Swing off arm", false);
 
 			override val action: kotlin.String = "AttackAnimation"
 			override val block: kotlin.String = "player_action"
@@ -1414,12 +1414,12 @@ object PlayerActionTags {
 	}
 
 	object ScoreDefFormat {
-		enum class NumberFormat(override val option: kotlin.String) : TagItem {
+		enum class NumberFormat(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Fixed("Fixed"),
-			Styled("Styled"),
-			Blank("Blank"),
-			Reset("Reset");
+			Fixed("Fixed", true),
+			Styled("Styled", false),
+			Blank("Blank", false),
+			Reset("Reset", false);
 
 			override val action: kotlin.String = "ScoreDefFormat"
 			override val block: kotlin.String = "player_action"
@@ -1429,19 +1429,19 @@ object PlayerActionTags {
 	}
 
 	object StopSound {
-		enum class SoundSource(override val option: kotlin.String) : TagItem {
+		enum class SoundSource(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Master("Master"),
-			Music("Music"),
-			JukeboxOrNoteBlocks("Jukebox/Note Blocks"),
-			Weather("Weather"),
-			Blocks("Blocks"),
-			HostileCreatures("Hostile Creatures"),
-			FriendlyCreatures("Friendly Creatures"),
-			Players("Players"),
-			AmbientOrEnvironment("Ambient/Environment"),
-			VoiceOrSpeech("Voice/Speech"),
-			Ui("UI");
+			Master("Master", true),
+			Music("Music", false),
+			JukeboxOrNoteBlocks("Jukebox/Note Blocks", false),
+			Weather("Weather", false),
+			Blocks("Blocks", false),
+			HostileCreatures("Hostile Creatures", false),
+			FriendlyCreatures("Friendly Creatures", false),
+			Players("Players", false),
+			AmbientOrEnvironment("Ambient/Environment", false),
+			VoiceOrSpeech("Voice/Speech", false),
+			Ui("UI", false);
 
 			override val action: kotlin.String = "StopSound"
 			override val block: kotlin.String = "player_action"
@@ -1451,23 +1451,23 @@ object PlayerActionTags {
 	}
 
 	object HealthAttribute {
-		enum class Attribute(override val option: kotlin.String) : TagItem {
+		enum class Attribute(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			MaximumHealth("Maximum health"),
-			MaximumAbsorptionHealth("Maximum absorption health"),
-			Armor("Armor"),
-			ArmorToughness("Armor toughness");
+			MaximumHealth("Maximum health", true),
+			MaximumAbsorptionHealth("Maximum absorption health", false),
+			Armor("Armor", false),
+			ArmorToughness("Armor toughness", false);
 
 			override val action: kotlin.String = "HealthAttribute"
 			override val block: kotlin.String = "player_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Attribute"
 		}
-		enum class ValueType(override val option: kotlin.String) : TagItem {
+		enum class ValueType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Direct("Direct"),
-			PercentageBase("Percentage (Base)"),
-			PercentageRelative("Percentage (Relative)");
+			Direct("Direct", true),
+			PercentageBase("Percentage (Base)", false),
+			PercentageRelative("Percentage (Relative)", false);
 
 			override val action: kotlin.String = "HealthAttribute"
 			override val block: kotlin.String = "player_action"

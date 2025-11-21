@@ -3,23 +3,23 @@ package io.github.flyingpig525.base.item.type.tag
 @Suppress("unused", "RemoveRedundantQualifierName")
 object IfGameTags {
 	object SignHasTxt {
-		enum class SignLine(override val option: kotlin.String) : TagItem {
-			One("1"),
-			Two("2"),
-			Three("3"),
-			Four("4"),
+		enum class SignLine(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			One("1", false),
+			Two("2", false),
+			Three("3", false),
+			Four("4", false),
 			/** **Default** */
-			AllLines("All lines");
+			AllLines("All lines", true);
 
 			override val action: kotlin.String = "SignHasTxt"
 			override val block: kotlin.String = "if_game"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Sign Line"
 		}
-		enum class CheckMode(override val option: kotlin.String) : TagItem {
+		enum class CheckMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Contains("Contains"),
-			Equals("Equals");
+			Contains("Contains", true),
+			Equals("Equals", false);
 
 			override val action: kotlin.String = "SignHasTxt"
 			override val block: kotlin.String = "if_game"
@@ -29,10 +29,10 @@ object IfGameTags {
 	}
 
 	object HasRoomForItem {
-		enum class CheckMode(override val option: kotlin.String) : TagItem {
+		enum class CheckMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			HasRoomForAnyItem("Has Room for Any Item"),
-			HasRoomForAllItems("Has Room for All Items");
+			HasRoomForAnyItem("Has Room for Any Item", true),
+			HasRoomForAllItems("Has Room for All Items", false);
 
 			override val action: kotlin.String = "HasRoomForItem"
 			override val block: kotlin.String = "if_game"
@@ -42,20 +42,20 @@ object IfGameTags {
 	}
 
 	object CommandEquals {
-		enum class CheckMode(override val option: kotlin.String) : TagItem {
+		enum class CheckMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			CheckEntireCommand("Check entire command"),
-			CheckBeginning("Check beginning");
+			CheckEntireCommand("Check entire command", true),
+			CheckBeginning("Check beginning", false);
 
 			override val action: kotlin.String = "CommandEquals"
 			override val block: kotlin.String = "if_game"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Check Mode"
 		}
-		enum class IgnoreCase(override val option: kotlin.String) : TagItem {
+		enum class IgnoreCase(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "CommandEquals"
 			override val block: kotlin.String = "if_game"
@@ -65,11 +65,11 @@ object IfGameTags {
 	}
 
 	object EventItemEquals {
-		enum class ComparisonMode(override val option: kotlin.String) : TagItem {
-			ExactlyEquals("Exactly equals"),
+		enum class ComparisonMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			ExactlyEquals("Exactly equals", false),
 			/** **Default** */
-			IgnoreStackSizeOrDurability("Ignore stack size/durability"),
-			MaterialOnly("Material only");
+			IgnoreStackSizeOrDurability("Ignore stack size/durability", true),
+			MaterialOnly("Material only", false);
 
 			override val action: kotlin.String = "EventItemEquals"
 			override val block: kotlin.String = "if_game"
@@ -79,25 +79,25 @@ object IfGameTags {
 	}
 
 	object MovementKey {
-		enum class MovementKey(override val option: kotlin.String) : TagItem {
+		enum class MovementKey(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			ForwardW("Forward (W)"),
-			BackwardS("Backward (S)"),
-			LeftA("Left (A)"),
-			RightD("Right (D)"),
-			JumpSpace("Jump (Space)"),
-			SneakLeftShift("Sneak (Left Shift)"),
-			SprintLeftControl("Sprint (Left Control)");
+			ForwardW("Forward (W)", true),
+			BackwardS("Backward (S)", false),
+			LeftA("Left (A)", false),
+			RightD("Right (D)", false),
+			JumpSpace("Jump (Space)", false),
+			SneakLeftShift("Sneak (Left Shift)", false),
+			SprintLeftControl("Sprint (Left Control)", false);
 
 			override val action: kotlin.String = "MovementKey"
 			override val block: kotlin.String = "if_game"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Movement Key"
 		}
-		enum class Action(override val option: kotlin.String) : TagItem {
+		enum class Action(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			JustPressed("Just pressed"),
-			JustReleased("Just released");
+			JustPressed("Just pressed", true),
+			JustReleased("Just released", false);
 
 			override val action: kotlin.String = "MovementKey"
 			override val block: kotlin.String = "if_game"
@@ -107,10 +107,10 @@ object IfGameTags {
 	}
 
 	object BlockPowered {
-		enum class RedstonePowerMode(override val option: kotlin.String) : TagItem {
+		enum class RedstonePowerMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			DirectPower("Direct power"),
-			IndirectPower("Indirect power");
+			DirectPower("Direct power", true),
+			IndirectPower("Indirect power", false);
 
 			override val action: kotlin.String = "BlockPowered"
 			override val block: kotlin.String = "if_game"
@@ -120,10 +120,10 @@ object IfGameTags {
 	}
 
 	object CmdArgEquals {
-		enum class IgnoreCase(override val option: kotlin.String) : TagItem {
+		enum class IgnoreCase(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "CmdArgEquals"
 			override val block: kotlin.String = "if_game"

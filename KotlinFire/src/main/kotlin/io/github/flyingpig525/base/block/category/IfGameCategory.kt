@@ -8,8 +8,11 @@ import io.github.flyingpig525.base.block.ElseOperation
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
 import io.github.flyingpig525.base.item.type.tag.IfGameTags
+import io.github.flyingpig525.base.item.type.tag.TagItem
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
+import kotlin.reflect.KClass
+import kotlin.reflect.full.superclasses
 
 @Suppress("unused")
 class IfGameCategory internal constructor(private val template: Template) {
@@ -20,9 +23,24 @@ class IfGameCategory internal constructor(private val template: Template) {
         action: String,
         wrappedCode: Template.() -> Unit,
         not: Boolean = false,
+        tagClass: KClass<*>? = null,
         extra: JsonObjectBuilder.() -> Unit = {}
     ) {
-        blocks += Block("if_game", ItemCollection(items).items, action) {
+        val collection = ItemCollection(items)
+        tagClass?.nestedClasses?.forEach { klass ->
+            if (klass.superclasses.any { it.qualifiedName == "kotlin.Enum" }) {
+                @Suppress("UNCHECKED_CAST")
+                val entries = klass.java.enumConstants as Array<Enum<*>>
+                entries.forEach { entry ->
+                    if (entry is TagItem) {
+                        if (!entry.default) return@forEach
+                        if (collection.items.none { it is TagItem && it.tag == entry.tag })
+                        collection += entry
+                    }
+                }
+            }
+        }
+        blocks += Block("if_game", collection.items, action) {
             if (not) put("attribute", "NOT")
             extra()
         }
@@ -36,7 +54,7 @@ class IfGameCategory internal constructor(private val template: Template) {
 	/**
 	 */
 	fun signHasTxt(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "SignHasTxt", wrappedCode, not)
+		block(items, "SignHasTxt", wrappedCode, not, tagClass = IfGameTags.SignHasTxt::class)
 		return ElseOperation()
 	}
 
@@ -61,7 +79,7 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 * @see [IfGameTags.HasRoomForItem]
 	 */
 	fun hasRoomForItem(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "HasRoomForItem", wrappedCode, not)
+		block(items, "HasRoomForItem", wrappedCode, not, tagClass = IfGameTags.HasRoomForItem::class)
 		return ElseOperation()
 	}
 
@@ -100,7 +118,7 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 * @see [IfGameTags.CommandEquals]
 	 */
 	fun commandEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "CommandEquals", wrappedCode, not)
+		block(items, "CommandEquals", wrappedCode, not, tagClass = IfGameTags.CommandEquals::class)
 		return ElseOperation()
 	}
 
@@ -120,7 +138,7 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 * @see [IfGameTags.EventItemEquals]
 	 */
 	fun eventItemEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "EventItemEquals", wrappedCode, not)
+		block(items, "EventItemEquals", wrappedCode, not, tagClass = IfGameTags.EventItemEquals::class)
 		return ElseOperation()
 	}
 
@@ -208,7 +226,7 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 * changed state in the current event.
 	 */
 	fun movementKey(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "MovementKey", wrappedCode, not)
+		block(items, "MovementKey", wrappedCode, not, tagClass = IfGameTags.MovementKey::class)
 		return ElseOperation()
 	}
 
@@ -228,7 +246,7 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 * @see [IfGameTags.BlockPowered]
 	 */
 	fun blockPowered(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "BlockPowered", wrappedCode, not)
+		block(items, "BlockPowered", wrappedCode, not, tagClass = IfGameTags.BlockPowered::class)
 		return ElseOperation()
 	}
 
@@ -295,7 +313,7 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 * @see [IfGameTags.CmdArgEquals]
 	 */
 	fun cmdArgEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "CmdArgEquals", wrappedCode, not)
+		block(items, "CmdArgEquals", wrappedCode, not, tagClass = IfGameTags.CmdArgEquals::class)
 		return ElseOperation()
 	}
 

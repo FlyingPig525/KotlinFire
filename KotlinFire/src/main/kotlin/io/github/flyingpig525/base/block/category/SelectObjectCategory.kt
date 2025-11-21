@@ -8,15 +8,32 @@ import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
 import io.github.flyingpig525.base.item.type.tag.SelectObjectTags
+import io.github.flyingpig525.base.item.type.tag.TagItem
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
+import kotlin.reflect.KClass
+import kotlin.reflect.full.superclasses
 
 @Suppress("unused")
 class SelectObjectCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
-    private fun block(items: Items, action: String, extra: JsonObjectBuilder.() -> Unit = {}) {
-        blocks += Block("select", ItemCollection(items).items, action, extra)
+    private fun block(items: Items, action: String, tagClass: KClass<*>? = null, extra: JsonObjectBuilder.() -> Unit = {}) {
+        val collection = ItemCollection(items)
+        tagClass?.nestedClasses?.forEach { klass ->
+            if (klass.superclasses.any { it.qualifiedName == "kotlin.Enum" }) {
+                @Suppress("UNCHECKED_CAST")
+                val entries = klass.java.enumConstants as Array<Enum<*>>
+                entries.forEach { entry ->
+                    if (entry is TagItem) {
+                        if (!entry.default) return@forEach
+                        if (collection.items.none { it is TagItem && it.tag == entry.tag })
+                        collection += entry
+                    }
+                }
+            }
+        }
+        blocks += Block("select", collection.items, action, extra)
     }
 	/**
 	 */
@@ -89,7 +106,7 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * @see [SelectObjectTags.EntityName]
 	 */
 	fun entityName(items: Items) {
-		block(items, "EntityName")
+		block(items, "EntityName", tagClass = SelectObjectTags.EntityName::class)
 	}
 
 
@@ -177,7 +194,7 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * @see [SelectObjectTags.FilterDistance]
 	 */
 	fun filterDistance(items: Items) {
-		block(items, "FilterDistance")
+		block(items, "FilterDistance", tagClass = SelectObjectTags.FilterDistance::class)
 	}
 
 
@@ -218,7 +235,7 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * @see [SelectObjectTags.FilterRay]
 	 */
 	fun filterRay(items: Items) {
-		block(items, "FilterRay")
+		block(items, "FilterRay", tagClass = SelectObjectTags.FilterRay::class)
 	}
 
 
@@ -238,7 +255,7 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * Event.
 	 */
 	fun eventTarget(items: Items) {
-		block(items, "EventTarget")
+		block(items, "EventTarget", tagClass = SelectObjectTags.EventTarget::class)
 	}
 
 
@@ -348,7 +365,7 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 * @see [SelectObjectTags.FilterSort]
 	 */
 	fun filterSort(items: Items) {
-		block(items, "FilterSort")
+		block(items, "FilterSort", tagClass = SelectObjectTags.FilterSort::class)
 	}
 
 

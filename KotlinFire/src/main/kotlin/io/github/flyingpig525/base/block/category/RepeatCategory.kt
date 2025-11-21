@@ -10,8 +10,11 @@ import io.github.flyingpig525.base.item.type.LocItem
 import io.github.flyingpig525.base.item.type.NumItem
 import io.github.flyingpig525.base.item.type.VarItem
 import io.github.flyingpig525.base.item.type.tag.RepeatTags
+import io.github.flyingpig525.base.item.type.tag.TagItem
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
+import kotlin.reflect.KClass
+import kotlin.reflect.full.superclasses
 
 @Suppress("unused")
 class RepeatCategory internal constructor(private val template: Template) {
@@ -22,9 +25,24 @@ class RepeatCategory internal constructor(private val template: Template) {
         action: String,
         wrappedCode: Template.() -> Unit,
         not: Boolean = false,
+        tagClass: KClass<*>? = null,
         extra: JsonObjectBuilder.() -> Unit = {}
     ) {
-        blocks += Block("repeat", ItemCollection(items).items, action) {
+        val collection = ItemCollection(items)
+        tagClass?.nestedClasses?.forEach { klass ->
+            if (klass.superclasses.any { it.qualifiedName == "kotlin.Enum" }) {
+                @Suppress("UNCHECKED_CAST")
+                val entries = klass.java.enumConstants as Array<Enum<*>>
+                entries.forEach { entry ->
+                    if (entry is TagItem) {
+                        if (!entry.default) return@forEach
+                        if (collection.items.none { it is TagItem && it.tag == entry.tag })
+                        collection += entry
+                    }
+                }
+            }
+        }
+        blocks += Block("repeat", collection.items, action) {
             if (not) put("attribute", "NOT")
             extra()
         }
@@ -55,7 +73,7 @@ class RepeatCategory internal constructor(private val template: Template) {
 	 * @see [RepeatTags.Adjacent]
 	 */
 	fun adjacent(items: Items, wrappedCode: Template.() -> Unit) {
-		block(items, "Adjacent", wrappedCode)
+		block(items, "Adjacent", wrappedCode, tagClass = RepeatTags.Adjacent::class)
 	}
 
 
@@ -86,7 +104,7 @@ class RepeatCategory internal constructor(private val template: Template) {
 	 * @see [RepeatTags.Path]
 	 */
 	fun path(items: Items, wrappedCode: Template.() -> Unit) {
-		block(items, "Path", wrappedCode)
+		block(items, "Path", wrappedCode, tagClass = RepeatTags.Path::class)
 	}
 
 
@@ -201,7 +219,7 @@ class RepeatCategory internal constructor(private val template: Template) {
 	 * @see [RepeatTags.ForEach]
 	 */
 	fun forEach(items: Items, wrappedCode: Template.() -> Unit) {
-		block(items, "ForEach", wrappedCode)
+		block(items, "ForEach", wrappedCode, tagClass = RepeatTags.ForEach::class)
 	}
 
 
@@ -233,7 +251,7 @@ class RepeatCategory internal constructor(private val template: Template) {
 	 * @see [RepeatTags.Sphere]
 	 */
 	fun sphere(items: Items, wrappedCode: Template.() -> Unit) {
-		block(items, "Sphere", wrappedCode)
+		block(items, "Sphere", wrappedCode, tagClass = RepeatTags.Sphere::class)
 	}
 
 

@@ -6,14 +6,31 @@ import io.github.flyingpig525.base.block.Block
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
 import io.github.flyingpig525.base.item.type.tag.EntityActionTags
+import io.github.flyingpig525.base.item.type.tag.TagItem
 import kotlinx.serialization.json.JsonObjectBuilder
+import kotlin.reflect.KClass
+import kotlin.reflect.full.superclasses
 
 @Suppress("unused")
 class EntityActionCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
-    private fun block(items: Items, action: String, extra: JsonObjectBuilder.() -> Unit = {}) {
-        blocks += Block("entity_action", ItemCollection(items).items, action, extra)
+    private fun block(items: Items, action: String, tagClass: KClass<*>? = null, extra: JsonObjectBuilder.() -> Unit = {}) {
+        val collection = ItemCollection(items)
+        tagClass?.nestedClasses?.forEach { klass ->
+            if (klass.superclasses.any { it.qualifiedName == "kotlin.Enum" }) {
+                @Suppress("UNCHECKED_CAST")
+                val entries = klass.java.enumConstants as Array<Enum<*>>
+                entries.forEach { entry ->
+                    if (entry is TagItem) {
+                        if (!entry.default) return@forEach
+                        if (collection.items.none { it is TagItem && it.tag == entry.tag })
+                        collection += entry
+                    }
+                }
+            }
+        }
+        blocks += Block("entity_action", collection.items, action, extra)
     }
 	/**
 	 * Sets the left or right rotation of a
@@ -43,7 +60,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.DispRotationEuler]
 	 */
 	fun dispRotationEuler(items: Items) {
-		block(items, "DispRotationEuler")
+		block(items, "DispRotationEuler", tagClass = EntityActionTags.DispRotationEuler::class)
 	}
 
 
@@ -71,7 +88,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.SetVelocity]
 	 */
 	fun setVelocity(items: Items) {
-		block(items, "SetVelocity")
+		block(items, "SetVelocity", tagClass = EntityActionTags.SetVelocity::class)
 	}
 
 
@@ -112,7 +129,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.DispRotAxisAngle]
 	 */
 	fun dispRotAxisAngle(items: Items) {
-		block(items, "DispRotAxisAngle")
+		block(items, "DispRotAxisAngle", tagClass = EntityActionTags.DispRotAxisAngle::class)
 	}
 
 
@@ -140,7 +157,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.Damage]
 	 */
 	fun damage(items: Items) {
-		block(items, "Damage")
+		block(items, "Damage", tagClass = EntityActionTags.Damage::class)
 	}
 
 
@@ -149,7 +166,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * is sitting.
 	 */
 	fun setMobSitting(items: Items) {
-		block(items, "SetMobSitting")
+		block(items, "SetMobSitting", tagClass = EntityActionTags.SetMobSitting::class)
 	}
 
 
@@ -158,7 +175,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * an animation.
 	 */
 	fun sendAnimation(items: Items) {
-		block(items, "SendAnimation")
+		block(items, "SendAnimation", tagClass = EntityActionTags.SendAnimation::class)
 	}
 
 
@@ -193,7 +210,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.SetWardenAnger]
 	 */
 	fun setWardenAnger(items: Items) {
-		block(items, "SetWardenAnger")
+		block(items, "SetWardenAnger", tagClass = EntityActionTags.SetWardenAnger::class)
 	}
 
 
@@ -201,7 +218,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Sets a horse's color and pattern.
 	 */
 	fun setHorsePattern(items: Items) {
-		block(items, "SetHorsePattern")
+		block(items, "SetHorsePattern", tagClass = EntityActionTags.SetHorsePattern::class)
 	}
 
 
@@ -251,7 +268,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Sets a mob's dye color.
 	 */
 	fun setDyeColor(items: Items) {
-		block(items, "SetDyeColor")
+		block(items, "SetDyeColor", tagClass = EntityActionTags.SetDyeColor::class)
 	}
 
 
@@ -269,7 +286,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.LaunchUp]
 	 */
 	fun launchUp(items: Items) {
-		block(items, "LaunchUp")
+		block(items, "LaunchUp", tagClass = EntityActionTags.LaunchUp::class)
 	}
 
 
@@ -287,7 +304,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.SetAge]
 	 */
 	fun setAge(items: Items) {
-		block(items, "SetAge")
+		block(items, "SetAge", tagClass = EntityActionTags.SetAge::class)
 	}
 
 
@@ -305,7 +322,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.SetName]
 	 */
 	fun setName(items: Items) {
-		block(items, " SetName ")
+		block(items, " SetName ", tagClass = EntityActionTags.SetName::class)
 	}
 
 
@@ -321,14 +338,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * arms raised.
 	 */
 	fun setArmsRaised(items: Items) {
-		block(items, "SetArmsRaised")
+		block(items, "SetArmsRaised", tagClass = EntityActionTags.SetArmsRaised::class)
 	}
 
 
 	/**
 	 */
 	fun setMoveSpeed(items: Items) {
-		block(items, "SetMoveSpeed")
+		block(items, "SetMoveSpeed", tagClass = EntityActionTags.SetMoveSpeed::class)
 	}
 
 
@@ -337,7 +354,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * invulnerable to damage.
 	 */
 	fun setInvulnerable(items: Items) {
-		block(items, "SetInvulnerable")
+		block(items, "SetInvulnerable", tagClass = EntityActionTags.SetInvulnerable::class)
 	}
 
 
@@ -346,7 +363,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * an entity experiences.
 	 */
 	fun setFriction(items: Items) {
-		block(items, "SetFriction")
+		block(items, "SetFriction", tagClass = EntityActionTags.SetFriction::class)
 	}
 
 
@@ -360,7 +377,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	/**
 	 */
 	fun armorStandTags(items: Items) {
-		block(items, "ArmorStandTags")
+		block(items, "ArmorStandTags", tagClass = EntityActionTags.ArmorStandTags::class)
 	}
 
 
@@ -405,7 +422,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.MiscAttribute]
 	 */
 	fun miscAttribute(items: Items) {
-		block(items, "MiscAttribute")
+		block(items, "MiscAttribute", tagClass = EntityActionTags.MiscAttribute::class)
 	}
 
 
@@ -434,7 +451,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * is a marker.
 	 */
 	fun setMarker(items: Items) {
-		block(items, "SetMarker")
+		block(items, "SetMarker", tagClass = EntityActionTags.SetMarker::class)
 	}
 
 
@@ -479,7 +496,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * has the charged effect.
 	 */
 	fun creeperCharged(items: Items) {
-		block(items, "CreeperCharged")
+		block(items, "CreeperCharged", tagClass = EntityActionTags.CreeperCharged::class)
 	}
 
 
@@ -516,7 +533,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.CombatAttribute]
 	 */
 	fun combatAttribute(items: Items) {
-		block(items, "CombatAttribute")
+		block(items, "CombatAttribute", tagClass = EntityActionTags.CombatAttribute::class)
 	}
 
 
@@ -567,7 +584,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.SetFreezeTicks]
 	 */
 	fun setFreezeTicks(items: Items) {
-		block(items, "SetFreezeTicks")
+		block(items, "SetFreezeTicks", tagClass = EntityActionTags.SetFreezeTicks::class)
 	}
 
 
@@ -577,7 +594,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * or not.
 	 */
 	fun tDisplaySeeThru(items: Items) {
-		block(items, "TDisplaySeeThru")
+		block(items, "TDisplaySeeThru", tagClass = EntityActionTags.TDisplaySeeThru::class)
 	}
 
 
@@ -586,7 +603,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * is gliding.
 	 */
 	fun setGliding(items: Items) {
-		block(items, "SetGliding")
+		block(items, "SetGliding", tagClass = EntityActionTags.SetGliding::class)
 	}
 
 
@@ -616,7 +633,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * rolling or not.
 	 */
 	fun setPandaRolling(items: Items) {
-		block(items, "SetPandaRolling")
+		block(items, "SetPandaRolling", tagClass = EntityActionTags.SetPandaRolling::class)
 	}
 
 
@@ -625,7 +642,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * color and pattern.
 	 */
 	fun setFishPattern(items: Items) {
-		block(items, "SetFishPattern")
+		block(items, "SetFishPattern", tagClass = EntityActionTags.SetFishPattern::class)
 	}
 
 
@@ -633,7 +650,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Sets a mob's temperature variant.
 	 */
 	fun setTemperature(items: Items) {
-		block(items, "SetTemperature")
+		block(items, "SetTemperature", tagClass = EntityActionTags.SetTemperature::class)
 	}
 
 
@@ -641,7 +658,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Sets a wolf's variant.
 	 */
 	fun setWolfType(items: Items) {
-		block(items, "SetWolfType")
+		block(items, "SetWolfType", tagClass = EntityActionTags.SetWolfType::class)
 	}
 
 
@@ -676,7 +693,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	/**
 	 */
 	fun setHandItem(items: Items) {
-		block(items, "SetHandItem")
+		block(items, "SetHandItem", tagClass = EntityActionTags.SetHandItem::class)
 	}
 
 
@@ -715,7 +732,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.LaunchToward]
 	 */
 	fun launchToward(items: Items) {
-		block(items, "LaunchToward")
+		block(items, "LaunchToward", tagClass = EntityActionTags.LaunchToward::class)
 	}
 
 
@@ -800,7 +817,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.FaceLocation]
 	 */
 	fun faceLocation(items: Items) {
-		block(items, "FaceLocation")
+		block(items, "FaceLocation", tagClass = EntityActionTags.FaceLocation::class)
 	}
 
 
@@ -808,7 +825,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Sets a cat's skin type.
 	 */
 	fun setCatType(items: Items) {
-		block(items, "SetCatType")
+		block(items, "SetCatType", tagClass = EntityActionTags.SetCatType::class)
 	}
 
 
@@ -863,7 +880,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * of a text display.
 	 */
 	fun tDisplayAlign(items: Items) {
-		block(items, "TDisplayAlign")
+		block(items, "TDisplayAlign", tagClass = EntityActionTags.TDisplayAlign::class)
 	}
 
 
@@ -915,7 +932,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * player's view.
 	 */
 	fun displayBillboard(items: Items) {
-		block(items, "DisplayBillboard")
+		block(items, "DisplayBillboard", tagClass = EntityActionTags.DisplayBillboard::class)
 	}
 
 
@@ -952,7 +969,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * screams or not.
 	 */
 	fun setGoatScreaming(items: Items) {
-		block(items, "SetGoatScreaming")
+		block(items, "SetGoatScreaming", tagClass = EntityActionTags.SetGoatScreaming::class)
 	}
 
 
@@ -961,7 +978,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * has its stinger.
 	 */
 	fun setBeeStinger(items: Items) {
-		block(items, "SetBeeStinger")
+		block(items, "SetBeeStinger", tagClass = EntityActionTags.SetBeeStinger::class)
 	}
 
 
@@ -1012,7 +1029,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * or stop sleeping.
 	 */
 	fun foxSleeping(items: Items) {
-		block(items, "FoxSleeping")
+		block(items, "FoxSleeping", tagClass = EntityActionTags.FoxSleeping::class)
 	}
 
 
@@ -1032,7 +1049,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.SetEquipment]
 	 */
 	fun setEquipment(items: Items) {
-		block(items, "SetEquipment")
+		block(items, "SetEquipment", tagClass = EntityActionTags.SetEquipment::class)
 	}
 
 
@@ -1041,7 +1058,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * produce sound effects.
 	 */
 	fun setSilenced(items: Items) {
-		block(items, "SetSilenced")
+		block(items, "SetSilenced", tagClass = EntityActionTags.SetSilenced::class)
 	}
 
 
@@ -1050,7 +1067,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * on its body.
 	 */
 	fun setBeeNectar(items: Items) {
-		block(items, "SetBeeNectar")
+		block(items, "SetBeeNectar", tagClass = EntityActionTags.SetBeeNectar::class)
 	}
 
 
@@ -1079,7 +1096,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.AttachLead]
 	 */
 	fun attachLead(items: Items) {
-		block(items, "AttachLead")
+		block(items, "AttachLead", tagClass = EntityActionTags.AttachLead::class)
 	}
 
 
@@ -1116,7 +1133,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * armor stand's slot(s).
 	 */
 	fun armorStandSlots(items: Items) {
-		block(items, "ArmorStandSlots")
+		block(items, "ArmorStandSlots", tagClass = EntityActionTags.ArmorStandSlots::class)
 	}
 
 
@@ -1125,7 +1142,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * dancing or not.
 	 */
 	fun setAllayDancing(items: Items) {
-		block(items, "SetAllayDancing")
+		block(items, "SetAllayDancing", tagClass = EntityActionTags.SetAllayDancing::class)
 	}
 
 
@@ -1133,7 +1150,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Sets a rabbit's skin type.
 	 */
 	fun setRabbitType(items: Items) {
-		block(items, "SetRabbitType")
+		block(items, "SetRabbitType", tagClass = EntityActionTags.SetRabbitType::class)
 	}
 
 
@@ -1167,7 +1184,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * angry at players.
 	 */
 	fun setAngry(items: Items) {
-		block(items, "SetAngry")
+		block(items, "SetAngry", tagClass = EntityActionTags.SetAngry::class)
 	}
 
 
@@ -1184,7 +1201,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * their items when dead.
 	 */
 	fun setDeathDrops(items: Items) {
-		block(items, "SetDeathDrops")
+		block(items, "SetDeathDrops", tagClass = EntityActionTags.SetDeathDrops::class)
 	}
 
 
@@ -1194,7 +1211,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * never despawn.
 	 */
 	fun setPersistent(items: Items) {
-		block(items, "SetPersistent")
+		block(items, "SetPersistent", tagClass = EntityActionTags.SetPersistent::class)
 	}
 
 
@@ -1220,7 +1237,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * name tag appears in.
 	 */
 	fun setNameColor(items: Items) {
-		block(items, "SetNameColor")
+		block(items, "SetNameColor", tagClass = EntityActionTags.SetNameColor::class)
 	}
 
 
@@ -1230,7 +1247,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * inventory to be accessed.
 	 */
 	fun setCarryingChest(items: Items) {
-		block(items, "SetCarryingChest")
+		block(items, "SetCarryingChest", tagClass = EntityActionTags.SetCarryingChest::class)
 	}
 
 
@@ -1238,7 +1255,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Sets a parrot's color.
 	 */
 	fun setParrotColor(items: Items) {
-		block(items, "SetParrotColor")
+		block(items, "SetParrotColor", tagClass = EntityActionTags.SetParrotColor::class)
 	}
 
 
@@ -1340,7 +1357,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * has its wool.
 	 */
 	fun setSheepSheared(items: Items) {
-		block(items, "SetSheepSheared")
+		block(items, "SetSheepSheared", tagClass = EntityActionTags.SetSheepSheared::class)
 	}
 
 
@@ -1348,7 +1365,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Sets an axolotl's color.
 	 */
 	fun setAxolotlColor(items: Items) {
-		block(items, "SetAxolotlColor")
+		block(items, "SetAxolotlColor", tagClass = EntityActionTags.SetAxolotlColor::class)
 	}
 
 
@@ -1375,7 +1392,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * by physics.
 	 */
 	fun setAI(items: Items) {
-		block(items, "SetAI")
+		block(items, "SetAI", tagClass = EntityActionTags.SetAI::class)
 	}
 
 
@@ -1394,7 +1411,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.KBAttribute]
 	 */
 	fun kBAttribute(items: Items) {
-		block(items, "KBAttribute")
+		block(items, "KBAttribute", tagClass = EntityActionTags.KBAttribute::class)
 	}
 
 
@@ -1414,7 +1431,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.MovementAttribute]
 	 */
 	fun movementAttribute(items: Items) {
-		block(items, "MovementAttribute")
+		block(items, "MovementAttribute", tagClass = EntityActionTags.MovementAttribute::class)
 	}
 
 
@@ -1423,7 +1440,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * is riptiding.
 	 */
 	fun setRiptiding(items: Items) {
-		block(items, "SetRiptiding")
+		block(items, "SetRiptiding", tagClass = EntityActionTags.SetRiptiding::class)
 	}
 
 
@@ -1433,7 +1450,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * and through entities.
 	 */
 	fun setArrowNoClip(items: Items) {
-		block(items, "SetArrowNoClip")
+		block(items, "SetArrowNoClip", tagClass = EntityActionTags.SetArrowNoClip::class)
 	}
 
 
@@ -1453,7 +1470,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.FallingAttribute]
 	 */
 	fun fallingAttribute(items: Items) {
-		block(items, "FallingAttribute")
+		block(items, "FallingAttribute", tagClass = EntityActionTags.FallingAttribute::class)
 	}
 
 
@@ -1476,7 +1493,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.SetProjSource]
 	 */
 	fun setProjSource(items: Items) {
-		block(items, "SetProjSource")
+		block(items, "SetProjSource", tagClass = EntityActionTags.SetProjSource::class)
 	}
 
 
@@ -1485,7 +1502,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * to be leaping.
 	 */
 	fun setFoxLeaping(items: Items) {
-		block(items, "SetFoxLeaping")
+		block(items, "SetFoxLeaping", tagClass = EntityActionTags.SetFoxLeaping::class)
 	}
 
 
@@ -1495,7 +1512,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * and appearance.
 	 */
 	fun setPandaGene(items: Items) {
-		block(items, "SetPandaGene")
+		block(items, "SetPandaGene", tagClass = EntityActionTags.SetPandaGene::class)
 	}
 
 
@@ -1514,7 +1531,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.SetMaxHealth]
 	 */
 	fun setMaxHealth(items: Items) {
-		block(items, "SetMaxHealth")
+		block(items, "SetMaxHealth", tagClass = EntityActionTags.SetMaxHealth::class)
 	}
 
 
@@ -1572,7 +1589,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.FrogEat]
 	 */
 	fun frogEat(items: Items) {
-		block(items, "FrogEat")
+		block(items, "FrogEat", tagClass = EntityActionTags.FrogEat::class)
 	}
 
 
@@ -1580,7 +1597,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Sets a salmon's variant.
 	 */
 	fun setSalmonType(items: Items) {
-		block(items, "SetSalmonType")
+		block(items, "SetSalmonType", tagClass = EntityActionTags.SetSalmonType::class)
 	}
 
 
@@ -1609,7 +1626,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Sets a villager's profession.
 	 */
 	fun setProfession(items: Items) {
-		block(items, "SetProfession")
+		block(items, "SetProfession", tagClass = EntityActionTags.SetProfession::class)
 	}
 
 
@@ -1627,7 +1644,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * arms and a base plate.
 	 */
 	fun armorStandParts(items: Items) {
-		block(items, "ArmorStandParts")
+		block(items, "ArmorStandParts", tagClass = EntityActionTags.ArmorStandParts::class)
 	}
 
 
@@ -1637,7 +1654,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * displayed above them.
 	 */
 	fun setNameVisible(items: Items) {
-		block(items, " SetNameVisible ")
+		block(items, " SetNameVisible ", tagClass = EntityActionTags.SetNameVisible::class)
 	}
 
 
@@ -1660,7 +1677,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.SetTarget]
 	 */
 	fun setTarget(items: Items) {
-		block(items, "SetTarget")
+		block(items, "SetTarget", tagClass = EntityActionTags.SetTarget::class)
 	}
 
 
@@ -1670,7 +1687,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * shadow or not.
 	 */
 	fun tDisplayShadow(items: Items) {
-		block(items, "TDisplayShadow")
+		block(items, "TDisplayShadow", tagClass = EntityActionTags.TDisplayShadow::class)
 	}
 
 
@@ -1707,7 +1724,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.SetShulkerPeek]
 	 */
 	fun setShulkerPeek(items: Items) {
-		block(items, "SetShulkerPeek")
+		block(items, "SetShulkerPeek", tagClass = EntityActionTags.SetShulkerPeek::class)
 	}
 
 
@@ -1718,7 +1735,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * the pose and entity type.
 	 */
 	fun setPose(items: Items) {
-		block(items, " SetPose ")
+		block(items, " SetPose ", tagClass = EntityActionTags.SetPose::class)
 	}
 
 
@@ -1727,7 +1744,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * standing on its hind legs.
 	 */
 	fun setRearing(items: Items) {
-		block(items, "SetRearing")
+		block(items, "SetRearing", tagClass = EntityActionTags.SetRearing::class)
 	}
 
 
@@ -1758,7 +1775,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * is affected by gravity.
 	 */
 	fun setGravity(items: Items) {
-		block(items, "SetGravity")
+		block(items, "SetGravity", tagClass = EntityActionTags.SetGravity::class)
 	}
 
 
@@ -1858,7 +1875,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * interacting with it.
 	 */
 	fun interactResponse(items: Items) {
-		block(items, "InteractResponse")
+		block(items, "InteractResponse", tagClass = EntityActionTags.InteractResponse::class)
 	}
 
 
@@ -1867,7 +1884,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * such as bow or spyglass.
 	 */
 	fun useItem(items: Items) {
-		block(items, "UseItem")
+		block(items, "UseItem", tagClass = EntityActionTags.UseItem::class)
 	}
 
 
@@ -1890,7 +1907,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.RideEntity]
 	 */
 	fun rideEntity(items: Items) {
-		block(items, "RideEntity")
+		block(items, "RideEntity", tagClass = EntityActionTags.RideEntity::class)
 	}
 
 
@@ -1923,7 +1940,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Sets a wolf's sound variant.
 	 */
 	fun setWolfSoundType(items: Items) {
-		block(items, "SetWolfSoundType")
+		block(items, "SetWolfSoundType", tagClass = EntityActionTags.SetWolfSoundType::class)
 	}
 
 
@@ -1932,7 +1949,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * a specific action.
 	 */
 	fun snifferState(items: Items) {
-		block(items, "SnifferState")
+		block(items, "SnifferState", tagClass = EntityActionTags.SnifferState::class)
 	}
 
 
@@ -1958,7 +1975,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.Teleport]
 	 */
 	fun teleport(items: Items) {
-		block(items, "Teleport")
+		block(items, "Teleport", tagClass = EntityActionTags.Teleport::class)
 	}
 
 
@@ -1986,7 +2003,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * should appear on fire.
 	 */
 	fun setVisualFire(items: Items) {
-		block(items, "SetVisualFire")
+		block(items, "SetVisualFire", tagClass = EntityActionTags.SetVisualFire::class)
 	}
 
 
@@ -2009,7 +2026,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * a saddle.
 	 */
 	fun setSaddle(items: Items) {
-		block(items, "SetSaddle")
+		block(items, "SetSaddle", tagClass = EntityActionTags.SetSaddle::class)
 	}
 
 
@@ -2032,7 +2049,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.SetBulletTarget]
 	 */
 	fun setBulletTarget(items: Items) {
-		block(items, "SetBulletTarget")
+		block(items, "SetBulletTarget", tagClass = EntityActionTags.SetBulletTarget::class)
 	}
 
 
@@ -2060,7 +2077,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * of an Ender Dragon.
 	 */
 	fun setDragonPhase(items: Items) {
-		block(items, "SetDragonPhase")
+		block(items, "SetDragonPhase", tagClass = EntityActionTags.SetDragonPhase::class)
 	}
 
 
@@ -2068,7 +2085,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Sets a llama's fur color.
 	 */
 	fun setLlamaColor(items: Items) {
-		block(items, "SetLlamaColor")
+		block(items, "SetLlamaColor", tagClass = EntityActionTags.SetLlamaColor::class)
 	}
 
 
@@ -2078,7 +2095,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * appearance only.
 	 */
 	fun setVillagerBiome(items: Items) {
-		block(items, "SetVillagerBiome")
+		block(items, "SetVillagerBiome", tagClass = EntityActionTags.SetVillagerBiome::class)
 	}
 
 
@@ -2105,7 +2122,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * is a baby (permanently).
 	 */
 	fun setBaby(items: Items) {
-		block(items, "SetBaby")
+		block(items, "SetBaby", tagClass = EntityActionTags.SetBaby::class)
 	}
 
 
@@ -2114,7 +2131,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * type.
 	 */
 	fun mooshroomType(items: Items) {
-		block(items, "MooshroomType")
+		block(items, "MooshroomType", tagClass = EntityActionTags.MooshroomType::class)
 	}
 
 
@@ -2123,7 +2140,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * is invisible.
 	 */
 	fun setInvisible(items: Items) {
-		block(items, "SetInvisible")
+		block(items, "SetInvisible", tagClass = EntityActionTags.SetInvisible::class)
 	}
 
 
@@ -2141,7 +2158,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * to be lying down.
 	 */
 	fun setCatResting(items: Items) {
-		block(items, "SetCatResting")
+		block(items, "SetCatResting", tagClass = EntityActionTags.SetCatResting::class)
 	}
 
 
@@ -2161,7 +2178,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.GivePotion]
 	 */
 	fun givePotion(items: Items) {
-		block(items, "GivePotion")
+		block(items, "GivePotion", tagClass = EntityActionTags.GivePotion::class)
 	}
 
 
@@ -2170,7 +2187,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * are shown or hidden.
 	 */
 	fun setGoatHorns(items: Items) {
-		block(items, "SetGoatHorns")
+		block(items, "SetGoatHorns", tagClass = EntityActionTags.SetGoatHorns::class)
 	}
 
 
@@ -2180,7 +2197,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * be seen through blocks.
 	 */
 	fun setGlowing(items: Items) {
-		block(items, "SetGlowing")
+		block(items, "SetGlowing", tagClass = EntityActionTags.SetGlowing::class)
 	}
 
 
@@ -2189,7 +2206,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * laying on its back or not.
 	 */
 	fun setPandaOnBack(items: Items) {
-		block(items, "SetPandaOnBack")
+		block(items, "SetPandaOnBack", tagClass = EntityActionTags.SetPandaOnBack::class)
 	}
 
 
@@ -2198,7 +2215,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * of an item display.
 	 */
 	fun iDisplayModelType(items: Items) {
-		block(items, "IDisplayModelType")
+		block(items, "IDisplayModelType", tagClass = EntityActionTags.IDisplayModelType::class)
 	}
 
 
@@ -2246,7 +2263,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * to collide with other entities.
 	 */
 	fun setCollidable(items: Items) {
-		block(items, "SetCollidable")
+		block(items, "SetCollidable", tagClass = EntityActionTags.SetCollidable::class)
 	}
 
 
@@ -2283,7 +2300,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.ArmorStandPose]
 	 */
 	fun armorStandPose(items: Items) {
-		block(items, "ArmorStandPose")
+		block(items, "ArmorStandPose", tagClass = EntityActionTags.ArmorStandPose::class)
 	}
 
 
@@ -2302,7 +2319,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.LaunchFwd]
 	 */
 	fun launchFwd(items: Items) {
-		block(items, "LaunchFwd")
+		block(items, "LaunchFwd", tagClass = EntityActionTags.LaunchFwd::class)
 	}
 
 
@@ -2387,7 +2404,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * an attack animation.
 	 */
 	fun attackAnimation(items: Items) {
-		block(items, "AttackAnimation")
+		block(items, "AttackAnimation", tagClass = EntityActionTags.AttackAnimation::class)
 	}
 
 
@@ -2396,7 +2413,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * is wearing a pumpkin.
 	 */
 	fun snowmanPumpkin(items: Items) {
-		block(items, "SnowmanPumpkin")
+		block(items, "SnowmanPumpkin", tagClass = EntityActionTags.SnowmanPumpkin::class)
 	}
 
 
@@ -2509,7 +2526,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * or dig into the ground.
 	 */
 	fun setDigging(items: Items) {
-		block(items, "SetDigging")
+		block(items, "SetDigging", tagClass = EntityActionTags.SetDigging::class)
 	}
 
 
@@ -2542,7 +2559,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * charging or not.
 	 */
 	fun setVexCharging(items: Items) {
-		block(items, "SetVexCharging")
+		block(items, "SetVexCharging", tagClass = EntityActionTags.SetVexCharging::class)
 	}
 
 
@@ -2578,7 +2595,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * or stop celebrating.
 	 */
 	fun setCelebrating(items: Items) {
-		block(items, "SetCelebrating")
+		block(items, "SetCelebrating", tagClass = EntityActionTags.SetCelebrating::class)
 	}
 
 
@@ -2597,7 +2614,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.TDisplayText]
 	 */
 	fun tDisplayText(items: Items) {
-		block(items, "TDisplayText")
+		block(items, "TDisplayText", tagClass = EntityActionTags.TDisplayText::class)
 	}
 
 
@@ -2642,7 +2659,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.HealthAttribute]
 	 */
 	fun healthAttribute(items: Items) {
-		block(items, "HealthAttribute")
+		block(items, "HealthAttribute", tagClass = EntityActionTags.HealthAttribute::class)
 	}
 
 
@@ -2665,7 +2682,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * @see [EntityActionTags.Ram]
 	 */
 	fun ram(items: Items) {
-		block(items, "Ram")
+		block(items, "Ram", tagClass = EntityActionTags.Ram::class)
 	}
 
 
@@ -2673,7 +2690,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * Sets a fox's fur type.
 	 */
 	fun setFoxType(items: Items) {
-		block(items, "SetFoxType")
+		block(items, "SetFoxType", tagClass = EntityActionTags.SetFoxType::class)
 	}
 
 }

@@ -3,23 +3,23 @@ package io.github.flyingpig525.base.item.type.tag
 @Suppress("unused", "RemoveRedundantQualifierName")
 object IfPlayerTags {
 	object HasRoomForItem {
-		enum class CheckMode(override val option: kotlin.String) : TagItem {
+		enum class CheckMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			HasRoomForAnyItem("Has Room for Any Item"),
-			HasRoomForAllItems("Has Room for All Items");
+			HasRoomForAnyItem("Has Room for Any Item", true),
+			HasRoomForAllItems("Has Room for All Items", false);
 
 			override val action: kotlin.String = "HasRoomForItem"
 			override val block: kotlin.String = "if_player"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Check Mode"
 		}
-		enum class CheckedSlots(override val option: kotlin.String) : TagItem {
-			EntireInventory("Entire inventory"),
+		enum class CheckedSlots(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			EntireInventory("Entire inventory", false),
 			/** **Default** */
-			MainInventory("Main inventory"),
-			UpperInventory("Upper inventory"),
-			Hotbar("Hotbar"),
-			Armor("Armor");
+			MainInventory("Main inventory", true),
+			UpperInventory("Upper inventory", false),
+			Hotbar("Hotbar", false),
+			Armor("Armor", false);
 
 			override val action: kotlin.String = "HasRoomForItem"
 			override val block: kotlin.String = "if_player"
@@ -29,10 +29,10 @@ object IfPlayerTags {
 	}
 
 	object HasItem {
-		enum class CheckMode(override val option: kotlin.String) : TagItem {
+		enum class CheckMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			HasAnyItem("Has Any Item"),
-			HasAllItems("Has All Items");
+			HasAnyItem("Has Any Item", true),
+			HasAllItems("Has All Items", false);
 
 			override val action: kotlin.String = "HasItem"
 			override val block: kotlin.String = "if_player"
@@ -42,10 +42,10 @@ object IfPlayerTags {
 	}
 
 	object IsWearing {
-		enum class CheckMode(override val option: kotlin.String) : TagItem {
+		enum class CheckMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			IsWearingSome("Is Wearing Some"),
-			IsWearingAll("Is Wearing All");
+			IsWearingSome("Is Wearing Some", true),
+			IsWearingAll("Is Wearing All", false);
 
 			override val action: kotlin.String = "IsWearing"
 			override val block: kotlin.String = "if_player"
@@ -55,12 +55,12 @@ object IfPlayerTags {
 	}
 
 	object IsNear {
-		enum class Shape(override val option: kotlin.String) : TagItem {
+		enum class Shape(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Sphere("Sphere"),
-			Circle("Circle"),
-			Cube("Cube"),
-			Square("Square");
+			Sphere("Sphere", true),
+			Circle("Circle", false),
+			Cube("Cube", false),
+			Square("Square", false);
 
 			override val action: kotlin.String = "IsNear"
 			override val block: kotlin.String = "if_player"
@@ -70,10 +70,10 @@ object IfPlayerTags {
 	}
 
 	object IsRiding {
-		enum class CompareTextTo(override val option: kotlin.String) : TagItem {
+		enum class CompareTextTo(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			EntityType("Entity type"),
-			NameOrUuid("Name or UUID");
+			EntityType("Entity type", true),
+			NameOrUuid("Name or UUID", false);
 
 			override val action: kotlin.String = "IsRiding"
 			override val block: kotlin.String = "if_player"
@@ -83,20 +83,20 @@ object IfPlayerTags {
 	}
 
 	object CmdEquals {
-		enum class CheckMode(override val option: kotlin.String) : TagItem {
+		enum class CheckMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			CheckEntireCommand("Check Entire Command"),
-			CheckFirstWord("Check First Word");
+			CheckEntireCommand("Check Entire Command", true),
+			CheckFirstWord("Check First Word", false);
 
 			override val action: kotlin.String = "CmdEquals"
 			override val block: kotlin.String = "if_player"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Check Mode"
 		}
-		enum class IgnoreCase(override val option: kotlin.String) : TagItem {
+		enum class IgnoreCase(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "CmdEquals"
 			override val block: kotlin.String = "if_player"
@@ -106,13 +106,13 @@ object IfPlayerTags {
 	}
 
 	object HasPermission {
-		enum class Permission(override val option: kotlin.String) : TagItem {
-			Owner("Owner"),
-			Developer("Developer"),
-			Builder("Builder"),
+		enum class Permission(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Owner("Owner", false),
+			Developer("Developer", false),
+			Builder("Builder", false),
 			/** **Default** */
-			DeveloperOrBuilder("Developer or builder"),
-			Whitelisted("Whitelisted");
+			DeveloperOrBuilder("Developer or builder", true),
+			Whitelisted("Whitelisted", false);
 
 			override val action: kotlin.String = "HasPermission"
 			override val block: kotlin.String = "if_player"
@@ -122,10 +122,10 @@ object IfPlayerTags {
 	}
 
 	object MainHandEquals {
-		enum class MainHand(override val option: kotlin.String) : TagItem {
+		enum class MainHand(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			LeftHand("Left Hand"),
-			RightHand("Right Hand");
+			LeftHand("Left Hand", true),
+			RightHand("Right Hand", false);
 
 			override val action: kotlin.String = "MainHandEquals"
 			override val block: kotlin.String = "if_player"
@@ -135,77 +135,77 @@ object IfPlayerTags {
 	}
 
 	object MovementKey {
-		enum class ForwardW(override val option: kotlin.String) : TagItem {
-			Pressed("Pressed"),
-			Released("Released"),
+		enum class ForwardW(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Pressed("Pressed", false),
+			Released("Released", false),
 			/** **Default** */
-			DontCheck("Don't check");
+			DontCheck("Don't check", true);
 
 			override val action: kotlin.String = "MovementKey"
 			override val block: kotlin.String = "if_player"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Forward (W)"
 		}
-		enum class BackwardS(override val option: kotlin.String) : TagItem {
-			Pressed("Pressed"),
-			Released("Released"),
+		enum class BackwardS(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Pressed("Pressed", false),
+			Released("Released", false),
 			/** **Default** */
-			DontCheck("Don't check");
+			DontCheck("Don't check", true);
 
 			override val action: kotlin.String = "MovementKey"
 			override val block: kotlin.String = "if_player"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Backward (S)"
 		}
-		enum class LeftA(override val option: kotlin.String) : TagItem {
-			Pressed("Pressed"),
-			Released("Released"),
+		enum class LeftA(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Pressed("Pressed", false),
+			Released("Released", false),
 			/** **Default** */
-			DontCheck("Don't check");
+			DontCheck("Don't check", true);
 
 			override val action: kotlin.String = "MovementKey"
 			override val block: kotlin.String = "if_player"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Left (A)"
 		}
-		enum class RightD(override val option: kotlin.String) : TagItem {
-			Pressed("Pressed"),
-			Released("Released"),
+		enum class RightD(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Pressed("Pressed", false),
+			Released("Released", false),
 			/** **Default** */
-			DontCheck("Don't check");
+			DontCheck("Don't check", true);
 
 			override val action: kotlin.String = "MovementKey"
 			override val block: kotlin.String = "if_player"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Right (D)"
 		}
-		enum class JumpSpace(override val option: kotlin.String) : TagItem {
-			Pressed("Pressed"),
-			Released("Released"),
+		enum class JumpSpace(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Pressed("Pressed", false),
+			Released("Released", false),
 			/** **Default** */
-			DontCheck("Don't check");
+			DontCheck("Don't check", true);
 
 			override val action: kotlin.String = "MovementKey"
 			override val block: kotlin.String = "if_player"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Jump (Space)"
 		}
-		enum class SneakLeftShift(override val option: kotlin.String) : TagItem {
-			Pressed("Pressed"),
-			Released("Released"),
+		enum class SneakLeftShift(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Pressed("Pressed", false),
+			Released("Released", false),
 			/** **Default** */
-			DontCheck("Don't check");
+			DontCheck("Don't check", true);
 
 			override val action: kotlin.String = "MovementKey"
 			override val block: kotlin.String = "if_player"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Sneak (Left Shift)"
 		}
-		enum class SprintLeftControl(override val option: kotlin.String) : TagItem {
-			Pressed("Pressed"),
-			Released("Released"),
+		enum class SprintLeftControl(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Pressed("Pressed", false),
+			Released("Released", false),
 			/** **Default** */
-			DontCheck("Don't check");
+			DontCheck("Don't check", true);
 
 			override val action: kotlin.String = "MovementKey"
 			override val block: kotlin.String = "if_player"
@@ -215,37 +215,37 @@ object IfPlayerTags {
 	}
 
 	object InvOpen {
-		enum class InventoryType(override val option: kotlin.String) : TagItem {
+		enum class InventoryType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			AnyInventory("Any Inventory"),
-			PlotMenu("Plot Menu"),
-			CraftingTable("Crafting Table"),
-			Chest("Chest"),
-			DoubleChest("Double Chest"),
-			EnderChest("Ender Chest"),
-			ShulkerBox("Shulker Box"),
-			Barrel("Barrel"),
-			FurnaceAny("Furnace (any)"),
-			Furnace("Furnace"),
-			BlastFurnace("Blast Furnace"),
-			Smoker("Smoker"),
-			Dropper("Dropper"),
-			Dispenser("Dispenser"),
-			Beacon("Beacon"),
-			Hopper("Hopper"),
-			Anvil("Anvil"),
-			BrewingStand("Brewing Stand"),
-			CartographyTable("Cartography Table"),
-			SmithingTable("Smithing Table"),
-			Loom("Loom"),
-			Grindstone("Grindstone"),
-			Stonecutter("Stonecutter"),
-			EnchantingTable("Enchanting Table"),
-			TraderMenuAny("Trader Menu (any)"),
-			VillagerMenu("Villager Menu"),
-			WanderingTraderMenu("Wandering Trader Menu"),
-			HorseInventory("Horse Inventory"),
-			LlamaInventory("Llama Inventory");
+			AnyInventory("Any Inventory", true),
+			PlotMenu("Plot Menu", false),
+			CraftingTable("Crafting Table", false),
+			Chest("Chest", false),
+			DoubleChest("Double Chest", false),
+			EnderChest("Ender Chest", false),
+			ShulkerBox("Shulker Box", false),
+			Barrel("Barrel", false),
+			FurnaceAny("Furnace (any)", false),
+			Furnace("Furnace", false),
+			BlastFurnace("Blast Furnace", false),
+			Smoker("Smoker", false),
+			Dropper("Dropper", false),
+			Dispenser("Dispenser", false),
+			Beacon("Beacon", false),
+			Hopper("Hopper", false),
+			Anvil("Anvil", false),
+			BrewingStand("Brewing Stand", false),
+			CartographyTable("Cartography Table", false),
+			SmithingTable("Smithing Table", false),
+			Loom("Loom", false),
+			Grindstone("Grindstone", false),
+			Stonecutter("Stonecutter", false),
+			EnchantingTable("Enchanting Table", false),
+			TraderMenuAny("Trader Menu (any)", false),
+			VillagerMenu("Villager Menu", false),
+			WanderingTraderMenu("Wandering Trader Menu", false),
+			HorseInventory("Horse Inventory", false),
+			LlamaInventory("Llama Inventory", false);
 
 			override val action: kotlin.String = "InvOpen"
 			override val block: kotlin.String = "if_player"
@@ -255,10 +255,10 @@ object IfPlayerTags {
 	}
 
 	object CmdArgEquals {
-		enum class IgnoreCase(override val option: kotlin.String) : TagItem {
+		enum class IgnoreCase(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "CmdArgEquals"
 			override val block: kotlin.String = "if_player"
@@ -268,10 +268,10 @@ object IfPlayerTags {
 	}
 
 	object IsLookingAt {
-		enum class FluidMode(override val option: kotlin.String) : TagItem {
+		enum class FluidMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			IgnoreFluids("Ignore fluids"),
-			DetectFluids("Detect fluids");
+			IgnoreFluids("Ignore fluids", true),
+			DetectFluids("Detect fluids", false);
 
 			override val action: kotlin.String = "IsLookingAt"
 			override val block: kotlin.String = "if_player"
@@ -281,12 +281,12 @@ object IfPlayerTags {
 	}
 
 	object IsInGameMode {
-		enum class GameMode(override val option: kotlin.String) : TagItem {
+		enum class GameMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Survival("Survival"),
-			Creative("Creative"),
-			Adventure("Adventure"),
-			Spectator("Spectator");
+			Survival("Survival", true),
+			Creative("Creative", false),
+			Adventure("Adventure", false),
+			Spectator("Spectator", false);
 
 			override val action: kotlin.String = "IsInGameMode"
 			override val block: kotlin.String = "if_player"
@@ -296,11 +296,11 @@ object IfPlayerTags {
 	}
 
 	object IsHolding {
-		enum class HandSlot(override val option: kotlin.String) : TagItem {
+		enum class HandSlot(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			EitherHand("Either hand"),
-			MainHand("Main hand"),
-			OffHand("Off hand");
+			EitherHand("Either hand", true),
+			MainHand("Main hand", false),
+			OffHand("Off hand", false);
 
 			override val action: kotlin.String = "IsHolding"
 			override val block: kotlin.String = "if_player"
@@ -310,12 +310,12 @@ object IfPlayerTags {
 	}
 
 	object IsHitboxNear {
-		enum class Shape(override val option: kotlin.String) : TagItem {
+		enum class Shape(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Sphere("Sphere"),
-			Circle("Circle"),
-			Cube("Cube"),
-			Square("Square");
+			Sphere("Sphere", true),
+			Circle("Circle", false),
+			Cube("Cube", false),
+			Square("Square", false);
 
 			override val action: kotlin.String = "IsHitboxNear"
 			override val block: kotlin.String = "if_player"
@@ -325,22 +325,22 @@ object IfPlayerTags {
 	}
 
 	object HasPotion {
-		enum class CheckProperties(override val option: kotlin.String) : TagItem {
+		enum class CheckProperties(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			None("None"),
-			Amplifier("Amplifier"),
-			Duration("Duration"),
-			AmplifierAndDuration("Amplifier and duration");
+			None("None", true),
+			Amplifier("Amplifier", false),
+			Duration("Duration", false),
+			AmplifierAndDuration("Amplifier and duration", false);
 
 			override val action: kotlin.String = "HasPotion"
 			override val block: kotlin.String = "if_player"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Check Properties"
 		}
-		enum class CheckMode(override val option: kotlin.String) : TagItem {
+		enum class CheckMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			HasAnyEffect("Has any effect"),
-			HasAllEffects("Has all effects");
+			HasAnyEffect("Has any effect", true),
+			HasAllEffects("Has all effects", false);
 
 			override val action: kotlin.String = "HasPotion"
 			override val block: kotlin.String = "if_player"

@@ -3,10 +3,10 @@ package io.github.flyingpig525.base.item.type.tag
 @Suppress("unused", "RemoveRedundantQualifierName")
 object SetVariableTags {
 	object String {
-		enum class TextValueMerging(override val option: kotlin.String) : TagItem {
-			AddSpaces("Add spaces"),
+		enum class TextValueMerging(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			AddSpaces("Add spaces", false),
 			/** **Default** */
-			NoSpaces("No spaces");
+			NoSpaces("No spaces", true);
 
 			override val action: kotlin.String = "String"
 			override val block: kotlin.String = "set_var"
@@ -16,21 +16,21 @@ object SetVariableTags {
 	}
 
 	object PurgeVars {
-		enum class MatchRequirement(override val option: kotlin.String) : TagItem {
-			EntireName("Entire name"),
+		enum class MatchRequirement(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			EntireName("Entire name", false),
 			/** **Default** */
-			FullWordSInName("Full word(s) in name"),
-			AnyPartOfName("Any part of name");
+			FullWordSInName("Full word(s) in name", true),
+			AnyPartOfName("Any part of name", false);
 
 			override val action: kotlin.String = "PurgeVars"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Match Requirement"
 		}
-		enum class IgnoreCase(override val option: kotlin.String) : TagItem {
-			True("True"),
+		enum class IgnoreCase(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			True("True", false),
 			/** **Default** */
-			False("False");
+			False("False", true);
 
 			override val action: kotlin.String = "PurgeVars"
 			override val block: kotlin.String = "set_var"
@@ -40,56 +40,56 @@ object SetVariableTags {
 	}
 
 	object RemoveItemAttrs {
-		enum class Slot(override val option: kotlin.String) : TagItem {
+		enum class Slot(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			All("All"),
-			MainHand("Main hand"),
-			OffHand("Off hand"),
-			Head("Head"),
-			Body("Body"),
-			Legs("Legs"),
-			Feet("Feet");
+			All("All", true),
+			MainHand("Main hand", false),
+			OffHand("Off hand", false),
+			Head("Head", false),
+			Body("Body", false),
+			Legs("Legs", false),
+			Feet("Feet", false);
 
 			override val action: kotlin.String = "RemoveItemAttrs"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Slot"
 		}
-		enum class Attribute(override val option: kotlin.String) : TagItem {
+		enum class Attribute(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			All("All"),
-			Armor("Armor"),
-			ArmorToughness("Armor toughness"),
-			AttackDamage("Attack damage"),
-			AttackKnockback("Attack knockback"),
-			AttackSpeed("Attack speed"),
-			BurningTime("Burning time"),
-			ExplosionKnockbackResistance("Explosion knockback resistance"),
-			FallDamageMultiplier("Fall damage multiplier"),
-			FlyingSpeed("Flying speed"),
-			FollowRange("Follow range"),
-			Gravity("Gravity"),
-			JumpStrength("Jump strength"),
-			KnockbackResistance("Knockback resistance"),
-			Luck("Luck"),
-			MaximumAbsorptionHealth("Maximum absorption health"),
-			MaximumHealth("Maximum health"),
-			MovementEfficiency("Movement efficiency"),
-			WalkingSpeed("Walking speed"),
-			OxygenBonus("Oxygen bonus"),
-			SafeFallDistance("Safe fall distance"),
-			Scale("Scale"),
-			StepHeight("Step height"),
-			WaterMovementEfficiency("Water movement efficiency"),
-			TemptRange("Tempt range"),
-			BlockBreakSpeed("Block break speed"),
-			BlockInteractionRange("Block interaction range"),
-			EntityInteractionRange("Entity interaction range"),
-			MiningEfficiency("Mining efficiency"),
-			SneakingSpeed("Sneaking speed"),
-			SubmergedMiningSpeed("Submerged mining speed"),
-			SweepingDamageRatio("Sweeping damage ratio"),
-			ZombieSpawnReinforcements("Zombie spawn reinforcements");
+			All("All", true),
+			Armor("Armor", false),
+			ArmorToughness("Armor toughness", false),
+			AttackDamage("Attack damage", false),
+			AttackKnockback("Attack knockback", false),
+			AttackSpeed("Attack speed", false),
+			BurningTime("Burning time", false),
+			ExplosionKnockbackResistance("Explosion knockback resistance", false),
+			FallDamageMultiplier("Fall damage multiplier", false),
+			FlyingSpeed("Flying speed", false),
+			FollowRange("Follow range", false),
+			Gravity("Gravity", false),
+			JumpStrength("Jump strength", false),
+			KnockbackResistance("Knockback resistance", false),
+			Luck("Luck", false),
+			MaximumAbsorptionHealth("Maximum absorption health", false),
+			MaximumHealth("Maximum health", false),
+			MovementEfficiency("Movement efficiency", false),
+			WalkingSpeed("Walking speed", false),
+			OxygenBonus("Oxygen bonus", false),
+			SafeFallDistance("Safe fall distance", false),
+			Scale("Scale", false),
+			StepHeight("Step height", false),
+			WaterMovementEfficiency("Water movement efficiency", false),
+			TemptRange("Tempt range", false),
+			BlockBreakSpeed("Block break speed", false),
+			BlockInteractionRange("Block interaction range", false),
+			EntityInteractionRange("Entity interaction range", false),
+			MiningEfficiency("Mining efficiency", false),
+			SneakingSpeed("Sneaking speed", false),
+			SubmergedMiningSpeed("Submerged mining speed", false),
+			SweepingDamageRatio("Sweeping damage ratio", false),
+			ZombieSpawnReinforcements("Zombie spawn reinforcements", false);
 
 			override val action: kotlin.String = "RemoveItemAttrs"
 			override val block: kotlin.String = "set_var"
@@ -99,10 +99,10 @@ object SetVariableTags {
 	}
 
 	object Mod {
-		enum class RemainderMode(override val option: kotlin.String) : TagItem {
+		enum class RemainderMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Remainder("Remainder"),
-			Modulo("Modulo");
+			Remainder("Remainder", true),
+			Modulo("Modulo", false);
 
 			override val action: kotlin.String = "%"
 			override val block: kotlin.String = "set_var"
@@ -112,10 +112,10 @@ object SetVariableTags {
 	}
 
 	object ShiftOnVector {
-		enum class AddLocationRotation(override val option: kotlin.String) : TagItem {
-			True("True"),
+		enum class AddLocationRotation(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			True("True", false),
 			/** **Default** */
-			False("False");
+			False("False", true);
 
 			override val action: kotlin.String = "ShiftOnVector"
 			override val block: kotlin.String = "set_var"
@@ -125,55 +125,55 @@ object SetVariableTags {
 	}
 
 	object GetItemAttribute {
-		enum class Attribute(override val option: kotlin.String) : TagItem {
+		enum class Attribute(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Armor("Armor"),
-			ArmorToughness("Armor toughness"),
-			AttackDamage("Attack damage"),
-			AttackKnockback("Attack knockback"),
-			AttackSpeed("Attack speed"),
-			BurningTime("Burning time"),
-			ExplosionKnockbackResistance("Explosion knockback resistance"),
-			FallDamageMultiplier("Fall damage multiplier"),
-			FlyingSpeed("Flying speed"),
-			FollowRange("Follow range"),
-			Gravity("Gravity"),
-			JumpStrength("Jump strength"),
-			KnockbackResistance("Knockback resistance"),
-			Luck("Luck"),
-			MaximumAbsorptionHealth("Maximum absorption health"),
-			MaximumHealth("Maximum health"),
-			MovementEfficiency("Movement efficiency"),
-			WalkingSpeed("Walking speed"),
-			OxygenBonus("Oxygen bonus"),
-			SafeFallDistance("Safe fall distance"),
-			Scale("Scale"),
-			StepHeight("Step height"),
-			WaterMovementEfficiency("Water movement efficiency"),
-			TemptRange("Tempt range"),
-			BlockBreakSpeed("Block break speed"),
-			BlockInteractionRange("Block interaction range"),
-			EntityInteractionRange("Entity interaction range"),
-			MiningEfficiency("Mining efficiency"),
-			SneakingSpeed("Sneaking speed"),
-			SubmergedMiningSpeed("Submerged mining speed"),
-			SweepingDamageRatio("Sweeping damage ratio"),
-			ZombieSpawnReinforcements("Zombie spawn reinforcements");
+			Armor("Armor", true),
+			ArmorToughness("Armor toughness", false),
+			AttackDamage("Attack damage", false),
+			AttackKnockback("Attack knockback", false),
+			AttackSpeed("Attack speed", false),
+			BurningTime("Burning time", false),
+			ExplosionKnockbackResistance("Explosion knockback resistance", false),
+			FallDamageMultiplier("Fall damage multiplier", false),
+			FlyingSpeed("Flying speed", false),
+			FollowRange("Follow range", false),
+			Gravity("Gravity", false),
+			JumpStrength("Jump strength", false),
+			KnockbackResistance("Knockback resistance", false),
+			Luck("Luck", false),
+			MaximumAbsorptionHealth("Maximum absorption health", false),
+			MaximumHealth("Maximum health", false),
+			MovementEfficiency("Movement efficiency", false),
+			WalkingSpeed("Walking speed", false),
+			OxygenBonus("Oxygen bonus", false),
+			SafeFallDistance("Safe fall distance", false),
+			Scale("Scale", false),
+			StepHeight("Step height", false),
+			WaterMovementEfficiency("Water movement efficiency", false),
+			TemptRange("Tempt range", false),
+			BlockBreakSpeed("Block break speed", false),
+			BlockInteractionRange("Block interaction range", false),
+			EntityInteractionRange("Entity interaction range", false),
+			MiningEfficiency("Mining efficiency", false),
+			SneakingSpeed("Sneaking speed", false),
+			SubmergedMiningSpeed("Submerged mining speed", false),
+			SweepingDamageRatio("Sweeping damage ratio", false),
+			ZombieSpawnReinforcements("Zombie spawn reinforcements", false);
 
 			override val action: kotlin.String = "GetItemAttribute"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Attribute"
 		}
-		enum class ActiveEquipmentSlot(override val option: kotlin.String) : TagItem {
+		enum class ActiveEquipmentSlot(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Any("Any"),
-			MainHand("Main hand"),
-			OffHand("Off hand"),
-			Head("Head"),
-			Body("Body"),
-			Legs("Legs"),
-			Feet("Feet");
+			Any("Any", true),
+			MainHand("Main hand", false),
+			OffHand("Off hand", false),
+			Head("Head", false),
+			Body("Body", false),
+			Legs("Legs", false),
+			Feet("Feet", false);
 
 			override val action: kotlin.String = "GetItemAttribute"
 			override val block: kotlin.String = "set_var"
@@ -183,10 +183,10 @@ object SetVariableTags {
 	}
 
 	object ShiftRotation {
-		enum class RotationAxis(override val option: kotlin.String) : TagItem {
+		enum class RotationAxis(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Pitch("Pitch"),
-			Yaw("Yaw");
+			Pitch("Pitch", true),
+			Yaw("Yaw", false);
 
 			override val action: kotlin.String = "ShiftRotation"
 			override val block: kotlin.String = "set_var"
@@ -196,10 +196,10 @@ object SetVariableTags {
 	}
 
 	object Divide {
-		enum class DivisionMode(override val option: kotlin.String) : TagItem {
+		enum class DivisionMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Default("Default"),
-			FloorResult("Floor result");
+			Default("Default", true),
+			FloorResult("Floor result", false);
 
 			override val action: kotlin.String = "/"
 			override val block: kotlin.String = "set_var"
@@ -209,13 +209,13 @@ object SetVariableTags {
 	}
 
 	object GetSignText {
-		enum class SignLine(override val option: kotlin.String) : TagItem {
+		enum class SignLine(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			One("1"),
-			Two("2"),
-			Three("3"),
-			Four("4"),
-			AllLines("All lines");
+			One("1", true),
+			Two("2", false),
+			Three("3", false),
+			Four("4", false),
+			AllLines("All lines", false);
 
 			override val action: kotlin.String = "GetSignText"
 			override val block: kotlin.String = "set_var"
@@ -225,25 +225,25 @@ object SetVariableTags {
 	}
 
 	object Bitwise {
-		enum class Operator(override val option: kotlin.String) : TagItem {
+		enum class Operator(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Or("|"),
-			And("&"),
-			Not("~"),
-			Xor("^"),
-			ShiftLeft("<<"),
-			ShiftRight(">>"),
-			UnsignedShiftRight(">>>");
+			Or("|", true),
+			And("&", false),
+			Not("~", false),
+			Xor("^", false),
+			ShiftLeft("<<", false),
+			ShiftRight(">>", false),
+			UnsignedShiftRight(">>>", false);
 
 			override val action: kotlin.String = "Bitwise"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Operator"
 		}
-		enum class BitPrecision(override val option: kotlin.String) : TagItem {
+		enum class BitPrecision(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Default("Default"),
-			SixFourBit("64-bit");
+			Default("Default", true),
+			SixFourBit("64-bit", false);
 
 			override val action: kotlin.String = "Bitwise"
 			override val block: kotlin.String = "set_var"
@@ -253,11 +253,11 @@ object SetVariableTags {
 	}
 
 	object ShiftOnAxis {
-		enum class Coordinate(override val option: kotlin.String) : TagItem {
+		enum class Coordinate(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			X("X"),
-			Y("Y"),
-			Z("Z");
+			X("X", true),
+			Y("Y", false),
+			Z("Z", false);
 
 			override val action: kotlin.String = "ShiftOnAxis"
 			override val block: kotlin.String = "set_var"
@@ -267,11 +267,11 @@ object SetVariableTags {
 	}
 
 	object GetVectorComp {
-		enum class Component(override val option: kotlin.String) : TagItem {
+		enum class Component(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			X("X"),
-			Y("Y"),
-			Z("Z");
+			X("X", true),
+			Y("Y", false),
+			Z("Z", false);
 
 			override val action: kotlin.String = "GetVectorComp"
 			override val block: kotlin.String = "set_var"
@@ -281,10 +281,10 @@ object SetVariableTags {
 	}
 
 	object RmText {
-		enum class RegularExpressions(override val option: kotlin.String) : TagItem {
-			Enable("Enable"),
+		enum class RegularExpressions(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Enable("Enable", false),
 			/** **Default** */
-			Disable("Disable");
+			Disable("Disable", true);
 
 			override val action: kotlin.String = "RmText"
 			override val block: kotlin.String = "set_var"
@@ -294,66 +294,66 @@ object SetVariableTags {
 	}
 
 	object AddItemAttribute {
-		enum class Attribute(override val option: kotlin.String) : TagItem {
+		enum class Attribute(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Armor("Armor"),
-			ArmorToughness("Armor toughness"),
-			AttackDamage("Attack damage"),
-			AttackKnockback("Attack knockback"),
-			AttackSpeed("Attack speed"),
-			BurningTime("Burning time"),
-			ExplosionKnockbackResistance("Explosion knockback resistance"),
-			FallDamageMultiplier("Fall damage multiplier"),
-			FlyingSpeed("Flying speed"),
-			FollowRange("Follow range"),
-			Gravity("Gravity"),
-			JumpStrength("Jump strength"),
-			KnockbackResistance("Knockback resistance"),
-			Luck("Luck"),
-			MaximumAbsorptionHealth("Maximum absorption health"),
-			MaximumHealth("Maximum health"),
-			MovementEfficiency("Movement efficiency"),
-			WalkingSpeed("Walking speed"),
-			OxygenBonus("Oxygen bonus"),
-			SafeFallDistance("Safe fall distance"),
-			Scale("Scale"),
-			StepHeight("Step height"),
-			WaterMovementEfficiency("Water movement efficiency"),
-			TemptRange("Tempt range"),
-			BlockBreakSpeed("Block break speed"),
-			BlockInteractionRange("Block interaction range"),
-			EntityInteractionRange("Entity interaction range"),
-			MiningEfficiency("Mining efficiency"),
-			SneakingSpeed("Sneaking speed"),
-			SubmergedMiningSpeed("Submerged mining speed"),
-			SweepingDamageRatio("Sweeping damage ratio"),
-			ZombieSpawnReinforcements("Zombie spawn reinforcements");
+			Armor("Armor", true),
+			ArmorToughness("Armor toughness", false),
+			AttackDamage("Attack damage", false),
+			AttackKnockback("Attack knockback", false),
+			AttackSpeed("Attack speed", false),
+			BurningTime("Burning time", false),
+			ExplosionKnockbackResistance("Explosion knockback resistance", false),
+			FallDamageMultiplier("Fall damage multiplier", false),
+			FlyingSpeed("Flying speed", false),
+			FollowRange("Follow range", false),
+			Gravity("Gravity", false),
+			JumpStrength("Jump strength", false),
+			KnockbackResistance("Knockback resistance", false),
+			Luck("Luck", false),
+			MaximumAbsorptionHealth("Maximum absorption health", false),
+			MaximumHealth("Maximum health", false),
+			MovementEfficiency("Movement efficiency", false),
+			WalkingSpeed("Walking speed", false),
+			OxygenBonus("Oxygen bonus", false),
+			SafeFallDistance("Safe fall distance", false),
+			Scale("Scale", false),
+			StepHeight("Step height", false),
+			WaterMovementEfficiency("Water movement efficiency", false),
+			TemptRange("Tempt range", false),
+			BlockBreakSpeed("Block break speed", false),
+			BlockInteractionRange("Block interaction range", false),
+			EntityInteractionRange("Entity interaction range", false),
+			MiningEfficiency("Mining efficiency", false),
+			SneakingSpeed("Sneaking speed", false),
+			SubmergedMiningSpeed("Submerged mining speed", false),
+			SweepingDamageRatio("Sweeping damage ratio", false),
+			ZombieSpawnReinforcements("Zombie spawn reinforcements", false);
 
 			override val action: kotlin.String = "AddItemAttribute"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Attribute"
 		}
-		enum class Operation(override val option: kotlin.String) : TagItem {
+		enum class Operation(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			AddNumber("Add number"),
-			AddPercentageToBase("Add percentage to base"),
-			MultiplyModifierByPercentage("Multiply modifier by percentage");
+			AddNumber("Add number", true),
+			AddPercentageToBase("Add percentage to base", false),
+			MultiplyModifierByPercentage("Multiply modifier by percentage", false);
 
 			override val action: kotlin.String = "AddItemAttribute"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Operation"
 		}
-		enum class ActiveEquipmentSlot(override val option: kotlin.String) : TagItem {
-			Any("Any"),
+		enum class ActiveEquipmentSlot(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Any("Any", false),
 			/** **Default** */
-			MainHand("Main hand"),
-			OffHand("Off hand"),
-			Head("Head"),
-			Body("Body"),
-			Legs("Legs"),
-			Feet("Feet");
+			MainHand("Main hand", true),
+			OffHand("Off hand", false),
+			Head("Head", false),
+			Body("Body", false),
+			Legs("Legs", false),
+			Feet("Feet", false);
 
 			override val action: kotlin.String = "AddItemAttribute"
 			override val block: kotlin.String = "set_var"
@@ -363,31 +363,31 @@ object SetVariableTags {
 	}
 
 	object AlignLoc {
-		enum class AlignmentMode(override val option: kotlin.String) : TagItem {
+		enum class AlignmentMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			BlockCenter("Block center"),
-			LowerBlockCorner("Lower block corner");
+			BlockCenter("Block center", true),
+			LowerBlockCorner("Lower block corner", false);
 
 			override val action: kotlin.String = "AlignLoc"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Alignment Mode"
 		}
-		enum class Coordinates(override val option: kotlin.String) : TagItem {
+		enum class Coordinates(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			AllCoordinates("All coordinates"),
-			XAndZ("X and Z"),
-			OnlyY("Only Y");
+			AllCoordinates("All coordinates", true),
+			XAndZ("X and Z", false),
+			OnlyY("Only Y", false);
 
 			override val action: kotlin.String = "AlignLoc"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Coordinates"
 		}
-		enum class Rotation(override val option: kotlin.String) : TagItem {
+		enum class Rotation(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			KeepRotation("Keep rotation"),
-			RemoveRotation("Remove rotation");
+			KeepRotation("Keep rotation", true),
+			RemoveRotation("Remove rotation", false);
 
 			override val action: kotlin.String = "AlignLoc"
 			override val block: kotlin.String = "set_var"
@@ -397,10 +397,10 @@ object SetVariableTags {
 	}
 
 	object RandomNumber {
-		enum class RoundingMode(override val option: kotlin.String) : TagItem {
+		enum class RoundingMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			WholeNumber("Whole number"),
-			DecimalNumber("Decimal number");
+			WholeNumber("Whole number", true),
+			DecimalNumber("Decimal number", false);
 
 			override val action: kotlin.String = "RandomNumber"
 			override val block: kotlin.String = "set_var"
@@ -410,22 +410,22 @@ object SetVariableTags {
 	}
 
 	object Raycast {
-		enum class EntityCollision(override val option: kotlin.String) : TagItem {
-			True("True"),
+		enum class EntityCollision(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			True("True", false),
 			/** **Default** */
-			False("False");
+			False("False", true);
 
 			override val action: kotlin.String = "Raycast"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Entity Collision"
 		}
-		enum class BlockCollision(override val option: kotlin.String) : TagItem {
+		enum class BlockCollision(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			AllBlocks("All blocks"),
-			NonFluidBlocks("Non-fluid blocks"),
-			SolidBlocks("Solid blocks"),
-			None("None");
+			AllBlocks("All blocks", true),
+			NonFluidBlocks("Non-fluid blocks", false),
+			SolidBlocks("Solid blocks", false),
+			None("None", false);
 
 			override val action: kotlin.String = "Raycast"
 			override val block: kotlin.String = "set_var"
@@ -435,10 +435,10 @@ object SetVariableTags {
 	}
 
 	object RotateAroundVec {
-		enum class AngleUnits(override val option: kotlin.String) : TagItem {
+		enum class AngleUnits(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Degrees("Degrees"),
-			Radians("Radians");
+			Degrees("Degrees", true),
+			Radians("Radians", false);
 
 			override val action: kotlin.String = "RotateAroundVec"
 			override val block: kotlin.String = "set_var"
@@ -448,10 +448,10 @@ object SetVariableTags {
 	}
 
 	object SetItemFood {
-		enum class CanAlwaysEat(override val option: kotlin.String) : TagItem {
-			True("True"),
+		enum class CanAlwaysEat(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			True("True", false),
 			/** **Default** */
-			False("False");
+			False("False", true);
 
 			override val action: kotlin.String = "SetItemFood"
 			override val block: kotlin.String = "set_var"
@@ -461,39 +461,39 @@ object SetVariableTags {
 	}
 
 	object SetConsumable {
-		enum class CanAlwaysEat(override val option: kotlin.String) : TagItem {
-			True("True"),
+		enum class CanAlwaysEat(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			True("True", false),
 			/** **Default** */
-			False("False");
+			False("False", true);
 
 			override val action: kotlin.String = "SetConsumable"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Can Always Eat"
 		}
-		enum class ShowParticles(override val option: kotlin.String) : TagItem {
+		enum class ShowParticles(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "SetConsumable"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Show Particles"
 		}
-		enum class ConsumingAnimation(override val option: kotlin.String) : TagItem {
-			None("None"),
+		enum class ConsumingAnimation(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			None("None", false),
 			/** **Default** */
-			Eat("Eat"),
-			Drink("Drink"),
-			Block("Block"),
-			Bow("Bow"),
-			Spear("Spear"),
-			Crossbow("Crossbow"),
-			Spyglass("Spyglass"),
-			TootHorn("Toot horn"),
-			Brush("Brush"),
-			Bundle("Bundle");
+			Eat("Eat", true),
+			Drink("Drink", false),
+			Block("Block", false),
+			Bow("Bow", false),
+			Spear("Spear", false),
+			Crossbow("Crossbow", false),
+			Spyglass("Spyglass", false),
+			TootHorn("Toot horn", false),
+			Brush("Brush", false),
+			Bundle("Bundle", false);
 
 			override val action: kotlin.String = "SetConsumable"
 			override val block: kotlin.String = "set_var"
@@ -503,10 +503,10 @@ object SetVariableTags {
 	}
 
 	object ClampLoc {
-		enum class Coordinates(override val option: kotlin.String) : TagItem {
+		enum class Coordinates(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			AllCoordinates("All coordinates"),
-			XAndZ("X and Z");
+			AllCoordinates("All coordinates", true),
+			XAndZ("X and Z", false);
 
 			override val action: kotlin.String = "ClampLoc"
 			override val block: kotlin.String = "set_var"
@@ -516,20 +516,20 @@ object SetVariableTags {
 	}
 
 	object SortDict {
-		enum class SortingType(override val option: kotlin.String) : TagItem {
+		enum class SortingType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			SortByKey("Sort by Key"),
-			SortByValue("Sort by Value");
+			SortByKey("Sort by Key", true),
+			SortByValue("Sort by Value", false);
 
 			override val action: kotlin.String = "SortDict"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Sorting Type"
 		}
-		enum class SortingOrder(override val option: kotlin.String) : TagItem {
+		enum class SortingOrder(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Ascending("Ascending"),
-			Descending("Descending");
+			Ascending("Ascending", true),
+			Descending("Descending", false);
 
 			override val action: kotlin.String = "SortDict"
 			override val block: kotlin.String = "set_var"
@@ -539,46 +539,46 @@ object SetVariableTags {
 	}
 
 	object SetArmorTrim {
-		enum class TrimPattern(override val option: kotlin.String) : TagItem {
+		enum class TrimPattern(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			None("None"),
-			Bolt("Bolt"),
-			Coast("Coast"),
-			Dune("Dune"),
-			Eye("Eye"),
-			Flow("Flow"),
-			Rib("Rib"),
-			Sentry("Sentry"),
-			Snout("Snout"),
-			Spire("Spire"),
-			Tide("Tide"),
-			Vex("Vex"),
-			Ward("Ward"),
-			Wayfinder("Wayfinder"),
-			Shaper("Shaper"),
-			Silence("Silence"),
-			Raiser("Raiser"),
-			Host("Host"),
-			Wild("Wild");
+			None("None", true),
+			Bolt("Bolt", false),
+			Coast("Coast", false),
+			Dune("Dune", false),
+			Eye("Eye", false),
+			Flow("Flow", false),
+			Rib("Rib", false),
+			Sentry("Sentry", false),
+			Snout("Snout", false),
+			Spire("Spire", false),
+			Tide("Tide", false),
+			Vex("Vex", false),
+			Ward("Ward", false),
+			Wayfinder("Wayfinder", false),
+			Shaper("Shaper", false),
+			Silence("Silence", false),
+			Raiser("Raiser", false),
+			Host("Host", false),
+			Wild("Wild", false);
 
 			override val action: kotlin.String = "SetArmorTrim"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Trim Pattern"
 		}
-		enum class TrimMaterial(override val option: kotlin.String) : TagItem {
+		enum class TrimMaterial(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Amethyst("Amethyst"),
-			Copper("Copper"),
-			Diamond("Diamond"),
-			Emerald("Emerald"),
-			Gold("Gold"),
-			Iron("Iron"),
-			LapisLazuli("Lapis Lazuli"),
-			Netherite("Netherite"),
-			Quartz("Quartz"),
-			Resin("Resin"),
-			Redstone("Redstone");
+			Amethyst("Amethyst", true),
+			Copper("Copper", false),
+			Diamond("Diamond", false),
+			Emerald("Emerald", false),
+			Gold("Gold", false),
+			Iron("Iron", false),
+			LapisLazuli("Lapis Lazuli", false),
+			Netherite("Netherite", false),
+			Quartz("Quartz", false),
+			Resin("Resin", false),
+			Redstone("Redstone", false);
 
 			override val action: kotlin.String = "SetArmorTrim"
 			override val block: kotlin.String = "set_var"
@@ -588,23 +588,23 @@ object SetVariableTags {
 	}
 
 	object Noise {
-		enum class ReturnType(override val option: kotlin.String) : TagItem {
+		enum class ReturnType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Simplex("Simplex"),
-			Perlin("Perlin"),
-			Voronoi("Voronoi"),
-			Worley("Worley"),
-			Value("Value");
+			Simplex("Simplex", true),
+			Perlin("Perlin", false),
+			Voronoi("Voronoi", false),
+			Worley("Worley", false),
+			Value("Value", false);
 
 			override val action: kotlin.String = "Noise"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Return Type"
 		}
-		enum class Dimensions(override val option: kotlin.String) : TagItem {
+		enum class Dimensions(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			ThreeD("3D"),
-			TwoD("2D");
+			ThreeD("3D", true),
+			TwoD("2D", false);
 
 			override val action: kotlin.String = "Noise"
 			override val block: kotlin.String = "set_var"
@@ -614,21 +614,21 @@ object SetVariableTags {
 	}
 
 	object Sine {
-		enum class SineVariant(override val option: kotlin.String) : TagItem {
+		enum class SineVariant(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Sine("Sine"),
-			InverseSineArcsine("Inverse sine (arcsine)"),
-			HyperbolicSine("Hyperbolic sine");
+			Sine("Sine", true),
+			InverseSineArcsine("Inverse sine (arcsine)", false),
+			HyperbolicSine("Hyperbolic sine", false);
 
 			override val action: kotlin.String = "Sine"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Sine Variant"
 		}
-		enum class Input(override val option: kotlin.String) : TagItem {
+		enum class Input(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Degrees("Degrees"),
-			Radians("Radians");
+			Degrees("Degrees", true),
+			Radians("Radians", false);
 
 			override val action: kotlin.String = "Sine"
 			override val block: kotlin.String = "set_var"
@@ -638,11 +638,11 @@ object SetVariableTags {
 	}
 
 	object GetBlockByMCTag {
-		enum class ReturnValueType(override val option: kotlin.String) : TagItem {
+		enum class ReturnValueType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			MaterialIdGolden_apple("Material ID (golden_apple)"),
-			MaterialNameGoldenApple("Material Name (Golden Apple)"),
-			Item("Item");
+			MaterialIdGolden_apple("Material ID (golden_apple)", true),
+			MaterialNameGoldenApple("Material Name (Golden Apple)", false),
+			Item("Item", false);
 
 			override val action: kotlin.String = "GetBlockByMCTag"
 			override val block: kotlin.String = "set_var"
@@ -652,11 +652,11 @@ object SetVariableTags {
 	}
 
 	object RoundNumber {
-		enum class RoundMode(override val option: kotlin.String) : TagItem {
-			Floor("Floor"),
+		enum class RoundMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Floor("Floor", false),
 			/** **Default** */
-			Nearest("Nearest"),
-			Ceiling("Ceiling");
+			Nearest("Nearest", true),
+			Ceiling("Ceiling", false);
 
 			override val action: kotlin.String = "RoundNumber"
 			override val block: kotlin.String = "set_var"
@@ -666,10 +666,10 @@ object SetVariableTags {
 	}
 
 	object FaceLocation {
-		enum class FaceDirection(override val option: kotlin.String) : TagItem {
+		enum class FaceDirection(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			TowardLocation("Toward location"),
-			AwayFromLocation("Away from location");
+			TowardLocation("Toward location", true),
+			AwayFromLocation("Away from location", false);
 
 			override val action: kotlin.String = "FaceLocation"
 			override val block: kotlin.String = "set_var"
@@ -679,10 +679,10 @@ object SetVariableTags {
 	}
 
 	object NormalRandom {
-		enum class Distribution(override val option: kotlin.String) : TagItem {
+		enum class Distribution(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Normal("Normal"),
-			FoldedNormal("Folded normal");
+			Normal("Normal", true),
+			FoldedNormal("Folded normal", false);
 
 			override val action: kotlin.String = "NormalRandom"
 			override val block: kotlin.String = "set_var"
@@ -692,12 +692,12 @@ object SetVariableTags {
 	}
 
 	object SetItemDura {
-		enum class DurabilityType(override val option: kotlin.String) : TagItem {
+		enum class DurabilityType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			SetDamage("Set Damage"),
-			SetDamagePercentage("Set Damage Percentage"),
-			SetRemaining("Set Remaining"),
-			SetRemainingPercentage("Set Remaining Percentage");
+			SetDamage("Set Damage", true),
+			SetDamagePercentage("Set Damage Percentage", false),
+			SetRemaining("Set Remaining", false),
+			SetRemainingPercentage("Set Remaining Percentage", false);
 
 			override val action: kotlin.String = "SetItemDura"
 			override val block: kotlin.String = "set_var"
@@ -707,10 +707,10 @@ object SetVariableTags {
 	}
 
 	object SetBreakability {
-		enum class Breakability(override val option: kotlin.String) : TagItem {
-			Breakable("Breakable"),
+		enum class Breakability(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Breakable("Breakable", false),
 			/** **Default** */
-			Unbreakable("Unbreakable");
+			Unbreakable("Unbreakable", true);
 
 			override val action: kotlin.String = "SetBreakability"
 			override val block: kotlin.String = "set_var"
@@ -720,10 +720,10 @@ object SetVariableTags {
 	}
 
 	object SetAllCoords {
-		enum class CoordinateType(override val option: kotlin.String) : TagItem {
+		enum class CoordinateType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			PlotCoordinate("Plot coordinate"),
-			WorldCoordinate("World coordinate");
+			PlotCoordinate("Plot coordinate", true),
+			WorldCoordinate("World coordinate", false);
 
 			override val action: kotlin.String = "SetAllCoords"
 			override val block: kotlin.String = "set_var"
@@ -733,11 +733,11 @@ object SetVariableTags {
 	}
 
 	object GetDirection {
-		enum class ReturnType(override val option: kotlin.String) : TagItem {
+		enum class ReturnType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			TextThreeD("Text (3D)"),
-			TextTwoD("Text (2D)"),
-			Vector("Vector");
+			TextThreeD("Text (3D)", true),
+			TextTwoD("Text (2D)", false),
+			Vector("Vector", false);
 
 			override val action: kotlin.String = " GetDirection "
 			override val block: kotlin.String = "set_var"
@@ -747,47 +747,47 @@ object SetVariableTags {
 	}
 
 	object CellularNoise {
-		enum class ReturnType(override val option: kotlin.String) : TagItem {
+		enum class ReturnType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Voronoi("Voronoi"),
-			Worley("Worley"),
-			Secondary("Secondary"),
-			Additive("Additive"),
-			Subtractive("Subtractive"),
-			Divisive("Divisive"),
-			Multiplicative("Multiplicative"),
-			Origin("Origin");
+			Voronoi("Voronoi", true),
+			Worley("Worley", false),
+			Secondary("Secondary", false),
+			Additive("Additive", false),
+			Subtractive("Subtractive", false),
+			Divisive("Divisive", false),
+			Multiplicative("Multiplicative", false),
+			Origin("Origin", false);
 
 			override val action: kotlin.String = "CellularNoise"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Return Type"
 		}
-		enum class DistanceCalculation(override val option: kotlin.String) : TagItem {
+		enum class DistanceCalculation(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Euclidean("Euclidean"),
-			Manhattan("Manhattan"),
-			Natural("Natural");
+			Euclidean("Euclidean", true),
+			Manhattan("Manhattan", false),
+			Natural("Natural", false);
 
 			override val action: kotlin.String = "CellularNoise"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Distance Calculation"
 		}
-		enum class DomainFractal(override val option: kotlin.String) : TagItem {
+		enum class DomainFractal(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Progressive("Progressive"),
-			Independent("Independent");
+			Progressive("Progressive", true),
+			Independent("Independent", false);
 
 			override val action: kotlin.String = "CellularNoise"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Domain Fractal"
 		}
-		enum class Dimensions(override val option: kotlin.String) : TagItem {
+		enum class Dimensions(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			ThreeD("3D"),
-			TwoD("2D");
+			ThreeD("3D", true),
+			TwoD("2D", false);
 
 			override val action: kotlin.String = "CellularNoise"
 			override val block: kotlin.String = "set_var"
@@ -797,21 +797,21 @@ object SetVariableTags {
 	}
 
 	object ParseMiniMessageExpr {
-		enum class AllowedTags(override val option: kotlin.String) : TagItem {
+		enum class AllowedTags(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			StyleOnly("Style Only"),
-			Dynamic("Dynamic"),
-			Full("Full");
+			StyleOnly("Style Only", true),
+			Dynamic("Dynamic", false),
+			Full("Full", false);
 
 			override val action: kotlin.String = "ParseMiniMessageExpr"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Allowed Tags"
 		}
-		enum class ParseLegacyColorCodes(override val option: kotlin.String) : TagItem {
-			True("True"),
+		enum class ParseLegacyColorCodes(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			True("True", false),
 			/** **Default** */
-			False("False");
+			False("False", true);
 
 			override val action: kotlin.String = "ParseMiniMessageExpr"
 			override val block: kotlin.String = "set_var"
@@ -821,21 +821,21 @@ object SetVariableTags {
 	}
 
 	object RotateAroundAxis {
-		enum class Axis(override val option: kotlin.String) : TagItem {
+		enum class Axis(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			X("X"),
-			Y("Y"),
-			Z("Z");
+			X("X", true),
+			Y("Y", false),
+			Z("Z", false);
 
 			override val action: kotlin.String = "RotateAroundAxis"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Axis"
 		}
-		enum class AngleUnits(override val option: kotlin.String) : TagItem {
+		enum class AngleUnits(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Degrees("Degrees"),
-			Radians("Radians");
+			Degrees("Degrees", true),
+			Radians("Radians", false);
 
 			override val action: kotlin.String = "RotateAroundAxis"
 			override val block: kotlin.String = "set_var"
@@ -845,13 +845,13 @@ object SetVariableTags {
 	}
 
 	object GetItemDura {
-		enum class DurabilityType(override val option: kotlin.String) : TagItem {
+		enum class DurabilityType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			GetDamage("Get Damage"),
-			GetDamagePercentage("Get Damage Percentage"),
-			GetRemaining("Get Remaining"),
-			GetRemainingPercentage("Get Remaining Percentage"),
-			GetMaximum("Get Maximum");
+			GetDamage("Get Damage", true),
+			GetDamagePercentage("Get Damage Percentage", false),
+			GetRemaining("Get Remaining", false),
+			GetRemainingPercentage("Get Remaining Percentage", false),
+			GetMaximum("Get Maximum", false);
 
 			override val action: kotlin.String = "GetItemDura"
 			override val block: kotlin.String = "set_var"
@@ -861,11 +861,11 @@ object SetVariableTags {
 	}
 
 	object ShiftInDirection {
-		enum class Direction(override val option: kotlin.String) : TagItem {
+		enum class Direction(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Forward("Forward"),
-			Upward("Upward"),
-			Sideways("Sideways");
+			Forward("Forward", true),
+			Upward("Upward", false),
+			Sideways("Sideways", false);
 
 			override val action: kotlin.String = "ShiftInDirection"
 			override val block: kotlin.String = "set_var"
@@ -875,11 +875,11 @@ object SetVariableTags {
 	}
 
 	object SetModelDataNums {
-		enum class ModelValueType(override val option: kotlin.String) : TagItem {
+		enum class ModelValueType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Floats("Floats"),
-			Flags("Flags"),
-			Colors("Colors");
+			Floats("Floats", true),
+			Flags("Flags", false),
+			Colors("Colors", false);
 
 			override val action: kotlin.String = "SetModelDataNums"
 			override val block: kotlin.String = "set_var"
@@ -889,20 +889,20 @@ object SetVariableTags {
 	}
 
 	object ReplaceString {
-		enum class RegularExpressions(override val option: kotlin.String) : TagItem {
-			Enable("Enable"),
+		enum class RegularExpressions(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Enable("Enable", false),
 			/** **Default** */
-			Disable("Disable");
+			Disable("Disable", true);
 
 			override val action: kotlin.String = "ReplaceString"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Regular Expressions"
 		}
-		enum class ReplacementType(override val option: kotlin.String) : TagItem {
-			FirstOccurrence("First occurrence"),
+		enum class ReplacementType(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			FirstOccurrence("First occurrence", false),
 			/** **Default** */
-			AllOccurrences("All occurrences");
+			AllOccurrences("All occurrences", true);
 
 			override val action: kotlin.String = "ReplaceString"
 			override val block: kotlin.String = "set_var"
@@ -912,11 +912,11 @@ object SetVariableTags {
 	}
 
 	object SetItemGlowing {
-		enum class Glowing(override val option: kotlin.String) : TagItem {
+		enum class Glowing(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Enable("Enable"),
-			Disable("Disable"),
-			Default("Default");
+			Enable("Enable", true),
+			Disable("Disable", false),
+			Default("Default", false);
 
 			override val action: kotlin.String = "SetItemGlowing"
 			override val block: kotlin.String = "set_var"
@@ -926,10 +926,10 @@ object SetVariableTags {
 	}
 
 	object SetLodestoneLoc {
-		enum class RequireLodestoneatLocation(override val option: kotlin.String) : TagItem {
-			True("True"),
+		enum class RequireLodestoneatLocation(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			True("True", false),
 			/** **Default** */
-			False("False");
+			False("False", true);
 
 			override val action: kotlin.String = "SetLodestoneLoc"
 			override val block: kotlin.String = "set_var"
@@ -939,13 +939,13 @@ object SetVariableTags {
 	}
 
 	object SetItemRarity {
-		enum class Rarity(override val option: kotlin.String) : TagItem {
+		enum class Rarity(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			DefaultForItemType("Default for item type"),
-			Common("Common"),
-			Uncommon("Uncommon"),
-			Rare("Rare"),
-			Epic("Epic");
+			DefaultForItemType("Default for item type", true),
+			Common("Common", false),
+			Uncommon("Uncommon", false),
+			Rare("Rare", false),
+			Epic("Epic", false);
 
 			override val action: kotlin.String = "SetItemRarity"
 			override val block: kotlin.String = "set_var"
@@ -955,13 +955,13 @@ object SetVariableTags {
 	}
 
 	object SetCase {
-		enum class CapitalizationType(override val option: kotlin.String) : TagItem {
+		enum class CapitalizationType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Uppercase("UPPERCASE"),
-			Lowercase("lowercase"),
-			ProperCase("Proper Case"),
-			InvertCase("iNVERT CASE"),
-			RandomCase("RAnDoM cASe");
+			Uppercase("UPPERCASE", true),
+			Lowercase("lowercase", false),
+			ProperCase("Proper Case", false),
+			InvertCase("iNVERT CASE", false),
+			RandomCase("RAnDoM cASe", false);
 
 			override val action: kotlin.String = "SetCase"
 			override val block: kotlin.String = "set_var"
@@ -971,11 +971,11 @@ object SetVariableTags {
 	}
 
 	object GetLight {
-		enum class LightType(override val option: kotlin.String) : TagItem {
+		enum class LightType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			CombinedLight("Combined light"),
-			SkyLight("Sky light"),
-			BlockLight("Block light");
+			CombinedLight("Combined light", true),
+			SkyLight("Sky light", false),
+			BlockLight("Block light", false);
 
 			override val action: kotlin.String = "GetLight"
 			override val block: kotlin.String = "set_var"
@@ -985,11 +985,11 @@ object SetVariableTags {
 	}
 
 	object Distance {
-		enum class DistanceType(override val option: kotlin.String) : TagItem {
-			DistanceTwoDXOrZ("Distance 2D (X/Z)"),
+		enum class DistanceType(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			DistanceTwoDXOrZ("Distance 2D (X/Z)", false),
 			/** **Default** */
-			DistanceThreeDXOrYOrZ("Distance 3D (X/Y/Z)"),
-			AltitudeY("Altitude (Y)");
+			DistanceThreeDXOrYOrZ("Distance 3D (X/Y/Z)", true),
+			AltitudeY("Altitude (Y)", false);
 
 			override val action: kotlin.String = "Distance"
 			override val block: kotlin.String = "set_var"
@@ -999,21 +999,21 @@ object SetVariableTags {
 	}
 
 	object ParseMiniMessage {
-		enum class AllowedTags(override val option: kotlin.String) : TagItem {
+		enum class AllowedTags(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			StyleOnly("Style Only"),
-			Dynamic("Dynamic"),
-			Full("Full");
+			StyleOnly("Style Only", true),
+			Dynamic("Dynamic", false),
+			Full("Full", false);
 
 			override val action: kotlin.String = "ParseMiniMessage"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Allowed Tags"
 		}
-		enum class ParseLegacyColorCodes(override val option: kotlin.String) : TagItem {
-			True("True"),
+		enum class ParseLegacyColorCodes(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			True("True", false),
 			/** **Default** */
-			False("False");
+			False("False", true);
 
 			override val action: kotlin.String = "ParseMiniMessage"
 			override val block: kotlin.String = "set_var"
@@ -1023,10 +1023,10 @@ object SetVariableTags {
 	}
 
 	object AddItemToolRule {
-		enum class CorrectToolforLoot(override val option: kotlin.String) : TagItem {
+		enum class CorrectToolforLoot(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "AddItemToolRule"
 			override val block: kotlin.String = "set_var"
@@ -1036,11 +1036,11 @@ object SetVariableTags {
 	}
 
 	object GetItemType {
-		enum class ReturnValueType(override val option: kotlin.String) : TagItem {
+		enum class ReturnValueType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			ItemIdGolden_apple("Item ID (golden_apple)"),
-			ItemNameGoldenApple("Item Name (Golden Apple)"),
-			Item("Item");
+			ItemIdGolden_apple("Item ID (golden_apple)", true),
+			ItemNameGoldenApple("Item Name (Golden Apple)", false),
+			Item("Item", false);
 
 			override val action: kotlin.String = "GetItemType"
 			override val block: kotlin.String = "set_var"
@@ -1050,10 +1050,10 @@ object SetVariableTags {
 	}
 
 	object ArcTangent2 {
-		enum class OutputType(override val option: kotlin.String) : TagItem {
+		enum class OutputType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Degrees("Degrees"),
-			Radians("Radians");
+			Degrees("Degrees", true),
+			Radians("Radians", false);
 
 			override val action: kotlin.String = "ArcTangent2"
 			override val block: kotlin.String = "set_var"
@@ -1063,10 +1063,10 @@ object SetVariableTags {
 	}
 
 	object RemoveString {
-		enum class RegularExpressions(override val option: kotlin.String) : TagItem {
-			Enable("Enable"),
+		enum class RegularExpressions(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Enable("Enable", false),
 			/** **Default** */
-			Disable("Disable");
+			Disable("Disable", true);
 
 			override val action: kotlin.String = "RemoveString"
 			override val block: kotlin.String = "set_var"
@@ -1076,10 +1076,10 @@ object SetVariableTags {
 	}
 
 	object GetAllBlockData {
-		enum class HideDefault(override val option: kotlin.String) : TagItem {
+		enum class HideDefault(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "GetAllBlockData"
 			override val block: kotlin.String = "set_var"
@@ -1089,23 +1089,23 @@ object SetVariableTags {
 	}
 
 	object GetCoord {
-		enum class CoordinateType(override val option: kotlin.String) : TagItem {
+		enum class CoordinateType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			PlotCoordinate("Plot coordinate"),
-			WorldCoordinate("World coordinate");
+			PlotCoordinate("Plot coordinate", true),
+			WorldCoordinate("World coordinate", false);
 
 			override val action: kotlin.String = "GetCoord"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Coordinate Type"
 		}
-		enum class Coordinate(override val option: kotlin.String) : TagItem {
+		enum class Coordinate(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			X("X"),
-			Y("Y"),
-			Z("Z"),
-			Pitch("Pitch"),
-			Yaw("Yaw");
+			X("X", true),
+			Y("Y", false),
+			Z("Z", false),
+			Pitch("Pitch", false),
+			Yaw("Yaw", false);
 
 			override val action: kotlin.String = "GetCoord"
 			override val block: kotlin.String = "set_var"
@@ -1115,11 +1115,11 @@ object SetVariableTags {
 	}
 
 	object ShiftDirection {
-		enum class Direction(override val option: kotlin.String) : TagItem {
-			ForwardsTwoDXOrZ("Forwards 2D (X/Z)"),
+		enum class Direction(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			ForwardsTwoDXOrZ("Forwards 2D (X/Z)", false),
 			/** **Default** */
-			ForwardsThreeDXOrYOrZ("Forwards 3D (X/Y/Z)"),
-			SidewaysLOrR("Sideways (-L / +R)");
+			ForwardsThreeDXOrYOrZ("Forwards 3D (X/Y/Z)", true),
+			SidewaysLOrR("Sideways (-L / +R)", false);
 
 			override val action: kotlin.String = "ShiftDirection"
 			override val block: kotlin.String = "set_var"
@@ -1129,20 +1129,20 @@ object SetVariableTags {
 	}
 
 	object IndexOfSubstring {
-		enum class IgnoreCase(override val option: kotlin.String) : TagItem {
-			True("True"),
+		enum class IgnoreCase(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			True("True", false),
 			/** **Default** */
-			False("False");
+			False("False", true);
 
 			override val action: kotlin.String = "IndexOfSubstring"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Ignore Case"
 		}
-		enum class SearchType(override val option: kotlin.String) : TagItem {
+		enum class SearchType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			FirstOccurrence("First occurrence"),
-			LastOccurrence("Last occurrence");
+			FirstOccurrence("First occurrence", true),
+			LastOccurrence("Last occurrence", false);
 
 			override val action: kotlin.String = "IndexOfSubstring"
 			override val block: kotlin.String = "set_var"
@@ -1152,10 +1152,10 @@ object SetVariableTags {
 	}
 
 	object GetParticleSprd {
-		enum class Spread(override val option: kotlin.String) : TagItem {
+		enum class Spread(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Horizontal("Horizontal"),
-			Vertical("Vertical");
+			Horizontal("Horizontal", true),
+			Vertical("Vertical", false);
 
 			override val action: kotlin.String = "GetParticleSprd"
 			override val block: kotlin.String = "set_var"
@@ -1165,10 +1165,10 @@ object SetVariableTags {
 	}
 
 	object GetHeadOwner {
-		enum class TextValue(override val option: kotlin.String) : TagItem {
+		enum class TextValue(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			OwnerName("Owner Name"),
-			OwnerUuid("Owner UUID");
+			OwnerName("Owner Name", true),
+			OwnerUuid("Owner UUID", false);
 
 			override val action: kotlin.String = "GetHeadOwner"
 			override val block: kotlin.String = "set_var"
@@ -1178,11 +1178,11 @@ object SetVariableTags {
 	}
 
 	object GetColorChannels {
-		enum class ColorChannels(override val option: kotlin.String) : TagItem {
+		enum class ColorChannels(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Rgb("RGB"),
-			Hsb("HSB"),
-			Hsl("HSL");
+			Rgb("RGB", true),
+			Hsb("HSB", false),
+			Hsl("HSL", false);
 
 			override val action: kotlin.String = "GetColorChannels"
 			override val block: kotlin.String = "set_var"
@@ -1192,99 +1192,99 @@ object SetVariableTags {
 	}
 
 	object SetItemFlags {
-		enum class ArmorTrim(override val option: kotlin.String) : TagItem {
-			Hide("Hide"),
-			Show("Show"),
+		enum class ArmorTrim(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Hide("Hide", false),
+			Show("Show", false),
 			/** **Default** */
-			NoChange("No Change");
+			NoChange("No Change", true);
 
 			override val action: kotlin.String = " SetItemFlags "
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Armor Trim"
 		}
-		enum class Color(override val option: kotlin.String) : TagItem {
-			Hide("Hide"),
-			Show("Show"),
+		enum class Color(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Hide("Hide", false),
+			Show("Show", false),
 			/** **Default** */
-			NoChange("No Change");
+			NoChange("No Change", true);
 
 			override val action: kotlin.String = " SetItemFlags "
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Color"
 		}
-		enum class Enchantments(override val option: kotlin.String) : TagItem {
-			Hide("Hide"),
-			Show("Show"),
+		enum class Enchantments(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Hide("Hide", false),
+			Show("Show", false),
 			/** **Default** */
-			NoChange("No Change");
+			NoChange("No Change", true);
 
 			override val action: kotlin.String = " SetItemFlags "
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Enchantments"
 		}
-		enum class Attributes(override val option: kotlin.String) : TagItem {
-			Hide("Hide"),
-			Show("Show"),
+		enum class Attributes(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Hide("Hide", false),
+			Show("Show", false),
 			/** **Default** */
-			NoChange("No Change");
+			NoChange("No Change", true);
 
 			override val action: kotlin.String = " SetItemFlags "
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Attributes"
 		}
-		enum class Unbreakable(override val option: kotlin.String) : TagItem {
-			Hide("Hide"),
-			Show("Show"),
+		enum class Unbreakable(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Hide("Hide", false),
+			Show("Show", false),
 			/** **Default** */
-			NoChange("No Change");
+			NoChange("No Change", true);
 
 			override val action: kotlin.String = " SetItemFlags "
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Unbreakable"
 		}
-		enum class CanDestroy(override val option: kotlin.String) : TagItem {
-			Hide("Hide"),
-			Show("Show"),
+		enum class CanDestroy(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Hide("Hide", false),
+			Show("Show", false),
 			/** **Default** */
-			NoChange("No Change");
+			NoChange("No Change", true);
 
 			override val action: kotlin.String = " SetItemFlags "
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Can Destroy"
 		}
-		enum class CanPlaceOn(override val option: kotlin.String) : TagItem {
-			Hide("Hide"),
-			Show("Show"),
+		enum class CanPlaceOn(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Hide("Hide", false),
+			Show("Show", false),
 			/** **Default** */
-			NoChange("No Change");
+			NoChange("No Change", true);
 
 			override val action: kotlin.String = " SetItemFlags "
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Can Place On"
 		}
-		enum class PotionEffects(override val option: kotlin.String) : TagItem {
-			Hide("Hide"),
-			Show("Show"),
+		enum class PotionEffects(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Hide("Hide", false),
+			Show("Show", false),
 			/** **Default** */
-			NoChange("No Change");
+			NoChange("No Change", true);
 
 			override val action: kotlin.String = " SetItemFlags "
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Potion Effects"
 		}
-		enum class Others(override val option: kotlin.String) : TagItem {
-			Hide("Hide"),
-			Show("Show"),
+		enum class Others(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Hide("Hide", false),
+			Show("Show", false),
 			/** **Default** */
-			NoChange("No Change");
+			NoChange("No Change", true);
 
 			override val action: kotlin.String = " SetItemFlags "
 			override val block: kotlin.String = "set_var"
@@ -1294,21 +1294,21 @@ object SetVariableTags {
 	}
 
 	object Tangent {
-		enum class TangentVariant(override val option: kotlin.String) : TagItem {
+		enum class TangentVariant(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Tangent("Tangent"),
-			InverseTangentArctangent("Inverse tangent (arctangent)"),
-			HyperbolicTangent("Hyperbolic tangent");
+			Tangent("Tangent", true),
+			InverseTangentArctangent("Inverse tangent (arctangent)", false),
+			HyperbolicTangent("Hyperbolic tangent", false);
 
 			override val action: kotlin.String = "Tangent"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Tangent Variant"
 		}
-		enum class Input(override val option: kotlin.String) : TagItem {
+		enum class Input(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Degrees("Degrees"),
-			Radians("Radians");
+			Degrees("Degrees", true),
+			Radians("Radians", false);
 
 			override val action: kotlin.String = "Tangent"
 			override val block: kotlin.String = "set_var"
@@ -1318,11 +1318,11 @@ object SetVariableTags {
 	}
 
 	object VoronoiNoise {
-		enum class CellEdgeType(override val option: kotlin.String) : TagItem {
+		enum class CellEdgeType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Euclidean("Euclidean"),
-			Manhattan("Manhattan"),
-			Natural("Natural");
+			Euclidean("Euclidean", true),
+			Manhattan("Manhattan", false),
+			Natural("Natural", false);
 
 			override val action: kotlin.String = "VoronoiNoise"
 			override val block: kotlin.String = "set_var"
@@ -1332,27 +1332,27 @@ object SetVariableTags {
 	}
 
 	object Interpolate {
-		enum class Easing(override val option: kotlin.String) : TagItem {
+		enum class Easing(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Linear("Linear"),
-			Quad("Quad"),
-			Cubic("Cubic"),
-			Quart("Quart"),
-			Quint("Quint"),
-			Sine("Sine"),
-			Expo("Expo"),
-			Circ("Circ");
+			Linear("Linear", true),
+			Quad("Quad", false),
+			Cubic("Cubic", false),
+			Quart("Quart", false),
+			Quint("Quint", false),
+			Sine("Sine", false),
+			Expo("Expo", false),
+			Circ("Circ", false);
 
 			override val action: kotlin.String = "Interpolate"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Easing"
 		}
-		enum class Direction(override val option: kotlin.String) : TagItem {
+		enum class Direction(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			In("In"),
-			Out("Out"),
-			InOut("In Out");
+			In("In", true),
+			Out("Out", false),
+			InOut("In Out", false);
 
 			override val action: kotlin.String = "Interpolate"
 			override val block: kotlin.String = "set_var"
@@ -1362,23 +1362,23 @@ object SetVariableTags {
 	}
 
 	object SetCoord {
-		enum class CoordinateType(override val option: kotlin.String) : TagItem {
+		enum class CoordinateType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			PlotCoordinate("Plot coordinate"),
-			WorldCoordinate("World coordinate");
+			PlotCoordinate("Plot coordinate", true),
+			WorldCoordinate("World coordinate", false);
 
 			override val action: kotlin.String = "SetCoord"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Coordinate Type"
 		}
-		enum class Coordinate(override val option: kotlin.String) : TagItem {
+		enum class Coordinate(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			X("X"),
-			Y("Y"),
-			Z("Z"),
-			Pitch("Pitch"),
-			Yaw("Yaw");
+			X("X", true),
+			Y("Y", false),
+			Z("Z", false),
+			Pitch("Pitch", false),
+			Yaw("Yaw", false);
 
 			override val action: kotlin.String = "SetCoord"
 			override val block: kotlin.String = "set_var"
@@ -1388,21 +1388,21 @@ object SetVariableTags {
 	}
 
 	object RaycastBlock {
-		enum class IgnorePassableBlocks(override val option: kotlin.String) : TagItem {
-			True("True"),
+		enum class IgnorePassableBlocks(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			True("True", false),
 			/** **Default** */
-			False("False");
+			False("False", true);
 
 			override val action: kotlin.String = "RaycastBlock"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Ignore Passable Blocks"
 		}
-		enum class FluidCollision(override val option: kotlin.String) : TagItem {
+		enum class FluidCollision(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			IgnoreFluids("Ignore fluids"),
-			DetectFluids("Detect fluids"),
-			SourceBlocksOnly("Source blocks only");
+			IgnoreFluids("Ignore fluids", true),
+			DetectFluids("Detect fluids", false),
+			SourceBlocksOnly("Source blocks only", false);
 
 			override val action: kotlin.String = "RaycastBlock"
 			override val block: kotlin.String = "set_var"
@@ -1412,11 +1412,11 @@ object SetVariableTags {
 	}
 
 	object PerlinNoise {
-		enum class FractalType(override val option: kotlin.String) : TagItem {
+		enum class FractalType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Brownian("Brownian"),
-			BillowDarkEdges("Billow (Dark edges)"),
-			RigidLightEdges("Rigid (Light edges)");
+			Brownian("Brownian", true),
+			BillowDarkEdges("Billow (Dark edges)", false),
+			RigidLightEdges("Rigid (Light edges)", false);
 
 			override val action: kotlin.String = "PerlinNoise"
 			override val block: kotlin.String = "set_var"
@@ -1426,25 +1426,25 @@ object SetVariableTags {
 	}
 
 	object WorleyNoise {
-		enum class CellEdgeType(override val option: kotlin.String) : TagItem {
+		enum class CellEdgeType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Euclidean("Euclidean"),
-			Manhattan("Manhattan"),
-			Natural("Natural");
+			Euclidean("Euclidean", true),
+			Manhattan("Manhattan", false),
+			Natural("Natural", false);
 
 			override val action: kotlin.String = "WorleyNoise"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Cell Edge Type"
 		}
-		enum class DistanceCalculation(override val option: kotlin.String) : TagItem {
+		enum class DistanceCalculation(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Primary("Primary"),
-			Secondary("Secondary"),
-			Additive("Additive"),
-			Subtractive("Subtractive"),
-			Multiplicative("Multiplicative"),
-			Divisive("Divisive");
+			Primary("Primary", true),
+			Secondary("Secondary", false),
+			Additive("Additive", false),
+			Subtractive("Subtractive", false),
+			Multiplicative("Multiplicative", false),
+			Divisive("Divisive", false);
 
 			override val action: kotlin.String = "WorleyNoise"
 			override val block: kotlin.String = "set_var"
@@ -1454,10 +1454,10 @@ object SetVariableTags {
 	}
 
 	object SortList {
-		enum class SortOrder(override val option: kotlin.String) : TagItem {
+		enum class SortOrder(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Ascending("Ascending"),
-			Descending("Descending");
+			Ascending("Ascending", true),
+			Descending("Descending", false);
 
 			override val action: kotlin.String = "SortList"
 			override val block: kotlin.String = "set_var"
@@ -1467,17 +1467,17 @@ object SetVariableTags {
 	}
 
 	object FormatTime {
-		enum class Format(override val option: kotlin.String) : TagItem {
-			Custom("Custom"),
+		enum class Format(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Custom("Custom", false),
 			/** **Default** */
-			YyyyMmDdHhMmSs("2020/08/17 17:20:54"),
-			YyyMmDd("2020/08/17"),
-			DayMonthDate("Mon, August 17"),
-			Day("Monday"),
-			HhMmSs("17:20:54"),
-			HhMmAmOrPm("5:20 PM"),
-			HhHMmMSsS("17h20m54s"),
-			Seconds("54.229 seconds");
+			YyyyMmDdHhMmSs("2020/08/17 17:20:54", true),
+			YyyMmDd("2020/08/17", false),
+			DayMonthDate("Mon, August 17", false),
+			Day("Monday", false),
+			HhMmSs("17:20:54", false),
+			HhMmAmOrPm("5:20 PM", false),
+			HhHMmMSsS("17h20m54s", false),
+			Seconds("54.229 seconds", false);
 
 			override val action: kotlin.String = "FormatTime"
 			override val block: kotlin.String = "set_var"
@@ -1487,20 +1487,20 @@ object SetVariableTags {
 	}
 
 	object StyledText {
-		enum class TextValueMerging(override val option: kotlin.String) : TagItem {
-			AddSpaces("Add spaces"),
+		enum class TextValueMerging(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			AddSpaces("Add spaces", false),
 			/** **Default** */
-			NoSpaces("No spaces");
+			NoSpaces("No spaces", true);
 
 			override val action: kotlin.String = "StyledText"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Text Value Merging"
 		}
-		enum class InheritStyles(override val option: kotlin.String) : TagItem {
+		enum class InheritStyles(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "StyledText"
 			override val block: kotlin.String = "set_var"
@@ -1510,10 +1510,10 @@ object SetVariableTags {
 	}
 
 	object GetContainerItems {
-		enum class IgnoreEmptySlots(override val option: kotlin.String) : TagItem {
-			True("True"),
+		enum class IgnoreEmptySlots(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			True("True", false),
 			/** **Default** */
-			False("False");
+			False("False", true);
 
 			override val action: kotlin.String = "GetContainerItems"
 			override val block: kotlin.String = "set_var"
@@ -1523,11 +1523,11 @@ object SetVariableTags {
 	}
 
 	object GetModelDataNums {
-		enum class ModelValueType(override val option: kotlin.String) : TagItem {
+		enum class ModelValueType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Floats("Floats"),
-			Flags("Flags"),
-			Colors("Colors");
+			Floats("Floats", true),
+			Flags("Flags", false),
+			Colors("Colors", false);
 
 			override val action: kotlin.String = "GetModelDataNums"
 			override val block: kotlin.String = "set_var"
@@ -1537,30 +1537,30 @@ object SetVariableTags {
 	}
 
 	object GradientNoise {
-		enum class Dimensions(override val option: kotlin.String) : TagItem {
+		enum class Dimensions(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			ThreeD("3D"),
-			TwoD("2D");
+			ThreeD("3D", true),
+			TwoD("2D", false);
 
 			override val action: kotlin.String = "GradientNoise"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Dimensions"
 		}
-		enum class DomainFractal(override val option: kotlin.String) : TagItem {
+		enum class DomainFractal(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Progressive("Progressive"),
-			Independent("Independent");
+			Progressive("Progressive", true),
+			Independent("Independent", false);
 
 			override val action: kotlin.String = "GradientNoise"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Domain Fractal"
 		}
-		enum class ReturnType(override val option: kotlin.String) : TagItem {
+		enum class ReturnType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Simplex("Simplex"),
-			Perlin("Perlin");
+			Simplex("Simplex", true),
+			Perlin("Perlin", false);
 
 			override val action: kotlin.String = "GradientNoise"
 			override val block: kotlin.String = "set_var"
@@ -1570,10 +1570,10 @@ object SetVariableTags {
 	}
 
 	object SetItemHideTooltip {
-		enum class Tooltip(override val option: kotlin.String) : TagItem {
+		enum class Tooltip(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Enable("Enable"),
-			Disable("Disable");
+			Enable("Enable", true),
+			Disable("Disable", false);
 
 			override val action: kotlin.String = "SetItemHideTooltip"
 			override val block: kotlin.String = "set_var"
@@ -1583,21 +1583,21 @@ object SetVariableTags {
 	}
 
 	object Cosine {
-		enum class CosineVariant(override val option: kotlin.String) : TagItem {
+		enum class CosineVariant(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Cosine("Cosine"),
-			InverseCosineArccosine("Inverse cosine (arccosine)"),
-			HyperbolicCosine("Hyperbolic cosine");
+			Cosine("Cosine", true),
+			InverseCosineArccosine("Inverse cosine (arccosine)", false),
+			HyperbolicCosine("Hyperbolic cosine", false);
 
 			override val action: kotlin.String = "Cosine"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Cosine Variant"
 		}
-		enum class Input(override val option: kotlin.String) : TagItem {
+		enum class Input(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Degrees("Degrees"),
-			Radians("Radians");
+			Degrees("Degrees", true),
+			Radians("Radians", false);
 
 			override val action: kotlin.String = "Cosine"
 			override val block: kotlin.String = "set_var"
@@ -1607,11 +1607,11 @@ object SetVariableTags {
 	}
 
 	object GetItemByMCTag {
-		enum class ReturnValueType(override val option: kotlin.String) : TagItem {
+		enum class ReturnValueType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			MaterialIdGolden_apple("Material ID (golden_apple)"),
-			MaterialNameGoldenApple("Material Name (Golden Apple)"),
-			Item("Item");
+			MaterialIdGolden_apple("Material ID (golden_apple)", true),
+			MaterialNameGoldenApple("Material Name (Golden Apple)", false),
+			Item("Item", false);
 
 			override val action: kotlin.String = "GetItemByMCTag"
 			override val block: kotlin.String = "set_var"
@@ -1621,11 +1621,11 @@ object SetVariableTags {
 	}
 
 	object SetVectorComp {
-		enum class Component(override val option: kotlin.String) : TagItem {
+		enum class Component(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			X("X"),
-			Y("Y"),
-			Z("Z");
+			X("X", true),
+			Y("Y", false),
+			Z("Z", false);
 
 			override val action: kotlin.String = "SetVectorComp"
 			override val block: kotlin.String = "set_var"
@@ -1635,10 +1635,10 @@ object SetVariableTags {
 	}
 
 	object ShiftAllDirs {
-		enum class IgnorePitch(override val option: kotlin.String) : TagItem {
-			True("True"),
+		enum class IgnorePitch(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			True("True", false),
 			/** **Default** */
-			False("False");
+			False("False", true);
 
 			override val action: kotlin.String = "ShiftAllDirs"
 			override val block: kotlin.String = "set_var"
@@ -1648,10 +1648,10 @@ object SetVariableTags {
 	}
 
 	object GetValueIndex {
-		enum class SearchOrder(override val option: kotlin.String) : TagItem {
+		enum class SearchOrder(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			AscendingFirstIndex("Ascending (first index)"),
-			DescendingLastIndex("Descending (last index)");
+			AscendingFirstIndex("Ascending (first index)", true),
+			DescendingLastIndex("Descending (last index)", false);
 
 			override val action: kotlin.String = "GetValueIndex"
 			override val block: kotlin.String = "set_var"
@@ -1661,13 +1661,13 @@ object SetVariableTags {
 	}
 
 	object GetConsumable {
-		enum class ConsumableProperty(override val option: kotlin.String) : TagItem {
+		enum class ConsumableProperty(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Nutrition("Nutrition"),
-			Saturation("Saturation"),
-			UseDuration("Use Duration"),
-			Animation("Animation"),
-			Sound("Sound");
+			Nutrition("Nutrition", true),
+			Saturation("Saturation", false),
+			UseDuration("Use Duration", false),
+			Animation("Animation", false),
+			Sound("Sound", false);
 
 			override val action: kotlin.String = "GetConsumable"
 			override val block: kotlin.String = "set_var"
@@ -1677,11 +1677,11 @@ object SetVariableTags {
 	}
 
 	object ShiftLocation {
-		enum class ShiftDirection(override val option: kotlin.String) : TagItem {
-			UpwardsOrDownwards("(+) Upwards / (-) Downwards"),
+		enum class ShiftDirection(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			UpwardsOrDownwards("(+) Upwards / (-) Downwards", false),
 			/** **Default** */
-			ForwardsOrBackwards("(+) Forwards / (-) Backwards"),
-			RightOrLeft("(+) Right / (-) Left");
+			ForwardsOrBackwards("(+) Forwards / (-) Backwards", true),
+			RightOrLeft("(+) Right / (-) Left", false);
 
 			override val action: kotlin.String = "ShiftLocation"
 			override val block: kotlin.String = "set_var"
@@ -1691,14 +1691,14 @@ object SetVariableTags {
 	}
 
 	object HiddenComponents {
-		enum class HidingMode(override val option: kotlin.String) : TagItem {
-			Hide("Hide"),
-			Show("Show"),
+		enum class HidingMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Hide("Hide", false),
+			Show("Show", false),
 			/** **Default** */
-			HideAll("Hide all"),
-			ShowAll("Show all"),
-			HideAllExcept("Hide all except"),
-			ShowAllExcept("Show all except");
+			HideAll("Hide all", true),
+			ShowAll("Show all", false),
+			HideAllExcept("Hide all except", false),
+			ShowAllExcept("Show all except", false);
 
 			override val action: kotlin.String = "HiddenComponents"
 			override val block: kotlin.String = "set_var"
@@ -1708,11 +1708,11 @@ object SetVariableTags {
 	}
 
 	object Round {
-		enum class RoundMode(override val option: kotlin.String) : TagItem {
-			Floor("Floor"),
+		enum class RoundMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Floor("Floor", false),
 			/** **Default** */
-			Nearest("Nearest"),
-			Ceiling("Ceiling");
+			Nearest("Nearest", true),
+			Ceiling("Ceiling", false);
 
 			override val action: kotlin.String = "Round"
 			override val block: kotlin.String = "set_var"
@@ -1722,10 +1722,10 @@ object SetVariableTags {
 	}
 
 	object GetSoundPitch {
-		enum class ReturnValueType(override val option: kotlin.String) : TagItem {
+		enum class ReturnValueType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			PitchNumber("Pitch (number)"),
-			NoteText("Note (text)");
+			PitchNumber("Pitch (number)", true),
+			NoteText("Note (text)", false);
 
 			override val action: kotlin.String = "GetSoundPitch"
 			override val block: kotlin.String = "set_var"
@@ -1735,12 +1735,12 @@ object SetVariableTags {
 	}
 
 	object TranslateColors {
-		enum class TranslationType(override val option: kotlin.String) : TagItem {
-			FromHexToColor("From hex to color"),
+		enum class TranslationType(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			FromHexToColor("From hex to color", false),
 			/** **Default** */
-			FromAndToColor("From & to color"),
-			FromColorToAnd("From color to &"),
-			StripColor("Strip color");
+			FromAndToColor("From & to color", true),
+			FromColorToAnd("From color to &", false),
+			StripColor("Strip color", false);
 
 			override val action: kotlin.String = "TranslateColors"
 			override val block: kotlin.String = "set_var"
@@ -1750,10 +1750,10 @@ object SetVariableTags {
 	}
 
 	object GetBlockGrowth {
-		enum class GrowthUnit(override val option: kotlin.String) : TagItem {
+		enum class GrowthUnit(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			GrowthStageNumber("Growth stage number"),
-			GrowthPercentage("Growth percentage");
+			GrowthStageNumber("Growth stage number", true),
+			GrowthPercentage("Growth percentage", false);
 
 			override val action: kotlin.String = "GetBlockGrowth"
 			override val block: kotlin.String = "set_var"
@@ -1763,11 +1763,11 @@ object SetVariableTags {
 	}
 
 	object RemoveListValue {
-		enum class Itemstoremove(override val option: kotlin.String) : TagItem {
+		enum class Itemstoremove(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			AllMatches("All Matches"),
-			FirstMatch("First Match"),
-			LastMatch("Last Match");
+			AllMatches("All Matches", true),
+			FirstMatch("First Match", false),
+			LastMatch("Last Match", false);
 
 			override val action: kotlin.String = "RemoveListValue"
 			override val block: kotlin.String = "set_var"
@@ -1777,20 +1777,20 @@ object SetVariableTags {
 	}
 
 	object BytesToString {
-		enum class Signed(override val option: kotlin.String) : TagItem {
+		enum class Signed(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "BytesToString"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Signed"
 		}
-		enum class Charset(override val option: kotlin.String) : TagItem {
+		enum class Charset(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			UtfEight("UTF-8"),
-			Ascii("ASCII");
+			UtfEight("UTF-8", true),
+			Ascii("ASCII", false);
 
 			override val action: kotlin.String = "BytesToString"
 			override val block: kotlin.String = "set_var"
@@ -1800,30 +1800,30 @@ object SetVariableTags {
 	}
 
 	object ValueNoise {
-		enum class Dimensions(override val option: kotlin.String) : TagItem {
+		enum class Dimensions(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			ThreeD("3D"),
-			TwoD("2D");
+			ThreeD("3D", true),
+			TwoD("2D", false);
 
 			override val action: kotlin.String = "ValueNoise"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Dimensions"
 		}
-		enum class DomainFractal(override val option: kotlin.String) : TagItem {
+		enum class DomainFractal(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Progressive("Progressive"),
-			Independent("Independent");
+			Progressive("Progressive", true),
+			Independent("Independent", false);
 
 			override val action: kotlin.String = "ValueNoise"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Domain Fractal"
 		}
-		enum class ReturnType(override val option: kotlin.String) : TagItem {
+		enum class ReturnType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Value("Value"),
-			Cubic("Cubic");
+			Value("Value", true),
+			Cubic("Cubic", false);
 
 			override val action: kotlin.String = "ValueNoise"
 			override val block: kotlin.String = "set_var"
@@ -1833,32 +1833,32 @@ object SetVariableTags {
 	}
 
 	object WebResponse {
-		enum class RequestMethod(override val option: kotlin.String) : TagItem {
+		enum class RequestMethod(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Post("Post"),
-			Get("Get"),
-			Put("Put"),
-			Delete("Delete");
+			Post("Post", true),
+			Get("Get", false),
+			Put("Put", false),
+			Delete("Delete", false);
 
 			override val action: kotlin.String = "WebResponse"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Request Method"
 		}
-		enum class ContentType(override val option: kotlin.String) : TagItem {
+		enum class ContentType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			TextOrPlain("text/plain"),
-			ApplicationOrJson("application/json");
+			TextOrPlain("text/plain", true),
+			ApplicationOrJson("application/json", false);
 
 			override val action: kotlin.String = "WebResponse"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Content Type"
 		}
-		enum class CodeFlow(override val option: kotlin.String) : TagItem {
+		enum class CodeFlow(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Synchronous("Synchronous"),
-			Asynchronous("Asynchronous");
+			Synchronous("Synchronous", true),
+			Asynchronous("Asynchronous", false);
 
 			override val action: kotlin.String = "WebResponse"
 			override val block: kotlin.String = "set_var"
@@ -1868,11 +1868,11 @@ object SetVariableTags {
 	}
 
 	object GetBlockType {
-		enum class ReturnValueType(override val option: kotlin.String) : TagItem {
+		enum class ReturnValueType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			BlockIdOak_log("Block ID (oak_log)"),
-			BlockNameOakLog("Block name (Oak Log)"),
-			Item("Item");
+			BlockIdOak_log("Block ID (oak_log)", true),
+			BlockNameOakLog("Block name (Oak Log)", false),
+			Item("Item", false);
 
 			override val action: kotlin.String = "GetBlockType"
 			override val block: kotlin.String = "set_var"
@@ -1882,10 +1882,10 @@ object SetVariableTags {
 	}
 
 	object GetItemWeapon {
-		enum class WeaponProperty(override val option: kotlin.String) : TagItem {
+		enum class WeaponProperty(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			DurabilityReductionPerAttack("Durability reduction per attack"),
-			SecondsToDisableBlockingFor("Seconds to disable blocking for");
+			DurabilityReductionPerAttack("Durability reduction per attack", true),
+			SecondsToDisableBlockingFor("Seconds to disable blocking for", false);
 
 			override val action: kotlin.String = "GetItemWeapon"
 			override val block: kotlin.String = "set_var"
@@ -1895,10 +1895,10 @@ object SetVariableTags {
 	}
 
 	object GetVectorLength {
-		enum class LengthType(override val option: kotlin.String) : TagItem {
+		enum class LengthType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			Length("Length"),
-			LengthSquared("Length Squared");
+			Length("Length", true),
+			LengthSquared("Length Squared", false);
 
 			override val action: kotlin.String = "GetVectorLength"
 			override val block: kotlin.String = "set_var"
@@ -1908,20 +1908,20 @@ object SetVariableTags {
 	}
 
 	object StringToBytes {
-		enum class Signed(override val option: kotlin.String) : TagItem {
+		enum class Signed(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True"),
-			False("False");
+			True("True", true),
+			False("False", false);
 
 			override val action: kotlin.String = "StringToBytes"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Signed"
 		}
-		enum class Charset(override val option: kotlin.String) : TagItem {
+		enum class Charset(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			UtfEight("UTF-8"),
-			Ascii("ASCII");
+			UtfEight("UTF-8", true),
+			Ascii("ASCII", false);
 
 			override val action: kotlin.String = "StringToBytes"
 			override val block: kotlin.String = "set_var"

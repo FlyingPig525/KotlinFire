@@ -7,14 +7,31 @@ import io.github.flyingpig525.base.item.Item
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.NumItem
 import io.github.flyingpig525.base.item.type.tag.ControlTags
+import io.github.flyingpig525.base.item.type.tag.TagItem
 import kotlinx.serialization.json.JsonObjectBuilder
+import kotlin.reflect.KClass
+import kotlin.reflect.full.superclasses
 
 @Suppress("unused")
 class ControlCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
-    private fun block(items: Items, action: String, extra: JsonObjectBuilder.() -> Unit = {}) {
-        blocks += Block("control", ItemCollection(items).items, action, extra)
+    private fun block(items: Items, action: String, tagClass: KClass<*>? = null, extra: JsonObjectBuilder.() -> Unit = {}) {
+        val collection = ItemCollection(items)
+        tagClass?.nestedClasses?.forEach { klass ->
+            if (klass.superclasses.any { it.qualifiedName == "kotlin.Enum" }) {
+                @Suppress("UNCHECKED_CAST")
+                val entries = klass.java.enumConstants as Array<Enum<*>>
+                entries.forEach { entry ->
+                    if (entry is TagItem) {
+                        if (!entry.default) return@forEach
+                        if (collection.items.none { it is TagItem && it.tag == entry.tag })
+                        collection += entry
+                    }
+                }
+            }
+        }
+        blocks += Block("control", collection.items, action, extra)
     }
 	/**
 	 * Stops a Repeat sequence and
@@ -54,7 +71,7 @@ class ControlCategory internal constructor(private val template: Template) {
 	 * @see [ControlTags.PrintDebug]
 	 */
 	fun printDebug(items: Items) {
-		block(items, "PrintDebug")
+		block(items, "PrintDebug", tagClass = ControlTags.PrintDebug::class)
 	}
 
 
@@ -103,7 +120,7 @@ class ControlCategory internal constructor(private val template: Template) {
 	 * @see [ControlTags.Wait]
 	 */
 	fun wait(items: Items) {
-		block(items, "Wait")
+		block(items, "Wait", tagClass = ControlTags.Wait::class)
 	}
 
 }

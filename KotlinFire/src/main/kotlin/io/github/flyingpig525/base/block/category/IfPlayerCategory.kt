@@ -8,8 +8,11 @@ import io.github.flyingpig525.base.block.ElseOperation
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
 import io.github.flyingpig525.base.item.type.tag.IfPlayerTags
+import io.github.flyingpig525.base.item.type.tag.TagItem
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
+import kotlin.reflect.KClass
+import kotlin.reflect.full.superclasses
 
 @Suppress("unused")
 class IfPlayerCategory internal constructor(private val template: Template) {
@@ -20,9 +23,24 @@ class IfPlayerCategory internal constructor(private val template: Template) {
         action: String,
         wrappedCode: Template.() -> Unit,
         not: Boolean = false,
+        tagClass: KClass<*>? = null,
         extra: JsonObjectBuilder.() -> Unit = {}
     ) {
-        blocks += Block("if_player", ItemCollection(items).items, action) {
+        val collection = ItemCollection(items)
+        tagClass?.nestedClasses?.forEach { klass ->
+            if (klass.superclasses.any { it.qualifiedName == "kotlin.Enum" }) {
+                @Suppress("UNCHECKED_CAST")
+                val entries = klass.java.enumConstants as Array<Enum<*>>
+                entries.forEach { entry ->
+                    if (entry is TagItem) {
+                        if (!entry.default) return@forEach
+                        if (collection.items.none { it is TagItem && it.tag == entry.tag })
+                        collection += entry
+                    }
+                }
+            }
+        }
+        blocks += Block("if_player", collection.items, action) {
             if (not) put("attribute", "NOT")
             extra()
         }
@@ -49,7 +67,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * @see [IfPlayerTags.HasRoomForItem]
 	 */
 	fun hasRoomForItem(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "HasRoomForItem", wrappedCode, not)
+		block(items, "HasRoomForItem", wrappedCode, not, tagClass = IfPlayerTags.HasRoomForItem::class)
 		return ElseOperation()
 	}
 
@@ -123,7 +141,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * @see [IfPlayerTags.HasItem]
 	 */
 	fun hasItem(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "HasItem", wrappedCode, not)
+		block(items, "HasItem", wrappedCode, not, tagClass = IfPlayerTags.HasItem::class)
 		return ElseOperation()
 	}
 
@@ -151,7 +169,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * @see [IfPlayerTags.IsWearing]
 	 */
 	fun isWearing(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "IsWearing", wrappedCode, not)
+		block(items, "IsWearing", wrappedCode, not, tagClass = IfPlayerTags.IsWearing::class)
 		return ElseOperation()
 	}
 
@@ -177,7 +195,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * @see [IfPlayerTags.IsNear]
 	 */
 	fun isNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "IsNear", wrappedCode, not)
+		block(items, "IsNear", wrappedCode, not, tagClass = IfPlayerTags.IsNear::class)
 		return ElseOperation()
 	}
 
@@ -185,7 +203,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	/**
 	 */
 	fun isRiding(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "IsRiding", wrappedCode, not)
+		block(items, "IsRiding", wrappedCode, not, tagClass = IfPlayerTags.IsRiding::class)
 		return ElseOperation()
 	}
 
@@ -193,7 +211,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	/**
 	 */
 	fun cmdEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "CmdEquals", wrappedCode, not)
+		block(items, "CmdEquals", wrappedCode, not, tagClass = IfPlayerTags.CmdEquals::class)
 		return ElseOperation()
 	}
 
@@ -274,7 +292,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * as builder or owner.
 	 */
 	fun hasPermission(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "HasPermission", wrappedCode, not)
+		block(items, "HasPermission", wrappedCode, not, tagClass = IfPlayerTags.HasPermission::class)
 		return ElseOperation()
 	}
 
@@ -284,7 +302,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * is their left or right hand.
 	 */
 	fun mainHandEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "MainHandEquals", wrappedCode, not)
+		block(items, "MainHandEquals", wrappedCode, not, tagClass = IfPlayerTags.MainHandEquals::class)
 		return ElseOperation()
 	}
 
@@ -303,7 +321,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * a specific movement key.
 	 */
 	fun movementKey(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "MovementKey", wrappedCode, not)
+		block(items, "MovementKey", wrappedCode, not, tagClass = IfPlayerTags.MovementKey::class)
 		return ElseOperation()
 	}
 
@@ -322,7 +340,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * certain inventory type open.
 	 */
 	fun invOpen(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "InvOpen", wrappedCode, not)
+		block(items, "InvOpen", wrappedCode, not, tagClass = IfPlayerTags.InvOpen::class)
 		return ElseOperation()
 	}
 
@@ -372,7 +390,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	/**
 	 */
 	fun cmdArgEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "CmdArgEquals", wrappedCode, not)
+		block(items, "CmdArgEquals", wrappedCode, not, tagClass = IfPlayerTags.CmdArgEquals::class)
 		return ElseOperation()
 	}
 
@@ -403,7 +421,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * @see [IfPlayerTags.IsLookingAt]
 	 */
 	fun isLookingAt(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "IsLookingAt", wrappedCode, not)
+		block(items, "IsLookingAt", wrappedCode, not, tagClass = IfPlayerTags.IsLookingAt::class)
 		return ElseOperation()
 	}
 
@@ -431,7 +449,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * a specific game mode.
 	 */
 	fun isInGameMode(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "IsInGameMode", wrappedCode, not)
+		block(items, "IsInGameMode", wrappedCode, not, tagClass = IfPlayerTags.IsInGameMode::class)
 		return ElseOperation()
 	}
 
@@ -517,7 +535,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * @see [IfPlayerTags.IsHolding]
 	 */
 	fun isHolding(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "IsHolding", wrappedCode, not)
+		block(items, "IsHolding", wrappedCode, not, tagClass = IfPlayerTags.IsHolding::class)
 		return ElseOperation()
 	}
 
@@ -553,7 +571,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * @see [IfPlayerTags.IsHitboxNear]
 	 */
 	fun isHitboxNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "IsHitboxNear", wrappedCode, not)
+		block(items, "IsHitboxNear", wrappedCode, not, tagClass = IfPlayerTags.IsHitboxNear::class)
 		return ElseOperation()
 	}
 
@@ -575,7 +593,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 * @see [IfPlayerTags.HasPotion]
 	 */
 	fun hasPotion(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "HasPotion", wrappedCode, not)
+		block(items, "HasPotion", wrappedCode, not, tagClass = IfPlayerTags.HasPotion::class)
 		return ElseOperation()
 	}
 

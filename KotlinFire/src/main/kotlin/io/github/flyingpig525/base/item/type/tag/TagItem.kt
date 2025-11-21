@@ -13,6 +13,7 @@ internal interface TagItem : Insertable, JsonData {
     val option: String
     val action: String
     val block: String
+    val default: Boolean
     var slot: Int
 
     override fun getJsonData(): JsonObject = buildJsonObject {

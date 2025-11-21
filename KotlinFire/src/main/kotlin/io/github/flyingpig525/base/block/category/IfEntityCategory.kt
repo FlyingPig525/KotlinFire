@@ -8,8 +8,11 @@ import io.github.flyingpig525.base.block.ElseOperation
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
 import io.github.flyingpig525.base.item.type.tag.IfEntityTags
+import io.github.flyingpig525.base.item.type.tag.TagItem
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
+import kotlin.reflect.KClass
+import kotlin.reflect.full.superclasses
 
 @Suppress("unused")
 class IfEntityCategory internal constructor(private val template: Template) {
@@ -20,9 +23,24 @@ class IfEntityCategory internal constructor(private val template: Template) {
         action: String,
         wrappedCode: Template.() -> Unit,
         not: Boolean = false,
+        tagClass: KClass<*>? = null,
         extra: JsonObjectBuilder.() -> Unit = {}
     ) {
-        blocks += Block("if_entity", ItemCollection(items).items, action) {
+        val collection = ItemCollection(items)
+        tagClass?.nestedClasses?.forEach { klass ->
+            if (klass.superclasses.any { it.qualifiedName == "kotlin.Enum" }) {
+                @Suppress("UNCHECKED_CAST")
+                val entries = klass.java.enumConstants as Array<Enum<*>>
+                entries.forEach { entry ->
+                    if (entry is TagItem) {
+                        if (!entry.default) return@forEach
+                        if (collection.items.none { it is TagItem && it.tag == entry.tag })
+                        collection += entry
+                    }
+                }
+            }
+        }
+        blocks += Block("if_entity", collection.items, action) {
             if (not) put("attribute", "NOT")
             extra()
         }
@@ -164,7 +182,7 @@ class IfEntityCategory internal constructor(private val template: Template) {
 	 * @see [IfEntityTags.IsRiding]
 	 */
 	fun isRiding(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, " IsRiding ", wrappedCode, not)
+		block(items, " IsRiding ", wrappedCode, not, tagClass = IfEntityTags.IsRiding::class)
 		return ElseOperation()
 	}
 
@@ -200,7 +218,7 @@ class IfEntityCategory internal constructor(private val template: Template) {
 	 * @see [IfEntityTags.IsHitboxNear]
 	 */
 	fun isHitboxNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "IsHitboxNear", wrappedCode, not)
+		block(items, "IsHitboxNear", wrappedCode, not, tagClass = IfEntityTags.IsHitboxNear::class)
 		return ElseOperation()
 	}
 
@@ -226,7 +244,7 @@ class IfEntityCategory internal constructor(private val template: Template) {
 	 * @see [IfEntityTags.IsNear]
 	 */
 	fun isNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "IsNear", wrappedCode, not)
+		block(items, "IsNear", wrappedCode, not, tagClass = IfEntityTags.IsNear::class)
 		return ElseOperation()
 	}
 
@@ -248,7 +266,7 @@ class IfEntityCategory internal constructor(private val template: Template) {
 	 * @see [IfEntityTags.HasPotion]
 	 */
 	fun hasPotion(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "HasPotion", wrappedCode, not)
+		block(items, "HasPotion", wrappedCode, not, tagClass = IfEntityTags.HasPotion::class)
 		return ElseOperation()
 	}
 
@@ -281,7 +299,7 @@ class IfEntityCategory internal constructor(private val template: Template) {
 	 * @see [IfEntityTags.NameEquals]
 	 */
 	fun nameEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "NameEquals", wrappedCode, not)
+		block(items, "NameEquals", wrappedCode, not, tagClass = IfEntityTags.NameEquals::class)
 		return ElseOperation()
 	}
 

@@ -6,14 +6,31 @@ import io.github.flyingpig525.base.block.Block
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
 import io.github.flyingpig525.base.item.type.tag.GameActionTags
+import io.github.flyingpig525.base.item.type.tag.TagItem
 import kotlinx.serialization.json.JsonObjectBuilder
+import kotlin.reflect.KClass
+import kotlin.reflect.full.superclasses
 
 @Suppress("unused")
 class GameActionCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
-    private fun block(items: Items, action: String, extra: JsonObjectBuilder.() -> Unit = {}) {
-        blocks += Block("game_action", ItemCollection(items).items, action, extra)
+    private fun block(items: Items, action: String, tagClass: KClass<*>? = null, extra: JsonObjectBuilder.() -> Unit = {}) {
+        val collection = ItemCollection(items)
+        tagClass?.nestedClasses?.forEach { klass ->
+            if (klass.superclasses.any { it.qualifiedName == "kotlin.Enum" }) {
+                @Suppress("UNCHECKED_CAST")
+                val entries = klass.java.enumConstants as Array<Enum<*>>
+                entries.forEach { entry ->
+                    if (entry is TagItem) {
+                        if (!entry.default) return@forEach
+                        if (collection.items.none { it is TagItem && it.tag == entry.tag })
+                        collection += entry
+                    }
+                }
+            }
+        }
+        blocks += Block("game_action", collection.items, action, extra)
     }
 	/**
 	 * Fills the container at a location
@@ -90,7 +107,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * @see [GameActionTags.ChangeSign]
 	 */
 	fun changeSign(items: Items) {
-		block(items, "ChangeSign")
+		block(items, "ChangeSign", tagClass = GameActionTags.ChangeSign::class)
 	}
 
 
@@ -112,7 +129,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * @see [GameActionTags.WebRequest]
 	 */
 	fun webRequest(items: Items) {
-		block(items, "WebRequest")
+		block(items, "WebRequest", tagClass = GameActionTags.WebRequest::class)
 	}
 
 
@@ -215,7 +232,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * @see [GameActionTags.SetBlockData]
 	 */
 	fun setBlockData(items: Items) {
-		block(items, "SetBlockData")
+		block(items, "SetBlockData", tagClass = GameActionTags.SetBlockData::class)
 	}
 
 
@@ -238,7 +255,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * @see [GameActionTags.Firework]
 	 */
 	fun firework(items: Items) {
-		block(items, "Firework")
+		block(items, "Firework", tagClass = GameActionTags.Firework::class)
 	}
 
 
@@ -283,7 +300,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * @see [GameActionTags.SpawnItem]
 	 */
 	fun spawnItem(items: Items) {
-		block(items, "SpawnItem")
+		block(items, "SpawnItem", tagClass = GameActionTags.SpawnItem::class)
 	}
 
 
@@ -302,7 +319,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * @see [GameActionTags.SignColor]
 	 */
 	fun signColor(items: Items) {
-		block(items, "SignColor")
+		block(items, "SignColor", tagClass = GameActionTags.SignColor::class)
 	}
 
 
@@ -373,7 +390,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * @see [GameActionTags.SpawnInteraction]
 	 */
 	fun spawnInteraction(items: Items) {
-		block(items, "SpawnInteraction")
+		block(items, "SpawnInteraction", tagClass = GameActionTags.SpawnInteraction::class)
 	}
 
 
@@ -429,7 +446,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * @see [GameActionTags.CloneRegion]
 	 */
 	fun cloneRegion(items: Items) {
-		block(items, "CloneRegion")
+		block(items, "CloneRegion", tagClass = GameActionTags.CloneRegion::class)
 	}
 
 
@@ -490,7 +507,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * @see [GameActionTags.SpawnArmorStand]
 	 */
 	fun spawnArmorStand(items: Items) {
-		block(items, "SpawnArmorStand")
+		block(items, "SpawnArmorStand", tagClass = GameActionTags.SpawnArmorStand::class)
 	}
 
 
@@ -751,7 +768,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * @see [GameActionTags.BoneMeal]
 	 */
 	fun boneMeal(items: Items) {
-		block(items, "BoneMeal")
+		block(items, "BoneMeal", tagClass = GameActionTags.BoneMeal::class)
 	}
 
 
@@ -785,7 +802,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * @see [GameActionTags.FallingBlock]
 	 */
 	fun fallingBlock(items: Items) {
-		block(items, "FallingBlock")
+		block(items, "FallingBlock", tagClass = GameActionTags.FallingBlock::class)
 	}
 
 
@@ -994,7 +1011,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * @see [GameActionTags.SpawnEnderEye]
 	 */
 	fun spawnEnderEye(items: Items) {
-		block(items, "SpawnEnderEye")
+		block(items, "SpawnEnderEye", tagClass = GameActionTags.SpawnEnderEye::class)
 	}
 
 
@@ -1145,14 +1162,14 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * @see [GameActionTags.SetBlockGrowth]
 	 */
 	fun setBlockGrowth(items: Items) {
-		block(items, "SetBlockGrowth")
+		block(items, "SetBlockGrowth", tagClass = GameActionTags.SetBlockGrowth::class)
 	}
 
 
 	/**
 	 */
 	fun wait(items: Items) {
-		block(items, "Wait")
+		block(items, "Wait", tagClass = GameActionTags.Wait::class)
 	}
 
 
@@ -1235,7 +1252,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	/**
 	 */
 	fun spawnRngItem(items: Items) {
-		block(items, "SpawnRngItem")
+		block(items, "SpawnRngItem", tagClass = GameActionTags.SpawnRngItem::class)
 	}
 
 
@@ -1417,7 +1434,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * @see [GameActionTags.GenerateTree]
 	 */
 	fun generateTree(items: Items) {
-		block(items, "GenerateTree")
+		block(items, "GenerateTree", tagClass = GameActionTags.GenerateTree::class)
 	}
 
 
@@ -1454,7 +1471,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * @see [GameActionTags.SpawnCrystal]
 	 */
 	fun spawnCrystal(items: Items) {
-		block(items, "SpawnCrystal")
+		block(items, "SpawnCrystal", tagClass = GameActionTags.SpawnCrystal::class)
 	}
 
 
@@ -1483,7 +1500,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * @see [GameActionTags.SetCampfireItem]
 	 */
 	fun setCampfireItem(items: Items) {
-		block(items, "SetCampfireItem")
+		block(items, "SetCampfireItem", tagClass = GameActionTags.SetCampfireItem::class)
 	}
 
 
@@ -1505,7 +1522,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * @see [GameActionTags.SpawnTextDisplay]
 	 */
 	fun spawnTextDisplay(items: Items) {
-		block(items, "SpawnTextDisplay")
+		block(items, "SpawnTextDisplay", tagClass = GameActionTags.SpawnTextDisplay::class)
 	}
 
 
