@@ -49,7 +49,7 @@ class RepeatCategory internal constructor(private val template: Template) {
         blocks += BracketBlock(type = "repeat")
         blocks += io.github.flyingpig525.base.Template(
             io.github.flyingpig525.base.Template.Type.NONE,
-            a = wrappedCode
+            code = wrappedCode
         ).blocks
         blocks += BracketBlock(false, "repeat")
     }

@@ -32,7 +32,7 @@ open class Template(
     type: Type = Type.FUNCTION,
     val name: String = "PutNameHere",
     vararg args: ParameterItem,
-    a: Template.() -> Unit
+    code: Template.() -> Unit
 ) : JsonData {
     val blocks: MutableList<Block> = mutableListOf()
     val SetVariable = SetVariableCategory(this)
@@ -69,14 +69,15 @@ open class Template(
         throw Error("Cannot invoke Event template!")
     }
 
-    operator fun invoke(thisValue: Template, items: Items = {}) = thisValue.invokeTemplate(this, items)
+    context(t: Template)
+    operator fun invoke(items: Items = {}) = t.invokeTemplate(this, items)
 
     infix fun ElseOperation.Else(wrappedCode: Template.() -> Unit) {
         blocks += ElseBlock()
         blocks += BracketBlock(type = "norm")
         blocks += Template(
             Type.NONE,
-            a = wrappedCode
+            code = wrappedCode
         ).blocks
         blocks += BracketBlock(false, "norm")
     }
@@ -95,7 +96,7 @@ open class Template(
             }
         }
         TemplateContext.push(this)
-        apply(a)
+        apply(code)
         TemplateContext.pop()
     }
 

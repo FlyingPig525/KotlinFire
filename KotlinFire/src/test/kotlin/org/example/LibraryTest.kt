@@ -191,8 +191,8 @@ class LibraryTest {
                 v set 12.numItem
             }
             val join = eventTemplate(PlayerEvent.Join) {
-                proc(this)
-                example(this)
+                proc()
+                example()
             }
             println(getStrings())
         }

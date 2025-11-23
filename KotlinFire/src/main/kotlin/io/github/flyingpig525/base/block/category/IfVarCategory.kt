@@ -48,7 +48,7 @@ class IfVarCategory internal constructor(private val template: Template) {
         blocks += BracketBlock(type = "norm")
         blocks += io.github.flyingpig525.base.Template(
             io.github.flyingpig525.base.Template.Type.NONE,
-            a = wrappedCode
+            code = wrappedCode
         ).blocks
         blocks += BracketBlock(false, "norm")
     }
