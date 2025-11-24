@@ -65,7 +65,7 @@ open class DiamondFireClass(val name: String, val scope: VarItem.Scope = VarItem
     protected fun locProp(default: LocItem): Provider<LocVariable, LocItem> {
         return Provider(LocItem::class, default)
     }
-    protected fun locProp(default: List<Number>) = locProp(default.toLocItem() ?: throw DiamondFireClassDefaultException())
+    protected fun locProp(default: List<Number>) = locProp(default.toLocItem())
     protected fun locProp(default: LocVariable): Provider<LocVariable, LocItem> {
         return Provider(LocItem::class, default.item)
     }
@@ -73,7 +73,7 @@ open class DiamondFireClass(val name: String, val scope: VarItem.Scope = VarItem
     protected fun vecProp(default: VecItem): Provider<VecVariable, VecItem> {
         return Provider(VecItem::class, default)
     }
-    protected fun vecProp(default: List<Number>) = vecProp(default.toVecItem() ?: throw DiamondFireClassDefaultException())
+    protected fun vecProp(default: List<Number>) = vecProp(default.toVecItem())
     protected fun vecProp(default: VecVariable): Provider<VecVariable, VecItem> {
         return Provider(VecItem::class, default.item)
     }
@@ -117,6 +117,4 @@ open class DiamondFireClass(val name: String, val scope: VarItem.Scope = VarItem
             t.a()
         }
     }
-
-    class DiamondFireClassDefaultException : Exception("Invalid default input for DiamondFireClass delegated property")
 }
