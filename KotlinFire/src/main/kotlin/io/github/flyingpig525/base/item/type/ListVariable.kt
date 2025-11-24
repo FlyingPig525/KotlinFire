@@ -1,5 +1,6 @@
 package io.github.flyingpig525.base.item.type
 
+import io.github.flyingpig525.base.Items
 import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.block.category.SetVariableCategory
 import io.github.flyingpig525.base.item.Insertable
@@ -142,13 +143,15 @@ class ListVariable internal constructor(name: String, scope: VarItem.Scope = Var
         }
     }
 
-    // TODO: separate into multiple appends if [values] is too long
     context(t: Template)
     inline fun append(vararg values: Insertable) = apply {
-        t.SetVariable.appendValue {
-            +item
-            for (i in values) {
-                +i
+        for (j in 0..values.size / 25) {
+            t.SetVariable.appendValue {
+                +item
+                for (f in j*25..(j+1)*25) {
+                    if (f >= values.size) break
+                    +values[f]
+                }
             }
         }
     }
@@ -314,16 +317,34 @@ class ListVariable internal constructor(name: String, scope: VarItem.Scope = Var
     }
 }
 
-// TODO: if [items] is too long, split into multiple appends
 /**
  * Creates a [ListVariable] through inserting a [SetVariableCategory.createList] call
+ *
+ * Also inserts [SetVariableCategory.appendValue] calls if [items]' size is larger than 25.
  */
 fun Template.listVarOf(name: String, scope: VarItem.Scope, vararg items: Insertable): ListVariable {
     val list = ListVariable(name, scope)
-    SetVariable.createList {
-        +list
-        for (i in items) {
-            +i
+    if (items.size < 25) {
+        SetVariable.createList {
+            +list
+            for (i in items) {
+                +i
+            }
+        }
+    } else {
+        for (j in 0..items.size / 25) {
+            val a: Items = {
+                +list
+                for (f in j*25..(j+1)*25) {
+                    if (f >= items.size) break
+                    +items[f]
+                }
+            }
+            if (j == 0) {
+                SetVariable.createList(a)
+            } else {
+                SetVariable.appendValue(a)
+            }
         }
     }
     return list

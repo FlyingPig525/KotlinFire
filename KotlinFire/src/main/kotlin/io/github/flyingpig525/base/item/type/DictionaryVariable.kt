@@ -2,6 +2,7 @@
 
 package io.github.flyingpig525.base.item.type
 
+import io.github.flyingpig525.base.Items
 import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.item.Insertable
 import io.github.flyingpig525.base.item.ItemComparison
@@ -87,3 +88,36 @@ class DictionaryVariable(name: String, scope: VarItem.Scope) : VarClass<VarItem>
         return i
     }
 }
+
+fun Template.dictVarOf(name: String, scope: VarItem.Scope, keys: List<Insertable>, values: List<Insertable>): DictionaryVariable {
+    val dict = DictionaryVariable(name, scope)
+    if (keys.size + values.size < 25) {
+        SetVariable.createList {
+            +dict
+            for (i in 0..keys.size) {
+                +keys[i]
+                +values[i]
+            }
+        }
+    } else {
+        for (j in 0..keys.size / 12) {
+            val a: Items = {
+                +dict
+                for (f in j*12..(j+1)*12) {
+                    if (f >= keys.size) break
+                    +keys[f]
+                    +values[f]
+                }
+            }
+            if (j == 0) {
+                SetVariable.createList(a)
+            } else {
+                SetVariable.appendValue(a)
+            }
+        }
+    }
+    return dict
+}
+
+fun Template.dictVarOf(name: String, scope: VarItem.Scope, map: Map<Insertable, Insertable>) =
+    dictVarOf(name, scope, map.keys.toList(), map.values.toList())

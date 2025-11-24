@@ -16,6 +16,9 @@ class EventTemplate private constructor(
     Type.EVENT, "", code = code
 ) {
 
+    /**
+     * Creates a player event codeline
+     */
     constructor(event: PlayerEvent, code: Template.() -> Unit) : this(
         EventBlock(
             event.type,
@@ -23,6 +26,9 @@ class EventTemplate private constructor(
         ), code
     )
 
+    /**
+     * Creates an entity event codeline
+     */
     constructor(event: EntityEvent, code: Template.() -> Unit) : this(
         EventBlock(
             event.type,

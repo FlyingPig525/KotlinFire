@@ -110,7 +110,10 @@ open class Template(
         }
     }
 
-    fun getTemplateString(): String = TemplateEncoder.encode(this)
+    fun getTemplateString(): String {
+        println("Getting template string for $name")
+        return TemplateEncoder.encode(this)
+    }
 
     fun ifVal(comp: ItemComparison, wrappedCode: Template.() -> Unit): ElseOperation {
         comp(this, wrappedCode)

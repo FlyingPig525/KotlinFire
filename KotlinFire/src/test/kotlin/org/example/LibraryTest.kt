@@ -5,6 +5,7 @@ import io.github.flyingpig525.base.Template.Type.FUNCTION
 import io.github.flyingpig525.base.Template.Type.PROCESS
 import io.github.flyingpig525.base.TemplateCollection
 import io.github.flyingpig525.base.block.PlayerEvent
+import io.github.flyingpig525.base.item.Insertable
 import io.github.flyingpig525.base.item.type.*
 import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
 import io.github.flyingpig525.base.item.type.NumItem.Companion.toNumItem
@@ -241,6 +242,15 @@ class LibraryTest {
                     +initialLocation
                 }
             }
+
+            val a = mutableListOf<Insertable>()
+            val b = mutableListOf<Insertable>()
+            for (i in 0..37) {
+                a += "$i".stringItem
+                b += i.numItem
+            }
+            val longList = dictVarOf("longList", VarItem.Scope.LINE, a, b)
+            println(json.encodeToString(getJsonData()))
         }
     }
 
@@ -281,6 +291,13 @@ class LibraryTest {
                     +"The list does not contain a text item with the content \"random text\"".textItem
                 }
             }
+
+            val b = mutableListOf<Insertable>()
+            for (i in 0..37) {
+                b += i.numItem
+            }
+            val longList = listVarOf("longList", VarItem.Scope.LINE, *b.toTypedArray())
+            println(json.encodeToString(getJsonData()))
         }
     }
 

@@ -16,7 +16,7 @@ import io.github.flyingpig525.base.item.type.VecItem.Companion.toVecItem
 private typealias Provider<T, I> = DiamondFireDelegateProvider<T, I>
 
 /**
- * @param [name] - The name of the variable that will hold this class. Will be defined as a dictionary.
+ * @param [name] - The name of the variable that will hold this dictionary-backed class.
  *
  * Should be extended to add properties delegated through [numProp], [textProp], and others. These will be accessible
  * in DiamondFire when generated code runs.
@@ -84,24 +84,37 @@ open class DiamondFireClass(val name: String, val scope: VarItem.Scope = VarItem
 
     @OptIn(DiamondFireClassOptIn::class)
     context(t: Template)
-    fun init() {
+    /**
+     * Initializes a serialized [DiamondFireClass], creating the backing dictionary.
+     *
+     * @param [checkExists] - Ensures the variable does not exist before creating the dictionary. Inserts a conditional
+     * block.
+     */
+    fun init(checkExists: Boolean = false) {
         // TODO: add appending if toInitialize is too long for one chest
-        t.SetVariable.createList {
-            +"${name}-KeyList-ajowdoiwajdpowd".lineVar
-            for (prop in toInitialize.keys) {
-                +prop.name.stringItem
+        val a: Template.() -> Unit = {
+            t.SetVariable.createList {
+                +"${name}-KeyList-ajowdoiwajdpowd".lineVar
+                for (prop in toInitialize.keys) {
+                    +prop.name.stringItem
+                }
+            }
+            t.SetVariable.createList {
+                +"${name}-ValueList-ajowdoiwajdpowd".lineVar
+                for (default in toInitialize.values) {
+                    +default
+                }
+            }
+            t.SetVariable.createDict {
+                +name.toVarItem(scope)
+                +"${name}-KeyList-ajowdoiwajdpowd".lineVar
+                +"${name}-ValueList-ajowdoiwajdpowd".lineVar
             }
         }
-        t.SetVariable.createList {
-            +"${name}-ValueList-ajowdoiwajdpowd".lineVar
-            for (default in toInitialize.values) {
-                +default
-            }
-        }
-        t.SetVariable.createDict {
-            +name.toVarItem(scope)
-            +"${name}-KeyList-ajowdoiwajdpowd".lineVar
-            +"${name}-ValueList-ajowdoiwajdpowd".lineVar
+        if (checkExists) {
+            t.IfVar.varExists({+name.toVarItem(scope)}, not = true, a)
+        } else {
+            t.a()
         }
     }
 
