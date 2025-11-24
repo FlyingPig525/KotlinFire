@@ -92,7 +92,7 @@ class DictionaryVariable(name: String, scope: VarItem.Scope) : VarClass<VarItem>
 fun Template.dictVarOf(name: String, scope: VarItem.Scope, keys: List<Insertable>, values: List<Insertable>): DictionaryVariable {
     val dict = DictionaryVariable(name, scope)
     if (keys.size + values.size < 25) {
-        SetVariable.createList {
+        SetVariable.createDict {
             +dict
             for (i in 0..keys.size) {
                 +keys[i]
@@ -110,9 +110,9 @@ fun Template.dictVarOf(name: String, scope: VarItem.Scope, keys: List<Insertable
                 }
             }
             if (j == 0) {
-                SetVariable.createList(a)
+                SetVariable.createDict(a)
             } else {
-                SetVariable.appendValue(a)
+                SetVariable.setDictValue(a)
             }
         }
     }

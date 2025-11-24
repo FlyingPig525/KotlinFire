@@ -267,6 +267,7 @@ key.
 
 ```kotlin
 Template {
+    // You can optionally use dictVarOf to populate your dictionary in the createDictionary block.
     val dict = DictionaryVariable("%default data", VarItem.Scope.SAVE)
     ifVal(dict containsKey "hasJoined") {
         dict["firstJoin"] = 0

@@ -71,8 +71,7 @@ fun main(vararg args: String) {
         }
     }
 
-    // TODO: Add sound processing
-    // TODO: Add potion processing
+    // TODO: Add potion processing (NO!!!!!!! POTIONS DO NOT HAVE A SET STRUCTURE, THEY ALL HAVE THEIR OWN PROPERTIES)
 }
 
 fun blockActions(actions: List<JsonObject>) = try {
