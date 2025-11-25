@@ -14,11 +14,11 @@ repositories {
 }
 
 dependencies {
-    implementation("io.github.flyingpig525:kotlinfire:1.6.4")
+    implementation("io.github.flyingpig525:kotlinfire:1.7.0")
 }
 ```
 
-KotlinFire requires java >= 17 and kotlin >= 2.2.20 be used.
+KotlinFire requires java >= 21 and kotlin >= 2.2.20 be used.
 
 ## Usage
 
@@ -257,12 +257,12 @@ class Serialized(default: NumVariable, name: String, scope: VarItem.Scope = VarI
 A new type has been added: `DictionaryVariable`!
 
 This type has two comparison functions, `containsKey` and `valueEquals`. `containsKey` takes a key parameter and checks
-whether the dictionary has a entry with that value as the key. `valueEquals` takes a key parameter and a list of values
+whether the dictionary has an entry with that value as the key. `valueEquals` takes a key parameter and a list of values
 and checks if the value of the key is equal to any of the values in the passed list.
 
 `DictionaryVariable` also has the `get` and `set` operator functions defined when in a `Template`, and can be used to
 get and set values in the dictionary. It also has a `getAsVariable` function, which must be used when the value type is
-not a number, text, or string. It also inserts a codeblock to create a temporary variable with the value found at the
+not a number, text, or string. It also inserts a code block to create a temporary variable with the value found at the
 key.
 
 ```kotlin
@@ -293,10 +293,9 @@ Template {
 ### New, 1.6.4!
 A new type has been added: `ListVariable`!
 
-List `DictionaryVariable`, `ListVariable` is used to define DiamondFire list variables, and has a multitude of methods
+`ListVariable` is used to define DiamondFire list variables, and has a multitude of methods
 to interact with the underlying item in an easy way. Every code block in the `SetVariable` category containing the word
-"list" has been implemented as a member of `ListVariable` (they are actually extension functions defined in the
-`Template` class)
+"list" has been implemented as a member of `ListVariable`.
 
 ```kotlin
 Template {
@@ -333,6 +332,56 @@ Template {
         PlayerAction.sendMessage {
             +"The list does not contain a text item with the content \"random text\"".textItem
         }
+    }
+}
+```
+
+### New, 1.7.0!
+The main part of 1.7.0 is the change to context parameters.
+
+Instead of all functions that can only be used in `Template` scope being defined in the `Template` class
+
+```kotlin
+class Template {
+    infix fun ElseOperation.Else(...) {...}
+}
+```
+
+They are now defined in their respective classes, with a template context parameter.
+
+```kotlin
+class ElseOperation internal constructor() {
+    context(t: Template)
+    infix fun Else(...) {...}
+}
+```
+
+#### Tags
+Tags have been added.
+
+Each code block that requires tags will have an entry in its tag category.
+
+```kotlin
+Template {
+    PlayerAction.sendMessage {
+        +"Hello World!".textItem
+        // sendMessage is a PlayerAction, so use PlayerActionTags. Find SendMessage, then each tag is available with its
+        // options.
+        +PlayerActionTags.SendMessage.AlignmentMode.Centered 
+    }
+}
+```
+
+Tags not manually added in code blocks will be inserted automatically with their default values.
+
+#### Sounds
+Sound generation has also been added to the [Generation module](https://github.com/FlyingPig525/KotlinFire/blob/master/Generation), and can be accessed through the `Sounds` object.
+
+```kotlin
+Template {
+    PlayerAction.playSound {
+        // SoundItem has methods to modify pitch and volume.
+        +Sounds.VillagerDeath.vol(1.2f)
     }
 }
 ```

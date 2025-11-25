@@ -72,18 +72,6 @@ open class Template(
     context(t: Template)
     operator fun invoke(items: Items = {}) = t.invokeTemplate(this, items)
 
-    infix fun ElseOperation.Else(wrappedCode: Template.() -> Unit) {
-        blocks += ElseBlock()
-        blocks += BracketBlock(type = "norm")
-        blocks += Template(
-            Type.NONE,
-            code = wrappedCode
-        ).blocks
-        blocks += BracketBlock(false, "norm")
-    }
-
-
-
     init {
         if (type != Type.NONE) {
             blocks += when (type) {

@@ -6,6 +6,7 @@ import io.github.flyingpig525.base.Template.Type.PROCESS
 import io.github.flyingpig525.base.TemplateCollection
 import io.github.flyingpig525.base.block.PlayerEvent
 import io.github.flyingpig525.base.item.Insertable
+import io.github.flyingpig525.base.item.Sounds
 import io.github.flyingpig525.base.item.type.*
 import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
 import io.github.flyingpig525.base.item.type.NumItem.Companion.toNumItem
@@ -309,14 +310,19 @@ class LibraryTest {
 
                 +PlayerActionTags.SendMessage.AlignmentMode.Centered
             }
-            IfVar.stringMatches({
-                +"Heelo world".stringItem
-                +"Heelo world".stringItem
-            }) { }
         }
         println(Json { prettyPrint = true }.encodeToString(t.getJsonData()))
         println(t.getTemplateString())
 //        Template.codeClientPlaceTemplate(t)
+    }
+
+    @Test
+    fun soundTest() {
+        val t = Template {
+            PlayerAction.playSound {
+                +Sounds.VillagerDeath.vol(1.2f)
+            }
+        }
     }
 }
 @OptIn(DiamondFireClassOptIn::class)

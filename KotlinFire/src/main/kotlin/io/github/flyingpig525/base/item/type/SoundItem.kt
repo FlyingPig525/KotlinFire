@@ -1,16 +1,17 @@
 package io.github.flyingpig525.base.item.type
 
-import io.github.flyingpig525.base.JsonData
 import io.github.flyingpig525.base.item.Item
+import io.github.flyingpig525.base.item.Sounds
+import io.github.flyingpig525.base.item.type.SoundItem.Companion.soundItem
+import io.github.flyingpig525.base.item.type.SoundItem.Companion.toSoundItem
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
-import io.github.flyingpig525.base.item.Sounds
 
 /**
  * A DiamondFire sound.
  *
- * Can be constructed through the class constructor, through the string extensions, or through [Sounds].
+ * Can be constructed through the class constructor, the string extensions, or through [Sounds].
  *
  * @see toSoundItem
  * @see soundItem
@@ -24,6 +25,9 @@ class SoundItem(val sound: String, val pitch: Float = 1f, val vol: Float = 2f) :
             put("sound", sound)
         }
     }
+
+    fun pitch(pitch: Float): SoundItem = SoundItem(sound, pitch, vol)
+    fun vol(vol: Float): SoundItem = SoundItem(sound, pitch, vol)
 
     companion object {
         fun String.toSoundItem(pitch: Number = 1f, vol: Number = 2f) = SoundItem(this, pitch.toFloat(), vol.toFloat())
