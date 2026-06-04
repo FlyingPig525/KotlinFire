@@ -1,2777 +1,3494 @@
 package io.github.flyingpig525.base.block.category
 
-import io.github.flyingpig525.base.*
-import io.github.flyingpig525.base.item.*
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
+import io.github.flyingpig525.base.block.Block
+import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
-import io.github.flyingpig525.base.block.*
-import io.github.flyingpig525.base.block.subaction.*
+import io.github.flyingpig525.base.item.type.tag.PlayerActionTags
+import io.github.flyingpig525.base.item.type.tag.TagItem
 import kotlinx.serialization.json.JsonObjectBuilder
-import kotlinx.serialization.json.put
+import kotlin.reflect.KClass
+import kotlin.reflect.full.superclasses
 
+@Suppress("unused")
 class PlayerActionCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
-    private fun block(items: Items, action: String, extra: JsonObjectBuilder.() -> Unit = {}) {
-        blocks += Block("player_action", ItemCollection(items).items, action, extra)
+    private fun block(items: Items, action: String, tagClass: KClass<*>? = null, extra: JsonObjectBuilder.() -> Unit = {}) {
+        val collection = ItemCollection(items)
+        tagClass?.nestedClasses?.forEach { klass ->
+            if (klass.superclasses.any { it.qualifiedName == "kotlin.Enum" }) {
+                @Suppress("UNCHECKED_CAST")
+                val entries = klass.java.enumConstants as Array<Enum<*>>
+                entries.forEach { entry ->
+                    if (entry is TagItem) {
+                        if (!entry.default) return@forEach
+                        if (collection.items.none { it is TagItem && it.tag == entry.tag })
+                        collection += entry
+                    }
+                }
+            }
+        }
+        blocks += Block("player_action", collection.items, action, extra)
     }
 	/**
-	 * *Sets items in a player's*
-	 * *hotbar.*
+	 * Sets items in a player's
+	 * hotbar.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item(s) to set*
+	 * Item(s) to set
+	 *
+	 * *Slots §c1§7-§c9§7*
 	 *
 	 * (*) = optional
 	 */
-	fun setHotbar(items: Items) = block(items, "SetHotbar")
+	fun setHotbar(items: Items) {
+		block(items, "SetHotbar")
+	}
 
 
 	/**
-	 * *When enabled, a player won't be*
-	 * *able to see their coordinates,*
-	 * *block info, or other info.*
+	 * When enabled, a player won't be
+	 * able to see their coordinates,
+	 * block info, or other info.
 	 */
-	fun setReducedDebug(items: Items) = block(items, "SetReducedDebug")
+	fun setReducedDebug(items: Items) {
+		block(items, "SetReducedDebug", tagClass = PlayerActionTags.SetReducedDebug::class)
+	}
 
 
 	/**
-	 * *Closes a player's inventory.*
+	 * Closes a player's inventory.
 	 */
-	fun closeInv(items: Items) = block(items, "CloseInv")
+	fun closeInv(items: Items) {
+		block(items, "CloseInv")
+	}
 
 
 	/**
-	 * *Gives a player all of the*
-	 * *items in the chest.*
+	 * Gives a player all of the
+	 * items in the chest.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item(s) to give*
+	 * Item(s) to give
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Amount to give*
+	 * (*) Amount to give
 	 *
 	 * (*) = optional
 	 */
-	fun giveItems(items: Items) = block(items, "GiveItems")
+	fun giveItems(items: Items) {
+		block(items, "GiveItems")
+	}
 
 
 	/**
 	 */
-	fun noKeepInv(items: Items) = block(items, "NoKeepInv")
+	fun noKeepInv(items: Items) {
+		block(items, "NoKeepInv")
+	}
 
 
 	/**
-	 * *Sets if a player is*
-	 * *allowed to interact with*
-	 * *their hand-crafting menu.*
+	 * Sets if a player is
+	 * allowed to interact with
+	 * their hand-crafting menu.
 	 */
-	fun setHandCrafting(items: Items) = block(items, "SetHandCrafting")
+	fun setHandCrafting(items: Items) {
+		block(items, "SetHandCrafting", tagClass = PlayerActionTags.SetHandCrafting::class)
+	}
 
 
 	/**
 	 */
-	fun bossBar(items: Items) = block(items, "BossBar")
+	fun bossBar(items: Items) {
+		block(items, "BossBar", tagClass = PlayerActionTags.BossBar::class)
+	}
 
 
 	/**
-	 * *Displays a sphere of particles*
-	 * *at a location to a player.*
+	 * Displays a sphere of particles
+	 * at a location to a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect*
+	 * Effect
 	 *
 	 * [LocItem]
 	 *
-	 * *Center location*
+	 * Center location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Diameter*
+	 * (*) Diameter
+	 *
+	 * *Default = §c2§7 blocks*
 	 *
 	 * (*) = optional
 	 */
-	fun particleSphere(items: Items) = block(items, "ParticleSphere")
+	fun particleSphere(items: Items) {
+		block(items, "ParticleSphere")
+	}
 
 
 	/**
-	 * *Sets a player's movement*
-	 * *velocity.*
+	 * Sets a player's movement
+	 * velocity.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VecItem]
 	 *
-	 * *New velocity*
+	 * New velocity
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SetVelocity]
 	 */
-	fun setVelocity(items: Items) = block(items, "SetVelocity")
+	fun setVelocity(items: Items) {
+		block(items, "SetVelocity", tagClass = PlayerActionTags.SetVelocity::class)
+	}
 
 
 	/**
-	 * *Displays a particle effect*
-	 * *to a player.*
+	 * Displays a particle effect
+	 * to a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect*
+	 * Effect
 	 *
 	 * [LocItem]
 	 *
-	 * *Effect location*
+	 * Effect location
 	 *
 	 * (*) = optional
 	 */
-	fun particle(items: Items) = block(items, "Particle")
+	fun particle(items: Items) {
+		block(items, "Particle")
+	}
 
 
 	/**
-	 * *Adds a row to the bottom of*
-	 * *a player's current inventory*
-	 * *menu.*
+	 * Adds a row to the bottom of
+	 * a player's current inventory
+	 * menu.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Items to display*
+	 * (*) Items to display
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.AddInvRow]
 	 */
-	fun addInvRow(items: Items) = block(items, "AddInvRow")
+	fun addInvRow(items: Items) {
+		block(items, "AddInvRow", tagClass = PlayerActionTags.AddInvRow::class)
+	}
 
 
 	/**
 	 */
-	fun noNatRegen(items: Items) = block(items, "NoNatRegen")
+	fun noNatRegen(items: Items) {
+		block(items, "NoNatRegen")
+	}
 
 
 	/**
-	 * *Displays a lightning strike*
-	 * *effect to a player.*
+	 * Displays a lightning strike
+	 * effect to a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Strike location*
+	 * Strike location
 	 *
 	 * (*) = optional
 	 */
-	fun displayLightning(items: Items) = block(items, "DisplayLightning")
+	fun displayLightning(items: Items) {
+		block(items, "DisplayLightning")
+	}
 
 
 	/**
-	 * *Damages a player.*
+	 * Damages a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Damage to inflict*
+	 * Damage to inflict
+	 *
+	 * *§c❤§7 = §c2§7 Health*
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *UUID of damager entity*
+	 * (*) UUID of damager entity
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Name of damager entity*
+	 * (*) Name of damager entity
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.Damage]
 	 */
-	fun damage(items: Items) = block(items, "Damage")
+	fun damage(items: Items) {
+		block(items, "Damage", tagClass = PlayerActionTags.Damage::class)
+	}
 
 
 	/**
 	 */
-	fun sendAnimation(items: Items) = block(items, "SendAnimation")
+	fun sendAnimation(items: Items) {
+		block(items, "SendAnimation", tagClass = PlayerActionTags.SendAnimation::class)
+	}
 
 
 	/**
-	 * *Sets the XP progress bar*
-	 * *to a certain percentage.*
+	 * Sets the XP progress bar
+	 * to a certain percentage.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Progress % (0-100)*
+	 * Progress % (0-100)
 	 *
 	 * (*) = optional
 	 */
-	fun setXPProg(items: Items) = block(items, "SetXPProg")
+	fun setXPProg(items: Items) {
+		block(items, "SetXPProg")
+	}
 
 
 	/**
-	 * *Sets items in a player's*
-	 * *upper inventory.*
+	 * Sets items in a player's
+	 * upper inventory.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item(s) to set*
+	 * Item(s) to set
 	 *
 	 * (*) = optional
 	 */
-	fun setInventory(items: Items) = block(items, "SetInventory")
+	fun setInventory(items: Items) {
+		block(items, "SetInventory")
+	}
 
 
 	/**
-	 * *Teleports a player to multiple*
-	 * *locations, with a delay between*
-	 * *each teleport.*
+	 * Teleports a player to multiple
+	 * locations, with a delay between
+	 * each teleport.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Locations to*
-	 * *teleport to*
+	 * Locations to
+	 * teleport to
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Teleport delay (ticks,*
-	 * (*) *default = 60)*
+	 * (*) Teleport delay (ticks,
+	 * (*) default = 60)
 	 *
 	 * (*) = optional
 	 */
-	fun tpSequence(items: Items) = block(items, "TpSequence")
+	fun tpSequence(items: Items) {
+		block(items, "TpSequence")
+	}
 
 
 	/**
-	 * *Restores a player's health.*
+	 * Restores a player's health.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Amount to heal*
+	 * Amount to heal
+	 *
+	 * *§c❤§7 = §c2§7 Health*
 	 *
 	 * (*) = optional
 	 */
-	fun heal(items: Items) = block(items, "Heal")
+	fun heal(items: Items) {
+		block(items, "Heal")
+	}
 
 
 	/**
-	 * *Sets the location a player will*
-	 * *spawn when they die and respawn.*
+	 * Sets the location a player will
+	 * spawn when they die and respawn.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *The new spawn location*
+	 * The new spawn location
 	 *
 	 * (*) = optional
 	 */
-	fun setSpawnPoint(items: Items) = block(items, "SetSpawnPoint")
+	fun setSpawnPoint(items: Items) {
+		block(items, "SetSpawnPoint")
+	}
 
 
 	/**
-	 * *Sets whether a player's inventory*
-	 * *is kept after death.*
+	 * Sets whether a player's inventory
+	 * is kept after death.
 	 */
-	fun setInventoryKept(items: Items) = block(items, "SetInventoryKept")
+	fun setInventoryKept(items: Items) {
+		block(items, "SetInventoryKept", tagClass = PlayerActionTags.SetInventoryKept::class)
+	}
 
 
 	/**
-	 * *Launches a player up or down.*
+	 * Launches a player up or down.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Launch power*
+	 * Launch power
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.LaunchUp]
 	 */
-	fun launchUp(items: Items) = block(items, "LaunchUp")
+	fun launchUp(items: Items) {
+		block(items, "LaunchUp", tagClass = PlayerActionTags.LaunchUp::class)
+	}
 
 
 	/**
 	 */
-	fun getTargetEntity(items: Items) = block(items, "GetTargetEntity")
+	fun getTargetEntity(items: Items) {
+		block(items, "GetTargetEntity", tagClass = PlayerActionTags.GetTargetEntity::class)
+	}
 
 
 	/**
-	 * *Forces a player to start*
-	 * *or stop flying.*
+	 * Forces a player to start
+	 * or stop flying.
 	 */
-	fun forceFlight(items: Items) = block(items, "ForceFlight")
+	fun forceFlight(items: Items) {
+		block(items, "ForceFlight", tagClass = PlayerActionTags.ForceFlight::class)
+	}
 
 
 	/**
-	 * *Loads a player's inventory.*
+	 * Loads a player's inventory.
 	 */
-	fun loadInv(items: Items) = block(items, "LoadInv")
+	fun loadInv(items: Items) {
+		block(items, "LoadInv", tagClass = PlayerActionTags.LoadInv::class)
+	}
 
 
 	/**
-	 * *Sets a player's chat color or*
-	 * *decoration.*
+	 * Sets a player's chat color or
+	 * decoration.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *New chat style*
+	 * New chat style
 	 *
 	 * (*) = optional
 	 */
-	fun chatStyle(items: Items) = block(items, "ChatStyle")
+	fun chatStyle(items: Items) {
+		block(items, "ChatStyle")
+	}
 
 
 	/**
-	 * *Kicks a player from*
-	 * *the plot.*
+	 * Kicks a player from
+	 * the plot.
 	 */
-	fun kick(items: Items) = block(items, "Kick")
+	fun kick(items: Items) {
+		block(items, "Kick")
+	}
 
 
 	/**
 	 */
-	fun projColl(items: Items) = block(items, "ProjColl")
+	fun projColl(items: Items) {
+		block(items, "ProjColl")
+	}
 
 
 	/**
-	 * *Sets one of the player's miscellaneous*
-	 * *attributes such as scale and*
-	 * *burning time.*
+	 * Sets one of the player's miscellaneous
+	 * attributes such as scale and
+	 * burning time.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.MiscAttribute]
 	 */
-	fun miscAttribute(items: Items) = block(items, "MiscAttribute")
+	fun miscAttribute(items: Items) {
+		block(items, "MiscAttribute", tagClass = PlayerActionTags.MiscAttribute::class)
+	}
 
 
 	/**
-	 * *Makes a player spectate*
-	 * *another player or entity.*
+	 * Makes a player spectate
+	 * another player or entity.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Target UUID*
+	 * Target UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Target name*
+	 * Target name
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SpectateTarget]
 	 */
-	fun spectateTarget(items: Items) = block(items, "SpectateTarget")
+	fun spectateTarget(items: Items) {
+		block(items, "SpectateTarget", tagClass = PlayerActionTags.SpectateTarget::class)
+	}
 
 
 	/**
-	 * *Makes a player perform*
-	 * *a hurt animation.*
+	 * Makes a player perform
+	 * a hurt animation.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Damage source*
+	 * (*) Damage source
+	 *
+	 * *Affects the direction of the screen tilt effect.*
 	 *
 	 * (*) = optional
 	 */
-	fun hurtAnimation(items: Items) = block(items, "HurtAnimation")
+	fun hurtAnimation(items: Items) {
+		block(items, "HurtAnimation")
+	}
 
 
 	/**
-	 * *Sets a player's game*
-	 * *mode to Survival.*
+	 * Sets a player's game
+	 * mode to Survival.
 	 */
-	fun survivalMode(items: Items) = block(items, "SurvivalMode")
+	fun survivalMode(items: Items) {
+		block(items, "SurvivalMode")
+	}
 
 
 	/**
-	 * *Displays a bell ring animation*
-	 * *at a location to a player.*
+	 * Displays a bell ring animation
+	 * at a location to a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Block location*
+	 * Block location
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.DisplayBellRing]
 	 */
-	fun displayBellRing(items: Items) = block(items, "DisplayBellRing")
+	fun displayBellRing(items: Items) {
+		block(items, "DisplayBellRing", tagClass = PlayerActionTags.DisplayBellRing::class)
+	}
 
 
 	/**
-	 * *Sets the player's game status,*
-	 * *which is used to display information*
-	 * *about what the player is doing*
-	 * *in the game.*
+	 * Sets the player's game status,
+	 * which is used to display information
+	 * about what the player is doing
+	 * in the game.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Game Status*
+	 * Game Status
+	 *
+	 * *Limited at 50 characters*
 	 *
 	 * (*) = optional
 	 */
-	fun setStatus(items: Items) = block(items, "SetStatus")
+	fun setStatus(items: Items) {
+		block(items, "SetStatus")
+	}
 
 
 	/**
-	 * *Sets the item on a*
-	 * *player's cursor.*
+	 * Sets the item on a
+	 * player's cursor.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to set*
+	 * Item to set
 	 *
 	 * (*) = optional
 	 */
-	fun setCursorItem(items: Items) = block(items, "SetCursorItem")
+	fun setCursorItem(items: Items) {
+		block(items, "SetCursorItem")
+	}
 
 
 	/**
-	 * *Sets a player's absorption*
-	 * *health (golden hearts).*
+	 * Sets a player's absorption
+	 * health (golden hearts).
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Absorption health*
+	 * Absorption health
+	 *
+	 * *§c❤§7 = §c2§7 Health*
 	 *
 	 * (*) = optional
 	 */
-	fun setAbsorption(items: Items) = block(items, "SetAbsorption")
+	fun setAbsorption(items: Items) {
+		block(items, "SetAbsorption")
+	}
 
 
 	/**
-	 * *Sets the remaining time a*
-	 * *player is on fire for.*
+	 * Sets the remaining time a
+	 * player is on fire for.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Ticks*
+	 * Ticks
 	 *
 	 * (*) = optional
 	 */
-	fun setFireTicks(items: Items) = block(items, "SetFireTicks")
+	fun setFireTicks(items: Items) {
+		block(items, "SetFireTicks")
+	}
 
 
 	/**
-	 * *Sets one of the player's combat-related*
-	 * *attributes such as attack damage*
-	 * *and attack speed.*
+	 * Sets one of the player's combat-related
+	 * attributes such as attack damage
+	 * and attack speed.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.CombatAttribute]
 	 */
-	fun combatAttribute(items: Items) = block(items, "CombatAttribute")
+	fun combatAttribute(items: Items) {
+		block(items, "CombatAttribute", tagClass = PlayerActionTags.CombatAttribute::class)
+	}
 
 
 	/**
 	 */
-	fun setGamemode(items: Items) = block(items, "SetGamemode")
+	fun setGamemode(items: Items) {
+		block(items, "SetGamemode", tagClass = PlayerActionTags.SetGamemode::class)
+	}
 
 
 	/**
-	 * *Removes the given number of*
-	 * *rows from the bottom of a player's*
-	 * *current inventory menu.*
+	 * Removes the given number of
+	 * rows from the bottom of a player's
+	 * current inventory menu.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Rows to remove*
+	 * (*) Rows to remove
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.RemoveInvRow]
 	 */
-	fun removeInvRow(items: Items) = block(items, "RemoveInvRow")
+	fun removeInvRow(items: Items) {
+		block(items, "RemoveInvRow", tagClass = PlayerActionTags.RemoveInvRow::class)
+	}
 
 
 	/**
-	 * *Displays the wake up (fade in)*
-	 * *animation to a player.*
+	 * Displays the wake up (fade in)
+	 * animation to a player.
 	 */
-	fun wakeUpAnimation(items: Items) = block(items, "WakeUpAnimation")
+	fun wakeUpAnimation(items: Items) {
+		block(items, "WakeUpAnimation")
+	}
 
 
 	/**
-	 * *Prevents a player from placing*
-	 * *and breaking certain blocks.*
+	 * Prevents a player from placing
+	 * and breaking certain blocks.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Blocks to disallow*
+	 * (*) Blocks to disallow
+	 *
+	 * *If no blocks are given, disallows all blocks*
 	 *
 	 * (*) = optional
 	 */
-	fun disableBlocks(items: Items) = block(items, "DisableBlocks")
+	fun disableBlocks(items: Items) {
+		block(items, "DisableBlocks")
+	}
 
 
 	/**
-	 * *Sets the objective name of the*
-	 * *scoreboard sidebar.*
+	 * Sets the objective name of the
+	 * scoreboard sidebar.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Objective name*
+	 * Objective name
 	 *
 	 * (*) = optional
 	 */
-	fun setScoreObj(items: Items) = block(items, "SetScoreObj")
+	fun setScoreObj(items: Items) {
+		block(items, "SetScoreObj")
+	}
 
 
 	/**
 	 */
-	fun lSetHealth(items: Items) = block(items, "L SetHealth")
+	fun lSetHealth(items: Items) {
+		block(items, "L SetHealth", tagClass = PlayerActionTags.LSetHealth::class)
+	}
 
 
 	/**
 	 */
-	fun particleEffect(items: Items) = block(items, "ParticleEffect")
+	fun particleEffect(items: Items) {
+		block(items, "ParticleEffect")
+	}
 
 
 	/**
-	 * *Empties a player's inventory.*
+	 * Empties a player's inventory.
 	 */
-	fun clearInv(items: Items) = block(items, "ClearInv")
+	fun clearInv(items: Items) {
+		block(items, "ClearInv", tagClass = PlayerActionTags.ClearInv::class)
+	}
 
 
 	/**
-	 * *Sets how long a player*
-	 * *is frozen for.*
+	 * Sets how long a player
+	 * is frozen for.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Ticks*
-	 * *(0-140)*
+	 * Ticks
+	 * (0-140)
+	 *
+	 * (*) = optional
+
+	 * @see [PlayerActionTags.SetFreezeTicks]
+	 */
+	fun setFreezeTicks(items: Items) {
+		block(items, "SetFreezeTicks", tagClass = PlayerActionTags.SetFreezeTicks::class)
+	}
+
+
+	/**
+	 * Sets whether a player
+	 * is gliding with elytra.
+	 */
+	fun setGliding(items: Items) {
+		block(items, "SetGliding", tagClass = PlayerActionTags.SetGliding::class)
+	}
+
+
+	/**
+	 * Changes a player's pitch and
+	 * yaw.
+	 *
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * Pitch (-90 to 90)
+	 *
+	 * [NumItem]
+	 *
+	 * Yaw (-180 to 180)
 	 *
 	 * (*) = optional
 	 */
-	fun setFreezeTicks(items: Items) = block(items, "SetFreezeTicks")
+	fun setRotation(items: Items) {
+		block(items, "SetRotation")
+	}
 
 
 	/**
-	 * *Sets whether a player*
-	 * *is gliding with elytra.*
-	 */
-	fun setGliding(items: Items) = block(items, "SetGliding")
-
-
-	/**
-	 * *Changes a player's pitch and*
-	 * *yaw.*
+	 * Removes all of an item from
+	 * a player.
 	 *
-	 * #### Args:
-	 *
-	 * [NumItem]
-	 *
-	 * *Pitch (-90 to 90)*
-	 *
-	 * [NumItem]
-	 *
-	 * *Yaw (-180 to 180)*
-	 *
-	 * (*) = optional
-	 */
-	fun setRotation(items: Items) = block(items, "SetRotation")
-
-
-	/**
-	 * *Removes all of an item from*
-	 * *a player.*
-	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item(s) to clear*
+	 * Item(s) to clear
 	 *
 	 * (*) = optional
 	 */
-	fun clearItems(items: Items) = block(items, "ClearItems")
+	fun clearItems(items: Items) {
+		block(items, "ClearItems")
+	}
 
 
 	/**
-	 * *Sets whether a player*
-	 * *is flying.*
-	 */
-	fun setFlying(items: Items) = block(items, "SetFlying")
-
-
-	/**
-	 * *Displays a container block*
-	 * *at a location as being open*
-	 * *or closed to a player.*
+	 * Opens a sign for a player.
+	 * Also works with client-side signs.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Block location*
+	 * Sign location
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.OpenSign]
 	 */
-	fun displayBlockOpen(items: Items) = block(items, "DisplayBlockOpen")
+	fun openSign(items: Items) {
+		block(items, "OpenSign", tagClass = PlayerActionTags.OpenSign::class)
+	}
 
 
 	/**
+	 * Sets whether a player
+	 * is flying.
 	 */
-	fun setHandItem(items: Items) = block(items, "SetHandItem")
+	fun setFlying(items: Items) {
+		block(items, "SetFlying", tagClass = PlayerActionTags.SetFlying::class)
+	}
 
 
 	/**
-	 * *Displays a custom advancement*
-	 * *popup to a player.*
+	 * Displays a container block
+	 * at a location as being open
+	 * or closed to a player.
 	 *
-	 * #### Args:
+	 * **Args:**
+	 *
+	 * [LocItem]
+	 *
+	 * Block location
+	 *
+	 * (*) = optional
+
+	 * @see [PlayerActionTags.DisplayBlockOpen]
+	 */
+	fun displayBlockOpen(items: Items) {
+		block(items, "DisplayBlockOpen", tagClass = PlayerActionTags.DisplayBlockOpen::class)
+	}
+
+
+	/**
+	 */
+	fun setHandItem(items: Items) {
+		block(items, "SetHandItem", tagClass = PlayerActionTags.SetHandItem::class)
+	}
+
+
+	/**
+	 * Displays a custom advancement
+	 * popup to a player.
+	 *
+	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Advancement name*
+	 * Advancement name
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Advancement icon*
+	 * (*) Advancement icon
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SendAdvancement]
 	 */
-	fun sendAdvancement(items: Items) = block(items, "SendAdvancement")
+	fun sendAdvancement(items: Items) {
+		block(items, "SendAdvancement", tagClass = PlayerActionTags.SendAdvancement::class)
+	}
 
 
 	/**
 	 */
-	fun clearChat(items: Items) = block(items, "ClearChat")
+	fun clearChat(items: Items) {
+		block(items, "ClearChat")
+	}
 
 
 	/**
-	 * *Sets the item in a slot*
-	 * *of a player's current*
-	 * *inventory menu.*
+	 * Sets the item in a slot
+	 * of a player's current
+	 * inventory menu.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Slot*
+	 * Slot
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to set*
+	 * (*) Item to set
 	 *
 	 * (*) = optional
 	 */
-	fun setMenuItem(items: Items) = block(items, "SetMenuItem")
+	fun setMenuItem(items: Items) {
+		block(items, "SetMenuItem")
+	}
 
 
 	/**
-	 * *Launches a player toward or away*
-	 * *from a location.*
+	 * Launches a player toward or away
+	 * from a location.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Launch destination*
+	 * Launch destination
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Launch power*
+	 * (*) Launch power
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.LaunchToward]
 	 */
-	fun launchToward(items: Items) = block(items, "LaunchToward")
+	fun launchToward(items: Items) {
+		block(items, "LaunchToward", tagClass = PlayerActionTags.LaunchToward::class)
+	}
 
 
 	/**
-	 * *Sets a player's armor items.*
-	 * *Place the armor in slots 1-4*
-	 * *of the chest, with 1 being the*
-	 * *helmet and 4 being the boots.*
+	 * Sets a player's armor items.
+	 * Place the armor in slots 1-4
+	 * of the chest, with 1 being the
+	 * helmet and 4 being the boots.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Armor to set*
+	 * Armor to set
 	 *
 	 * (*) = optional
 	 */
-	fun setArmor(items: Items) = block(items, "SetArmor")
+	fun setArmor(items: Items) {
+		block(items, "SetArmor")
+	}
 
 
 	/**
-	 * *Displays a vertical beam on*
-	 * *an end gateway to a player.*
+	 * Displays a vertical beam on
+	 * an end gateway to a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Gateway location*
+	 * Gateway location
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.DisplayGateway]
 	 */
-	fun displayGateway(items: Items) = block(items, "DisplayGateway")
+	fun displayGateway(items: Items) {
+		block(items, "DisplayGateway", tagClass = PlayerActionTags.DisplayGateway::class)
+	}
 
 
 	/**
-	 * *Adds saturation to a player.*
+	 * Adds saturation to a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Saturation to give*
+	 * Saturation to give
 	 *
 	 * (*) = optional
 	 */
-	fun giveSaturation(items: Items) = block(items, "GiveSaturation")
+	fun giveSaturation(items: Items) {
+		block(items, "GiveSaturation")
+	}
 
 
 	/**
-	 * *Displays equipment on an entity*
-	 * *to a player. Equipment goes from*
-	 * *slots 2-7 in order of Helmet,*
-	 * *Chestplate, Leggings, Boots,*
-	 * *Main Hand, Off Hand.*
+	 * Displays equipment on an entity
+	 * to a player. Equipment goes from
+	 * slots 2-7 in order of Helmet,
+	 * Chestplate, Leggings, Boots,
+	 * Main Hand, Off Hand.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Entity UUID*
+	 * Entity UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Entity name*
+	 * Entity name
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Equipment*
+	 * Equipment
 	 *
 	 * (*) = optional
 	 */
-	fun displayEquipment(items: Items) = block(items, "DisplayEquipment")
+	fun displayEquipment(items: Items) {
+		block(items, "DisplayEquipment")
+	}
 
 
 	/**
-	 * *Adds experience points or*
-	 * *levels to a player.*
+	 * Adds experience points or
+	 * levels to a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Experience to give*
+	 * Experience to give
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.GiveExp]
 	 */
-	fun giveExp(items: Items) = block(items, "GiveExp")
+	fun giveExp(items: Items) {
+		block(items, "GiveExp", tagClass = PlayerActionTags.GiveExp::class)
+	}
 
 
 	/**
-	 * *Rotates a player to look*
-	 * *toward a location without*
-	 * *teleporting them.*
+	 * Rotates a player to look
+	 * toward a location without
+	 * teleporting them.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Location to face*
+	 * Location to face
 	 *
 	 * (*) = optional
 	 */
-	fun faceLocation(items: Items) = block(items, "FaceLocation")
+	fun faceLocation(items: Items) {
+		block(items, "FaceLocation")
+	}
 
 
 	/**
-	 * *Removes all scores from*
-	 * *the scoreboard.*
+	 * Removes all scores from
+	 * the scoreboard.
 	 */
-	fun clearScoreboard(items: Items) = block(items, "ClearScoreboard")
+	fun clearScoreboard(items: Items) {
+		block(items, "ClearScoreboard")
+	}
 
 
 	/**
-	 * *Displays text directly above*
-	 * *a player's hotbar.*
+	 * Displays text directly above
+	 * a player's hotbar.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Message to send*
+	 * Message to send
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.ActionBar]
 	 */
-	fun actionBar(items: Items) = block(items, "ActionBar")
+	fun actionBar(items: Items) {
+		block(items, "ActionBar", tagClass = PlayerActionTags.ActionBar::class)
+	}
 
 
 	/**
-	 * *Sets a player's chat tag.*
+	 * Sets a player's chat tag.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Chat tag*
+	 * Chat tag
 	 *
 	 * (*) = optional
 	 */
-	fun setChatTag(items: Items) = block(items, "SetChatTag")
+	fun setChatTag(items: Items) {
+		block(items, "SetChatTag")
+	}
 
 
 	/**
-	 * *Changes a player's world border*
-	 * *size if they have one active.*
+	 * Changes a player's world border
+	 * size if they have one active.
 	 *
-	 * #### Args:
-	 *
-	 * [NumItem]
-	 *
-	 * *New radius*
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Blocks per second*
+	 * New radius
+	 *
+	 * [NumItem]
+	 *
+	 * (*) Blocks per second
 	 *
 	 * (*) = optional
 	 */
-	fun shiftWorldBorder(items: Items) = block(items, "ShiftWorldBorder")
+	fun shiftWorldBorder(items: Items) {
+		block(items, "ShiftWorldBorder")
+	}
 
 
 	/**
-	 * *Displays text on a sign*
-	 * *to a player.*
+	 * Displays text on a sign
+	 * to a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Sign location*
+	 * Sign location
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Text line(s)*
+	 * (*) Text line(s)
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.DisplaySignText]
 	 */
-	fun displaySignText(items: Items) = block(items, "DisplaySignText")
+	fun displaySignText(items: Items) {
+		block(items, "DisplaySignText", tagClass = PlayerActionTags.DisplaySignText::class)
+	}
 
 
 	/**
 	 */
-	fun setSpeed(items: Items) = block(items, "SetSpeed")
+	fun setSpeed(items: Items) {
+		block(items, "SetSpeed", tagClass = PlayerActionTags.SetSpeed::class)
+	}
 
 
 	/**
-	 * *Adds 3 more rows to a player's*
-	 * *current inventory menu using the*
-	 * *contents of the chest.*
+	 * Adds 3 more rows to a player's
+	 * current inventory menu using the
+	 * contents of the chest.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Items to display*
+	 * (*) Items to display
 	 *
 	 * (*) = optional
 	 */
-	fun expandInv(items: Items) = block(items, "ExpandInv")
+	fun expandInv(items: Items) {
+		block(items, "ExpandInv")
+	}
 
 
 	/**
-	 * *Launches a projectile from*
-	 * *a player.*
+	 * Launches a projectile from
+	 * a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Projectile to*
-	 * *launch*
+	 * Projectile to
+	 * launch
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Launch point*
+	 * (*) Launch point
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Projectile name*
+	 * (*) Projectile name
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Speed*
+	 * (*) Speed
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Inaccuracy*
+	 * (*) Inaccuracy
+	 *
+	 * *Controls how much random motion is applied on launch*
+	 * *Default = §c1§7*
 	 *
 	 * (*) = optional
 	 */
-	fun launchProj(items: Items) = block(items, "LaunchProj")
+	fun launchProj(items: Items) {
+		block(items, "LaunchProj")
+	}
 
 
 	/**
 	 */
-	fun noProjColl(items: Items) = block(items, "NoProjColl")
+	fun noProjColl(items: Items) {
+		block(items, "NoProjColl")
+	}
 
 
 	/**
 	 */
-	fun showDisguise(items: Items) = block(items, "ShowDisguise")
+	fun showDisguise(items: Items) {
+		block(items, "ShowDisguise")
+	}
 
 
 	/**
-	 * *Displays an animated particle*
-	 * *cuboid to a player.*
+	 * Displays an animated particle
+	 * cuboid to a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect*
+	 * Effect
 	 *
 	 * [LocItem]
 	 *
-	 * *Corner 1*
+	 * Corner 1
 	 *
 	 * [LocItem]
 	 *
-	 * *Corner 2*
+	 * Corner 2
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Effect spacing*
+	 * (*) Effect spacing
+	 *
+	 * *Default = §c0.5§7 blocks*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Animation duration*
+	 * (*) Animation duration
+	 *
+	 * *Default = §c40§7 ticks*
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.ParticleCuboidA]
 	 */
-	fun particleCuboidA(items: Items) = block(items, "ParticleCuboidA")
+	fun particleCuboidA(items: Items) {
+		block(items, "ParticleCuboidA", tagClass = PlayerActionTags.ParticleCuboidA::class)
+	}
 
 
 	/**
-	 * *Plays a sound for a player.*
+	 * Plays a sound for a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [SoundItem]
 	 *
-	 * *Sound to play*
+	 * Sound to play
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Playback location*
+	 * (*) Playback location
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.PlaySound]
 	 */
-	fun playSound(items: Items) = block(items, "PlaySound")
+	fun playSound(items: Items) {
+		block(items, "PlaySound", tagClass = PlayerActionTags.PlaySound::class)
+	}
 
 
 	/**
-	 * *Sets the location compasses*
-	 * *point to for a player.*
+	 * Sets the location compasses
+	 * point to for a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *New Target*
+	 * New Target
 	 *
 	 * (*) = optional
 	 */
-	fun setCompass(items: Items) = block(items, "SetCompass")
+	fun setCompass(items: Items) {
+		block(items, "SetCompass")
+	}
 
 
 	/**
-	 * *Teleports a player to a random*
-	 * *location in the chest.*
+	 * Teleports a player to a random
+	 * location in the chest.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Locations to*
-	 * *choose from*
+	 * Locations to
+	 * choose from
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.RngTeleport]
 	 */
-	fun rngTeleport(items: Items) = block(items, "RngTeleport")
+	fun rngTeleport(items: Items) {
+		block(items, "RngTeleport", tagClass = PlayerActionTags.RngTeleport::class)
+	}
 
 
 	/**
-	 * *Disguises a player as a mob.*
+	 * Disguises a player as a mob.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Mob to disguise as*
+	 * Mob to disguise as
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Display name*
+	 * (*) Display name
 	 *
 	 * (*) = optional
 	 */
-	fun mobDisguise(items: Items) = block(items, "MobDisguise")
+	fun mobDisguise(items: Items) {
+		block(items, "MobDisguise")
+	}
 
 
 	/**
-	 * *Allows a player to place*
-	 * *and break certain blocks.*
+	 * Allows a player to place
+	 * and break certain blocks.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Blocks to allow*
+	 * (*) Blocks to allow
+	 *
+	 * *If no blocks are given, allows all blocks*
 	 *
 	 * (*) = optional
 	 */
-	fun enableBlocks(items: Items) = block(items, "EnableBlocks")
+	fun enableBlocks(items: Items) {
+		block(items, "EnableBlocks")
+	}
 
 
 	/**
-	 * *Opens a container's inventory.*
-	 * *Also works with crafting tables.*
+	 * Opens a container's inventory.
+	 * Also works with crafting tables.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Container location*
+	 * Container location
 	 *
 	 * (*) = optional
 	 */
-	fun openBlockInv(items: Items) = block(items, "OpenBlockInv")
+	fun openBlockInv(items: Items) {
+		block(items, "OpenBlockInv")
+	}
 
 
 	/**
-	 * *Displays an animated circle*
-	 * *of particles to a player.*
+	 * Locks a disguise's pitch or yaw values.
 	 *
-	 * #### Args:
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * (*) Pitch to lock to
+	 *
+	 * *Default = §c0§7*
+	 *
+	 * [NumItem]
+	 *
+	 * (*) Yaw to lock to
+	 *
+	 * *Default = §c0§7*
+	 *
+	 * (*) = optional
+
+	 * @see [PlayerActionTags.LockDisgRotation]
+	 */
+	fun lockDisgRotation(items: Items) {
+		block(items, "LockDisgRotation", tagClass = PlayerActionTags.LockDisgRotation::class)
+	}
+
+
+	/**
+	 * Displays an animated circle
+	 * of particles to a player.
+	 *
+	 * **Args:**
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect*
+	 * Effect
 	 *
 	 * [LocItem]
 	 *
-	 * *Center location*
+	 * Center location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Diameter*
+	 * (*) Diameter
+	 *
+	 * *Default = §c2§7 blocks*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Animation duration*
+	 * (*) Animation duration
+	 *
+	 * *Default = §c40§7 ticks*
 	 *
 	 * (*) = optional
 	 */
-	fun particleCircleA(items: Items) = block(items, "ParticleCircleA")
+	fun particleCircleA(items: Items) {
+		block(items, "ParticleCircleA")
+	}
 
 
 	/**
 	 */
-	fun removeBossBar(items: Items) = block(items, "RemoveBossBar")
+	fun removeBossBar(items: Items) {
+		block(items, "RemoveBossBar", tagClass = PlayerActionTags.RemoveBossBar::class)
+	}
 
 
 	/**
-	 * *Sets the item in one of the*
-	 * *equipment slots (armor and*
-	 * *held items) of a player.*
+	 * Sets the item in one of the
+	 * equipment slots (armor and
+	 * held items) of a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to set*
+	 * (*) Item to set
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SetEquipment]
 	 */
-	fun setEquipment(items: Items) = block(items, "SetEquipment")
+	fun setEquipment(items: Items) {
+		block(items, "SetEquipment", tagClass = PlayerActionTags.SetEquipment::class)
+	}
 
 
 	/**
 	 */
-	fun giveRngItem(items: Items) = block(items, "GiveRngItem")
+	fun giveRngItem(items: Items) {
+		block(items, "GiveRngItem")
+	}
 
 
 	/**
-	 * *Sets whether a player drops*
-	 * *their items when dead.*
+	 * Sets whether a player drops
+	 * their items when dead.
 	 */
-	fun setDropsEnabled(items: Items) = block(items, "SetDropsEnabled")
+	fun setDropsEnabled(items: Items) {
+		block(items, "SetDropsEnabled", tagClass = PlayerActionTags.SetDropsEnabled::class)
+	}
 
 
 	/**
-	 * *Sends a player to another plot.*
+	 * Sends a player to another plot.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Plot ID*
+	 * Plot handle or ID
 	 *
 	 * (*) = optional
 	 */
-	fun sendToPlot(items: Items) = block(items, "SendToPlot")
+	fun sendToPlot(items: Items) {
+		block(items, "SendToPlot")
+	}
 
 
 	/**
-	 * *Removes one or more potion*
-	 * *effects from a player.*
+	 * Removes one or more potion
+	 * effects from a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [PotionItem]
 	 *
-	 * *Effect(s)*
-	 * *to remove*
+	 * Effect(s)
+	 * to remove
 	 *
 	 * (*) = optional
 	 */
-	fun removePotion(items: Items) = block(items, "RemovePotion")
+	fun removePotion(items: Items) {
+		block(items, "RemovePotion")
+	}
 
 
 	/**
-	 * *Displays a block fracture*
-	 * *effect at a location to a*
-	 * *player.*
+	 * Displays a block fracture
+	 * effect at a location to a
+	 * player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Block(s) to*
-	 * *fracture*
+	 * Block(s) to
+	 * fracture
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Fracture level*
+	 * (*) Fracture level
+	 *
+	 * *§c0§7-§c10§7 (default = §c0§7)*
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.DisplayFracture]
 	 */
-	fun displayFracture(items: Items) = block(items, "DisplayFracture")
+	fun displayFracture(items: Items) {
+		block(items, "DisplayFracture", tagClass = PlayerActionTags.DisplayFracture::class)
+	}
 
 
 	/**
-	 * *Sets if an entity is hidden*
-	 * *to a target.*
+	 * Sets if an entity is hidden
+	 * to a target.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Entity UUIDs*
+	 * Entity UUIDs
 	 *
 	 * [TextItem]
 	 *
-	 * *Entity names*
+	 * Entity names
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SetEntityHidden]
 	 */
-	fun setEntityHidden(items: Items) = block(items, "SetEntityHidden")
+	fun setEntityHidden(items: Items) {
+		block(items, "SetEntityHidden", tagClass = PlayerActionTags.SetEntityHidden::class)
+	}
 
 
 	/**
-	 * *Sets whether the scoreboard*
-	 * *sidebar is visible to a player.*
+	 * Sets whether the scoreboard
+	 * sidebar is visible to a player.
 	 */
-	fun setSidebar(items: Items) = block(items, "SetSidebar")
+	fun setSidebar(items: Items) {
+		block(items, "SetSidebar", tagClass = PlayerActionTags.SetSidebar::class)
+	}
 
 
 	/**
 	 */
-	fun allowDrops(items: Items) = block(items, "AllowDrops")
+	fun allowDrops(items: Items) {
+		block(items, "AllowDrops")
+	}
 
 
 	/**
-	 * *Displays a Sculk Sensor*
-	 * *vibration to a player.*
+	 */
+	fun displayHighlighter(items: Items) {
+		block(items, "DisplayHighlighter")
+	}
+
+
+	/**
+	 */
+	fun vibration(items: Items) {
+		block(items, "Vibration")
+	}
+
+
+	/**
+	 * Sets a player's selected
+	 * hotbar slot.
 	 *
-	 * #### Args:
-	 *
-	 * [LocItem]
-	 *
-	 * *Origin location*
-	 *
-	 * [LocItem]
-	 *
-	 * *Target location*
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Arrival time*
+	 * New slot
+	 *
+	 * *§c1§7 (left) to §c9§7 (right)*
 	 *
 	 * (*) = optional
 	 */
-	fun vibration(items: Items) = block(items, "Vibration")
+	fun setSlot(items: Items) {
+		block(items, "SetSlot")
+	}
 
 
 	/**
-	 * *Sets a player's selected*
-	 * *hotbar slot.*
+	 * Displays a ray of particles
+	 * to a player.
 	 *
-	 * #### Args:
-	 *
-	 * [NumItem]
-	 *
-	 * *New slot*
-	 *
-	 * (*) = optional
-	 */
-	fun setSlot(items: Items) = block(items, "SetSlot")
-
-
-	/**
-	 * *Displays a ray of particles*
-	 * *to a player.*
-	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect*
+	 * Effect
 	 *
 	 * [LocItem]
 	 *
-	 * *Ray location*
+	 * Ray location
 	 *
 	 * [VecItem]
 	 *
-	 * *Ray vector*
+	 * Ray vector
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Effect spacing*
+	 * (*) Effect spacing
+	 *
+	 * *Default = §c0.5§7 blocks*
 	 *
 	 * (*) = optional
 	 */
-	fun particleRay(items: Items) = block(items, "ParticleRay")
+	fun particleRay(items: Items) {
+		block(items, "ParticleRay")
+	}
 
 
 	/**
-	 * *Displays a particle cuboid as a*
-	 * *solid, hollow or wireframe*
-	 * *shape to a player.*
+	 * Displays a particle cuboid as a
+	 * solid, hollow or wireframe
+	 * shape to a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect*
+	 * Effect
 	 *
 	 * [LocItem]
 	 *
-	 * *Corner 1*
+	 * Corner 1
 	 *
 	 * [LocItem]
 	 *
-	 * *Corner 2*
+	 * Corner 2
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Effect spacing*
+	 * (*) Effect spacing
+	 *
+	 * *Default = §c0.5§7 blocks*
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.ParticleCuboid]
 	 */
-	fun particleCuboid(items: Items) = block(items, "ParticleCuboid")
+	fun particleCuboid(items: Items) {
+		block(items, "ParticleCuboid", tagClass = PlayerActionTags.ParticleCuboid::class)
+	}
 
 
 	/**
-	 * *Sends a series of messages*
-	 * *in chat to a player, with a*
-	 * *delay after each message.*
+	 * Sends a series of messages
+	 * in chat to a player, with a
+	 * delay after each message.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Messages to send*
+	 * Messages to send
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Message delay ticks*
+	 * (*) Message delay ticks
+	 *
+	 * *Default = §c60§7*
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SendMessageSeq]
 	 */
-	fun sendMessageSeq(items: Items) = block(items, "SendMessageSeq")
+	fun sendMessageSeq(items: Items) {
+		block(items, "SendMessageSeq", tagClass = PlayerActionTags.SendMessageSeq::class)
+	}
 
 
 	/**
-	 * *Sets the prefix or suffix*
-	 * *for the player's name.*
+	 * Sets the prefix or suffix
+	 * for the player's name.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Prefix/suffix text*
+	 * (*) Prefix/suffix text
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SetNamePrefix]
 	 */
-	fun setNamePrefix(items: Items) = block(items, "SetNamePrefix")
+	fun setNamePrefix(items: Items) {
+		block(items, "SetNamePrefix", tagClass = PlayerActionTags.SetNamePrefix::class)
+	}
 
 
 	/**
-	 * *Displays the real block at a*
-	 * *location to a player, effectively*
-	 * *removing any client-side blocks.*
+	 * Displays the real block at a
+	 * location to a player, effectively
+	 * removing any client-side blocks.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Block location,*
-	 * *or start of region*
+	 * Block location,
+	 * or start of region
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *End of region*
+	 * (*) End of region
+	 *
+	 * *Region size limit: §c500§7 blocks*
 	 *
 	 * (*) = optional
 	 */
-	fun clearDispBlock(items: Items) = block(items, "ClearDispBlock")
+	fun clearDispBlock(items: Items) {
+		block(items, "ClearDispBlock")
+	}
 
 
 	/**
-	 * *Sets the heaviness of rain and*
-	 * *storm visible to a player.*
+	 * Sets the heaviness of rain and
+	 * storm visible to a player.
 	 *
-	 * #### Args:
-	 *
-	 * [NumItem]
-	 *
-	 * *Rain level (%)*
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Storm level (%)*
+	 * Rain level (%)
+	 *
+	 * [NumItem]
+	 *
+	 * Storm level (%)
 	 *
 	 * (*) = optional
 	 */
-	fun setRainLevel(items: Items) = block(items, "SetRainLevel")
+	fun setRainLevel(items: Items) {
+		block(items, "SetRainLevel")
+	}
 
 
 	/**
-	 * *Removes a player's disguise.*
+	 * Removes a player's disguise.
 	 */
-	fun undisguise(items: Items) = block(items, "Undisguise")
+	fun undisguise(items: Items) {
+		block(items, "Undisguise")
+	}
 
 
 	/**
-	 * *Displays an animated spiral of*
-	 * *particles to a player.*
+	 * Displays an animated spiral of
+	 * particles to a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect*
+	 * Effect
 	 *
 	 * [LocItem]
 	 *
-	 * *Base location*
+	 * Base location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Length*
+	 * (*) Length
+	 *
+	 * *Default = §c10§7 blocks*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Diameter*
+	 * (*) Diameter
+	 *
+	 * *Default = §c2§7 blocks*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Particle count*
+	 * (*) Effect count
+	 *
+	 * *Default = §c50§7*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Rotations*
+	 * (*) Rotations
+	 *
+	 * *Default = §c4§7*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Animation duration*
+	 * (*) Animation duration
+	 *
+	 * *Default = §c40§7 ticks*
 	 *
 	 * (*) = optional
 	 */
-	fun particleSpiralA(items: Items) = block(items, "ParticleSpiralA")
+	fun particleSpiralA(items: Items) {
+		block(items, "ParticleSpiralA")
+	}
 
 
 	/**
-	 * *Sets if a player is instantly*
-	 * *respawned upon dying.*
+	 * Sets if a player is instantly
+	 * respawned upon dying.
 	 */
-	fun instantRespawn(items: Items) = block(items, "InstantRespawn")
+	fun instantRespawn(items: Items) {
+		block(items, "InstantRespawn", tagClass = PlayerActionTags.InstantRespawn::class)
+	}
 
 
 	/**
-	 * *Sets a score on the*
-	 * *scoreboard.*
+	 * Sets a score on the
+	 * scoreboard.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Score name*
+	 * Score name
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Score value*
+	 * (*) Score value
+	 *
+	 * *Default = §c0§7*
 	 *
 	 * (*) = optional
 	 */
-	fun setScore(items: Items) = block(items, "SetScore")
+	fun setScore(items: Items) {
+		block(items, "SetScore")
+	}
 
 
 	/**
-	 * *Sets the color a player's*
-	 * *name tag appears in.*
+	 * Sets the color a player's
+	 * name tag appears in.
 	 */
-	fun setNameColor(items: Items) = block(items, "SetNameColor")
+	fun setNameColor(items: Items) {
+		block(items, "SetNameColor", tagClass = PlayerActionTags.SetNameColor::class)
+	}
 
 
 	/**
-	 * *Sets one of the player's reach-related*
-	 * *attributes such as block and*
-	 * *entity interaction ranges.*
+	 * Sets one of the player's reach-related
+	 * attributes such as block and
+	 * entity interaction ranges.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.ReachAttribute]
 	 */
-	fun reachAttribute(items: Items) = block(items, "ReachAttribute")
+	fun reachAttribute(items: Items) {
+		block(items, "ReachAttribute", tagClass = PlayerActionTags.ReachAttribute::class)
+	}
 
 
 	/**
 	 */
-	fun setAtkSpeed(items: Items) = block(items, "SetAtkSpeed")
+	fun setAtkSpeed(items: Items) {
+		block(items, "SetAtkSpeed")
+	}
 
 
 	/**
 	 */
-	fun disablePvp(items: Items) = block(items, "DisablePvp")
+	fun disablePvp(items: Items) {
+		block(items, "DisablePvp")
+	}
 
 
 	/**
-	 * *Changes the tick rate of a player.*
+	 * Changes the tick rate of a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Ticks per second (0-20)*
+	 * (*) Ticks per second (0-20)
+	 *
+	 * *Default = §c20§7*
 	 *
 	 * (*) = optional
 	 */
-	fun setTickRate(items: Items) = block(items, "SetTickRate")
+	fun setTickRate(items: Items) {
+		block(items, "SetTickRate")
+	}
 
 
 	/**
-	 * *Plays a sound that follows a*
-	 * *moving entity or player.*
+	 * Plays a sound that follows a
+	 * moving entity or player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [SoundItem]
 	 *
-	 * *Sound to play*
+	 * Sound to play
 	 *
 	 * [StringItem]
 	 *
-	 * *Target UUID*
+	 * Target UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Target name*
+	 * Target name
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.PlayEntitySound]
 	 */
-	fun playEntitySound(items: Items) = block(items, "PlayEntitySound")
+	fun playEntitySound(items: Items) {
+		block(items, "PlayEntitySound", tagClass = PlayerActionTags.PlayEntitySound::class)
+	}
 
 
 	/**
 	 */
-	fun replaceProj(items: Items) = block(items, "ReplaceProj")
+	fun replaceProj(items: Items) {
+		block(items, "ReplaceProj")
+	}
 
 
 	/**
-	 * *Sets a player's experience*
-	 * *level, points or progress.*
+	 * Sets a player's experience
+	 * level, points or progress.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Experience to set*
+	 * Experience to set
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SetExp]
 	 */
-	fun setExp(items: Items) = block(items, "SetExp")
+	fun setExp(items: Items) {
+		block(items, "SetExp", tagClass = PlayerActionTags.SetExp::class)
+	}
 
 
 	/**
-	 * *Sets one of the player's mining-related*
-	 * *attributes such as break speed*
-	 * *and mining efficiency.*
+	 * Sets one of the player's mining-related
+	 * attributes such as break speed
+	 * and mining efficiency.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.MiningAttribute]
 	 */
-	fun miningAttribute(items: Items) = block(items, "MiningAttribute")
+	fun miningAttribute(items: Items) {
+		block(items, "MiningAttribute", tagClass = PlayerActionTags.MiningAttribute::class)
+	}
 
 
 	/**
-	 * *Sets one of the player's knockback-related*
-	 * *attributes such as knockback resistance.*
+	 * Sets one of the player's knockback-related
+	 * attributes such as knockback resistance.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.KBAttribute]
 	 */
-	fun kBAttribute(items: Items) = block(items, "KBAttribute")
+	fun kBAttribute(items: Items) {
+		block(items, "KBAttribute", tagClass = PlayerActionTags.KBAttribute::class)
+	}
 
 
 	/**
-	 * *Sets one of the player's movement-related*
-	 * *attributes, such as walking speed*
-	 * *and jump height.*
+	 * Sets one of the player's movement-related
+	 * attributes, such as walking speed
+	 * and jump height.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.MovementAttribute]
 	 */
-	fun movementAttribute(items: Items) = block(items, "MovementAttribute")
+	fun movementAttribute(items: Items) {
+		block(items, "MovementAttribute", tagClass = PlayerActionTags.MovementAttribute::class)
+	}
 
 
 	/**
-	 * *Displays a spiral of particles*
-	 * *at a location to a player.*
+	 * Displays a spiral of particles
+	 * at a location to a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect*
+	 * Effect
 	 *
 	 * [LocItem]
 	 *
-	 * *Base location*
+	 * Base location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Length*
+	 * (*) Length
+	 *
+	 * *Default = §c10§7 blocks*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Diameter*
+	 * (*) Diameter
+	 *
+	 * *Default = §c2§7 blocks*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Effect count*
+	 * (*) Effect count
+	 *
+	 * *Default = §c50§7*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Rotations*
+	 * (*) Rotations
+	 *
+	 * *Default = §c4§7*
 	 *
 	 * (*) = optional
 	 */
-	fun particleSpiral(items: Items) = block(items, "ParticleSpiral")
+	fun particleSpiral(items: Items) {
+		block(items, "ParticleSpiral")
+	}
 
 
 	/**
-	 * *Sets one of the player's falling-related*
-	 * *attributes, such as gravity*
-	 * *and fall damage multiplier.*
+	 * Sets one of the player's falling-related
+	 * attributes, such as gravity
+	 * and fall damage multiplier.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.FallingAttribute]
 	 */
-	fun fallingAttribute(items: Items) = block(items, "FallingAttribute")
+	fun fallingAttribute(items: Items) {
+		block(items, "FallingAttribute", tagClass = PlayerActionTags.FallingAttribute::class)
+	}
 
 
 	/**
-	 * *Sets whether a player*
-	 * *is able to enter and exit*
-	 * *flight mode by double*
-	 * *tapping jump.*
+	 * Sets whether a player
+	 * is able to enter and exit
+	 * flight mode by double
+	 * tapping jump.
 	 */
-	fun setAllowFlight(items: Items) = block(items, "SetAllowFlight")
+	fun setAllowFlight(items: Items) {
+		block(items, "SetAllowFlight", tagClass = PlayerActionTags.SetAllowFlight::class)
+	}
 
 
 	/**
-	 * *Sets a player's maximum*
-	 * *health.*
+	 * Sets a player's maximum
+	 * health.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Maximum health*
+	 * Maximum health
+	 *
+	 * *§c❤§7 = §c2§7 Health*
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SetMaxHealth]
 	 */
-	fun setMaxHealth(items: Items) = block(items, "SetMaxHealth")
+	fun setMaxHealth(items: Items) {
+		block(items, "SetMaxHealth", tagClass = PlayerActionTags.SetMaxHealth::class)
+	}
 
 
 	/**
-	 * *Sets how far the fog is*
-	 * *displayed to a player.*
+	 * Sets how far the fog is
+	 * displayed to a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Fog distance in chunks*
-	 * *(2-7)*
+	 * Fog distance in chunks
+	 * (2-7)
 	 *
 	 * (*) = optional
 	 */
-	fun setFogDistance(items: Items) = block(items, "SetFogDistance")
+	fun setFogDistance(items: Items) {
+		block(items, "SetFogDistance")
+	}
 
 
 	/**
-	 * *Sets a player's game*
-	 * *mode to Adventure.*
+	 * Sets a player's game
+	 * mode to Adventure.
 	 */
-	fun adventureMode(items: Items) = block(items, "AdventureMode")
+	fun adventureMode(items: Items) {
+		block(items, "AdventureMode")
+	}
 
 
 	/**
-	 * *Sets a player's game*
-	 * *mode to Spectator.*
+	 * Sets a player's game
+	 * mode to Spectator.
 	 */
-	fun spectatorMode(items: Items) = block(items, "SpectatorMode")
+	fun spectatorMode(items: Items) {
+		block(items, "SpectatorMode")
+	}
 
 
 	/**
-	 * *Changes a head's texture at*
-	 * *a location for a player.*
+	 * Changes a head's texture at
+	 * a location for a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Head location*
+	 * Head location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Player Head*
+	 * Player Head
 	 *
 	 * [StringItem]
 	 *
-	 * *Head owner*
+	 * Head owner
+	 *
+	 * *Player name, UUID, or texture*
 	 *
 	 * (*) = optional
 	 */
-	fun dispHeadTexture(items: Items) = block(items, "DispHeadTexture")
+	fun dispHeadTexture(items: Items) {
+		block(items, "DispHeadTexture")
+	}
 
 
 	/**
-	 * *Removes all active potion*
-	 * *effects from a player.*
+	 * Removes all active potion
+	 * effects from a player.
 	 */
-	fun clearPotions(items: Items) = block(items, "ClearPotions")
+	fun clearPotions(items: Items) {
+		block(items, "ClearPotions")
+	}
 
 
 	/**
-	 * *Sets the text to be displayed*
-	 * *above or below a player's player*
-	 * *list shown when pressing Tab.*
+	 * Sets the text to be displayed
+	 * above or below a player's player
+	 * list shown when pressing Tab.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Header/footer text*
+	 * (*) Header/footer text
+	 *
+	 * (*) = optional
+
+	 * @see [PlayerActionTags.SetTabListInfo]
+	 */
+	fun setTabListInfo(items: Items) {
+		block(items, "SetTabListInfo", tagClass = PlayerActionTags.SetTabListInfo::class)
+	}
+
+
+	/**
+	 */
+	fun enablePvp(items: Items) {
+		block(items, "EnablePvp")
+	}
+
+
+	/**
+	 * Prompts the player to
+	 * purchase a plot product.
+	 *
+	 * **Args:**
+	 *
+	 * [StringItem]
+	 *
+	 * Product ID
 	 *
 	 * (*) = optional
 	 */
-	fun setTabListInfo(items: Items) = block(items, "SetTabListInfo")
+	fun promptPurchase(items: Items) {
+		block(items, "PromptPurchase")
+	}
 
 
 	/**
 	 */
-	fun enablePvp(items: Items) = block(items, "EnablePvp")
+	fun hideDisguise(items: Items) {
+		block(items, "HideDisguise")
+	}
 
 
 	/**
-	 */
-	fun hideDisguise(items: Items) = block(items, "HideDisguise")
-
-
-	/**
-	 * *Sets the number format of a*
-	 * *single line in the player's*
-	 * *scoreboard.*
+	 * Sets the number format of a
+	 * single line in the player's
+	 * scoreboard.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Score name*
+	 * Score name
 	 *
 	 * [TextItem]
 	 *
-	 * *Content or style*
+	 * Content or style
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.ScoreLineFormat]
 	 */
-	fun scoreLineFormat(items: Items) = block(items, "ScoreLineFormat")
+	fun scoreLineFormat(items: Items) {
+		block(items, "ScoreLineFormat", tagClass = PlayerActionTags.ScoreLineFormat::class)
+	}
 
 
 	/**
-	 * *Creates or modifies a custom boss*
-	 * *health bar at the top of a player's*
-	 * *screen.*
+	 * Creates or modifies a custom boss
+	 * health bar at the top of a player's
+	 * screen.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Title*
+	 * (*) Title
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Current health*
+	 * (*) Current health
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Maximum health*
+	 * (*) Maximum health
+	 *
+	 * *Default = §c100§7*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Boss bar position*
+	 * (*) Boss bar position
+	 *
+	 * *Default = §c1§7 (top)*
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SetBossBar]
 	 */
-	fun setBossBar(items: Items) = block(items, " SetBossBar ")
+	fun setBossBar(items: Items) {
+		block(items, " SetBossBar ", tagClass = PlayerActionTags.SetBossBar::class)
+	}
 
 
 	/**
-	 * *Sets the player's skin.*
+	 * Sets the player's skin.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Player head*
+	 * Player head
 	 *
 	 * (*) = optional
 	 */
-	fun setSkin(items: Items) = block(items, "SetSkin")
+	fun setSkin(items: Items) {
+		block(items, "SetSkin")
+	}
 
 
 	/**
-	 * *Toggles whether a player*
-	 * *collides with blocks in*
-	 * *spectator mode.*
+	 * Toggles whether a player
+	 * collides with blocks in
+	 * spectator mode.
 	 */
-	fun spectatorCollision(items: Items) = block(items, "SpectatorCollision")
+	fun spectatorCollision(items: Items) {
+		block(items, "SpectatorCollision", tagClass = PlayerActionTags.SpectatorCollision::class)
+	}
 
 
 	/**
-	 * *Sets whether a player's*
-	 * *name tag is visible.*
+	 * Sets whether a player's
+	 * name tag is visible.
 	 */
-	fun setNameVisible(items: Items) = block(items, "SetNameVisible")
+	fun setNameVisible(items: Items) {
+		block(items, "SetNameVisible", tagClass = PlayerActionTags.SetNameVisible::class)
+	}
 
 
 	/**
-	 * *Sets the currently*
-	 * *remaining ticks until a*
-	 * *player can next be hurt.*
+	 * Sets the currently
+	 * remaining ticks until a
+	 * player can next be hurt.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Ticks*
+	 * Ticks
 	 *
 	 * (*) = optional
 	 */
-	fun setInvulTicks(items: Items) = block(items, "SetInvulTicks")
+	fun setInvulTicks(items: Items) {
+		block(items, "SetInvulTicks")
+	}
 
 
 	/**
 	 */
-	fun enableFlight(items: Items) = block(items, "EnableFlight")
+	fun enableFlight(items: Items) {
+		block(items, "EnableFlight")
+	}
 
 
 	/**
-	 * *Sets the amount of bee stings*
-	 * *sticking out of a player's*
-	 * *character model.*
+	 * Disguises a player as another
+	 * currently existing entity or player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
-	 * [NumItem]
+	 * [StringItem]
 	 *
-	 * (*) *Sting Count*
-	 *
-	 * (*) = optional
-	 */
-	fun setStingsStuck(items: Items) = block(items, "SetStingsStuck")
-
-
-	/**
-	 * *Removes a score from*
-	 * *the scoreboard.*
-	 *
-	 * #### Args:
+	 * UUID of target
+	 * to disguise as
 	 *
 	 * [TextItem]
 	 *
-	 * *Score name*
+	 * Name of target
+	 * to disguise as
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.Mimic]
 	 */
-	fun removeScore(items: Items) = block(items, "RemoveScore")
+	fun mimic(items: Items) {
+		block(items, "Mimic", tagClass = PlayerActionTags.Mimic::class)
+	}
 
 
 	/**
-	 */
-	fun disallowDrops(items: Items) = block(items, "DisallowDrops")
-
-
-	/**
-	 * *Sets a player's exhaustion level.*
+	 * Sets the amount of bee stings
+	 * sticking out of a player's
+	 * character model.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Exhaustion level*
-	 * *(0-4)*
+	 * (*) Sting Count
+	 *
+	 * *Default = §c0§7*
 	 *
 	 * (*) = optional
 	 */
-	fun setExhaustion(items: Items) = block(items, "SetExhaustion")
+	fun setStingsStuck(items: Items) {
+		block(items, "SetStingsStuck")
+	}
 
 
 	/**
-	 * *Displays a circle of particles*
-	 * *to a player.*
+	 * Removes a score from
+	 * the scoreboard.
 	 *
-	 * #### Args:
+	 * **Args:**
+	 *
+	 * [TextItem]
+	 *
+	 * Score name
+	 *
+	 * (*) = optional
+	 */
+	fun removeScore(items: Items) {
+		block(items, "RemoveScore")
+	}
+
+
+	/**
+	 */
+	fun disallowDrops(items: Items) {
+		block(items, "DisallowDrops")
+	}
+
+
+	/**
+	 * Sets a player's exhaustion level.
+	 *
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * Exhaustion level
+	 * (0-4)
+	 *
+	 * (*) = optional
+	 */
+	fun setExhaustion(items: Items) {
+		block(items, "SetExhaustion")
+	}
+
+
+	/**
+	 * Displays a circle of particles
+	 * to a player.
+	 *
+	 * **Args:**
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect*
+	 * Effect
 	 *
 	 * [LocItem]
 	 *
-	 * *Center location*
+	 * Center location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Diameter*
+	 * (*) Diameter
+	 *
+	 * *Default = §c2§7 blocks*
 	 *
 	 * (*) = optional
 	 */
-	fun particleCircle(items: Items) = block(items, "ParticleCircle")
+	fun particleCircle(items: Items) {
+		block(items, "ParticleCircle")
+	}
 
 
 	/**
-	 * *Displays a block at a location to*
-	 * *a player.*
+	 * Displays a block at a location to
+	 * a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Block to display*
+	 * Block to display
 	 *
 	 * [LocItem]
 	 *
-	 * *Block location,*
-	 * *or start of region*
+	 * Block location,
+	 * or start of region
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *End of region*
+	 * (*) End of region
+	 *
+	 * *Region size limit: §c250,000§7 blocks*
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Block data*
+	 * (*) Block data
+	 *
+	 * *Example: §b"facing=up"§7, §b"half=top"§7*
 	 *
 	 * (*) = optional
 	 */
-	fun displayBlock(items: Items) = block(items, "DisplayBlock")
+	fun displayBlock(items: Items) {
+		block(items, "DisplayBlock")
+	}
 
 
 	/**
-	 * *Mounts a player on top of*
-	 * *another player or entity.*
+	 * Mounts a player on top of
+	 * another player or entity.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Target UUID*
+	 * Target UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Target name*
+	 * Target name
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.RideEntity]
 	 */
-	fun rideEntity(items: Items) = block(items, "RideEntity")
+	fun rideEntity(items: Items) {
+		block(items, "RideEntity", tagClass = PlayerActionTags.RideEntity::class)
+	}
 
 
 	/**
 	 */
-	fun weatherRain(items: Items) = block(items, "WeatherRain")
+	fun weatherRain(items: Items) {
+		block(items, "WeatherRain")
+	}
 
 
 	/**
-	 * *Removes a player's world border.*
+	 * Removes a player's world border.
 	 */
-	fun rmWorldBorder(items: Items) = block(items, "RmWorldBorder")
+	fun rmWorldBorder(items: Items) {
+		block(items, "RmWorldBorder")
+	}
 
 
 	/**
-	 * *Send a resource pack to the player.*
+	 * Send a resource pack to a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Resource Pack URL*
+	 * Resource Pack URL
+	 *
+	 * *Must link directly to a §b.zip§7 file.*
 	 *
 	 * (*) = optional
 	 */
-	fun resourcePack(items: Items) = block(items, "ResourcePack")
+	fun resourcePack(items: Items) {
+		block(items, "ResourcePack")
+	}
 
 
 	/**
-	 * *Renames a player's current*
-	 * *inventory menu.*
+	 * Renames a player's current
+	 * inventory menu.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Inventory name*
+	 * Inventory name
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SetInvName]
 	 */
-	fun setInvName(items: Items) = block(items, " SetInvName ")
+	fun setInvName(items: Items) {
+		block(items, " SetInvName ", tagClass = PlayerActionTags.SetInvName::class)
+	}
 
 
 	/**
-	 * *Adds exhaustion to a player.*
+	 * Adds exhaustion to a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Exhaustion to give*
+	 * Exhaustion to give
 	 *
 	 * (*) = optional
 	 */
-	fun giveExhaustion(items: Items) = block(items, "GiveExhaustion")
+	fun giveExhaustion(items: Items) {
+		block(items, "GiveExhaustion")
+	}
 
 
 	/**
-	 * *Teleports a player to*
-	 * *a location.*
+	 * Teleports a player to
+	 * a location.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *New position*
+	 * New position
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.Teleport]
 	 */
-	fun teleport(items: Items) = block(items, "Teleport")
+	fun teleport(items: Items) {
+		block(items, "Teleport", tagClass = PlayerActionTags.Teleport::class)
+	}
 
 
 	/**
-	 * *Sets whether a player can*
-	 * *hurt or be hurt by other*
-	 * *players.*
+	 * Sets whether a player can
+	 * hurt or be hurt by other
+	 * players.
 	 */
-	fun setAllowPVP(items: Items) = block(items, "SetAllowPVP")
+	fun setAllowPVP(items: Items) {
+		block(items, "SetAllowPVP", tagClass = PlayerActionTags.SetAllowPVP::class)
+	}
 
 
 	/**
 	 */
-	fun disableFlight(items: Items) = block(items, "DisableFlight")
+	fun disableFlight(items: Items) {
+		block(items, "DisableFlight")
+	}
 
 
 	/**
-	 * *Sets whether a player*
-	 * *should appear on fire.*
+	 * Sets whether a player
+	 * should appear on fire.
 	 */
-	fun setVisualFire(items: Items) = block(items, "SetVisualFire")
+	fun setVisualFire(items: Items) {
+		block(items, "SetVisualFire", tagClass = PlayerActionTags.SetVisualFire::class)
+	}
 
 
 	/**
-	 * *Sets a player's ability to*
-	 * *see their own disguise. It*
-	 * *is recommended that it is*
-	 * *almost always hidden.*
+	 * Sets a player's ability to
+	 * see their own disguise. It
+	 * is recommended that it is
+	 * almost always hidden.
 	 */
-	fun setDisguiseVisible(items: Items) = block(items, "SetDisguiseVisible")
+	fun setDisguiseVisible(items: Items) {
+		block(items, "SetDisguiseVisible", tagClass = PlayerActionTags.SetDisguiseVisible::class)
+	}
 
 
 	/**
-	 * *Sets the amount of arrows*
-	 * *sticking out of a player's*
-	 * *character model.*
+	 * Shifts the disguise of a player up or
+	 * down relative to the player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Arrow Count*
+	 * Y-Offset
 	 *
 	 * (*) = optional
 	 */
-	fun setArrowsStuck(items: Items) = block(items, "SetArrowsStuck")
+	fun disguiseShiftVert(items: Items) {
+		block(items, "DisguiseShiftVert")
+	}
 
 
 	/**
-	 * *Gets the remaining cooldown*
-	 * *on an item type.*
+	 * Sets the amount of arrows
+	 * sticking out of a player's
+	 * character model.
 	 *
-	 * #### Args:
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * (*) Arrow Count
+	 *
+	 * *Default = §c0§7*
+	 *
+	 * (*) = optional
+	 */
+	fun setArrowsStuck(items: Items) {
+		block(items, "SetArrowsStuck")
+	}
+
+
+	/**
+	 * Gets the remaining cooldown
+	 * on an item type.
+	 *
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item type to check*
+	 * Item type to check
 	 *
 	 * (*) = optional
 	 */
-	fun getItemCooldown(items: Items) = block(items, "GetItemCooldown")
+	fun getItemCooldown(items: Items) {
+		block(items, "GetItemCooldown")
+	}
 
 
 	/**
 	 */
-	fun setItems(items: Items) = block(items, "SetItems")
+	fun setItems(items: Items) {
+		block(items, "SetItems")
+	}
 
 
 	/**
 	 */
-	fun keepInv(items: Items) = block(items, "KeepInv")
+	fun keepInv(items: Items) {
+		block(items, "KeepInv")
+	}
 
 
 	/**
-	 * *Replaces items in a player's*
-	 * *inventory with the given item.*
+	 * Replaces items in a player's
+	 * inventory with the given item.
 	 *
-	 * #### Args:
-	 *
-	 * [MinecraftItem]
-	 *
-	 * (*) *Item(s) to replace*
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to replace with*
+	 * (*) Item(s) to replace
+	 *
+	 * [MinecraftItem]
+	 *
+	 * Item to replace with
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Amount of items to*
-	 * (*) *replace*
+	 * (*) Amount of items to
+	 * (*) replace
 	 *
 	 * (*) = optional
 	 */
-	fun replaceItems(items: Items) = block(items, "ReplaceItems")
+	fun replaceItems(items: Items) {
+		block(items, "ReplaceItems")
+	}
 
 
 	/**
-	 * *Sends a chat message to a*
-	 * *player.*
+	 * Sends a chat message to a
+	 * player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Message to send*
+	 * (*) Message to send
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.SendMessage]
 	 */
-	fun sendMessage(items: Items) = block(items, "SendMessage")
+	fun sendMessage(items: Items) {
+		block(items, "SendMessage", tagClass = PlayerActionTags.SendMessage::class)
+	}
 
 
 	/**
-	 * *Sets the item in a slot*
-	 * *of a player's inventory.*
+	 * Sets the item in a slot
+	 * of a player's inventory.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to set*
+	 * (*) Item to set
 	 *
 	 * [NumItem]
 	 *
-	 * *Slot to set*
+	 * Slot to set
+	 *
+	 * *§c1§7-§c9§7 Hotbar*
+	 * *§c10§7-§c36§7 Inventory (Top to bottom)*
+	 * *§c37§7-§c40§7 Armor (foot to head)*
+	 * *§c41§7 Offhand*
 	 *
 	 * (*) = optional
 	 */
-	fun setSlotItem(items: Items) = block(items, "SetSlotItem")
+	fun setSlotItem(items: Items) {
+		block(items, "SetSlotItem")
+	}
 
 
 	/**
-	 * *Plays a sequence of sounds*
-	 * *to a player, with a delay*
-	 * *between each sound.*
+	 * Plays a sequence of sounds
+	 * to a player, with a delay
+	 * between each sound.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [SoundItem]
 	 *
-	 * *Sounds to play*
+	 * Sounds to play
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Sound delay (ticks,*
-	 * (*) *default = 60)*
+	 * (*) Sound delay (ticks,
+	 * (*) default = 60)
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Playback location*
+	 * (*) Playback location
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.PlaySoundSeq]
 	 */
-	fun playSoundSeq(items: Items) = block(items, "PlaySoundSeq")
+	fun playSoundSeq(items: Items) {
+		block(items, "PlaySoundSeq", tagClass = PlayerActionTags.PlaySoundSeq::class)
+	}
 
 
 	/**
-	 * *Displays an animated line of*
-	 * *particles between two locations*
-	 * *to a player.*
+	 * Displays an animated line of
+	 * particles between two locations
+	 * to a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect*
+	 * Effect
 	 *
 	 * [LocItem]
 	 *
-	 * *Start location*
+	 * Start location
 	 *
 	 * [LocItem]
 	 *
-	 * *End location*
+	 * End location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Effect spacing*
+	 * (*) Effect spacing
+	 *
+	 * *Default = §c0.5§7 blocks*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Animation duration*
+	 * (*) Animation duration
+	 *
+	 * *Default = §c40§7 ticks*
 	 *
 	 * (*) = optional
 	 */
-	fun particleLineA(items: Items) = block(items, "ParticleLineA")
+	fun particleLineA(items: Items) {
+		block(items, "ParticleLineA")
+	}
 
 
 	/**
 	 */
-	fun respawn(items: Items) = block(items, "Respawn")
+	fun respawn(items: Items) {
+		block(items, "Respawn")
+	}
 
 
 	/**
-	 * *Applies a cooldown visual effect*
-	 * *to an item type.*
+	 * Applies a cooldown visual effect
+	 * to an item type.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item type to affect*
+	 * Item type to affect
 	 *
 	 * [NumItem]
 	 *
-	 * *Cooldown in ticks*
+	 * Cooldown in ticks
 	 *
 	 * (*) = optional
 	 */
-	fun setItemCooldown(items: Items) = block(items, "SetItemCooldown")
+	fun setItemCooldown(items: Items) {
+		block(items, "SetItemCooldown")
+	}
 
 
 	/**
-	 * *Sets the type of weather*
-	 * *visible to a player.*
+	 * Sets the type of weather
+	 * visible to a player.
 	 */
-	fun setPlayerWeather(items: Items) = block(items, "SetPlayerWeather")
+	fun setPlayerWeather(items: Items) {
+		block(items, "SetPlayerWeather", tagClass = PlayerActionTags.SetPlayerWeather::class)
+	}
 
 
 	/**
 	 */
-	fun sendHover(items: Items) = block(items, "SendHover")
+	fun sendHover(items: Items) {
+		block(items, "SendHover")
+	}
 
 
 	/**
-	 * *Displays a parrot on the targets'*
-	 * *shoulders.*
+	 * Displays a parrot on the targets'
+	 * shoulders.
 	 */
-	fun setShoulder(items: Items) = block(items, "SetShoulder")
+	fun setShoulder(items: Items) {
+		block(items, "SetShoulder", tagClass = PlayerActionTags.SetShoulder::class)
+	}
 
 
 	/**
-	 * *Sets a player's remaining*
-	 * *breath ticks.*
+	 * Sets a player's remaining
+	 * breath ticks.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Breath ticks*
+	 * Breath ticks
 	 *
 	 * (*) = optional
 	 */
-	fun setAirTicks(items: Items) = block(items, "SetAirTicks")
+	fun setAirTicks(items: Items) {
+		block(items, "SetAirTicks")
+	}
 
 
 	/**
-	 * *Displays a pickup animation*
-	 * *of one entity being collected*
-	 * *by another entity.*
+	 * Displays a pickup animation
+	 * of one entity being collected
+	 * by another entity.
 	 *
-	 * #### Args:
-	 *
-	 * [StringItem]
-	 *
-	 * *Entity UUID*
-	 *
-	 * [TextItem]
-	 *
-	 * *Entity name*
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Collector UUID*
+	 * Entity UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Collector name*
+	 * Entity name
+	 *
+	 * [StringItem]
+	 *
+	 * Collector UUID
+	 *
+	 * [TextItem]
+	 *
+	 * Collector name
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.DisplayPickup]
 	 */
-	fun displayPickup(items: Items) = block(items, "DisplayPickup")
+	fun displayPickup(items: Items) {
+		block(items, "DisplayPickup", tagClass = PlayerActionTags.DisplayPickup::class)
+	}
 
 
 	/**
-	 * *Creates a world border only*
-	 * *visible to a player.*
+	 * Creates a world border only
+	 * visible to a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Center position*
+	 * Center position
 	 *
 	 * [NumItem]
 	 *
-	 * *Radius in blocks*
+	 * Radius in blocks
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Warning distance*
+	 * (*) Warning distance
+	 *
+	 * *Default = §c0§7*
 	 *
 	 * (*) = optional
 	 */
-	fun setWorldBorder(items: Items) = block(items, "SetWorldBorder")
+	fun setWorldBorder(items: Items) {
+		block(items, "SetWorldBorder")
+	}
 
 
 	/**
-	 * *Sets the time of day visible*
-	 * *to a player.*
+	 * Sets the time of day visible
+	 * to a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Daylight ticks*
+	 * Daylight ticks
+	 *
+	 * *Day: §c1000§7*
+	 * *Noon: §c6000§7*
+	 * *Night: §c13000§7*
+	 * *Midnight: §c18000§7*
 	 *
 	 * (*) = optional
 	 */
-	fun setPlayerTime(items: Items) = block(items, "SetPlayerTime")
+	fun setPlayerTime(items: Items) {
+		block(items, "SetPlayerTime")
+	}
 
 
 	/**
-	 * *Adds food to a player.*
+	 * Adds food to a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Food to give*
+	 * Food to give
 	 *
 	 * (*) = optional
 	 */
-	fun giveFood(items: Items) = block(items, "GiveFood")
+	fun giveFood(items: Items) {
+		block(items, "GiveFood")
+	}
 
 
 	/**
 	 */
-	fun natRegen(items: Items) = block(items, "NatRegen")
+	fun natRegen(items: Items) {
+		block(items, "NatRegen")
+	}
 
 
 	/**
-	 * *Gives one or more potion*
-	 * *effects to a player.*
+	 * Gives one or more potion
+	 * effects to a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [PotionItem]
 	 *
-	 * *Effect(s)*
-	 * *to give*
+	 * Effect(s)
+	 * to give
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.GivePotion]
 	 */
-	fun givePotion(items: Items) = block(items, "GivePotion")
+	fun givePotion(items: Items) {
+		block(items, "GivePotion", tagClass = PlayerActionTags.GivePotion::class)
+	}
 
 
 	/**
-	 * *Removes items from a player.*
+	 * Removes items from a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item(s) to remove*
+	 * Item(s) to remove
 	 *
 	 * (*) = optional
 	 */
-	fun removeItems(items: Items) = block(items, "RemoveItems")
+	fun removeItems(items: Items) {
+		block(items, "RemoveItems")
+	}
 
 
 	/**
-	 * *Boosts a player's elytra*
-	 * *using a firework rocket.*
+	 * Boosts a player's elytra
+	 * using a firework rocket.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Firework*
+	 * Firework
 	 *
 	 * (*) = optional
 	 */
-	fun boostElytra(items: Items) = block(items, "BoostElytra")
+	fun boostElytra(items: Items) {
+		block(items, "BoostElytra")
+	}
 
 
 	/**
-	 * *Saves a player's inventory.*
-	 * *It can be loaded later with*
-	 * *'Load Saved Inventory'.*
+	 * Saves a player's inventory.
+	 * It can be loaded later with
+	 * 'Load Saved Inventory'.
 	 */
-	fun saveInv(items: Items) = block(items, "SaveInv")
+	fun saveInv(items: Items) {
+		block(items, "SaveInv")
+	}
 
 
 	/**
-	 * *Opens a written book*
-	 * *menu for a player.*
+	 * Opens a written book
+	 * menu for a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Book item*
+	 * Book item
 	 *
 	 * (*) = optional
 	 */
-	fun openBook(items: Items) = block(items, "OpenBook")
+	fun openBook(items: Items) {
+		block(items, "OpenBook")
+	}
 
 
 	/**
-	 * *Sets a player's current*
-	 * *health.*
+	 * Sets a player's current
+	 * health.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Current health*
+	 * Current health
+	 *
+	 * *§c❤§7 = §c2§7 Health*
 	 *
 	 * (*) = optional
 	 */
-	fun setHealth(items: Items) = block(items, "SetHealth")
+	fun setHealth(items: Items) {
+		block(items, "SetHealth")
+	}
 
 
 	/**
-	 * *Disguises a player as a block.*
+	 * Disguises a player as a block.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Block to disguise as*
+	 * Block to disguise as
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Display name*
+	 * (*) Display name
 	 *
 	 * (*) = optional
 	 */
-	fun blockDisguise(items: Items) = block(items, "BlockDisguise")
+	fun blockDisguise(items: Items) {
+		block(items, "BlockDisguise")
+	}
 
 
 	/**
-	 * *Undoes the interactions with*
-	 * *blocks by a player.*
+	 * Undoes the interactions with
+	 * blocks by a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Rollback time*
+	 * (*) Rollback time
 	 *
 	 * (*) = optional
 	 */
-	fun rollbackBlocks(items: Items) = block(items, "RollbackBlocks")
+	fun rollbackBlocks(items: Items) {
+		block(items, "RollbackBlocks")
+	}
 
 
 	/**
 	 */
-	fun noDeathDrops(items: Items) = block(items, "NoDeathDrops")
+	fun noDeathDrops(items: Items) {
+		block(items, "NoDeathDrops")
+	}
 
 
 	/**
-	 * *Sets a player's walk*
-	 * *speed.*
+	 * Sets a player's walk
+	 * speed.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *% of normal*
-	 * *walk speed (0 to 500)*
+	 * % of normal
+	 * walk speed (0 to 500)
 	 *
 	 * (*) = optional
 	 */
-	fun walkSpeed(items: Items) = block(items, "WalkSpeed")
+	fun walkSpeed(items: Items) {
+		block(items, "WalkSpeed")
+	}
 
 
 	/**
-	 * *Sets whether a player is*
-	 * *able to collide with other*
-	 * *entities.*
 	 */
-	fun setCollidable(items: Items) = block(items, "SetCollidable")
+	fun clearHighlighters(items: Items) {
+		block(items, "ClearHighlighters")
+	}
 
 
 	/**
-	 * *Launches a player forward*
-	 * *or backward.*
+	 * Sets whether a player is
+	 * able to collide with other
+	 * entities.
+	 */
+	fun setCollidable(items: Items) {
+		block(items, "SetCollidable", tagClass = PlayerActionTags.SetCollidable::class)
+	}
+
+
+	/**
+	 * Launches a player forward
+	 * or backward.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Launch power*
+	 * Launch power
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.LaunchFwd]
 	 */
-	fun launchFwd(items: Items) = block(items, "LaunchFwd")
+	fun launchFwd(items: Items) {
+		block(items, "LaunchFwd", tagClass = PlayerActionTags.LaunchFwd::class)
+	}
 
 
 	/**
-	 * *Sets a player's fall distance,*
-	 * *affecting fall damage upon*
-	 * *landing.*
+	 * Sets a player's fall distance,
+	 * affecting fall damage upon
+	 * landing.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Fall distance (blocks)*
+	 * Fall distance (blocks)
 	 *
 	 * (*) = optional
 	 */
-	fun setFallDistance(items: Items) = block(items, "SetFallDistance")
+	fun setFallDistance(items: Items) {
+		block(items, "SetFallDistance")
+	}
 
 
 	/**
-	 * *Sets a player's game*
-	 * *mode to Creative.*
+	 * Sets a player's game
+	 * mode to Creative.
 	 */
-	fun creativeMode(items: Items) = block(items, "CreativeMode")
+	fun creativeMode(items: Items) {
+		block(items, "CreativeMode")
+	}
 
 
 	/**
-	 * *Makes a player perform*
-	 * *an attack animation.*
+	 * Makes a player perform
+	 * an attack animation.
 	 */
-	fun attackAnimation(items: Items) = block(items, "AttackAnimation")
+	fun attackAnimation(items: Items) {
+		block(items, "AttackAnimation", tagClass = PlayerActionTags.AttackAnimation::class)
+	}
 
 
 	/**
-	 * *Displays a floating name tag*
-	 * *at a location to a player.*
+	 * Displays a floating name tag
+	 * at a location to a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Display location*
+	 * Display location
 	 *
 	 * [TextItem]
 	 *
-	 * *Text to display*
+	 * Text to display
 	 *
 	 * (*) = optional
 	 */
-	fun displayHologram(items: Items) = block(items, "DisplayHologram")
+	fun displayHologram(items: Items) {
+		block(items, "DisplayHologram")
+	}
 
 
 	/**
 	 */
-	fun deathDrops(items: Items) = block(items, "DeathDrops")
+	fun deathDrops(items: Items) {
+		block(items, "DeathDrops")
+	}
 
 
 	/**
-	 * *Opens a custom inventory*
-	 * *for a player.*
+	 * Opens a custom inventory
+	 * for a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Items to display*
+	 * (*) Items to display
 	 *
 	 * (*) = optional
 	 */
-	fun showInv(items: Items) = block(items, "ShowInv")
+	fun showInv(items: Items) {
+		block(items, "ShowInv")
+	}
 
 
 	/**
-	 * *Sets a player's food hunger level.*
+	 * Sets a player's food hunger level.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Food level*
-	 * *(1-20)*
+	 * Food level
+	 * (1-20)
 	 *
 	 * (*) = optional
 	 */
-	fun setFoodLevel(items: Items) = block(items, "SetFoodLevel")
+	fun setFoodLevel(items: Items) {
+		block(items, "SetFoodLevel")
+	}
 
 
 	/**
-	 * *Disguises a player as another*
-	 * *player.*
+	 * Disguises a player as another
+	 * player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Player name to disguise as*
+	 * Player name to disguise as
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Display skin*
+	 * (*) Display skin
 	 *
 	 * (*) = optional
 	 */
-	fun playerDisguise(items: Items) = block(items, "PlayerDisguise")
+	fun playerDisguise(items: Items) {
+		block(items, "PlayerDisguise")
+	}
 
 
 	/**
-	 * *Sets a player's saturation*
-	 * *level.*
+	 * Sets a player's saturation
+	 * level.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Saturation level*
-	 * *(1-20)*
+	 * Saturation level
+	 * (1-20)
 	 *
 	 * (*) = optional
 	 */
-	fun setSaturation(items: Items) = block(items, "SetSaturation")
+	fun setSaturation(items: Items) {
+		block(items, "SetSaturation")
+	}
 
 
 	/**
 	 */
-	fun weatherClear(items: Items) = block(items, "WeatherClear")
+	fun weatherClear(items: Items) {
+		block(items, "WeatherClear")
+	}
 
 
 	/**
-	 * *Displays text in the center*
-	 * *of a player's screen.*
+	 * Displays text in the center
+	 * of a player's screen.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Title text*
+	 * Title text
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Subtitle text*
+	 * (*) Subtitle text
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Title duration*
+	 * (*) Title duration
+	 *
+	 * *Default = §c60§7 ticks*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Fade in length*
+	 * (*) Fade in length
+	 *
+	 * *Default = §c20§7 ticks*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Fade out length*
+	 * (*) Fade out length
+	 *
+	 * *Default = §c20§7 ticks*
 	 *
 	 * (*) = optional
 	 */
-	fun sendTitle(items: Items) = block(items, "SendTitle")
+	fun sendTitle(items: Items) {
+		block(items, "SendTitle")
+	}
 
 
 	/**
-	 * *Sets the default number format*
-	 * *of the player's scoreboard.*
+	 * Sets the default number format
+	 * of the player's scoreboard.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Content or style*
+	 * Content or style
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.ScoreDefFormat]
 	 */
-	fun scoreDefFormat(items: Items) = block(items, "ScoreDefFormat")
+	fun scoreDefFormat(items: Items) {
+		block(items, "ScoreDefFormat", tagClass = PlayerActionTags.ScoreDefFormat::class)
+	}
 
 
 	/**
-	 * *Stops all or specific sounds*
-	 * *for a player.*
+	 * Stops all or specific sounds
+	 * for a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [SoundItem]
 	 *
-	 * (*) *Sounds to stop*
+	 * (*) Sounds to stop
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.StopSound]
 	 */
-	fun stopSound(items: Items) = block(items, "StopSound")
+	fun stopSound(items: Items) {
+		block(items, "StopSound", tagClass = PlayerActionTags.StopSound::class)
+	}
 
 
 	/**
-	 * *Sets one of the player's health-related*
-	 * *attributes such as max health*
-	 * *and armor defense points.*
+	 * Sets one of the player's health-related
+	 * attributes such as max health
+	 * and armor defense points.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [PlayerActionTags.HealthAttribute]
 	 */
-	fun healthAttribute(items: Items) = block(items, "HealthAttribute")
+	fun healthAttribute(items: Items) {
+		block(items, "HealthAttribute", tagClass = PlayerActionTags.HealthAttribute::class)
+	}
 
 
 	/**
-	 * *Displays a line of particles*
-	 * *between two locations to*
-	 * *a player.*
+	 * Displays a line of particles
+	 * between two locations to
+	 * a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [GenericItem] (Particle)
 	 *
-	 * *Effect*
+	 * Effect
 	 *
 	 * [LocItem]
 	 *
-	 * *Start location*
+	 * Start location
 	 *
 	 * [LocItem]
 	 *
-	 * *End location*
+	 * End location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Effect spacing*
+	 * (*) Effect spacing
+	 *
+	 * *Default = §c0.5§7 blocks*
 	 *
 	 * (*) = optional
 	 */
-	fun particleLine(items: Items) = block(items, "ParticleLine")
+	fun particleLine(items: Items) {
+		block(items, "ParticleLine")
+	}
 
 }

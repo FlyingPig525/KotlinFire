@@ -1,13 +1,20 @@
 package io.github.flyingpig525.base.block.category
 
-import io.github.flyingpig525.base.*
-import io.github.flyingpig525.base.item.*
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
+import io.github.flyingpig525.base.block.Block
+import io.github.flyingpig525.base.block.BracketBlock
+import io.github.flyingpig525.base.block.ElseOperation
+import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
-import io.github.flyingpig525.base.block.*
-import io.github.flyingpig525.base.block.subaction.*
+import io.github.flyingpig525.base.item.type.tag.IfGameTags
+import io.github.flyingpig525.base.item.type.tag.TagItem
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
+import kotlin.reflect.KClass
+import kotlin.reflect.full.superclasses
 
+@Suppress("unused")
 class IfGameCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
@@ -16,59 +23,76 @@ class IfGameCategory internal constructor(private val template: Template) {
         action: String,
         wrappedCode: Template.() -> Unit,
         not: Boolean = false,
+        tagClass: KClass<*>? = null,
         extra: JsonObjectBuilder.() -> Unit = {}
     ) {
-        blocks += Block("if_game", ItemCollection(items).items, action) {
+        val collection = ItemCollection(items)
+        tagClass?.nestedClasses?.forEach { klass ->
+            if (klass.superclasses.any { it.qualifiedName == "kotlin.Enum" }) {
+                @Suppress("UNCHECKED_CAST")
+                val entries = klass.java.enumConstants as Array<Enum<*>>
+                entries.forEach { entry ->
+                    if (entry is TagItem) {
+                        if (!entry.default) return@forEach
+                        if (collection.items.none { it is TagItem && it.tag == entry.tag })
+                        collection += entry
+                    }
+                }
+            }
+        }
+        blocks += Block("if_game", collection.items, action) {
             if (not) put("attribute", "NOT")
             extra()
         }
         blocks += BracketBlock(type = "norm")
         blocks += io.github.flyingpig525.base.Template(
             io.github.flyingpig525.base.Template.Type.NONE,
-            a = wrappedCode
+            code = wrappedCode
         ).blocks
         blocks += BracketBlock(false, "norm")
     }
 	/**
 	 */
 	fun signHasTxt(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "SignHasTxt", wrappedCode, not)
+		block(items, "SignHasTxt", wrappedCode, not, tagClass = IfGameTags.SignHasTxt::class)
 		return ElseOperation()
 	}
 
 
 	/**
-	 * *Checks if the container at a*
-	 * *location has room for one or*
-	 * *more items to be given.*
+	 * Checks if the container at a
+	 * location has room for one or
+	 * more items to be given.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Container location*
+	 * Container location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item(s) to check with*
+	 * Item(s) to check with
 	 *
 	 * (*) = optional
+
+	 * @see [IfGameTags.HasRoomForItem]
 	 */
 	fun hasRoomForItem(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "HasRoomForItem", wrappedCode, not)
+		block(items, "HasRoomForItem", wrappedCode, not, tagClass = IfGameTags.HasRoomForItem::class)
 		return ElseOperation()
 	}
 
 
 	/**
-	 * *Checks if the block in a block*
-	 * *related event is the given block.*
+	 * Checks if the block in a block
+	 * related event is the given block.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Block(s) to check for*
+	 * Block(s) to check for
 	 *
 	 * (*) = optional
 	 */
@@ -79,45 +103,49 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if the command entered*
-	 * *in the Command Event is equal*
-	 * *to the given string.*
+	 * Checks if the command entered
+	 * in the Command Event is equal
+	 * to the given string.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *String(s) to check for*
+	 * String(s) to check for
 	 *
 	 * (*) = optional
+
+	 * @see [IfGameTags.CommandEquals]
 	 */
 	fun commandEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "CommandEquals", wrappedCode, not)
+		block(items, "CommandEquals", wrappedCode, not, tagClass = IfGameTags.CommandEquals::class)
 		return ElseOperation()
 	}
 
 
 	/**
-	 * *Checks if the item in a item*
-	 * *related event is the given item.*
+	 * Checks if the item in a item
+	 * related event is the given item.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item(s) to check for*
+	 * Item(s) to check for
 	 *
 	 * (*) = optional
+
+	 * @see [IfGameTags.EventItemEquals]
 	 */
 	fun eventItemEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "EventItemEquals", wrappedCode, not)
+		block(items, "EventItemEquals", wrappedCode, not, tagClass = IfGameTags.EventItemEquals::class)
 		return ElseOperation()
 	}
 
 
 	/**
-	 * *Checks if an event attack*
-	 * *is critical.*
+	 * Checks if an event attack
+	 * is critical.
 	 */
 	fun attackIsCrit(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "AttackIsCrit", wrappedCode, not)
@@ -126,18 +154,18 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if the container at a*
-	 * *location has the given item.*
+	 * Checks if the container at a
+	 * location has the given item.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Container location*
+	 * Container location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item(s) to check for*
+	 * Item(s) to check for
 	 *
 	 * (*) = optional
 	 */
@@ -148,22 +176,34 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if the block at a location*
-	 * *is the given block.*
+	 * Checks if the chunk being loaded
+	 * in this event is a new chunk.
+	 */
+	fun eventChunkNew(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "EventChunkNew", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * Checks if the block at a location
+	 * is the given block.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Check location*
+	 * Check location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Block(s) to check for*
+	 * (*) Block(s) to check for
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Block data*
+	 * (*) Block data
+	 *
+	 * *Example: §b"facing=up"§7*
 	 *
 	 * (*) = optional
 	 */
@@ -174,14 +214,14 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if a location collides with*
-	 * *the hitbox of the nearest block.*
+	 * Checks if a location collides with
+	 * the hitbox of the nearest block.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Check location*
+	 * Check location
 	 *
 	 * (*) = optional
 	 */
@@ -192,33 +232,45 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if the block at a location*
-	 * *is powered by redstone.*
-	 *
-	 * #### Args:
-	 *
-	 * [LocItem]
-	 *
-	 * *Check location(s)*
-	 *
-	 * (*) = optional
+	 * Checks if specific movement keys
+	 * changed state in the current event.
 	 */
-	fun blockPowered(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "BlockPowered", wrappedCode, not)
+	fun movementKey(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "MovementKey", wrappedCode, not, tagClass = IfGameTags.MovementKey::class)
 		return ElseOperation()
 	}
 
 
 	/**
-	 * *Checks if there is currently*
-	 * *a player in the game with the*
-	 * *given name or UUID.*
+	 * Checks if the block at a location
+	 * is powered by redstone.
 	 *
-	 * #### Args:
+	 * **Args:**
+	 *
+	 * [LocItem]
+	 *
+	 * Check location(s)
+	 *
+	 * (*) = optional
+
+	 * @see [IfGameTags.BlockPowered]
+	 */
+	fun blockPowered(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "BlockPowered", wrappedCode, not, tagClass = IfGameTags.BlockPowered::class)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * Checks if there is currently
+	 * a player in the game with the
+	 * given name or UUID.
+	 *
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Name or UUID*
+	 * Name or UUID
 	 *
 	 * (*) = optional
 	 */
@@ -229,19 +281,19 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if the container at a*
-	 * *location has all of the given*
-	 * *items.*
+	 * Checks if the container at a
+	 * location has all of the given
+	 * items.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Container location*
+	 * Container location
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item(s) to check for*
+	 * Item(s) to check for
 	 *
 	 * (*) = optional
 	 */
@@ -252,31 +304,33 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if a part of the command*
-	 * *entered in the Command Event*
-	 * *is equal to the given string.*
+	 * Checks if a part of the command
+	 * entered in the Command Event
+	 * is equal to the given string.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *String(s) to check for*
+	 * String(s) to check for
 	 *
 	 * [NumItem]
 	 *
-	 * *Argument number*
+	 * Argument number
 	 *
 	 * (*) = optional
+
+	 * @see [IfGameTags.CmdArgEquals]
 	 */
 	fun cmdArgEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "CmdArgEquals", wrappedCode, not)
+		block(items, "CmdArgEquals", wrappedCode, not, tagClass = IfGameTags.CmdArgEquals::class)
 		return ElseOperation()
 	}
 
 
 	/**
-	 * *Checks if the current*
-	 * *event is cancelled.*
+	 * Checks if the current
+	 * event is cancelled.
 	 */
 	fun eventCancelled(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "EventCancelled", wrappedCode, not)
@@ -285,14 +339,14 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if the chunk at a location*
-	 * *is currently loaded.*
+	 * Checks if the chunk at a location
+	 * is currently loaded.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Location in chunk*
+	 * Location in chunk
 	 *
 	 * (*) = optional
 	 */

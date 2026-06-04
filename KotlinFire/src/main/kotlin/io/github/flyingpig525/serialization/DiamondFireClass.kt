@@ -1,38 +1,27 @@
 package io.github.flyingpig525.serialization
 
+import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.item.Item
-import io.github.flyingpig525.base.item.type.LocItem
+import io.github.flyingpig525.base.item.type.*
 import io.github.flyingpig525.base.item.type.LocItem.Companion.toLocItem
-import io.github.flyingpig525.base.item.type.LocVariable
-import io.github.flyingpig525.base.item.type.MinecraftItem
 import io.github.flyingpig525.base.item.type.MinecraftItem.Companion.mcItem
-import io.github.flyingpig525.base.item.type.NumItem
 import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
-import io.github.flyingpig525.base.item.type.NumVariable
-import io.github.flyingpig525.base.item.type.PotionItem
-import io.github.flyingpig525.base.item.type.SoundItem
 import io.github.flyingpig525.base.item.type.SoundItem.Companion.soundItem
-import io.github.flyingpig525.base.item.type.StringItem
 import io.github.flyingpig525.base.item.type.StringItem.Companion.stringItem
-import io.github.flyingpig525.base.item.type.StringVariable
-import io.github.flyingpig525.base.item.type.TextItem
 import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
-import io.github.flyingpig525.base.item.type.TextVariable
-import io.github.flyingpig525.base.item.type.VarClass
-import io.github.flyingpig525.base.item.type.VarItem
-import io.github.flyingpig525.base.item.type.VecItem
+import io.github.flyingpig525.base.item.type.VarItem.Companion.lineVar
+import io.github.flyingpig525.base.item.type.VarItem.Companion.toVarItem
 import io.github.flyingpig525.base.item.type.VecItem.Companion.toVecItem
-import io.github.flyingpig525.base.item.type.VecVariable
 
 private typealias Provider<T, I> = DiamondFireDelegateProvider<T, I>
 
 /**
- * @param [name] - The name of the variable that will hold this class. Will be defined as a dictionary.
+ * @param [name] - The name of the variable that will hold this dictionary-backed class.
  *
  * Should be extended to add properties delegated through [numProp], [textProp], and others. These will be accessible
  * in DiamondFire when generated code runs.
  *
- * Before instance use, the variable must be initialized through [io.github.flyingpig525.base.Template.init]
+ * Before instance use, the variable must be initialized through [io.github.flyingpig525.serialization.DiamondFireClass.init]
  */
 @DiamondFireClassOptIn
 open class DiamondFireClass(val name: String, val scope: VarItem.Scope = VarItem.Scope.GAME) {
@@ -76,7 +65,7 @@ open class DiamondFireClass(val name: String, val scope: VarItem.Scope = VarItem
     protected fun locProp(default: LocItem): Provider<LocVariable, LocItem> {
         return Provider(LocItem::class, default)
     }
-    protected fun locProp(default: List<Number>) = locProp(default.toLocItem() ?: throw DiamondFireClassDefaultException())
+    protected fun locProp(default: List<Number>) = locProp(default.toLocItem())
     protected fun locProp(default: LocVariable): Provider<LocVariable, LocItem> {
         return Provider(LocItem::class, default.item)
     }
@@ -84,7 +73,7 @@ open class DiamondFireClass(val name: String, val scope: VarItem.Scope = VarItem
     protected fun vecProp(default: VecItem): Provider<VecVariable, VecItem> {
         return Provider(VecItem::class, default)
     }
-    protected fun vecProp(default: List<Number>) = vecProp(default.toVecItem() ?: throw DiamondFireClassDefaultException())
+    protected fun vecProp(default: List<Number>) = vecProp(default.toVecItem())
     protected fun vecProp(default: VecVariable): Provider<VecVariable, VecItem> {
         return Provider(VecItem::class, default.item)
     }
@@ -93,5 +82,39 @@ open class DiamondFireClass(val name: String, val scope: VarItem.Scope = VarItem
         return Provider(PotionItem::class, default)
     }
 
-    class DiamondFireClassDefaultException : Exception("Invalid default input for DiamondFireClass delegated property")
+    @OptIn(DiamondFireClassOptIn::class)
+    context(t: Template)
+    /**
+     * Initializes a serialized [DiamondFireClass], creating the backing dictionary.
+     *
+     * @param [checkExists] - Ensures the variable does not exist before creating the dictionary. Inserts a conditional
+     * block.
+     */
+    fun init(checkExists: Boolean = false) {
+        // TODO: add appending if toInitialize is too long for one chest
+        val a: Template.() -> Unit = {
+            t.SetVariable.createList {
+                +"${name}-KeyList-ajowdoiwajdpowd".lineVar
+                for (prop in toInitialize.keys) {
+                    +prop.name.stringItem
+                }
+            }
+            t.SetVariable.createList {
+                +"${name}-ValueList-ajowdoiwajdpowd".lineVar
+                for (default in toInitialize.values) {
+                    +default
+                }
+            }
+            t.SetVariable.createDict {
+                +name.toVarItem(scope)
+                +"${name}-KeyList-ajowdoiwajdpowd".lineVar
+                +"${name}-ValueList-ajowdoiwajdpowd".lineVar
+            }
+        }
+        if (checkExists) {
+            t.IfVar.varExists({+name.toVarItem(scope)}, not = true, a)
+        } else {
+            t.a()
+        }
+    }
 }

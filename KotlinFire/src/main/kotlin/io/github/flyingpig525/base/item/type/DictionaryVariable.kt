@@ -1,8 +1,14 @@
+@file:Suppress("NOTHING_TO_INLINE")
+
 package io.github.flyingpig525.base.item.type
 
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
 import io.github.flyingpig525.base.item.Insertable
 import io.github.flyingpig525.base.item.ItemComparison
+import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
 import io.github.flyingpig525.base.item.type.StringItem.Companion.stringItem
+import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
 
 class DictionaryVariable(name: String, scope: VarItem.Scope) : VarClass<VarItem>(name, scope, VarItem::class) {
     infix fun containsKey(key: String) = containsKey_(key.stringItem)
@@ -29,4 +35,89 @@ class DictionaryVariable(name: String, scope: VarItem.Scope) : VarClass<VarItem>
             }
         }, not, nested)
     }
+
+    context(t: Template)
+    inline operator fun set(key: StringItem, value: Insertable) {
+        t.SetVariable.setDictValue {
+            +key
+            +value
+        }
+    }
+    context(_: Template)
+    inline operator fun set(key: String, value: Insertable) = set(key.stringItem, value)
+    context(_: Template)
+    inline operator fun set(key: String, value: String) = set(key, value.textItem)
+    context(_: Template)
+    inline operator fun set(key: String, value: Number) = set(key, value.numItem)
+    context(_: Template)
+    inline operator fun set(key: StringVariable, value: Insertable) = set(key.stringItem, value)
+    context(_: Template)
+    inline operator fun set(key: StringVariable, value: String) = set(key.stringItem, value.textItem)
+    context(_: Template)
+    inline operator fun set(key: StringVariable, value: Number) = set(key.stringItem, value.numItem)
+
+    /**
+     * Should only be used when the type expected is string, text, or number.
+     */
+    context(_: Template)
+    inline operator fun get(key: String): String = "%entry($name,$key)"
+    context(_: Template)
+    inline operator fun get(key: StringVariable): String = "%entry($name,%var(${key.name})"
+    context(_: Template)
+    inline operator fun get(key: StringItem): String = "%entry($name,${key.text})"
+    context(_: Template)
+    inline fun getAsVariable(key: String, scope: VarItem.Scope = VarItem.Scope.LINE): VarItem = getAsVariable(key.stringItem, scope)
+    context(t: Template)
+    inline fun getAsVariable(key: StringVariable, scope: VarItem.Scope = VarItem.Scope.LINE): VarItem {
+        val i = VarItem("$name-%var(${key.name})-GeneratedGet-oajwkfnvsiuh", scope)
+        t.SetVariable.getDictValue {
+            +i
+            +item
+            +key
+        }
+        return i
+    }
+    context(t: Template)
+    inline fun getAsVariable(key: StringItem, scope: VarItem.Scope = VarItem.Scope.LINE): VarItem {
+        val i = VarItem("$name-${key.text}-GeneratedGet-oajwkfnvsiuh", scope)
+        t.SetVariable.getDictValue {
+            +i
+            +item
+            +key
+        }
+        return i
+    }
 }
+
+fun Template.dictVarOf(name: String, scope: VarItem.Scope, keys: List<Insertable>, values: List<Insertable>): DictionaryVariable {
+    val dict = DictionaryVariable(name, scope)
+    if (keys.size + values.size < 25) {
+        SetVariable.createDict {
+            +dict
+            for (i in 0..keys.size) {
+                +keys[i]
+                +values[i]
+            }
+        }
+    } else {
+        for (j in 0..keys.size / 12) {
+            val a: Items = {
+                +dict
+                for (f in j*12..(j+1)*12) {
+                    if (f >= keys.size) break
+                    +keys[f]
+                    +values[f]
+                }
+            }
+            if (j == 0) {
+                SetVariable.createDict(a)
+            } else {
+                SetVariable.setDictValue(a)
+            }
+        }
+    }
+    return dict
+}
+
+fun Template.dictVarOf(name: String, scope: VarItem.Scope, map: Map<Insertable, Insertable>) =
+    dictVarOf(name, scope, map.keys.toList(), map.values.toList())

@@ -1,13 +1,21 @@
 package io.github.flyingpig525.base.block.category
 
-import io.github.flyingpig525.base.*
-import io.github.flyingpig525.base.item.*
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
+import io.github.flyingpig525.base.block.Block
+import io.github.flyingpig525.base.block.BracketBlock
+import io.github.flyingpig525.base.block.ElseOperation
+import io.github.flyingpig525.base.item.Item
+import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
-import io.github.flyingpig525.base.block.*
-import io.github.flyingpig525.base.block.subaction.*
+import io.github.flyingpig525.base.item.type.tag.IfVarTags
+import io.github.flyingpig525.base.item.type.tag.TagItem
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
+import kotlin.reflect.KClass
+import kotlin.reflect.full.superclasses
 
+@Suppress("unused")
 class IfVarCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
@@ -16,33 +24,48 @@ class IfVarCategory internal constructor(private val template: Template) {
         action: String,
         wrappedCode: Template.() -> Unit,
         not: Boolean = false,
+        tagClass: KClass<*>? = null,
         extra: JsonObjectBuilder.() -> Unit = {}
     ) {
-        blocks += Block("if_var", ItemCollection(items).items, action) {
+        val collection = ItemCollection(items)
+        tagClass?.nestedClasses?.forEach { klass ->
+            if (klass.superclasses.any { it.qualifiedName == "kotlin.Enum" }) {
+                @Suppress("UNCHECKED_CAST")
+                val entries = klass.java.enumConstants as Array<Enum<*>>
+                entries.forEach { entry ->
+                    if (entry is TagItem) {
+                        if (!entry.default) return@forEach
+                        if (collection.items.none { it is TagItem && it.tag == entry.tag })
+                        collection += entry
+                    }
+                }
+            }
+        }
+        blocks += Block("if_var", collection.items, action) {
             if (not) put("attribute", "NOT")
             extra()
         }
         blocks += BracketBlock(type = "norm")
         blocks += io.github.flyingpig525.base.Template(
             io.github.flyingpig525.base.Template.Type.NONE,
-            a = wrappedCode
+            code = wrappedCode
         ).blocks
         blocks += BracketBlock(false, "norm")
     }
 	/**
-	 * *Checks if a number value is*
-	 * *less than or equal to another*
-	 * *number.*
+	 * Checks if a number value is
+	 * less than or equal to another
+	 * number.
 	 *
-	 * #### Args:
-	 *
-	 * [NumItem]
-	 *
-	 * *Number to check*
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Number to compare to*
+	 * Number to check
+	 *
+	 * [NumItem]
+	 *
+	 * Number to compare to
 	 *
 	 * (*) = optional
 	 */
@@ -53,24 +76,24 @@ class IfVarCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if an item has a*
-	 * *given enchantment, or,*
-	 * *if no enchantment is specified,*
-	 * *checks if it has any.*
+	 * Checks if an item has a
+	 * given enchantment, or,
+	 * if no enchantment is specified,
+	 * checks if it has any.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to check*
+	 * Item to check
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *Enchantment*
+	 * (*) Enchantment
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Level*
+	 * (*) Level
 	 *
 	 * (*) = optional
 	 */
@@ -81,14 +104,14 @@ class IfVarCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if an item is*
-	 * *able to be placed.*
+	 * Checks if an item is
+	 * able to be placed.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to check*
+	 * Item to check
 	 *
 	 * (*) = optional
 	 */
@@ -99,24 +122,24 @@ class IfVarCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if a dictionary's value*
-	 * *for the given key is equal to*
-	 * *any of the given values.*
+	 * Checks if a dictionary's value
+	 * for the given key is equal to
+	 * any of the given values.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Dictionary to check*
+	 * Dictionary to check
 	 *
 	 * [StringItem]
 	 *
-	 * *Key to check*
+	 * Key to check
 	 *
 	 * [Item]
 	 *
-	 * *Values to*
-	 * *compare with*
+	 * Values to
+	 * compare with
 	 *
 	 * (*) = optional
 	 */
@@ -127,28 +150,28 @@ class IfVarCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if an item has a*
-	 * *given custom tag, and (if*
-	 * *provided) whether the tag*
-	 * *matches the given value.*
+	 * Checks if an item has a
+	 * given custom tag, and (if
+	 * provided) whether the tag
+	 * matches the given value.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Item to check*
+	 * Item to check
 	 *
 	 * [StringItem]
 	 *
-	 * *Tag name*
+	 * Tag name
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Tag value*
+	 * (*) Tag value
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *Tag value*
+	 * (*) Tag value
 	 *
 	 * (*) = optional
 	 */
@@ -159,85 +182,116 @@ class IfVarCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if a string value matches*
-	 * *other values.*
+	 * Checks if a list is of a given size.
 	 *
-	 * #### Args:
-	 *
-	 * [StringItem]
-	 *
-	 * *String or source expression to match*
-	 *
-	 * [StringItem]
-	 *
-	 * *String to compare*
-	 *
-	 * (*) = optional
-	 */
-	fun stringMatches(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "StringMatches", wrappedCode, not)
-		return ElseOperation()
-	}
-
-
-	/**
-	 * *Checks if a list is empty.*
-	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *List to check*
-	 *
-	 * (*) = optional
-	 */
-	fun listIsEmpty(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "ListIsEmpty", wrappedCode, not)
-		return ElseOperation()
-	}
-
-
-	/**
-	 * *Checks if the first part of*
-	 * *a string value matches a*
-	 * *certain string.*
-	 *
-	 * #### Args:
-	 *
-	 * [StringItem]
-	 *
-	 * *String to check*
-	 *
-	 * [StringItem]
-	 *
-	 * *String to start with*
-	 *
-	 * (*) = optional
-	 */
-	fun startsWith(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "StartsWith", wrappedCode, not)
-		return ElseOperation()
-	}
-
-
-	/**
-	 * *Checks if a list's value at an*
-	 * *index is equal to a value.*
-	 *
-	 * #### Args:
-	 *
-	 * [VarItem]
-	 *
-	 * *List to check in*
+	 * List to check
 	 *
 	 * [NumItem]
 	 *
-	 * *Index to check at*
+	 * (*) Size to compare
+	 *
+	 * *Default = §c0§7*
+	 *
+	 * (*) = optional
+	 */
+	fun listSizeEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "ListSizeEquals", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * Checks if a string value matches
+	 * other values.
+	 *
+	 * **Args:**
+	 *
+	 * [StringItem]
+	 *
+	 * String or source expression to match
+	 *
+	 * [StringItem]
+	 *
+	 * String to compare
+	 *
+	 * (*) = optional
+
+	 * @see [IfVarTags.StringMatches]
+	 */
+	fun stringMatches(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "StringMatches", wrappedCode, not, tagClass = IfVarTags.StringMatches::class)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * Checks if the input string
+	 * would be filtered by the
+	 * selected chat filters.
+	 *
+	 * **Args:**
+	 *
+	 * [StringItem]
+	 *
+	 * String to check
+	 *
+	 * (*) = optional
+
+	 * @see [IfVarTags.IsFiltered]
+	 */
+	fun isFiltered(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsFiltered", wrappedCode, not, tagClass = IfVarTags.IsFiltered::class)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * Checks if the first part of
+	 * a string value matches a
+	 * certain string.
+	 *
+	 * **Args:**
+	 *
+	 * [StringItem]
+	 *
+	 * String to check
+	 *
+	 * [StringItem]
+	 *
+	 * String to start with
+	 *
+	 * (*) = optional
+
+	 * @see [IfVarTags.StartsWith]
+	 */
+	fun startsWith(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "StartsWith", wrappedCode, not, tagClass = IfVarTags.StartsWith::class)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * Checks if a list's value at an
+	 * index is equal to a value.
+	 *
+	 * **Args:**
+	 *
+	 * [VarItem]
+	 *
+	 * List to check in
+	 *
+	 * [NumItem]
+	 *
+	 * Index to check at
 	 *
 	 * [Item]
 	 *
-	 * *Variable to*
-	 * *compare to*
+	 * Variable to
+	 * compare to
 	 *
 	 * (*) = optional
 	 */
@@ -248,19 +302,21 @@ class IfVarCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if a value is of a*
-	 * *certain type.*
+	 * Checks if a value is of a
+	 * certain type.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [Item]
 	 *
-	 * *Value to check*
+	 * Value to check
 	 *
 	 * (*) = optional
+
+	 * @see [IfVarTags.VarIsType]
 	 */
 	fun varIsType(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "VarIsType", wrappedCode, not)
+		block(items, "VarIsType", wrappedCode, not, tagClass = IfVarTags.VarIsType::class)
 		return ElseOperation()
 	}
 
@@ -268,7 +324,7 @@ class IfVarCategory internal constructor(private val template: Template) {
 	/**
 	 */
 	fun textMatches(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "TextMatches", wrappedCode, not)
+		block(items, "TextMatches", wrappedCode, not, tagClass = IfVarTags.TextMatches::class)
 		return ElseOperation()
 	}
 
@@ -282,46 +338,107 @@ class IfVarCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if a number value is*
-	 * *in between 2 other numbers or*
-	 * *a location value is within the*
-	 * *region of 2 other locations.*
+	 * Checks if a number value is
+	 * in between 2 other numbers or
+	 * a location value is within the
+	 * region of 2 other locations.
 	 *
-	 * #### Args:
-	 *
-	 * [Item]
-	 *
-	 * *Check value*
+	 * **Args:**
 	 *
 	 * [Item]
 	 *
-	 * *Minimum value*
+	 * Check value
 	 *
 	 * [Item]
 	 *
-	 * *Maximum value*
+	 * Minimum value
+	 *
+	 * [Item]
+	 *
+	 * Maximum value
 	 *
 	 * (*) = optional
+
+	 * @see [IfVarTags.InRange]
 	 */
 	fun inRange(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, " InRange ", wrappedCode, not)
+		block(items, " InRange ", wrappedCode, not, tagClass = IfVarTags.InRange::class)
 		return ElseOperation()
 	}
 
 
 	/**
-	 * *Checks if a variable exists.*
+	 * Checks if a value is empty.
 	 *
-	 * #### Args:
+	 * **Args:**
+	 *
+	 * [StringItem]
+	 *
+	 * String to check if empty
+	 *
+	 * [TextItem]
+	 *
+	 * Text to compare
+	 * content length to 0
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to check*
+	 * List to compare size to 0
+	 *
+	 * [VarItem]
+	 *
+	 * Dictionary to
+	 * compare size to 0
+	 *
+	 * [MinecraftItem]
+	 *
+	 * Item to compare to air
+	 *
+	 * (*) = optional
+	 */
+	fun valueIsEmpty(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "ValueIsEmpty", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * Checks if a variable exists.
+	 *
+	 * **Args:**
+	 *
+	 * [VarItem]
+	 *
+	 * Variable to check
 	 *
 	 * (*) = optional
 	 */
 	fun varExists(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "VarExists", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * Checks if a dictionary has
+	 * the given keys.
+	 *
+	 * **Args:**
+	 *
+	 * [VarItem]
+	 *
+	 * Dictionary to check
+	 *
+	 * [StringItem]
+	 *
+	 * Key(s) to look for
+	 *
+	 * (*) = optional
+
+	 * @see [IfVarTags.DictHasKeys]
+	 */
+	fun dictHasKeys(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "DictHasKeys", wrappedCode, not, tagClass = IfVarTags.DictHasKeys::class)
 		return ElseOperation()
 	}
 
@@ -335,14 +452,14 @@ class IfVarCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if a material will collide*
-	 * *with entities.*
+	 * Checks if a material will collide
+	 * with entities.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Block to check for*
+	 * Block to check for
 	 *
 	 * (*) = optional
 	 */
@@ -353,46 +470,50 @@ class IfVarCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Works the same as Value =*
-	 * *but has a few extra options*
-	 * *for item comparison.*
+	 * Works the same as Value =
+	 * but has a few extra options
+	 * for item comparison.
 	 *
-	 * #### Args:
-	 *
-	 * [MinecraftItem]
-	 *
-	 * *Item to check*
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item(s) to compare to*
+	 * Item to check
+	 *
+	 * [MinecraftItem]
+	 *
+	 * (*) Item(s) to compare to
 	 *
 	 * (*) = optional
+
+	 * @see [IfVarTags.ItemEquals]
 	 */
 	fun itemEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "ItemEquals", wrappedCode, not)
+		block(items, "ItemEquals", wrappedCode, not, tagClass = IfVarTags.ItemEquals::class)
 		return ElseOperation()
 	}
 
 
 	/**
-	 * *Checks if any of a list's contents*
-	 * *match the given value.*
+	 * Checks if any of a list's contents
+	 * match the given value.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *List to check in*
+	 * List to check in
 	 *
 	 * [Item]
 	 *
-	 * *Value to find*
+	 * Value to find
 	 *
 	 * (*) = optional
+
+	 * @see [IfVarTags.ListContains]
 	 */
 	fun listContains(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "ListContains", wrappedCode, not)
+		block(items, "ListContains", wrappedCode, not, tagClass = IfVarTags.ListContains::class)
 		return ElseOperation()
 	}
 
@@ -406,67 +527,88 @@ class IfVarCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if a location is*
-	 * *near another location.*
+	 * Checks if a location is
+	 * near another location.
 	 *
-	 * #### Args:
-	 *
-	 * [LocItem]
-	 *
-	 * *Location to check*
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Location(s) to*
-	 * *compare to*
+	 * Location to check
+	 *
+	 * [LocItem]
+	 *
+	 * Location(s) to
+	 * compare to
 	 *
 	 * [NumItem]
 	 *
-	 * *Radius*
+	 * Radius
 	 *
 	 * (*) = optional
+
+	 * @see [IfVarTags.LocIsNear]
 	 */
 	fun locIsNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "LocIsNear", wrappedCode, not)
+		block(items, "LocIsNear", wrappedCode, not, tagClass = IfVarTags.LocIsNear::class)
 		return ElseOperation()
 	}
 
 
 	/**
-	 * *Checks if a string value*
-	 * *contains another string.*
+	 * Checks if an item is unbreakable.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
-	 * [StringItem]
+	 * [MinecraftItem]
 	 *
-	 * *String to check*
-	 *
-	 * [StringItem]
-	 *
-	 * *String to check for*
+	 * Item to check
 	 *
 	 * (*) = optional
 	 */
-	fun contains(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "Contains", wrappedCode, not)
+	fun itemIsUnbreakable(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "ItemIsUnbreakable", wrappedCode, not)
 		return ElseOperation()
 	}
 
 
 	/**
-	 * *Checks if a value does not*
-	 * *equal another value.*
+	 * Checks if a string value
+	 * contains another string.
 	 *
-	 * #### Args:
+	 * **Args:**
+	 *
+	 * [StringItem]
+	 *
+	 * String to check
+	 *
+	 * [StringItem]
+	 *
+	 * String to check for
+	 *
+	 * (*) = optional
+
+	 * @see [IfVarTags.Contains]
+	 */
+	fun contains(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "Contains", wrappedCode, not, tagClass = IfVarTags.Contains::class)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * Checks if a value does not
+	 * equal another value.
+	 *
+	 * **Args:**
 	 *
 	 * [Item]
 	 *
-	 * *Value to check*
+	 * Value to check
 	 *
 	 * [Item]
 	 *
-	 * *Values to compare to*
+	 * Values to compare to
 	 *
 	 * (*) = optional
 	 */
@@ -477,18 +619,18 @@ class IfVarCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if a number value is*
-	 * *less than another number.*
+	 * Checks if a number value is
+	 * less than another number.
 	 *
-	 * #### Args:
-	 *
-	 * [NumItem]
-	 *
-	 * *Number to check*
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Number to compare to*
+	 * Number to check
+	 *
+	 * [NumItem]
+	 *
+	 * Number to compare to
 	 *
 	 * (*) = optional
 	 */
@@ -499,18 +641,18 @@ class IfVarCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if a value is equal*
-	 * *to one of the given values.*
+	 * Checks if a value is equal
+	 * to one of the given values.
 	 *
-	 * #### Args:
-	 *
-	 * [Item]
-	 *
-	 * *Value to check*
+	 * **Args:**
 	 *
 	 * [Item]
 	 *
-	 * *Values to compare to*
+	 * Value to check
+	 *
+	 * [Item]
+	 *
+	 * Values to compare to
 	 *
 	 * (*) = optional
 	 */
@@ -521,18 +663,18 @@ class IfVarCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if a number value is*
-	 * *greater than another number.*
+	 * Checks if a number value is
+	 * greater than another number.
 	 *
-	 * #### Args:
-	 *
-	 * [NumItem]
-	 *
-	 * *Number to check*
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Number to compare to*
+	 * Number to check
+	 *
+	 * [NumItem]
+	 *
+	 * Number to compare to
 	 *
 	 * (*) = optional
 	 */
@@ -543,42 +685,44 @@ class IfVarCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if the last part of*
-	 * *a string value matches a*
-	 * *certain string.*
+	 * Checks if the last part of
+	 * a string value matches a
+	 * certain string.
 	 *
-	 * #### Args:
-	 *
-	 * [StringItem]
-	 *
-	 * *String to check*
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *String to end with*
+	 * String to check
+	 *
+	 * [StringItem]
+	 *
+	 * String to end with
 	 *
 	 * (*) = optional
+
+	 * @see [IfVarTags.EndsWith]
 	 */
 	fun endsWith(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "EndsWith", wrappedCode, not)
+		block(items, "EndsWith", wrappedCode, not, tagClass = IfVarTags.EndsWith::class)
 		return ElseOperation()
 	}
 
 
 	/**
-	 * *Checks if a number value*
-	 * *is greater than or equal to*
-	 * *another number.*
+	 * Checks if a number value
+	 * is greater than or equal to
+	 * another number.
 	 *
-	 * #### Args:
-	 *
-	 * [NumItem]
-	 *
-	 * *Number to check*
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Number to compare to*
+	 * Number to check
+	 *
+	 * [NumItem]
+	 *
+	 * Number to compare to
 	 *
 	 * (*) = optional
 	 */
@@ -589,18 +733,18 @@ class IfVarCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if a dictionary has*
-	 * *the given key.*
+	 * Checks if a dictionary has
+	 * the given key.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Dictionary to check*
+	 * Dictionary to check
 	 *
 	 * [StringItem]
 	 *
-	 * *Key to look for*
+	 * Key to look for
 	 *
 	 * (*) = optional
 	 */

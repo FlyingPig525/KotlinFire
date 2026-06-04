@@ -1,8 +1,10 @@
 package io.github.flyingpig525.base.item.type.gamevalue
 
-import io.github.flyingpig525.base.item.*
-import io.github.flyingpig525.base.item.type.*
+import io.github.flyingpig525.base.item.type.GameValue
+import io.github.flyingpig525.base.item.type.MinecraftItem
+import io.github.flyingpig525.base.item.type.VarItem
 
+@Suppress("unused")
 object ItemValues {
 	/**
 	 * *Gets a target's currently*

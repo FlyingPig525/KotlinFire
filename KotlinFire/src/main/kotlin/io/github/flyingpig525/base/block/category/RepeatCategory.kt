@@ -1,13 +1,22 @@
 package io.github.flyingpig525.base.block.category
 
-import io.github.flyingpig525.base.*
-import io.github.flyingpig525.base.item.*
-import io.github.flyingpig525.base.item.type.*
-import io.github.flyingpig525.base.block.*
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
+import io.github.flyingpig525.base.block.Block
+import io.github.flyingpig525.base.block.BracketBlock
 import io.github.flyingpig525.base.block.subaction.*
+import io.github.flyingpig525.base.item.ItemCollection
+import io.github.flyingpig525.base.item.type.LocItem
+import io.github.flyingpig525.base.item.type.NumItem
+import io.github.flyingpig525.base.item.type.VarItem
+import io.github.flyingpig525.base.item.type.tag.RepeatTags
+import io.github.flyingpig525.base.item.type.tag.TagItem
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
+import kotlin.reflect.KClass
+import kotlin.reflect.full.superclasses
 
+@Suppress("unused")
 class RepeatCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
@@ -16,204 +25,269 @@ class RepeatCategory internal constructor(private val template: Template) {
         action: String,
         wrappedCode: Template.() -> Unit,
         not: Boolean = false,
+        tagClass: KClass<*>? = null,
         extra: JsonObjectBuilder.() -> Unit = {}
     ) {
-        blocks += Block("repeat", ItemCollection(items).items, action) {
+        val collection = ItemCollection(items)
+        tagClass?.nestedClasses?.forEach { klass ->
+            if (klass.superclasses.any { it.qualifiedName == "kotlin.Enum" }) {
+                @Suppress("UNCHECKED_CAST")
+                val entries = klass.java.enumConstants as Array<Enum<*>>
+                entries.forEach { entry ->
+                    if (entry is TagItem) {
+                        if (!entry.default) return@forEach
+                        if (collection.items.none { it is TagItem && it.tag == entry.tag })
+                        collection += entry
+                    }
+                }
+            }
+        }
+        blocks += Block("repeat", collection.items, action) {
             if (not) put("attribute", "NOT")
             extra()
         }
         blocks += BracketBlock(type = "repeat")
         blocks += io.github.flyingpig525.base.Template(
             io.github.flyingpig525.base.Template.Type.NONE,
-            a = wrappedCode
+            code = wrappedCode
         ).blocks
         blocks += BracketBlock(false, "repeat")
     }
 	/**
-	 * *Repeats code once for each*
-	 * *block adjacent to a location.*
+	 * Repeats code once for each
+	 * block adjacent to a location.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Gets the current*
-	 * *block location each iteration*
+	 * Gets the current
+	 * block location each iteration
 	 *
 	 * [LocItem]
 	 *
-	 * *Center block*
+	 * Center block
 	 *
 	 * (*) = optional
+
+	 * @see [RepeatTags.Adjacent]
 	 */
-	fun adjacent(items: Items, wrappedCode: Template.() -> Unit) = block(items, "Adjacent", wrappedCode)
+	fun adjacent(items: Items, wrappedCode: Template.() -> Unit) {
+		block(items, "Adjacent", wrappedCode, tagClass = RepeatTags.Adjacent::class)
+	}
 
 
 	/**
-	 * *Repeats code once for*
-	 * *each interpolated point in*
-	 * *a path of locations.*
+	 * Repeats code once for
+	 * each interpolated point in
+	 * a path of locations.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Gets the current*
-	 * *path location each iteration*
+	 * Gets the current
+	 * path location each iteration
 	 *
 	 * [LocItem]
 	 *
-	 * *Path locations*
+	 * Path locations
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Point spacing*
+	 * (*) Point spacing
+	 *
+	 * *Default = §c0.5§7 blocks*
 	 *
 	 * (*) = optional
+
+	 * @see [RepeatTags.Path]
 	 */
-	fun path(items: Items, wrappedCode: Template.() -> Unit) = block(items, "Path", wrappedCode)
+	fun path(items: Items, wrappedCode: Template.() -> Unit) {
+		block(items, "Path", wrappedCode, tagClass = RepeatTags.Path::class)
+	}
 
 
 	/**
-	 * *Repeats code multiple times.*
+	 * Repeats code multiple times.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * (*) *Gets the*
-	 * (*) *current index each iteration*
+	 * (*) Gets the
+	 * (*) current index each iteration
 	 *
 	 * [NumItem]
 	 *
-	 * *Amount*
+	 * Amount
 	 *
 	 * (*) = optional
 	 */
-	fun multiple(items: Items, wrappedCode: Template.() -> Unit) = block(items, "Multiple", wrappedCode)
+	fun multiple(items: Items, wrappedCode: Template.() -> Unit) {
+		block(items, "Multiple", wrappedCode)
+	}
 
 
 	/**
-	 * *Repeats code once for each*
-	 * *block in a region in order:*
-	 * *X → Z → Y. Iterates from the*
-	 * *first to the second location.*
+	 * Repeats code once for each
+	 * block in a region in order:
+	 * X → Z → Y. Iterates from the
+	 * first to the second location.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Gets the current*
-	 * *block location each iteration*
+	 * Gets the current
+	 * block location each iteration
 	 *
 	 * [LocItem]
 	 *
-	 * *Start of region*
+	 * Start of region
 	 *
 	 * [LocItem]
 	 *
-	 * *End of region*
+	 * End of region
 	 *
 	 * (*) = optional
 	 */
-	fun grid(items: Items, wrappedCode: Template.() -> Unit) = block(items, "Grid", wrappedCode)
+	fun grid(items: Items, wrappedCode: Template.() -> Unit) {
+		block(items, "Grid", wrappedCode)
+	}
 
 
 	/**
-	 * *Repeats code as long as a*
-	 * *condition is true.*
+	 * Repeats code as long as a
+	 * condition is true.
+	 * The condition is evaluated
+	 * at the end of each
+	 * loop iteration.
 	 *
-	 * ##### Accepts sub actions:
+	 * **Accepts sub actions:**
 	 * [IfPlayerSubAction],
 	 * [IfEntitySubAction],
 	 * [IfVarSubAction],
 	 * [IfGameSubAction],
 	 */
-	fun whileLoop(items: Items, subAction: SubAction, not: Boolean = false, wrappedCode: Template.() -> Unit) = block(items, "While", wrappedCode, not) { put("subAction", subAction.codeblock) }
+	fun doWhile(items: Items, subAction: SubAction, wrappedCode: Template.() -> Unit) {
+		block(items, "DoWhile", wrappedCode) { put("subAction", subAction.codeblock) }
+	}
+
+
+	/**
+	 * Repeats code as long as a
+	 * condition is true.
+	 * The condition is evaluated
+	 * before each loop iteration.
+	 *
+	 * **Accepts sub actions:**
+	 * [IfPlayerSubAction],
+	 * [IfEntitySubAction],
+	 * [IfVarSubAction],
+	 * [IfGameSubAction],
+	 */
+	fun whileLoop(items: Items, subAction: SubAction, not: Boolean = false, wrappedCode: Template.() -> Unit) {
+		block(items, "While", wrappedCode, not) { put("subAction", subAction.codeblock) }
+	}
 
 
 	/**
 	 */
-	fun range(items: Items, wrappedCode: Template.() -> Unit) = block(items, "Range", wrappedCode)
+	fun range(items: Items, wrappedCode: Template.() -> Unit) {
+		block(items, "Range", wrappedCode)
+	}
 
 
 	/**
-	 * *Repeats code once for each*
-	 * *index of a list.*
+	 * Repeats code once for each
+	 * index of a list.
 	 *
-	 * #### Args:
-	 *
-	 * [VarItem]
-	 *
-	 * *Gets the current*
-	 * *value each iteration*
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *List to repeat through*
+	 * Gets the current
+	 * value each iteration
+	 *
+	 * [VarItem]
+	 *
+	 * List to repeat through
 	 *
 	 * (*) = optional
+
+	 * @see [RepeatTags.ForEach]
 	 */
-	fun forEach(items: Items, wrappedCode: Template.() -> Unit) = block(items, "ForEach", wrappedCode)
+	fun forEach(items: Items, wrappedCode: Template.() -> Unit) {
+		block(items, "ForEach", wrappedCode, tagClass = RepeatTags.ForEach::class)
+	}
 
 
 	/**
-	 * *Repeats code once for every*
-	 * *evenly distributed sphere point.*
+	 * Repeats code once for every
+	 * evenly distributed sphere point.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Gets the current*
-	 * *sphere location each iteration*
+	 * Gets the current
+	 * sphere location each iteration
 	 *
 	 * [LocItem]
 	 *
-	 * *Sphere center*
+	 * Sphere center
 	 *
 	 * [NumItem]
 	 *
-	 * *Sphere radius*
+	 * Sphere radius
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Sphere points*
+	 * (*) Sphere points
 	 *
 	 * (*) = optional
+
+	 * @see [RepeatTags.Sphere]
 	 */
-	fun sphere(items: Items, wrappedCode: Template.() -> Unit) = block(items, "Sphere", wrappedCode)
+	fun sphere(items: Items, wrappedCode: Template.() -> Unit) {
+		block(items, "Sphere", wrappedCode, tagClass = RepeatTags.Sphere::class)
+	}
 
 
 	/**
-	 * *Repeats code indefinitely.*
+	 * Repeats code indefinitely.
 	 */
-	fun forever(items: Items, wrappedCode: Template.() -> Unit) = block(items, "Forever", wrappedCode)
+	fun forever(items: Items, wrappedCode: Template.() -> Unit) {
+		block(items, "Forever", wrappedCode)
+	}
 
 
 	/**
-	 * *Repeats code once per entry in*
-	 * *a dictionary*
+	 * Repeats code once per entry in
+	 * a dictionary
 	 *
-	 * #### Args:
-	 *
-	 * [VarItem]
-	 *
-	 * *Gets the current key*
-	 * *each iteration*
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Gets the current value*
-	 * *each iteration*
+	 * Gets the current key
+	 * each iteration
 	 *
 	 * [VarItem]
 	 *
-	 * *Dictionary to*
-	 * *repeat through*
+	 * Gets the current value
+	 * each iteration
+	 *
+	 * [VarItem]
+	 *
+	 * Dictionary to
+	 * repeat through
 	 *
 	 * (*) = optional
 	 */
-	fun forEachEntry(items: Items, wrappedCode: Template.() -> Unit) = block(items, "ForEachEntry", wrappedCode)
+	fun forEachEntry(items: Items, wrappedCode: Template.() -> Unit) {
+		block(items, "ForEachEntry", wrappedCode)
+	}
 
 }

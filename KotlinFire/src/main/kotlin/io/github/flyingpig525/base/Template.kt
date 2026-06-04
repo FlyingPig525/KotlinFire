@@ -1,19 +1,11 @@
 package io.github.flyingpig525.base
 
-import io.github.flyingpig525.base.block.category.*
 import io.github.flyingpig525.base.block.*
-import io.github.flyingpig525.base.item.Insertable
-import io.github.flyingpig525.base.item.Item
+import io.github.flyingpig525.base.block.category.*
 import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.ItemComparison
-import io.github.flyingpig525.base.item.type.*
-import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
-import io.github.flyingpig525.base.item.type.StringItem.Companion.stringItem
-import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
-import io.github.flyingpig525.base.item.type.VarItem.Companion.lineVar
-import io.github.flyingpig525.base.item.type.VarItem.Companion.toVarItem
+import io.github.flyingpig525.base.item.type.ParameterItem
 import io.github.flyingpig525.encoding.TemplateEncoder
-import io.github.flyingpig525.serialization.DiamondFireClass
 import io.github.flyingpig525.serialization.DiamondFireClassOptIn
 import io.ktor.client.*
 import io.ktor.client.engine.java.*
@@ -40,7 +32,7 @@ open class Template(
     type: Type = Type.FUNCTION,
     val name: String = "PutNameHere",
     vararg args: ParameterItem,
-    a: Template.() -> Unit
+    code: Template.() -> Unit
 ) : JsonData {
     val blocks: MutableList<Block> = mutableListOf()
     val SetVariable = SetVariableCategory(this)
@@ -77,19 +69,8 @@ open class Template(
         throw Error("Cannot invoke Event template!")
     }
 
-    operator fun invoke(thisValue: Template, items: Items = {}) = thisValue.invokeTemplate(this, items)
-
-    infix fun ElseOperation.Else(wrappedCode: Template.() -> Unit) {
-        blocks += ElseBlock()
-        blocks += BracketBlock(type = "norm")
-        blocks += Template(
-            Type.NONE,
-            a = wrappedCode
-        ).blocks
-        blocks += BracketBlock(false, "norm")
-    }
-
-
+    context(t: Template)
+    operator fun invoke(items: Items = {}) = t.invokeTemplate(this, items)
 
     init {
         if (type != Type.NONE) {
@@ -103,7 +84,7 @@ open class Template(
             }
         }
         TemplateContext.push(this)
-        apply(a)
+        apply(code)
         TemplateContext.pop()
     }
 
@@ -117,503 +98,15 @@ open class Template(
         }
     }
 
-    fun getTemplateString(): String = TemplateEncoder.encode(this)
-
-    // Extension operator functions
-    // All VarClass implementations
-    infix fun <T : Item> VarClass<T>.set(value: T) {
-        VarClass.assertInsertable(value)
-        SetVariable.equalTo {
-            +item
-            +value
-        }
-    }
-    // bullshit
-    infix fun <T : Item> VarClass<T>.set(value: GameValue<*>) {
-        SetVariable.equalTo {
-            +item
-            +value
-        }
-    }
-    infix fun VarClass<*>.set(value: VarItem) {
-        SetVariable.equalTo {
-            +item
-            +value
-        }
-    }
-
-    // NumVariable
-    // +=
-    inline operator fun NumVariable.plusAssign(other: Number) = plusAssign(other.numItem)
-    inline operator fun NumVariable.plusAssign(other: String) = plusAssign(other.numItem)
-    inline operator fun NumVariable.plusAssign(other: NumVariable) = plusAssign(other.item)
-    inline operator fun NumVariable.plusAssign(other: NumItem) {
-        SetVariable.increment {
-            +item
-            +other
-        }
-    }
-    inline operator fun NumVariable.plusAssign(other: VarItem) {
-        SetVariable.increment {
-            +item
-            +other
-        }
-    }
-    // -=
-    inline operator fun NumVariable.minusAssign(other: Number) = minusAssign(other.numItem)
-    inline operator fun NumVariable.minusAssign(other: String) = minusAssign(other.numItem)
-    inline operator fun NumVariable.minusAssign(other: NumVariable) = minusAssign(other.item)
-    inline operator fun NumVariable.minusAssign(other: NumItem) {
-        SetVariable.decrement {
-            +item
-            +other
-        }
-    }
-    inline operator fun NumVariable.minusAssign(other: VarItem) {
-        SetVariable.decrement {
-            +item
-            +other
-        }
-    }
-    // /=
-    inline operator fun NumVariable.divAssign(other: Number) = divAssign(other.numItem)
-    inline operator fun NumVariable.divAssign(other: String) = divAssign(other.numItem)
-    inline operator fun NumVariable.divAssign(other: NumVariable) = divAssign(other.item)
-    inline operator fun NumVariable.divAssign(other: NumItem) {
-        SetVariable.divide {
-            +item
-            +item
-            +other
-        }
-    }
-    inline operator fun NumVariable.divAssign(other: VarItem) {
-        SetVariable.divide {
-            +item
-            +item
-            +other
-        }
-    }
-    // *=
-    inline operator fun NumVariable.timesAssign(other: Number) = timesAssign(other.numItem)
-    inline operator fun NumVariable.timesAssign(other: String) = timesAssign(other.numItem)
-    inline operator fun NumVariable.timesAssign(other: NumVariable) = timesAssign(other.item)
-    inline operator fun NumVariable.timesAssign(other: NumItem) {
-        SetVariable.x {
-            +item
-            +item
-            +other
-        }
-    }
-    inline operator fun NumVariable.timesAssign(other: VarItem) {
-        SetVariable.x {
-            +item
-            +item
-            +other
-        }
-    }
-    // %=
-    inline operator fun NumVariable.remAssign(other: Number) = remAssign(other.numItem)
-    inline operator fun NumVariable.remAssign(other: String) = remAssign(other.numItem)
-    inline operator fun NumVariable.remAssign(other: NumVariable) = remAssign(other.item)
-    inline operator fun NumVariable.remAssign(other: NumItem) {
-        SetVariable.mod {
-            +item
-            +item
-            +other
-        }
-    }
-    inline operator fun NumVariable.remAssign(other: VarItem) {
-        SetVariable.mod {
-            +item
-            +item
-            +other
-        }
-    }
-    inline operator fun NumVariable.unaryMinus() = "-%var($name)".numItem
-    // TextVariable
-    // +=
-    inline operator fun TextVariable.plusAssign(other: String) = plusAssign(other.textItem)
-    inline operator fun TextVariable.plusAssign(other: VarClass<*>) { plusAssign(other.item) }
-    inline operator fun TextVariable.plusAssign(other: TextItem) {
-        SetVariable.styledText {
-            +item
-            +item
-            +other
-        }
-    }
-    inline operator fun TextVariable.plusAssign(other: VarItem) {
-        SetVariable.styledText {
-            +item
-            +item
-            +other
-        }
-    }
-    // Trim
-    /**
-     * Trims the content of a styled text
-     */
-    inline fun TextVariable.trim(from: Number, to: Number? = null) = trim(from.numItem, to?.numItem)
-    /**
-     * Trims the content of a styled text
-     *
-     * [from] and [to] must be [NumItem] parsable strings
-     */
-    inline fun TextVariable.trim(from: String, to: String? = null) = trim(from.numItem, to?.numItem)
-    /**
-     * Trims the content of a styled text
-     *
-     * @param [to] - Can be an uninitialized variable
-     */
-    inline fun TextVariable.trim(from: VarItem, to: VarItem? = null) {
-        SetVariable.trimStyledText {
-            +item
-            +from
-            if (to != null) {
-                +to
-            }
-        }
-    }
-    /**
-     * Trims the content of a styled text
-     */
-    inline fun TextVariable.trim(from: NumItem, to: NumItem? = null) {
-        SetVariable.trimStyledText {
-            +item
-            +from
-            if (to != null) {
-                +to
-            }
-        }
-    }
-    // Replace
-    /**
-     * @param [replace] - A regex used to find replacement targets
-     */
-    inline fun TextVariable.replace(replace: String, with: String) = replace(replace.textItem, with.textItem)
-    /**
-     * @param [replace] - A regex used to find replacement targets
-     */
-    inline fun TextVariable.replace(replace: VarClass<*>, with: VarClass<*>) = replace(replace.item, with.item)
-    /**
-     * @param [replace] - A regex used to find replacement targets
-     */
-    inline fun TextVariable.replace(replace: TextItem, with: TextItem) {
-        SetVariable.rmText {
-            +item
-            +item
-            +replace
-            +with
-        }
-    }
-    /**
-     * @param [replace] - A regex used to find replacement targets
-     */
-    inline fun TextVariable.replace(replace: VarItem, with: VarItem) {
-        SetVariable.rmText {
-            +item
-            +item
-            +replace
-            +with
-        }
-    }
-    // VecVariable
-    // Length
-    inline fun VecVariable.setLength(length: Number) = setLength(length.numItem)
-    inline fun VecVariable.setLength(length: NumVariable) {
-        SetVariable.setVectorLength {
-            +item
-            +length
-        }
-    }
-    inline fun VecVariable.setLength(length: NumItem) {
-        SetVariable.setVectorLength {
-            +item
-            +length
-        }
-    }
-    // DictionaryVariable
-    inline operator fun DictionaryVariable.set(key: StringItem, value: Insertable) {
-        SetVariable.setDictValue {
-            +key
-            +value
-        }
-    }
-    inline operator fun DictionaryVariable.set(key: String, value: Insertable) = set(key.stringItem, value)
-    inline operator fun DictionaryVariable.set(key: String, value: String) = set(key, value.textItem)
-    inline operator fun DictionaryVariable.set(key: String, value: Number) = set(key, value.numItem)
-    inline operator fun DictionaryVariable.set(key: StringVariable, value: Insertable) = set(key.stringItem, value)
-    inline operator fun DictionaryVariable.set(key: StringVariable, value: String) = set(key.stringItem, value.textItem)
-    inline operator fun DictionaryVariable.set(key: StringVariable, value: Number) = set(key.stringItem, value.numItem)
-
-    /**
-     * Should only be used when the type expected is string, text, or number.
-     */
-    inline operator fun DictionaryVariable.get(key: String): String = "%entry($name,$key)"
-    inline operator fun DictionaryVariable.get(key: StringVariable): String = "%entry($name,%var(${key.name})"
-    inline operator fun DictionaryVariable.get(key: StringItem): String = "%entry($name,${key.text})"
-    inline fun DictionaryVariable.getAsVariable(key: String, scope: VarItem.Scope = VarItem.Scope.LINE): VarItem {
-        val i = VarItem("$name-$key-GeneratedGet-oajwkfnvsiuh", scope)
-        SetVariable.getDictValue {
-            +i
-            +item
-            +key.stringItem
-        }
-        return i
-    }
-    inline fun DictionaryVariable.getAsVariable(key: StringVariable, scope: VarItem.Scope = VarItem.Scope.LINE): VarItem {
-        val i = VarItem("$name-%var(${key.name})-GeneratedGet-oajwkfnvsiuh", scope)
-        SetVariable.getDictValue {
-            +i
-            +item
-            +key
-        }
-        return i
-    }
-    inline fun DictionaryVariable.getAsVariable(key: StringItem, scope: VarItem.Scope = VarItem.Scope.LINE): VarItem {
-        val i = VarItem("$name-${key.text}-GeneratedGet-oajwkfnvsiuh", scope)
-        SetVariable.getDictValue {
-            +i
-            +item
-            +key
-        }
-        return i
-    }
-
-    inline operator fun ListVariable.set(index: NumItem, value: Insertable) {
-        SetVariable.setListValue {
-            +item
-            +index
-            +value
-        }
-    }
-    inline operator fun ListVariable.set(index: Int, value: Insertable) = set(index.numItem, value)
-    inline operator fun ListVariable.set(index: Int, value: String) = set(index, value.textItem)
-    inline operator fun ListVariable.set(index: Int, value: Number) = set(index, value.numItem)
-    inline operator fun ListVariable.set(index: NumItem, value: String) = set(index, value.textItem)
-    inline operator fun ListVariable.set(index: NumItem, value: Number) = set(index, value.numItem)
-    inline operator fun ListVariable.set(index: NumVariable, value: String) = set(index.numItem, value.textItem)
-    inline operator fun ListVariable.set(index: NumVariable, value: Number) = set(index.numItem, value.numItem)
-
-    inline operator fun ListVariable.get(index: NumVariable): String = "%index($name,%var(${index.name})"
-    inline operator fun ListVariable.get(index: NumItem): String = "%index($name,${index.value})"
-    inline operator fun ListVariable.get(index: Int): String = get(index.numItem)
-
-    inline operator fun ListVariable.plusAssign(value: Insertable) {
-        SetVariable.appendValue {
-            +item
-            +value
-        }
-    }
-
-    inline operator fun ListVariable.minusAssign(value: Insertable) {
-        SetVariable.removeListValue {
-            +item
-            +value
-        }
-    }
-
-    inline fun ListVariable.getAsVariable(index: NumItem, scope: VarItem.Scope = VarItem.Scope.LINE): VarItem {
-        val i = VarItem("$name-GeneratedGet-${index.value}-aiwhdoaiuhdioa", scope)
-        SetVariable.getListValue {
-            +i
-            +item
-            +index
-        }
-        return i
-    }
-    inline fun ListVariable.getAsVariable(index: Int, scope: VarItem.Scope = VarItem.Scope.LINE): VarItem {
-        val i = VarItem("$name-GeneratedGet-$index-aiwhdoaiuhdioa", scope)
-        SetVariable.getListValue {
-            +i
-            +item
-            +index.numItem
-        }
-        return i
-    }
-    inline fun ListVariable.getAsVariable(index: NumVariable, scope: VarItem.Scope = VarItem.Scope.LINE): VarItem {
-        val i = VarItem("$name-GeneratedGet-%var(${index.name})-aiwhdoaiuhdioa", scope)
-        SetVariable.getListValue {
-            +i
-            +item
-            +index
-        }
-        return i
-    }
-
-    inline fun ListVariable.flatten() = apply {
-        SetVariable.flattenList {
-            +item
-        }
-    }
-    inline fun ListVariable.flatten(out: ListVariable) {
-        SetVariable.flattenList {
-            +out
-            +item
-        }
-    }
-
-    // TODO: separate into multiple appends if [values] is too long
-    inline fun ListVariable.append(vararg values: Insertable) = apply {
-        SetVariable.appendValue {
-            +item
-            for (i in values) {
-                +i
-            }
-        }
-    }
-
-    inline fun ListVariable.appendAll(value: ListVariable) = apply {
-        SetVariable.appendList {
-            +item
-            +value
-        }
-    }
-
-    inline fun ListVariable.dedup() = apply {
-        SetVariable.dedupList {
-            +item
-        }
-    }
-    inline fun ListVariable.dedup(out: ListVariable) {
-        SetVariable.dedupList {
-            +out
-            +item
-        }
-    }
-
-    inline fun ListVariable.reverse() = apply {
-        SetVariable.reverseList {
-            +item
-        }
-    }
-    inline fun ListVariable.reverse(out: ListVariable) {
-        SetVariable.reverseList {
-            +out
-            +item
-        }
-    }
-
-    inline fun ListVariable.randomize() = apply {
-        SetVariable.randomizeList {
-            +item
-            +item
-        }
-    }
-    inline fun ListVariable.randomize(out: ListVariable) {
-        SetVariable.randomizeList {
-            +out
-            +item
-        }
-    }
-
-    inline fun ListVariable.trim(startIndex: NumItem, endIndex: NumItem) = apply {
-        SetVariable.trimList {
-            +item
-            +startIndex
-            +endIndex
-        }
-    }
-    inline fun ListVariable.trim(startIndex: Int, endIndex: Int) =
-        trim(startIndex.numItem, endIndex.numItem)
-    inline fun ListVariable.trim(startIndex: NumVariable, endIndex: NumVariable) =
-        trim(startIndex.numItem, endIndex.numItem)
-    inline fun ListVariable.trim(startIndex: NumItem, endIndex: NumItem, out: ListVariable) = apply {
-        SetVariable.trimList {
-            +out
-            +item
-            +startIndex
-            +endIndex
-        }
-    }
-    inline fun ListVariable.trim(startIndex: Int, endIndex: Int, out: ListVariable) =
-        trim(startIndex.numItem, endIndex.numItem, out)
-    inline fun ListVariable.trim(startIndex: NumVariable, endIndex: NumVariable, out: ListVariable) =
-        trim(startIndex.numItem, endIndex.numItem, out)
-
-    inline fun ListVariable.sort() = apply {
-        SetVariable.sortList {
-            +item
-        }
-    }
-    inline fun ListVariable.sort(out: ListVariable) {
-        SetVariable.sortList {
-            +out
-            +item
-        }
-    }
-
-    inline fun ListVariable.removeIndex(index: NumItem) = apply {
-        SetVariable.removeListIndex {
-            +item
-            +index
-        }
-    }
-    inline fun ListVariable.removeIndex(index: Int) = removeIndex(index.numItem)
-    inline fun ListVariable.removeIndex(index: NumVariable) = removeIndex(index.numItem)
-
-    inline fun ListVariable.removeValue(value: Insertable) = apply {
-        SetVariable.removeListValue {
-            +item
-            +value
-        }
-    }
-
-    inline fun ListVariable.pop(
-        index: NumItem,
-        out: VarItem = VarItem("$name-${index.value}-PopValue", VarItem.Scope.LINE)
-    ): VarItem {
-        SetVariable.popListValue {
-            +out
-            +item
-            +index
-        }
-        return out
-    }
-    inline fun ListVariable.pop(
-        index: Int,
-        out: VarItem = VarItem("$name-$index-PopValue", VarItem.Scope.LINE)
-    ) = pop(index.numItem, out)
-    inline fun ListVariable.pop(
-        index: NumVariable,
-        out: VarItem = VarItem("$name-%var(${index.name})-PopValue", VarItem.Scope.LINE)
-    ) = pop(index.numItem, out)
-
-    inline val ListVariable.size: NumItem get() {
-        val i = VarItem("$name-ListLength-auhdoiwauhisd", VarItem.Scope.LINE)
-        SetVariable.listLength {
-            +i
-            +item
-        }
-        return "%var(${i.name})".numItem
+    fun getTemplateString(): String {
+        println("Getting template string for $name")
+        return TemplateEncoder.encode(this)
     }
 
     fun ifVal(comp: ItemComparison, wrappedCode: Template.() -> Unit): ElseOperation {
         comp(this, wrappedCode)
         return ElseOperation()
     }
-
-    @OptIn(DiamondFireClassOptIn::class)
-    fun DiamondFireClass.init() {
-        // TODO: add appending if toInitialize is too long for one chest
-        SetVariable.createList {
-            +"${name}-KeyList-ajowdoiwajdpowd".lineVar
-            for (prop in toInitialize.keys) {
-                +prop.name.stringItem
-            }
-        }
-        SetVariable.createList {
-            +"${name}-ValueList-ajowdoiwajdpowd".lineVar
-            for (default in toInitialize.values) {
-                +default
-            }
-        }
-        SetVariable.createDict {
-            +name.toVarItem(scope)
-            +"${name}-KeyList-ajowdoiwajdpowd".lineVar
-            +"${name}-ValueList-ajowdoiwajdpowd".lineVar
-        }
-    }
-
 
     companion object {
         @Deprecated("Recode is no longer being worked on")
@@ -656,13 +149,18 @@ open class Template(
                     port = 31375
                 ) {
                     send("scopes read_plot write_code")
+
+                    println("Sent auth request to codeclient")
                     
                     if ("auth" !in String(incoming.receive().data)) {
                         close()
                         return@webSocket
                     }
 
+                    println("Authed successfully")
+
                     send("size")
+                    println("Sent size request to codeclient")
                     val size = String(incoming.receive().data)
 
                     val sizeNum = when(size) {
@@ -672,12 +170,15 @@ open class Template(
                         "MEGA" -> 300
                         else -> 0
                     }
+
+                    println("Received size $sizeNum")
                     
                     if (sizeNum == 0) {
                         close()
                         return@webSocket
                     }
-                    
+
+
                     for (temp in templates) {
                         if (temp.blocks.size*2 > sizeNum && !ignoreSizeWarning) {
                             println("TEMPLATE PLACE ERROR\n"
@@ -689,15 +190,19 @@ open class Template(
                         }
                     }
 
+                    println("Sending templates to codeclient")
                     send("place swap")
                     
                     for (temp in templates) {
                         send("place ${temp.getTemplateString()}")
+                        println("Sent ${temp.name}")
                     }
-                    
+
+                    println("Sent place request to codeclient")
                     send("place go")
                     incoming.receive()
-                    
+
+                    println("Done, closing websocket")
                     close(CloseReason(CloseReason.Codes.NORMAL, "Function done."))
                 }
             }

@@ -1,10 +1,11 @@
 package io.github.flyingpig525.base.block
 
+@Suppress("unused")
 enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Click Container Slot Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *clicks a slot in a container.*
@@ -14,7 +15,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Close Inventory Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a*
 	 * *player closes an inventory.*
@@ -24,7 +25,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Start Flight Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a*
 	 * *player starts flying.*
@@ -34,7 +35,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Break Block Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a*
 	 * *player breaks a block.*
@@ -44,7 +45,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Start Sprint Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a*
 	 * *player starts sprinting.*
@@ -54,7 +55,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Mob Kill Player Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when*
 	 * *a mob kills a player.*
@@ -64,7 +65,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Teleport Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when*
 	 * *a player is teleported.*
@@ -74,7 +75,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Shoot Bow Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *fires an arrow with a bow.*
@@ -82,9 +83,19 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	ShootBow(EventBlock.Type.PlayerEvent, "ShootBow"),
 
 	/**
+	 * Player Change Sign Event
+	 *
+	 * **Description:**
+	 *
+	 * *Executes code when a*
+	 * *player changes a sign.*
+	 */
+	ChangeSign(EventBlock.Type.PlayerEvent, "ChangeSign"),
+
+	/**
 	 * Player Stop Flight Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a*
 	 * *player stops flying.*
@@ -94,7 +105,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Tame Mob Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *tames a mob.*
@@ -104,7 +115,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Left Click Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *left clicks.*
@@ -114,7 +125,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Take Damage Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a*
 	 * *player takes damage.*
@@ -124,7 +135,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Projectile Hit Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a projectile*
 	 * *launched by a player hits a block,*
@@ -135,7 +146,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Kill Player Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *kills another player.*
@@ -145,7 +156,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Vehicle Jump Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a*
 	 * *player presses the jump key*
@@ -157,7 +168,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Click Inventory Slot Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player clicks*
 	 * *a slot inside their inventory.*
@@ -167,7 +178,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Respawn Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when*
 	 * *a player respawns.*
@@ -177,7 +188,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Swap Hands Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *swaps an item or items between*
@@ -188,7 +199,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Resource Pack Load
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a*
 	 * *player finishes loading a*
@@ -199,7 +210,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Damage Entity Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a*
 	 * *player damages an entity.*
@@ -209,7 +220,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Sneak Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when*
 	 * *a player sneaks.*
@@ -219,7 +230,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Heal Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *regains health from any*
@@ -230,7 +241,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Right Click Player Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *right clicks another player.*
@@ -240,7 +251,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Consume Item Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *eats or drinks an item.*
@@ -248,9 +259,30 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	Consume(EventBlock.Type.PlayerEvent, "Consume"),
 
 	/**
+	 * Player Start Glide Event
+	 *
+	 * **Description:**
+	 *
+	 * *Executes code when a*
+	 * *player starts gliding.*
+	 */
+	StartGlide(EventBlock.Type.PlayerEvent, "StartGlide"),
+
+	/**
+	 * Player Movement Key Change Event
+	 *
+	 * **Description:**
+	 *
+	 * *Executes code when a player*
+	 * *presses or releases movement*
+	 * *keys.*
+	 */
+	MovementKey(EventBlock.Type.PlayerEvent, "MovementKey"),
+
+	/**
 	 * Player Death Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *dies, not as a result of another*
@@ -261,7 +293,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Place Block Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a*
 	 * *player places a block.*
@@ -271,7 +303,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Walk Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code while*
 	 * *a player is walking.*
@@ -281,7 +313,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Pick Up Item Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a*
 	 * *player picks up an item.*
@@ -291,7 +323,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Dismount Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a*
 	 * *player dismounts a vehicle*
@@ -302,7 +334,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Potion Cloud Imbue Player Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when an area of*
 	 * *effect cloud applies its potion*
@@ -313,7 +345,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Leave Game Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a*
 	 * *player leaves the plot.*
@@ -323,7 +355,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Drop Item Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a*
 	 * *player drops an item.*
@@ -333,7 +365,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Left Click Player Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *left clicks another player.*
@@ -343,7 +375,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Change Slot Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *changes their hotbar slot.*
@@ -353,7 +385,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Right Click Entity Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *right clicks an entity.*
@@ -361,9 +393,20 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	ClickEntity(EventBlock.Type.PlayerEvent, "ClickEntity"),
 
 	/**
+	 * Player Pick Entity Event
+	 *
+	 * **Description:**
+	 *
+	 * *Executes code when a player*
+	 * *uses their Pick Block*
+	 * *key bind on an entity.*
+	 */
+	PickEntity(EventBlock.Type.PlayerEvent, "PickEntity"),
+
+	/**
 	 * Player Horse Jump Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *causes a horse to jump.*
@@ -373,7 +416,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Shoot Projectile Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *throws a projectile such*
@@ -384,7 +427,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Move Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when*
 	 * *a player moves.*
@@ -394,7 +437,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Unsneak Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a*
 	 * *player stops sneaking.*
@@ -402,9 +445,30 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	Unsneak(EventBlock.Type.PlayerEvent, "Unsneak"),
 
 	/**
+	 * Player Combust Event
+	 *
+	 * **Description:**
+	 *
+	 * *Executes code when a*
+	 * *player catches on fire.*
+	 */
+	PlayerCombust(EventBlock.Type.PlayerEvent, "PlayerCombust"),
+
+	/**
+	 * Player Chat Event
+	 *
+	 * **Description:**
+	 *
+	 * *Executes code when a*
+	 * *player sends a chat*
+	 * *message.*
+	 */
+	Chat(EventBlock.Type.PlayerEvent, "Chat"),
+
+	/**
 	 * Player Fish Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *fishes an entity,*
@@ -415,7 +479,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * 
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 */
 	FallDamage(EventBlock.Type.PlayerEvent, "FallDamage"),
@@ -423,7 +487,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Break Item Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a*
 	 * *player breaks an item.*
@@ -433,7 +497,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * 
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 */
 	LoopEvent(EventBlock.Type.PlayerEvent, "LoopEvent"),
@@ -441,7 +505,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Resurrect Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when*
 	 * *a player resurrects with*
@@ -452,7 +516,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Right Click Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *right clicks while looking at a*
@@ -461,9 +525,19 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	RightClick(EventBlock.Type.PlayerEvent, "RightClick"),
 
 	/**
+	 * Purchase Product
+	 *
+	 * **Description:**
+	 *
+	 * *Executes code when a player*
+	 * *purchases a plot product.*
+	 */
+	Purchase(EventBlock.Type.PlayerEvent, "Purchase"),
+
+	/**
 	 * Player Click Menu Slot Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *clicks a slot in an inventory*
@@ -474,7 +548,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Riptide Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *throws a riptide trident.*
@@ -482,9 +556,19 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	Riptide(EventBlock.Type.PlayerEvent, "Riptide"),
 
 	/**
+	 * Player Stop Glide Event
+	 *
+	 * **Description:**
+	 *
+	 * *Executes code when a*
+	 * *player stops gliding.*
+	 */
+	StopGlide(EventBlock.Type.PlayerEvent, "StopGlide"),
+
+	/**
 	 * Player Kill Mob Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when*
 	 * *a player kills a mob.*
@@ -494,7 +578,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Join Game Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a*
 	 * *player joins the plot.*
@@ -504,7 +588,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Entity Damage Player Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when an*
 	 * *entity damages a player.*
@@ -514,7 +598,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Stop Sprinting Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a*
 	 * *player stops sprinting.*
@@ -524,7 +608,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Jump Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a*
 	 * *player jumps.*
@@ -534,7 +618,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Load Crossbow Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *loads a crossbow.*
@@ -544,7 +628,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Projectile Damage Player Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a projectile*
 	 * *damages a player.*
@@ -554,7 +638,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Command Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *types a command on the plot.*
@@ -564,7 +648,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Left Click Entity Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *left clicks an entity.*
@@ -574,7 +658,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Exhaustion Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a*
 	 * *player gains exhaustion.*
@@ -584,7 +668,7 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Resource Pack Decline
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a*
 	 * *player declines a plot*
@@ -593,9 +677,20 @@ enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	PackDecline(EventBlock.Type.PlayerEvent, "PackDecline"),
 
 	/**
+	 * Player Pick Block Event
+	 *
+	 * **Description:**
+	 *
+	 * *Executes code when a player*
+	 * *uses their Pick Block*
+	 * *key bind on a block.*
+	 */
+	PickBlock(EventBlock.Type.PlayerEvent, "PickBlock"),
+
+	/**
 	 * Player Damage Player Event
 	 *
-	 * #### Description:
+	 * **Description:**
 	 *
 	 * *Executes code when a player*
 	 * *damages another player.*

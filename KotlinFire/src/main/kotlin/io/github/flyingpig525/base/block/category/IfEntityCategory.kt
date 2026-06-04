@@ -1,13 +1,20 @@
 package io.github.flyingpig525.base.block.category
 
-import io.github.flyingpig525.base.*
-import io.github.flyingpig525.base.item.*
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
+import io.github.flyingpig525.base.block.Block
+import io.github.flyingpig525.base.block.BracketBlock
+import io.github.flyingpig525.base.block.ElseOperation
+import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
-import io.github.flyingpig525.base.block.*
-import io.github.flyingpig525.base.block.subaction.*
+import io.github.flyingpig525.base.item.type.tag.IfEntityTags
+import io.github.flyingpig525.base.item.type.tag.TagItem
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.put
+import kotlin.reflect.KClass
+import kotlin.reflect.full.superclasses
 
+@Suppress("unused")
 class IfEntityCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
@@ -16,22 +23,37 @@ class IfEntityCategory internal constructor(private val template: Template) {
         action: String,
         wrappedCode: Template.() -> Unit,
         not: Boolean = false,
+        tagClass: KClass<*>? = null,
         extra: JsonObjectBuilder.() -> Unit = {}
     ) {
-        blocks += Block("if_entity", ItemCollection(items).items, action) {
+        val collection = ItemCollection(items)
+        tagClass?.nestedClasses?.forEach { klass ->
+            if (klass.superclasses.any { it.qualifiedName == "kotlin.Enum" }) {
+                @Suppress("UNCHECKED_CAST")
+                val entries = klass.java.enumConstants as Array<Enum<*>>
+                entries.forEach { entry ->
+                    if (entry is TagItem) {
+                        if (!entry.default) return@forEach
+                        if (collection.items.none { it is TagItem && it.tag == entry.tag })
+                        collection += entry
+                    }
+                }
+            }
+        }
+        blocks += Block("if_entity", collection.items, action) {
             if (not) put("attribute", "NOT")
             extra()
         }
         blocks += BracketBlock(type = "norm")
         blocks += io.github.flyingpig525.base.Template(
             io.github.flyingpig525.base.Template.Type.NONE,
-            a = wrappedCode
+            code = wrappedCode
         ).blocks
         blocks += BracketBlock(false, "norm")
     }
 	/**
-	 * *Checks if an entity*
-	 * *is a boat or minecart.*
+	 * Checks if an entity
+	 * is a boat or minecart.
 	 */
 	fun isVehicle(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "IsVehicle", wrappedCode, not)
@@ -40,8 +62,8 @@ class IfEntityCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if an entity is*
-	 * *supported by a block.*
+	 * Checks if an entity is
+	 * supported by a block.
 	 */
 	fun isGrounded(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "IsGrounded", wrappedCode, not)
@@ -50,15 +72,15 @@ class IfEntityCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if an entity is the*
-	 * *given type.*
+	 * Checks if an entity is the
+	 * given type.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Spawn egg,*
-	 * *projectile, or vehicle*
+	 * Spawn egg,
+	 * projectile, or vehicle
 	 *
 	 * (*) = optional
 	 */
@@ -69,8 +91,8 @@ class IfEntityCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if an entity*
-	 * *is a projectile.*
+	 * Checks if an entity
+	 * is a projectile.
 	 */
 	fun isProj(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "IsProj", wrappedCode, not)
@@ -79,8 +101,8 @@ class IfEntityCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if an entity*
-	 * *is a mob.*
+	 * Checks if an entity
+	 * is a mob.
 	 */
 	fun isMob(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "IsMob", wrappedCode, not)
@@ -89,24 +111,24 @@ class IfEntityCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if an entity has a*
-	 * *given custom tag, and (if*
-	 * *provided) whether the tag*
-	 * *matches the given value.*
+	 * Checks if an entity has a
+	 * given custom tag, and (if
+	 * provided) whether the tag
+	 * matches the given value.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Tag name*
+	 * Tag name
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Tag value*
+	 * (*) Tag value
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *Tag value*
+	 * (*) Tag value
 	 *
 	 * (*) = optional
 	 */
@@ -117,8 +139,8 @@ class IfEntityCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if a sheep is*
-	 * *sheared.*
+	 * Checks if a sheep is
+	 * sheared.
 	 */
 	fun isSheared(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "IsSheared", wrappedCode, not)
@@ -127,8 +149,8 @@ class IfEntityCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if an entity*
-	 * *is an item.*
+	 * Checks if an entity
+	 * is an item.
 	 */
 	fun isItem(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "IsItem", wrappedCode, not)
@@ -137,35 +159,37 @@ class IfEntityCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if an entity is riding*
-	 * *another entity.*
+	 * Checks if an entity is riding
+	 * another entity.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Spawn egg,*
-	 * (*) *projectile, or vehicle*
+	 * Spawn egg,
+	 * projectile, or vehicle
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *Entity UUID*
+	 * Entity UUID
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Entity name*
+	 * Entity name
 	 *
 	 * (*) = optional
+
+	 * @see [IfEntityTags.IsRiding]
 	 */
 	fun isRiding(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, " IsRiding ", wrappedCode, not)
+		block(items, " IsRiding ", wrappedCode, not, tagClass = IfEntityTags.IsRiding::class)
 		return ElseOperation()
 	}
 
 
 	/**
-	 * *Checks if an entity still*
-	 * *exists in the world.*
+	 * Checks if an entity still
+	 * exists in the world.
 	 */
 	fun exists(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
 		block(items, "Exists", wrappedCode, not)
@@ -174,43 +198,75 @@ class IfEntityCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if an entity is within a*
-	 * *range of a location.*
+	 * Checks if an entity's hitbox is
+	 * within a range of a location.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Center location*
+	 * Center location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Range*
+	 * (*) Range
+	 *
+	 * *Default = 5 blocks*
 	 *
 	 * (*) = optional
+
+	 * @see [IfEntityTags.IsHitboxNear]
 	 */
-	fun isNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "IsNear", wrappedCode, not)
+	fun isHitboxNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsHitboxNear", wrappedCode, not, tagClass = IfEntityTags.IsHitboxNear::class)
 		return ElseOperation()
 	}
 
 
 	/**
-	 * *Checks if an entity has a*
-	 * *potion effect of a certain*
-	 * *type active.*
+	 * Checks if an entity is within a
+	 * range of a location.
 	 *
-	 * #### Args:
+	 * **Args:**
+	 *
+	 * [LocItem]
+	 *
+	 * Center location
+	 *
+	 * [NumItem]
+	 *
+	 * (*) Range
+	 *
+	 * *Default = 5 blocks*
+	 *
+	 * (*) = optional
+
+	 * @see [IfEntityTags.IsNear]
+	 */
+	fun isNear(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "IsNear", wrappedCode, not, tagClass = IfEntityTags.IsNear::class)
+		return ElseOperation()
+	}
+
+
+	/**
+	 * Checks if an entity has a
+	 * potion effect of a certain
+	 * type active.
+	 *
+	 * **Args:**
 	 *
 	 * [PotionItem]
 	 *
-	 * *Effect(s)*
-	 * *to check for*
+	 * Effect(s)
+	 * to check for
 	 *
 	 * (*) = optional
+
+	 * @see [IfEntityTags.HasPotion]
 	 */
 	fun hasPotion(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "HasPotion", wrappedCode, not)
+		block(items, "HasPotion", wrappedCode, not, tagClass = IfEntityTags.HasPotion::class)
 		return ElseOperation()
 	}
 
@@ -224,24 +280,26 @@ class IfEntityCategory internal constructor(private val template: Template) {
 
 
 	/**
-	 * *Checks if an entity's name or*
-	 * *custom name is equal to the*
-	 * *given text.*
+	 * Checks if an entity's name or
+	 * custom name is equal to the
+	 * given text.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *UUID to check for*
+	 * UUID to check for
 	 *
 	 * [TextItem]
 	 *
-	 * *Name to check for*
+	 * Name to check for
 	 *
 	 * (*) = optional
+
+	 * @see [IfEntityTags.NameEquals]
 	 */
 	fun nameEquals(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
-		block(items, "NameEquals", wrappedCode, not)
+		block(items, "NameEquals", wrappedCode, not, tagClass = IfEntityTags.NameEquals::class)
 		return ElseOperation()
 	}
 

@@ -1,68 +1,135 @@
 package io.github.flyingpig525.base.block.category
 
-import io.github.flyingpig525.base.*
-import io.github.flyingpig525.base.item.*
-import io.github.flyingpig525.base.item.type.*
-import io.github.flyingpig525.base.block.*
-import io.github.flyingpig525.base.block.subaction.*
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
+import io.github.flyingpig525.base.block.Block
+import io.github.flyingpig525.base.item.Item
+import io.github.flyingpig525.base.item.ItemCollection
+import io.github.flyingpig525.base.item.type.NumItem
+import io.github.flyingpig525.base.item.type.tag.ControlTags
+import io.github.flyingpig525.base.item.type.tag.TagItem
 import kotlinx.serialization.json.JsonObjectBuilder
-import kotlinx.serialization.json.put
+import kotlin.reflect.KClass
+import kotlin.reflect.full.superclasses
 
+@Suppress("unused")
 class ControlCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
-    private fun block(items: Items, action: String, extra: JsonObjectBuilder.() -> Unit = {}) {
-        blocks += Block("control", ItemCollection(items).items, action, extra)
+    private fun block(items: Items, action: String, tagClass: KClass<*>? = null, extra: JsonObjectBuilder.() -> Unit = {}) {
+        val collection = ItemCollection(items)
+        tagClass?.nestedClasses?.forEach { klass ->
+            if (klass.superclasses.any { it.qualifiedName == "kotlin.Enum" }) {
+                @Suppress("UNCHECKED_CAST")
+                val entries = klass.java.enumConstants as Array<Enum<*>>
+                entries.forEach { entry ->
+                    if (entry is TagItem) {
+                        if (!entry.default) return@forEach
+                        if (collection.items.none { it is TagItem && it.tag == entry.tag })
+                        collection += entry
+                    }
+                }
+            }
+        }
+        blocks += Block("control", collection.items, action, extra)
     }
 	/**
-	 * *Stops a Repeat sequence and*
-	 * *continues to the next code block.*
+	 * Stops a Repeat sequence and
+	 * continues to the next code block.
 	 */
-	fun stopRepeat(items: Items) = block(items, "StopRepeat")
+	fun stopRepeat(items: Items) {
+		block(items, "StopRepeat")
+	}
 
 
 	/**
-	 * *Skips the rest of a Function*
-	 * *sequence and returns to the*
-	 * *block it was called from.*
+	 * Skips the rest of a Function
+	 * sequence and returns to the
+	 * block it was called from.
 	 */
-	fun returnFrom(items: Items) = block(items, "Return")
+	fun returnFrom(items: Items) {
+		block(items, "Return")
+	}
 
 
 	/**
-	 */
-	fun returnNTimes(items: Items) = block(items, "ReturnNTimes")
-
-
-	/**
-	 * *Skips the rest of this repeat*
-	 * *statement's code and continues*
-	 * *to the next repetition.*
-	 */
-	fun skip(items: Items) = block(items, "Skip")
-
-
-	/**
-	 * *Stops the current event*
-	 * *thread. Any code after this*
-	 * *block will not be executed.*
-	 */
-	fun end(items: Items) = block(items, "End")
-
-
-	/**
-	 * *Pauses the current code*
-	 * *sequence for a duration of*
-	 * *ticks, seconds, or minutes.*
+	 * Sends a formatted message to
+	 * the specified plot staff group
+	 * regardless of which mode
+	 * they're currently in.
+	 * Clicking on the message will
+	 * teleport you to this block.
 	 *
-	 * #### Args:
+	 * **Args:**
+	 *
+	 * [Item]
+	 *
+	 * (*) Message to format
+	 *
+	 * (*) = optional
+
+	 * @see [ControlTags.PrintDebug]
+	 */
+	fun printDebug(items: Items) {
+		block(items, "PrintDebug", tagClass = ControlTags.PrintDebug::class)
+	}
+
+
+	/**
+	 */
+	fun returnNTimes(items: Items) {
+		block(items, "ReturnNTimes")
+	}
+
+
+	/**
+	 * Skips the rest of this repeat
+	 * statement's code and continues
+	 * to the next repetition.
+	 */
+	fun skip(items: Items) {
+		block(items, "Skip")
+	}
+
+
+	/**
+	 * Stops the current event
+	 * thread. Any code after this
+	 * block will not be executed.
+	 */
+	fun end(items: Items) {
+		block(items, "End")
+	}
+
+
+	/**
+	 * Ends all currently active threads,
+	 * including active lines, loops, etc.
+	 */
+	fun endAllThreads(items: Items) {
+		block(items, "EndAllThreads", tagClass = ControlTags.EndAllThreads::class)
+	}
+
+
+	/**
+	 * Pauses the current code
+	 * sequence for a duration of
+	 * ticks, seconds, or minutes.
+	 *
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Wait duration*
+	 * (*) Wait duration
+	 *
+	 * *Default = §c1§7*
 	 *
 	 * (*) = optional
+
+	 * @see [ControlTags.Wait]
 	 */
-	fun wait(items: Items) = block(items, "Wait")
+	fun wait(items: Items) {
+		block(items, "Wait", tagClass = ControlTags.Wait::class)
+	}
 
 }

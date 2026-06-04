@@ -1,2175 +1,2831 @@
 package io.github.flyingpig525.base.block.category
 
-import io.github.flyingpig525.base.*
-import io.github.flyingpig525.base.item.*
+import io.github.flyingpig525.base.Items
+import io.github.flyingpig525.base.Template
+import io.github.flyingpig525.base.block.Block
+import io.github.flyingpig525.base.item.ItemCollection
 import io.github.flyingpig525.base.item.type.*
-import io.github.flyingpig525.base.block.*
-import io.github.flyingpig525.base.block.subaction.*
+import io.github.flyingpig525.base.item.type.tag.EntityActionTags
+import io.github.flyingpig525.base.item.type.tag.TagItem
 import kotlinx.serialization.json.JsonObjectBuilder
-import kotlinx.serialization.json.put
+import kotlin.reflect.KClass
+import kotlin.reflect.full.superclasses
 
+@Suppress("unused")
 class EntityActionCategory internal constructor(private val template: Template) {
     private val blocks = template.blocks
 
-    private fun block(items: Items, action: String, extra: JsonObjectBuilder.() -> Unit = {}) {
-        blocks += Block("entity_action", ItemCollection(items).items, action, extra)
+    private fun block(items: Items, action: String, tagClass: KClass<*>? = null, extra: JsonObjectBuilder.() -> Unit = {}) {
+        val collection = ItemCollection(items)
+        tagClass?.nestedClasses?.forEach { klass ->
+            if (klass.superclasses.any { it.qualifiedName == "kotlin.Enum" }) {
+                @Suppress("UNCHECKED_CAST")
+                val entries = klass.java.enumConstants as Array<Enum<*>>
+                entries.forEach { entry ->
+                    if (entry is TagItem) {
+                        if (!entry.default) return@forEach
+                        if (collection.items.none { it is TagItem && it.tag == entry.tag })
+                        collection += entry
+                    }
+                }
+            }
+        }
+        blocks += Block("entity_action", collection.items, action, extra)
     }
 	/**
-	 * *Sets the left or right rotation of a*
-	 * *display entity from 3 angles on*
-	 * *each axis.*
+	 * Sets the left or right rotation of a
+	 * display entity from 3 angles on
+	 * each axis.
 	 *
-	 * #### Args:
-	 *
-	 * [NumItem]
-	 *
-	 * *Pitch (0-360)*
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Yaw (0-360)*
+	 * Pitch (0-360)
 	 *
 	 * [NumItem]
 	 *
-	 * *Roll (0-360)*
+	 * Yaw (0-360)
+	 *
+	 * [NumItem]
+	 *
+	 * Roll (0-360)
 	 *
 	 * [VecItem]
 	 *
-	 * *Pitch/Yaw/Roll Vector*
+	 * Pitch/Yaw/Roll Vector
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.DispRotationEuler]
 	 */
-	fun dispRotationEuler(items: Items) = block(items, "DispRotationEuler")
+	fun dispRotationEuler(items: Items) {
+		block(items, "DispRotationEuler", tagClass = EntityActionTags.DispRotationEuler::class)
+	}
 
 
 	/**
-	 * *Sets a mob in the sheared*
-	 * *state.*
+	 * Sets a mannequin's
+	 * skin layers.
 	 */
-	fun shear(items: Items) = block(items, "Shear")
+	fun mannequinLayers(items: Items) {
+		block(items, "MannequinLayers", tagClass = EntityActionTags.MannequinLayers::class)
+	}
 
 
 	/**
-	 * *Sets an entity's movement*
-	 * *velocity.*
+	 * Sets a mob in the sheared
+	 * state.
+	 */
+	fun shear(items: Items) {
+		block(items, "Shear")
+	}
+
+
+	/**
+	 * Sets an entity's movement
+	 * velocity.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VecItem]
 	 *
-	 * *New velocity*
+	 * New velocity
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.SetVelocity]
 	 */
-	fun setVelocity(items: Items) = block(items, "SetVelocity")
+	fun setVelocity(items: Items) {
+		block(items, "SetVelocity", tagClass = EntityActionTags.SetVelocity::class)
+	}
 
 
 	/**
-	 * *Sets the number of ticks a*
-	 * *glow squid will stop glowing for.*
+	 * Sets the number of ticks a
+	 * glow squid will stop glowing for.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Ticks*
+	 * Ticks
 	 *
 	 * (*) = optional
 	 */
-	fun setGlowSquidDark(items: Items) = block(items, "SetGlowSquidDark")
+	fun setGlowSquidDark(items: Items) {
+		block(items, "SetGlowSquidDark")
+	}
 
 
 	/**
-	 * *Sets a frog's color type.*
-	 */
-	fun setFrogType(items: Items) = block(items, "SetFrogType")
-
-
-	/**
-	 * *Sets the left or right rotation of*
-	 * *a display entity from axis-angle*
-	 * *rotation.*
+	 * Sets the left or right rotation of
+	 * a display entity from axis-angle
+	 * rotation.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VecItem]
 	 *
-	 * *Axis vector*
+	 * Axis vector
 	 *
 	 * [NumItem]
 	 *
-	 * *Angle (0-360)*
+	 * Angle (0-360)
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.DispRotAxisAngle]
 	 */
-	fun dispRotAxisAngle(items: Items) = block(items, "DispRotAxisAngle")
+	fun dispRotAxisAngle(items: Items) {
+		block(items, "DispRotAxisAngle", tagClass = EntityActionTags.DispRotAxisAngle::class)
+	}
 
 
 	/**
-	 * *Damages a mob.*
+	 * Damages a mob.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Damage to inflict*
+	 * Damage to inflict
+	 *
+	 * *§c❤§7 = §c2§7 Health*
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *UUID of damager entity*
+	 * (*) UUID of damager entity
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Name of damager entity*
+	 * (*) Name of damager entity
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.Damage]
 	 */
-	fun damage(items: Items) = block(items, "Damage")
+	fun damage(items: Items) {
+		block(items, "Damage", tagClass = EntityActionTags.Damage::class)
+	}
 
 
 	/**
-	 * *Sets whether an entity*
-	 * *is sitting.*
+	 * Sets whether an entity
+	 * is sitting.
 	 */
-	fun setMobSitting(items: Items) = block(items, "SetMobSitting")
+	fun setMobSitting(items: Items) {
+		block(items, "SetMobSitting", tagClass = EntityActionTags.SetMobSitting::class)
+	}
 
 
 	/**
-	 * *Makes a mob perform*
-	 * *an animation.*
+	 * Makes a mob perform
+	 * an animation.
 	 */
-	fun sendAnimation(items: Items) = block(items, "SendAnimation")
+	fun sendAnimation(items: Items) {
+		block(items, "SendAnimation", tagClass = EntityActionTags.SendAnimation::class)
+	}
 
 
 	/**
 	 */
-	fun disableGlowing(items: Items) = block(items, "DisableGlowing")
+	fun disableGlowing(items: Items) {
+		block(items, "DisableGlowing")
+	}
 
 
 	/**
-	 * *Sets the anger level*
-	 * *of a Warden.*
+	 * Sets the anger level
+	 * of a Warden.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Anger level*
-	 * *(0-150)*
+	 * Anger level
+	 * (0-150)
 	 *
 	 * [StringItem]
 	 *
-	 * *Entity name*
+	 * Entity name
 	 *
 	 * [TextItem]
 	 *
-	 * *Entity UUID*
+	 * Entity UUID
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.SetWardenAnger]
 	 */
-	fun setWardenAnger(items: Items) = block(items, "SetWardenAnger")
+	fun setWardenAnger(items: Items) {
+		block(items, "SetWardenAnger", tagClass = EntityActionTags.SetWardenAnger::class)
+	}
 
 
 	/**
-	 * *Sets a horse's color and pattern.*
+	 * Sets a horse's color and pattern.
 	 */
-	fun setHorsePattern(items: Items) = block(items, "SetHorsePattern")
+	fun setHorsePattern(items: Items) {
+		block(items, "SetHorsePattern", tagClass = EntityActionTags.SetHorsePattern::class)
+	}
 
 
 	/**
-	 * *Restores a mob's health.*
+	 * Restores a mob's health.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Amount to heal*
+	 * Amount to heal
+	 *
+	 * *§c❤§7 = §c2§7 Health*
 	 *
 	 * (*) = optional
 	 */
-	fun heal(items: Items) = block(items, "Heal")
+	fun heal(items: Items) {
+		block(items, "Heal")
+	}
 
 
 	/**
-	 * *Makes a panda sad for*
-	 * *the specified duration.*
+	 * Makes a panda sad for
+	 * the specified duration.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Ticks*
+	 * Ticks
 	 *
 	 * (*) = optional
 	 */
-	fun setPandaSadTicks(items: Items) = block(items, "SetPandaSadTicks")
+	fun setPandaSadTicks(items: Items) {
+		block(items, "SetPandaSadTicks")
+	}
 
 
 	/**
 	 */
-	fun setItemOwner(items: Items) = block(items, "SetItemOwner")
+	fun setItemOwner(items: Items) {
+		block(items, "SetItemOwner")
+	}
 
 
 	/**
-	 * *Sets a mob's dye color.*
+	 * Sets a mob's dye color.
 	 */
-	fun setDyeColor(items: Items) = block(items, "SetDyeColor")
+	fun setDyeColor(items: Items) {
+		block(items, "SetDyeColor", tagClass = EntityActionTags.SetDyeColor::class)
+	}
 
 
 	/**
-	 * *Launches an entity up or down.*
+	 * Launches an entity up or down.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Launch power*
+	 * Launch power
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.LaunchUp]
 	 */
-	fun launchUp(items: Items) = block(items, "LaunchUp")
+	fun launchUp(items: Items) {
+		block(items, "LaunchUp", tagClass = EntityActionTags.LaunchUp::class)
+	}
 
 
 	/**
-	 * *Sets an animal's age.*
+	 * Sets an animal's age.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Age*
+	 * Age
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.SetAge]
 	 */
-	fun setAge(items: Items) = block(items, "SetAge")
+	fun setAge(items: Items) {
+		block(items, "SetAge", tagClass = EntityActionTags.SetAge::class)
+	}
 
 
 	/**
-	 * *Sets an entity's custom name.*
+	 * Sets an entity's custom name.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Custom name*
+	 * Custom name
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.SetName]
 	 */
-	fun setName(items: Items) = block(items, " SetName ")
+	fun setName(items: Items) {
+		block(items, " SetName ", tagClass = EntityActionTags.SetName::class)
+	}
 
 
 	/**
 	 */
-	fun noGravity(items: Items) = block(items, "NoGravity")
+	fun noGravity(items: Items) {
+		block(items, "NoGravity")
+	}
 
 
 	/**
-	 * *Sets whether a mob has its*
-	 * *arms raised.*
+	 * Sets whether a mob has its
+	 * arms raised.
 	 */
-	fun setArmsRaised(items: Items) = block(items, "SetArmsRaised")
-
-
-	/**
-	 */
-	fun setMoveSpeed(items: Items) = block(items, "SetMoveSpeed")
-
-
-	/**
-	 * *Sets whether an entity is*
-	 * *invulnerable to damage.*
-	 */
-	fun setInvulnerable(items: Items) = block(items, "SetInvulnerable")
-
-
-	/**
-	 * *Changes the type of friction*
-	 * *an entity experiences.*
-	 */
-	fun setFriction(items: Items) = block(items, "SetFriction")
+	fun setArmsRaised(items: Items) {
+		block(items, "SetArmsRaised", tagClass = EntityActionTags.SetArmsRaised::class)
+	}
 
 
 	/**
 	 */
-	fun projColl(items: Items) = block(items, "ProjColl")
+	fun setMoveSpeed(items: Items) {
+		block(items, "SetMoveSpeed", tagClass = EntityActionTags.SetMoveSpeed::class)
+	}
+
+
+	/**
+	 * Sets whether an entity is
+	 * invulnerable to damage.
+	 */
+	fun setInvulnerable(items: Items) {
+		block(items, "SetInvulnerable", tagClass = EntityActionTags.SetInvulnerable::class)
+	}
+
+
+	/**
+	 * Changes the type of friction
+	 * an entity experiences.
+	 */
+	fun setFriction(items: Items) {
+		block(items, "SetFriction", tagClass = EntityActionTags.SetFriction::class)
+	}
 
 
 	/**
 	 */
-	fun armorStandTags(items: Items) = block(items, "ArmorStandTags")
+	fun projColl(items: Items) {
+		block(items, "ProjColl")
+	}
 
 
 	/**
-	 * *Sets the number of ticks a*
-	 * *dropped item cannot be*
-	 * *picked up for.*
+	 */
+	fun armorStandTags(items: Items) {
+		block(items, "ArmorStandTags", tagClass = EntityActionTags.ArmorStandTags::class)
+	}
+
+
+	/**
+	 * Sets the number of ticks a
+	 * dropped item cannot be
+	 * picked up for.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Delay*
+	 * Delay
 	 *
 	 * (*) = optional
 	 */
-	fun setPickupDelay(items: Items) = block(items, "SetPickupDelay")
+	fun setPickupDelay(items: Items) {
+		block(items, "SetPickupDelay")
+	}
+
+
+	/**
+	 * Sets a mannequin's
+	 * main hand.
+	 */
+	fun mannequinHand(items: Items) {
+		block(items, "MannequinHand", tagClass = EntityActionTags.MannequinHand::class)
+	}
 
 
 	/**
 	 */
-	fun dropItems(items: Items) = block(items, "DropItems")
+	fun dropItems(items: Items) {
+		block(items, "DropItems")
+	}
 
 
 	/**
-	 * *Sets one of the entity's miscellaneous*
-	 * *attributes such as scale and*
-	 * *burning time.*
+	 * Sets one of the entity's miscellaneous
+	 * attributes such as scale and
+	 * burning time.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.MiscAttribute]
 	 */
-	fun miscAttribute(items: Items) = block(items, "MiscAttribute")
+	fun miscAttribute(items: Items) {
+		block(items, "MiscAttribute", tagClass = EntityActionTags.MiscAttribute::class)
+	}
 
 
 	/**
-	 * *Sets a creeper's explosion power.*
-	 * *This affects the damage and area*
-	 * *of effect.*
+	 * Sets a creeper's explosion power.
+	 * This affects the damage and area
+	 * of effect.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Power (0-25)*
+	 * Power (0-25)
+	 *
+	 * *Default = §c3§7 (§c6§7 for charged creepers)*
 	 *
 	 * (*) = optional
 	 */
-	fun setCreeperPower(items: Items) = block(items, "SetCreeperPower")
+	fun setCreeperPower(items: Items) {
+		block(items, "SetCreeperPower")
+	}
 
 
 	/**
-	 * *Sets whether an armor stand*
-	 * *is a marker.*
+	 * Sets whether an armor stand
+	 * is a marker.
 	 */
-	fun setMarker(items: Items) = block(items, "SetMarker")
+	fun setMarker(items: Items) {
+		block(items, "SetMarker", tagClass = EntityActionTags.SetMarker::class)
+	}
 
 
 	/**
-	 * *Removes a custom tag*
-	 * *from an entity.*
+	 * Removes a custom tag
+	 * from an entity.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Tag name*
+	 * Tag name
 	 *
 	 * (*) = optional
 	 */
-	fun removeCustomTag(items: Items) = block(items, "RemoveCustomTag")
+	fun removeCustomTag(items: Items) {
+		block(items, "RemoveCustomTag")
+	}
 
 
 	/**
-	 * *Sets an entity's absorption*
-	 * *health (golden hearts).*
+	 * Sets an entity's absorption
+	 * health (golden hearts).
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Absorption health*
+	 * Absorption health
+	 *
+	 * *§c❤§7 = §c2§7 Health*
 	 *
 	 * (*) = optional
 	 */
-	fun setAbsorption(items: Items) = block(items, "SetAbsorption")
+	fun setAbsorption(items: Items) {
+		block(items, "SetAbsorption")
+	}
 
 
 	/**
-	 * *Sets whether a creeper*
-	 * *has the charged effect.*
+	 * Sets whether a creeper
+	 * has the charged effect.
 	 */
-	fun creeperCharged(items: Items) = block(items, "CreeperCharged")
+	fun creeperCharged(items: Items) {
+		block(items, "CreeperCharged", tagClass = EntityActionTags.CreeperCharged::class)
+	}
 
 
 	/**
-	 * *Sets the remaining time an entity is on*
-	 * *fire for.*
+	 * Sets the remaining time an entity is on
+	 * fire for.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Ticks*
+	 * Ticks
 	 *
 	 * (*) = optional
 	 */
-	fun setFireTicks(items: Items) = block(items, "SetFireTicks")
+	fun setFireTicks(items: Items) {
+		block(items, "SetFireTicks")
+	}
 
 
 	/**
-	 * *Sets one of the entity's combat-related*
-	 * *attributes such as attack damage*
-	 * *and attack speed.*
+	 * Sets one of the entity's combat-related
+	 * attributes such as attack damage
+	 * and attack speed.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
+	 *
+	 * (*) = optional
+
+	 * @see [EntityActionTags.CombatAttribute]
+	 */
+	fun combatAttribute(items: Items) {
+		block(items, "CombatAttribute", tagClass = EntityActionTags.CombatAttribute::class)
+	}
+
+
+	/**
+	 * Causes a mob to jump.
+	 */
+	fun jump(items: Items) {
+		block(items, "Jump")
+	}
+
+
+	/**
+	 * Sets a mannequin's
+	 * description.
+	 *
+	 * **Args:**
+	 *
+	 * [TextItem]
+	 *
+	 * (*) Description
+	 *
+	 * *Only shown if name is visible*
 	 *
 	 * (*) = optional
 	 */
-	fun combatAttribute(items: Items) = block(items, "CombatAttribute")
+	fun mannequinDesc(items: Items) {
+		block(items, "MannequinDesc")
+	}
 
 
 	/**
-	 * *Causes a mob to jump.*
-	 */
-	fun jump(items: Items) = block(items, "Jump")
-
-
-	/**
-	 * *Sets the displayed block*
-	 * *of a block display.*
+	 * Sets the displayed block
+	 * of a block display.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Displayed block*
+	 * Displayed block
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Block data*
+	 * (*) Block data
+	 *
+	 * *Example: §b"facing=up"§7, §b"half=top"§7*
 	 *
 	 * (*) = optional
 	 */
-	fun bDisplayBlock(items: Items) = block(items, "BDisplayBlock")
+	fun bDisplayBlock(items: Items) {
+		block(items, "BDisplayBlock")
+	}
 
 
 	/**
-	 * *Sets an entity's current*
-	 * *freeze ticks.*
+	 * Sets an entity's current
+	 * freeze ticks.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Ticks*
-	 * *(0-140)*
+	 * Ticks
+	 * (0-140)
+	 *
+	 * (*) = optional
+
+	 * @see [EntityActionTags.SetFreezeTicks]
+	 */
+	fun setFreezeTicks(items: Items) {
+		block(items, "SetFreezeTicks", tagClass = EntityActionTags.SetFreezeTicks::class)
+	}
+
+
+	/**
+	 * Sets whether a text display
+	 * is visible through walls
+	 * or not.
+	 */
+	fun tDisplaySeeThru(items: Items) {
+		block(items, "TDisplaySeeThru", tagClass = EntityActionTags.TDisplaySeeThru::class)
+	}
+
+
+	/**
+	 * Sets whether an entity
+	 * is gliding.
+	 */
+	fun setGliding(items: Items) {
+		block(items, "SetGliding", tagClass = EntityActionTags.SetGliding::class)
+	}
+
+
+	/**
+	 * Changes an entity's pitch and
+	 * yaw without teleporting it.
+	 *
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * Pitch (-90 to 90)
+	 *
+	 * [NumItem]
+	 *
+	 * Yaw (-180 to 180)
 	 *
 	 * (*) = optional
 	 */
-	fun setFreezeTicks(items: Items) = block(items, "SetFreezeTicks")
+	fun setRotation(items: Items) {
+		block(items, "SetRotation")
+	}
 
 
 	/**
-	 * *Sets whether a text display*
-	 * *is visible through walls*
-	 * *or not.*
+	 * Sets whether a panda is
+	 * rolling or not.
 	 */
-	fun tDisplaySeeThru(items: Items) = block(items, "TDisplaySeeThru")
+	fun setPandaRolling(items: Items) {
+		block(items, "SetPandaRolling", tagClass = EntityActionTags.SetPandaRolling::class)
+	}
 
 
 	/**
-	 * *Sets whether an entity*
-	 * *is gliding.*
+	 * Sets a tropical fish's
+	 * color and pattern.
 	 */
-	fun setGliding(items: Items) = block(items, "SetGliding")
+	fun setFishPattern(items: Items) {
+		block(items, "SetFishPattern", tagClass = EntityActionTags.SetFishPattern::class)
+	}
 
 
 	/**
-	 * *Changes an entity's pitch and*
-	 * *yaw without teleporting it.*
+	 * Sets a mob's temperature variant.
+	 */
+	fun setTemperature(items: Items) {
+		block(items, "SetTemperature", tagClass = EntityActionTags.SetTemperature::class)
+	}
+
+
+	/**
+	 * Sets a wolf's variant.
+	 */
+	fun setWolfType(items: Items) {
+		block(items, "SetWolfType", tagClass = EntityActionTags.SetWolfType::class)
+	}
+
+
+	/**
+	 * Sets the interpolation
+	 * properties of a display
+	 * entity.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Pitch (-90 to 90)*
+	 * (*) Interpolation duration
+	 * (*) in ticks
+	 *
+	 * *Default = §c0§7*
 	 *
 	 * [NumItem]
 	 *
-	 * *Yaw (-180 to 180)*
+	 * (*) Interpolation delay
+	 * (*) in ticks
+	 *
+	 * *Default = §c0§7*
 	 *
 	 * (*) = optional
 	 */
-	fun setRotation(items: Items) = block(items, "SetRotation")
-
-
-	/**
-	 * *Sets whether a panda is*
-	 * *rolling or not.*
-	 */
-	fun setPandaRolling(items: Items) = block(items, "SetPandaRolling")
-
-
-	/**
-	 * *Sets a tropical fish's*
-	 * *color and pattern.*
-	 */
-	fun setFishPattern(items: Items) = block(items, "SetFishPattern")
-
-
-	/**
-	 * *Sets a wolf's variant.*
-	 */
-	fun setWolfType(items: Items) = block(items, "SetWolfType")
-
-
-	/**
-	 * *Sets the interpolation*
-	 * *properties of a display*
-	 * *entity.*
-	 *
-	 * #### Args:
-	 *
-	 * [NumItem]
-	 *
-	 * (*) *Interpolation duration*
-	 * (*) *in ticks*
-	 *
-	 * [NumItem]
-	 *
-	 * (*) *Interpolation delay*
-	 * (*) *in ticks*
-	 *
-	 * (*) = optional
-	 */
-	fun dispInterpolation(items: Items) = block(items, "DispInterpolation")
+	fun dispInterpolation(items: Items) {
+		block(items, "DispInterpolation")
+	}
 
 
 	/**
 	 */
-	fun setHandItem(items: Items) = block(items, "SetHandItem")
+	fun setHandItem(items: Items) {
+		block(items, "SetHandItem", tagClass = EntityActionTags.SetHandItem::class)
+	}
 
 
 	/**
-	 * *Set an enderman's held block.*
+	 * Set an enderman's held block.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Block to hold*
+	 * Block to hold
 	 *
 	 * (*) = optional
 	 */
-	fun setEndermanBlock(items: Items) = block(items, "SetEndermanBlock")
+	fun setEndermanBlock(items: Items) {
+		block(items, "SetEndermanBlock")
+	}
 
 
 	/**
-	 * *Launches an entity toward or away*
-	 * *from a location.*
+	 * Sets whether a mannequin
+	 * is movable.
+	 */
+	fun mannequinMovable(items: Items) {
+		block(items, "MannequinMovable", tagClass = EntityActionTags.MannequinMovable::class)
+	}
+
+
+	/**
+	 * Launches an entity toward or away
+	 * from a location.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Launch destination*
+	 * Launch destination
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Launch power*
+	 * (*) Launch power
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.LaunchToward]
 	 */
-	fun launchToward(items: Items) = block(items, "LaunchToward")
+	fun launchToward(items: Items) {
+		block(items, "LaunchToward", tagClass = EntityActionTags.LaunchToward::class)
+	}
 
 
 	/**
-	 * *Sets a mob's armor items.*
-	 * *Place the armor in slots 1-4*
-	 * *of the chest, with 1 being the*
-	 * *helmet and 4 being the boots.*
+	 * Sets a mob's armor items.
+	 * Place the armor in slots 1-4
+	 * of the chest, with 1 being the
+	 * helmet and 4 being the boots.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Armor to set*
+	 * Armor to set
 	 *
 	 * (*) = optional
 	 */
-	fun setArmor(items: Items) = block(items, "SetArmor")
+	fun setArmor(items: Items) {
+		block(items, "SetArmor")
+	}
 
 
 	/**
-	 * *Gets the value of a custom*
-	 * *entity tag.*
+	 * Gets the value of a custom
+	 * entity tag.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * [StringItem]
 	 *
-	 * *Tag name*
+	 * Tag name
 	 *
 	 * (*) = optional
 	 */
-	fun getCustomTag(items: Items) = block(items, "GetCustomTag")
+	fun getCustomTag(items: Items) {
+		block(items, "GetCustomTag")
+	}
 
 
 	/**
-	 * *Sets the hitbox size of*
-	 * *an interaction entity.*
+	 * Sets the hitbox size of
+	 * an interaction entity.
 	 *
-	 * #### Args:
-	 *
-	 * [NumItem]
-	 *
-	 * (*) *Width*
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Height*
+	 * (*) Width
+	 *
+	 * *Default = §c1§7*
+	 *
+	 * [NumItem]
+	 *
+	 * (*) Height
+	 *
+	 * *Default = §c1§7*
 	 *
 	 * (*) = optional
 	 */
-	fun interactionSize(items: Items) = block(items, "InteractionSize")
+	fun interactionSize(items: Items) {
+		block(items, "InteractionSize")
+	}
 
 
 	/**
-	 * *Rotates an entity to look*
-	 * *toward a location without*
-	 * *teleporting them.*
+	 * Rotates an entity to look
+	 * toward a location without
+	 * teleporting them.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Location to face*
+	 * Location to face
+	 *
+	 * (*) = optional
+
+	 * @see [EntityActionTags.FaceLocation]
+	 */
+	fun faceLocation(items: Items) {
+		block(items, "FaceLocation", tagClass = EntityActionTags.FaceLocation::class)
+	}
+
+
+	/**
+	 * Sets a cat's skin type.
+	 */
+	fun setCatType(items: Items) {
+		block(items, "SetCatType", tagClass = EntityActionTags.SetCatType::class)
+	}
+
+
+	/**
+	 * Sets the base damage
+	 * dealt by an arrow or trident.
+	 *
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * Base Damage
 	 *
 	 * (*) = optional
 	 */
-	fun faceLocation(items: Items) = block(items, "FaceLocation")
+	fun setArrowDamage(items: Items) {
+		block(items, "SetArrowDamage")
+	}
 
 
 	/**
-	 * *Sets a cat's skin type.*
-	 */
-	fun setCatType(items: Items) = block(items, "SetCatType")
-
-
-	/**
-	 * *Sets the base damage*
-	 * *dealt by an arrow or trident.*
+	 * Sets the scale of
+	 * a display entity.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Base Damage*
-	 *
-	 * (*) = optional
-	 */
-	fun setArrowDamage(items: Items) = block(items, "SetArrowDamage")
-
-
-	/**
-	 * *Sets the scale of*
-	 * *a display entity.*
-	 *
-	 * #### Args:
+	 * X scale
 	 *
 	 * [NumItem]
 	 *
-	 * *X scale*
+	 * Y scale
 	 *
 	 * [NumItem]
 	 *
-	 * *Y scale*
-	 *
-	 * [NumItem]
-	 *
-	 * *Z scale*
+	 * Z scale
 	 *
 	 * [VecItem]
 	 *
-	 * *Scale vector*
+	 * Scale vector
 	 *
 	 * (*) = optional
 	 */
-	fun displayScale(items: Items) = block(items, "DisplayScale")
+	fun displayScale(items: Items) {
+		block(items, "DisplayScale")
+	}
 
 
 	/**
-	 * *Sets the text alignment*
-	 * *of a text display.*
+	 * Sets the text alignment
+	 * of a text display.
 	 */
-	fun tDisplayAlign(items: Items) = block(items, "TDisplayAlign")
+	fun tDisplayAlign(items: Items) {
+		block(items, "TDisplayAlign", tagClass = EntityActionTags.TDisplayAlign::class)
+	}
 
 
 	/**
-	 * *Launches a projectile from a mob.*
+	 * Launches a projectile from a mob.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Projectile to launch*
+	 * Projectile to launch
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Launch point*
+	 * (*) Launch point
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Projectile name*
+	 * (*) Projectile name
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Speed*
+	 * (*) Speed
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Inaccuracy*
+	 * (*) Inaccuracy
+	 *
+	 * *Controls how much random motion is applied on launch*
+	 * *Default = §c1§7*
 	 *
 	 * (*) = optional
 	 */
-	fun launchProj(items: Items) = block(items, "LaunchProj")
+	fun launchProj(items: Items) {
+		block(items, "LaunchProj")
+	}
 
 
 	/**
 	 */
-	fun enableAI(items: Items) = block(items, "EnableAI")
+	fun enableAI(items: Items) {
+		block(items, "EnableAI")
+	}
 
 
 	/**
-	 * *Sets how a display entity*
-	 * *is rotated with a*
-	 * *player's view.*
+	 * Sets how a display entity
+	 * is rotated with a
+	 * player's view.
 	 */
-	fun displayBillboard(items: Items) = block(items, "DisplayBillboard")
+	fun displayBillboard(items: Items) {
+		block(items, "DisplayBillboard", tagClass = EntityActionTags.DisplayBillboard::class)
+	}
 
 
 	/**
 	 */
-	fun noProjColl(items: Items) = block(items, "NoProjColl")
+	fun noProjColl(items: Items) {
+		block(items, "NoProjColl")
+	}
 
 
 	/**
-	 * *Tames and sets the owner*
-	 * *of a tameable mob.*
+	 * Tames and sets the owner
+	 * of a tameable mob.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Owner UUID*
+	 * Owner UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Owner name*
+	 * Owner name
 	 *
 	 * (*) = optional
 	 */
-	fun tame(items: Items) = block(items, "Tame")
+	fun tame(items: Items) {
+		block(items, "Tame")
+	}
 
 
 	/**
-	 * *Sets whether a goat*
-	 * *screams or not.*
+	 * Sets whether a goat
+	 * screams or not.
 	 */
-	fun setGoatScreaming(items: Items) = block(items, "SetGoatScreaming")
+	fun setGoatScreaming(items: Items) {
+		block(items, "SetGoatScreaming", tagClass = EntityActionTags.SetGoatScreaming::class)
+	}
 
 
 	/**
-	 * *Sets whether a bee*
-	 * *has its stinger.*
+	 * Sets whether a bee
+	 * has its stinger.
 	 */
-	fun setBeeStinger(items: Items) = block(items, "SetBeeStinger")
+	fun setBeeStinger(items: Items) {
+		block(items, "SetBeeStinger", tagClass = EntityActionTags.SetBeeStinger::class)
+	}
 
 
 	/**
-	 * *Disguises an entity as a mob.*
+	 * Disguises an entity as a mob.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Mob to disguise as*
+	 * Mob to disguise as
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Display name*
+	 * (*) Display name
 	 *
 	 * (*) = optional
 	 */
-	fun mobDisguise(items: Items) = block(items, "MobDisguise")
+	fun mobDisguise(items: Items) {
+		block(items, "MobDisguise")
+	}
 
 
 	/**
-	 * *Sets the block shown inside*
-	 * *a minecart. This does not*
-	 * *affect its functionality.*
+	 * Sets the block shown inside
+	 * a minecart. This does not
+	 * affect its functionality.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Block to show*
+	 * Block to show
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Block offset*
+	 * (*) Block offset
 	 *
 	 * (*) = optional
 	 */
-	fun setMinecartBlock(items: Items) = block(items, "SetMinecartBlock")
+	fun setMinecartBlock(items: Items) {
+		block(items, "SetMinecartBlock")
+	}
 
 
 	/**
-	 * *Causes a fox to start*
-	 * *or stop sleeping.*
+	 * Causes a fox to start
+	 * or stop sleeping.
 	 */
-	fun foxSleeping(items: Items) = block(items, "FoxSleeping")
+	fun foxSleeping(items: Items) {
+		block(items, "FoxSleeping", tagClass = EntityActionTags.FoxSleeping::class)
+	}
 
 
 	/**
-	 * *Sets the item in one of the*
-	 * *equipment slots (including*
-	 * *horse items) of an entity.*
+	 * Locks a disguise's pitch or yaw values.
 	 *
-	 * #### Args:
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * (*) Pitch to lock to
+	 *
+	 * *Default = §c0§7*
+	 *
+	 * [NumItem]
+	 *
+	 * (*) Yaw to lock to
+	 *
+	 * *Default = §c0§7*
+	 *
+	 * (*) = optional
+
+	 * @see [EntityActionTags.LockDisgRotation]
+	 */
+	fun lockDisgRotation(items: Items) {
+		block(items, "LockDisgRotation", tagClass = EntityActionTags.LockDisgRotation::class)
+	}
+
+
+	/**
+	 * Sets the item in one of the
+	 * equipment slots (including
+	 * horse items) of an entity.
+	 *
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Item to set*
+	 * (*) Item to set
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.SetEquipment]
 	 */
-	fun setEquipment(items: Items) = block(items, "SetEquipment")
+	fun setEquipment(items: Items) {
+		block(items, "SetEquipment", tagClass = EntityActionTags.SetEquipment::class)
+	}
 
 
 	/**
-	 * *Sets whether an entity will*
-	 * *produce sound effects.*
+	 * Sets whether an entity will
+	 * produce sound effects.
 	 */
-	fun setSilenced(items: Items) = block(items, "SetSilenced")
+	fun setSilenced(items: Items) {
+		block(items, "SetSilenced", tagClass = EntityActionTags.SetSilenced::class)
+	}
 
 
 	/**
-	 * *Sets if a bee has nectar*
-	 * *on its body.*
+	 * Sets if a bee has nectar
+	 * on its body.
 	 */
-	fun setBeeNectar(items: Items) = block(items, "SetBeeNectar")
+	fun setBeeNectar(items: Items) {
+		block(items, "SetBeeNectar", tagClass = EntityActionTags.SetBeeNectar::class)
+	}
 
 
 	/**
-	 * *Attaches a lead to the target,*
-	 * *held by an entity or lead knot.*
+	 * Attaches a lead to the target,
+	 * held by an entity or lead knot.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Lead holder UUID*
+	 * Lead holder UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Lead holder name*
+	 * Lead holder name
 	 *
 	 * [LocItem]
 	 *
-	 * *Lead knot location*
+	 * Lead knot location
+	 *
+	 * *Spawns a Leash Knot entity. Requires a fence block.*
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.AttachLead]
 	 */
-	fun attachLead(items: Items) = block(items, "AttachLead")
+	fun attachLead(items: Items) {
+		block(items, "AttachLead", tagClass = EntityActionTags.AttachLead::class)
+	}
 
 
 	/**
-	 * *Removes one or more potion*
-	 * *effects from an entity.*
+	 * Removes one or more potion
+	 * effects from an entity.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [PotionItem]
 	 *
-	 * *Effect(s)*
-	 * *to remove*
+	 * Effect(s)
+	 * to remove
 	 *
 	 * (*) = optional
 	 */
-	fun removePotion(items: Items) = block(items, "RemovePotion")
+	fun removePotion(items: Items) {
+		block(items, "RemovePotion")
+	}
 
 
 	/**
-	 * *Causes a sheep to*
-	 * *be sheared.*
+	 * Causes a sheep to
+	 * be sheared.
 	 */
-	fun shearSheep(items: Items) = block(items, "ShearSheep")
+	fun shearSheep(items: Items) {
+		block(items, "ShearSheep")
+	}
 
 
 	/**
-	 * *Sets the possible interactions, such*
-	 * *as adding or removing items, of an*
-	 * *armor stand's slot(s).*
+	 * Sets the possible interactions, such
+	 * as adding or removing items, of an
+	 * armor stand's slot(s).
 	 */
-	fun armorStandSlots(items: Items) = block(items, "ArmorStandSlots")
+	fun armorStandSlots(items: Items) {
+		block(items, "ArmorStandSlots", tagClass = EntityActionTags.ArmorStandSlots::class)
+	}
 
 
 	/**
-	 * *Sets whether an allay is*
-	 * *dancing or not.*
+	 * Sets whether an allay is
+	 * dancing or not.
 	 */
-	fun setAllayDancing(items: Items) = block(items, "SetAllayDancing")
+	fun setAllayDancing(items: Items) {
+		block(items, "SetAllayDancing", tagClass = EntityActionTags.SetAllayDancing::class)
+	}
 
 
 	/**
-	 * *Sets a rabbit's skin type.*
+	 * Sets a rabbit's skin type.
 	 */
-	fun setRabbitType(items: Items) = block(items, "SetRabbitType")
+	fun setRabbitType(items: Items) {
+		block(items, "SetRabbitType", tagClass = EntityActionTags.SetRabbitType::class)
+	}
 
 
 	/**
-	 * *Sets the size of an entity.*
-	 * *This may also affect its*
-	 * *health and strength.*
+	 * Sets the size of an entity.
+	 * This may also affect its
+	 * health and strength.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Size*
+	 * Size
 	 *
 	 * (*) = optional
 	 */
-	fun setSize(items: Items) = block(items, "SetSize")
+	fun setSize(items: Items) {
+		block(items, "SetSize")
+	}
 
 
 	/**
 	 */
-	fun showName(items: Items) = block(items, "ShowName")
+	fun showName(items: Items) {
+		block(items, "ShowName")
+	}
 
 
 	/**
-	 * *Sets whether a mob is*
-	 * *angry at players.*
+	 * Sets whether a mob is
+	 * angry at players.
 	 */
-	fun setAngry(items: Items) = block(items, "SetAngry")
+	fun setAngry(items: Items) {
+		block(items, "SetAngry", tagClass = EntityActionTags.SetAngry::class)
+	}
 
 
 	/**
-	 * *Removes an entity's disguise.*
+	 * Removes an entity's disguise.
 	 */
-	fun undisguise(items: Items) = block(items, "Undisguise")
+	fun undisguise(items: Items) {
+		block(items, "Undisguise")
+	}
 
 
 	/**
-	 * *Sets whether a mob drops*
-	 * *their items when dead.*
+	 * Sets whether a mob drops
+	 * their items when dead.
 	 */
-	fun setDeathDrops(items: Items) = block(items, "SetDeathDrops")
+	fun setDeathDrops(items: Items) {
+		block(items, "SetDeathDrops", tagClass = EntityActionTags.SetDeathDrops::class)
+	}
 
 
 	/**
-	 * *Sets whether an item*
-	 * *or a falling block will*
-	 * *never despawn.*
+	 * Sets whether an item
+	 * or a falling block will
+	 * never despawn.
 	 */
-	fun setPersistent(items: Items) = block(items, "SetPersistent")
+	fun setPersistent(items: Items) {
+		block(items, "SetPersistent", tagClass = EntityActionTags.SetPersistent::class)
+	}
 
 
 	/**
-	 * *Sets the item a projectile*
-	 * *displays as.*
+	 * Sets the item a projectile
+	 * displays as.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Display item*
+	 * Display item
 	 *
 	 * (*) = optional
 	 */
-	fun projectileItem(items: Items) = block(items, "ProjectileItem")
+	fun projectileItem(items: Items) {
+		block(items, "ProjectileItem")
+	}
 
 
 	/**
-	 * *Sets the color an entity's*
-	 * *name tag appears in.*
+	 * Sets the color an entity's
+	 * name tag appears in.
 	 */
-	fun setNameColor(items: Items) = block(items, "SetNameColor")
+	fun setNameColor(items: Items) {
+		block(items, "SetNameColor", tagClass = EntityActionTags.SetNameColor::class)
+	}
 
 
 	/**
-	 * *Sets whether a mob carries*
-	 * *a chest, which allows its*
-	 * *inventory to be accessed.*
+	 * Sets whether a mob carries
+	 * a chest, which allows its
+	 * inventory to be accessed.
 	 */
-	fun setCarryingChest(items: Items) = block(items, "SetCarryingChest")
+	fun setCarryingChest(items: Items) {
+		block(items, "SetCarryingChest", tagClass = EntityActionTags.SetCarryingChest::class)
+	}
 
 
 	/**
-	 * *Sets a parrot's color.*
+	 * Sets a parrot's color.
 	 */
-	fun setParrotColor(items: Items) = block(items, "SetParrotColor")
+	fun setParrotColor(items: Items) {
+		block(items, "SetParrotColor", tagClass = EntityActionTags.SetParrotColor::class)
+	}
 
 
 	/**
-	 * *Sets the translation values*
-	 * *of a display entity.*
+	 * Sets the translation values
+	 * of a display entity.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *X translation*
+	 * X translation
 	 *
 	 * [NumItem]
 	 *
-	 * *Y translation*
+	 * Y translation
 	 *
 	 * [NumItem]
 	 *
-	 * *Z translation*
+	 * Z translation
 	 *
 	 * [VecItem]
 	 *
-	 * *Translation vector*
+	 * Translation vector
 	 *
 	 * (*) = optional
 	 */
-	fun dispTranslation(items: Items) = block(items, "DispTranslation")
+	fun dispTranslation(items: Items) {
+		block(items, "DispTranslation")
+	}
 
 
 	/**
-	 * *Deletes an entity.*
+	 * Deletes an entity.
 	 */
-	fun remove(items: Items) = block(items, "Remove")
+	fun remove(items: Items) {
+		block(items, "Remove")
+	}
 
 
 	/**
-	 * *Sets the background color*
-	 * *and opacity of a text display.*
+	 * Sets the background color
+	 * and opacity of a text display.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *Color hexadecimal*
+	 * (*) Color hexadecimal
+	 *
+	 * *Example: §b"#FF0000"§7 (red)*
 	 *
 	 * [NumItem]
 	 *
-	 * *Opacity in percentage*
+	 * Opacity in percentage
 	 *
 	 * (*) = optional
 	 */
-	fun tDispBackground(items: Items) = block(items, "TDispBackground")
+	fun tDispBackground(items: Items) {
+		block(items, "TDispBackground")
+	}
 
 
 	/**
-	 * *Sets the culling width*
-	 * *and height of a*
-	 * *display entity.*
+	 * Sets the culling width
+	 * and height of a
+	 * display entity.
 	 *
-	 * #### Args:
-	 *
-	 * [NumItem]
-	 *
-	 * (*) *Width*
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Height*
+	 * (*) Width
+	 *
+	 * *Default = §c0§7*
+	 *
+	 * [NumItem]
+	 *
+	 * (*) Height
+	 *
+	 * *Default = §c0§7*
 	 *
 	 * (*) = optional
 	 */
-	fun displayCullingSize(items: Items) = block(items, "DisplayCullingSize")
+	fun displayCullingSize(items: Items) {
+		block(items, "DisplayCullingSize")
+	}
 
 
 	/**
 	 */
-	fun hideName(items: Items) = block(items, "HideName")
+	fun hideName(items: Items) {
+		block(items, "HideName")
+	}
 
 
 	/**
-	 * *Sets whether a sheep*
-	 * *has its wool.*
+	 * Sets whether a sheep
+	 * has its wool.
 	 */
-	fun setSheepSheared(items: Items) = block(items, "SetSheepSheared")
+	fun setSheepSheared(items: Items) {
+		block(items, "SetSheepSheared", tagClass = EntityActionTags.SetSheepSheared::class)
+	}
 
 
 	/**
-	 * *Sets an axolotl's color.*
+	 * Sets an axolotl's color.
 	 */
-	fun setAxolotlColor(items: Items) = block(items, "SetAxolotlColor")
+	fun setAxolotlColor(items: Items) {
+		block(items, "SetAxolotlColor", tagClass = EntityActionTags.SetAxolotlColor::class)
+	}
 
 
 	/**
-	 * *Gets all tags registered*
-	 * *on an entity.*
+	 * Gets all tags registered
+	 * on an entity.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *Variable to set*
+	 * Variable to set
 	 *
 	 * (*) = optional
 	 */
-	fun getAllEntityTags(items: Items) = block(items, "GetAllEntityTags")
+	fun getAllEntityTags(items: Items) {
+		block(items, "GetAllEntityTags")
+	}
 
 
 	/**
-	 * *Sets whether an entity is*
-	 * *sentient and/or affected*
-	 * *by physics.*
+	 * Sets whether an entity is
+	 * sentient and/or affected
+	 * by physics.
 	 */
-	fun setAI(items: Items) = block(items, "SetAI")
+	fun setAI(items: Items) {
+		block(items, "SetAI", tagClass = EntityActionTags.SetAI::class)
+	}
 
 
 	/**
-	 * *Sets one of the entity's knockback-related*
-	 * *attributes such as knockback resistance.*
+	 * Sets one of the entity's knockback-related
+	 * attributes such as knockback resistance.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.KBAttribute]
 	 */
-	fun kBAttribute(items: Items) = block(items, "KBAttribute")
+	fun kBAttribute(items: Items) {
+		block(items, "KBAttribute", tagClass = EntityActionTags.KBAttribute::class)
+	}
 
 
 	/**
-	 * *Sets one of the entity's movement-related*
-	 * *attributes, such as walking speed*
-	 * *and jump height.*
+	 * Sets one of the entity's movement-related
+	 * attributes, such as walking speed
+	 * and jump height.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.MovementAttribute]
 	 */
-	fun movementAttribute(items: Items) = block(items, "MovementAttribute")
+	fun movementAttribute(items: Items) {
+		block(items, "MovementAttribute", tagClass = EntityActionTags.MovementAttribute::class)
+	}
 
 
 	/**
-	 * *Sets whether an entity*
-	 * *is riptiding.*
+	 * Sets whether an entity
+	 * is riptiding.
 	 */
-	fun setRiptiding(items: Items) = block(items, "SetRiptiding")
+	fun setRiptiding(items: Items) {
+		block(items, "SetRiptiding", tagClass = EntityActionTags.SetRiptiding::class)
+	}
 
 
 	/**
-	 * *Sets whether an arrow*
-	 * *will pass through blocks*
-	 * *and through entities.*
+	 * Sets whether an arrow
+	 * will pass through blocks
+	 * and through entities.
 	 */
-	fun setArrowNoClip(items: Items) = block(items, "SetArrowNoClip")
+	fun setArrowNoClip(items: Items) {
+		block(items, "SetArrowNoClip", tagClass = EntityActionTags.SetArrowNoClip::class)
+	}
 
 
 	/**
-	 * *Sets one of the entity's falling-related*
-	 * *attributes, such as gravity*
-	 * *and fall damage multiplier.*
+	 * Sets one of the entity's falling-related
+	 * attributes, such as gravity
+	 * and fall damage multiplier.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.FallingAttribute]
 	 */
-	fun fallingAttribute(items: Items) = block(items, "FallingAttribute")
+	fun fallingAttribute(items: Items) {
+		block(items, "FallingAttribute", tagClass = EntityActionTags.FallingAttribute::class)
+	}
 
 
 	/**
-	 * *Sets the projectile source of*
-	 * *a projectile (or removes it).*
+	 * Sets the projectile source of
+	 * a projectile (or removes it).
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Shooter UUID*
+	 * Shooter UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Shooter name*
+	 * Shooter name
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.SetProjSource]
 	 */
-	fun setProjSource(items: Items) = block(items, "SetProjSource")
+	fun setProjSource(items: Items) {
+		block(items, "SetProjSource", tagClass = EntityActionTags.SetProjSource::class)
+	}
 
 
 	/**
-	 * *Sets whether a fox appears*
-	 * *to be leaping.*
+	 * Sets whether a fox appears
+	 * to be leaping.
 	 */
-	fun setFoxLeaping(items: Items) = block(items, "SetFoxLeaping")
+	fun setFoxLeaping(items: Items) {
+		block(items, "SetFoxLeaping", tagClass = EntityActionTags.SetFoxLeaping::class)
+	}
 
 
 	/**
-	 * *Sets the gene of a panda.*
-	 * *This affects their behavior*
-	 * *and appearance.*
+	 * Sets the gene of a panda.
+	 * This affects their behavior
+	 * and appearance.
 	 */
-	fun setPandaGene(items: Items) = block(items, "SetPandaGene")
+	fun setPandaGene(items: Items) {
+		block(items, "SetPandaGene", tagClass = EntityActionTags.SetPandaGene::class)
+	}
 
 
 	/**
-	 * *Sets an entity's maximum*
-	 * *health.*
+	 * Sets an entity's maximum
+	 * health.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Maximum health*
+	 * Maximum health
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.SetMaxHealth]
 	 */
-	fun setMaxHealth(items: Items) = block(items, "SetMaxHealth")
+	fun setMaxHealth(items: Items) {
+		block(items, "SetMaxHealth", tagClass = EntityActionTags.SetMaxHealth::class)
+	}
 
 
 	/**
-	 * *Sets the time until a fish*
-	 * *starts to approach a*
-	 * *fishing hook.*
+	 * Sets the time until a fish
+	 * starts to approach a
+	 * fishing hook.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Wait time (ticks)*
+	 * Wait time (ticks)
 	 *
 	 * (*) = optional
 	 */
-	fun setFishingTime(items: Items) = block(items, "SetFishingTime")
+	fun setFishingTime(items: Items) {
+		block(items, "SetFishingTime")
+	}
 
 
 	/**
-	 * *Sets the location an end*
-	 * *crystal points its beam at.*
+	 * Sets the location an end
+	 * crystal points its beam at.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * (*) *Target*
+	 * (*) Target
 	 *
 	 * (*) = optional
 	 */
-	fun endCrystalBeam(items: Items) = block(items, "EndCrystalBeam")
+	fun endCrystalBeam(items: Items) {
+		block(items, "EndCrystalBeam")
+	}
 
 
 	/**
-	 * *Makes a frog try to eat the*
-	 * *specified mob or player.*
+	 * Makes a frog try to eat the
+	 * specified mob or player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Target UUID*
+	 * Target UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Target name*
+	 * Target name
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.FrogEat]
 	 */
-	fun frogEat(items: Items) = block(items, "FrogEat")
+	fun frogEat(items: Items) {
+		block(items, "FrogEat", tagClass = EntityActionTags.FrogEat::class)
+	}
 
 
 	/**
-	 * *Sets the brightness*
-	 * *of a display entity.*
+	 * Sets a salmon's variant.
+	 */
+	fun setSalmonType(items: Items) {
+		block(items, "SetSalmonType", tagClass = EntityActionTags.SetSalmonType::class)
+	}
+
+
+	/**
+	 * Sets the brightness
+	 * of a display entity.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Block light level (0-15)*
+	 * Block light level (0-15)
 	 *
 	 * [NumItem]
 	 *
-	 * *Sky light level (0-15)*
+	 * Sky light level (0-15)
 	 *
 	 * (*) = optional
 	 */
-	fun displayBrightness(items: Items) = block(items, "DisplayBrightness")
+	fun displayBrightness(items: Items) {
+		block(items, "DisplayBrightness")
+	}
 
 
 	/**
-	 * *Sets a villager's profession.*
+	 * Sets a villager's profession.
 	 */
-	fun setProfession(items: Items) = block(items, "SetProfession")
+	fun setProfession(items: Items) {
+		block(items, "SetProfession", tagClass = EntityActionTags.SetProfession::class)
+	}
 
 
 	/**
-	 * *Removes all active potion*
-	 * *effects from an entity.*
+	 * Removes all active potion
+	 * effects from an entity.
 	 */
-	fun clearPotions(items: Items) = block(items, "ClearPotions")
+	fun clearPotions(items: Items) {
+		block(items, "ClearPotions")
+	}
 
 
 	/**
-	 * *Sets whether an armor stand has*
-	 * *arms and a base plate.*
+	 * Sets whether an armor stand has
+	 * arms and a base plate.
 	 */
-	fun armorStandParts(items: Items) = block(items, "ArmorStandParts")
+	fun armorStandParts(items: Items) {
+		block(items, "ArmorStandParts", tagClass = EntityActionTags.ArmorStandParts::class)
+	}
 
 
 	/**
-	 * *Sets whether an entity's*
-	 * *custom name is always*
-	 * *displayed above them.*
+	 * Sets whether an entity's
+	 * custom name is always
+	 * displayed above them.
 	 */
-	fun setNameVisible(items: Items) = block(items, " SetNameVisible ")
+	fun setNameVisible(items: Items) {
+		block(items, " SetNameVisible ", tagClass = EntityActionTags.SetNameVisible::class)
+	}
 
 
 	/**
-	 * *Instructs a mob's AI to target*
-	 * *a specific mob or player.*
+	 * Instructs a mob's AI to target
+	 * a specific mob or player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Target UUID*
+	 * Target UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Target name*
+	 * Target name
+	 *
+	 * (*) = optional
+
+	 * @see [EntityActionTags.SetTarget]
+	 */
+	fun setTarget(items: Items) {
+		block(items, "SetTarget", tagClass = EntityActionTags.SetTarget::class)
+	}
+
+
+	/**
+	 * Sets whether the text in
+	 * a text display has
+	 * shadow or not.
+	 */
+	fun tDisplayShadow(items: Items) {
+		block(items, "TDisplayShadow", tagClass = EntityActionTags.TDisplayShadow::class)
+	}
+
+
+	/**
+	 * Sets the currently
+	 * remaining ticks until an
+	 * entity can next be hurt.
+	 *
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * Ticks
 	 *
 	 * (*) = optional
 	 */
-	fun setTarget(items: Items) = block(items, "SetTarget")
+	fun setInvulTicks(items: Items) {
+		block(items, "SetInvulTicks")
+	}
 
 
 	/**
-	 * *Sets whether the text in*
-	 * *a text display has*
-	 * *shadow or not.*
-	 */
-	fun tDisplayShadow(items: Items) = block(items, "TDisplayShadow")
-
-
-	/**
-	 * *Sets the currently*
-	 * *remaining ticks until an*
-	 * *entity can next be hurt.*
+	 * Sets a mannequin's
+	 * skin avatar.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
-	 * [NumItem]
+	 * [MinecraftItem]
 	 *
-	 * *Ticks*
-	 *
-	 * (*) = optional
-	 */
-	fun setInvulTicks(items: Items) = block(items, "SetInvulTicks")
-
-
-	/**
-	 * *Sets how far a shulker*
-	 * *should peek up to.*
-	 *
-	 * #### Args:
-	 *
-	 * [NumItem]
-	 *
-	 * *Peek Percentage*
-	 *
-	 * (*) = optional
-	 */
-	fun setShulkerPeek(items: Items) = block(items, "SetShulkerPeek")
-
-
-	/**
-	 * *Changes the pose of an entity.*
-	 * *This affects their animations*
-	 * *and/or hitbox, depending on*
-	 * *the pose and entity type.*
-	 */
-	fun setPose(items: Items) = block(items, " SetPose ")
-
-
-	/**
-	 * *Sets whether a horse is*
-	 * *standing on its hind legs.*
-	 */
-	fun setRearing(items: Items) = block(items, "SetRearing")
-
-
-	/**
-	 * *Sets an area of effect cloud's*
-	 * *radius and shrinking speed.*
-	 *
-	 * #### Args:
-	 *
-	 * [NumItem]
-	 *
-	 * *Radius*
-	 *
-	 * [NumItem]
-	 *
-	 * (*) *Shrinking speed*
-	 * (*) *(blocks per second)*
-	 *
-	 * (*) = optional
-	 */
-	fun setCloudRadius(items: Items) = block(items, "SetCloudRadius")
-
-
-	/**
-	 * *Sets whether an entity*
-	 * *is affected by gravity.*
-	 */
-	fun setGravity(items: Items) = block(items, "SetGravity")
-
-
-	/**
-	 * *Sets how long a display entity takes*
-	 * *to visually move to its destination*
-	 * *when it teleports.*
-	 *
-	 * #### Args:
-	 *
-	 * [NumItem]
-	 *
-	 * (*) *Teleport duration*
-	 * (*) *in ticks*
-	 *
-	 * (*) = optional
-	 */
-	fun dispTPDuration(items: Items) = block(items, "DispTPDuration")
-
-
-	/**
-	 * *Sets the remaining ticks of*
-	 * *invulnerability a wither has.*
-	 *
-	 * #### Args:
-	 *
-	 * [NumItem]
-	 *
-	 * *Ticks*
-	 *
-	 * (*) = optional
-	 */
-	fun setWitherInvul(items: Items) = block(items, "SetWitherInvul")
-
-
-	/**
-	 */
-	fun silence(items: Items) = block(items, "Silence")
-
-
-	/**
-	 * *Sets how many targets an*
-	 * *arrow can pierce through.*
-	 * *A pierce of 1 can hit*
-	 * *up to 2 entities.*
-	 *
-	 * #### Args:
-	 *
-	 * [NumItem]
-	 *
-	 * *Targets to pierce*
-	 *
-	 * (*) = optional
-	 */
-	fun setArrowPierce(items: Items) = block(items, "SetArrowPierce")
-
-
-	/**
-	 * *Sets the shadow properties*
-	 * *of a display entity.*
-	 *
-	 * #### Args:
-	 *
-	 * [NumItem]
-	 *
-	 * (*) *Shadow radius in blocks*
-	 *
-	 * [NumItem]
-	 *
-	 * (*) *Shadow opacity in*
-	 * (*) *percentage*
-	 *
-	 * (*) = optional
-	 */
-	fun displayShadow(items: Items) = block(items, "DisplayShadow")
-
-
-	/**
-	 * *Sets whether an interaction*
-	 * *entity has response when*
-	 * *interacting with it.*
-	 */
-	fun interactResponse(items: Items) = block(items, "InteractResponse")
-
-
-	/**
-	 * *Forces a mob to use held items*
-	 * *such as bow or spyglass.*
-	 */
-	fun useItem(items: Items) = block(items, "UseItem")
-
-
-	/**
-	 * *Mounts an entity on top of*
-	 * *another entity or player.*
-	 *
-	 * #### Args:
+	 * Mannequin player head
 	 *
 	 * [StringItem]
 	 *
-	 * *Target UUID*
-	 *
-	 * [TextItem]
-	 *
-	 * *Target name*
+	 * Mannequin player name or UUID
 	 *
 	 * (*) = optional
 	 */
-	fun rideEntity(items: Items) = block(items, "RideEntity")
+	fun mannequinSkin(items: Items) {
+		block(items, "MannequinSkin")
+	}
 
 
 	/**
-	 * *Sets the affine transformation*
-	 * *matrix of a display entity.*
+	 * Sets how far a shulker
+	 * should peek up to.
 	 *
-	 * #### Args:
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * Peek Percentage
+	 *
+	 * (*) = optional
+
+	 * @see [EntityActionTags.SetShulkerPeek]
+	 */
+	fun setShulkerPeek(items: Items) {
+		block(items, "SetShulkerPeek", tagClass = EntityActionTags.SetShulkerPeek::class)
+	}
+
+
+	/**
+	 * Changes the pose of an entity.
+	 * This affects their animations
+	 * and/or hitbox, depending on
+	 * the pose and entity type.
+	 */
+	fun setPose(items: Items) {
+		block(items, " SetPose ", tagClass = EntityActionTags.SetPose::class)
+	}
+
+
+	/**
+	 * Sets whether a horse is
+	 * standing on its hind legs.
+	 */
+	fun setRearing(items: Items) {
+		block(items, "SetRearing", tagClass = EntityActionTags.SetRearing::class)
+	}
+
+
+	/**
+	 * Sets an area of effect cloud's
+	 * radius and shrinking speed.
+	 *
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * Radius
+	 *
+	 * [NumItem]
+	 *
+	 * (*) Shrinking speed
+	 * (*) (blocks per second)
+	 *
+	 * (*) = optional
+	 */
+	fun setCloudRadius(items: Items) {
+		block(items, "SetCloudRadius")
+	}
+
+
+	/**
+	 * Sets whether an entity
+	 * is affected by gravity.
+	 */
+	fun setGravity(items: Items) {
+		block(items, "SetGravity", tagClass = EntityActionTags.SetGravity::class)
+	}
+
+
+	/**
+	 * Disguises an entity as another
+	 * currently existing entity or player.
+	 *
+	 * **Args:**
+	 *
+	 * [StringItem]
+	 *
+	 * UUID of target
+	 * to disguise as
+	 *
+	 * [TextItem]
+	 *
+	 * Name of target
+	 * to disguise as
+	 *
+	 * (*) = optional
+
+	 * @see [EntityActionTags.Mimic]
+	 */
+	fun mimic(items: Items) {
+		block(items, "Mimic", tagClass = EntityActionTags.Mimic::class)
+	}
+
+
+	/**
+	 * Sets how long a display entity takes
+	 * to visually move to its destination
+	 * when it teleports.
+	 *
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * (*) Teleport duration
+	 * (*) in ticks
+	 *
+	 * *Default = §c0§7*
+	 *
+	 * (*) = optional
+	 */
+	fun dispTPDuration(items: Items) {
+		block(items, "DispTPDuration")
+	}
+
+
+	/**
+	 * Sets the remaining ticks of
+	 * invulnerability a wither has.
+	 *
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * Ticks
+	 *
+	 * (*) = optional
+	 */
+	fun setWitherInvul(items: Items) {
+		block(items, "SetWitherInvul")
+	}
+
+
+	/**
+	 */
+	fun silence(items: Items) {
+		block(items, "Silence")
+	}
+
+
+	/**
+	 * Sets how many targets an
+	 * arrow can pierce through.
+	 * A pierce of 1 can hit
+	 * up to 2 entities.
+	 *
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * Targets to pierce
+	 *
+	 * (*) = optional
+	 */
+	fun setArrowPierce(items: Items) {
+		block(items, "SetArrowPierce")
+	}
+
+
+	/**
+	 * Sets the shadow properties
+	 * of a display entity.
+	 *
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * (*) Shadow radius in blocks
+	 *
+	 * *Default = §c1§7*
+	 *
+	 * [NumItem]
+	 *
+	 * (*) Shadow opacity in
+	 * (*) percentage
+	 *
+	 * *Default = §c100§7*
+	 *
+	 * (*) = optional
+	 */
+	fun displayShadow(items: Items) {
+		block(items, "DisplayShadow")
+	}
+
+
+	/**
+	 * Sets whether an interaction
+	 * entity has response when
+	 * interacting with it.
+	 */
+	fun interactResponse(items: Items) {
+		block(items, "InteractResponse", tagClass = EntityActionTags.InteractResponse::class)
+	}
+
+
+	/**
+	 * Forces a mob to use held items
+	 * such as bow or spyglass.
+	 */
+	fun useItem(items: Items) {
+		block(items, "UseItem", tagClass = EntityActionTags.UseItem::class)
+	}
+
+
+	/**
+	 * Mounts an entity on top of
+	 * another entity or player.
+	 *
+	 * **Args:**
+	 *
+	 * [StringItem]
+	 *
+	 * Target UUID
+	 *
+	 * [TextItem]
+	 *
+	 * Target name
+	 *
+	 * (*) = optional
+
+	 * @see [EntityActionTags.RideEntity]
+	 */
+	fun rideEntity(items: Items) {
+		block(items, "RideEntity", tagClass = EntityActionTags.RideEntity::class)
+	}
+
+
+	/**
+	 * Sets the affine transformation
+	 * matrix of a display entity.
+	 *
+	 * **Args:**
 	 *
 	 * [VarItem]
 	 *
-	 * *16 numbers describing*
-	 * *a row-major matrix*
+	 * 16 numbers describing
+	 * a row-major matrix
 	 *
 	 * (*) = optional
 	 */
-	fun displayMatrix(items: Items) = block(items, "DisplayMatrix")
+	fun displayMatrix(items: Items) {
+		block(items, "DisplayMatrix")
+	}
 
 
 	/**
 	 */
-	fun noDrops(items: Items) = block(items, "NoDrops")
+	fun noDrops(items: Items) {
+		block(items, "NoDrops")
+	}
 
 
 	/**
-	 * *Forces a sniffer to perform*
-	 * *a specific action.*
+	 * Sets a wolf's sound variant.
 	 */
-	fun snifferState(items: Items) = block(items, "SnifferState")
+	fun setWolfSoundType(items: Items) {
+		block(items, "SetWolfSoundType", tagClass = EntityActionTags.SetWolfSoundType::class)
+	}
+
+
+	/**
+	 * Forces a sniffer to perform
+	 * a specific action.
+	 */
+	fun snifferState(items: Items) {
+		block(items, "SnifferState", tagClass = EntityActionTags.SnifferState::class)
+	}
 
 
 	/**
 	 */
-	fun enableGlowing(items: Items) = block(items, "EnableGlowing")
+	fun enableGlowing(items: Items) {
+		block(items, "EnableGlowing")
+	}
 
 
 	/**
-	 * *Teleports an entity to a*
-	 * *specified location.*
+	 * Teleports an entity to a
+	 * specified location.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *New position*
+	 * New position
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.Teleport]
 	 */
-	fun teleport(items: Items) = block(items, "Teleport")
+	fun teleport(items: Items) {
+		block(items, "Teleport", tagClass = EntityActionTags.Teleport::class)
+	}
 
 
 	/**
-	 * *Sets the glowing color*
-	 * *of a display entity.*
+	 * Sets the glowing color
+	 * of a display entity.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Color hexadecimal*
+	 * Color hexadecimal
+	 *
+	 * *Example: §b"#FF0000"§7 (red)*
 	 *
 	 * (*) = optional
 	 */
-	fun displayGlowColor(items: Items) = block(items, "DisplayGlowColor")
+	fun displayGlowColor(items: Items) {
+		block(items, "DisplayGlowColor")
+	}
 
 
 	/**
-	 * *Sets whether an entity*
-	 * *should appear on fire.*
+	 * Sets whether an entity
+	 * should appear on fire.
 	 */
-	fun setVisualFire(items: Items) = block(items, "SetVisualFire")
+	fun setVisualFire(items: Items) {
+		block(items, "SetVisualFire", tagClass = EntityActionTags.SetVisualFire::class)
+	}
 
 
 	/**
-	 */
-	fun setAgeOrSize(items: Items) = block(items, "SetAge/Size")
-
-
-	/**
-	 */
-	fun lSetArmor(items: Items) = block(items, "L SetArmor")
-
-
-	/**
-	 * *Sets whether a mob wears*
-	 * *a saddle.*
-	 */
-	fun setSaddle(items: Items) = block(items, "SetSaddle")
-
-
-	/**
-	 * *Causes a shulker bullet to start*
-	 * *targeting the provided entity.*
+	 * Shifts the disguise of an entity up or
+	 * down relative to the entity itself.
 	 *
-	 * #### Args:
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * Y-Offset
+	 *
+	 * (*) = optional
+	 */
+	fun disguiseShiftVert(items: Items) {
+		block(items, "DisguiseShiftVert")
+	}
+
+
+	/**
+	 */
+	fun setAgeOrSize(items: Items) {
+		block(items, "SetAge/Size")
+	}
+
+
+	/**
+	 */
+	fun lSetArmor(items: Items) {
+		block(items, "L SetArmor")
+	}
+
+
+	/**
+	 * Sets whether a mob wears
+	 * a saddle.
+	 */
+	fun setSaddle(items: Items) {
+		block(items, "SetSaddle", tagClass = EntityActionTags.SetSaddle::class)
+	}
+
+
+	/**
+	 * Causes a shulker bullet to start
+	 * targeting the provided entity.
+	 *
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * (*) *Target UUID*
+	 * Target UUID
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Target name*
+	 * Target name
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.SetBulletTarget]
 	 */
-	fun setBulletTarget(items: Items) = block(items, "SetBulletTarget")
+	fun setBulletTarget(items: Items) {
+		block(items, "SetBulletTarget", tagClass = EntityActionTags.SetBulletTarget::class)
+	}
 
 
 	/**
-	 * *Sets the maximum line width*
-	 * *of a text display.*
+	 * Sets the maximum line width
+	 * of a text display.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Line width*
+	 * (*) Line width
+	 *
+	 * *Default = §c200§7*
 	 *
 	 * (*) = optional
 	 */
-	fun tDisplayLineWidth(items: Items) = block(items, "TDisplayLineWidth")
+	fun tDisplayLineWidth(items: Items) {
+		block(items, "TDisplayLineWidth")
+	}
 
 
 	/**
-	 * *Sets the behavior phase*
-	 * *of an Ender Dragon.*
+	 * Sets the behavior phase
+	 * of an Ender Dragon.
 	 */
-	fun setDragonPhase(items: Items) = block(items, "SetDragonPhase")
+	fun setDragonPhase(items: Items) {
+		block(items, "SetDragonPhase", tagClass = EntityActionTags.SetDragonPhase::class)
+	}
 
 
 	/**
-	 * *Sets a llama's fur color.*
+	 * Sets a llama's fur color.
 	 */
-	fun setLlamaColor(items: Items) = block(items, "SetLlamaColor")
+	fun setLlamaColor(items: Items) {
+		block(items, "SetLlamaColor", tagClass = EntityActionTags.SetLlamaColor::class)
+	}
 
 
 	/**
-	 * *Sets the biome type of a*
-	 * *villager. This affects their*
-	 * *appearance only.*
+	 * Sets the biome type of a
+	 * villager. This affects their
+	 * appearance only.
 	 */
-	fun setVillagerBiome(items: Items) = block(items, "SetVillagerBiome")
+	fun setVillagerBiome(items: Items) {
+		block(items, "SetVillagerBiome", tagClass = EntityActionTags.SetVillagerBiome::class)
+	}
 
 
 	/**
-	 * *Sets the starting amount*
-	 * *of ticks it takes for a*
-	 * *creeper to explode.*
+	 * Sets the starting amount
+	 * of ticks it takes for a
+	 * creeper to explode.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Fuse ticks*
+	 * Fuse ticks
 	 *
 	 * (*) = optional
 	 */
-	fun setCreeperFuse(items: Items) = block(items, "SetCreeperFuse")
+	fun setCreeperFuse(items: Items) {
+		block(items, "SetCreeperFuse")
+	}
 
 
 	/**
-	 * *Sets whether an entity*
-	 * *is a baby (permanently).*
+	 * Sets whether an entity
+	 * is a baby (permanently).
 	 */
-	fun setBaby(items: Items) = block(items, "SetBaby")
+	fun setBaby(items: Items) {
+		block(items, "SetBaby", tagClass = EntityActionTags.SetBaby::class)
+	}
 
 
 	/**
-	 * *Sets a mooshroom's skin*
-	 * *type.*
+	 * Sets a mooshroom's skin
+	 * type.
 	 */
-	fun mooshroomType(items: Items) = block(items, "MooshroomType")
+	fun mooshroomType(items: Items) {
+		block(items, "MooshroomType", tagClass = EntityActionTags.MooshroomType::class)
+	}
 
 
 	/**
-	 * *Sets whether an entity*
-	 * *is invisible.*
+	 * Sets whether an entity
+	 * is invisible.
 	 */
-	fun setInvisible(items: Items) = block(items, "SetInvisible")
+	fun setInvisible(items: Items) {
+		block(items, "SetInvisible", tagClass = EntityActionTags.SetInvisible::class)
+	}
 
 
 	/**
-	 * *Causes a sheep to*
-	 * *eat grass.*
+	 * Causes a sheep to
+	 * eat grass.
 	 */
-	fun sheepEat(items: Items) = block(items, "SheepEat")
+	fun sheepEat(items: Items) {
+		block(items, "SheepEat")
+	}
 
 
 	/**
-	 * *Sets whether a cat appears*
-	 * *to be lying down.*
+	 * Sets whether a cat appears
+	 * to be lying down.
 	 */
-	fun setCatResting(items: Items) = block(items, "SetCatResting")
+	fun setCatResting(items: Items) {
+		block(items, "SetCatResting", tagClass = EntityActionTags.SetCatResting::class)
+	}
 
 
 	/**
-	 * *Gives one or more potion*
-	 * *effects to an entity.*
+	 * Gives one or more potion
+	 * effects to an entity.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [PotionItem]
 	 *
-	 * *Effect(s)*
-	 * *to give*
+	 * Effect(s)
+	 * to give
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.GivePotion]
 	 */
-	fun givePotion(items: Items) = block(items, "GivePotion")
+	fun givePotion(items: Items) {
+		block(items, "GivePotion", tagClass = EntityActionTags.GivePotion::class)
+	}
 
 
 	/**
-	 * *Sets which goat horns*
-	 * *are shown or hidden.*
+	 * Sets which goat horns
+	 * are shown or hidden.
 	 */
-	fun setGoatHorns(items: Items) = block(items, "SetGoatHorns")
+	fun setGoatHorns(items: Items) {
+		block(items, "SetGoatHorns", tagClass = EntityActionTags.SetGoatHorns::class)
+	}
 
 
 	/**
-	 * *Sets whether this entity has*
-	 * *a glowing outline that can*
-	 * *be seen through blocks.*
+	 * Sets whether this entity has
+	 * a glowing outline that can
+	 * be seen through blocks.
 	 */
-	fun setGlowing(items: Items) = block(items, "SetGlowing")
+	fun setGlowing(items: Items) {
+		block(items, "SetGlowing", tagClass = EntityActionTags.SetGlowing::class)
+	}
 
 
 	/**
-	 * *Sets whether a panda is*
-	 * *laying on its back or not.*
+	 * Sets whether a panda is
+	 * laying on its back or not.
 	 */
-	fun setPandaOnBack(items: Items) = block(items, "SetPandaOnBack")
+	fun setPandaOnBack(items: Items) {
+		block(items, "SetPandaOnBack", tagClass = EntityActionTags.SetPandaOnBack::class)
+	}
 
 
 	/**
-	 * *Sets the model type*
-	 * *of an item display.*
+	 * Sets the model type
+	 * of an item display.
 	 */
-	fun iDisplayModelType(items: Items) = block(items, "IDisplayModelType")
+	fun iDisplayModelType(items: Items) {
+		block(items, "IDisplayModelType", tagClass = EntityActionTags.IDisplayModelType::class)
+	}
 
 
 	/**
-	 * *Sets an entity's current*
-	 * *health.*
+	 * Sets an entity's current
+	 * health.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Current health*
+	 * Current health
+	 *
+	 * *§c❤§7 = §c2§7 Health*
 	 *
 	 * (*) = optional
 	 */
-	fun setHealth(items: Items) = block(items, "SetHealth")
+	fun setHealth(items: Items) {
+		block(items, "SetHealth")
+	}
 
 
 	/**
-	 * *Disguises an entity as a block.*
+	 * Disguises an entity as a block.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Block to disguise as*
+	 * Block to disguise as
 	 *
 	 * [TextItem]
 	 *
-	 * (*) *Display name*
+	 * (*) Display name
 	 *
 	 * (*) = optional
 	 */
-	fun blockDisguise(items: Items) = block(items, "BlockDisguise")
+	fun blockDisguise(items: Items) {
+		block(items, "BlockDisguise")
+	}
 
 
 	/**
-	 * *Sets whether a mob is able*
-	 * *to collide with other entities.*
+	 * Sets whether a mob is able
+	 * to collide with other entities.
 	 */
-	fun setCollidable(items: Items) = block(items, "SetCollidable")
+	fun setCollidable(items: Items) {
+		block(items, "SetCollidable", tagClass = EntityActionTags.SetCollidable::class)
+	}
 
 
 	/**
-	 * *Sets the rotation of an armor*
-	 * *stand part.*
+	 * Sets the rotation of an armor
+	 * stand part.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [VecItem]
 	 *
-	 * *Direction*
+	 * Direction
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *X Rotation (0-360)*
+	 * (*) X Rotation (0-360)
+	 *
+	 * *Default = §c0§7*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Y Rotation (0-360)*
+	 * (*) Y Rotation (0-360)
+	 *
+	 * *Default = §c0§7*
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Z Rotation (0-360)*
+	 * (*) Z Rotation (0-360)
+	 *
+	 * *Default = §c0§7*
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.ArmorStandPose]
 	 */
-	fun armorStandPose(items: Items) = block(items, "ArmorStandPose")
+	fun armorStandPose(items: Items) {
+		block(items, "ArmorStandPose", tagClass = EntityActionTags.ArmorStandPose::class)
+	}
 
 
 	/**
-	 * *Launches an entity forward*
-	 * *or backward.*
+	 * Launches an entity forward
+	 * or backward.
 	 *
-	 * #### Args:
-	 *
-	 * [NumItem]
-	 *
-	 * *Launch power*
-	 *
-	 * (*) = optional
-	 */
-	fun launchFwd(items: Items) = block(items, "LaunchFwd")
-
-
-	/**
-	 * *Sets an entity's fall distance,*
-	 * *affecting fall damage upon*
-	 * *landing.*
-	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Fall distance (blocks)*
+	 * Launch power
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.LaunchFwd]
 	 */
-	fun setFallDistance(items: Items) = block(items, "SetFallDistance")
+	fun launchFwd(items: Items) {
+		block(items, "LaunchFwd", tagClass = EntityActionTags.LaunchFwd::class)
+	}
 
 
 	/**
-	 * *Instructs a mob's AI to always*
-	 * *pathfind to a certain location*
-	 * *at a certain speed.*
+	 * Sets an entity's fall distance,
+	 * affecting fall damage upon
+	 * landing.
 	 *
-	 * #### Args:
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * Fall distance (blocks)
+	 *
+	 * (*) = optional
+	 */
+	fun setFallDistance(items: Items) {
+		block(items, "SetFallDistance")
+	}
+
+
+	/**
+	 * Instructs a mob's AI to always
+	 * pathfind to a certain location
+	 * at a certain speed.
+	 *
+	 * **Args:**
 	 *
 	 * [LocItem]
 	 *
-	 * *Target location*
+	 * Target location
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Walk speed*
+	 * Walk speed
 	 *
 	 * (*) = optional
 	 */
-	fun moveToLoc(items: Items) = block(items, "MoveToLoc")
+	fun moveToLoc(items: Items) {
+		block(items, "MoveToLoc")
+	}
 
 
 	/**
-	 * *Sets the text opacity*
-	 * *of a text display.*
+	 * Sets the text opacity
+	 * of a text display.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Text opacity*
+	 * (*) Text opacity
+	 *
+	 * *Default = §c100§7*
 	 *
 	 * (*) = optional
 	 */
-	fun tDisplayOpacity(items: Items) = block(items, "TDisplayOpacity")
+	fun tDisplayOpacity(items: Items) {
+		block(items, "TDisplayOpacity")
+	}
 
 
 	/**
-	 * *Sets the displayed item*
-	 * *of an item display.*
+	 * Sets the displayed item
+	 * of an item display.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *Displayed item*
+	 * Displayed item
 	 *
 	 * (*) = optional
 	 */
-	fun iDisplayItem(items: Items) = block(items, "IDisplayItem")
+	fun iDisplayItem(items: Items) {
+		block(items, "IDisplayItem")
+	}
 
 
 	/**
-	 * *Makes a mob perform*
-	 * *an attack animation.*
+	 * Makes a mob perform
+	 * an attack animation.
 	 */
-	fun attackAnimation(items: Items) = block(items, "AttackAnimation")
+	fun attackAnimation(items: Items) {
+		block(items, "AttackAnimation", tagClass = EntityActionTags.AttackAnimation::class)
+	}
 
 
 	/**
-	 * *Sets whether a snow golem*
-	 * *is wearing a pumpkin.*
+	 * Sets whether a snow golem
+	 * is wearing a pumpkin.
 	 */
-	fun snowmanPumpkin(items: Items) = block(items, "SnowmanPumpkin")
+	fun snowmanPumpkin(items: Items) {
+		block(items, "SnowmanPumpkin", tagClass = EntityActionTags.SnowmanPumpkin::class)
+	}
 
 
 	/**
-	 * *Sets the value of or creates*
-	 * *a custom tag value.*
+	 * Sets the value of or creates
+	 * a custom tag value.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Tag name*
+	 * Tag name
 	 *
 	 * [NumItem]
 	 *
-	 * *Tag value*
+	 * Tag value
 	 *
 	 * [StringItem]
 	 *
-	 * *Tag value*
+	 * Tag value
 	 *
 	 * (*) = optional
 	 */
-	fun setCustomTag(items: Items) = block(items, "SetCustomTag")
+	fun setCustomTag(items: Items) {
+		block(items, "SetCustomTag")
+	}
 
 
 	/**
 	 */
-	fun gravity(items: Items) = block(items, "Gravity")
+	fun gravity(items: Items) {
+		block(items, "Gravity")
+	}
 
 
 	/**
-	 * *Sets the view range of a*
-	 * *display entity.*
+	 * Sets the view range of a
+	 * display entity.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *View range in blocks*
+	 * (*) View range in blocks
+	 *
+	 * *Default = §c64§7*
 	 *
 	 * (*) = optional
 	 */
-	fun displayViewRange(items: Items) = block(items, "DisplayViewRange")
+	fun displayViewRange(items: Items) {
+		block(items, "DisplayViewRange")
+	}
 
 
 	/**
 	 */
-	fun noAI(items: Items) = block(items, "NoAI")
+	fun noAI(items: Items) {
+		block(items, "NoAI")
+	}
 
 
 	/**
-	 * *Disguises an entity as a player.*
+	 * Disguises an entity as a player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Player name to disguise as*
+	 * Player name to disguise as
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) *Display skin*
+	 * (*) Display skin
 	 *
 	 * (*) = optional
 	 */
-	fun playerDisguise(items: Items) = block(items, "PlayerDisguise")
+	fun playerDisguise(items: Items) {
+		block(items, "PlayerDisguise")
+	}
 
 
 	/**
-	 * *Sets the item of*
-	 * *an item entity.*
+	 * Sets the item of
+	 * an item entity.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [MinecraftItem]
 	 *
-	 * *New item*
+	 * New item
 	 *
 	 * (*) = optional
 	 */
-	fun setItem(items: Items) = block(items, "SetItem")
+	fun setItem(items: Items) {
+		block(items, "SetItem")
+	}
 
 
 	/**
-	 * *Causes an entity*
-	 * *to explode.*
+	 * Causes an entity
+	 * to explode.
 	 */
-	fun explode(items: Items) = block(items, "Explode")
+	fun explode(items: Items) {
+		block(items, "Explode")
+	}
 
 
 	/**
-	 * *Makes a warden emerge*
-	 * *or dig into the ground.*
+	 * Makes a warden emerge
+	 * or dig into the ground.
 	 */
-	fun setDigging(items: Items) = block(items, "SetDigging")
+	fun setDigging(items: Items) {
+		block(items, "SetDigging", tagClass = EntityActionTags.SetDigging::class)
+	}
 
 
 	/**
 	 */
-	fun moveTo(items: Items) = block(items, "MoveTo")
+	fun moveTo(items: Items) {
+		block(items, "MoveTo")
+	}
 
 
 	/**
-	 * *Sets the sound an arrow*
-	 * *plays whenever it lands.*
+	 * Sets the sound an arrow
+	 * plays whenever it lands.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [SoundItem]
 	 *
-	 * *Sound to play*
+	 * Sound to play
 	 *
 	 * (*) = optional
 	 */
-	fun setArrowHitSound(items: Items) = block(items, "SetArrowHitSound")
+	fun setArrowHitSound(items: Items) {
+		block(items, "SetArrowHitSound")
+	}
 
 
 	/**
-	 * *Sets whether a vex is*
-	 * *charging or not.*
+	 * Sets whether a vex is
+	 * charging or not.
 	 */
-	fun setVexCharging(items: Items) = block(items, "SetVexCharging")
+	fun setVexCharging(items: Items) {
+		block(items, "SetVexCharging", tagClass = EntityActionTags.SetVexCharging::class)
+	}
 
 
 	/**
-	 * *Sets a villager's experience*
-	 * *points, which affects their level.*
+	 * Sets a villager's experience
+	 * points, which affects their level.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Experience*
+	 * Experience
 	 *
 	 * (*) = optional
 	 */
-	fun setVillagerExp(items: Items) = block(items, "SetVillagerExp")
+	fun setVillagerExp(items: Items) {
+		block(items, "SetVillagerExp")
+	}
 
 
 	/**
-	 * *Ignites a creeper, causing*
-	 * *it to explode after a fuse*
-	 * *period.*
+	 * Ignites a creeper, causing
+	 * it to explode after a fuse
+	 * period.
 	 */
-	fun igniteCreeper(items: Items) = block(items, "IgniteCreeper")
+	fun igniteCreeper(items: Items) {
+		block(items, "IgniteCreeper")
+	}
 
 
 	/**
-	 * *Causes a mob to start*
-	 * *or stop celebrating.*
+	 * Causes a mob to start
+	 * or stop celebrating.
 	 */
-	fun setCelebrating(items: Items) = block(items, "SetCelebrating")
+	fun setCelebrating(items: Items) {
+		block(items, "SetCelebrating", tagClass = EntityActionTags.SetCelebrating::class)
+	}
 
 
 	/**
-	 * *Sets the displayed text*
-	 * *of a text display.*
+	 * Sets the displayed text
+	 * of a text display.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [TextItem]
 	 *
-	 * *Displayed text*
+	 * Displayed text
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.TDisplayText]
 	 */
-	fun tDisplayText(items: Items) = block(items, "TDisplayText")
+	fun tDisplayText(items: Items) {
+		block(items, "TDisplayText", tagClass = EntityActionTags.TDisplayText::class)
+	}
 
 
 	/**
-	 * *Sets a horse's jump strength.*
+	 * Sets a horse's jump strength.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * *Strength*
+	 * Strength
+	 *
+	 * *§c0.0§7 (can't jump) to §c2.0§7*
 	 *
 	 * (*) = optional
 	 */
-	fun setHorseJump(items: Items) = block(items, "SetHorseJump")
+	fun setHorseJump(items: Items) {
+		block(items, "SetHorseJump")
+	}
 
 
 	/**
 	 */
-	fun unsilence(items: Items) = block(items, "Unsilence")
+	fun unsilence(items: Items) {
+		block(items, "Unsilence")
+	}
 
 
 	/**
-	 * *Sets one of the entity's health-related*
-	 * *attributes such as max health*
-	 * *and armor defense points.*
+	 * Sets one of the entity's health-related
+	 * attributes such as max health
+	 * and armor defense points.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [NumItem]
 	 *
-	 * (*) *Value*
+	 * (*) Value
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.HealthAttribute]
 	 */
-	fun healthAttribute(items: Items) = block(items, "HealthAttribute")
+	fun healthAttribute(items: Items) {
+		block(items, "HealthAttribute", tagClass = EntityActionTags.HealthAttribute::class)
+	}
 
 
 	/**
-	 * *Makes a goat ram the*
-	 * *specified mob or player.*
+	 * Makes a goat ram the
+	 * specified mob or player.
 	 *
-	 * #### Args:
+	 * **Args:**
 	 *
 	 * [StringItem]
 	 *
-	 * *Target UUID*
+	 * Target UUID
 	 *
 	 * [TextItem]
 	 *
-	 * *Target name*
+	 * Target name
 	 *
 	 * (*) = optional
+
+	 * @see [EntityActionTags.Ram]
 	 */
-	fun ram(items: Items) = block(items, "Ram")
+	fun ram(items: Items) {
+		block(items, "Ram", tagClass = EntityActionTags.Ram::class)
+	}
 
 
 	/**
-	 * *Sets a fox's fur type.*
+	 * Sets a fox's fur type.
 	 */
-	fun setFoxType(items: Items) = block(items, "SetFoxType")
+	fun setFoxType(items: Items) {
+		block(items, "SetFoxType", tagClass = EntityActionTags.SetFoxType::class)
+	}
 
 }

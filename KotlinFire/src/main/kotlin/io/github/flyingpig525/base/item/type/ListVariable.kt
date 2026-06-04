@@ -1,11 +1,13 @@
 package io.github.flyingpig525.base.item.type
 
+import io.github.flyingpig525.base.Items
 import io.github.flyingpig525.base.Template
-import io.github.flyingpig525.base.item.Insertable
 import io.github.flyingpig525.base.block.category.SetVariableCategory
+import io.github.flyingpig525.base.item.Insertable
 import io.github.flyingpig525.base.item.ItemComparison
 import io.github.flyingpig525.base.item.type.NumItem.Companion.numItem
 import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
+import io.github.flyingpig525.base.item.type.tag.SetVariableTags
 
 /**
  * A DiamondFire list.
@@ -14,6 +16,7 @@ import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
  *
  * Is represented in DF code as a normal variable, and all type-safety is compile-time only.
  */
+@Suppress("NOTHING_TO_INLINE")
 class ListVariable internal constructor(name: String, scope: VarItem.Scope = VarItem.Scope.GAME) : VarClass<VarItem>(name, scope) {
     infix fun contains(value: Insertable) = ItemComparison { not, nested ->
         IfVar.listContains({
@@ -24,8 +27,17 @@ class ListVariable internal constructor(name: String, scope: VarItem.Scope = Var
     infix fun contains(value: String) = contains(value.textItem)
     infix fun contains(value: Int) = contains(value.numItem)
 
+    infix fun sizeEquals(size: NumItem) = ItemComparison { not, nested ->
+        IfVar.listSizeEquals({
+            +item
+            +size
+        }, not, nested)
+    }
+    infix fun sizeEquals(size: Int) = sizeEquals(size.numItem)
+    infix fun sizeEquals(size: NumVariable) = sizeEquals(size.numItem)
+
     fun isEmpty() = ItemComparison { not, nested ->
-        IfVar.listIsEmpty({
+        IfVar.listSizeEquals({
             +item
         }, not, nested)
     }
@@ -39,18 +51,300 @@ class ListVariable internal constructor(name: String, scope: VarItem.Scope = Var
     }
     fun valueEquals(index: Int, value: Insertable) = valueEquals(index.numItem, value)
     fun valueEquals(index: NumVariable, value: Insertable) = valueEquals(index.numItem, value)
+
+    context(t: Template)
+    inline operator fun set(index: NumItem, value: Insertable) {
+        t.SetVariable.setListValue {
+            +item
+            +index
+            +value
+        }
+    }
+    context(_: Template)
+    inline operator fun set(index: Int, value: Insertable) = set(index.numItem, value)
+    context(_: Template)
+    inline operator fun set(index: Int, value: String) = set(index, value.textItem)
+    context(_: Template)
+    inline operator fun set(index: Int, value: Number) = set(index, value.numItem)
+    context(_: Template)
+    inline operator fun set(index: NumItem, value: String) = set(index, value.textItem)
+    context(_: Template)
+    inline operator fun set(index: NumItem, value: Number) = set(index, value.numItem)
+    context(_: Template)
+    inline operator fun set(index: NumVariable, value: String) = set(index.numItem, value.textItem)
+    context(_: Template)
+    inline operator fun set(index: NumVariable, value: Number) = set(index.numItem, value.numItem)
+
+    context(_: Template)
+    inline operator fun get(index: NumVariable): String = "%index($name,%var(${index.name})"
+    context(_: Template)
+    inline operator fun get(index: NumItem): String = "%index($name,${index.value})"
+    context(_: Template)
+    inline operator fun get(index: Int): String = get(index.numItem)
+
+    context(t: Template)
+    inline operator fun plusAssign(value: Insertable) {
+        t.SetVariable.appendValue {
+            +item
+            +value
+        }
+    }
+
+    context(t: Template)
+    inline operator fun minusAssign(value: Insertable) {
+        t.SetVariable.removeListValue {
+            +item
+            +value
+        }
+    }
+
+    context(t: Template)
+    inline fun getAsVariable(index: NumItem, scope: VarItem.Scope = VarItem.Scope.LINE): VarItem {
+        val i = VarItem("$name-GeneratedGet-${index.value}-aiwhdoaiuhdioa", scope)
+        t.SetVariable.getListValue {
+            +i
+            +item
+            +index
+        }
+        return i
+    }
+    context(t: Template)
+    inline fun getAsVariable(index: Int, scope: VarItem.Scope = VarItem.Scope.LINE): VarItem {
+        val i = VarItem("$name-GeneratedGet-$index-aiwhdoaiuhdioa", scope)
+        t.SetVariable.getListValue {
+            +i
+            +item
+            +index.numItem
+        }
+        return i
+    }
+    context(t: Template)
+    inline fun getAsVariable(index: NumVariable, scope: VarItem.Scope = VarItem.Scope.LINE): VarItem {
+        val i = VarItem("$name-GeneratedGet-%var(${index.name})-aiwhdoaiuhdioa", scope)
+        t.SetVariable.getListValue {
+            +i
+            +item
+            +index
+        }
+        return i
+    }
+
+    context(t: Template)
+    inline fun flatten() = apply {
+        t.SetVariable.flattenList {
+            +item
+        }
+    }
+    context(t: Template)
+    inline fun flatten(out: ListVariable) {
+        t.SetVariable.flattenList {
+            +out
+            +item
+        }
+    }
+
+    context(t: Template)
+    inline fun append(vararg values: Insertable) = apply {
+        for (j in 0..values.size / 25) {
+            t.SetVariable.appendValue {
+                +item
+                for (f in j*25..(j+1)*25) {
+                    if (f >= values.size) break
+                    +values[f]
+                }
+            }
+        }
+    }
+
+    context(t: Template)
+    inline fun appendAll(value: ListVariable) = apply {
+        t.SetVariable.appendList {
+            +item
+            +value
+        }
+    }
+
+    context(t: Template)
+    inline fun dedup() = apply {
+        t.SetVariable.dedupList {
+            +item
+        }
+    }
+    context(t: Template)
+    inline fun dedup(out: ListVariable) {
+        t.SetVariable.dedupList {
+            +out
+            +item
+        }
+    }
+
+    context(t: Template)
+    inline fun reverse() = apply {
+        t.SetVariable.reverseList {
+            +item
+        }
+    }
+    context(t: Template)
+    inline fun reverse(out: ListVariable) {
+        t.SetVariable.reverseList {
+            +out
+            +item
+        }
+    }
+
+    context(t: Template)
+    inline fun randomize() = apply {
+        t.SetVariable.randomizeList {
+            +item
+            +item
+        }
+    }
+    context(t: Template)
+    inline fun randomize(out: ListVariable) {
+        t.SetVariable.randomizeList {
+            +out
+            +item
+        }
+    }
+
+    context(t: Template)
+    inline fun trim(startIndex: NumItem, endIndex: NumItem) = apply {
+        t.SetVariable.trimList {
+            +item
+            +startIndex
+            +endIndex
+        }
+    }
+    context(_: Template)
+    inline fun trim(startIndex: Int, endIndex: Int) =
+        trim(startIndex.numItem, endIndex.numItem)
+    context(_: Template)
+    inline fun trim(startIndex: NumVariable, endIndex: NumVariable) =
+        trim(startIndex.numItem, endIndex.numItem)
+    context(t: Template)
+    inline fun trim(startIndex: NumItem, endIndex: NumItem, out: ListVariable) = apply {
+        t.SetVariable.trimList {
+            +out
+            +item
+            +startIndex
+            +endIndex
+        }
+    }
+    context(_: Template)
+    inline fun trim(startIndex: Int, endIndex: Int, out: ListVariable) =
+        trim(startIndex.numItem, endIndex.numItem, out)
+    context(_: Template)
+    inline fun trim(startIndex: NumVariable, endIndex: NumVariable, out: ListVariable) =
+        trim(startIndex.numItem, endIndex.numItem, out)
+
+    context(t: Template)
+    inline fun sort(sortOrder: SortOrder = SortOrder.Ascending) = apply {
+        t.SetVariable.sortList {
+            +item
+            +sortOrder.tag
+        }
+    }
+    context(t: Template)
+    inline fun sort(out: ListVariable, sortOrder: SortOrder = SortOrder.Ascending) {
+        t.SetVariable.sortList {
+            +out
+            +item
+            +sortOrder.tag
+        }
+    }
+    enum class SortOrder(val tag: SetVariableTags.SortList.SortOrder) {
+        Ascending(SetVariableTags.SortList.SortOrder.Ascending),
+        Descending(SetVariableTags.SortList.SortOrder.Descending)
+    }
+
+    context(t: Template)
+    inline fun removeIndex(index: NumItem) = apply {
+        t.SetVariable.removeListIndex {
+            +item
+            +index
+        }
+    }
+    context(_: Template)
+    inline fun removeIndex(index: Int) = removeIndex(index.numItem)
+    context(_: Template)
+    inline fun removeIndex(index: NumVariable) = removeIndex(index.numItem)
+
+    context(t: Template)
+    inline fun removeValue(value: Insertable, itemsToRemove: ItemsToRemove = ItemsToRemove.AllMatches) = apply {
+        t.SetVariable.removeListValue {
+            +item
+            +value
+            +itemsToRemove.tag
+        }
+    }
+    enum class ItemsToRemove(val tag: SetVariableTags.RemoveListValue.Itemstoremove) {
+        AllMatches(SetVariableTags.RemoveListValue.Itemstoremove.AllMatches),
+        FirstMatch(SetVariableTags.RemoveListValue.Itemstoremove.FirstMatch),
+        LastMatch(SetVariableTags.RemoveListValue.Itemstoremove.LastMatch)
+    }
+
+    context(t: Template)
+    inline fun pop(
+        index: NumItem,
+        out: VarItem = VarItem("$name-${index.value}-PopValue", VarItem.Scope.LINE)
+    ): VarItem {
+        t.SetVariable.popListValue {
+            +out
+            +item
+            +index
+        }
+        return out
+    }
+    context(_: Template)
+    inline fun pop(
+        index: Int,
+        out: VarItem = VarItem("$name-$index-PopValue", VarItem.Scope.LINE)
+    ) = pop(index.numItem, out)
+    context(_: Template)
+    inline fun pop(
+        index: NumVariable,
+        out: VarItem = VarItem("$name-%var(${index.name})-PopValue", VarItem.Scope.LINE)
+    ) = pop(index.numItem, out)
+
+    context(t: Template)
+    inline val size: NumItem get() {
+        val i = VarItem("$name-ListLength-auhdoiwauhisd", VarItem.Scope.LINE)
+        t.SetVariable.listLength {
+            +i
+            +item
+        }
+        return "%var(${i.name})".numItem
+    }
 }
 
-// TODO: if [items] is too long, split into multiple appends
 /**
  * Creates a [ListVariable] through inserting a [SetVariableCategory.createList] call
+ *
+ * Also inserts [SetVariableCategory.appendValue] calls if [items]' size is larger than 25.
  */
 fun Template.listVarOf(name: String, scope: VarItem.Scope, vararg items: Insertable): ListVariable {
     val list = ListVariable(name, scope)
-    SetVariable.createList {
-        +list
-        for (i in items) {
-            +i
+    if (items.size < 25) {
+        SetVariable.createList {
+            +list
+            for (i in items) {
+                +i
+            }
+        }
+    } else {
+        for (j in 0..items.size / 25) {
+            val a: Items = {
+                +list
+                for (f in j*25..(j+1)*25) {
+                    if (f >= items.size) break
+                    +items[f]
+                }
+            }
+            if (j == 0) {
+                SetVariable.createList(a)
+            } else {
+                SetVariable.appendValue(a)
+            }
         }
     }
     return list

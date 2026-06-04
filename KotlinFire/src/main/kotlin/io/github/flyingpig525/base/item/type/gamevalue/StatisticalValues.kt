@@ -1,8 +1,9 @@
 package io.github.flyingpig525.base.item.type.gamevalue
 
-import io.github.flyingpig525.base.item.*
-import io.github.flyingpig525.base.item.type.*
+import io.github.flyingpig525.base.item.type.GameValue
+import io.github.flyingpig525.base.item.type.NumItem
 
+@Suppress("unused")
 object StatisticalValues {
 	/**
 	 * *Gets a target's remaining*
@@ -321,8 +322,7 @@ object StatisticalValues {
 	 *
 	 * **Type:** [NumItem]
 	 *
-	 * *-1.0 (right)*
-	 * *to 1.0 (left)*
+	 * *-1 (right), 1 (left), or 0 (none)*
 	 */
 	val SteerSidewaysMovement get() = GameValue<NumItem>("Steer Sideways Movement")
 
@@ -333,8 +333,7 @@ object StatisticalValues {
 	 *
 	 * **Type:** [NumItem]
 	 *
-	 * *-1.0 (backward)*
-	 * *to 1.0 (forward)*
+	 * *-1 (backward), 1 (forward), or 0 (none)*
 	 */
 	val SteerForwardMovement get() = GameValue<NumItem>("Steer Forward Movement")
 

@@ -1,13 +1,12 @@
 package io.github.flyingpig525.base.block
 
-import io.github.flyingpig525.base.GlobalActionDump
-import io.github.flyingpig525.base.JsonData
-import io.github.flyingpig525.base.block.Block
+import io.github.flyingpig525.base.item.Insertable
 import io.github.flyingpig525.base.item.Item
+import io.github.flyingpig525.base.item.type.tag.TagItem
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.*
 
-class FunctionBlock(name: String = "PutNameHere", items: MutableList<Item>) : Block("func", items, name) {
+class FunctionBlock(name: String = "PutNameHere", items: MutableList<Insertable>) : Block("func", items, name) {
     @OptIn(ExperimentalSerializationApi::class)
     override fun getJsonData(): JsonObject {
         return buildJsonObject {
@@ -15,12 +14,13 @@ class FunctionBlock(name: String = "PutNameHere", items: MutableList<Item>) : Bl
             put("block", codeBlock)
             putJsonObject("args") {
                 putJsonArray("items") {
-                    val tags = GlobalActionDump.getTags(this@FunctionBlock)
-                    val tagCount = tags.size
-                    for ((i, item) in items.take(26-tagCount).withIndex()) {
-                        add(Item.getItemJsonArgument(item, i))
+                    for ((i, item) in items.withIndex()) {
+                        if (item is TagItem) {
+                            add(item.getJsonData())
+                        } else if (item is Item) {
+                            add(Item.getItemJsonArgument(item, i))
+                        }
                     }
-                    addAll(tags)
                 }
             }
             put("data", action)

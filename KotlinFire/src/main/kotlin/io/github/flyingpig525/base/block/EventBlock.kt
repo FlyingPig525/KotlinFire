@@ -2,7 +2,6 @@
 
 package io.github.flyingpig525.base.block
 
-import io.github.flyingpig525.base.item.Item
 import kotlinx.serialization.json.*
 
 class EventBlock(val type: Type, event: String) :
@@ -30,7 +29,8 @@ class EventBlock(val type: Type, event: String) :
 
     enum class Type(val type: String) {
         EntityEvent("entity_event"),
-        PlayerEvent("event");
+        PlayerEvent("event"),
+        GameEvent("game_event");
 
         override fun toString(): String {
             return type

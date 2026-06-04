@@ -1,8 +1,11 @@
 package io.github.flyingpig525.base.item.type.gamevalue
 
-import io.github.flyingpig525.base.item.*
-import io.github.flyingpig525.base.item.type.*
+import io.github.flyingpig525.base.item.type.GameValue
+import io.github.flyingpig525.base.item.type.LocItem
+import io.github.flyingpig525.base.item.type.NumItem
+import io.github.flyingpig525.base.item.type.VecItem
 
+@Suppress("unused")
 object LocationalValues {
 	/**
 	 * *Gets a target's location.*
