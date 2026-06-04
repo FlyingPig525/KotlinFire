@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     kotlin("jvm") apply true
     kotlin("plugin.serialization") apply true
@@ -54,16 +56,17 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
 
-    val ktor_version = "3.3.0"
+    val ktor_version = "3.5.0"
     implementation("io.ktor:ktor-client-websockets:$ktor_version")
     implementation("io.ktor:ktor-client-java:$ktor_version")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0")
     implementation(kotlin("reflect"))
 }
 
 kotlin {
-    jvmToolchain(17)
-    compilerOptions {
-        freeCompilerArgs = listOf("-Xcontext-parameters")
-    }
+    jvmToolchain(21)
+}
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.compilerOptions {
+    freeCompilerArgs.set(listOf("-Xcontext-parameters"))
 }

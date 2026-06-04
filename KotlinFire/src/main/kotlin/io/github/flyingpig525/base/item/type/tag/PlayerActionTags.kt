@@ -5,8 +5,8 @@ object PlayerActionTags {
 	object SetReducedDebug {
 		enum class ReducedDebugInfoEnabled(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True", true),
-			False("False", false);
+			Enable("Enable", true),
+			Disable("Disable", false);
 
 			override val action: kotlin.String = "SetReducedDebug"
 			override val block: kotlin.String = "player_action"
@@ -637,6 +637,31 @@ object PlayerActionTags {
 		}
 	}
 
+	object LockDisgRotation {
+		enum class Pitch(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Lock("Lock", false),
+			Unlock("Unlock", false),
+			/** **Default** */
+			NoChange("No Change", true);
+
+			override val action: kotlin.String = "LockDisgRotation"
+			override val block: kotlin.String = "player_action"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Pitch"
+		}
+		enum class Yaw(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Lock("Lock", false),
+			Unlock("Unlock", false),
+			/** **Default** */
+			NoChange("No Change", true);
+
+			override val action: kotlin.String = "LockDisgRotation"
+			override val block: kotlin.String = "player_action"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Yaw"
+		}
+	}
+
 	object RemoveBossBar {
 		enum class BossBarSlot(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
@@ -1134,6 +1159,19 @@ object PlayerActionTags {
 		}
 	}
 
+	object Mimic {
+		enum class RemoveOriginalEntity(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			Enable("Enable", true),
+			Disable("Disable", false);
+
+			override val action: kotlin.String = "Mimic"
+			override val block: kotlin.String = "player_action"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Remove Original Entity"
+		}
+	}
+
 	object RideEntity {
 		enum class IgnoreFormatting(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
@@ -1199,8 +1237,8 @@ object PlayerActionTags {
 	object SetVisualFire {
 		enum class OnFire(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
-			True("True", true),
-			False("False", false);
+			Enable("Enable", true),
+			Disable("Disable", false);
 
 			override val action: kotlin.String = "SetVisualFire"
 			override val block: kotlin.String = "player_action"

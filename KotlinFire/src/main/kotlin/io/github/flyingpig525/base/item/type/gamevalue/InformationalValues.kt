@@ -2,6 +2,7 @@ package io.github.flyingpig525.base.item.type.gamevalue
 
 import io.github.flyingpig525.base.item.type.*
 
+@Suppress("unused")
 object InformationalValues {
 	/**
 	 * *Gets a target's name.*

@@ -103,6 +103,15 @@ class ControlCategory internal constructor(private val template: Template) {
 
 
 	/**
+	 * Ends all currently active threads,
+	 * including active lines, loops, etc.
+	 */
+	fun endAllThreads(items: Items) {
+		block(items, "EndAllThreads", tagClass = ControlTags.EndAllThreads::class)
+	}
+
+
+	/**
 	 * Pauses the current code
 	 * sequence for a duration of
 	 * ticks, seconds, or minutes.
@@ -113,7 +122,7 @@ class ControlCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Wait duration
 	 *
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * (*) = optional
 

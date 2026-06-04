@@ -56,7 +56,7 @@ object IfVarTags {
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Caps Filter"
 		}
-		enum class CharacterSpacing(override val option: kotlin.String, override val default: Boolean) : TagItem {
+		enum class CharacterSpacingFilter(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
 			True("True", true),
 			False("False", false);
@@ -64,7 +64,7 @@ object IfVarTags {
 			override val action: kotlin.String = "IsFiltered"
 			override val block: kotlin.String = "if_var"
 			override var slot: Int = 26
-			override val tag: kotlin.String = "Character Spacing"
+			override val tag: kotlin.String = "Character Spacing Filter"
 		}
 		enum class CharacterDragFilter(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */

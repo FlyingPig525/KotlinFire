@@ -34,6 +34,31 @@ class SetVariableCategory internal constructor(private val template: Template) {
         blocks += Block("set_var", collection.items, action, extra)
     }
 	/**
+	 * Sets a particle effect's power.
+	 *
+	 * **Args:**
+	 *
+	 * [VarItem]
+	 *
+	 * Variable to set
+	 *
+	 * [GenericItem] (Particle)
+	 *
+	 * (*) Effect to
+	 * (*) change
+	 *
+	 * [NumItem]
+	 *
+	 * Particle power
+	 *
+	 * (*) = optional
+	 */
+	fun setParticlePower(items: Items) {
+		block(items, "SetParticlePower")
+	}
+
+
+	/**
 	 * Sets a variable to a string, or combines
 	 * multiple values into one string.
 	 *
@@ -446,6 +471,33 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
+	 * Segments a string into chunks of
+	 * a specified size.
+	 *
+	 * **Args:**
+	 *
+	 * [VarItem]
+	 *
+	 * Variable to set
+	 *
+	 * [StringItem]
+	 *
+	 * String to segment
+	 *
+	 * [NumItem]
+	 *
+	 * (*) Segment size
+	 *
+	 * *Default = §c1§7*
+	 *
+	 * (*) = optional
+	 */
+	fun segmentString(items: Items) {
+		block(items, "SegmentString")
+	}
+
+
+	/**
 	 * Rotates a location by shifting its pitch
 	 * (up/down) or yaw (left/right) value.
 	 *
@@ -578,6 +630,26 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 */
 	fun divide(items: Items) {
 		block(items, "/", tagClass = SetVariableTags.Divide::class)
+	}
+
+
+	/**
+	 * Splits a list into separate variables.
+	 *
+	 * **Args:**
+	 *
+	 * [VarItem]
+	 *
+	 * List to destructure
+	 *
+	 * [VarItem]
+	 *
+	 * Variable(s) to set
+	 *
+	 * (*) = optional
+	 */
+	fun destructureList(items: Items) {
+		block(items, "DestructureList")
 	}
 
 
@@ -849,9 +921,11 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * Base64 byte(s) to decode
 	 *
 	 * (*) = optional
+
+	 * @see [SetVariableTags.Base64Decode]
 	 */
 	fun base64Decode(items: Items) {
-		block(items, "Base64Decode")
+		block(items, "Base64Decode", tagClass = SetVariableTags.Base64Decode::class)
 	}
 
 
@@ -962,9 +1036,11 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * Byte(s) to decompress
 	 *
 	 * (*) = optional
+
+	 * @see [SetVariableTags.GzipDecompress]
 	 */
 	fun gzipDecompress(items: Items) {
-		block(items, "GzipDecompress")
+		block(items, "GzipDecompress", tagClass = SetVariableTags.GzipDecompress::class)
 	}
 
 
@@ -1093,7 +1169,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Tooltip key
 	 *
-	 * *A namespaced key ("minecraft:" by default)*
+	 * *A namespaced key (§b"minecraft:"§7 by default)*
 	 *
 	 * (*) = optional
 	 */
@@ -1132,7 +1208,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * (*) Use duration
 	 * (*) (seconds)
 	 *
-	 * *Default = 1.6*
+	 * *Default = §c1.6§7*
 	 *
 	 * (*) = optional
 
@@ -1558,25 +1634,25 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Frequency
 	 *
-	 * *Modifies the scale that the noise generates at. Default = 1*
+	 * *Modifies the scale that the noise generates at. Default = §c1§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Octaves
 	 *
-	 * *Adds an additional layer of noise to the output. 1-16, Default = 1*
+	 * *Adds an additional layer of noise to the output. §c1§7-§c16§7, Default = §c1§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Lacunarity
 	 *
-	 * *Every time a new octave is added, the frequency is multiplied by this value. Default = 1.5*
+	 * *Every time a new octave is added, the frequency is multiplied by this value. Default = §c1.5§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Gain
 	 *
-	 * *Every time a new octave is added, the weight of it is multiplied by this value. Default = 0.5*
+	 * *Every time a new octave is added, the weight of it is multiplied by this value. Default = §c0.5§7*
 	 *
 	 * [NumItem]
 	 *
@@ -1870,7 +1946,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * Block tag ID
 	 *
-	 * *Example: "#mineable/pickaxe"*
+	 * *Example: §b"#mineable/pickaxe"§7*
 	 *
 	 * (*) = optional
 
@@ -1940,7 +2016,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Length
 	 *
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * (*) = optional
 	 */
@@ -2014,12 +2090,14 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Splitter string
 	 *
-	 * *Default = " "*
+	 * *Default = §b" "§7*
 	 *
 	 * (*) = optional
+
+	 * @see [SetVariableTags.SplitString]
 	 */
 	fun splitString(items: Items) {
-		block(items, "SplitString")
+		block(items, "SplitString", tagClass = SetVariableTags.SplitString::class)
 	}
 
 
@@ -2109,6 +2187,27 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
+	 * Gets a particle effect's power.
+	 *
+	 * **Args:**
+	 *
+	 * [VarItem]
+	 *
+	 * Variable to set
+	 *
+	 * [GenericItem] (Particle)
+	 *
+	 * Effect to get
+	 * power of
+	 *
+	 * (*) = optional
+	 */
+	fun getParticlePower(items: Items) {
+		block(items, "GetParticlePower")
+	}
+
+
+	/**
 	 * Aligns a vector to the
 	 * nearest axis.
 	 *
@@ -2152,6 +2251,35 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 */
 	fun setItemDura(items: Items) {
 		block(items, "SetItemDura", tagClass = SetVariableTags.SetItemDura::class)
+	}
+
+
+	/**
+	 * Sets a player head's texture
+	 * using an owning player
+	 * or custom texture.
+	 *
+	 * **Args:**
+	 *
+	 * [VarItem]
+	 *
+	 * Variable to set
+	 *
+	 * [MinecraftItem]
+	 *
+	 * (*) Player head
+	 *
+	 * [StringItem]
+	 *
+	 * Owner name, UUID or
+	 * texture value
+	 *
+	 * (*) = optional
+
+	 * @see [SetVariableTags.SetHeadTexture]
+	 */
+	fun setHeadTexture(items: Items) {
+		block(items, " SetHeadTexture ", tagClass = SetVariableTags.SetHeadTexture::class)
 	}
 
 
@@ -2353,13 +2481,13 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Saturation (0-100)
 	 *
-	 * *Default = 100*
+	 * *Default = §c100§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Lightness (0-100)
 	 *
-	 * *Default = 50*
+	 * *Default = §c50§7*
 	 *
 	 * [VarItem]
 	 *
@@ -2419,61 +2547,61 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Frequency
 	 *
-	 * *Modifies the scale that the noise generates at. Default = 1*
+	 * *Modifies the scale that the noise generates at. Default = §c1§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Marbling
 	 *
-	 * *Every 0.5 adds an additional ring to the noise output. Default = 0.5*
+	 * *Every §c0.5§7 adds an additional ring to the noise output. Default = §c0.5§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Octaves
 	 *
-	 * *Adds an additional layer of cellular noise to the output. 1-16, Default = 1*
+	 * *Adds an additional layer of cellular noise to the output. §c1§7-§c16§7, Default = §c1§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Lacunarity
 	 *
-	 * *Every time a new octave is added, the frequency is multiplied by this value. Default = 1.5*
+	 * *Every time a new octave is added, the frequency is multiplied by this value. Default = §c1.5§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Gain
 	 *
-	 * *Every time a new octave is added, the weight of it is multiplied by this value. Default = 0.5*
+	 * *Every time a new octave is added, the weight of it is multiplied by this value. Default = §c0.5§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Warping
 	 *
-	 * *Distorts the noise output. Default = 0*
+	 * *Distorts the noise output. Default = §c0§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Resonance
 	 *
-	 * *Modifies the frequency of warping. Default = 1*
+	 * *Modifies the frequency of warping. Default = §c1§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Domains
 	 *
-	 * *Adds an additional layer of warping to the output. Default = 1*
+	 * *Adds an additional layer of warping to the output. Default = §c1§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Domain lacunarity
 	 *
-	 * *Every time a new domain is added, the resonance is multiplied by this value. Default = 1.5*
+	 * *Every time a new domain is added, the resonance is multiplied by this value. Default = §c1.5§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Domain gain
 	 *
-	 * *Every time a new domain is added, the weight of it is multiplied by this value. Default = 0.5*
+	 * *Every time a new domain is added, the weight of it is multiplied by this value. Default = §c0.5§7*
 	 *
 	 * [NumItem]
 	 *
@@ -2741,7 +2869,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Shift distance
 	 *
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * (*) = optional
 
@@ -2749,6 +2877,37 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 */
 	fun shiftInDirection(items: Items) {
 		block(items, "ShiftInDirection", tagClass = SetVariableTags.ShiftInDirection::class)
+	}
+
+
+	/**
+	 * Sets a variable to a vector
+	 * facing a given rotation.
+	 *
+	 * **Args:**
+	 *
+	 * [VarItem]
+	 *
+	 * Variable to set
+	 *
+	 * [NumItem]
+	 *
+	 * Pitch
+	 *
+	 * [NumItem]
+	 *
+	 * Yaw
+	 *
+	 * [NumItem]
+	 *
+	 * (*) Length
+	 *
+	 * *Default = §c1§7*
+	 *
+	 * (*) = optional
+	 */
+	fun rotationVector(items: Items) {
+		block(items, "RotationVector")
 	}
 
 
@@ -3044,6 +3203,31 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
+	 * Creates a random vector that
+	 * lies on a sphere. Generated
+	 * vectors will be uniformly
+	 * distributed on its surface.
+	 *
+	 * **Args:**
+	 *
+	 * [VarItem]
+	 *
+	 * Variable to set
+	 *
+	 * [NumItem]
+	 *
+	 * (*) Vector length
+	 *
+	 * *Default = §c1§7*
+	 *
+	 * (*) = optional
+	 */
+	fun randomVector(items: Items) {
+		block(items, "RandomVector")
+	}
+
+
+	/**
 	 * Gets the number of entries
 	 * in a dictionary.
 	 *
@@ -3134,6 +3318,30 @@ class SetVariableCategory internal constructor(private val template: Template) {
 
 
 	/**
+	 * Swaps two of a vector's
+	 * X, Y, or Z components.
+	 *
+	 * **Args:**
+	 *
+	 * [VarItem]
+	 *
+	 * Variable to set
+	 *
+	 * [VecItem]
+	 *
+	 * (*) Vector to swap
+	 * (*) components of
+	 *
+	 * (*) = optional
+
+	 * @see [SetVariableTags.SwapVectorComp]
+	 */
+	fun swapVectorComp(items: Items) {
+		block(items, "SwapVectorComp", tagClass = SetVariableTags.SwapVectorComp::class)
+	}
+
+
+	/**
 	 * Sets a particle effect's particle
 	 * color and color variation.
 	 *
@@ -3152,7 +3360,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * Color hexadecimal
 	 *
-	 * *Example: "#FF0000" (red)*
+	 * *Example: §b"#FF0000"§7 (red)*
 	 *
 	 * [NumItem]
 	 *
@@ -3255,6 +3463,12 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * Z component
 	 *
+	 * [StringItem]
+	 *
+	 * Direction name
+	 *
+	 * *One of the following: §b"north"§7, §b"east"§7, §b"south"§7, §b"west"§7,  §b"up"§7, §b"down"§7*
+	 *
 	 * (*) = optional
 	 */
 	fun vector(items: Items) {
@@ -3336,7 +3550,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Root index
 	 *
-	 * *Default = 2 (²√input)*
+	 * *Default = §c2§7 (²√input)*
 	 *
 	 * (*) = optional
 	 */
@@ -3452,7 +3666,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * Block tag ID to
 	 * apply the rule for
 	 *
-	 * *Example: "#mineable/pickaxe"*
+	 * *Example: §b"#mineable/pickaxe"§7*
 	 *
 	 * (*) = optional
 
@@ -3984,7 +4198,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Starting index
 	 *
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * (*) = optional
 
@@ -4068,6 +4282,27 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 */
 	fun reflectVector(items: Items) {
 		block(items, "ReflectVector")
+	}
+
+
+	/**
+	 * Converts a hex code to
+	 * a packed RGB integer.
+	 *
+	 * **Args:**
+	 *
+	 * [VarItem]
+	 *
+	 * Variable to set
+	 *
+	 * [StringItem]
+	 *
+	 * Hex code to convert
+	 *
+	 * (*) = optional
+	 */
+	fun decimalRGB(items: Items) {
+		block(items, "DecimalRGB")
 	}
 
 
@@ -4168,8 +4403,8 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Model key
 	 *
-	 * *A namespaced key ("minecraft:" by default)*
-	 * *Example: "stone"*
+	 * *A namespaced key (§b"minecraft:"§7 by default)*
+	 * *Example: §b"stone"§7*
 	 *
 	 * (*) = optional
 	 */
@@ -4192,7 +4427,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * Color hexadecimal
 	 *
-	 * *Example: "#FF0000" (red)*
+	 * *Example: §b"#FF0000"§7 (red)*
 	 *
 	 * (*) = optional
 
@@ -4487,13 +4722,13 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Cell frequency
 	 *
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Cell scatter
 	 *
-	 * *5-15 for cell shapes (Default = 10)*
+	 * *§c5§7-§c15§7 for cell shapes (Default = §c10§7)*
 	 *
 	 * [NumItem]
 	 *
@@ -4526,13 +4761,13 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Saturation (0-100)
 	 *
-	 * *Default = 100*
+	 * *Default = §c100§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Brightness (0-100)
 	 *
-	 * *Default = 100*
+	 * *Default = §c100§7*
 	 *
 	 * [VarItem]
 	 *
@@ -4561,7 +4796,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * (*) Number(s) to
 	 * (*) increment by
 	 *
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * (*) = optional
 	 */
@@ -4589,13 +4824,13 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) First number
 	 *
-	 * *Default = 0*
+	 * *Default = §c0§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Second number
 	 *
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * (*) = optional
 
@@ -4863,13 +5098,13 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Default mining speed
 	 *
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Damage per block
 	 *
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * (*) = optional
 	 */
@@ -4895,33 +5130,6 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 */
 	fun getTooltipStyle(items: Items) {
 		block(items, "GetTooltipStyle")
-	}
-
-
-	/**
-	 * Sets a player head's texture
-	 * using an owning player
-	 * or custom texture.
-	 *
-	 * **Args:**
-	 *
-	 * [VarItem]
-	 *
-	 * Variable to set
-	 *
-	 * [MinecraftItem]
-	 *
-	 * (*) Player head
-	 *
-	 * [StringItem]
-	 *
-	 * Owner name, UUID or
-	 * texture value
-	 *
-	 * (*) = optional
-	 */
-	fun setHeadTexture(items: Items) {
-		block(items, "SetHeadTexture")
 	}
 
 
@@ -4964,25 +5172,25 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Frequency (Scale)
 	 *
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Octaves (Perlin layers)
 	 *
-	 * *1-8, default = 1*
+	 * *§c1§7-§c8§7, default = §c1§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Octave frequency gain
 	 *
-	 * *Default = 1.5*
+	 * *Default = §c1.5§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Octave amplitude gain
 	 *
-	 * *Default = 0.75*
+	 * *Default = §c0.75§7*
 	 *
 	 * [NumItem]
 	 *
@@ -5016,13 +5224,13 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Cell frequency
 	 *
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Cell scatter
 	 *
-	 * *5-15 for cell shapes (Default = 10)*
+	 * *§c5§7-§c15§7 for cell shapes (Default = §c10§7)*
 	 *
 	 * [NumItem]
 	 *
@@ -5054,7 +5262,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * Color hexadecimal
 	 *
-	 * *Example: "#FF0000" (red)*
+	 * *Example: §b"#FF0000"§7 (red)*
 	 *
 	 * (*) = optional
 	 */
@@ -5396,7 +5604,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 * (*) Number(s) to
 	 * (*) decrement by
 	 *
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * (*) = optional
 	 */
@@ -5540,7 +5748,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Shift distance
 	 *
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * (*) = optional
 	 */
@@ -5598,61 +5806,61 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Frequency
 	 *
-	 * *Modifies the scale that the noise generates at. Default = 1*
+	 * *Modifies the scale that the noise generates at. Default = §c1§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Marbling
 	 *
-	 * *Every 0.5 adds an additional ring to the noise output. Default = 0.5*
+	 * *Every §c0.5§7 adds an additional ring to the noise output. Default = §c0.5§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Octaves
 	 *
-	 * *Adds an additional layer of gradient noise to the output. 1-16, Default = 1*
+	 * *Adds an additional layer of gradient noise to the output. §c1§7-§c16§7, Default = §c1§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Lacunarity
 	 *
-	 * *Every time a new octave is added, the frequency is multiplied by this value. Default = 1.5*
+	 * *Every time a new octave is added, the frequency is multiplied by this value. Default = §c1.5§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Gain
 	 *
-	 * *Every time a new octave is added, the weight of it is multiplied by this value. Default = 0.5*
+	 * *Every time a new octave is added, the weight of it is multiplied by this value. Default = §c0.5§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Warping
 	 *
-	 * *Distorts the noise output. Default = 0*
+	 * *Distorts the noise output. Default = §c0§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Resonance
 	 *
-	 * *Modifies the frequency of warping. Default = 1*
+	 * *Modifies the frequency of warping. Default = §c1§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Domains
 	 *
-	 * *Adds an additional layer of warping to the output. Default = 1*
+	 * *Adds an additional layer of warping to the output. Default = §c1§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Domain lacunarity
 	 *
-	 * *Every time a new domain is added, the resonance is multiplied by this value. Default = 1.5*
+	 * *Every time a new domain is added, the resonance is multiplied by this value. Default = §c1.5§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Domain gain
 	 *
-	 * *Every time a new domain is added, the weight of it is multiplied by this value. Default = 0.5*
+	 * *Every time a new domain is added, the weight of it is multiplied by this value. Default = §c0.5§7*
 	 *
 	 * [NumItem]
 	 *
@@ -5842,7 +6050,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * Item tag ID
 	 *
-	 * *Example: "#enchantable/sword"*
+	 * *Example: §b"#enchantable/sword"§7*
 	 *
 	 * (*) = optional
 
@@ -5872,7 +6080,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * Color hexadecimal
 	 *
-	 * *Example: "#FF0000" (red)*
+	 * *Example: §b"#FF0000"§7 (red)*
 	 *
 	 * (*) = optional
 	 */
@@ -5946,7 +6154,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Exponent
 	 *
-	 * *Default = 2 (input²)*
+	 * *Default = §c2§7 (input²)*
 	 *
 	 * (*) = optional
 	 */
@@ -6007,13 +6215,13 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Durability reduction per attack
 	 *
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Seconds to disable blocking for
 	 *
-	 * *Default = 0*
+	 * *Default = §c0§7*
 	 *
 	 * (*) = optional
 	 */
@@ -6187,7 +6395,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Item component(s) to hide
 	 *
-	 * *Item component keys, Example: "attribute_modifiers"*
+	 * *Item component keys, Example: §b"attribute_modifiers"§7*
 	 *
 	 * (*) = optional
 
@@ -6338,7 +6546,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * [MinecraftItem]
 	 *
-	 * Item to get tags from
+	 * Item to get tags of
 	 *
 	 * (*) = optional
 	 */
@@ -6445,61 +6653,61 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Frequency
 	 *
-	 * *Modifies the scale that the noise generates at. Default = 1*
+	 * *Modifies the scale that the noise generates at. Default = §c1§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Marbling
 	 *
-	 * *Every 0.5 adds an additional ring to the noise output. Default = 0.5*
+	 * *Every §c0.5§7 adds an additional ring to the noise output. Default = §c0.5§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Octaves
 	 *
-	 * *Adds an additional layer of value noise to the output. 1-16, Default = 1*
+	 * *Adds an additional layer of value noise to the output. §c1§7-§c16§7, Default = §c1§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Lacunarity
 	 *
-	 * *Every time a new octave is added, the frequency is multiplied by this value. Default = 1.5*
+	 * *Every time a new octave is added, the frequency is multiplied by this value. Default = §c1.5§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Gain
 	 *
-	 * *Every time a new octave is added, the weight of it is multiplied by this value. Default = 0.5*
+	 * *Every time a new octave is added, the weight of it is multiplied by this value. Default = §c0.5§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Warping
 	 *
-	 * *Distorts the noise output. Default = 0*
+	 * *Distorts the noise output. Default = §c0§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Resonance
 	 *
-	 * *Modifies the frequency of warping. Default = 1*
+	 * *Modifies the frequency of warping. Default = §c1§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Domains
 	 *
-	 * *Adds an additional layer of warping to the output. Default = 1*
+	 * *Adds an additional layer of warping to the output. Default = §c1§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Domain lacunarity
 	 *
-	 * *Every time a new domain is added, the resonance is multiplied by this value. Default = 1.5*
+	 * *Every time a new domain is added, the resonance is multiplied by this value. Default = §c1.5§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Domain gain
 	 *
-	 * *Every time a new domain is added, the weight of it is multiplied by this value. Default = 0.5*
+	 * *Every time a new domain is added, the weight of it is multiplied by this value. Default = §c0.5§7*
 	 *
 	 * [NumItem]
 	 *
@@ -6557,7 +6765,7 @@ class SetVariableCategory internal constructor(private val template: Template) {
 	 *
 	 * [MinecraftItem]
 	 *
-	 * (*) Item
+	 * (*) Item to change
 	 *
 	 * [VarItem]
 	 *

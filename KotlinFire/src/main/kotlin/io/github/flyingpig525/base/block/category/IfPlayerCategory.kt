@@ -245,7 +245,7 @@ class IfPlayerCategory internal constructor(private val template: Template) {
 	 *
 	 * Slot ID to check
 	 *
-	 * *1 (left) to 9 (right)*
+	 * *§c1§7 (left) to §c9§7 (right)*
 	 *
 	 * (*) = optional
 	 */

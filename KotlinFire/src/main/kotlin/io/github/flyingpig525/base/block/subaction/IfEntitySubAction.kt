@@ -1,5 +1,6 @@
 package io.github.flyingpig525.base.block.subaction
 
+@Suppress("unused")
 enum class IfEntitySubAction(override val codeblock: String) : SubAction {
 	IsVehicle("IsVehicle"),
 	IsGrounded("EIsGrounded"),

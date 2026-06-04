@@ -64,6 +64,7 @@ object SetVariableTags {
 			AttackKnockback("Attack knockback", false),
 			AttackSpeed("Attack speed", false),
 			BurningTime("Burning time", false),
+			CameraDistance("Camera distance", false),
 			ExplosionKnockbackResistance("Explosion knockback resistance", false),
 			FallDamageMultiplier("Fall damage multiplier", false),
 			FlyingSpeed("Flying speed", false),
@@ -133,6 +134,7 @@ object SetVariableTags {
 			AttackKnockback("Attack knockback", false),
 			AttackSpeed("Attack speed", false),
 			BurningTime("Burning time", false),
+			CameraDistance("Camera distance", false),
 			ExplosionKnockbackResistance("Explosion knockback resistance", false),
 			FallDamageMultiplier("Fall damage multiplier", false),
 			FlyingSpeed("Flying speed", false),
@@ -302,6 +304,7 @@ object SetVariableTags {
 			AttackKnockback("Attack knockback", false),
 			AttackSpeed("Attack speed", false),
 			BurningTime("Burning time", false),
+			CameraDistance("Camera distance", false),
 			ExplosionKnockbackResistance("Explosion knockback resistance", false),
 			FallDamageMultiplier("Fall damage multiplier", false),
 			FlyingSpeed("Flying speed", false),
@@ -362,6 +365,19 @@ object SetVariableTags {
 		}
 	}
 
+	object Base64Decode {
+		enum class Signed(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			True("True", true),
+			False("False", false);
+
+			override val action: kotlin.String = "Base64Decode"
+			override val block: kotlin.String = "set_var"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Signed"
+		}
+	}
+
 	object AlignLoc {
 		enum class AlignmentMode(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
@@ -406,6 +422,19 @@ object SetVariableTags {
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Rounding Mode"
+		}
+	}
+
+	object GzipDecompress {
+		enum class Signed(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			True("True", true),
+			False("False", false);
+
+			override val action: kotlin.String = "GzipDecompress"
+			override val block: kotlin.String = "set_var"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Signed"
 		}
 	}
 
@@ -488,12 +517,13 @@ object SetVariableTags {
 			Drink("Drink", false),
 			Block("Block", false),
 			Bow("Bow", false),
-			Spear("Spear", false),
+			Trident("Trident", false),
 			Crossbow("Crossbow", false),
 			Spyglass("Spyglass", false),
 			TootHorn("Toot horn", false),
 			Brush("Brush", false),
-			Bundle("Bundle", false);
+			Bundle("Bundle", false),
+			Spear("Spear", false);
 
 			override val action: kotlin.String = "SetConsumable"
 			override val block: kotlin.String = "set_var"
@@ -678,6 +708,19 @@ object SetVariableTags {
 		}
 	}
 
+	object SplitString {
+		enum class StripSpaces(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			Enable("Enable", true),
+			Disable("Disable", false);
+
+			override val action: kotlin.String = "SplitString"
+			override val block: kotlin.String = "set_var"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Strip Spaces"
+		}
+	}
+
 	object NormalRandom {
 		enum class Distribution(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
@@ -703,6 +746,19 @@ object SetVariableTags {
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Durability Type"
+		}
+	}
+
+	object SetHeadTexture {
+		enum class CodeFlow(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			Synchronous("Synchronous", true),
+			Asynchronous("Asynchronous", false);
+
+			override val action: kotlin.String = " SetHeadTexture "
+			override val block: kotlin.String = "set_var"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Code Flow"
 		}
 	}
 
@@ -967,6 +1023,20 @@ object SetVariableTags {
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Capitalization Type"
+		}
+	}
+
+	object SwapVectorComp {
+		enum class ComponentstoSwap(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			XNotEqualY("X ⇄ Y", true),
+			XNotEqualZ("X ⇄ Z", false),
+			YNotEqualZ("Y ⇄ Z", false);
+
+			override val action: kotlin.String = "SwapVectorComp"
+			override val block: kotlin.String = "set_var"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Components to Swap"
 		}
 	}
 
@@ -1426,7 +1496,7 @@ object SetVariableTags {
 	}
 
 	object WorleyNoise {
-		enum class CellEdgeType(override val option: kotlin.String, override val default: Boolean) : TagItem {
+		enum class Type(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
 			Euclidean("Euclidean", true),
 			Manhattan("Manhattan", false),
@@ -1435,9 +1505,9 @@ object SetVariableTags {
 			override val action: kotlin.String = "WorleyNoise"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
-			override val tag: kotlin.String = "Cell Edge Type"
+			override val tag: kotlin.String = ""
 		}
-		enum class DistanceCalculation(override val option: kotlin.String, override val default: Boolean) : TagItem {
+		enum class Operation(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
 			Primary("Primary", true),
 			Secondary("Secondary", false),
@@ -1449,7 +1519,7 @@ object SetVariableTags {
 			override val action: kotlin.String = "WorleyNoise"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
-			override val tag: kotlin.String = "Distance Calculation"
+			override val tag: kotlin.String = ""
 		}
 	}
 
@@ -1607,7 +1677,7 @@ object SetVariableTags {
 	}
 
 	object GetItemByMCTag {
-		enum class ReturnValueType(override val option: kotlin.String, override val default: Boolean) : TagItem {
+		enum class ReturnValueTyep(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
 			MaterialIdGolden_apple("Material ID (golden_apple)", true),
 			MaterialNameGoldenApple("Material Name (Golden Apple)", false),
@@ -1616,7 +1686,7 @@ object SetVariableTags {
 			override val action: kotlin.String = "GetItemByMCTag"
 			override val block: kotlin.String = "set_var"
 			override var slot: Int = 26
-			override val tag: kotlin.String = "Return Value Type"
+			override val tag: kotlin.String = "Return Value Tyep"
 		}
 	}
 

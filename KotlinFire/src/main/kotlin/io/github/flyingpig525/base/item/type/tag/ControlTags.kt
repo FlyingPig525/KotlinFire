@@ -69,6 +69,19 @@ object ControlTags {
 		}
 	}
 
+	object EndAllThreads {
+		enum class EndCurrentThread(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			True("True", true),
+			False("False", false);
+
+			override val action: kotlin.String = "EndAllThreads"
+			override val block: kotlin.String = "control"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "End Current Thread"
+		}
+	}
+
 	object Wait {
 		enum class TimeUnit(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */

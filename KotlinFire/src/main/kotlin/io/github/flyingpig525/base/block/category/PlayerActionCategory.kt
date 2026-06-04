@@ -42,7 +42,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * Item(s) to set
 	 *
-	 * *Slots 1-9*
+	 * *Slots §c1§7-§c9§7*
 	 *
 	 * (*) = optional
 	 */
@@ -132,7 +132,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Diameter
 	 *
-	 * *Default = 2 blocks*
+	 * *Default = §c2§7 blocks*
 	 *
 	 * (*) = optional
 	 */
@@ -234,7 +234,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * Damage to inflict
 	 *
-	 * *❤ = 2 Health*
+	 * *§c❤§7 = §c2§7 Health*
 	 *
 	 * [StringItem]
 	 *
@@ -327,7 +327,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * Amount to heal
 	 *
-	 * *❤ = 2 Health*
+	 * *§c❤§7 = §c2§7 Health*
 	 *
 	 * (*) = optional
 	 */
@@ -575,7 +575,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * Absorption health
 	 *
-	 * *❤ = 2 Health*
+	 * *§c❤§7 = §c2§7 Health*
 	 *
 	 * (*) = optional
 	 */
@@ -1172,7 +1172,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 * (*) Inaccuracy
 	 *
 	 * *Controls how much random motion is applied on launch*
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * (*) = optional
 	 */
@@ -1217,13 +1217,13 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Effect spacing
 	 *
-	 * *Default = 0.5 blocks*
+	 * *Default = §c0.5§7 blocks*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Animation duration
 	 *
-	 * *Default = 40 ticks*
+	 * *Default = §c40§7 ticks*
 	 *
 	 * (*) = optional
 
@@ -1350,6 +1350,32 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
+	 * Locks a disguise's pitch or yaw values.
+	 *
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * (*) Pitch to lock to
+	 *
+	 * *Default = §c0§7*
+	 *
+	 * [NumItem]
+	 *
+	 * (*) Yaw to lock to
+	 *
+	 * *Default = §c0§7*
+	 *
+	 * (*) = optional
+
+	 * @see [PlayerActionTags.LockDisgRotation]
+	 */
+	fun lockDisgRotation(items: Items) {
+		block(items, "LockDisgRotation", tagClass = PlayerActionTags.LockDisgRotation::class)
+	}
+
+
+	/**
 	 * Displays an animated circle
 	 * of particles to a player.
 	 *
@@ -1367,13 +1393,13 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Diameter
 	 *
-	 * *Default = 2 blocks*
+	 * *Default = §c2§7 blocks*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Animation duration
 	 *
-	 * *Default = 40 ticks*
+	 * *Default = §c40§7 ticks*
 	 *
 	 * (*) = optional
 	 */
@@ -1475,7 +1501,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Fracture level
 	 *
-	 * *0-10 (default = 0)*
+	 * *§c0§7-§c10§7 (default = §c0§7)*
 	 *
 	 * (*) = optional
 
@@ -1526,35 +1552,6 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * Highlights a specific block for a player.
-	 * The highlight is overlaid on a block,
-	 * showing text on top if provided.
-	 *
-	 * **Args:**
-	 *
-	 * [LocItem]
-	 *
-	 * Block location
-	 *
-	 * [StringItem]
-	 *
-	 * (*) Color hexadecimal
-	 *
-	 * *Example: "#FF0000" (red)*
-	 *
-	 * [StringItem]
-	 *
-	 * (*) Name
-	 *
-	 * [NumItem]
-	 *
-	 * (*) Opacity in percentage
-	 *
-	 * [NumItem]
-	 *
-	 * (*) Duration (milliseconds)
-	 *
-	 * (*) = optional
 	 */
 	fun displayHighlighter(items: Items) {
 		block(items, "DisplayHighlighter")
@@ -1578,7 +1575,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * New slot
 	 *
-	 * *1 (left) to 9 (right)*
+	 * *§c1§7 (left) to §c9§7 (right)*
 	 *
 	 * (*) = optional
 	 */
@@ -1609,7 +1606,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Effect spacing
 	 *
-	 * *Default = 0.5 blocks*
+	 * *Default = §c0.5§7 blocks*
 	 *
 	 * (*) = optional
 	 */
@@ -1641,7 +1638,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Effect spacing
 	 *
-	 * *Default = 0.5 blocks*
+	 * *Default = §c0.5§7 blocks*
 	 *
 	 * (*) = optional
 
@@ -1667,7 +1664,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Message delay ticks
 	 *
-	 * *Default = 60*
+	 * *Default = §c60§7*
 	 *
 	 * (*) = optional
 
@@ -1713,7 +1710,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) End of region
 	 *
-	 * *Region size limit: 500 blocks*
+	 * *Region size limit: §c500§7 blocks*
 	 *
 	 * (*) = optional
 	 */
@@ -1769,31 +1766,31 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Length
 	 *
-	 * *Default = 10 blocks*
+	 * *Default = §c10§7 blocks*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Diameter
 	 *
-	 * *Default = 2 blocks*
+	 * *Default = §c2§7 blocks*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Effect count
 	 *
-	 * *Default = 50*
+	 * *Default = §c50§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Rotations
 	 *
-	 * *Default = 4*
+	 * *Default = §c4§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Animation duration
 	 *
-	 * *Default = 40 ticks*
+	 * *Default = §c40§7 ticks*
 	 *
 	 * (*) = optional
 	 */
@@ -1825,7 +1822,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Score value
 	 *
-	 * *Default = 0*
+	 * *Default = §c0§7*
 	 *
 	 * (*) = optional
 	 */
@@ -1886,7 +1883,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Ticks per second (0-20)
 	 *
-	 * *Default = 20*
+	 * *Default = §c20§7*
 	 *
 	 * (*) = optional
 	 */
@@ -2025,25 +2022,25 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Length
 	 *
-	 * *Default = 10 blocks*
+	 * *Default = §c10§7 blocks*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Diameter
 	 *
-	 * *Default = 2 blocks*
+	 * *Default = §c2§7 blocks*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Effect count
 	 *
-	 * *Default = 50*
+	 * *Default = §c50§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Rotations
 	 *
-	 * *Default = 4*
+	 * *Default = §c4§7*
 	 *
 	 * (*) = optional
 	 */
@@ -2093,7 +2090,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * Maximum health
 	 *
-	 * *❤ = 2 Health*
+	 * *§c❤§7 = §c2§7 Health*
 	 *
 	 * (*) = optional
 
@@ -2270,13 +2267,13 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Maximum health
 	 *
-	 * *Default = 100*
+	 * *Default = §c100§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Boss bar position
 	 *
-	 * *Default = 1 (top)*
+	 * *Default = §c1§7 (top)*
 	 *
 	 * (*) = optional
 
@@ -2348,6 +2345,31 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
+	 * Disguises a player as another
+	 * currently existing entity or player.
+	 *
+	 * **Args:**
+	 *
+	 * [StringItem]
+	 *
+	 * UUID of target
+	 * to disguise as
+	 *
+	 * [TextItem]
+	 *
+	 * Name of target
+	 * to disguise as
+	 *
+	 * (*) = optional
+
+	 * @see [PlayerActionTags.Mimic]
+	 */
+	fun mimic(items: Items) {
+		block(items, "Mimic", tagClass = PlayerActionTags.Mimic::class)
+	}
+
+
+	/**
 	 * Sets the amount of bee stings
 	 * sticking out of a player's
 	 * character model.
@@ -2358,7 +2380,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Sting Count
 	 *
-	 * *Default = 0*
+	 * *Default = §c0§7*
 	 *
 	 * (*) = optional
 	 */
@@ -2426,7 +2448,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Diameter
 	 *
-	 * *Default = 2 blocks*
+	 * *Default = §c2§7 blocks*
 	 *
 	 * (*) = optional
 	 */
@@ -2454,13 +2476,13 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) End of region
 	 *
-	 * *Region size limit: 250,000 blocks*
+	 * *Region size limit: §c250,000§7 blocks*
 	 *
 	 * [TextItem]
 	 *
 	 * (*) Block data
 	 *
-	 * *Example: "facing=up", "half=top"*
+	 * *Example: §b"facing=up"§7, §b"half=top"§7*
 	 *
 	 * (*) = optional
 	 */
@@ -2516,7 +2538,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * Resource Pack URL
 	 *
-	 * *Must link directly to a .zip file.*
+	 * *Must link directly to a §b.zip§7 file.*
 	 *
 	 * (*) = optional
 	 */
@@ -2617,6 +2639,23 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
+	 * Shifts the disguise of a player up or
+	 * down relative to the player.
+	 *
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * Y-Offset
+	 *
+	 * (*) = optional
+	 */
+	fun disguiseShiftVert(items: Items) {
+		block(items, "DisguiseShiftVert")
+	}
+
+
+	/**
 	 * Sets the amount of arrows
 	 * sticking out of a player's
 	 * character model.
@@ -2627,7 +2666,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Arrow Count
 	 *
-	 * *Default = 0*
+	 * *Default = §c0§7*
 	 *
 	 * (*) = optional
 	 */
@@ -2730,10 +2769,10 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * Slot to set
 	 *
-	 * *1-9 Hotbar*
-	 * *10-36 Inventory (Top to bottom)*
-	 * *37-40 Armor (foot to head)*
-	 * *41 Offhand*
+	 * *§c1§7-§c9§7 Hotbar*
+	 * *§c10§7-§c36§7 Inventory (Top to bottom)*
+	 * *§c37§7-§c40§7 Armor (foot to head)*
+	 * *§c41§7 Offhand*
 	 *
 	 * (*) = optional
 	 */
@@ -2794,13 +2833,13 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Effect spacing
 	 *
-	 * *Default = 0.5 blocks*
+	 * *Default = §c0.5§7 blocks*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Animation duration
 	 *
-	 * *Default = 40 ticks*
+	 * *Default = §c40§7 ticks*
 	 *
 	 * (*) = optional
 	 */
@@ -2929,7 +2968,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Warning distance
 	 *
-	 * *Default = 0*
+	 * *Default = §c0§7*
 	 *
 	 * (*) = optional
 	 */
@@ -2948,10 +2987,10 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * Daylight ticks
 	 *
-	 * *Day: 1000*
-	 * *Noon: 6000*
-	 * *Night: 13000*
-	 * *Midnight: 18000*
+	 * *Day: §c1000§7*
+	 * *Noon: §c6000§7*
+	 * *Night: §c13000§7*
+	 * *Midnight: §c18000§7*
 	 *
 	 * (*) = optional
 	 */
@@ -3073,7 +3112,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * Current health
 	 *
-	 * *❤ = 2 Health*
+	 * *§c❤§7 = §c2§7 Health*
 	 *
 	 * (*) = optional
 	 */
@@ -3145,8 +3184,6 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 
 
 	/**
-	 * Clears all block highlighters
-	 * displayed to a player.
 	 */
 	fun clearHighlighters(items: Items) {
 		block(items, "ClearHighlighters")
@@ -3344,19 +3381,19 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Title duration
 	 *
-	 * *Default = 60 ticks*
+	 * *Default = §c60§7 ticks*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Fade in length
 	 *
-	 * *Default = 20 ticks*
+	 * *Default = §c20§7 ticks*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Fade out length
 	 *
-	 * *Default = 20 ticks*
+	 * *Default = §c20§7 ticks*
 	 *
 	 * (*) = optional
 	 */
@@ -3446,7 +3483,7 @@ class PlayerActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Effect spacing
 	 *
-	 * *Default = 0.5 blocks*
+	 * *Default = §c0.5§7 blocks*
 	 *
 	 * (*) = optional
 	 */

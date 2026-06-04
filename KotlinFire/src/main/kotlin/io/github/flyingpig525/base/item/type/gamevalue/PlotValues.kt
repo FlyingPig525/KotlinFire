@@ -2,6 +2,7 @@ package io.github.flyingpig525.base.item.type.gamevalue
 
 import io.github.flyingpig525.base.item.type.*
 
+@Suppress("unused")
 object PlotValues {
 	/**
 	 * *Gets the amount of players*

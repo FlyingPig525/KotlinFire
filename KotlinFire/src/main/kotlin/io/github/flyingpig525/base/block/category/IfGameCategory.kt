@@ -176,6 +176,16 @@ class IfGameCategory internal constructor(private val template: Template) {
 
 
 	/**
+	 * Checks if the chunk being loaded
+	 * in this event is a new chunk.
+	 */
+	fun eventChunkNew(items: Items, not: Boolean = false, wrappedCode: Template.() -> Unit): ElseOperation {
+		block(items, "EventChunkNew", wrappedCode, not)
+		return ElseOperation()
+	}
+
+
+	/**
 	 * Checks if the block at a location
 	 * is the given block.
 	 *
@@ -193,7 +203,7 @@ class IfGameCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Block data
 	 *
-	 * *Example: "facing=up"*
+	 * *Example: §b"facing=up"§7*
 	 *
 	 * (*) = optional
 	 */

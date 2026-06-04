@@ -53,7 +53,7 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Selection size
 	 *
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * (*) = optional
 	 */
@@ -121,12 +121,30 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Selection size
 	 *
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * (*) = optional
 	 */
 	fun filterRandom(items: Items) {
 		block(items, "FilterRandom")
+	}
+
+
+	/**
+	 * Creates a selection of all
+	 * entities in the game with
+	 * the given UUIDs.
+	 *
+	 * **Args:**
+	 *
+	 * [StringItem]
+	 *
+	 * UUID(s) to check for
+	 *
+	 * (*) = optional
+	 */
+	fun entityUUID(items: Items) {
+		block(items, "EntityUUID")
 	}
 
 
@@ -187,7 +205,7 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Selection size
 	 *
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * (*) = optional
 
@@ -222,13 +240,13 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Ray width
 	 *
-	 * *Default = 0.0*
+	 * *Default = §c0.0§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Selection size
 	 *
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * (*) = optional
 
@@ -358,7 +376,7 @@ class SelectObjectCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Selection size
 	 *
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * (*) = optional
 

@@ -21,7 +21,7 @@ private typealias Provider<T, I> = DiamondFireDelegateProvider<T, I>
  * Should be extended to add properties delegated through [numProp], [textProp], and others. These will be accessible
  * in DiamondFire when generated code runs.
  *
- * Before instance use, the variable must be initialized through [io.github.flyingpig525.base.Template.init]
+ * Before instance use, the variable must be initialized through [io.github.flyingpig525.serialization.DiamondFireClass.init]
  */
 @DiamondFireClassOptIn
 open class DiamondFireClass(val name: String, val scope: VarItem.Scope = VarItem.Scope.GAME) {

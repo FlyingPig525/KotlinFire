@@ -15,6 +15,79 @@ object EntityActionTags {
 		}
 	}
 
+	object MannequinLayers {
+		enum class CapeLayer(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			Visible("Visible", true),
+			Hidden("Hidden", false);
+
+			override val action: kotlin.String = "MannequinLayers"
+			override val block: kotlin.String = "entity_action"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Cape Layer"
+		}
+		enum class JacketLayer(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			Visible("Visible", true),
+			Hidden("Hidden", false);
+
+			override val action: kotlin.String = "MannequinLayers"
+			override val block: kotlin.String = "entity_action"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Jacket Layer"
+		}
+		enum class LeftSleeveLayer(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			Visible("Visible", true),
+			Hidden("Hidden", false);
+
+			override val action: kotlin.String = "MannequinLayers"
+			override val block: kotlin.String = "entity_action"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Left Sleeve Layer"
+		}
+		enum class RightSleeveLayer(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			Visible("Visible", true),
+			Hidden("Hidden", false);
+
+			override val action: kotlin.String = "MannequinLayers"
+			override val block: kotlin.String = "entity_action"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Right Sleeve Layer"
+		}
+		enum class LeftPantsLayer(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			Visible("Visible", true),
+			Hidden("Hidden", false);
+
+			override val action: kotlin.String = "MannequinLayers"
+			override val block: kotlin.String = "entity_action"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Left Pants Layer"
+		}
+		enum class RightPantsLayer(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			Visible("Visible", true),
+			Hidden("Hidden", false);
+
+			override val action: kotlin.String = "MannequinLayers"
+			override val block: kotlin.String = "entity_action"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Right Pants Layer"
+		}
+		enum class HatLayer(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			Visible("Visible", true),
+			Hidden("Hidden", false);
+
+			override val action: kotlin.String = "MannequinLayers"
+			override val block: kotlin.String = "entity_action"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Hat Layer"
+		}
+	}
+
 	object SetVelocity {
 		enum class AddtoCurrentVelocity(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			True("True", false),
@@ -210,7 +283,7 @@ object EntityActionTags {
 	}
 
 	object SetMoveSpeed {
-		enum class RelativetoEntityBase(override val option: kotlin.String, override val default: Boolean) : TagItem {
+		enum class Toggle(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
 			Enable("Enable", true),
 			Disable("Disable", false);
@@ -218,7 +291,7 @@ object EntityActionTags {
 			override val action: kotlin.String = "SetMoveSpeed"
 			override val block: kotlin.String = "entity_action"
 			override var slot: Int = 26
-			override val tag: kotlin.String = "Relative to Entity Base"
+			override val tag: kotlin.String = ""
 		}
 	}
 
@@ -325,6 +398,19 @@ object EntityActionTags {
 			override val block: kotlin.String = "entity_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Has Base Plate"
+		}
+	}
+
+	object MannequinHand {
+		enum class MainHand(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			LeftHand("Left Hand", true),
+			RightHand("Right Hand", false);
+
+			override val action: kotlin.String = "MannequinHand"
+			override val block: kotlin.String = "entity_action"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Main Hand"
 		}
 	}
 
@@ -580,6 +666,19 @@ object EntityActionTags {
 		}
 	}
 
+	object MannequinMovable {
+		enum class Movable(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			Enable("Enable", true),
+			Disable("Disable", false);
+
+			override val action: kotlin.String = "MannequinMovable"
+			override val block: kotlin.String = "entity_action"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Movable"
+		}
+	}
+
 	object LaunchToward {
 		enum class AddtoCurrentVelocity(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
@@ -706,6 +805,31 @@ object EntityActionTags {
 		}
 	}
 
+	object LockDisgRotation {
+		enum class Pitch(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Lock("Lock", false),
+			Unlock("Unlock", false),
+			/** **Default** */
+			NoChange("No Change", true);
+
+			override val action: kotlin.String = "LockDisgRotation"
+			override val block: kotlin.String = "entity_action"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Pitch"
+		}
+		enum class Yaw(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			Lock("Lock", false),
+			Unlock("Unlock", false),
+			/** **Default** */
+			NoChange("No Change", true);
+
+			override val action: kotlin.String = "LockDisgRotation"
+			override val block: kotlin.String = "entity_action"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Yaw"
+		}
+	}
+
 	object SetEquipment {
 		enum class EquipmentSlot(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
@@ -717,7 +841,8 @@ object EntityActionTags {
 			Feet("Feet", false),
 			Saddle("Saddle", false),
 			HorseArmor("Horse armor", false),
-			Decor("Decor", false);
+			Decor("Decor", false),
+			Harness("Harness", false);
 
 			override val action: kotlin.String = "SetEquipment"
 			override val block: kotlin.String = "entity_action"
@@ -1306,6 +1431,19 @@ object EntityActionTags {
 			override val block: kotlin.String = "entity_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Gravity"
+		}
+	}
+
+	object Mimic {
+		enum class RemoveOriginalEntity(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			Enable("Enable", true),
+			Disable("Disable", false);
+
+			override val action: kotlin.String = "Mimic"
+			override val block: kotlin.String = "entity_action"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Remove Original Entity"
 		}
 	}
 

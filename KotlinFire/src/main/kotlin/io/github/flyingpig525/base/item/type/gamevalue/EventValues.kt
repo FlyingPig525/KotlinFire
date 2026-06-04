@@ -2,6 +2,7 @@ package io.github.flyingpig525.base.item.type.gamevalue
 
 import io.github.flyingpig525.base.item.type.*
 
+@Suppress("unused")
 object EventValues {
 	/**
 	 * *Gets the location of*
@@ -25,6 +26,16 @@ object EventValues {
 	val EventBlockSide get() = GameValue<VecItem>("Event Block Side")
 
 	/**
+	 * *Gets the location of the*
+	 * *destination block in this event.*
+	 *
+	 * **Type:** [LocItem]
+	 *
+	 * *Block center*
+	 */
+	val EventDestinationBlockLocation get() = GameValue<LocItem>("Event Destination Block Location")
+
+	/**
 	 * *Gets the amount of damage*
 	 * *dealt in this event.*
 	 * *Includes damage reduction.*
@@ -35,7 +46,7 @@ object EventValues {
 	 *
 	 * **Additional Info**
 	 *
-	 * *❤ = 2 Health*
+	 * *§c❤§7 = §c2§7 Health*
 	 */
 	val EventDamage get() = GameValue<NumItem>("Event Damage")
 
@@ -53,7 +64,7 @@ object EventValues {
 	 * *"entity_explosion", "entity_sweep_attack",*
 	 * *"fall", "falling_block", "fire" (in fire block),*
 	 * *"fire_tick", "fly_into_wall", "freeze",*
-	 * *"hot_floor (magma block)", "kill", "lava",*
+	 * *"hot_floor" (magma block), "kill", "lava",*
 	 * *"magic", "melting" (snowman), "poison",*
 	 * *"projectile", "starvation", "suffocation", "thorns",*
 	 * *"void", "wither", "world_border"*
@@ -71,7 +82,7 @@ object EventValues {
 	 *
 	 * **Additional Info**
 	 *
-	 * *❤ = 2 Health*
+	 * *§c❤§7 = §c2§7 Health*
 	 */
 	val RawEventDamage get() = GameValue<NumItem>("Raw Event Damage")
 
@@ -95,7 +106,7 @@ object EventValues {
 	 *
 	 * **Additional Info**
 	 *
-	 * *❤ = 2 Health*
+	 * *§c❤§7 = §c2§7 Health*
 	 */
 	val EventHealAmount get() = GameValue<NumItem>("Event Heal Amount")
 
@@ -115,15 +126,14 @@ object EventValues {
 
 	/**
 	 * *Gets the locations of blocks*
-	 * *affected by the explosion*
-	 * *in this event.*
+	 * *affected in this event.*
 	 *
 	 * **Type:** [VarItem]
 	 *
 	 * *Contains one Location*
 	 * *entry for each block*
 	 */
-	val EventExplosionAffectedBlocks get() = GameValue<VarItem>("Event Explosion Affected Blocks")
+	val EventAffectedBlocks get() = GameValue<VarItem>("Event Affected Blocks")
 
 	/**
 	 * *Gets the percentage of*
@@ -406,8 +416,52 @@ object EventValues {
 	 * **Type:** [StringItem]
 	 *
 	 * *Combust Cause:*
-	 * *"player", "entity", "block", "unknown"*
+	 * *"player", "entity", "block", "code", "unknown"*
 	 */
 	val CombustEventCause get() = GameValue<StringItem>("Combust Event Cause")
+
+	/**
+	 * *Gets the state of the vault*
+	 * *before this event.*
+	 *
+	 * **Type:** [StringItem]
+	 *
+	 * *State:*
+	 * *"inactive", "active",*
+	 * *"unlocking", "ejecting"*
+	 */
+	val EventVaultState get() = GameValue<StringItem>("Event Vault State")
+
+	/**
+	 * *Gets the state of the vault*
+	 * *after this event.*
+	 *
+	 * **Type:** [StringItem]
+	 *
+	 * *State:*
+	 * *"inactive", "active",*
+	 * *"unlocking", "ejecting"*
+	 */
+	val EventNewVaultState get() = GameValue<StringItem>("Event New Vault State")
+
+	/**
+	 * *Gets the strength of the redstone*
+	 * *current before this event.*
+	 *
+	 * **Type:** [NumItem]
+	 *
+	 * *Redstone power (0-16)*
+	 */
+	val EventRedstoneCurrentStrength get() = GameValue<NumItem>("Event Redstone Current Strength")
+
+	/**
+	 * *Gets the strength of the redstone*
+	 * *current after this event.*
+	 *
+	 * **Type:** [NumItem]
+	 *
+	 * *Redstone power (0-16)*
+	 */
+	val EventNewRedstoneCurrentStrength get() = GameValue<NumItem>("Event New Redstone Current Strength")
 
 }

@@ -1,5 +1,6 @@
 package io.github.flyingpig525.base.item
 
+import io.github.flyingpig525.base.Items
 import io.github.flyingpig525.base.item.type.TextItem.Companion.textItem
 import io.github.flyingpig525.base.item.type.VarClass
 import io.github.flyingpig525.base.item.type.tag.TagItem
@@ -7,7 +8,7 @@ import io.github.flyingpig525.base.item.type.tag.TagItem
 /**
  * A class used as context to allow inserting items into codeblocks.
  */
-class ItemCollection internal constructor(func: ItemCollection.() -> Unit) {
+class ItemCollection internal constructor(func: Items) {
     val items: MutableList<Insertable> = mutableListOf()
 
     init {

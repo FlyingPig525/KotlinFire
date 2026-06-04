@@ -65,6 +65,15 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
+	 * Sets a mannequin's
+	 * skin layers.
+	 */
+	fun mannequinLayers(items: Items) {
+		block(items, "MannequinLayers", tagClass = EntityActionTags.MannequinLayers::class)
+	}
+
+
+	/**
 	 * Sets a mob in the sheared
 	 * state.
 	 */
@@ -142,7 +151,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 *
 	 * Damage to inflict
 	 *
-	 * *❤ = 2 Health*
+	 * *§c❤§7 = §c2§7 Health*
 	 *
 	 * [StringItem]
 	 *
@@ -231,7 +240,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 *
 	 * Amount to heal
 	 *
-	 * *❤ = 2 Health*
+	 * *§c❤§7 = §c2§7 Health*
 	 *
 	 * (*) = optional
 	 */
@@ -400,6 +409,15 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
+	 * Sets a mannequin's
+	 * main hand.
+	 */
+	fun mannequinHand(items: Items) {
+		block(items, "MannequinHand", tagClass = EntityActionTags.MannequinHand::class)
+	}
+
+
+	/**
 	 */
 	fun dropItems(items: Items) {
 		block(items, "DropItems")
@@ -437,7 +455,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 *
 	 * Power (0-25)
 	 *
-	 * *Default = 3 (6 for charged creepers)*
+	 * *Default = §c3§7 (§c6§7 for charged creepers)*
 	 *
 	 * (*) = optional
 	 */
@@ -482,7 +500,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 *
 	 * Absorption health
 	 *
-	 * *❤ = 2 Health*
+	 * *§c❤§7 = §c2§7 Health*
 	 *
 	 * (*) = optional
 	 */
@@ -546,6 +564,25 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
+	 * Sets a mannequin's
+	 * description.
+	 *
+	 * **Args:**
+	 *
+	 * [TextItem]
+	 *
+	 * (*) Description
+	 *
+	 * *Only shown if name is visible*
+	 *
+	 * (*) = optional
+	 */
+	fun mannequinDesc(items: Items) {
+		block(items, "MannequinDesc")
+	}
+
+
+	/**
 	 * Sets the displayed block
 	 * of a block display.
 	 *
@@ -559,7 +596,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Block data
 	 *
-	 * *Example: "facing=up", "half=top"*
+	 * *Example: §b"facing=up"§7, §b"half=top"§7*
 	 *
 	 * (*) = optional
 	 */
@@ -674,14 +711,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * (*) Interpolation duration
 	 * (*) in ticks
 	 *
-	 * *Default = 0*
+	 * *Default = §c0§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Interpolation delay
 	 * (*) in ticks
 	 *
-	 * *Default = 0*
+	 * *Default = §c0§7*
 	 *
 	 * (*) = optional
 	 */
@@ -710,6 +747,15 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 */
 	fun setEndermanBlock(items: Items) {
 		block(items, "SetEndermanBlock")
+	}
+
+
+	/**
+	 * Sets whether a mannequin
+	 * is movable.
+	 */
+	fun mannequinMovable(items: Items) {
+		block(items, "MannequinMovable", tagClass = EntityActionTags.MannequinMovable::class)
 	}
 
 
@@ -786,13 +832,13 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Width
 	 *
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Height
 	 *
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * (*) = optional
 	 */
@@ -910,7 +956,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * (*) Inaccuracy
 	 *
 	 * *Controls how much random motion is applied on launch*
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * (*) = optional
 	 */
@@ -1030,6 +1076,32 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 */
 	fun foxSleeping(items: Items) {
 		block(items, "FoxSleeping", tagClass = EntityActionTags.FoxSleeping::class)
+	}
+
+
+	/**
+	 * Locks a disguise's pitch or yaw values.
+	 *
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * (*) Pitch to lock to
+	 *
+	 * *Default = §c0§7*
+	 *
+	 * [NumItem]
+	 *
+	 * (*) Yaw to lock to
+	 *
+	 * *Default = §c0§7*
+	 *
+	 * (*) = optional
+
+	 * @see [EntityActionTags.LockDisgRotation]
+	 */
+	fun lockDisgRotation(items: Items) {
+		block(items, "LockDisgRotation", tagClass = EntityActionTags.LockDisgRotation::class)
 	}
 
 
@@ -1306,7 +1378,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Color hexadecimal
 	 *
-	 * *Example: "#FF0000" (red)*
+	 * *Example: §b"#FF0000"§7 (red)*
 	 *
 	 * [NumItem]
 	 *
@@ -1330,13 +1402,13 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Width
 	 *
-	 * *Default = 0*
+	 * *Default = §c0§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Height
 	 *
-	 * *Default = 0*
+	 * *Default = §c0§7*
 	 *
 	 * (*) = optional
 	 */
@@ -1710,6 +1782,27 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
+	 * Sets a mannequin's
+	 * skin avatar.
+	 *
+	 * **Args:**
+	 *
+	 * [MinecraftItem]
+	 *
+	 * Mannequin player head
+	 *
+	 * [StringItem]
+	 *
+	 * Mannequin player name or UUID
+	 *
+	 * (*) = optional
+	 */
+	fun mannequinSkin(items: Items) {
+		block(items, "MannequinSkin")
+	}
+
+
+	/**
 	 * Sets how far a shulker
 	 * should peek up to.
 	 *
@@ -1780,6 +1873,31 @@ class EntityActionCategory internal constructor(private val template: Template) 
 
 
 	/**
+	 * Disguises an entity as another
+	 * currently existing entity or player.
+	 *
+	 * **Args:**
+	 *
+	 * [StringItem]
+	 *
+	 * UUID of target
+	 * to disguise as
+	 *
+	 * [TextItem]
+	 *
+	 * Name of target
+	 * to disguise as
+	 *
+	 * (*) = optional
+
+	 * @see [EntityActionTags.Mimic]
+	 */
+	fun mimic(items: Items) {
+		block(items, "Mimic", tagClass = EntityActionTags.Mimic::class)
+	}
+
+
+	/**
 	 * Sets how long a display entity takes
 	 * to visually move to its destination
 	 * when it teleports.
@@ -1791,7 +1909,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 * (*) Teleport duration
 	 * (*) in ticks
 	 *
-	 * *Default = 0*
+	 * *Default = §c0§7*
 	 *
 	 * (*) = optional
 	 */
@@ -1853,14 +1971,14 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Shadow radius in blocks
 	 *
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Shadow opacity in
 	 * (*) percentage
 	 *
-	 * *Default = 100*
+	 * *Default = §c100§7*
 	 *
 	 * (*) = optional
 	 */
@@ -1989,7 +2107,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 *
 	 * Color hexadecimal
 	 *
-	 * *Example: "#FF0000" (red)*
+	 * *Example: §b"#FF0000"§7 (red)*
 	 *
 	 * (*) = optional
 	 */
@@ -2004,6 +2122,23 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 */
 	fun setVisualFire(items: Items) {
 		block(items, "SetVisualFire", tagClass = EntityActionTags.SetVisualFire::class)
+	}
+
+
+	/**
+	 * Shifts the disguise of an entity up or
+	 * down relative to the entity itself.
+	 *
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * Y-Offset
+	 *
+	 * (*) = optional
+	 */
+	fun disguiseShiftVert(items: Items) {
+		block(items, "DisguiseShiftVert")
 	}
 
 
@@ -2063,7 +2198,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Line width
 	 *
-	 * *Default = 200*
+	 * *Default = §c200§7*
 	 *
 	 * (*) = optional
 	 */
@@ -2229,7 +2364,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 *
 	 * Current health
 	 *
-	 * *❤ = 2 Health*
+	 * *§c❤§7 = §c2§7 Health*
 	 *
 	 * (*) = optional
 	 */
@@ -2281,19 +2416,19 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) X Rotation (0-360)
 	 *
-	 * *Default = 0*
+	 * *Default = §c0§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Y Rotation (0-360)
 	 *
-	 * *Default = 0*
+	 * *Default = §c0§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Z Rotation (0-360)
 	 *
-	 * *Default = 0*
+	 * *Default = §c0§7*
 	 *
 	 * (*) = optional
 
@@ -2373,7 +2508,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) Text opacity
 	 *
-	 * *Default = 100*
+	 * *Default = §c100§7*
 	 *
 	 * (*) = optional
 	 */
@@ -2459,7 +2594,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 *
 	 * (*) View range in blocks
 	 *
-	 * *Default = 64*
+	 * *Default = §c64§7*
 	 *
 	 * (*) = optional
 	 */
@@ -2627,7 +2762,7 @@ class EntityActionCategory internal constructor(private val template: Template) 
 	 *
 	 * Strength
 	 *
-	 * *0.0 (can't jump) to 2.0*
+	 * *§c0.0§7 (can't jump) to §c2.0§7*
 	 *
 	 * (*) = optional
 	 */

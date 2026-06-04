@@ -97,7 +97,7 @@ class RepeatCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Point spacing
 	 *
-	 * *Default = 0.5 blocks*
+	 * *Default = §c0.5§7 blocks*
 	 *
 	 * (*) = optional
 

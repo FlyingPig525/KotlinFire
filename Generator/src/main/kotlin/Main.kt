@@ -175,7 +175,7 @@ fun blockActions(actions: List<JsonObject>) = try {
                     blocks += BracketBlock(type = "${if (codeblock.name == "Repeat") "repeat" else "norm"}")
                     blocks += io.github.flyingpig525.base.Template(
                         io.github.flyingpig525.base.Template.Type.NONE,
-                        a = wrappedCode
+                        code = wrappedCode
                     ).blocks
                     blocks += BracketBlock(false, "${if (codeblock.name == "Repeat") "repeat" else "norm"}")
                 }
@@ -340,7 +340,7 @@ fun processTags(action: JsonObject, tagFile: KMutableProperty0<String>) {
 }
 
 fun processEvents(codeblock: CodeBlock, events: List<JsonObject>) = try {
-    if (codeblock != CodeBlock.PlayerEvent && codeblock != CodeBlock.EntityEvent) throw IllegalArgumentException("codeblock cannot be a non-event block")
+    if (codeblock != CodeBlock.PlayerEvent && codeblock != CodeBlock.EntityEvent && codeblock != CodeBlock.GameEvent) throw IllegalArgumentException("codeblock cannot be a non-event block")
     var file = """
         package io.github.flyingpig525.base.block
         
@@ -436,7 +436,7 @@ fun processSounds(sounds: JsonArray) {
     for (sound in sounds.map { it.jsonObject }) {
         val icon = sound["icon"]?.jsonObject ?: continue
         val name = icon["name"]?.jsonPrimitive?.content ?: continue
-        val decluttered = name.replace("(", "").replace(")", "").replace("-", "").noSpace
+        val decluttered = removeClutter(name.replace("(", "").replace(")", "").replace("-", "").noSpace)
         println(decluttered)
         file += "\tval $decluttered get() = SoundItem(\"$name\")\n"
     }
@@ -458,6 +458,7 @@ enum class CodeBlock(val block: String, val shortName: String) {
     SetVariable("SET VARIABLE", "set_var"),
     PlayerEvent("PLAYER EVENT", "player_event"),
     EntityEvent("ENTITY EVENT", "entity_event"),
+    GameEvent("GAME EVENT", "game_event"),
     SelectObject("SELECT OBJECT", "select");
 
     override fun toString(): String = name
@@ -588,6 +589,7 @@ val String.transformedSymbols: String get() = this
     .replace(">>", " shift right ")
     .replace("^", " XOR ")
     .replace("+", " ")
+    .replace("⇄", " not equal ")
 
 fun enclosesCode(codeblock: CodeBlock): Boolean = when (codeblock) {
     CodeBlock.IfEntity -> true

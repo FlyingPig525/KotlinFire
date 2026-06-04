@@ -1,5 +1,6 @@
 package io.github.flyingpig525.base.block
 
+@Suppress("unused")
 enum class EntityEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Entity Kill Entity Event
@@ -31,6 +32,16 @@ enum class EntityEvent(val type: EventBlock.Type, val event: String) {
 	 * *into a falling block.*
 	 */
 	BlockFall(EventBlock.Type.EntityEvent, "BlockFall"),
+
+	/**
+	 * Entity Spawn Naturally
+	 *
+	 * **Description:**
+	 *
+	 * *Executes code when an entity*
+	 * *spawns into the world naturally.*
+	 */
+	NaturallySpawn(EventBlock.Type.EntityEvent, "NaturallySpawn"),
 
 	/**
 	 * Projectile Kill Entity Event

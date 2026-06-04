@@ -76,6 +76,19 @@ object GameActionTags {
 		}
 	}
 
+	object AdvanceWeather {
+		enum class HasWeatherCycle(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			Enable("Enable", true),
+			Disable("Disable", false);
+
+			override val action: kotlin.String = "AdvanceWeather"
+			override val block: kotlin.String = "game_action"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Has Weather Cycle"
+		}
+	}
+
 	object SpawnItem {
 		enum class ApplyItemMotion(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
@@ -136,6 +149,19 @@ object GameActionTags {
 		}
 	}
 
+	object MobSpawning {
+		enum class MobSpawning(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			Enable("Enable", true),
+			Disable("Disable", false);
+
+			override val action: kotlin.String = "MobSpawning"
+			override val block: kotlin.String = "game_action"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Mob Spawning"
+		}
+	}
+
 	object SpawnInteraction {
 		enum class Responsive(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			Enable("Enable", false),
@@ -184,6 +210,55 @@ object GameActionTags {
 			override val block: kotlin.String = "game_action"
 			override var slot: Int = 26
 			override val tag: kotlin.String = "Visibility"
+		}
+	}
+
+	object TraderSpawning {
+		enum class TraderSpawning(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			Enable("Enable", true),
+			Disable("Disable", false);
+
+			override val action: kotlin.String = "TraderSpawning"
+			override val block: kotlin.String = "game_action"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Trader Spawning"
+		}
+	}
+
+	object AdvanceTime {
+		enum class AdvanceTime(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			Enable("Enable", true),
+			Disable("Disable", false);
+
+			override val action: kotlin.String = "AdvanceTime"
+			override val block: kotlin.String = "game_action"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Advance Time"
+		}
+	}
+
+	object SpawnMannequin {
+		enum class Movable(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			True("True", true),
+			False("False", false);
+
+			override val action: kotlin.String = "SpawnMannequin"
+			override val block: kotlin.String = "game_action"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Movable"
+		}
+		enum class MainHand(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			LeftHand("Left Hand", true),
+			RightHand("Right Hand", false);
+
+			override val action: kotlin.String = "SpawnMannequin"
+			override val block: kotlin.String = "game_action"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Main Hand"
 		}
 	}
 
@@ -277,6 +352,19 @@ object GameActionTags {
 		}
 	}
 
+	object VineSpreading {
+		enum class VineSpreading(override val option: kotlin.String, override val default: Boolean) : TagItem {
+			/** **Default** */
+			Enable("Enable", true),
+			Disable("Disable", false);
+
+			override val action: kotlin.String = "VineSpreading"
+			override val block: kotlin.String = "game_action"
+			override var slot: Int = 26
+			override val tag: kotlin.String = "Vine Spreading"
+		}
+	}
+
 	object GenerateTree {
 		enum class TreeType(override val option: kotlin.String, override val default: Boolean) : TagItem {
 			/** **Default** */
@@ -293,6 +381,8 @@ object GameActionTags {
 			JungleBush("Jungle Bush", false),
 			AcaciaTree("Acacia Tree", false),
 			DarkOakTree("Dark Oak Tree", false),
+			PaleOakTree("Pale Oak Tree", false),
+			CreakingPaleOakTree("Creaking Pale Oak Tree", false),
 			MangroveTree("Mangrove Tree", false),
 			TallMangroveTree("Tall Mangrove Tree", false),
 			CherryTree("Cherry Tree", false),

@@ -194,7 +194,7 @@ class IfVarCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Size to compare
 	 *
-	 * *Default = 0*
+	 * *Default = §c0§7*
 	 *
 	 * (*) = optional
 	 */

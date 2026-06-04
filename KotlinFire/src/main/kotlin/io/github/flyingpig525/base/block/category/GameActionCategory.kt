@@ -134,6 +134,25 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
+	 * Sets the simulation distance
+	 * in the world.
+	 *
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * Simulation distance
+	 *
+	 * *Limit: §c2§7-§c32§7*
+	 *
+	 * (*) = optional
+	 */
+	fun simulationDistance(items: Items) {
+		block(items, "SimulationDistance")
+	}
+
+
+	/**
 	 */
 	fun clearScBoard(items: Items) {
 		block(items, "ClearScBoard")
@@ -195,12 +214,33 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * (*) Block data
 	 * (*) (comma separated)
 	 *
-	 * *Example: "facing=up,half=top"*
+	 * *Example: §b"facing=up,half=top"§7*
 	 *
 	 * (*) = optional
 	 */
 	fun writeTransaction(items: Items) {
 		block(items, "WriteTransaction")
+	}
+
+
+	/**
+	 * Sets the time in the world.
+	 *
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * Daylight ticks
+	 *
+	 * *Day: §c1000§7*
+	 * *Noon: §c6000§7*
+	 * *Night: §c13000§7*
+	 * *Midnight: §c18000§7*
+	 *
+	 * (*) = optional
+	 */
+	fun setWorldTime(items: Items) {
+		block(items, "SetWorldTime")
 	}
 
 
@@ -225,7 +265,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 *
 	 * Block data
 	 *
-	 * *Example: "facing=up"*
+	 * *Example: §b"facing=up"§7*
 	 *
 	 * (*) = optional
 
@@ -269,12 +309,41 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 *
 	 * New damage amount
 	 *
-	 * *❤ = 2 Health*
+	 * *§c❤§7 = §c2§7 Health*
 	 *
 	 * (*) = optional
 	 */
 	fun setEventDamage(items: Items) {
 		block(items, "SetEventDamage")
+	}
+
+
+	/**
+	 * Sets if this world has a
+	 * natural weather cycle.
+	 */
+	fun advanceWeather(items: Items) {
+		block(items, "AdvanceWeather", tagClass = GameActionTags.AdvanceWeather::class)
+	}
+
+
+	/**
+	 * Sets the radius fire spreads
+	 * around a player.
+	 *
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * Radius in blocks
+	 *
+	 * *Set to §c-1§7 to disable fire spreading.*
+	 * *Set to §c0§7 to allow fire spreading away from players.*
+	 *
+	 * (*) = optional
+	 */
+	fun fireSpreadRadius(items: Items) {
+		block(items, "FireSpreadRadius")
 	}
 
 
@@ -343,6 +412,14 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 */
 	fun fireworkEffect(items: Items) {
 		block(items, "FireworkEffect")
+	}
+
+
+	/**
+	 * Sets if this world spawns mobs.
+	 */
+	fun mobSpawning(items: Items) {
+		block(items, "MobSpawning", tagClass = GameActionTags.MobSpawning::class)
 	}
 
 
@@ -528,12 +605,31 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Block data
 	 *
-	 * *Example: "facing=up", "half=top"*
+	 * *Example: §b"facing=up"§7, §b"half=top"§7*
 	 *
 	 * (*) = optional
 	 */
 	fun spawnBlockDisp(items: Items) {
 		block(items, "SpawnBlockDisp")
+	}
+
+
+	/**
+	 * Sets the current strength
+	 * in this event.
+	 *
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * New current strength
+	 *
+	 * *Range: §c0§7-§c15§7*
+	 *
+	 * (*) = optional
+	 */
+	fun redstoneStrength(items: Items) {
+		block(items, "RedstoneStrength")
 	}
 
 
@@ -550,6 +646,14 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 */
 	fun clearContainer(items: Items) {
 		block(items, "ClearContainer")
+	}
+
+
+	/**
+	 * Sets if this world spawns wandering traders.
+	 */
+	fun traderSpawning(items: Items) {
+		block(items, "TraderSpawning", tagClass = GameActionTags.TraderSpawning::class)
 	}
 
 
@@ -685,6 +789,15 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
+	 * Sets if this world has a
+	 * natural time cycle.
+	 */
+	fun advanceTime(items: Items) {
+		block(items, "AdvanceTime", tagClass = GameActionTags.AdvanceTime::class)
+	}
+
+
+	/**
 	 */
 	fun pFXLineA(items: Items) {
 		block(items, "PFX Line [A]")
@@ -751,6 +864,56 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
+	 * Spawns a mannequin at a location.
+	 *
+	 * **Args:**
+	 *
+	 * [MinecraftItem]
+	 *
+	 * Mannequin player head
+	 *
+	 * [StringItem]
+	 *
+	 * Mannequin player name or UUID
+	 *
+	 * [LocItem]
+	 *
+	 * Spawn location
+	 *
+	 * [TextItem]
+	 *
+	 * (*) Description
+	 *
+	 * *Only shown if name is visible*
+	 *
+	 * (*) = optional
+
+	 * @see [GameActionTags.SpawnMannequin]
+	 */
+	fun spawnMannequin(items: Items) {
+		block(items, "SpawnMannequin", tagClass = GameActionTags.SpawnMannequin::class)
+	}
+
+
+	/**
+	 * Sets the view distance in the world.
+	 *
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * View distance
+	 *
+	 * *Limit: §c2§7-§c32§7*
+	 *
+	 * (*) = optional
+	 */
+	fun viewDistance(items: Items) {
+		block(items, "ViewDistance")
+	}
+
+
+	/**
 	 * Applies bone meal to a block.
 	 *
 	 * **Args:**
@@ -803,6 +966,23 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 */
 	fun fallingBlock(items: Items) {
 		block(items, "FallingBlock", tagClass = GameActionTags.FallingBlock::class)
+	}
+
+
+	/**
+	 * Sets the item displayed
+	 * in this event.
+	 *
+	 * **Args:**
+	 *
+	 * [MinecraftItem]
+	 *
+	 * Item to display
+	 *
+	 * (*) = optional
+	 */
+	fun setDisplayedItem(items: Items) {
+		block(items, "SetDisplayedItem")
 	}
 
 
@@ -897,6 +1077,23 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
+	 * Sets the random tick speed
+	 * in the world.
+	 *
+	 * **Args:**
+	 *
+	 * [NumItem]
+	 *
+	 * Tick speed
+	 *
+	 * (*) = optional
+	 */
+	fun randomTickSpeed(items: Items) {
+		block(items, "RandomTickSpeed")
+	}
+
+
+	/**
 	 * Creates an explosion at a location.
 	 *
 	 * **Args:**
@@ -910,7 +1107,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Explosion power (0-4)
 	 *
-	 * *Default = 4*
+	 * *Default = §c4§7*
 	 *
 	 * (*) = optional
 	 */
@@ -1045,13 +1242,13 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Radius (blocks)
 	 *
-	 * *Default = 3*
+	 * *Default = §c3§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Duration (ticks)
 	 *
-	 * *Default = 200*
+	 * *Default = §c200§7*
 	 *
 	 * (*) = optional
 	 */
@@ -1086,7 +1283,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * (*) Inaccuracy
 	 *
 	 * *Controls how much random motion is applied on launch*
-	 * *Default = 1*
+	 * *Default = §c1§7*
 	 *
 	 * (*) = optional
 	 */
@@ -1112,7 +1309,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Block data
 	 *
-	 * *Example: "facing=up", "half=top"*
+	 * *Example: §b"facing=up"§7, §b"half=top"§7*
 	 *
 	 * (*) = optional
 	 */
@@ -1155,7 +1352,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Growth stage
 	 *
-	 * *Default = 0*
+	 * *Default = §c0§7*
 	 *
 	 * (*) = optional
 
@@ -1278,7 +1475,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 * (*) Block data
 	 * (*) (comma separated)
 	 *
-	 * *Example: "facing=up,half=top"*
+	 * *Example: §b"facing=up,half=top"§7*
 	 *
 	 * (*) = optional
 	 */
@@ -1295,6 +1492,14 @@ class GameActionCategory internal constructor(private val template: Template) {
 
 
 	/**
+	 * Sets if this world spreads vines.
+	 */
+	fun vineSpreading(items: Items) {
+		block(items, "VineSpreading", tagClass = GameActionTags.VineSpreading::class)
+	}
+
+
+	/**
 	 * Spawns primed TNT at a location.
 	 *
 	 * **Args:**
@@ -1307,13 +1512,13 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) TNT power (0-4)
 	 *
-	 * *Default = 4*
+	 * *Default = §c4§7*
 	 *
 	 * [NumItem]
 	 *
 	 * (*) Fuse duration
 	 *
-	 * *Default = 80*
+	 * *Default = §c80§7*
 	 *
 	 * [TextItem]
 	 *
@@ -1360,7 +1565,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 *
 	 * Biome to set
 	 *
-	 * *Example: "basalt_deltas", "plains"*
+	 * *Example: §b"basalt_deltas"§7, §b"plains"§7*
 	 *
 	 * [LocItem]
 	 *
@@ -1387,7 +1592,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 *
 	 * New healing amount
 	 *
-	 * *❤ = 2 Health*
+	 * *§c❤§7 = §c2§7 Health*
 	 *
 	 * (*) = optional
 	 */
@@ -1493,7 +1698,7 @@ class GameActionCategory internal constructor(private val template: Template) {
 	 *
 	 * (*) Cooking time (ticks)
 	 *
-	 * *Default = 600*
+	 * *Default = §c600§7*
 	 *
 	 * (*) = optional
 

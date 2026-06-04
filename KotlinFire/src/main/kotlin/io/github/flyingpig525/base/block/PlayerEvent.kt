@@ -1,5 +1,6 @@
 package io.github.flyingpig525.base.block
 
+@Suppress("unused")
 enum class PlayerEvent(val type: EventBlock.Type, val event: String) {
 	/**
 	 * Player Click Container Slot Event

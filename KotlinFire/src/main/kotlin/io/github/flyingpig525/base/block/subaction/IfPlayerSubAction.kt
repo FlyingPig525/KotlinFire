@@ -1,5 +1,6 @@
 package io.github.flyingpig525.base.block.subaction
 
+@Suppress("unused")
 enum class IfPlayerSubAction(override val codeblock: String) : SubAction {
 	HasRoomForItem("PHasRoomForItem"),
 	IsHoldingOff("IsHoldingOff"),
